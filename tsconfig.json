@@ -16,5 +16,11 @@
       "es2018",
       "dom"
     ]
+  },
+  // new added for Ivy error
+  "angularCompilerOptions": { 
+    "fullTemplateTypeCheck": true, 
+    "strictInjectionParameters": true, 
+    "enableIvy": false 
   }
 }
