@@ -8,7 +8,7 @@ import { UserAuthService } from './user-auth.service';
 })
 export class GetCategoryService {
 
-  private readonly URL = 'http://127.0.0.1:8000/api-token-auth/';
+  private readonly URL = 'http://127.0.0.1:8000/category/';
 
   constructor(private http: HttpClient, private authService: UserAuthService) { }
 
@@ -26,6 +26,6 @@ export class GetCategoryService {
         'Authorization': 'JWT ' + this.authService.token
       })
     };
-    return this.http.post(this.URL, httpOptions);
+    return this.http.get(this.URL);
   }
 }

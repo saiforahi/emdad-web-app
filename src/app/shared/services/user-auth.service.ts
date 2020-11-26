@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
@@ -19,23 +19,27 @@ interface JWTPayload {
 export class UserAuthService {
 
   private apiRoot = 'http://localhost:8000/auth/';
+  uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
   // // http options used for making API calls
   // private httpOptions: any;
- 
+
   // // the actual JWT token
   // public token: string;
- 
+
   // // the token expiration date
   // public token_expires: Date;
- 
+
   // // the username of the logged in user
   // public username: string;
- 
+
   // // error messages received from the login attempt
   // public errors: any = [];
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
     // this.httpOptions = {
     //   headers: new HttpHeaders({'Content-Type': 'application/json'})
     // };
@@ -43,10 +47,11 @@ export class UserAuthService {
 
   private setSession(authResult) {
     const token = authResult.token;
-    const payload = <JWTPayload> jwt_decode(token);
+    const payload = <JWTPayload>jwt_decode(token);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    this.uData.next(payload);
   }
 
   get token(): string {
@@ -70,6 +75,8 @@ export class UserAuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
+    this.uData.next([]);
+    this.router.navigate(['/login']);
   }
 
   refreshToken() {
@@ -109,7 +116,7 @@ export class UserAuthService {
   //     }
   //   );
   // }
- 
+
   // Refreshes the JWT token, to extend the time the user is logged in
   // public refreshToken() {
   //   this.http.post('http://127.0.0.1:8000/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
@@ -121,13 +128,13 @@ export class UserAuthService {
   //     }
   //   );
   // }
- 
+
   // public logout() {
   //   this.token = null;
   //   this.token_expires = null;
   //   this.username = null;
   // }
- 
+
   // private updateData(token) {
   //   this.token = token;
   //   this.errors = [];
@@ -170,7 +177,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.UserAuthService.logout();
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
 
       return false;
     }

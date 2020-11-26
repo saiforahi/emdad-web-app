@@ -1,3 +1,11 @@
 .navbar-brand img{
     width: 56px;
 }
+
+.link-btn /deep/ .mat-button-focus-overlay {
+    background-color:transparent;
+}
+
+button:focus {
+    outline: none;
+}

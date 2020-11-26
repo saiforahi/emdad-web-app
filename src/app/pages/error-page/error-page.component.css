@@ -1,0 +1,49 @@
+.oops{
+    font-size:150px;
+}
+.page-not-found{
+    /* background-color: rgb(176, 190, 197); */
+}
+.left-side{
+    margin-top: 5%;
+}
+.right-side{
+    margin-top:5%;
+}
+a{
+    color:#11a0ff;
+    text-decoration: none;
+}
+@media(max-width:576px){
+    .oops{
+        font-size:90px;
+    }
+    .right-side{
+        display: none;
+    }
+    .left-side{
+        margin-top: 20%;
+    }
+}
+@media(min-width:577px) and (max-width:768px){
+    .oops{
+        font-size:80px;
+    }
+    .left-side{
+        margin-top: 20%;
+    }
+    .right-side{
+        margin-top: 20%;
+    }
+}
+@media(min-width:769px) and (max-width:992px){
+    .oops{
+        font-size:80px;
+    }
+    .left-side{
+        margin-top: 20%;
+    }
+    .right-side{
+        margin-top: 20%;
+    }
+}
