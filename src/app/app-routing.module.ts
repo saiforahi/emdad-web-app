@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule) },
   { path: 'signup', loadChildren: () => import('./pages/signup-page/signup-page.module').then(m => m.SignupPageModule) },
   { path: 'cart', loadChildren: () => import('./pages/cart-page/cart-page.module').then(m => m.CartPageModule), canActivate: [AuthGuard] },
+  { path: 'profile/:id', loadChildren: () => import('./pages/profile-page/profile-page.module').then(m => m.ProfilePageModule), canActivate: [AuthGuard] },
 
   { path: '**', loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule) },
 ];

@@ -12,14 +12,7 @@ export class GetCategoryService {
 
   constructor(private http: HttpClient, private authService: UserAuthService) { }
 
-  // create a method named: category()
-  // this method returns list-of-items in form of Observable
-  // every HTTTP call returns Observable object
   category(): Observable<any> {
-    // console.log('Request is sent!');
-    // this.http is a HttpClient library provide by @angular/common
-    // we are calling .get() method over this.http object
-    // this .get() method takes URL to call API
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

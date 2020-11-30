@@ -11,7 +11,9 @@ import { GetCategoryService } from './shared/services/get-category.service';
 export class AppComponent implements OnInit {
 
   title = 'emdad-web-app';
-  loggedInUser = [];
+  loggedInUser = false;
+  userName;
+  uId;
   items;
 
   constructor(
@@ -20,9 +22,19 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.UserAuthService.uData.subscribe(data => {
-      this.loggedInUser = data;
-    });
+    this.UserAuthService.uName.subscribe(data => {
+      if(data == null){
+        this.loggedInUser = false;
+      }else {
+        this.loggedInUser = true;
+        this.userName = data;
+      }
+    })
+    this.UserAuthService.uId.subscribe(data => {
+      if(data != null){
+        this.uId = data;
+      }
+    })
     this.categoryServices.category().subscribe(item => {
       this.removeEmptyChildren(item);
       this.items = item;

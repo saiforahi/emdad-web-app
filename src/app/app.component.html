@@ -5,7 +5,6 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -21,16 +20,16 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/cart']">Cart</a>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser.length != 0">
-            <a class="nav-link text-uppercase" [routerLink]="['/profile']">{{loggedInUser['username']}}</a>
+          <li class="nav-item" *ngIf="loggedInUser">
+            <a class="nav-link text-uppercase" [routerLink]="['/profile/', uId]">{{userName}}</a>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser.length == 0">
+          <li class="nav-item" *ngIf="!loggedInUser">
             <a class="nav-link" [routerLink]="['/login']">Login</a>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser.length == 0">
+          <li class="nav-item" *ngIf="!loggedInUser">
             <a class="nav-link" [routerLink]="['/signup']">Signup</a>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser.length != 0">
+          <li class="nav-item" *ngIf="loggedInUser">
             <a class="nav-link" (click)=logout(); type="button">Logout</a>
           </li>
         </ul>

@@ -19,30 +19,16 @@ interface JWTPayload {
 export class UserAuthService {
 
   private apiRoot = 'http://localhost:8000/auth/';
-  uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-
-  // // http options used for making API calls
-  // private httpOptions: any;
-
-  // // the actual JWT token
-  // public token: string;
-
-  // // the token expiration date
-  // public token_expires: Date;
-
-  // // the username of the logged in user
-  // public username: string;
-
-  // // error messages received from the login attempt
-  // public errors: any = [];
+  // uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
+  uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
-    // this.httpOptions = {
-    //   headers: new HttpHeaders({'Content-Type': 'application/json'})
-    // };
+    this.uName.next(localStorage.getItem('username'));
+    this.uId.next(localStorage.getItem('uid'));
   }
 
   private setSession(authResult) {
@@ -50,22 +36,40 @@ export class UserAuthService {
     const payload = <JWTPayload>jwt_decode(token);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
+    localStorage.setItem('username', payload.username);
+    localStorage.setItem('uid', JSON.stringify(payload.user_id));
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    this.uData.next(payload);
+    this.uName.next(localStorage.getItem('username'));
+    this.uId.next(localStorage.getItem('uid'));
+    // this.uData.next(payload);
+    // console.log(localStorage.getItem('username'));
   }
 
   get token(): string {
     return localStorage.getItem('token');
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
     return this.http.post(
       this.apiRoot.concat('login/'),
       { username, password }
     ).pipe(
-      tap(response => this.setSession(response)),
+      tap(response => {
+        this.setSession(response);
+
+      }),
       shareReplay(),
     );
+  }
+
+  getUser(id): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + localStorage.getItem('token')
+      })
+    };
+    return this.http.get('http://127.0.0.1:8000/users/api/profile-details/'+id+'/', httpOptions);
   }
 
   signup(username: string, email: string, password1: string, password2: string) {
@@ -75,7 +79,10 @@ export class UserAuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
-    this.uData.next([]);
+    localStorage.removeItem('username');
+    localStorage.removeItem('uid');
+    this.uName.next(null);
+    this.uId.next(null);
     this.router.navigate(['/login']);
   }
 
@@ -104,47 +111,6 @@ export class UserAuthService {
   isLoggedOut() {
     return !this.isLoggedIn();
   }
-
-  // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
-  // public login(user) {
-  //   this.http.post('http://127.0.0.1:8000/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
-  //     data => {
-  //       this.updateData(data['token']);
-  //     },
-  //     err => {
-  //       this.errors = err['error'];
-  //     }
-  //   );
-  // }
-
-  // Refreshes the JWT token, to extend the time the user is logged in
-  // public refreshToken() {
-  //   this.http.post('http://127.0.0.1:8000/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
-  //     data => {
-  //       this.updateData(data['token']);
-  //     },
-  //     err => {
-  //       this.errors = err['error'];
-  //     }
-  //   );
-  // }
-
-  // public logout() {
-  //   this.token = null;
-  //   this.token_expires = null;
-  //   this.username = null;
-  // }
-
-  // private updateData(token) {
-  //   this.token = token;
-  //   this.errors = [];
-  //   // decode the token to read the username and expiration timestamp
-  //   const token_parts = this.token.split(/\./);
-  //   const token_decoded = JSON.parse(window.atob(token_parts[1]));
-  //   console.log(token_decoded);
-  //   this.token_expires = new Date(token_decoded.exp * 1000);
-  //   this.username = token_decoded.username;
-  // }
 }
 
 @Injectable()

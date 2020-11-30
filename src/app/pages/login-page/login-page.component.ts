@@ -21,7 +21,6 @@ export class LoginPageComponent implements OnInit {
 
   login(username: string, password: string) {
     this.authService.login(username, password).subscribe(
-      // redirect to latest visited page scroll to the component
       success => this.router.navigate(['']),
       error => this.error = error
     );
