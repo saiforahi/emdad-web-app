@@ -1,1 +1,5 @@
-<p>profile-page works!</p>
+<div *ngIf="userInfo">
+    <h4>{{userInfo.user.first_name}} {{userInfo.user.last_name}}</h4>
+    <p>{{userInfo.phone}}</p>
+    <p>{{userInfo.user.email}}</p>
+</div>

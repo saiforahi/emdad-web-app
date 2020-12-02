@@ -7,5 +7,5 @@
 <input #username type='text' placeholder='username'>
 <input #password type='password' placeholder='password'>
 <button (click)="login(username.value, password.value)">login</button>
-<p>{{ error?.message }}</p>
-<p *ngIf="error">{{ error?.error | json }}</p>
+<!-- <p>{{ error?.message }}</p> -->
+<p *ngIf="error" style="color: red;">{{ error?.error.global}}</p>

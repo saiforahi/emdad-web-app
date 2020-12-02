@@ -11,7 +11,7 @@ import { UserAuthService } from '../../shared/services/user-auth.service';
 export class ProfilePageComponent implements OnInit {
 
   userId;
-  uData: Observable<any>;
+  userInfo;
 
   constructor(
     private authService: UserAuthService,
@@ -20,9 +20,13 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
-    this.authService.getUser(this.userId).subscribe(data=>{
-      console.log(data);
-    })
+    if(this.userId == localStorage.getItem('uid')){
+      this.authService.getUser(this.userId).subscribe(data=>{
+        this.userInfo = data;
+      })
+    }else {
+      alert("access is denied");
+    }
   }
 
 }

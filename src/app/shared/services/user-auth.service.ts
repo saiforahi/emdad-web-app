@@ -56,7 +56,6 @@ export class UserAuthService {
     ).pipe(
       tap(response => {
         this.setSession(response);
-
       }),
       shareReplay(),
     );
@@ -72,8 +71,14 @@ export class UserAuthService {
     return this.http.get('http://127.0.0.1:8000/users/api/profile-details/'+id+'/', httpOptions);
   }
 
-  signup(username: string, email: string, password1: string, password2: string) {
-    // to do sign up
+  signup(firstname: string, lastname: string, username: string, email: string, password: string): Observable<any> {
+    const type = {"user_type":"BUYER"};
+    return this.http.post(
+      'http://127.0.0.1:8000/buyer/api/buyer-create/',
+      { firstname, lastname, username, email, password, type }
+    ).pipe(
+      shareReplay(),
+    );
   }
 
   logout() {
