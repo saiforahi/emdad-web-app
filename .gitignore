@@ -41,6 +41,6 @@ yarn-error.log
 testem.log
 /typings
 
-# System Files
+# System Files updated
 .DS_Store
 Thumbs.db
