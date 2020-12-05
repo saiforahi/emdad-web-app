@@ -71,11 +71,21 @@ export class UserAuthService {
     return this.http.get('http://127.0.0.1:8000/users/api/profile-details/'+id+'/', httpOptions);
   }
 
-  signup(firstname: string, lastname: string, username: string, email: string, password: string): Observable<any> {
+  signup(first_name: string, last_name: string, username: string, email: string, password: string): Observable<any> {
     const type = {"user_type":"BUYER"};
     return this.http.post(
-      'http://127.0.0.1:8000/buyer/api/buyer-create/',
-      { firstname, lastname, username, email, password, type }
+      'http://127.0.0.1:8000/api/buyer/registration/',
+      { first_name, last_name, username, email, password, type }
+    ).pipe(
+      shareReplay(),
+    );
+  }
+
+  sellerSignup(first_name: string, last_name: string, username: string, email: string, password: string): Observable<any> {
+    const type = {"user_type":"SELLER"};
+    return this.http.post(
+      'http://127.0.0.1:8000/api/buyer/registration/api/buyer/registration/',
+      { first_name, last_name, username, email, password, type }
     ).pipe(
       shareReplay(),
     );
@@ -115,6 +125,10 @@ export class UserAuthService {
 
   isLoggedOut() {
     return !this.isLoggedIn();
+  }
+
+  changePassword(){
+
   }
 }
 

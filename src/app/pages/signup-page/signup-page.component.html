@@ -1,15 +1,5 @@
-<div style="text-align:center">
-  <h1>
-    Signup
-  </h1>
-</div>
 
-<input #firstname type='text' placeholder='firstname'>
-<input #lastname type='text' placeholder='lastname'>
-<input #username type='text' placeholder='username'>
-<input #email type='text' placeholder='email'>
-<input #password type='password' placeholder='password'>
-<button (click)="signup(firstname.value, lastname.value, username.value, email.value, password.value)">signup</button>
-<p>{{ error?.message }}</p>
-<p *ngIf="error">{{ error?.error | json }}</p>
-<p>{{msg}}</p>
+<app-buyer-signup-form *ngIf="isbuyer"></app-buyer-signup-form>
+<app-seller-signup-form *ngIf="!isbuyer"></app-seller-signup-form>
+<span *ngIf="isbuyer">Want to sell something in emdad! <button (click)="isbuyer = false">Register</button> here.</span>
+<button *ngIf="!isbuyer" (click)="isbuyer = true">Back</button>

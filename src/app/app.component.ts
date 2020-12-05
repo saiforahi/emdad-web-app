@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserAuthService } from './shared/services/user-auth.service';
 import { GetCategoryService } from './shared/services/get-category.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { GetCategoryService } from './shared/services/get-category.service';
 })
 
 export class AppComponent implements OnInit {
+  
+  @ViewChild("menu", {static: true}) menu: MatMenuModule;
 
   title = 'emdad-web-app';
   loggedInUser = false;

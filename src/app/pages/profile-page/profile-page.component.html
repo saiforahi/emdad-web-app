@@ -1,5 +1,7 @@
-<div *ngIf="userInfo">
+<div *ngIf="userInfo && !changePass">
     <h4>{{userInfo.user.first_name}} {{userInfo.user.last_name}}</h4>
     <p>{{userInfo.phone}}</p>
     <p>{{userInfo.user.email}}</p>
 </div>
+<app-change-password-form *ngIf="changePass"></app-change-password-form>
+<button (click)="changePass = true">change password</button>

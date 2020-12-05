@@ -11,7 +11,8 @@
           <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <button mat-button [matMenuTriggerFor]="panel.menu" class="link-btn">Category</button>
+          <button mat-button [matMenuTriggerFor]="panel.menu" class="link-btn" #matMenuButton="matMenuTrigger" 
+          (mouseenter)="matMenuButton.openMenu()" (mouseenter)="matMenuButton.openMenu()">Category</button>
           <app-category-menu #panel [items]="items"></app-category-menu>
         </li>
       </ul>

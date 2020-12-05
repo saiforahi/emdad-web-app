@@ -12,6 +12,7 @@ export class ProfilePageComponent implements OnInit {
 
   userId;
   userInfo;
+  changePass = false;
 
   constructor(
     private authService: UserAuthService,
@@ -22,6 +23,7 @@ export class ProfilePageComponent implements OnInit {
     this.userId = this.route.snapshot.params['id'];
     if(this.userId == localStorage.getItem('uid')){
       this.authService.getUser(this.userId).subscribe(data=>{
+        console.log(data);
         this.userInfo = data;
       })
     }else {
