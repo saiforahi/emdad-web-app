@@ -13,6 +13,7 @@ export class ProfilePageComponent implements OnInit {
   userId;
   userInfo;
   changePass = false;
+  error;
 
   constructor(
     private authService: UserAuthService,
@@ -25,7 +26,9 @@ export class ProfilePageComponent implements OnInit {
       this.authService.getUser(this.userId).subscribe(data=>{
         console.log(data);
         this.userInfo = data;
-      })
+      },
+      error=>this.error = error
+      )
     }else {
       alert("access is denied");
     }
