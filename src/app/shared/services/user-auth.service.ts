@@ -68,7 +68,7 @@ export class UserAuthService {
         'Authorization': 'JWT ' + localStorage.getItem('token')
       })
     };
-    return this.http.get('http://127.0.0.1:8000/users/api/profile-details/'+id+'/', httpOptions);
+    return this.http.get('http://127.0.0.1:8000/api/profile/details/'+id+'/', httpOptions);
   }
 
   signup(first_name: string, last_name: string, username: string, email: string, password: string): Observable<any> {
@@ -127,8 +127,16 @@ export class UserAuthService {
     return !this.isLoggedIn();
   }
 
-  changePassword(){
-
+  changePassword(old_password, new_password){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + localStorage.getItem('token')
+      })
+    };
+    return this.http.put('http://127.0.0.1:8000/api/change/password/',
+    {old_password, new_password},
+    httpOptions);
   }
 }
 
