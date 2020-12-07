@@ -18,8 +18,8 @@ import { CountryListService } from '../../shared/services/country-list.service';
 })
 export class EditProfileFormComponent implements OnInit {
 	changePass = false;
-	cities: any = [];
-	countries: any = [];
+	editCities: any = [];
+	editUserInfo: any;
 
 	constructor(
 		private authService: UserAuthService,
@@ -30,48 +30,53 @@ export class EditProfileFormComponent implements OnInit {
 	@Input() userId;
 	@Input() userInfo;
 	@Input() editProfile;
+	@Input() countries;
+	@Input() cities;
 	@Output() setEditProfile = new EventEmitter<boolean>();
+	@Output() updateCities = new EventEmitter<any>();
+	@Output() updateEditedUserInfo = new EventEmitter<any>();
 
 	ngOnInit(): void {
-		this.getCountries();
-		if (this.userInfo.country) {
+		this.editUserInfo = { ...this.userInfo, user: { ...this.userInfo.user } };
+		this.editCities = [...this.cities];
+		if (this.editUserInfo.country) {
 			this.onCountryChange(this.userInfo.country);
 		}
-	}
-
-	updateEditProfile() {
-		this.setEditProfile.emit(!this.editProfile);
 	}
 
 	saveData() {
 		// console.log(this.userInfo);
 		this.updateEditProfile();
+		this.updateUserInfo();
 		this.authService.updateProfile(this.userId, this.userInfo).subscribe(
 			(success) => console.log(success),
 			(error) => console.error(error)
 		);
 	}
 
-	getCountries() {
-		this.countryList.allCountries().subscribe(
+	onCountryChange(countryId) {
+		// reset city if countryId changed
+		if (countryId !== this.editUserInfo.country) {
+			this.editUserInfo.city = '';
+		}
+
+		this.countryList.allCities(countryId).subscribe(
 			(data) => {
-				this.countries = [...this.countries, ...data.data];
+				this.editCities = ['select one', ...data.data];
 			},
 			(err) => console.error(err)
 		);
 	}
 
-	onCountryChange(countryId) {
-		// reset city if countryId changed
-		if (countryId !== this.userInfo.country) {
-			this.userInfo.city = '';
-		}
+	updateEditProfile() {
+		this.setEditProfile.emit(!this.editProfile);
+	}
 
-		this.countryList.allCities(countryId).subscribe(
-			(data) => {
-				this.cities = ['select one', ...data.data];
-			},
-			(err) => console.error(err)
-		);
+	updateCityList() {
+		this.updateCities.emit(this.editCities);
+	}
+
+	updateUserInfo() {
+		this.updateEditedUserInfo.emit(this.editUserInfo);
 	}
 }

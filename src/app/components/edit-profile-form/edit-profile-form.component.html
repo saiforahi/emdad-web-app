@@ -1,23 +1,23 @@
-<div *ngIf="userInfo && !changePass && editProfile">
+<div *ngIf="editUserInfo && !changePass && editProfile">
 	<h4>Edit Profile</h4>
 	<table class="table table-borderless">
 		<tbody>
 			<tr>
 				<td>First Name</td>
 				<td>
-					<input [(ngModel)]="userInfo.user.first_name" />
+					<input [(ngModel)]="editUserInfo.user.first_name" />
 				</td>
 			</tr>
 			<tr>
 				<td>Last Name</td>
 				<td>
-					<input [(ngModel)]="userInfo.user.last_name" />
+					<input [(ngModel)]="editUserInfo.user.last_name" />
 				</td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td>
-					<input [(ngModel)]="userInfo.user.email" />
+					<input [(ngModel)]="editUserInfo.user.email" />
 				</td>
 			</tr>
 			<tr>
@@ -28,12 +28,12 @@
 			</tr>
 			<tr>
 				<td>Phone</td>
-				<input type="text" [(ngModel)]="userInfo.phone" />
+				<input type="text" [(ngModel)]="editUserInfo.phone" />
 			</tr>
 			<tr>
 				<td>Gender</td>
 				<td>
-					<select [(ngModel)]="userInfo.gender">
+					<select [(ngModel)]="editUserInfo.gender">
 						<option value="">Select</option>
 						<option value="F">Female</option>
 						<option value="M">Male</option>
@@ -43,20 +43,20 @@
 			<tr>
 				<td>Date of Birth</td>
 				<td>
-					<input type="date" [(ngModel)]="userInfo.dob" />
+					<input type="date" [(ngModel)]="editUserInfo.dob" />
 				</td>
 			</tr>
 			<tr>
 				<td>Address</td>
 				<td>
-					<input [(ngModel)]="userInfo.address" />
+					<input [(ngModel)]="editUserInfo.address" />
 				</td>
 			</tr>
 			<tr>
 				<td>City</td>
 				<td>
-					<select [(ngModel)]="userInfo.city">
-						<option *ngFor="let city of cities; let i = index" [value]="i">
+					<select [(ngModel)]="editUserInfo.city" (input)="updateCityList()">
+						<option *ngFor="let city of editCities; let i = index" [value]="i">
 							{{ city.name }}
 						</option>
 					</select>
@@ -66,7 +66,7 @@
 				<td>Country</td>
 				<td>
 					<select
-						[(ngModel)]="userInfo.country"
+						[(ngModel)]="editUserInfo.country"
 						(input)="onCountryChange($event.target.value)"
 					>
 						<option *ngFor="let country of countries" [value]="country.id">

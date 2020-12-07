@@ -37,17 +37,14 @@ export class ProfilePageComponent implements OnInit {
       this.getCountries();
       this.authService.getUser(this.userId).subscribe((data) => {
         this.userInfo = data.data;
-        // console.log(this.userInfo);
+        // if country is already set then load the cities of the country
+        if (this.userInfo.country) {
+          this.onCountryChange(this.userInfo.country);
+        }
       });
     } else {
       alert('access is denied');
     }
-  }
-
-  setEditProfile(editProfile: boolean) {
-    this.editProfile = editProfile;
-    // after profile update, update the city list too
-    if (this.userInfo.country) this.onCountryChange(this.userInfo.country);
   }
 
   getCountries() {
@@ -66,5 +63,19 @@ export class ProfilePageComponent implements OnInit {
       },
       (err) => console.error(err)
     );
+  }
+
+  setEditProfile(editProfile: boolean) {
+    this.editProfile = editProfile;
+    // after profile update, update the city list too
+    if (this.userInfo.country) this.onCountryChange(this.userInfo.country);
+  }
+
+  updateCities(cities: any) {
+    this.cities = cities;
+  }
+
+  updateEditedUserInfo(editUserInfo: any) {
+    this.userInfo = editUserInfo;
   }
 }
