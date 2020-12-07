@@ -6,12 +6,17 @@ import { Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class CountryListService {
-	url: string =
-		'https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json';
+	countryUrl: string = 'http://localhost:8000/api/country/list';
+	cityUrl: string = '';
 
 	constructor(private http: HttpClient) {}
 
 	allCountries(): Observable<any> {
-		return this.http.get(this.url);
+		return this.http.get(this.countryUrl);
+	}
+
+	allCities(id: number): Observable<any> {
+		this.cityUrl = `http://localhost:8000/api/city/list/${id}`;
+		return this.http.get(this.cityUrl);
 	}
 }

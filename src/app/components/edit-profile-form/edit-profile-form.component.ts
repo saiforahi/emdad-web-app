@@ -18,9 +18,8 @@ import { CountryListService } from '../../shared/services/country-list.service';
 })
 export class EditProfileFormComponent implements OnInit {
 	changePass = false;
-	stateInfo: any = [];
-	cityInfo: any = [];
-	countryInfo: any = [];
+	cities: any = [];
+	countries: any = [];
 
 	constructor(
 		private authService: UserAuthService,
@@ -35,6 +34,9 @@ export class EditProfileFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getCountries();
+		if (this.userInfo.country) {
+			this.onCountryChange(this.userInfo.country);
+		}
 	}
 
 	updateEditProfile() {
@@ -42,7 +44,7 @@ export class EditProfileFormComponent implements OnInit {
 	}
 
 	saveData() {
-		console.log(this.userInfo);
+		// console.log(this.userInfo);
 		this.updateEditProfile();
 		this.authService.updateProfile(this.userId, this.userInfo).subscribe(
 			(success) => console.log(success),
@@ -53,21 +55,23 @@ export class EditProfileFormComponent implements OnInit {
 	getCountries() {
 		this.countryList.allCountries().subscribe(
 			(data) => {
-				this.countryInfo = data.Countries;
-				console.log(this.countryInfo);
+				this.countries = [...this.countries, ...data.data];
 			},
 			(err) => console.error(err)
 		);
 	}
 
-	onChangeCountry(countryValue) {
-		this.stateInfo = this.countryInfo[countryValue].States;
-		this.cityInfo = this.stateInfo[0].Cities;
-		console.log(this.cityInfo);
-	}
+	onCountryChange(countryId) {
+		// reset city if countryId changed
+		if (countryId !== this.userInfo.country) {
+			this.userInfo.city = '';
+		}
 
-	onChangeState(stateValue) {
-		this.cityInfo = this.stateInfo[stateValue].Cities;
-		//console.log(this.cityInfo);
+		this.countryList.allCities(countryId).subscribe(
+			(data) => {
+				this.cities = ['select one', ...data.data];
+			},
+			(err) => console.error(err)
+		);
 	}
 }

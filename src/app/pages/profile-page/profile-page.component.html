@@ -27,8 +27,8 @@
 			</tr>
 			<tr>
 				<td>Gender</td>
-				<td *ngIf="userInfo.gender == 'm'">Male</td>
-				<td *ngIf="userInfo.gender == 'f'">Female</td>
+				<td *ngIf="userInfo.gender == 'M'">Male</td>
+				<td *ngIf="userInfo.gender == 'F'">Female</td>
 			</tr>
 			<tr>
 				<td>Date of Birth</td>
@@ -40,11 +40,13 @@
 			</tr>
 			<tr>
 				<td>City</td>
-				<td>{{ userInfo.city }}</td>
+				<td *ngIf="userInfo.city && cities.length">
+					{{ cities[userInfo.city].name }}
+				</td>
 			</tr>
 			<tr>
 				<td>Country</td>
-				<td>{{ userInfo.country }}</td>
+				<td *ngIf="userInfo.country">{{ countries[userInfo.country].name }}</td>
 			</tr>
 		</tbody>
 	</table>

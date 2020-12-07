@@ -28,15 +28,15 @@
 			</tr>
 			<tr>
 				<td>Phone</td>
-				<td>{{ userInfo.phone }}</td>
+				<input type="text" [(ngModel)]="userInfo.phone" />
 			</tr>
 			<tr>
 				<td>Gender</td>
 				<td>
 					<select [(ngModel)]="userInfo.gender">
 						<option value="">Select</option>
-						<option value="f">Female</option>
-						<option value="m">Male</option>
+						<option value="F">Female</option>
+						<option value="M">Male</option>
 					</select>
 				</td>
 			</tr>
@@ -55,13 +55,24 @@
 			<tr>
 				<td>City</td>
 				<td>
-					<input [(ngModel)]="userInfo.city" />
+					<select [(ngModel)]="userInfo.city">
+						<option *ngFor="let city of cities; let i = index" [value]="i">
+							{{ city.name }}
+						</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>Country</td>
 				<td>
-					<select [(ngModel)]="userInfo.country"></select>
+					<select
+						[(ngModel)]="userInfo.country"
+						(input)="onCountryChange($event.target.value)"
+					>
+						<option *ngFor="let country of countries" [value]="country.id">
+							{{ country.name }}
+						</option>
+					</select>
 				</td>
 			</tr>
 		</tbody>

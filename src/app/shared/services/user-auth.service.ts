@@ -156,7 +156,6 @@ export class UserAuthService {
   changePassword() {}
 
   updateProfile(userId: number, user: any) {
-    console.log(userId, user);
     return this.http
       .post(`http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`, {
         user,

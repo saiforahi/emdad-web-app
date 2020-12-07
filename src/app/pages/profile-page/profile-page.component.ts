@@ -10,6 +10,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAuthService } from '../../shared/services/user-auth.service';
+import { CountryListService } from '../../shared/services/country-list.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -21,15 +22,19 @@ export class ProfilePageComponent implements OnInit {
   userInfo;
   changePass = false;
   editProfile = false;
+  cities: any = [];
+  countries: any = [];
 
   constructor(
     private authService: UserAuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private countryList: CountryListService
   ) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
     if (this.userId == localStorage.getItem('uid')) {
+      this.getCountries();
       this.authService.getUser(this.userId).subscribe((data) => {
         this.userInfo = data.data;
         // console.log(this.userInfo);
@@ -41,5 +46,25 @@ export class ProfilePageComponent implements OnInit {
 
   setEditProfile(editProfile: boolean) {
     this.editProfile = editProfile;
+    // after profile update, update the city list too
+    if (this.userInfo.country) this.onCountryChange(this.userInfo.country);
+  }
+
+  getCountries() {
+    this.countryList.allCountries().subscribe(
+      (data) => {
+        this.countries = ['select one', ...data.data];
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  onCountryChange(countryId) {
+    this.countryList.allCities(countryId).subscribe(
+      (data) => {
+        this.cities = ['select one', ...data.data];
+      },
+      (err) => console.error(err)
+    );
   }
 }
