@@ -1,72 +1,20 @@
 <div class="row">
-    <div class="col-lg-3">
-        <mat-card class="example-card mt-3">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-    <div class="col-lg-3">
-        <mat-card class="example-card mt-3">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-    <div class="col-lg-3">
-        <mat-card class="example-card mt-3">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-    <div class="col-lg-3">
-        <mat-card class="example-card mt-3">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-    <div class="col-lg-3">
-        <mat-card class="example-card mt-3">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
+  <div class="col-lg-3" *ngFor="let product of products">
+    <mat-card class="example-card mt-3">
+      <img *ngIf="product.image1 != null" mat-card-image [src]="'http://127.0.0.1:8000'+product.image1" alt="product image">
+      <img *ngIf="product.image1 == null" mat-card-image src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png" alt="product image">
+      <mat-card-content>
+        <p>
+          {{product.name}}
+        </p>
+        <p>
+          {{product.unit_price}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>VIEW</button>
+        <button mat-button>+ CART</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
