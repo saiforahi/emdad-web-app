@@ -19,7 +19,7 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   changePass(d1, d2){
-    console.log(d1, d2);
+    // console.log(d1, d2);
       this.authService.changePassword(d1, d2).subscribe(
         success=>{
           this.msg = success
