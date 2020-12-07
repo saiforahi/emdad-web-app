@@ -9,6 +9,7 @@ import {
 	HttpEvent,
 } from '@angular/common/http';
 import { UserAuthService } from '../../shared/services/user-auth.service';
+import { CountryListService } from '../../shared/services/country-list.service';
 
 @Component({
 	selector: 'app-edit-profile-form',
@@ -17,10 +18,14 @@ import { UserAuthService } from '../../shared/services/user-auth.service';
 })
 export class EditProfileFormComponent implements OnInit {
 	changePass = false;
+	stateInfo: any = [];
+	cityInfo: any = [];
+	countryInfo: any = [];
 
 	constructor(
 		private authService: UserAuthService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private countryList: CountryListService
 	) {}
 
 	@Input() userId;
@@ -28,7 +33,9 @@ export class EditProfileFormComponent implements OnInit {
 	@Input() editProfile;
 	@Output() setEditProfile = new EventEmitter<boolean>();
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.getCountries();
+	}
 
 	updateEditProfile() {
 		this.setEditProfile.emit(!this.editProfile);
@@ -41,5 +48,26 @@ export class EditProfileFormComponent implements OnInit {
 			(success) => console.log(success),
 			(error) => console.error(error)
 		);
+	}
+
+	getCountries() {
+		this.countryList.allCountries().subscribe(
+			(data) => {
+				this.countryInfo = data.Countries;
+				console.log(this.countryInfo);
+			},
+			(err) => console.error(err)
+		);
+	}
+
+	onChangeCountry(countryValue) {
+		this.stateInfo = this.countryInfo[countryValue].States;
+		this.cityInfo = this.stateInfo[0].Cities;
+		console.log(this.cityInfo);
+	}
+
+	onChangeState(stateValue) {
+		this.cityInfo = this.stateInfo[stateValue].Cities;
+		//console.log(this.cityInfo);
 	}
 }
