@@ -1,0 +1,80 @@
+<div *ngIf="userInfo && !changePass && editProfile">
+	<h4>Edit Profile</h4>
+	<table class="table table-borderless">
+		<tbody>
+			<tr>
+				<td>First Name</td>
+				<td>
+					<input [(ngModel)]="userInfo.user.first_name" />
+				</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td>
+					<input [(ngModel)]="userInfo.user.last_name" />
+				</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>
+					<input [(ngModel)]="userInfo.user.email" />
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<button (click)="changePass = true">change password</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td>{{ userInfo.phone }}</td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>
+					<select [(ngModel)]="userInfo.gender">
+						<option value="">Select</option>
+						<option value="f">Female</option>
+						<option value="m">Male</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Date of Birth</td>
+				<td>
+					<input type="date" [(ngModel)]="userInfo.dob" />
+				</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>
+					<input [(ngModel)]="userInfo.address" />
+				</td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td>
+					<input [(ngModel)]="userInfo.city" />
+				</td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td>
+					<select [(ngModel)]="userInfo.country"></select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-1">
+			<button class="btn btn-secondary" (click)="updateEditProfile()">
+				Cancel
+			</button>
+		</div>
+		<div class="col-1">
+			<button class="btn btn-primary" (click)="saveData()">Update</button>
+		</div>
+	</div>
+</div>
+<app-change-password-form *ngIf="changePass"></app-change-password-form>

@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "emdad-web-app"
+  "defaultProject": "emdad-web-app",
+  "cli": {
+    "analytics": false
+  }
 }
