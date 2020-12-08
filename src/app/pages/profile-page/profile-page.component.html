@@ -34,6 +34,14 @@
 				<td>Date of Birth</td>
 				<td>{{ userInfo.dob }}</td>
 			</tr>
+			<tr *ngIf="userInfo.store_name !== undefined">
+				<td>Store Name</td>
+				<td>{{ userInfo.store_name }}</td>
+			</tr>
+			<tr *ngIf="userInfo.store_address !== undefined">
+				<td>Store Address</td>
+				<td>{{ userInfo.store_address }}</td>
+			</tr>
 			<tr>
 				<td>Address</td>
 				<td>{{ userInfo.address }}</td>
