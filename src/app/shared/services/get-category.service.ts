@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GetCategoryService {
-
   private readonly URL = 'http://127.0.0.1:8000/category/';
 
   constructor(

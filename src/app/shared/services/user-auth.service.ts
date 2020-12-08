@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
@@ -14,19 +21,15 @@ interface JWTPayload {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserAuthService {
-
   private apiRoot = 'http://localhost:8000/auth/';
   // uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) {
+  constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
   }
@@ -50,45 +53,63 @@ export class UserAuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(
-      this.apiRoot.concat('login/'),
-      { username, password }
-    ).pipe(
-      tap(response => {
-        this.setSession(response);
-      }),
-      shareReplay(),
-    );
+    return this.http
+      .post(this.apiRoot.concat('login/'), { username, password })
+      .pipe(
+        tap((response) => {
+          this.setSession(response);
+        }),
+        shareReplay()
+      );
   }
 
-  getUser(id): Observable<any>{
+  getUser(id): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + localStorage.getItem('token')
-      })
+        Authorization: 'JWT ' + localStorage.getItem('token'),
+      }),
     };
-    return this.http.get('http://127.0.0.1:8000/api/profile/details/'+id+'/', httpOptions);
-  }
-
-  signup(first_name: string, last_name: string, username: string, email: string, password: string): Observable<any> {
-    const type = {"user_type":"BUYER"};
-    return this.http.post(
-      'http://127.0.0.1:8000/api/buyer/registration/',
-      { first_name, last_name, username, email, password, type }
-    ).pipe(
-      shareReplay(),
+    return this.http.get(
+      'http://127.0.0.1:8000/api/profile/details/' + id + '/',
+      httpOptions
     );
   }
 
-  sellerSignup(first_name: string, last_name: string, username: string, email: string, password: string): Observable<any> {
-    const type = {"user_type":"SELLER"};
-    return this.http.post(
-      'http://127.0.0.1:8000/api/buyer/registration/api/buyer/registration/',
-      { first_name, last_name, username, email, password, type }
-    ).pipe(
-      shareReplay(),
-    );
+  signup(
+    first_name: string,
+    last_name: string,
+    username: string,
+    email: string,
+    password: string
+  ): Observable<any> {
+    const type = { user_type: 'BUYER' };
+    return this.http
+      .post('http://127.0.0.1:8000/api/buyer/registration/', {
+        first_name,
+        last_name,
+        username,
+        email,
+        password,
+        type,
+      })
+      .pipe(shareReplay());
+  }
+
+  sellerSignup(
+    first_name: string,
+    last_name: string,
+    username: string,
+    email: string,
+    password: string
+  ): Observable<any> {
+    const type = { user_type: 'SELLER' };
+    return this.http
+      .post(
+        'http://127.0.0.1:8000/api/buyer/registration/api/buyer/registration/',
+        { first_name, last_name, username, email, password, type }
+      )
+      .pipe(shareReplay());
   }
 
   logout() {
@@ -102,14 +123,19 @@ export class UserAuthService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-      return this.http.post(
-        this.apiRoot.concat('refresh-token/'),
-        { token: this.token }
-      ).pipe(
-        tap(response => this.setSession(response)),
-        shareReplay(),
-      ).subscribe();
+    if (
+      moment().isBetween(
+        this.getExpiration().subtract(1, 'days'),
+        this.getExpiration()
+      )
+    ) {
+      return this.http
+        .post(this.apiRoot.concat('refresh-token/'), { token: this.token })
+        .pipe(
+          tap((response) => this.setSession(response)),
+          shareReplay()
+        )
+        .subscribe();
     }
   }
 
@@ -127,7 +153,7 @@ export class UserAuthService {
     return !this.isLoggedIn();
   }
 
-  changePassword(old_password, new_password){
+  changePassword(old_password, new_password) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -135,20 +161,30 @@ export class UserAuthService {
       })
     };
     return this.http.put('http://127.0.0.1:8000/api/change/password/',
-    {old_password, new_password},
-    httpOptions);
+      { old_password, new_password },
+      httpOptions);
+  }
+
+  updateProfile(userId: number, user: any) {
+    return this.http
+      .post(`http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`, {
+        user,
+      })
+      .pipe(shareReplay());
   }
 }
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
 
     if (token) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'JWT '.concat(token))
+        headers: req.headers.set('Authorization', 'JWT '.concat(token)),
       });
 
       return next.handle(cloned);
@@ -160,8 +196,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-
-  constructor(private UserAuthService: UserAuthService, private router: Router) { }
+  constructor(
+    private UserAuthService: UserAuthService,
+    private router: Router
+  ) { }
 
   canActivate() {
     if (this.UserAuthService.isLoggedIn()) {

@@ -3,28 +3,27 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserAuthService, AuthInterceptor, AuthGuard } from '../app/shared/services/user-auth.service';
+import {
+  UserAuthService,
+  AuthInterceptor,
+  AuthGuard,
+} from '../app/shared/services/user-auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CategoryMenuComponent
-  ],
+  declarations: [AppComponent, CategoryMenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  exports: [
-    MaterialModule,
-  ],
+  exports: [MaterialModule],
   providers: [
     UserAuthService,
     AuthGuard,
@@ -32,8 +31,8 @@ import { CategoryMenuComponent } from './components/category-menu/category-menu.
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

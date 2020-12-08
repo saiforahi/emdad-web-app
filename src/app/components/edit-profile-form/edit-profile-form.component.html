@@ -1,0 +1,91 @@
+<div *ngIf="editUserInfo && !changePass && editProfile">
+	<h4>Edit Profile</h4>
+	<table class="table table-borderless">
+		<tbody>
+			<tr>
+				<td>First Name</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.user.first_name" />
+				</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.user.last_name" />
+				</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.user.email" />
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<button (click)="changePass = true">change password</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<input type="text" [(ngModel)]="editUserInfo.phone" />
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>
+					<select [(ngModel)]="editUserInfo.gender">
+						<option value="">Select</option>
+						<option value="F">Female</option>
+						<option value="M">Male</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Date of Birth</td>
+				<td>
+					<input type="date" [(ngModel)]="editUserInfo.dob" />
+				</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.address" />
+				</td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td>
+					<select [(ngModel)]="editUserInfo.city" (input)="updateCityList()">
+						<option *ngFor="let city of editCities; let i = index" [value]="i">
+							{{ city.name }}
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td>
+					<select
+						[(ngModel)]="editUserInfo.country"
+						(input)="onCountryChange($event.target.value)"
+					>
+						<option *ngFor="let country of countries" [value]="country.id">
+							{{ country.name }}
+						</option>
+					</select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-1">
+			<button class="btn btn-secondary" (click)="updateEditProfile()">
+				Cancel
+			</button>
+		</div>
+		<div class="col-1">
+			<button class="btn btn-primary" (click)="saveData()">Update</button>
+		</div>
+	</div>
+</div>
+<app-change-password-form *ngIf="changePass"></app-change-password-form>
