@@ -105,10 +105,14 @@ export class UserAuthService {
   ): Observable<any> {
     const type = { user_type: 'SELLER' };
     return this.http
-      .post(
-        'http://127.0.0.1:8000/api/buyer/registration/api/buyer/registration/',
-        { first_name, last_name, username, email, password, type }
-      )
+      .post('http://127.0.0.1:8000/api/buyer/registration/', {
+        first_name,
+        last_name,
+        username,
+        email,
+        password,
+        type,
+      })
       .pipe(shareReplay());
   }
 
@@ -166,8 +170,13 @@ export class UserAuthService {
   }
 
   updateProfile(userId: number, user: any) {
+    if (user.user_type === 'BUYER') {
+      var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
+    } else {
+      const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
+    }
     return this.http
-      .post(`http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`, {
+      .post(updateURL, {
         user,
       })
       .pipe(shareReplay());

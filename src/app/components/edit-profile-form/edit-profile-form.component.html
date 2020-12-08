@@ -46,6 +46,18 @@
 					<input type="date" [(ngModel)]="editUserInfo.dob" />
 				</td>
 			</tr>
+			<tr *ngIf="editUserInfo.store_name !== undefined">
+				<td>Store Name</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.store_name" />
+				</td>
+			</tr>
+			<tr *ngIf="editUserInfo.store_address !== undefined">
+				<td>Store Address</td>
+				<td>
+					<input [(ngModel)]="editUserInfo.store_address" />
+				</td>
+			</tr>
 			<tr>
 				<td>Address</td>
 				<td>
