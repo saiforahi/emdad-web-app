@@ -24,6 +24,7 @@ export class ProfilePageComponent implements OnInit {
   editProfile = false;
   cities: any = [];
   countries: any = [];
+  error;
 
   constructor(
     private authService: UserAuthService,
@@ -41,6 +42,7 @@ export class ProfilePageComponent implements OnInit {
         if (this.userInfo.country) {
           this.onCountryChange(this.userInfo.country);
         }
+        error=>this.error = error
       });
     } else {
       alert('access is denied');

@@ -3,16 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class GetCategoryService {
-  private readonly URL = 'http://127.0.0.1:8000/category/';
+export class GetProductService {
+
+  private readonly URL = 'http://127.0.0.1:8000/api/product/list/';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  category(): Observable<any> {
+  product(): Observable<any> {
     return this.http.get(this.URL);
   }
 }
