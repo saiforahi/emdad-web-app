@@ -7,13 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class GetProductService {
 
-  private readonly URL = 'http://127.0.0.1:8000/api/product/list/';
-
   constructor(
     private http: HttpClient
   ) { }
 
   product(): Observable<any> {
-    return this.http.get(this.URL);
+    return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
+  }
+
+  productDetails(id): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
 }
