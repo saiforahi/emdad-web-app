@@ -1,0 +1,14 @@
+<h4>Product Deatails</h4>
+<div class="row" *ngIf="prodcutDetails">
+    <div class="col-md-6">
+        {{prodcutDetails.name}}
+        <p>{{prodcutDetails.unit_price}}</p>
+        <p>Seller: {{prodcutDetails.seller.username}}</p>
+        <p><a [routerLink]="">search by seller</a></p>
+    </div>
+    <div class="col-md-6">
+        <div *ngFor="let img of sliderImgArray">
+            <img [src]="img" alt="prod img">
+        </div>
+    </div>
+</div>
