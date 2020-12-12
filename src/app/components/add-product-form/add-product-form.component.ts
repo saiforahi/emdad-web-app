@@ -54,19 +54,16 @@ export class AddProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService
       .category()
-      .subscribe(
-        (items) =>
-          (this.formCategories = [{ id: 0, name: 'select one' }, ...items])
-      );
-    // console.log(this.productData);
+      .subscribe((items) => (this.formCategories = ['', ...items]));
   }
 
   onSubmit() {
     let slug = this.generateSlug(this.formProductData.value.name);
     this.formProductData.value.slug = slug;
     this.formProductData.value.seller_id = this.userId;
-    console.log(this.formProductData.value);
-    // this.addProduct.emit(this.formProductData);
+    // console.log(this.formProductData.value);
+    // sending data to the page
+    this.addProduct.emit(this.formProductData);
   }
 
   generateSlug(name: string) {
@@ -79,7 +76,7 @@ export class AddProductFormComponent implements OnInit {
     let subCategories = this.formCategories.filter((cat) => {
       if (cat.id == this.selectedCategory) return cat;
     });
-    this.formSubCategories = [{ id: '', name: 'select one' }];
+    this.formSubCategories = [''];
     subCategories.forEach((sc) => this.formSubCategories.push(...sc.children));
     // console.log(this.formSubCategories);
   }
@@ -89,7 +86,7 @@ export class AddProductFormComponent implements OnInit {
     let subSubCategories = this.formSubCategories.filter((cat) => {
       if (cat.id == this.selectedSubCategory) return cat;
     });
-    this.formSubSubCategories = [{ id: '', name: 'select one' }];
+    this.formSubSubCategories = [''];
     subSubCategories.forEach((ssc) =>
       this.formSubSubCategories.push(...ssc.children)
     );

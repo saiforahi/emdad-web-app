@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../../shared/services/user-auth.service';
-import { GetCategoryService } from '../../shared/services/get-category.service';
+import { AddProductService } from '../../shared/services/add-product.service';
 
 @Component({
   selector: 'app-add-product-page',
@@ -13,7 +13,11 @@ export class AddProductPageComponent implements OnInit {
   productData: any;
   categories: any;
 
-  constructor(private authService: UserAuthService, private router: Router) {}
+  constructor(
+    private authService: UserAuthService,
+    private router: Router,
+    private addProductService: AddProductService
+  ) {}
 
   ngOnInit(): void {
     var uid = localStorage.getItem('uid');
@@ -27,8 +31,13 @@ export class AddProductPageComponent implements OnInit {
   }
 
   addProduct(formProductData: any) {
-    this.productData = formProductData;
+    this.productData = formProductData.value;
     // console.log('### from add-product-page ###');
     // console.log(this.productData);
+    // submit the form data
+    // this.addProductService.addProduct(this.productData).subscribe(
+    //   (res) => console.log(res),
+    //   (err) => console.log(err)
+    // );
   }
 }
