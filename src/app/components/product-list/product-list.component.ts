@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GetProductService } from '../../shared/services/get-product.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-list',
@@ -8,17 +7,13 @@ import { GetProductService } from '../../shared/services/get-product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products;
+  @Input() products;
+  @Input() prodEnd;
+  defaultImage = "http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png";
 
-  constructor(
-    private getProduct: GetProductService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getProduct.product().subscribe(item=>{
-      this.products = item.data[0];
-      console.log(this.products)
-    })
   }
 
 }
