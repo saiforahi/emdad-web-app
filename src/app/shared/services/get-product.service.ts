@@ -15,7 +15,15 @@ export class GetProductService {
     return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
   }
 
+  getNextBatchProduct(link): Observable<any>{
+    return this.http.get(link);
+  }
+
   productDetails(id): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
+  }
+
+  productByCategory(id){
     return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
 }

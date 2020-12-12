@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page.component';
 import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from '../../components/product-list/product-list.component';
 import { MaterialModule } from '../../material.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 const routes: Routes = [
   {path:'', component: HomePageComponent, pathMatch:'full'}
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    LazyLoadImageModule
   ]
 })
 export class HomePageModule { }
