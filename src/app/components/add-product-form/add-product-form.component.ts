@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -21,30 +28,31 @@ export class AddProductFormComponent implements OnInit {
   selectedCategory: any;
   selectedSubCategory: any;
   selectedSubSubCategory: any;
+  isSubmitted: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: GetCategoryService
   ) {
     this.formProductData = this.formBuilder.group({
-      name: '',
-      slug: '',
-      description: '',
-      category_id: '',
-      unit_price: '',
-      delivery_method: '',
-      ddp_lead_time: '',
-      ex_works_lead_time: '',
-      commission: '',
-      stock_quantity: '',
-      unit_id: '',
-      color: '',
-      brand_id: '',
-      seller_id: '',
-      image1: '',
-      image2: '',
-      status: '',
-      attachment: [],
+      name: new FormControl('', Validators.required),
+      slug: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      category_id: new FormControl('', Validators.required),
+      unit_price: new FormControl('', Validators.required),
+      delivery_method: new FormControl('', Validators.required),
+      ddp_lead_time: new FormControl('', Validators.required),
+      ex_works_lead_time: new FormControl('', Validators.required),
+      commission: new FormControl('', Validators.required),
+      stock_quantity: new FormControl('', Validators.required),
+      unit_id: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
+      brand_id: new FormControl('', Validators.required),
+      seller_id: new FormControl('', Validators.required),
+      image1: new FormControl('', Validators.required),
+      image2: new FormControl(''),
+      status: new FormControl('', Validators.required),
+      attachment: new FormControl([]),
     });
   }
 
@@ -64,6 +72,7 @@ export class AddProductFormComponent implements OnInit {
     // console.log(this.formProductData.value);
     // sending data to the page
     this.addProduct.emit(this.formProductData);
+    this.isSubmitted = true;
   }
 
   generateSlug(name: string) {
