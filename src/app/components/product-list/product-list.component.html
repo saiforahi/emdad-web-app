@@ -2,7 +2,7 @@
   <div class="col-lg-3" *ngFor="let product of products">
     <mat-card class="example-card mt-3">
       <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="product.image1" [defaultImage]="defaultImage" alt="product image">
-      <!-- <img *ngIf="product.image1 == null" mat-card-image src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png" alt="product image"> -->
+      <img *ngIf="product.image1 == null" mat-card-image src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png" alt="product image">
       <mat-card-content>
         <p>
           {{product.name}}
