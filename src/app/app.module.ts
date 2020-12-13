@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CommonuiModule } from './ui/commonui/commonui.module';
 
 @NgModule({
   declarations: [AppComponent, CategoryMenuComponent],
@@ -23,7 +24,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     NgbModule,
     MaterialModule,
     BrowserAnimationsModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    CommonuiModule
   ],
   exports: [MaterialModule],
   providers: [

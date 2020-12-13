@@ -4,7 +4,7 @@
         {{prodcutDetails.name}}
         <p>{{prodcutDetails.unit_price}}</p>
         <p>Seller: {{prodcutDetails.seller.username}}</p>
-        <p><a [routerLink]="">search by seller</a></p>
+        <p><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]">search by seller</a></p>
     </div>
     <div class="col-md-6">
         <div *ngFor="let img of sliderImgArray">
