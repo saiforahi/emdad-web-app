@@ -38,21 +38,21 @@ export class AddProductFormComponent implements OnInit {
       name: new FormControl('', Validators.required),
       slug: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      category_id: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
       unit_price: new FormControl('', Validators.required),
       delivery_method: new FormControl('', Validators.required),
       ddp_lead_time: new FormControl('', Validators.required),
       ex_works_lead_time: new FormControl('', Validators.required),
       commission: new FormControl('', Validators.required),
       stock_quantity: new FormControl('', Validators.required),
-      unit_id: new FormControl('', Validators.required),
+      unit: new FormControl('', Validators.required),
       color: new FormControl('', Validators.required),
       brand_id: new FormControl('', Validators.required),
-      seller_id: new FormControl('', Validators.required),
-      image1: new FormControl('', Validators.required),
-      image2: new FormControl(''),
+      seller: new FormControl('', Validators.required),
+      image1: new FormControl(File, Validators.required),
+      image2: new FormControl(File),
       status: new FormControl('', Validators.required),
-      attachment: new FormControl([]),
+      attachment: new FormControl([], Validators.required),
     });
   }
 
@@ -68,7 +68,7 @@ export class AddProductFormComponent implements OnInit {
   onSubmit() {
     let slug = this.generateSlug(this.formProductData.value.name);
     this.formProductData.value.slug = slug;
-    this.formProductData.value.seller_id = this.userId;
+    this.formProductData.value.seller = this.userId;
     // console.log(this.formProductData.value);
     // sending data to the page
     this.addProduct.emit(this.formProductData);
@@ -100,5 +100,25 @@ export class AddProductFormComponent implements OnInit {
       this.formSubSubCategories.push(...ssc.children)
     );
     // console.log(this.formSubSubCategories);
+  }
+
+  onImage1Change(event) {
+    if (event.target.files) {
+      this.formProductData.image1 = event.target.files[0];
+    }
+  }
+
+  onImage2Change(event) {
+    if (event.target.files) {
+      this.formProductData.image2 = event.target.files[0];
+    }
+  }
+
+  onAttachmentChange(event) {
+    this.formProductData.attachment = [];
+    if (event.target.files) {
+      let files = event.target.files;
+      this.formProductData.attachment = [...files];
+    }
   }
 }

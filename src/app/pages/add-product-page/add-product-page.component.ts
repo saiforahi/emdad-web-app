@@ -33,11 +33,11 @@ export class AddProductPageComponent implements OnInit {
   addProduct(formProductData: any) {
     this.productData = formProductData.value;
     // console.log('### from add-product-page ###');
-    // console.log(this.productData);
+    console.log(this.productData);
     // submit the form data
-    // this.addProductService.addProduct(this.productData).subscribe(
-    //   (res) => console.log(res),
-    //   (err) => console.log(err)
-    // );
+    this.addProductService.addProduct(this.productData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 }
