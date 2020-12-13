@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'cart', loadChildren: () => import('./pages/cart-page/cart-page.module').then(m => m.CartPageModule), canActivate: [AuthGuard] },
   { path: 'profile/:id', loadChildren: () => import('./pages/profile-page/profile-page.module').then(m => m.ProfilePageModule), canActivate: [AuthGuard] },
   { path: 'product/details/:id', loadChildren: () => import('./pages/product-details-page/product-details-page.module').then(m => m.ProductDetailsPageModule) },
+  { path: 'products/seller/:id', loadChildren: () => import('./pages/product-list-page/product-list-page.module').then(m => m.ProductListPageModule) },
 
   { path: '**', loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule) },
 ];

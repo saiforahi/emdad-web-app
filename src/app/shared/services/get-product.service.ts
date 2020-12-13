@@ -23,6 +23,10 @@ export class GetProductService {
     return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
 
+  getProductBySeller(id): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/product/seller/products/${id}/`);
+  }
+
   productByCategory(id){
     return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
