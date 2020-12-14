@@ -49,7 +49,7 @@ export class AddProductFormComponent implements OnInit {
       color: new FormControl('', Validators.required),
       brand_id: new FormControl('', Validators.required),
       seller: new FormControl('', Validators.required),
-      image1: new FormControl(File, Validators.required),
+      image1: new FormControl(File),
       image2: new FormControl(File),
       status: new FormControl('', Validators.required),
       attachment: new FormControl([], Validators.required),
@@ -69,10 +69,13 @@ export class AddProductFormComponent implements OnInit {
     let slug = this.generateSlug(this.formProductData.value.name);
     this.formProductData.value.slug = slug;
     this.formProductData.value.seller = this.userId;
-    // console.log(this.formProductData.value);
-    // sending data to the page
-    this.addProduct.emit(this.formProductData);
     this.isSubmitted = true;
+    // if form is valid
+    // sending data to the page
+    console.log(this.formProductData.valid);
+    // console.log(this.formProductData.value);
+    console.log(this.formProductData);
+    this.addProduct.emit(this.formProductData);
   }
 
   generateSlug(name: string) {
@@ -104,21 +107,33 @@ export class AddProductFormComponent implements OnInit {
 
   onImage1Change(event) {
     if (event.target.files) {
-      this.formProductData.image1 = event.target.files[0];
+      let file: File = event.target.files[0];
+      this.formProductData.image1.setValue(file);
     }
   }
 
   onImage2Change(event) {
     if (event.target.files) {
-      this.formProductData.image2 = event.target.files[0];
+      let file: File = event.target.files[0];
+      this.formProductData.image2.setValue(file);
     }
   }
 
+  // git rm --cached -r /folderName/__pycache__
+
   onAttachmentChange(event) {
-    this.formProductData.attachment = [];
-    if (event.target.files) {
-      let files = event.target.files;
-      this.formProductData.attachment = [...files];
-    }
+    this.formProductData.value.attachment = [];
+    let uploads = event.target.files || event.dataTransfer.files;
+    let newFiles = Array.from(uploads);
+    console.log(newFiles);
+    newFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(<File>file);
+      reader.onload = (e: any) => {
+        // called once readAsDataURL is completed
+        console.log('***');
+        this.formProductData.value.attachment.push(e);
+      };
+    });
   }
 }

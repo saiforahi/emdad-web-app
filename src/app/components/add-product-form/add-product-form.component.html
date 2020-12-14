@@ -141,10 +141,10 @@
 		</select>
 	</div>
 
-	<div *ngIf="formProductData.hasError('required', 'attachment') && isSubmitted" class="row">
+	<!-- <div *ngIf="attachment.length && isSubmitted" class="row">
 		<div class="col-3"></div>
 		<p class="col-5 alert alert-danger">Please upload at least one attachment</p>
-	</div>
+	</div> -->
 	<div class="row mb-3">
 		<label for="attachments">Attachments</label>
 		<input type="file" (change)="onAttachmentChange($event)" class="col-8" multiple />
