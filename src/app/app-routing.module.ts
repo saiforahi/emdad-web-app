@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'profile/:id', loadChildren: () => import('./pages/profile-page/profile-page.module').then(m => m.ProfilePageModule), canActivate: [AuthGuard] },
   { path: 'product/details/:id', loadChildren: () => import('./pages/product-details-page/product-details-page.module').then(m => m.ProductDetailsPageModule) },
   { path: 'products/seller/:id', loadChildren: () => import('./pages/product-list-page/product-list-page.module').then(m => m.ProductListPageModule) },
+  { path: 'forget-password/', loadChildren: () => import('./pages/forget-password-page/forget-password-page.module').then(m => m.ForgetPasswordPageModule) },
 
   { path: '**', loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule) },
 ];
