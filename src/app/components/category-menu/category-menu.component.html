@@ -1,6 +1,8 @@
 <mat-menu #menu>
   <ng-container *ngFor="let item of items">
-    <button *ngIf="!item.children; else branch" mat-menu-item>{{item.name}}</button>
+    <a href="/products/category/{{item.id}}" *ngIf="!item.children; else branch" mat-menu-item>
+      {{item.name}}
+    </a>
     <ng-template #branch>
       <button mat-menu-item [matMenuTriggerFor]="innerPanel.menu">{{item.name}}</button>
       <app-category-menu #innerPanel [items]="item.children"></app-category-menu>
