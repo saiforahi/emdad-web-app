@@ -49,8 +49,8 @@ export class AddProductFormComponent implements OnInit {
       color: new FormControl('', Validators.required),
       brand_id: new FormControl('', Validators.required),
       seller: new FormControl('', Validators.required),
-      image1: new FormControl(File),
-      image2: new FormControl(File),
+      image1: new FormControl(''),
+      image2: new FormControl(''),
       status: new FormControl('', Validators.required),
       attachment: new FormControl([], Validators.required),
     });
@@ -108,7 +108,8 @@ export class AddProductFormComponent implements OnInit {
   onImage1Change(event) {
     if (event.target.files) {
       let file: File = event.target.files[0];
-      this.formProductData.image1.setValue(file);
+      console.log(file);
+      this.formProductData.get('image1').setValue(file);
     }
   }
 
@@ -118,8 +119,6 @@ export class AddProductFormComponent implements OnInit {
       this.formProductData.image2.setValue(file);
     }
   }
-
-  // git rm --cached -r /folderName/__pycache__
 
   onAttachmentChange(event) {
     this.formProductData.value.attachment = [];

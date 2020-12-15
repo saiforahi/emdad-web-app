@@ -111,12 +111,12 @@
 	</div>
 	<div class="row mb-3">
 		<label for="image_1" class="col-3">Image 1</label>
-		<input type="file" class="col-5" formControlName="image1" (change)="onImage1Change($event)" />
+		<input type="file" class="col-5" (change)="onImage1Change($event)" />
 	</div>
 
 	<div class="row mb-3">
 		<label for="image_2" class="col-3">Image 2</label>
-		<input type="file" class="col-5" formControlName="image2" (change)="onImage2Change($event)" />
+		<input type="file" class="col-5" (change)="onImage2Change($event)" />
 	</div>
 
 	<div *ngIf="formProductData.hasError('required', 'description') && isSubmitted" class="row">
