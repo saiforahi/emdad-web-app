@@ -37,7 +37,7 @@ export class AddProductFormComponent implements OnInit {
     this.formProductData = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       slug: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      description: new FormControl(''),
       category: new FormControl('', Validators.required),
       unit_price: new FormControl('', Validators.required),
       delivery_method: new FormControl('', Validators.required),
@@ -52,7 +52,7 @@ export class AddProductFormComponent implements OnInit {
       image1: new FormControl(''),
       image2: new FormControl(''),
       status: new FormControl('', Validators.required),
-      attachment: new FormControl([], Validators.required),
+      attachment: new FormControl('', Validators.required),
     });
   }
 
@@ -74,8 +74,7 @@ export class AddProductFormComponent implements OnInit {
     // sending data to the page
     console.log(this.formProductData.valid);
     // console.log(this.formProductData.value);
-    console.log(this.formProductData);
-    this.addProduct.emit(this.formProductData);
+    this.addProduct.emit(this.formProductData.value);
   }
 
   generateSlug(name: string) {
@@ -106,33 +105,14 @@ export class AddProductFormComponent implements OnInit {
   }
 
   onImage1Change(event) {
-    if (event.target.files) {
-      let file: File = event.target.files[0];
-      console.log(file);
-      this.formProductData.get('image1').setValue(file);
-    }
+    this.formProductData.image1 = event.target.files[0];
   }
 
   onImage2Change(event) {
-    if (event.target.files) {
-      let file: File = event.target.files[0];
-      this.formProductData.image2.setValue(file);
-    }
+    this.formProductData.image2 = event.target.files[0];
   }
 
   onAttachmentChange(event) {
-    this.formProductData.value.attachment = [];
-    let uploads = event.target.files || event.dataTransfer.files;
-    let newFiles = Array.from(uploads);
-    console.log(newFiles);
-    newFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(<File>file);
-      reader.onload = (e: any) => {
-        // called once readAsDataURL is completed
-        console.log('***');
-        this.formProductData.value.attachment.push(e);
-      };
-    });
+    this.formProductData.value.attachment = event.target.files;
   }
 }
