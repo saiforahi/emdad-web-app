@@ -59,7 +59,7 @@ export class AddProductPageComponent implements OnInit {
         formProductData.image1.name
       );
     if (formProductData.image2)
-      formProductData.append(
+      this.productData.append(
         'image2',
         formProductData.image2,
         formProductData.image2.name
@@ -74,7 +74,10 @@ export class AddProductPageComponent implements OnInit {
     }
     // submit the form data
     this.addProductService.addProduct(this.productData).subscribe(
-      (res) => console.log(res),
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/']);
+      },
       (err) => console.log(err)
     );
   }

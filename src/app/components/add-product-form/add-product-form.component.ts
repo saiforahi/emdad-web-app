@@ -29,6 +29,9 @@ export class AddProductFormComponent implements OnInit {
   selectedSubCategory: any;
   selectedSubSubCategory: any;
   isSubmitted: boolean;
+  image1: any;
+  image2: any;
+  attachment: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,11 +72,15 @@ export class AddProductFormComponent implements OnInit {
     let slug = this.generateSlug(this.formProductData.value.name);
     this.formProductData.value.slug = slug;
     this.formProductData.value.seller = this.userId;
+    this.formProductData.value.image1 = this.image1;
+    this.formProductData.value.image2 = this.image2;
+    this.formProductData.value.attachment = this.attachment;
     this.isSubmitted = true;
     // if form is valid
     // sending data to the page
     console.log(this.formProductData.valid);
-    // console.log(this.formProductData.value);
+    console.log('***');
+    console.log(this.formProductData.value);
     this.addProduct.emit(this.formProductData.value);
   }
 
@@ -105,14 +112,14 @@ export class AddProductFormComponent implements OnInit {
   }
 
   onImage1Change(event) {
-    this.formProductData.image1 = event.target.files[0];
+    this.image1 = event.target.files[0];
   }
 
   onImage2Change(event) {
-    this.formProductData.image2 = event.target.files[0];
+    this.image2 = event.target.files[0];
   }
 
   onAttachmentChange(event) {
-    this.formProductData.value.attachment = event.target.files;
+    this.attachment = event.target.files;
   }
 }
