@@ -1,0 +1,7 @@
+<label for="email">enter the email to recover password: </label>
+<input #email type="email">
+<button (click)="sendMail(email.value);">submit</button>
+<p *ngIf="error">{{error}}</p>
+<!-- <p *ngIf="msg">{{msg}}</p> -->
+<br>
+<a [routerLink]="['/login']">login</a>

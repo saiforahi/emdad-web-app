@@ -24,7 +24,6 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-
   private apiRoot = 'http://localhost:8000/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -166,6 +165,20 @@ export class UserAuthService {
       'http://127.0.0.1:8000/api/change/password/',
       { old_password, new_password },
       httpOptions
+    );
+  }
+
+  forgotPassword(email): Observable<any>{
+    return this.http.post(
+      'http://127.0.0.1:8000/api/password_reset/',
+      { email }
+    );
+  }
+
+  resetPassword(token, password): Observable<any>{
+    return this.http.post(
+      'http://127.0.0.1:8000/api/password_reset/confirm/',
+      { token, password }
     );
   }
 

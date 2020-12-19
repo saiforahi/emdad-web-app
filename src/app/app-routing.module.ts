@@ -70,6 +70,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'forget-password',
+    loadChildren: () =>
+      import('./pages/forget-password-page/forget-password-page.module').then(
+        (m) => m.ForgetPasswordPageModule
+      ),
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () =>
+      import('./pages/reset-password-page/reset-password-page.module').then(
+        (m) => m.ResetPasswordPageModule
+      ),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./pages/error-page/error-page.module').then(
