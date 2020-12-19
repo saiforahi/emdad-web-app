@@ -38,12 +38,12 @@ export class ProfilePageComponent implements OnInit {
       this.getCountries();
       this.authService.getUser(this.userId).subscribe((data) => {
         this.userInfo = data.data;
-        // console.log(this.userInfo);
+        console.log(this.userInfo);
         // if country is already set then load the cities of the country
         if (this.userInfo.country) {
           this.onCountryChange(this.userInfo.country);
         }
-        error=>this.error = error
+        (error) => (this.error = error);
       });
     } else {
       alert('access is denied');

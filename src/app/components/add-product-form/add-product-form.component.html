@@ -1,0 +1,145 @@
+<form
+	[formGroup]="formProductData"
+	(ngSubmit)="onSubmit()"
+	method="post"
+	enctype="multipart/form-data"
+>
+
+	<div *ngIf="formProductData.hasError('required', 'category') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please select a valid category</p>
+	</div>
+	<div class="row col-3">Select a Category</div>
+	<div class="row mb-3">
+		<select class="col-3" *ngIf="formCategories" (change)="onCategoryChange($event.target.value)">
+			<option *ngFor="let category of formCategories" value={{category.id}}>{{category.name}}</option>
+		</select>
+		<select class="col-3" *ngIf="formSubCategories" (change)="onSubCategoryChange($event.target.value)">
+			<option *ngFor="let subCategory of formSubCategories" value={{subCategory.id}}>{{subCategory.name}}</option>
+		</select>
+		<select class="col-3" *ngIf="formSubSubCategories" formControlName="category">
+			<option *ngFor="let subSubCategory of formSubSubCategories" value={{subSubCategory.id}}>{{subSubCategory.name}}</option>
+		</select>
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'name') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Product name is required</p>
+	</div>
+	<div class="row mb-3">
+		<label for="name" class="col-3">Name</label>
+		<input type="text" class="col-5" formControlName="name" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'description') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give a product description</p>
+	</div>
+	<div class="row mb-3">
+		<label for="description" class="col-3">Product Description</label>
+		<textarea formControlName="description" class="col-8"></textarea>
+	</div>
+
+
+	<div *ngIf="formProductData.hasError('required', 'unit_price') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give an unit price</p>
+	</div>
+	<div class="row mb-3">
+		<label for="unit_price" class="col-3">Product Unit Price</label>
+		<input type="number" class="col-5" formControlName="unit_price" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'delivery_method') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please select a delivery method</p>
+	</div>
+	<div class="row mb-3">
+		<label for="delivery_method" class="col-3">Product Delivery Method</label>
+		<select class="col-5" formControlName="delivery_method">
+			<option value="1">DDP</option>
+			<option value="2">Ex-Works</option>
+			<option value="3">Both</option>
+		</select>
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'ddp_lead_time') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give a DDP lead time</p>
+	</div>
+	<div class="row mb-3">
+		<label for="ex_works_lead_time" class="col-3">DDP Lead Time</label>
+		<input type="number" class="col-5" formControlName="ddp_lead_time" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'ex_works_lead_time') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give a ex works lead time</p>
+	</div>
+	<div class="row mb-3">
+		<label for="ex_works_lead_time" class="col-3">Ex-work Lead Time</label>
+		<input type="number" class="col-5" formControlName="ex_works_lead_time" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'commission') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give a commission</p>
+	</div>
+	<div class="row mb-3">
+		<label for="ddp_lead_time" class="col-3">Commission</label>
+		<input type="number" class="col-5" formControlName="commission">
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'stock_quantity') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please give the stock quantity</p>
+	</div>
+	<div class="row mb-3">
+		<label for="stock" class="col-3">Stock Quantity</label>
+		<input type="number" class="col-5" formControlName="stock_quantity" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'unit') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please select a valid unit</p>
+	</div>
+	<div class="row mb-3">
+		<label for="unit" class="col-3">Unit of Measurement</label>
+		<select formControlName="unit" class="col-5">
+			<option value="1">Unit</option>
+		</select>
+	</div>
+
+	<div class="row mb-3">
+		<label for="image_1" class="col-3">Image 1</label>
+		<input type="file"  class="col-5" (change)="onImage1Change($event)" />
+	</div>
+
+	<div class="row mb-3">
+		<label for="image_2" class="col-3">Image 2</label>
+		<input type="file" class="col-5" (change)="onImage2Change($event)" />
+	</div>
+
+	<div *ngIf="formProductData.hasError('required', 'status') && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please select a status</p>
+	</div>
+	<div class="row mb-3">
+		<label for="status" class="col-3">Status</label>
+		<select formControlName="status" class="col-5">
+			<option value="0">Unpublished</option>
+			<option value="1">Published</option>
+		</select>
+	</div>
+
+	<!-- <div *ngIf="attachment.length && isSubmitted" class="row">
+		<div class="col-3"></div>
+		<p class="col-5 alert alert-danger">Please upload at least one attachment</p>
+	</div> -->
+	<div class="row mb-3">
+		<label for="attachments">Attachments</label>
+		<input type="file" (change)="onAttachmentChange($event)" class="col-8" multiple />
+	</div>
+
+	<button class="btn btn-primary mt-3">Submit</button>
+</form>
