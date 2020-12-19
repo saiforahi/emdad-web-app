@@ -39,6 +39,13 @@ const routes: Routes = [
       import('./pages/profile-page/profile-page.module').then(
         (m) => m.ProfilePageModule
       ),
+  },
+  {
+    path: 'add',
+    loadChildren: () =>
+      import('./pages/add-product-page/add-product-page.module').then(
+        (m) => m.AddProductPageModule
+      ),
     canActivate: [AuthGuard],
   },
   {
@@ -62,7 +69,6 @@ const routes: Routes = [
         (m) => m.ProductListPageModule
       ),
   },
-
   {
     path: '**',
     loadChildren: () =>

@@ -159,12 +159,14 @@ export class UserAuthService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + localStorage.getItem('token')
-      })
+        Authorization: 'JWT ' + localStorage.getItem('token'),
+      }),
     };
-    return this.http.put('http://127.0.0.1:8000/api/change/password/',
+    return this.http.put(
+      'http://127.0.0.1:8000/api/change/password/',
       { old_password, new_password },
-      httpOptions);
+      httpOptions
+    );
   }
 
   updateProfile(userId: number, user: any) {
@@ -206,7 +208,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private UserAuthService: UserAuthService,
     private router: Router
-  ) { }
+  ) {}
 
   canActivate() {
     if (this.UserAuthService.isLoggedIn()) {
