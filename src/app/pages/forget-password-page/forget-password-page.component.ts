@@ -12,4 +12,8 @@ export class ForgetPasswordPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openResetForm(e){
+    console.log(e);
+  }
+
 }

@@ -24,7 +24,6 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-
   private apiRoot = 'http://localhost:8000/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -159,12 +158,28 @@ export class UserAuthService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + localStorage.getItem('token')
-      })
+        Authorization: 'JWT ' + localStorage.getItem('token'),
+      }),
     };
-    return this.http.put('http://127.0.0.1:8000/api/change/password/',
+    return this.http.put(
+      'http://127.0.0.1:8000/api/change/password/',
       { old_password, new_password },
-      httpOptions);
+      httpOptions
+    );
+  }
+
+  forgotPassword(email): Observable<any>{
+    return this.http.post(
+      'http://127.0.0.1:8000/api/password_reset/',
+      { email }
+    );
+  }
+
+  resetPassword(token, password): Observable<any>{
+    return this.http.post(
+      'http://127.0.0.1:8000/api/password_reset/confirm/',
+      { token, password }
+    );
   }
 
   updateProfile(userId: number, user: any) {
@@ -206,7 +221,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private UserAuthService: UserAuthService,
     private router: Router
-  ) { }
+  ) {}
 
   canActivate() {
     if (this.UserAuthService.isLoggedIn()) {
