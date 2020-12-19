@@ -24,8 +24,8 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
+
   private apiRoot = 'http://localhost:8000/auth/';
-  // uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -44,8 +44,6 @@ export class UserAuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
-    // this.uData.next(payload);
-    // console.log(localStorage.getItem('username'));
   }
 
   get token(): string {
@@ -129,7 +127,7 @@ export class UserAuthService {
   refreshToken() {
     if (
       moment().isBetween(
-        this.getExpiration().subtract(1, 'days'),
+        this.getExpiration().subtract(2, 'days'),
         this.getExpiration()
       )
     ) {

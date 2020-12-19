@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-3" *ngFor="let product of products">
     <mat-card class="example-card mt-3">
-      <img *ngIf="product.image1 != null" mat-card-image [src]="'http://127.0.0.1:8000'+product.image1" alt="product image">
+      <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="product.image1" [defaultImage]="defaultImage" alt="product image">
       <img *ngIf="product.image1 == null" mat-card-image src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png" alt="product image">
       <mat-card-content>
         <p>
@@ -12,9 +12,12 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>VIEW</button>
+        <a mat-link [routerLink]="['/product/details/', product.id]">VIEW</a>
         <button mat-button>+ CART</button>
       </mat-card-actions>
     </mat-card>
   </div>
 </div>
+<br>
+<p *ngIf="prodEnd">no more product to show</p>
+<br>

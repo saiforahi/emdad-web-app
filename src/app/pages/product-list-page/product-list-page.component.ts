@@ -1,26 +1,36 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { GetProductService } from '../../shared/services/get-product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-product-list-page',
+  templateUrl: './product-list-page.component.html',
+  styleUrls: ['./product-list-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
-
+export class ProductListPageComponent implements OnInit {
+  sellerId;
+  isSeller = false;
   products;
+  prodEnd;
   nextBatchProdLink;
-  prodEnd = false;
 
   constructor(
-    private getProduct: GetProductService
-  ) { }
+    private getProduct: GetProductService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getProduct.product().subscribe(item => {
+    this.sellerId = this.route.snapshot.params['id'];
+    // check for is seller ==>
+    const getUrlStr = this.router.url;
+    const newstr = getUrlStr.substr(10, 6);
+    this.isSeller = newstr=='seller' ? true : false;
+    // <==
+    console.log(this.isSeller);
+    this.getProduct.getProductBySeller(this.sellerId).subscribe(item => {
       this.products = item.data.results;
-      this.nextBatchProdLink = item.data.links.next;
-      console.log(item)
+      console.log(this.products);
     })
   }
 
@@ -42,5 +52,4 @@ export class HomePageComponent implements OnInit {
       this.prodEnd = true;
     }
   }
-
 }
