@@ -34,6 +34,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'profile/:id',
+    loadChildren: () =>
+      import('./pages/profile-page/profile-page.module').then(
+        (m) => m.ProfilePageModule
+      ),
+  },
+  {
     path: 'add',
     loadChildren: () =>
       import('./pages/add-product-page/add-product-page.module').then(
@@ -42,14 +49,26 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'profile/:id',
+    path: 'product/details/:id',
     loadChildren: () =>
-      import('./pages/profile-page/profile-page.module').then(
-        (m) => m.ProfilePageModule
+      import('./pages/product-details-page/product-details-page.module').then(
+        (m) => m.ProductDetailsPageModule
       ),
-    canActivate: [AuthGuard],
   },
-
+  {
+    path: 'products/seller/:id',
+    loadChildren: () =>
+      import('./pages/product-list-page/product-list-page.module').then(
+        (m) => m.ProductListPageModule
+      ),
+  },
+  {
+    path: 'products/category/:id',
+    loadChildren: () =>
+      import('./pages/product-list-page/product-list-page.module').then(
+        (m) => m.ProductListPageModule
+      ),
+  },
   {
     path: '**',
     loadChildren: () =>
