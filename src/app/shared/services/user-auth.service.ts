@@ -24,7 +24,7 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-  private apiRoot = 'http://localhost:8000/auth/';
+  private apiRoot = 'http://localhost:8000/api/';
   // uData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -52,9 +52,9 @@ export class UserAuthService {
     return localStorage.getItem('token');
   }
 
-  login(username: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     return this.http
-      .post(this.apiRoot.concat('login/'), { username, password })
+      .post(this.apiRoot.concat('login/'), { email, password })
       .pipe(
         tap((response) => {
           this.setSession(response);

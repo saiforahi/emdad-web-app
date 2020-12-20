@@ -21,18 +21,10 @@ export class AddProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     var uid = localStorage.getItem('uid');
-    this.authService.getUser(uid).subscribe(
-      (data) => {
-        this.userId = data.data.id;
-        // console.log(this.userId);
-      },
-      (err) => console.error(err)
-    );
+    this.userId = uid;
   }
 
   addProduct(formProductData: any) {
-    // this.productData = formProductData.value;
-    console.log(formProductData);
     // creating formData
     this.productData = new FormData();
     this.productData.append('name', formProductData.name);

@@ -78,9 +78,8 @@ export class AddProductFormComponent implements OnInit {
     this.isSubmitted = true;
     // if form is valid
     // sending data to the page
-    console.log(this.formProductData.valid);
-    console.log('***');
-    console.log(this.formProductData.value);
+    // console.log(this.formProductData.valid);
+    // console.log(this.formProductData.value);
     this.addProduct.emit(this.formProductData.value);
   }
 
