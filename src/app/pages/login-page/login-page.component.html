@@ -4,9 +4,9 @@
   </h1>
 </div>
 
-<input #username type='text' placeholder='username'>
+<input #email type='email' placeholder='email'>
 <input #password type='password' placeholder='password'>
-<button (click)="login(username.value, password.value)">login</button>
+<button (click)="login(email.value, password.value)">login</button>
 <a [routerLink]="['/forget-password']">forgot password?</a>
-<!-- <p>{{ error?.message }}</p> -->
+<p>{{ msg?.msg }}</p>
 <p *ngIf="error" style="color: red;">{{ error?.error.global}}</p>

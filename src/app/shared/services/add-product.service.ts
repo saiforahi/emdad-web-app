@@ -11,6 +11,13 @@ export class AddProductService {
   constructor(private http: HttpClient, private authService: UserAuthService) {}
 
   addProduct(productData: any): Observable<any> {
-    return this.http.post(this.URL, productData);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'JWT ' + localStorage.getItem('token'),
+      }),
+    };
+    console.log(httpOptions);
+    return this.http.post(this.URL, httpOptions, productData );
   }
 }
