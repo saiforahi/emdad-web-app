@@ -46,13 +46,21 @@ export class EditProfileFormComponent implements OnInit {
 
 	saveData() {
 		// console.log(this.userInfo);
+		console.log(this.editUserInfo)
 		this.updateEditProfile();
 		this.updateUserInfo();
-		this.authService.updateProfile(this.userId, this.userInfo).subscribe(
-			(success) => console.log(success),
-			(error) => console.error(error)
-		);
+		// this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
+		// 	(success) => console.log(success),
+		// 	(error) => console.error(error)
+		// );
 	}
+
+	// "phone": "01555555555",
+    // "gender": "M",
+    // "dob": null,
+    // "address": "",
+    // "city": null,
+    // "full_name": "Buyer Updated"
 
 	onCountryChange(countryId) {
 		// reset city if countryId changed

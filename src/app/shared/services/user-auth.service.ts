@@ -36,6 +36,7 @@ export class UserAuthService {
   private setSession(authResult) {
     const token = authResult.token;
     const payload = <JWTPayload>jwt_decode(token);
+    console.log(payload);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('username', payload.username);
@@ -43,15 +44,16 @@ export class UserAuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
+    // return payload.group
   }
 
   get token(): string {
     return localStorage.getItem('token');
   }
 
-  login(username: string, password: string): Observable<any> {
+  login(email: string, password: string, group: String): Observable<any> {
     return this.http
-      .post(this.apiRoot.concat('login/'), { username, password })
+      .post('http://localhost:8000/api/login/', { email, password, group })
       .pipe(
         tap((response) => {
           this.setSession(response);
@@ -64,7 +66,7 @@ export class UserAuthService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'JWT ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
     return this.http.get(
@@ -74,41 +76,43 @@ export class UserAuthService {
   }
 
   signup(
-    first_name: string,
-    last_name: string,
-    username: string,
-    email: string,
-    password: string
+    full_name: String,
+    email: String,
+    phone: String,
+    password: String
   ): Observable<any> {
-    const type = { user_type: 'BUYER' };
     return this.http
       .post('http://127.0.0.1:8000/api/buyer/registration/', {
-        first_name,
-        last_name,
-        username,
+        full_name,
         email,
+        phone,
         password,
-        type,
       })
       .pipe(shareReplay());
   }
 
   sellerSignup(
-    first_name: string,
-    last_name: string,
-    username: string,
-    email: string,
-    password: string
+    full_name,
+    email,
+    phone,
+    password,
+    gender,
+    adrress,
+    store_address,
+    store_name,
+    zip_code
   ): Observable<any> {
-    const type = { user_type: 'SELLER' };
     return this.http
       .post('http://127.0.0.1:8000/api/buyer/registration/', {
-        first_name,
-        last_name,
-        username,
+        full_name,
         email,
+        phone,
         password,
-        type,
+        gender,
+        adrress,
+        store_address,
+        store_name,
+        zip_code,
       })
       .pipe(shareReplay());
   }
@@ -158,7 +162,7 @@ export class UserAuthService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'JWT ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
     return this.http.put(
@@ -168,18 +172,17 @@ export class UserAuthService {
     );
   }
 
-  forgotPassword(email): Observable<any>{
-    return this.http.post(
-      'http://127.0.0.1:8000/api/password_reset/',
-      { email }
-    );
+  forgotPassword(email): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/', {
+      email,
+    });
   }
 
-  resetPassword(token, password): Observable<any>{
-    return this.http.post(
-      'http://127.0.0.1:8000/api/password_reset/confirm/',
-      { token, password }
-    );
+  resetPassword(token, password): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/confirm/', {
+      token,
+      password,
+    });
   }
 
   updateProfile(userId: number, user: any) {
@@ -206,7 +209,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (token) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'JWT '.concat(token)),
+        headers: req.headers.set('Authorization', 'Bearer '.concat(token)),
       });
 
       return next.handle(cloned);

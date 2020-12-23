@@ -20,6 +20,9 @@ export class HomePageComponent implements OnInit {
     this.getProduct.product().subscribe(item => {
       this.products = item.data.results;
       this.nextBatchProdLink = item.data.links.next;
+      if(this.nextBatchProdLink == null){
+        this.prodEnd = true;
+      }
       console.log(item)
     })
   }

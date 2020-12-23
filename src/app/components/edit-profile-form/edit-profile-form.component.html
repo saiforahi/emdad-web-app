@@ -3,21 +3,15 @@
 	<table class="table table-borderless">
 		<tbody>
 			<tr>
-				<td>First Name</td>
+				<td>Full Name</td>
 				<td>
-					<input [(ngModel)]="editUserInfo.user.first_name" />
-				</td>
-			</tr>
-			<tr>
-				<td>Last Name</td>
-				<td>
-					<input [(ngModel)]="editUserInfo.user.last_name" />
+					<input [(ngModel)]="editUserInfo.full_name" />
 				</td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td>
-					<input [(ngModel)]="editUserInfo.user.email" />
+					<input readonly [(ngModel)]="editUserInfo.email" />
 				</td>
 			</tr>
 			<tr>
@@ -49,13 +43,13 @@
 			<tr *ngIf="editUserInfo.store_name !== undefined">
 				<td>Store Name</td>
 				<td>
-					<input [(ngModel)]="editUserInfo.store_name" />
+					<input readonly [(ngModel)]="editUserInfo.store_name" />
 				</td>
 			</tr>
 			<tr *ngIf="editUserInfo.store_address !== undefined">
 				<td>Store Address</td>
 				<td>
-					<input [(ngModel)]="editUserInfo.store_address" />
+					<input readonly [(ngModel)]="editUserInfo.store_address" />
 				</td>
 			</tr>
 			<tr>
@@ -65,24 +59,21 @@
 				</td>
 			</tr>
 			<tr>
-				<td>City</td>
+				<td>Country</td>
 				<td>
-					<select [(ngModel)]="editUserInfo.city" (input)="updateCityList()">
-						<option *ngFor="let city of editCities; let i = index" [value]="i">
-							{{ city.name }}
+					<select readonly [(ngModel)]="editUserInfo.country" (input)="onCountryChange($event.target.value)">
+						<option *ngFor="let country of countries" [value]="country.id">
+							{{ country.name }}
 						</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>Country</td>
+				<td>City</td>
 				<td>
-					<select
-						[(ngModel)]="editUserInfo.country"
-						(input)="onCountryChange($event.target.value)"
-					>
-						<option *ngFor="let country of countries" [value]="country.id">
-							{{ country.name }}
+					<select [(ngModel)]="editUserInfo.city" (input)="updateCityList()">
+						<option *ngFor="let city of editCities; let i = index" [value]="i">
+							{{ city.name }}
 						</option>
 					</select>
 				</td>

@@ -34,17 +34,28 @@ export class ProductListPageComponent implements OnInit {
     if (this.isSeller == false) this.isCategory = true;
 
     // get product by seller
-    this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
-      this.products = item.data.results;
-      this.nextBatchProdLink = item.data.links.next;
-      // console.log(this.products);
-    });
+    // this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
+    //   this.products = item.data.results;
+    //   this.nextBatchProdLink = item.data.links.next;
+    //   // console.log(this.products);
+    // });
 
     // get product by category
     this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
+      console.log(item)
       this.products = item.data.results;
       this.nextBatchProdLink = item.data.links.next;
     });
+  }
+
+  changeLocation(locationData) {
+
+    // save current route first
+    const currentRoute = this.router.url;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentRoute]); // navigate to same route
+    }); 
   }
 
   @HostListener('window:scroll')

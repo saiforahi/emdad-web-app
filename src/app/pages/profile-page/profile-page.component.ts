@@ -30,7 +30,7 @@ export class ProfilePageComponent implements OnInit {
     private authService: UserAuthService,
     private route: ActivatedRoute,
     private countryList: CountryListService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];

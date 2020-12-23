@@ -8,5 +8,5 @@
 <input #password type='password' placeholder='password'>
 <button (click)="login(username.value, password.value)">login</button>
 <a [routerLink]="['/forget-password']">forgot password?</a>
-<!-- <p>{{ error?.message }}</p> -->
+<p>{{ error?.error.message }}</p>
 <p *ngIf="error" style="color: red;">{{ error?.error.global}}</p>

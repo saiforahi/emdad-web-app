@@ -4,16 +4,12 @@
 	<table class="table table-borderless">
 		<tbody>
 			<tr>
-				<td>First Name</td>
-				<td>{{ userInfo.user.first_name }}</td>
-			</tr>
-			<tr>
-				<td>Last Name</td>
-				<td>{{ userInfo.user.last_name }}</td>
+				<td>Full Name</td>
+				<td>{{ userInfo.full_name }}</td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td>{{ userInfo.user.email }}</td>
+				<td>{{ userInfo.email }}</td>
 			</tr>
 			<tr>
 				<td>Password</td>
@@ -47,28 +43,20 @@
 				<td>{{ userInfo.address }}</td>
 			</tr>
 			<tr>
+				<td>Country</td>
+				<td *ngIf="userInfo.country">{{ countries[userInfo.country].name }}</td>
+			</tr>
+			<tr>
 				<td>City</td>
 				<td *ngIf="userInfo.city && cities.length">
 					{{ cities[userInfo.city].name }}
 				</td>
 			</tr>
-			<tr>
-				<td>Country</td>
-				<td *ngIf="userInfo.country">{{ countries[userInfo.country].name }}</td>
-			</tr>
 		</tbody>
 	</table>
 </div>
-<p>{{error | json}}</p>
+<p>{{ error | json }}</p>
 <app-change-password-form *ngIf="changePass"></app-change-password-form>
-<app-edit-profile-form
-	*ngIf="editProfile"
-	[userId]="userId"
-	[userInfo]="userInfo"
-	[editProfile]="editProfile"
-	[countries]="countries"
-	[cities]="cities"
-	(setEditProfile)="setEditProfile($event)"
-	(updateCities)="updateCities($event)"
-	(updateEditedUserInfo)="updateEditedUserInfo($event)"
-></app-edit-profile-form>
+<app-edit-profile-form *ngIf="editProfile" [userId]="userId" [userInfo]="userInfo" [editProfile]="editProfile"
+	[countries]="countries" [cities]="cities" (setEditProfile)="setEditProfile($event)"
+	(updateCities)="updateCities($event)" (updateEditedUserInfo)="updateEditedUserInfo($event)"></app-edit-profile-form>

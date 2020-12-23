@@ -1,10 +1,10 @@
 <mat-menu #menu>
   <ng-container *ngFor="let item of items">
-    <a href="/products/category/{{item.id}}" *ngIf="!item.children; else branch" mat-menu-item>
+    <a [routerLink]="['/products/category/', item.id]" *ngIf="!item.children; else branch" mat-menu-item>
       {{item.name}}
     </a>
     <ng-template #branch>
-      <button mat-menu-item [matMenuTriggerFor]="innerPanel.menu">{{item.name}}</button>
+      <a [routerLink]="['/products/category/', item.id]" mat-menu-item [matMenuTriggerFor]="innerPanel.menu">{{item.name}}</a>
       <app-category-menu #innerPanel [items]="item.children"></app-category-menu>
     </ng-template>
   </ng-container>

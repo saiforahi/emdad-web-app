@@ -10,6 +10,7 @@ import { UserAuthService } from '../../shared/services/user-auth.service';
 export class LoginPageComponent implements OnInit {
 
   error: any;
+  msg;
 
   constructor(
     private authService: UserAuthService,
@@ -19,10 +20,17 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(username: string, password: string) {
-    this.authService.login(username, password).subscribe(
-      success => this.router.navigate(['']),
-      error => this.error = error
+  login(email: string, password: string) {
+    const group = "buyer";
+    this.authService.login(email, password, group).subscribe(
+      success => {
+        console.log(success);
+          this.router.navigate(['']);
+      },
+      error => {
+        this.error = error;
+        console.log(error);
+      }
     );
   }
 
