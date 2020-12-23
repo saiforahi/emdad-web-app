@@ -51,12 +51,12 @@ export class UserAuthService {
     return localStorage.getItem('token');
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string, group: String): Observable<any> {
     return this.http
-      .post('http://localhost:8000/api/login/', { email, password })
+      .post('http://localhost:8000/api/login/', { email, password, group })
       .pipe(
         tap((response) => {
-            this.setSession(response);
+          this.setSession(response);
         }),
         shareReplay()
       );
@@ -76,41 +76,43 @@ export class UserAuthService {
   }
 
   signup(
-    first_name: string,
-    last_name: string,
-    username: string,
-    email: string,
-    password: string
+    full_name: String,
+    email: String,
+    phone: String,
+    password: String
   ): Observable<any> {
-    const type = { user_type: 'BUYER' };
     return this.http
       .post('http://127.0.0.1:8000/api/buyer/registration/', {
-        first_name,
-        last_name,
-        username,
+        full_name,
         email,
+        phone,
         password,
-        type,
       })
       .pipe(shareReplay());
   }
 
   sellerSignup(
-    first_name: string,
-    last_name: string,
-    username: string,
-    email: string,
-    password: string
+    full_name,
+    email,
+    phone,
+    password,
+    gender,
+    adrress,
+    store_address,
+    store_name,
+    zip_code
   ): Observable<any> {
-    const type = { user_type: 'SELLER' };
     return this.http
       .post('http://127.0.0.1:8000/api/buyer/registration/', {
-        first_name,
-        last_name,
-        username,
+        full_name,
         email,
+        phone,
         password,
-        type,
+        gender,
+        adrress,
+        store_address,
+        store_name,
+        zip_code,
       })
       .pipe(shareReplay());
   }
@@ -170,18 +172,17 @@ export class UserAuthService {
     );
   }
 
-  forgotPassword(email): Observable<any>{
-    return this.http.post(
-      'http://127.0.0.1:8000/api/password_reset/',
-      { email }
-    );
+  forgotPassword(email): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/', {
+      email,
+    });
   }
 
-  resetPassword(token, password): Observable<any>{
-    return this.http.post(
-      'http://127.0.0.1:8000/api/password_reset/confirm/',
-      { token, password }
-    );
+  resetPassword(token, password): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/confirm/', {
+      token,
+      password,
+    });
   }
 
   updateProfile(userId: number, user: any) {

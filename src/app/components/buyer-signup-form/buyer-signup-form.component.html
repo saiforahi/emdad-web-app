@@ -4,12 +4,15 @@
     </h1>
   </div>
   
-  <input #firstname type='text' placeholder='firstname'>
-  <input #lastname type='text' placeholder='lastname'>
-  <input #username type='text' placeholder='username'>
+  <input #full_name type='text' placeholder='fullname'>
+  <br>
   <input #email type='text' placeholder='email'>
+  <br>
+  <input #phone type='phone' placeholder='phone'>
+  <br>
   <input #password type='password' placeholder='password'>
-  <button (click)="signup(firstname.value, lastname.value, username.value, email.value, password.value)">signup</button>
+  <br>
+  <button (click)="signup(full_name.value, email.value, phone.value, password.value)">signup</button>
   <p>{{ error?.message }}</p>
   <p *ngIf="error">{{ error?.error | json }}</p>
   <p>{{msg}}</p>

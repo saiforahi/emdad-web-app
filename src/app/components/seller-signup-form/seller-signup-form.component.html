@@ -1,15 +1,33 @@
 <div style="text-align:center">
-    <h1>
-      Seller Signup
-    </h1>
-  </div>
-  
-  <input #firstname type='text' placeholder='firstname'>
-  <input #lastname type='text' placeholder='lastname'>
-  <input #username type='text' placeholder='username'>
-  <input #email type='text' placeholder='email'>
-  <input #password type='password' placeholder='password'>
-  <button (click)="signup(firstname.value, lastname.value, username.value, email.value, password.value)">signup</button>
-  <p>{{ error?.message }}</p>
-  <p *ngIf="error">{{ error?.error | json }}</p>
-  <p>{{msg}}</p>
+  <h1>
+    Seller Signup
+  </h1>
+</div>
+
+<input #full_name type='text' placeholder='fullname'>
+<br>
+<input #email type='text' placeholder='email'>
+<br>
+<input #phone type='text' placeholder='phone'>
+<br>
+<input #password type='password' placeholder='password'>
+<br>
+<select #gender>
+  <option disabled value="">Select gender</option>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+</select>
+<br>
+<input #address type='text' placeholder='address'>
+<br>
+<input #store_address type='text' placeholder='store_address'>
+<br>
+<input #store_name type='text' placeholder='store_name'>
+<br>
+<input #zip_code type='number' placeholder='zip_code'>
+<br>
+<button
+  (click)="signup(full_name.value, email.value, phone.value, password.value, gender.value, address.value, store_address.value, store_name.value, zip_code.value)">signup</button>
+<p>{{ error?.message }}</p>
+<p *ngIf="error">{{ error?.error | json }}</p>
+<p>{{msg}}</p>

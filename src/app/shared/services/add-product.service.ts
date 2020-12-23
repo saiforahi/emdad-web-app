@@ -11,13 +11,14 @@ export class AddProductService {
   constructor(private http: HttpClient, private authService: UserAuthService) {}
 
   addProduct(productData: any): Observable<any> {
+    console.log(productData)
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'JWT ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
+    // multipart/form-data
     console.log(httpOptions);
-    return this.http.post(this.URL, httpOptions, productData );
+    return this.http.post(this.URL, productData, httpOptions );
   }
 }

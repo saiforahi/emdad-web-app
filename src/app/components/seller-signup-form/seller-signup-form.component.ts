@@ -20,8 +20,8 @@ export class SellerSignupFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signup(firstname: string, lastname: string, username: string, email: string, password: string) {
-    this.authService.sellerSignup(firstname, lastname, username, email, password).subscribe(
+  signup(full_name, email, phone, password, gender, adrress, store_address, store_name, zip_code) {
+    this.authService.sellerSignup(full_name, email, phone, password, gender, adrress, store_address, store_name, zip_code).subscribe(
       success => {
         // this.router.navigate(['/login']);
         this.msg = success.message;

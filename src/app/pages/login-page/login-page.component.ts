@@ -21,14 +21,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    this.authService.login(email, password).subscribe(
+    const group = "buyer";
+    this.authService.login(email, password, group).subscribe(
       success => {
         console.log(success);
-        if(success.group == "buyer"){
           this.router.navigate(['']);
-        }else {
-          this.msg = "No user found with this credentials.";
-        }
       },
       error => {
         this.error = error;
