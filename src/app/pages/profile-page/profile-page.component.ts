@@ -21,7 +21,7 @@ export class ProfilePageComponent implements OnInit {
   userId;
   userInfo;
   changePass = false;
-  editProfile = false;
+  editProfileState = false;
   cities: any = [];
   countries: any = [];
   error;
@@ -68,8 +68,8 @@ export class ProfilePageComponent implements OnInit {
     );
   }
 
-  setEditProfile(editProfile: boolean) {
-    this.editProfile = editProfile;
+  setEditProfile(editProfileState: boolean) {
+    this.editProfileState = editProfileState;
     // after profile update, update the city list too
     if (this.userInfo.country) this.onCountryChange(this.userInfo.country);
   }

@@ -186,15 +186,22 @@ export class UserAuthService {
   }
 
   updateProfile(userId: number, user: any) {
-    if (user.user_type === 'BUYER') {
+    console.log(user);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    // if (user.user_type === 'BUYER') {
       var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
-    } else {
-      const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
-    }
+    // } else {
+    //   const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
+    // }
     return this.http
-      .post(updateURL, {
+      .post(updateURL,
         user,
-      })
+        httpOptions
+      )
       .pipe(shareReplay());
   }
 }

@@ -29,7 +29,7 @@ export class EditProfileFormComponent implements OnInit {
 
 	@Input() userId;
 	@Input() userInfo;
-	@Input() editProfile;
+	@Input() editProfileState;
 	@Input() countries;
 	@Input() cities;
 	@Output() setEditProfile = new EventEmitter<boolean>();
@@ -37,7 +37,7 @@ export class EditProfileFormComponent implements OnInit {
 	@Output() updateEditedUserInfo = new EventEmitter<any>();
 
 	ngOnInit(): void {
-		this.editUserInfo = { ...this.userInfo, user: { ...this.userInfo.user } };
+		this.editUserInfo = this.userInfo;
 		this.editCities = [...this.cities];
 		if (this.editUserInfo.country) {
 			this.onCountryChange(this.userInfo.country);
@@ -49,25 +49,17 @@ export class EditProfileFormComponent implements OnInit {
 		console.log(this.editUserInfo)
 		this.updateEditProfile();
 		this.updateUserInfo();
-		// this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
-		// 	(success) => console.log(success),
-		// 	(error) => console.error(error)
-		// );
+		this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
+			(success) => console.log(success),
+			(error) => console.error(error)
+		);
 	}
-
-	// "phone": "01555555555",
-    // "gender": "M",
-    // "dob": null,
-    // "address": "",
-    // "city": null,
-    // "full_name": "Buyer Updated"
 
 	onCountryChange(countryId) {
 		// reset city if countryId changed
 		if (countryId !== this.editUserInfo.country) {
 			this.editUserInfo.city = '';
 		}
-
 		this.countryList.allCities(countryId).subscribe(
 			(data) => {
 				this.editCities = ['select one', ...data.data];
@@ -77,7 +69,7 @@ export class EditProfileFormComponent implements OnInit {
 	}
 
 	updateEditProfile() {
-		this.setEditProfile.emit(!this.editProfile);
+		this.setEditProfile.emit(!this.editProfileState);
 	}
 
 	updateCityList() {
