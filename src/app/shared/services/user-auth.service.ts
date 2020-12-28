@@ -27,6 +27,7 @@ export class UserAuthService {
   private apiRoot = 'http://localhost:8000/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
@@ -36,13 +37,15 @@ export class UserAuthService {
   private setSession(authResult) {
     const token = authResult.token;
     const payload = <JWTPayload>jwt_decode(token);
-    console.log(payload);
+    console.log(authResult);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
+    localStorage.setItem('group', authResult.group);
     localStorage.setItem('username', payload.username);
     localStorage.setItem('uid', JSON.stringify(payload.user_id));
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.uName.next(localStorage.getItem('username'));
+    this.uGroup.next(localStorage.getItem('group'));
     this.uId.next(localStorage.getItem('uid'));
     // return payload.group
   }
@@ -193,16 +196,11 @@ export class UserAuthService {
       }),
     };
     // if (user.user_type === 'BUYER') {
-      var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
+    var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
     // } else {
     //   const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
     // }
-    return this.http
-      .post(updateURL,
-        user,
-        httpOptions
-      )
-      .pipe(shareReplay());
+    return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
 }
 

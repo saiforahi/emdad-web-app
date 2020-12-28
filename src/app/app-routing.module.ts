@@ -39,6 +39,7 @@ const routes: Routes = [
       import('./pages/profile-page/profile-page.module').then(
         (m) => m.ProfilePageModule
       ),
+      canActivate: [AuthGuard],
   },
   {
     path: 'add',
@@ -81,6 +82,28 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/reset-password-page/reset-password-page.module').then(
         (m) => m.ResetPasswordPageModule
+      ),
+      canActivate: [AuthGuard],
+  },
+  {
+    path: 'subscription/plans',
+    loadChildren: () =>
+      import('./pages/subscription-plan-page/subscription-plan-page.module').then(
+        (m) => m.SubscriptionPlanPageModule
+      ),
+  },
+  {
+    path: 'subscription/payment',
+    loadChildren: () =>
+      import('./pages/seller-payment-page/seller-payment-page.module').then(
+        (m) => m.SellerPaymentPageModule
+      ),
+  },
+  {
+    path: 'subscription/plans/history',
+    loadChildren: () =>
+      import('./pages/seller-subscription-history-page/seller-subscription-history-page.module').then(
+        (m) => m.SellerSubscriptionHistoryPageModule
       ),
   },
   {

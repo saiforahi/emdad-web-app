@@ -21,11 +21,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    const group = "buyer";
+    const group = "seller";
     this.authService.login(email, password, group).subscribe(
       success => {
         console.log(success);
-          this.router.navigate(['']);
+        this.router.navigate(['']);
       },
       error => {
         this.error = error;

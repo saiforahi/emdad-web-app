@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-6">
+        <input type="text" placeholder="card number">
+        <input type="text" placeholder="card holder">
+        <br>
+        <input type="text" placeholder="expiration">
+        <input type="text" placeholder="CVV">
+        <button (click)="proceedTopay();">proceed</button>
+    </div>
+    <div class="col-md-6">
+        <p>{{selectedPlan.subscription_plan}}: {{selectedPlan.fees}}</p>
+        <p>Discount: {{couponDiscount}}</p>
+        <p>VAT: ({{vatAmmount}}%) {{(selectedPlan.fees - couponDiscount)*vatAmmount / 100}}</p>
+        <hr>
+        <p>Total: {{selectedPlan.fees - couponDiscount + (selectedPlan.fees - couponDiscount)*vatAmmount / 100}}</p>
+    </div>
+</div>
