@@ -1,0 +1,43 @@
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th>Start date</th>
+                <th>plan title</th>
+                <th>fees</th>
+                <th>end date</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plan of planHistory">
+                <td>{{plan.start_date}}</td>
+                <td>{{plan.subscription_plan}}</td>
+                <td>{{plan.fees}}</td>
+                <td>{{plan.end_date}}</td>
+                <td><a [routerLink]="['/subscription/plans']">Renew</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- // discount_amount: "100.00"
+// discount_coupon:
+// coupon_code: "FCOUPON"
+// coupon_title: "first coupon"
+// id: 1
+// __proto__: Object
+// end_date: "2021-06-28"
+// fees: "800.00"
+// id: 1
+// payment_status: true
+// payment_type: 1
+// seller:
+// full_name: "pial seller"
+// id: 2
+// __proto__: Object
+// start_date: "2020-12-28"
+// subscription_plan: 2
+// subscription_type: 0
+// total_paid_amount: null
+// vat_amount: "105.00" -->

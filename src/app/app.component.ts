@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   loggedInUser = false;
   userName;
   uId;
+  uGroup;
   items;
 
   constructor(
