@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="products">
   <div class="col-lg-3" *ngFor="let product of products">
     <mat-card class="example-card mt-3">
       <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="product.image1" [defaultImage]="defaultImage" alt="product image">

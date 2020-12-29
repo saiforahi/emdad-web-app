@@ -10,17 +10,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductListPageComponent implements OnInit {
   sellerId;
   isSeller = false;
-  products;
+  products = [];
   prodEnd;
   nextBatchProdLink;
   isCategory = false;
   categoryId;
+  prevParam;
 
   constructor(
     private getProduct: GetProductService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      console.log(params);
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
     this.sellerId = this.route.snapshot.params['id'];
@@ -30,32 +36,23 @@ export class ProductListPageComponent implements OnInit {
     const newstr = getUrlStr.substr(10, 6);
     this.isSeller = newstr == 'seller' ? true : false;
     // <==
-    // if its not the seller page then its the category page
+    // if its not the seller-page then its the category page
     if (this.isSeller == false) this.isCategory = true;
 
     // get product by seller
-    // this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
-    //   this.products = item.data.results;
-    //   this.nextBatchProdLink = item.data.links.next;
-    //   // console.log(this.products);
-    // });
+    this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
+      this.products = item.data.results;
+      this.nextBatchProdLink = item.data.links.next;
+      // console.log(this.products);
+    });
 
     // get product by category
     this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
-      console.log(item)
+      console.log(item);
       this.products = item.data.results;
       this.nextBatchProdLink = item.data.links.next;
+      console.log(this.products);
     });
-  }
-
-  changeLocation(locationData) {
-
-    // save current route first
-    const currentRoute = this.router.url;
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentRoute]); // navigate to same route
-    }); 
   }
 
   @HostListener('window:scroll')
