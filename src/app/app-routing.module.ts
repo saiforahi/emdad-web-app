@@ -107,6 +107,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'order/checkout',
+    loadChildren: () =>
+      import('./pages/checkout-page/checkout-page.module').then(
+        (m) => m.CheckoutPageModule
+      ),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./pages/error-page/error-page.module').then(
