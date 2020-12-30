@@ -1,1 +1,52 @@
-<p>cart-page works!</p>
+<div>
+    <h4 style="display: inline-block;">Your Cart</h4>
+    &nbsp;
+    <button [routerLink]="['']">continue shopping</button>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <table class="table">
+            <tbody *ngIf="productInCart">
+                <tr *ngFor="let inCart of productInCart; let i = index">
+                    <td><img src="{{inCart.image1}}" alt="{{inCart.image1}}" style="width: 70px;"></td>
+                    <td>{{inCart.name}}</td>
+                    <td>{{inCart.unit_price}}</td>
+                    <td id="quantityInput">
+                        <button mat-button (click)="delQuantity(i);">-</button>
+                        <input #unit type="number" value="{{orders_details[i].quantity}}" min="1"
+                            max="{{inCart.stock_quantity}}">
+                        <button mat-button (click)="addQuantity(i);">+</button>
+                    </td>
+                    <td>
+                        <button mat-button (click)="removeFromCart(inCart.id);">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div>
+            Subtotal: <span *ngIf="subTotal; else subtotalZero">{{subTotal}}</span>
+            <ng-template #subtotalZero>0.00</ng-template>
+        </div>
+        <div>
+            <input type="text" #couponInput placeholder="enter coupon">
+            <button (click)="applyCoupon(couponInput.value)">Apply Coupon</button>
+            <p *ngIf="msg">{{msg}}</p>
+            <p>{{ error?.error.message }}</p>
+            <p *ngIf="error" style="color: red;">{{ error?.error.global}}</p>
+        </div>
+        <div>
+            Vat: ({{vatAmount}}%) {{(subTotal - couponDiscount) * (vatAmount / 100)}}
+        </div>
+        <hr>
+        <div>
+            Total: {{subTotal - couponDiscount + (subTotal - couponDiscount) * (vatAmount / 100) }}
+        </div>
+        <br>
+        <br>
+        <button [routerLink]="['/order/checkout']" (click)="proceedToCheckout();">Proceed to Checkout</button>
+    </div>
+</div>

@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    const group = "seller";
+    const group = "buyer";
     this.authService.login(email, password, group).subscribe(
       success => {
         console.log(success);

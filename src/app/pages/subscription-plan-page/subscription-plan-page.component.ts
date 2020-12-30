@@ -37,7 +37,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
   }
 
   applyCoupon(coupon_code) {
-    const coupon_section = 1; // 1 for buyer and 2 for seller
+    const coupon_section = 2; // 1 for buyer and 2 for seller
     console.log(coupon_code);
     this.coupons.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
