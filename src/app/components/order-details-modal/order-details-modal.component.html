@@ -1,0 +1,44 @@
+<button (click)="open(mymodal)">view</button>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <p class="modal-title" id="modal-basic-title">OrderID: {{order.order.order_code}}</p>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Payment Date: {{order.order.order_datetime | date : 'mediumDate'}}</p>
+        <p>Delivary Date: {{order.order.delivary_datetime | date : 'mediumDate'}}</p>
+        <p>Price: {{order.order.total_amount}}</p>
+        <p>Delivery Method: {{order.order.delivary_method}}</p>
+        <div class="row" *ngFor="let details of orderDetails.data">
+            <div class="col-md-3">
+                <img class="img-thumbnail" src="http://127.0.0.1:8000{{details.product.image1}}" alt="prod img">
+            </div>
+            <div class="col-md-3">
+                {{details.product.name}}
+            </div>
+            <div class="col-md-2">
+                {{details.quantity}}
+            </div>
+            <div class="col-md-2">
+                <select name="" id="" (change)="updateOrderStatus(order.order.id, $event.target.value);">
+                    <option [attr.selected]="status == 1 ? true : null" [attr.value]="1">Created</option>
+                    <option [attr.selected]="status == 2 ? true : null" [attr.value]="2">Confirmed</option>
+                    <option [attr.selected]="status == 3 ? true : null" [attr.value]="3">Processing</option>
+                    <option [attr.selected]="status == 4 ? true : null" [attr.value]="4">Delivered</option>
+                    <!-- <option [attr.selected]="status == 5 ? true : null" [attr.value]="5">Completed</option> -->
+                </select>
+            </div>
+            <div class="col-md-2">
+                {{details.product.unit_price}}
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div> -->
+</ng-template>
