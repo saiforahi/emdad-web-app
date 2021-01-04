@@ -17,16 +17,16 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(prodId){
+  addToCart(prod){
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem("prodCartArray"));
-    if(existingCart.length != 0){
+    if(existingCart != null){
       existingCart.forEach(element => {
         this.prodCartArray.push(element)
       });
     }
-    this.prodCartArray.push(prodId);
-    console.log(prodId);
+    this.prodCartArray.push(prod);
+    console.log(prod);
     localStorage.setItem("prodCartArray", JSON.stringify(this.prodCartArray));
   }
 

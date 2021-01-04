@@ -171,6 +171,7 @@ export class CartPageComponent implements OnInit {
     });
     var finalCart = {
       "total_amount": this.subTotal - this.couponDiscount + this.vatAmount,
+      "buyer": this.userId,
       "payment_type": "1",
       "discount_coupon_amount": this.couponDiscount,
       "discount_coupon": this.couponId,

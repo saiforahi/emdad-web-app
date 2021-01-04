@@ -24,7 +24,7 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-  private apiRoot = 'http://localhost:8002/auth/';
+  private apiRoot = 'http://127.0.0.1:8002/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -32,6 +32,7 @@ export class UserAuthService {
   constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
+    this.uGroup.next(localStorage.getItem('group'));
   }
 
   private setSession(authResult) {
@@ -56,7 +57,7 @@ export class UserAuthService {
 
   login(email: string, password: string, group: String): Observable<any> {
     return this.http
-      .post('http://localhost:8002/api/login/', { email, password, group })
+      .post('http://127.0.0.1:8002/api/login/', { email, password, group })
       .pipe(
         tap((response) => {
           this.setSession(response);
@@ -125,9 +126,11 @@ export class UserAuthService {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
+    localStorage.removeItem('uGroup');
     this.uName.next(null);
     this.uId.next(null);
-    this.router.navigate(['/login']);
+    this.uGroup.next(null);
+    this.router.navigate(['/buyer/login']);
   }
 
   refreshToken() {
@@ -238,7 +241,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.UserAuthService.logout();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/buyer/login']);
 
       return false;
     }

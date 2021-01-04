@@ -12,6 +12,7 @@ export class ProductDetailsPageComponent implements OnInit {
   productId;
   prodcutDetails;
   sliderImgArray;
+  prodCartArray: any[];
 
   constructor(
     private getProduct:GetProductService,
@@ -25,6 +26,19 @@ export class ProductDetailsPageComponent implements OnInit {
       this.sliderImgArray = ['http://127.0.0.1:8002'+item.data[0].image1, 'http://127.0.0.1:8002'+item.data[0].image2];
       console.log(this.prodcutDetails);
     })
+  }
+
+  addToCart(prod){
+    this.prodCartArray = [];
+    var existingCart = JSON.parse(localStorage.getItem("prodCartArray"));
+    if(existingCart != null){
+      existingCart.forEach(element => {
+        this.prodCartArray.push(element)
+      });
+    }
+    this.prodCartArray.push(prod);
+    console.log(prod);
+    localStorage.setItem("prodCartArray", JSON.stringify(this.prodCartArray));
   }
 
 }
