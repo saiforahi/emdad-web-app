@@ -7,7 +7,7 @@ import { OrderService } from '../../shared/services/order.service';
   styleUrls: ['./checkout-page.component.css']
 })
 export class CheckoutPageComponent implements OnInit {
-  finalCart: any;
+  finalCart: any = [];
   msg: any = '';
   error: any = '';
 
@@ -19,18 +19,21 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   checkout(){
-    this.order.putOrder(this.finalCart).subscribe(
-      (success) => {
-        console.log(success)
-        this.msg = success.message;
-        localStorage.removeItem('prodCartArray')
-        localStorage.removeItem("finalCart")
-      },
-      (error) => {
-        console.log(error)
-        this.error = error.message;
-      }
-    )
+    if(this.finalCart != []){
+      this.order.putOrder(this.finalCart).subscribe(
+        (success) => {
+          console.log(success)
+          this.msg = success.message;
+          localStorage.removeItem('prodCartArray')
+          localStorage.removeItem("finalCart")
+        },
+        (error) => {
+          console.log(error)
+          this.error = error.message;
+        }
+      )
+    }
+    this.finalCart = [];
   }
 
 }
