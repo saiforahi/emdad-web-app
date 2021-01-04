@@ -16,6 +16,6 @@ export class CouponService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.post(`http://127.0.0.1:8000/api/coupon/code/amount`, {coupon_section, coupon_code}, httpOptions);
+    return this.http.post(`http://127.0.0.1:8002/api/coupon/code/amount`, {coupon_section, coupon_code}, httpOptions);
   }
 }

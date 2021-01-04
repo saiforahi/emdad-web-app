@@ -9,7 +9,7 @@ export class ProductListComponent implements OnInit {
 
   @Input() products = [];
   @Input() prodEnd;
-  defaultImage = "http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png";
+  defaultImage = "http://127.0.0.1:8002/media/uploads/product/images/prod-img500x500.png";
   prodCartArray = [];
 
   constructor() { }

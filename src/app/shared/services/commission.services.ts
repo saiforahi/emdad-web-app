@@ -9,6 +9,6 @@ export class CommissionService {
   constructor(private http: HttpClient) {}
 
   getCommission(): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8000/api/vat/amount`);
+    return this.http.get(`http://127.0.0.1:8002/api/vat/amount`);
   }
 }
