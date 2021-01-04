@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Component({
@@ -11,18 +11,21 @@ export class LoginPageComponent implements OnInit {
 
   error: any;
   msg;
+  group: string;
 
   constructor(
     private authService: UserAuthService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.group = this.router.url.split("/", 3)[1];
+    console.log(this.group)
   }
 
   login(email: string, password: string) {
-    const group = "seller";
-    this.authService.login(email, password, group).subscribe(
+    this.authService.login(email, password, this.group).subscribe(
       success => {
         console.log(success);
         this.router.navigate(['']);

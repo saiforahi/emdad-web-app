@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class CountryListService {
-	countryUrl: string = 'http://localhost:8002/api/country/list';
+	countryUrl: string = 'http://127.0.0.1:8002/api/country/list';
 	cityUrl: string = '';
 
 	constructor(private http: HttpClient) {}
@@ -16,7 +16,7 @@ export class CountryListService {
 	}
 
 	allCities(id: number): Observable<any> {
-		this.cityUrl = `http://localhost:8002/api/city/list/${id}`;
+		this.cityUrl = `http://127.0.0.1:8002/api/city/list/${id}`;
 		return this.http.get(this.cityUrl);
 	}
 }

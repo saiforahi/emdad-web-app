@@ -12,7 +12,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'login',
+    path: 'seller/login',
+    loadChildren: () =>
+      import('./pages/login-page/login-page.module').then(
+        (m) => m.LoginPageModule
+      ),
+  },
+  {
+    path: 'buyer/login',
     loadChildren: () =>
       import('./pages/login-page/login-page.module').then(
         (m) => m.LoginPageModule

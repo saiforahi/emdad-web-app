@@ -23,6 +23,8 @@ export class CheckoutPageComponent implements OnInit {
       (success) => {
         console.log(success)
         this.msg = success.message;
+        localStorage.removeItem('prodCartArray')
+        localStorage.removeItem("finalCart")
       },
       (error) => {
         console.log(error)

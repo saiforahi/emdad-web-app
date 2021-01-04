@@ -39,6 +39,12 @@ export class AppComponent implements OnInit {
         this.uId = data;
       }
     })
+    this.UserAuthService.uGroup.subscribe(data => {
+      if(data != null){
+        this.uGroup = data;
+        console.log("group", this.uGroup);
+      }
+    })
     this.categoryServices.category().subscribe(item => {
       this.removeEmptyChildren(item);
       this.items = item;
