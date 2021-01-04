@@ -1,0 +1,32 @@
+<h4>Current Order</h4>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order Code</th>
+            <th>Paymet Date</th>
+            <th>Delivery Date</th>
+            <!-- <th>Amount</th> -->
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="orderList">
+        <tr *ngFor="let order of orderList.data">
+            <td>{{order.order.order_code}}</td>
+            <td>{{order.order.order_datetime | date : 'mediumDate' }}</td>
+            <td>N/A</td>
+            <!-- <td>{{order.order.total_amount}}</td> -->
+            <td>
+                <span *ngIf="order.status == 1">Created</span>
+                <span *ngIf="order.status == 2">Confirmed</span>
+                <span *ngIf="order.status == 3">Processing</span>
+                <span *ngIf="order.status == 4">Delivered</span>
+                <!-- <span *ngIf="order.status == 5">completed</span> -->
+            </td>
+            <td>
+                <app-order-details-modal [order]="order" [status]="order.status"></app-order-details-modal>
+            </td>
+        </tr>
+    </tbody>
+</table>
