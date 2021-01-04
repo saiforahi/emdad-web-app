@@ -9,7 +9,7 @@ export class GetProductService {
   constructor(private http: HttpClient) {}
 
   product(): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8002/api/product/list/`);
+    return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
   }
 
   getNextBatchProduct(link): Observable<any> {
@@ -17,22 +17,22 @@ export class GetProductService {
   }
 
   productDetails(id): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8002/api/product/details/${id}`);
+    return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
 
   getProductBySeller(id): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:8002/api/product/seller/products/${id}/`
+      `http://127.0.0.1:8000/api/product/seller/products/${id}/`
     );
   }
 
   productByCategory(id) {
-    return this.http.get(`http://127.0.0.1:8002/api/product/details/${id}`);
+    return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
   }
 
   getProductByCategory(id): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:8002/api/product/category/products/${id}/`
+      `http://127.0.0.1:8000/api/product/category/products/${id}/`
     );
   }
 }
