@@ -16,24 +16,24 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   putOrder(finalCart): Observable<any>{
-    return this.http.post(`http://127.0.0.1:8000/api/order/add/`, finalCart, this.httpOptions)
+    return this.http.post(`http://127.0.0.1:8002/api/order/add/`, finalCart, this.httpOptions)
   }
 
   getSellerOrders(uId){
-    return this.http.get(`http://127.0.0.1:8000/api/order/list/${uId}`, this.httpOptions)
+    return this.http.get(`http://127.0.0.1:8002/api/order/list/${uId}`, this.httpOptions)
   }
 
   // getOrderstatus(order, seller){
-  //   return this.http.post(`http://127.0.0.1:8000/api/order/track/info/`, {order, seller}, this.httpOptions)
+  //   return this.http.post(`http://127.0.0.1:8002/api/order/track/info/`, {order, seller}, this.httpOptions)
   // }
 
   SingleOrderDetails(sellerId, orderId){
-    return this.http.get(`http://127.0.0.1:8000/api/order/details/${sellerId}/${orderId}`, this.httpOptions);
+    return this.http.get(`http://127.0.0.1:8002/api/order/details/${sellerId}/${orderId}`, this.httpOptions);
   }
 
   orderStatusUpdate(sellerId, orderData){
     this.statusUpdated.next(true);
-    return this.http.post(`http://127.0.0.1:8000/api/order/update/tracking/status/${sellerId}/`, orderData, this.httpOptions);
+    return this.http.post(`http://127.0.0.1:8002/api/order/update/tracking/status/${sellerId}/`, orderData, this.httpOptions);
   }
 
 }
