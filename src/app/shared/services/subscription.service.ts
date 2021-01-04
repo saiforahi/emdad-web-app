@@ -14,7 +14,7 @@ export class SubscriptionService {
   constructor(private http: HttpClient, private authService: UserAuthService) {}
 
   plans(): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8000/api/subscription/plans`);
+    return this.http.get(`http://127.0.0.1:8002/api/subscription/plans`);
   }
 
   subscribeToPlan(
@@ -28,7 +28,7 @@ export class SubscriptionService {
     discount_coupon,
     created_by
   ): Observable<any> {
-    return this.http.post(`http://127.0.0.1:8000/api/subscribe/`, {
+    return this.http.post(`http://127.0.0.1:8002/api/subscribe/`, {
       fees,
       payment_type,
       payment_status,
@@ -45,6 +45,6 @@ export class SubscriptionService {
     this.authService.uId.subscribe(item => {
       this.userId = item
     })
-    return this.http.get(`http://127.0.0.1:8000/api/subscription/history/${this.userId}/`);
+    return this.http.get(`http://127.0.0.1:8002/api/subscription/history/${this.userId}/`);
   }
 }

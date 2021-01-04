@@ -24,7 +24,7 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-  private apiRoot = 'http://localhost:8000/auth/';
+  private apiRoot = 'http://localhost:8002/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -56,7 +56,7 @@ export class UserAuthService {
 
   login(email: string, password: string, group: String): Observable<any> {
     return this.http
-      .post('http://localhost:8000/api/login/', { email, password, group })
+      .post('http://localhost:8002/api/login/', { email, password, group })
       .pipe(
         tap((response) => {
           this.setSession(response);
@@ -73,7 +73,7 @@ export class UserAuthService {
       }),
     };
     return this.http.get(
-      'http://127.0.0.1:8000/api/profile/details/' + id + '/',
+      'http://127.0.0.1:8002/api/profile/details/' + id + '/',
       httpOptions
     );
   }
@@ -85,7 +85,7 @@ export class UserAuthService {
     password: String
   ): Observable<any> {
     return this.http
-      .post('http://127.0.0.1:8000/api/buyer/registration/', {
+      .post('http://127.0.0.1:8002/api/buyer/registration/', {
         full_name,
         email,
         phone,
@@ -106,7 +106,7 @@ export class UserAuthService {
     zip_code
   ): Observable<any> {
     return this.http
-      .post('http://127.0.0.1:8000/api/buyer/registration/', {
+      .post('http://127.0.0.1:8002/api/buyer/registration/', {
         full_name,
         email,
         phone,
@@ -169,20 +169,20 @@ export class UserAuthService {
       }),
     };
     return this.http.put(
-      'http://127.0.0.1:8000/api/change/password/',
+      'http://127.0.0.1:8002/api/change/password/',
       { old_password, new_password },
       httpOptions
     );
   }
 
   forgotPassword(email): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/password_reset/', {
+    return this.http.post('http://127.0.0.1:8002/api/password_reset/', {
       email,
     });
   }
 
   resetPassword(token, password): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/password_reset/confirm/', {
+    return this.http.post('http://127.0.0.1:8002/api/password_reset/confirm/', {
       token,
       password,
     });
@@ -196,9 +196,9 @@ export class UserAuthService {
       }),
     };
     // if (user.user_type === 'BUYER') {
-    var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
+    var updateURL = `http://127.0.0.1:8002/api/buyer/profile/update/${userId}/`;
     // } else {
-    //   const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
+    //   const updateURL = `http://127.0.0.1:8002/api/seller/profile/update/${userId}/`;
     // }
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
