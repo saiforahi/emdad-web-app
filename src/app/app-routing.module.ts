@@ -114,6 +114,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'orders',
+    loadChildren: () =>
+      import('./pages/seller-orders-page/seller-orders-page.module').then(
+        (m) => m.SellerOrdersPageModule
+      ),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./pages/error-page/error-page.module').then(
