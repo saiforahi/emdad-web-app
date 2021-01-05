@@ -20,6 +20,7 @@ export class EditProfileFormComponent implements OnInit {
 	changePass = false;
 	editCities: any = [];
 	editUserInfo: any;
+	userMail: string;
 
 	constructor(
 		private authService: UserAuthService,
@@ -37,6 +38,9 @@ export class EditProfileFormComponent implements OnInit {
 	@Output() updateEditedUserInfo = new EventEmitter<any>();
 
 	ngOnInit(): void {
+		this.authService.uName.subscribe(data => {
+			this.userMail = data;
+		})
 		this.editUserInfo = this.userInfo;
 		this.editCities = [...this.cities];
 		if (this.editUserInfo.country) {

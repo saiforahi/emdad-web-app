@@ -25,6 +25,9 @@ export class ProfilePageComponent implements OnInit {
   cities: any = [];
   countries: any = [];
   error;
+  userMail;
+  country: any;
+  city: any;
 
   constructor(
     private authService: UserAuthService,
@@ -34,6 +37,9 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
+    this.authService.uName.subscribe(data => {
+        this.userMail = data;
+    })
     if (this.userId == localStorage.getItem('uid')) {
       this.getCountries();
       this.authService.getUser(this.userId).subscribe((data) => {
@@ -53,6 +59,8 @@ export class ProfilePageComponent implements OnInit {
   getCountries() {
     this.countryList.allCountries().subscribe(
       (data) => {
+        this.country = data.data;
+        console.log(data.data)
         this.countries = ['select one', ...data.data];
       },
       (err) => console.error(err)
@@ -62,10 +70,18 @@ export class ProfilePageComponent implements OnInit {
   onCountryChange(countryId) {
     this.countryList.allCities(countryId).subscribe(
       (data) => {
+        this.city = data.data;
+        console.log(data.data)
         this.cities = ['select one', ...data.data];
       },
       (err) => console.error(err)
     );
+  }
+
+  getCountryOfCity(cityId){
+    this.countryList.getCountryOfCity(cityId).subscribe(item =>{
+      this.country = item;
+    })
   }
 
   setEditProfile(editProfileState: boolean) {

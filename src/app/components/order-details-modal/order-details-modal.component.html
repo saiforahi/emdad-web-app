@@ -14,7 +14,7 @@
         <p>Delivery Method: {{order.order.delivary_method}}</p>
         <div class="row" *ngFor="let details of orderDetails.data">
             <div class="col-md-3">
-                <img class="img-thumbnail" src="http://127.0.0.1:8002{{details.product.image1}}" alt="prod img">
+                <img class="img-thumbnail" src="http://127.0.0.1:8000{{details.product.image1}}" alt="prod img">
             </div>
             <div class="col-md-3">
                 {{details.product.name}}
