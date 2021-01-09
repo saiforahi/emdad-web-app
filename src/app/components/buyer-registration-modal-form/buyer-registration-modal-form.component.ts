@@ -3,15 +3,13 @@ import { Router } from '@angular/router';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Component({
-  selector: 'app-buyer-signup-form',
-  templateUrl: './buyer-signup-form.component.html',
-  styleUrls: ['./buyer-signup-form.component.css']
+  selector: 'app-buyer-registration-modal-form',
+  templateUrl: './buyer-registration-modal-form.component.html',
+  styleUrls: ['./buyer-registration-modal-form.component.css']
 })
-export class BuyerSignupFormComponent implements OnInit {
-
+export class BuyerRegistrationFormComponent implements OnInit {
   error: any;
   msg;
-
   constructor(
     private authService: UserAuthService,
     private router: Router,
@@ -19,8 +17,12 @@ export class BuyerSignupFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  hide_buyer_registration():void{
+  hide_buyer_registration(){
     document.getElementById('buyerRegistration').style.display="none";
+  }
+  show_login_modal_form(){
+    document.getElementById('buyerRegistration').style.display="none";
+    document.getElementById('buyerLogin').style.display="block";
   }
   signup(full_name: string, email: string, phone: String, password: string) {
     this.authService.signup(full_name, email, phone, password).subscribe(

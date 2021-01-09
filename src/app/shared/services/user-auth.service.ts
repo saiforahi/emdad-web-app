@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
-
+import {config} from '../../../config';
 interface JWTPayload {
   user_id: number;
   username: string;
@@ -24,7 +24,7 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-  private apiRoot = 'http://127.0.0.1:8002/auth/';
+  private apiRoot = 'http://127.0.0.1:8000/auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -56,9 +56,7 @@ export class UserAuthService {
   }
 
   login(email: string, password: string, group: String): Observable<any> {
-    return this.http
-      .post('http://127.0.0.1:8002/api/login/', { email, password, group })
-      .pipe(
+    return this.http.post(config.base_url+'api/login/', { email, password, group }).pipe(
         tap((response) => {
           this.setSession(response);
         }),
@@ -74,11 +72,10 @@ export class UserAuthService {
       }),
     };
     return this.http.get(
-      'http://127.0.0.1:8002/api/profile/details/' + id + '/',
+      'http://127.0.0.1:8000/api/profile/details/' + id + '/',
       httpOptions
     );
   }
-
   signup(
     full_name: String,
     email: String,
@@ -86,7 +83,7 @@ export class UserAuthService {
     password: String
   ): Observable<any> {
     return this.http
-      .post('http://127.0.0.1:8002/api/buyer/registration/', {
+      .post('http://127.0.0.1:8000/api/buyer/registration/', {
         full_name,
         email,
         phone,
@@ -94,7 +91,6 @@ export class UserAuthService {
       })
       .pipe(shareReplay());
   }
-
   sellerSignup(
     full_name,
     email,
@@ -107,7 +103,7 @@ export class UserAuthService {
     zip_code
   ): Observable<any> {
     return this.http
-      .post('http://127.0.0.1:8002/api/buyer/registration/', {
+      .post('http://127.0.0.1:8000/api/buyer/registration/', {
         full_name,
         email,
         phone,
@@ -132,7 +128,6 @@ export class UserAuthService {
     this.uGroup.next(null);
     this.router.navigate(['/buyer/login']);
   }
-
   refreshToken() {
     if (
       moment().isBetween(
@@ -149,21 +144,17 @@ export class UserAuthService {
         .subscribe();
     }
   }
-
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
   }
-
   isLoggedIn() {
     return moment().isBefore(this.getExpiration());
   }
-
   isLoggedOut() {
     return !this.isLoggedIn();
   }
-
   changePassword(old_password, new_password) {
     let httpOptions = {
       headers: new HttpHeaders({
@@ -172,25 +163,22 @@ export class UserAuthService {
       }),
     };
     return this.http.put(
-      'http://127.0.0.1:8002/api/change/password/',
+      'http://127.0.0.1:8000/api/change/password/',
       { old_password, new_password },
       httpOptions
     );
   }
-
   forgotPassword(email): Observable<any> {
-    return this.http.post('http://127.0.0.1:8002/api/password_reset/', {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/', {
       email,
     });
   }
-
   resetPassword(token, password): Observable<any> {
-    return this.http.post('http://127.0.0.1:8002/api/password_reset/confirm/', {
+    return this.http.post('http://127.0.0.1:8000/api/password_reset/confirm/', {
       token,
       password,
     });
   }
-
   updateProfile(userId: number, user: any) {
     console.log(user);
     let httpOptions = {
@@ -199,9 +187,9 @@ export class UserAuthService {
       }),
     };
     // if (user.user_type === 'BUYER') {
-    var updateURL = `http://127.0.0.1:8002/api/buyer/profile/update/${userId}/`;
+    var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
     // } else {
-    //   const updateURL = `http://127.0.0.1:8002/api/seller/profile/update/${userId}/`;
+    //   const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
     // }
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
