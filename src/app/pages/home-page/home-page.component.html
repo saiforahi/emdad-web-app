@@ -1,2 +1,55 @@
-<h2>wellcome to EMDAD</h2>
-<app-product-list [products]="products" [prodEnd]="prodEnd"></app-product-list>
+<section class="banner">
+    <!-- <img src="" alt=""> banner image-->
+    <div class="search-holder">
+        <h2>Search for Products</h2>
+        <app-search-for class="m-auto"></app-search-for>
+    </div>
+</section>
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2" *ngFor="let category of categories | slice:0:5; let i = index">
+                <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
+                    <div class="cat-icon-holder">
+                        <img src="../../../assets/cat-icon.svg" alt="">
+                    </div>
+                    <div class="cat-title">
+                        {{category.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="subCategory" *ngIf="isDisplay == 'true'">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="subCatItem"
+                                *ngFor="let subCat of categories[selectedCat].children; let i = index">
+                                <span (mouseenter)="showChildrenCat(categories[selectedCat].children, i)"
+                                    (click)="showChildrenCat(categories[selectedCat].children, i)"
+                                    [ngClass]="getSubCatActiveClass(i)">{{subCat.name}}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="children" *ngFor="let subCatChild of subCatChildrens; let i = index">
+                                <span>{{subCatChild.name}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="single-category">
+                    <div class="cat-icon-holder">
+                        <img src="../../../assets/Category.svg" alt="">
+                    </div>
+                    <div class="cat-title">
+                        All Categories
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <app-product-list [products]="products" [prodEnd]="prodEnd"></app-product-list>
+</section>

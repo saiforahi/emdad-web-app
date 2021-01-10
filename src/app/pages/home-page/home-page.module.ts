@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../material.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from '../../ui/commonui/commonui.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path:'', component: HomePageComponent, pathMatch:'full'}
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     MaterialModule,
     LazyLoadImageModule,
-    CommonuiModule
+    CommonuiModule,
+    NgbModule
   ]
 })
 export class HomePageModule { }
