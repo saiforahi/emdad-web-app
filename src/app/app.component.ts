@@ -46,6 +46,14 @@ export class AppComponent implements OnInit {
   logout() {
     this.UserAuthService.logout();
   }
+  show_buyer_login(){
+    document.getElementById('buyerRegistration').style.display="none";
+    document.getElementById('buyerLogin').style.display="block";
+  }
+  show_buyer_registration(){
+    document.getElementById('buyerLogin').style.display="none";
+    document.getElementById('buyerRegistration').style.display="block";
+  }
 
   // scrollTop = 0;
   // hideNav = false;

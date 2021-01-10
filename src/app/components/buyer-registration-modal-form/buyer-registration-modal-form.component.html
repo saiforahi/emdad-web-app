@@ -1,0 +1,50 @@
+<div class="modal animated fadeIn" id="buyerRegistration" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg">
+        <div style="border: none;" class="modal-header text-center">
+            <h5 class="modal-title w-100" id="staticBackdropLabel">Register</h5>
+            <button (click)=hide_buyer_registration(); type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body card">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="name">Full Name</label>
+                        <input class="form-control" type="text" id="name" name="name" #fullname>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" type="email" id="email" name="email" #email>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" type="password" id="password" name="password" #password>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="confirm_pass">Confirm Password</label>
+                        <input class="form-control" type="text" id="confirm_pass" name="confirm_pass" #confirm_password>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="phone">Phone (optional)</label>
+                        <input class="form-control" type="text" id="phone" name="phone" #phone>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-md btn-block login_btn" type="button">Sign Up</button>
+                </div>
+                <div class="form-group row footer">
+                    <div class="col-sm-auto">
+                      <label>Have an account already?<a (click)=show_login_modal_form();>Sign In</a></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

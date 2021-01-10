@@ -1,4 +1,67 @@
-<div style="text-align:center">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <div class="col">
+          <select style="float: right;margin-top: 60px;" name="language" class="form-select lang-btn">
+            <option class="lang">Arabic</option>
+          </select>
+        </div>
+        
+        <!-- <div class="col">
+
+          <button style="float: right;margin-top: 20px;" class="btn lang-btn">Arabic</button>
+        </div> -->
+      </div>
+      <div class="card login-card">
+        <div class="card-header">
+          <h1 class="login-header">Sign in</h1>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input #username id="email" name="email" class="form-control form-control-sm" type="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input #password id="password" name="password" type="password" class="form-control form-control-sm">
+            </div>
+            <div class="form-group row justify-content-between">
+              <div class="col-4">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                  <label class="form-check-label" for="autoSizingCheck">Remember me</label>
+                </div>
+              </div>
+              <div class="col-4">
+                <a [routerLink]="['/forget-password']" ><label>Forgot password?</label></a>
+              </div>
+            </div>
+            <div class="form-group">
+              <button (click)="login(username.value, password.value)" class="btn btn-primary btn-md btn-block login_btn" type="button">Sign In</button>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-auto">
+                <label>No account yet?<a [routerLink]="['/signup']">Create an account</a></label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex ">
+      <div class="image-wrapper w-100 p-3">
+        <div class="login-image d-flex justify-content-center align-self-center">
+          <img class="mw-100 align-self-center" src="../../../assets/images/login-image.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div style="text-align:center">
   <h1>
     Login
   </h1>
@@ -8,8 +71,6 @@
 <input #password type='password' placeholder='password'>
 <button (click)="login(username.value, password.value)">login</button>
 <a [routerLink]="['/forget-password']">forgot password?</a>
-<!-- <p *ngIf="error?.message != undefined">{{ error?.error.message }}</p> -->
-<!-- <p *ngIf="error" style="color: red;">{{ error?.error.global}}</p> -->
 <br>
 <br>
-<a [routerLink]="['/seller/login']">Seller Login</a>
+<a [routerLink]="['/seller/login']">Seller Login</a> -->
