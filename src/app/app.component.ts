@@ -1,17 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { UserAuthService } from './shared/services/user-auth.service';
-import { GetCategoryService } from './shared/services/get-category.service';
-import { MatMenuModule } from '@angular/material/menu';
+// import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-
 export class AppComponent implements OnInit {
-  
-  @ViewChild("menu", {static: true}) menu: MatMenuModule;
+  // @ViewChild('menu', { static: true }) menu: MatMenuModule;
 
   title = 'emdad-web-app';
   loggedInUser = false;
@@ -21,33 +18,28 @@ export class AppComponent implements OnInit {
   items;
 
   constructor(
-    private UserAuthService: UserAuthService,
-    private categoryServices: GetCategoryService
-  ) { }
+    private UserAuthService: UserAuthService
+  ) {}
 
   ngOnInit() {
-    this.UserAuthService.uName.subscribe(data => {
-      if(data == null){
+    this.UserAuthService.uName.subscribe((data) => {
+      if (data == null) {
         this.loggedInUser = false;
-      }else {
+      } else {
         this.loggedInUser = true;
         this.userName = data;
       }
-    })
-    this.UserAuthService.uId.subscribe(data => {
-      if(data != null){
+    });
+    this.UserAuthService.uId.subscribe((data) => {
+      if (data != null) {
         this.uId = data;
       }
-    })
-    this.UserAuthService.uGroup.subscribe(data => {
-      if(data != null){
+    });
+    this.UserAuthService.uGroup.subscribe((data) => {
+      if (data != null) {
         this.uGroup = data;
-        console.log("group", this.uGroup);
+        console.log('group', this.uGroup);
       }
-    })
-    this.categoryServices.category().subscribe(item => {
-      this.removeEmptyChildren(item);
-      this.items = item;
     });
   }
 
@@ -55,31 +47,20 @@ export class AppComponent implements OnInit {
     this.UserAuthService.logout();
   }
 
-  removeEmptyChildren(data) {
-    data.forEach(key => {
-      key.children.forEach(key2 => {
-        key2.children.forEach(key3 => {
-          key3.children.forEach(key4 => {
-            key3.children.forEach(key5 => {
-              if (key5.children.length == 0) {
-                delete key5.children;
-              }
-            });
-            if (key4.children.length == 0) {
-              delete key4.children;
-            }
-          });
-          if (key3.children.length == 0) {
-            delete key3.children;
-          }
-        });
-        if (key2.children.length == 0) {
-          delete key2.children;
-        }
-      });
-      if (key.children.length == 0) {
-        delete key.children;
-      }
-    });
-  }
+  // scrollTop = 0;
+  // hideNav = false;
+  // @HostListener("window:scroll")
+  // onWindowScroll() {
+  //   let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+  //   let max = document.documentElement.scrollHeight;
+  //   // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+  //   if (pos >= 700) {
+  //     //Do your action here
+  //     this.hideNav = true;
+  //     console.log(this.hideNav);
+  //   }else {
+  //     this.hideNav = false;
+  //     console.log(this.hideNav);
+  //   }
+  // }
 }
