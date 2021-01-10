@@ -1,0 +1,18 @@
+.search-input input {
+  height: 70px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border: none;
+  background: #eaeaea;
+}
+
+.search-input .input-group-text {
+  padding: 0;
+  border: none;
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+input:focus {
+  box-shadow: none !important;
+}

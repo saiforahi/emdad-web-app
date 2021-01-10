@@ -23,7 +23,7 @@ export class ProductDetailsPageComponent implements OnInit {
     this.productId = this.route.snapshot.params['id'];
     this.getProduct.productDetails(this.productId).subscribe(item => {
       this.prodcutDetails = item.data[0];
-      this.sliderImgArray = ['http://127.0.0.1:8002'+item.data[0].image1, 'http://127.0.0.1:8002'+item.data[0].image2];
+      this.sliderImgArray = ['http://127.0.0.1:8000'+item.data[0].image1, 'http://127.0.0.1:8000'+item.data[0].image2];
       console.log(this.prodcutDetails);
     })
   }

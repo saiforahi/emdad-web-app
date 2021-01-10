@@ -11,7 +11,7 @@
 			<tr>
 				<td>Email</td>
 				<td>
-					<input readonly [(ngModel)]="editUserInfo.email" />
+					<input readonly [(ngModel)]="userMail" />
 				</td>
 			</tr>
 			<tr>
@@ -43,13 +43,13 @@
 			<tr *ngIf="editUserInfo.store_name !== undefined">
 				<td>Store Name</td>
 				<td>
-					<input readonly [(ngModel)]="editUserInfo.store_name" />
+					<input [(ngModel)]="editUserInfo.store_name" />
 				</td>
 			</tr>
 			<tr *ngIf="editUserInfo.store_address !== undefined">
 				<td>Store Address</td>
 				<td>
-					<input readonly [(ngModel)]="editUserInfo.store_address" />
+					<input [(ngModel)]="editUserInfo.store_address" />
 				</td>
 			</tr>
 			<tr>

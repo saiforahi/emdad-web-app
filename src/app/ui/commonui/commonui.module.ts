@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SearchForComponent } from '../../components/search-for/search-for.component';
 
 const UI = [
-  ProductListComponent
+  ProductListComponent,
+  SearchForComponent
 ];
 
 @NgModule({

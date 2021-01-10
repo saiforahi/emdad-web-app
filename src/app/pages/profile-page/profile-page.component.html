@@ -9,7 +9,7 @@
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td>{{ userInfo.email }}</td>
+				<td>{{ userMail }}</td>
 			</tr>
 			<tr>
 				<td>Password</td>
@@ -43,14 +43,14 @@
 				<td>{{ userInfo.address }}</td>
 			</tr>
 			<tr>
-				<td>Country</td>
-				<td *ngIf="userInfo.country">{{ countries[userInfo.country].name }}</td>
-			</tr>
-			<tr>
 				<td>City</td>
 				<td *ngIf="userInfo.city && cities.length">
-					{{ cities[userInfo.city].name }}
+					<!-- {{ city[userInfo.city].name }} -->
 				</td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<!-- <td>{{ country[1].name }}</td> -->
 			</tr>
 		</tbody>
 	</table>

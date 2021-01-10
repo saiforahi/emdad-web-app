@@ -1,8 +1,102 @@
-h2{
+.banner{
+    position: relative;
+    height: 270px;
     text-align: center;
-    background: #e83e8c;
-    color: floralwhite;
-    padding: 120px;
-    /* width: 50%; */
-    margin: 0 auto;
+    background: rgb(247, 65, 135);
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+}
+
+.banner .search-holder{
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.categories {
+    min-height: 120px;
+    background-color: #E3E3E3;
+    padding: 0;
+    position: relative;
+}
+
+.categories .col-md-2 {
+    padding: 0;
+}
+
+.single-category{
+    padding: 20px 15px;
+    background: unset;
+    transition: 0.3s;
+}
+
+.single-category.active {
+    background: #ddd;
+}
+
+.single-category:hover{
+    background: #ddd;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cat-icon-holder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+    padding: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.cat-title {
+    display: inline-block;
+    width: calc(100% - 100px);
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subCategory{
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 120px;
+    left: 0;
+    background: #ddd;
+    z-index: 9;
+    padding: 40px 0;
+}
+
+.subCatItem , .children{
+    margin-bottom: 35px;
+    text-transform: capitalize;
+}
+
+.subCatItem span, .children span{
+    margin-left: 15px;
+}
+
+.subCatItem span:hover, .children span:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #2B2B2B;
+    padding-bottom: 10px;
+}
+
+.subCatItem span.active, .children span.active{
+    border-bottom: 1px solid #2B2B2B;
+    padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 1200px){
+    .container {
+        max-width: 1600px !important;
+    }
 }
