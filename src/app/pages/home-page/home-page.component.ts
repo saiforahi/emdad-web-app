@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { GetProductService } from '../../shared/services/get-product.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home-page',
@@ -19,10 +20,13 @@ export class HomePageComponent implements OnInit {
   selectedCat: any;
   subCatChildrens: any;
   activesubcategory: any;
+  durationInSeconds: number = 5;
 
   constructor(
     private categoryServices: GetCategoryService,
-    private getProduct: GetProductService
+    private getProduct: GetProductService,
+    private snackBar: MatSnackBar,
+    
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +35,7 @@ export class HomePageComponent implements OnInit {
       this.categories = item;
       console.log(this.categories);
     });
+    // recent products list
     this.getProduct.product().subscribe((item) => {
       this.products = item.data.results;
       this.nextBatchProdLink = item.data.links.next;
@@ -41,6 +46,7 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  // remove empty children form the array
   removeEmptyChildren(data) {
     data.forEach((key) => {
       key.children.forEach((key2) => {
@@ -69,22 +75,23 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  catClicked(category, index){
-    if(this.catClickedOnce == false){
+  // category menu list UI functionality
+  catClicked(category, index) {
+    if (this.catClickedOnce == false) {
       this.isDisplay = 'true';
       this.catClickedOnce = true;
       this.selectedCat = index;
       this.subCatChildrens = [];
       this.setCatActiveIndex(index);
       this.activesubcategory = 'notActive';
-    }else if (this.catClickedOnce == true && this.selectedCat == index){
+    } else if (this.catClickedOnce == true && this.selectedCat == index) {
       this.isDisplay = 'false';
       this.catClickedOnce = false;
       this.selectedCat = index;
       this.subCatChildrens = [];
       this.setCatActiveIndex(index);
       this.activesubcategory = 'notActive';
-    }else if (this.catClickedOnce == true && this.selectedCat != index){
+    } else if (this.catClickedOnce == true && this.selectedCat != index) {
       this.isDisplay = 'true';
       this.catClickedOnce = true;
       this.selectedCat = index;
@@ -94,36 +101,34 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  // set active state for category
   setCatActiveIndex(index) {
     this.activecategory = index;
   }
 
+  // get active state for category
   getCatActiveClass(i) {
     return this.activecategory == i ? 'active' : '';
   }
 
-  showChildrenCat(subCat, index){
+  // show the sub category children on hover
+  showChildrenCat(subCat, index) {
     this.subCatChildrens = subCat[index].children;
     this.setSubCatActiveIndex(index);
   }
 
+  // set active state for subcategory
   setSubCatActiveIndex(index) {
     this.activesubcategory = index;
   }
 
+  // set active state for subcategory
   getSubCatActiveClass(i) {
     return this.activesubcategory == i ? 'active' : '';
   }
 
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    //In chrome and some browser scroll is given to body tag
-    let pos =
-      (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
-    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos >= max - 1 && this.nextBatchProdLink != null) {
+  getNextBatchproduct() {
+    if (this.nextBatchProdLink != null) {
       //Do your action here
       console.log('reached bootm');
       this.getProduct
@@ -135,6 +140,36 @@ export class HomePageComponent implements OnInit {
     }
     if (this.nextBatchProdLink == null) {
       this.prodEnd = true;
+      this.openSnackBar("No more product to show!", "OK");
     }
   }
+
+  openSnackBar(message, action) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
+  // @HostListener('window:scroll')
+  // onWindowScroll() {
+  //   //In chrome and some browser scroll is given to body tag
+  //   let pos =
+  //     (document.documentElement.scrollTop || document.body.scrollTop) +
+  //     document.documentElement.offsetHeight;
+  //   let max = document.documentElement.scrollHeight;
+  //   // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+  //   if (pos >= max - 1 && this.nextBatchProdLink != null) {
+  //     //Do your action here
+  //     console.log('reached bootm');
+  //     this.getProduct
+  //       .getNextBatchProduct(this.nextBatchProdLink)
+  //       .subscribe((item) => {
+  //         this.products = [...this.products, ...item.data.results];
+  //         this.nextBatchProdLink = item.data.links.next;
+  //       });
+  //   }
+  //   if (this.nextBatchProdLink == null) {
+  //     this.prodEnd = true;
+  //   }
+  // }
 }

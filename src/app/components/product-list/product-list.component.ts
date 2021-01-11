@@ -30,4 +30,8 @@ export class ProductListComponent implements OnInit {
     localStorage.setItem("prodCartArray", JSON.stringify(this.prodCartArray));
   }
 
+  addToWishlist(e){
+    // e.preventdefault();
+  }
+
 }

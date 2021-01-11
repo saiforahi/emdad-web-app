@@ -7,25 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SearchForComponent } from '../../components/search-for/search-for.component';
 
-const UI = [
-  ProductListComponent,
-  SearchForComponent
-];
+const UI = [ProductListComponent, SearchForComponent];
 
 @NgModule({
-  declarations: [
-    UI
-  ],
+  declarations: [UI],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
   ],
-  exports: [
-    UI
-  ]
+  exports: [UI],
 })
-export class CommonuiModule { }
+export class CommonuiModule {}

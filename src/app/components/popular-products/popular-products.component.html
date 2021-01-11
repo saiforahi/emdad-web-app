@@ -1,0 +1,353 @@
+<!-- <div class="container"> -->
+<div class="row" *ngIf="popularProducts">
+    <!-- *ngFor="let product of popularProducts | slice:0:12" -->
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-lg-2">
+        <mat-card class="example-card mt-3">
+            <a [routerLink]="['/product/details/', popularProducts[0].id]">
+                <div>
+                    <img *ngIf="popularProducts[0].image1 != null" mat-card-image [lazyLoad]="popularProducts[0].image1"
+                        [defaultImage]="defaultImage" alt="product image">
+                    <img *ngIf="popularProducts[0].image1 == null" mat-card-image
+                        src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png"
+                        alt="product image">
+                    <mat-card-content>
+                        <p class="product-name">
+                            {{popularProducts[0].name}}
+                        </p>
+                        <p class="product-price">
+                            ${{popularProducts[0].unit_price}}
+                        </p>
+                        <p class="store-name">
+                            Store name
+                        </p>
+                    </mat-card-content>
+                </div>
+            </a>
+            <div class="example-button-container">
+                <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+                    <img class="wish-icon" src="../../../assets/wish.svg" alt="">
+                </button>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<!-- </div> -->
