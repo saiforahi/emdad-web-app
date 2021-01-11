@@ -15,9 +15,11 @@ import { MaterialModule } from './material.module';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from './ui/commonui/commonui.module';
+import { BuyerSigninFormComponent } from './components/buyer-login-modal-form/buyer-login-modal-form.component';
+import {BuyerRegistrationFormComponent} from './components/buyer-registration-modal-form/buyer-registration-modal-form.component';
 
 @NgModule({
-  declarations: [AppComponent, CategoryMenuComponent],
+  declarations: [AppComponent, CategoryMenuComponent,BuyerSigninFormComponent,BuyerRegistrationFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

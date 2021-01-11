@@ -183,6 +183,12 @@
               <span class="menu-underline"></span>
             </a>
           </li>
+          <li class="nav-item" *ngIf="!loggedInUser">
+            <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer login</a>
+          </li>
+          <li class="nav-item" *ngIf="!loggedInUser">
+            <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer Registration</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -238,3 +244,5 @@
     </div>
   </div>
 </footer>
+<app-buyer-login-modal-form></app-buyer-login-modal-form>
+<app-buyer-registration-modal-form></app-buyer-registration-modal-form>

@@ -1,0 +1,70 @@
+.login_btn{
+    background: #454F63;
+    border-radius: 5px;
+}
+.login-card{
+    top: 20px;
+}
+.login-header{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 69px;
+    text-align: center;
+    /* #2B2B2B */
+    color: #2B2B2B;
+}
+.card{
+    border: none;
+}
+.btn{
+    border: none;
+}
+.card-header{
+    background-color: #f8f9fa00;
+}
+.form-label{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    color: #2B2B2B;
+}
+.bottom-text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 29px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #2B2B2B;
+}
+.lang-btn{
+    background: #454F63;
+    border-radius: 30px;
+    font-size: 12px;
+    line-height: 12px;
+    font-style: normal;
+    color: #FFFFFF;
+
+}
+.lang{
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.image-wrapper{
+    margin-top: 60px;
+    background: #EAEAEA;
+    border-radius: 20px;
+}
+.login-image{
+    max-height: 238px;
+    /* margin-left: 66.98%;
+    margin-right: 20.1%;
+    margin-top: 393px; */
+    vertical-align: middle;
+}
