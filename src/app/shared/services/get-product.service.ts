@@ -12,6 +12,11 @@ export class GetProductService {
     return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
   }
 
+  // return only 12 items 
+  popularProduct(): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
+  }
+
   getNextBatchProduct(link): Observable<any> {
     return this.http.get(link);
   }

@@ -7,6 +7,7 @@ import { MaterialModule } from '../../material.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from '../../ui/commonui/commonui.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopularProductsComponent } from '../../components/popular-products/popular-products.component';
 
 const routes: Routes = [
   {path:'', component: HomePageComponent, pathMatch:'full'}
@@ -14,7 +15,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    HomePageComponent,
+    PopularProductsComponent
   ],
   imports: [
     CommonModule,

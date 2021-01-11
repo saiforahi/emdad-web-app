@@ -28,10 +28,13 @@
                                     (click)="showChildrenCat(categories[selectedCat].children, i)"
                                     [ngClass]="getSubCatActiveClass(i)">{{subCat.name}}</span>
                             </p>
+                            <p *ngIf="categories[selectedCat].children == undefined">
+                                No Sub-categories listed
+                            </p>
                         </div>
                         <div class="col-md-4">
                             <p class="children" *ngFor="let subCatChild of subCatChildrens; let i = index">
-                                <span>{{subCatChild.name}}</span>
+                                <span><a [routerLink]="['/products/category/', subCatChild.id]">{{subCatChild.name}}</a></span>
                             </p>
                         </div>
                     </div>
@@ -50,6 +53,85 @@
         </div>
     </div>
 </section>
-<section class="container">
+<section class="container" style="background: #E5E5E5;">
+    <div class="product-list-header">
+        Popular Products
+    </div>
+    <app-popular-products></app-popular-products>
+</section>
+<section class="container" style="background: #E5E5E5;">
+    <div class="product-list-header">
+        Popular Categories
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['']">
+                <div class="cat-round-bg">
+                    <img src="../../../assets/popular-cat.svg" alt="">
+                    <img src="../../../assets/popular-cat-dark.svg" alt="">
+                    <span>Stationary & Office</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="container" style="background: #E5E5E5;">
+    <div class="product-list-header" style="padding-bottom: 40px;">
+        Recent Products
+    </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd"></app-product-list>
+    <div class="view-more-btn-div">
+        <button (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img src="../../../assets/down-carrot-light.svg" alt=""></button>
+    </div>
+</section>
+<section class="container" style="background: #E5E5E5;">
+    <div class="send-suggestion-div">
+        <span>Send Suggestion & Recommendation for EMDAD! &nbsp;</span>
+        <button mat-raised-button>Send Now</button>
+    </div>
 </section>
