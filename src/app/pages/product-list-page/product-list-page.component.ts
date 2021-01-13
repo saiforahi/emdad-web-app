@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GetProductService } from '../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GetCategoryService } from '../../shared/services/get-category.service';
 
 @Component({
   selector: 'app-product-list-page',
@@ -16,11 +17,15 @@ export class ProductListPageComponent implements OnInit {
   isCategory = false;
   categoryId;
   prevParam;
+  prodInRow6;
+  panelOpenState = true;
+  categories: any;
 
   constructor(
     private getProduct: GetProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private getCategories: GetCategoryService
   ) {
     this.route.paramMap.subscribe((params) => {
       console.log(params);
@@ -29,6 +34,14 @@ export class ProductListPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.router.url.split('/').length > 2){
+      this.prodInRow6 = false;
+    }
+    this.getCategories.category().subscribe(item =>{
+      console.log(item);
+      this.categories = item;
+    })
+    console.log(this.prodInRow6);
     this.sellerId = this.route.snapshot.params['id'];
     this.categoryId = this.route.snapshot.params['id'];
     // check for is seller ==>
@@ -46,6 +59,16 @@ export class ProductListPageComponent implements OnInit {
       // console.log(this.products);
     });
 
+    // get product by category
+    this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
+      console.log(item);
+      this.products = item.data.results;
+      this.nextBatchProdLink = item.data.links.next;
+      console.log(this.products);
+    });
+  }
+
+  getProdOnFilter(){
     // get product by category
     this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
       console.log(item);
