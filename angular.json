@@ -4,6 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "emdad-web-app": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "ar": {
+            "translation": "src/locale/messages.ar.xlf",
+            "baseHref": "" 
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -18,6 +27,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "i18nMissingTranslation": "error",
+            "localize": false,
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -58,6 +69,9 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "ar": {
+              "localize": ["ar"]
             }
           }
         },
@@ -70,6 +84,12 @@
           "configurations": {
             "production": {
               "browserTarget": "emdad-web-app:build:production"
+            },
+            "en":{
+              "browserTarget": "emdad-web-app:build:en"
+            },
+            "ar": {
+              "browserTarget": "emdad-web-app:build:ar"
             }
           }
         },

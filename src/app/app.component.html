@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/']" i18n="Home|A nav item@@homeText">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <button mat-button [matMenuTriggerFor]="panel.menu" class="link-btn" #matMenuButton="matMenuTrigger" 
+          <button i18n="Category|A nav item@@categoryText" mat-button [matMenuTriggerFor]="panel.menu" class="link-btn" #matMenuButton="matMenuTrigger" 
           (mouseenter)="matMenuButton.openMenu()" (mouseenter)="matMenuButton.openMenu()">Category</button>
           <app-category-menu #panel [items]="items"></app-category-menu>
         </li>
