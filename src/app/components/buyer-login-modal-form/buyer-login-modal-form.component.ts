@@ -11,13 +11,14 @@ export class BuyerSigninFormComponent implements OnInit {
 
   error: any;
   msg;
-
+  group: string;
   constructor(
     private authService: UserAuthService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.group="buyer"
   }
   hide_buyer_login(){
     document.getElementById('buyerLogin').style.display="none";
@@ -30,14 +31,17 @@ export class BuyerSigninFormComponent implements OnInit {
     document.getElementById('buyerLogin').style.display="none";
     this.router.navigate(['/forget-password']);
   }
-  signin(full_name: string, email: string, phone: String, password: string) {
-    this.authService.signup(full_name, email, phone, password).subscribe(
+  signin(email: string, password: string) {
+    this.authService.login(email, password, this.group).subscribe(
       success => {
-        // this.router.navigate(['/login']);
-        this.msg = success.message;
-        console.log(success)
+        document.getElementById('buyerLogin').style.display="none";
+        console.log(success);
+        this.router.navigate(['']);
       },
-      error => this.error = error
+      error => {
+        this.error = error;
+        console.log(error);
+      }
     );
   }
 
