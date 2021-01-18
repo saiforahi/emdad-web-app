@@ -1,3 +1,5 @@
+<app-buyer-login-modal-form></app-buyer-login-modal-form>
+<app-buyer-registration-modal-form></app-buyer-registration-modal-form>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo"></a>
@@ -30,12 +32,12 @@
             </div>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" (click)="show_lang_drop();">
               <a class="nav-link" id="en-btn" ngbDropdownToggle>
                 <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px;">
                 <img src="../assets/down-carrot.svg" alt="">
               </a>
-              <div ngbDropdownMenu aria-labelledby="en-btn">
+              <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
                 <div ngbDropdownItem>
                   <label class="lan-radio-btn">
                     <img src="../assets/en-lan.svg" alt="">
@@ -98,17 +100,18 @@
             </div>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" (click)="handle_accnt_drop_down();">
               <a class="nav-link" ngbDropdownToggle>
                 <img src="../assets/hamburger.svg" alt="">
               </a>
-              <div ngbDropdownMenu class="profile-list">
+              <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
                 <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My
                   Profile</button>
                 <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
                 <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
                 <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
                 <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
+                <button *ngIf="loggedInUser" ngbDropdownItem><img alt="">Logout</button>
               </div>
             </div>
           </li>
@@ -238,5 +241,3 @@
     </div>
   </div>
 </footer>
-<app-buyer-login-modal-form></app-buyer-login-modal-form>
-<app-buyer-registration-modal-form></app-buyer-registration-modal-form>

@@ -52,6 +52,22 @@ export class AppComponent implements OnInit {
   logout() {
     this.UserAuthService.logout();
   }
+  show_lang_drop(){
+    if(document.getElementById('lang-drop-down').className==="dropdown-menu show"){
+      document.getElementById('lang-drop-down').className="dropdown-menu";
+    }
+    else{
+      document.getElementById('lang-drop-down').className="dropdown-menu show";
+    }
+  }
+  handle_accnt_drop_down(){
+    if(document.getElementById('accnt-drop-down').className==="dropdown-menu show"){
+      document.getElementById('accnt-drop-down').className="dropdown-menu";
+    }
+    else{
+      document.getElementById('accnt-drop-down').className="dropdown-menu show";
+    }
+  }
   show_buyer_login(){
     document.getElementById('buyerRegistration').style.display="none";
     document.getElementById('buyerLogin').style.display="block";

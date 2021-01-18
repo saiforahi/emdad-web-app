@@ -126,7 +126,7 @@ export class UserAuthService {
     this.uName.next(null);
     this.uId.next(null);
     this.uGroup.next(null);
-    this.router.navigate(['/buyer/login']);
+    this.router.navigate(['/']);
   }
   refreshToken() {
     if (

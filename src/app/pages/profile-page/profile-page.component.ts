@@ -21,7 +21,7 @@ export class ProfilePageComponent implements OnInit {
   userId;
   userInfo;
   changePass = false;
-  editProfileState = false;
+  editProfileState = true;
   cities: any = [];
   countries: any = [];
   error;
@@ -29,11 +29,16 @@ export class ProfilePageComponent implements OnInit {
   country: any;
   city: any;
 
+  show_change_pass_form;
+  show_profile_form;
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
     private countryList: CountryListService
-  ) { }
+  ) { 
+    this.show_change_pass_form=false;
+    this.show_profile_form=true;
+  }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
@@ -56,6 +61,9 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.authService.logout();
+  }
   getCountries() {
     this.countryList.allCountries().subscribe(
       (data) => {

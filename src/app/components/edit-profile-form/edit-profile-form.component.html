@@ -1,4 +1,4 @@
-<div *ngIf="editUserInfo && !changePass && editProfileState">
+<!-- <div *ngIf="editUserInfo && !changePass && editProfileState">
 	<h4>Edit Profile</h4>
 	<table class="table table-borderless">
 		<tbody>
@@ -90,5 +90,71 @@
 			<button class="btn btn-primary" (click)="saveData()">Update</button>
 		</div>
 	</div>
-</div>
-<app-change-password-form *ngIf="changePass"></app-change-password-form>
+</div> -->
+
+<form>
+	<div class="container container-custom">
+		<div class="rounded-circle">
+			<img class="pro-img" src="../../../assets/images/avatar.svg" />
+			<span class="plus-icon"><i class="fas fa-plus-circle"></i></span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<label class="form-label">Full Name</label>
+			<input name="full_name" [(ngModel)]="editUserInfo.full_name" class="form-control" placeholder="Enter Full Name" type="text"/>
+		</div>
+		<div class="col-sm-6">
+			<label class="form-label">Company Name (Optional)</label>
+			<input name="company_name" class="form-control" placeholder="Company Name" type="text"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<label class="form-label">Email</label>
+			<input name="userMail" [(ngModel)]="userMail" class="form-control" placeholder="Email" type="email"/>
+		</div>
+		<div class="col-sm-6">
+			<label class="form-label">Mobile Number</label>
+			<input name="phone" [(ngModel)]="editUserInfo.phone" class="form-control" placeholder="(704) 555-9871" type="tel"/>
+		</div>
+	</div>
+	<div class="form-group ">
+		<label class="form-label">Address</label>
+		<input name="address" [(ngModel)]="editUserInfo.address" class="form-control" placeholder="357 W. Gray St Utica PennSylvania 57867" type="text"/>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<label class="form-label">City</label>
+			<select class="form-control" name="city" [(ngModel)]="editUserInfo.city">
+				<option *ngFor="let city of editCities" [value]="city.id">
+					{{city.name}}
+				</option>
+			</select>
+		</div>
+		<div class="col-sm-6">
+			<label class="form-label">Country</label>
+			<select class="form-control" name="country" [(ngModel)]="editUserInfo.country" (input)="onCountryChange($event.target.value)">
+				<option value="-1">Select one</option>
+				<option *ngFor="let country of countries" [value]="country.id">
+					{{country.name}}
+				</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<label class="form-label">Area</label>
+			<input name="area" class="form-control" placeholder="Pennsylvania" type="text"/>
+		</div>
+		<div class="col-sm-6">
+			<label class="form-label">Zip Code</label>
+			<input name="zip" class="form-control" placeholder="57867" type="text"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<button class="btn btn-primary btn-md btn-block login_btn" (click)="saveData()">Update</button>
+		</div>
+	</div>
+</form>
