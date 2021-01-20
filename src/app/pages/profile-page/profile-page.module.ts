@@ -5,6 +5,7 @@ import { ProfilePageComponent } from './profile-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ChangePasswordFormComponent } from '../../components/change-password-form/change-password-form.component';
 import { EditProfileFormComponent } from '../../components/edit-profile-form/edit-profile-form.component';
+import {OrderHistoryComponent} from '../../components/order-history-table/order-history-table.component';
 const routes: Routes = [
 	{ path: '', component: ProfilePageComponent, pathMatch: 'full' },
 ];
@@ -14,6 +15,7 @@ const routes: Routes = [
 		ProfilePageComponent,
 		ChangePasswordFormComponent,
 		EditProfileFormComponent,
+		OrderHistoryComponent
 	],
 	imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })

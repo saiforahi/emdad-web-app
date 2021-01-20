@@ -1,0 +1,13 @@
+.table thead th{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    border-top: none;
+    /* #2B2B2B */
+
+    color: #2B2B2B;
+}

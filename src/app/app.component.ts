@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     if(document.getElementById('lang-drop-down').className==="dropdown-menu show"){
       document.getElementById('lang-drop-down').className="dropdown-menu";
     }
-    else{
+    else if(document.getElementById('lang-drop-down').className==="dropdown-menu"){
       document.getElementById('lang-drop-down').className="dropdown-menu show";
     }
   }
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     if(document.getElementById('accnt-drop-down').className==="dropdown-menu show"){
       document.getElementById('accnt-drop-down').className="dropdown-menu";
     }
-    else{
+    else if(document.getElementById('accnt-drop-down').className==="dropdown-menu"){
       document.getElementById('accnt-drop-down').className="dropdown-menu show";
     }
   }
