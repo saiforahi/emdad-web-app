@@ -1,3 +1,7 @@
+.table {
+    border-collapse: separate;
+    border-spacing:0 15px;
+}
 .table thead th{
     font-family: Jost;
     font-style: normal;
@@ -10,4 +14,8 @@
     /* #2B2B2B */
 
     color: #2B2B2B;
+}
+.table tbody tr{
+    background: #EFEFEF;
+    border-radius: 5px;
 }
