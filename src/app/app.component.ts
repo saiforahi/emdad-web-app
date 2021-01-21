@@ -61,11 +61,11 @@ export class AppComponent implements OnInit {
     }
   }
   handle_accnt_drop_down(){
-    if(document.getElementById('accnt-drop-down').className==="dropdown-menu show"){
-      document.getElementById('accnt-drop-down').className="dropdown-menu";
+    if(document.getElementById('accnt-drop-down').classList.contains('show')){
+      document.getElementById('accnt-drop-down').classList.remove('show');
     }
-    else if(document.getElementById('accnt-drop-down').className==="dropdown-menu"){
-      document.getElementById('accnt-drop-down').className="dropdown-menu show";
+    else if(!document.getElementById('accnt-drop-down').classList.contains('show')){
+      document.getElementById('accnt-drop-down').classList.add('show');
     }
   }
   show_buyer_login(){

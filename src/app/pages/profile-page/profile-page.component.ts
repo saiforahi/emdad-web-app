@@ -32,6 +32,7 @@ export class ProfilePageComponent implements OnInit {
   show_change_pass_form;
   show_profile_form;
   show_order_history;
+  show_manage_quotations;
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
@@ -40,6 +41,7 @@ export class ProfilePageComponent implements OnInit {
     this.show_change_pass_form=false;
     this.show_profile_form=true;
     this.show_order_history=false;
+    this.show_manage_quotations=false;
   }
 
   ngOnInit(): void {
