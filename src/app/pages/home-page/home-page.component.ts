@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { GetProductService } from '../../shared/services/get-product.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -21,15 +22,20 @@ export class HomePageComponent implements OnInit {
   subCatChildrens: any;
   activesubcategory: any;
   durationInSeconds: number = 5;
+  prodInRow6;
 
   constructor(
     private categoryServices: GetCategoryService,
     private getProduct: GetProductService,
     private snackBar: MatSnackBar,
-    
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    if(this.router.url.split('/').length < 3){
+      this.prodInRow6 = true;
+    }
+    console.log(this.prodInRow6);
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;

@@ -1,6 +1,7 @@
+<!-- This list shown in the home page with 6 items in a row -->
 <!-- <div class="container"> -->
 <div class="row" *ngIf="products">
-  <div class="col-lg-2" *ngFor="let product of products">
+  <div [ngClass]="{'col-md-2':prodInRow6, 'col-md-3':!prodInRow6}" *ngFor="let product of products">
     <mat-card class="example-card mt-3">
     <a [routerLink]="['/product/details/', product.id]">
       <div>
