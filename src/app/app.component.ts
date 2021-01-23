@@ -53,11 +53,11 @@ export class AppComponent implements OnInit {
     this.UserAuthService.logout();
   }
   show_lang_drop(){
-    if(document.getElementById('lang-drop-down').className==="dropdown-menu show"){
-      document.getElementById('lang-drop-down').className="dropdown-menu";
+    if(document.getElementById('lang-drop-down').classList.contains('show')){
+      document.getElementById('lang-drop-down').classList.remove('show');
     }
-    else if(document.getElementById('lang-drop-down').className==="dropdown-menu"){
-      document.getElementById('lang-drop-down').className="dropdown-menu show";
+    else if(!document.getElementById('lang-drop-down').classList.contains('show')){
+      document.getElementById('lang-drop-down').classList.remove('show');
     }
   }
   handle_accnt_drop_down(){
@@ -66,6 +66,14 @@ export class AppComponent implements OnInit {
     }
     else if(!document.getElementById('accnt-drop-down').classList.contains('show')){
       document.getElementById('accnt-drop-down').classList.add('show');
+    }
+  }
+  handle_notification_drop(){
+    if(document.getElementById('noti-panel').classList.contains('show')){
+      document.getElementById('noti-panel').classList.remove('show')
+    }
+    else if(!document.getElementById('noti-panel').classList.contains('show')){
+      document.getElementById('noti-panel').classList.add('show');
     }
   }
   show_buyer_login(){

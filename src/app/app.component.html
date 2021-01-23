@@ -70,11 +70,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" (click)="handle_notification_drop()">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="">
               </a>
-              <div ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+              <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <button ngbDropdownItem>Your order #3342 has been confirmed!</button>
                 <div style="padding: 0 30px;">
                   <mat-divider></mat-divider>
