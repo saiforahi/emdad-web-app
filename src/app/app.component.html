@@ -1,118 +1,118 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo"></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-      <div class="float-right">
-        <ul class="navbar-nav">
-          <li *ngIf="showOnScroll" class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link" (click)="showAllProdlist();">
-              <span>All Products </span>
-              <img src="../assets/down-carrot.svg" alt="">
-            </a>
-            <div *ngIf="showAllProdDiv" class="all-products-list">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-2" *ngFor="let category of categories">
-                    <a [routerLink]="['/products/category/', category.id]">{{category.name}}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li *ngIf="showOnScroll" class="nav-item">
-            <app-search-for></app-search-for>
-          </li>
-          <li class="nav-item" style="margin-left: 42px;">
-            <a class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
-            <div class="user-name">
-              <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="">
-              <span *ngIf="loggedInUser">{{userName}}</span>
-            </div>
-          </li>
-          <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
-              <a class="nav-link" id="en-btn" ngbDropdownToggle>
-                <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px;">
-                <img src="../assets/down-carrot.svg" alt="">
-              </a>
-              <div ngbDropdownMenu aria-labelledby="en-btn">
-                <div ngbDropdownItem>
-                  <label class="lan-radio-btn">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <div class="float-right">
+                <ul class="navbar-nav">
+                    <li *ngIf="showOnScroll" class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link" (click)="showAllProdlist();">
+                            <span>All Products </span>
+                            <img src="../assets/down-carrot.svg" alt="">
+                        </a>
+                        <div *ngIf="showAllProdDiv" class="all-products-list">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-2" *ngFor="let category of categories">
+                                        <a [routerLink]="['/products/category/', category.id]">{{category.name}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li *ngIf="showOnScroll" class="nav-item">
+                        <app-search-for></app-search-for>
+                    </li>
+                    <li class="nav-item" style="margin-left: 42px;">
+                        <a class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
+                        <div class="user-name">
+                            <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="">
+                            <span *ngIf="loggedInUser">{{userName}}</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div ngbDropdown class="d-inline-block">
+                            <a class="nav-link" id="en-btn" ngbDropdownToggle>
+                                <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px;">
+                                <img src="../assets/down-carrot.svg" alt="">
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="en-btn">
+                                <div ngbDropdownItem>
+                                    <label class="lan-radio-btn">
                     <img src="../assets/en-lan.svg" alt="">
                     <span class="lan-title">English</span>
                     <input type="radio" name="language">
                     <span class="checkmark"></span>
                   </label>
-                </div>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <div ngbDropdownItem>
-                  <label class="lan-radio-btn">
+                                </div>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <div ngbDropdownItem>
+                                    <label class="lan-radio-btn">
                     <img src="../assets/ar-lan.svg" alt="">
                     <span class="lan-title">Arabic</span>
                     <input type="radio" name="language">
                     <span class="checkmark"></span>
                   </label>
-                </div>
-              </div>
-            </div>
-            <!-- <a class="nav-link" id="ar-btn">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a class="nav-link" id="ar-btn">
               <img src="../assets/ar-lan.svg" alt="" style="margin-right: 7.5px;">
               <img src="../assets/down-carrot.svg" alt="">
             </a> -->
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/cart']">
-              <img src="../assets/bag.svg" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
-              <a class="nav-link" id="notification-btn" ngbDropdownToggle>
-                <img src="../assets/notification.svg" alt="">
-              </a>
-              <div ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
-                <button ngbDropdownItem>Your order #3342 has been confirmed!</button>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem>Your order #3342 is on the way!</button>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem>Your order #3342 is on the way!</button>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
-                <div style="padding: 0 30px;">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
-              <a class="nav-link" ngbDropdownToggle>
-                <img src="../assets/hamburger.svg" alt="">
-              </a>
-              <div ngbDropdownMenu class="profile-list">
-                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/cart']">
+                            <img src="../assets/bag.svg" alt="">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div ngbDropdown class="d-inline-block">
+                            <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+                                <img src="../assets/notification.svg" alt="">
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+                                <button ngbDropdownItem>Your order #3342 has been confirmed!</button>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <button ngbDropdownItem>Your order #3342 is on the way!</button>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <button ngbDropdownItem>Your order #3342 is on the way!</button>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
+                                <div style="padding: 0 30px;">
+                                    <mat-divider></mat-divider>
+                                </div>
+                                <button ngbDropdownItem>#5463 order has been placed successfully.</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div ngbDropdown class="d-inline-block">
+                            <a class="nav-link" ngbDropdownToggle>
+                                <img src="../assets/hamburger.svg" alt="">
+                            </a>
+                            <div ngbDropdownMenu class="profile-list">
+                                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My
                   Profile</button>
-                <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
-                <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
-                <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
-                <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
-              </div>
-            </div>
-          </li>
-          <!-- <li class="nav-item" *ngIf="uGroup == 'seller'">
+                                <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
+                                <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
+                                <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
+                                <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item" *ngIf="uGroup == 'seller'">
             <a class="nav-link" [routerLink]="['/add']">Add Product</a>
           </li>
           <li class="nav-item" *ngIf="uGroup == 'seller'">
@@ -133,116 +133,115 @@
           <li class="nav-item" *ngIf="loggedInUser">
             <a class="nav-link" (click)=logout(); type="button">Logout</a>
           </li> -->
-        </ul>
-      </div>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
-      aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      <div class="float-right">
-        <ul class="navbar-nav">
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link" [routerLink]="['/']">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+            <div class="float-right">
+                <ul class="navbar-nav">
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link" [routerLink]="['/']">
               Home
               <span class="menu-underline active"></span>
             </a>
-          </li>
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link">
+                    </li>
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link">
               About Us
               <span class="menu-underline"></span>
             </a>
-          </li>
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link">
+                    </li>
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link">
               Categories
               <span class="menu-underline"></span>
             </a>
-          </li>
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link">
+                    </li>
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link">
               Our Partners
               <span class="menu-underline"></span>
             </a>
-          </li>
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link">
+                    </li>
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link">
               Constact Us
               <span class="menu-underline"></span>
             </a>
-          </li>
-          <li class="nav-item active" style="margin-right: 17px;">
-            <a class="nav-link">
+                    </li>
+                    <li class="nav-item active" style="margin-right: 17px;">
+                        <a class="nav-link">
               Sell on Emdad
               <span class="menu-underline"></span>
             </a>
-          </li>
-          <li class="nav-item" *ngIf="!loggedInUser">
-            <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer login</a>
-          </li>
-          <li class="nav-item" *ngIf="!loggedInUser">
-            <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer Registration</a>
-          </li>
-        </ul>
-      </div>
+                    </li>
+                    <li class="nav-item" *ngIf="!loggedInUser">
+                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer login</a>
+                    </li>
+                    <li class="nav-item" *ngIf="!loggedInUser">
+                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer Registration</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
-<div style="margin-top: 200px;">
-  <router-outlet></router-outlet>
+<div style="margin-top: 200px; background: #F4F4F4;">
+    <router-outlet></router-outlet>
 </div>
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 text-center">
-        <div class="footer-logo">
-          <img src="../assets/footer-logo.svg" alt="">
-        </div>
-        <div class="slogan">
-          Your Slogan Here
-        </div>
-        <div class="social-links">
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-            <li class="list-group-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li class="list-group-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-            <!-- <li class="list-group-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="footer-logo">
+                    <img src="../assets/footer-logo.svg" alt="">
+                </div>
+                <div class="slogan">
+                    Your Slogan Here
+                </div>
+                <div class="social-links">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-group-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-group-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <!-- <li class="list-group-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
           <li class="list-group-item"><a href="#"><i class="fab fa-pinterest-p"></i></a></li> -->
-          </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 footer-link-div">
+                <ul class="list-group">
+                    <li class="list-group-item pt-0 link-head">COMPANY</li>
+                    <li class="list-group-item"><a href="#">ABOUT US</a></li>
+                    <li class="list-group-item"><a href="#">SELL ON EMDAD</a></li>
+                    <li class="list-group-item"><a href="#">PARTNERS</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-link-div">
+                <ul class="list-group">
+                    <li class="list-group-item pt-0 link-head">HELP</li>
+                    <li class="list-group-item"><a href="#">RAISE A SUPPORT TICKETS</a></li>
+                    <li class="list-group-item"><a href="#">PRIVACY POLICY</a></li>
+                    <li class="list-group-item"><a href="#">TERMS AND CONDITIONS</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-link-div">
+                <ul class="list-group">
+                    <li class="list-group-item pt-0 link-head">CONTACT</li>
+                    <li class="list-group-item"><a href="#">6391 Elgin St. Celina, Delaware</a></li>
+                    <li class="list-group-item"><a href="#">(907) 555-0101</a></li>
+                    <li class="list-group-item"><a href="#">emdad@example.com</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="col-md-3 footer-link-div">
-        <ul class="list-group">
-          <li class="list-group-item pt-0 link-head">COMPANY</li>
-          <li class="list-group-item"><a href="#">ABOUT US</a></li>
-          <li class="list-group-item"><a href="#">SELL ON EMDAD</a></li>
-          <li class="list-group-item"><a href="#">PARTNERS</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 footer-link-div">
-        <ul class="list-group">
-          <li class="list-group-item pt-0 link-head">HELP</li>
-          <li class="list-group-item"><a href="#">RAISE A SUPPORT TICKETS</a></li>
-          <li class="list-group-item"><a href="#">PRIVACY POLICY</a></li>
-          <li class="list-group-item"><a href="#">TERMS AND CONDITIONS</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 footer-link-div">
-        <ul class="list-group">
-          <li class="list-group-item pt-0 link-head">CONTACT</li>
-          <li class="list-group-item"><a href="#">6391 Elgin St. Celina, Delaware</a></li>
-          <li class="list-group-item"><a href="#">(907) 555-0101</a></li>
-          <li class="list-group-item"><a href="#">emdad@example.com</a></li>
-        </ul>
-      </div>
     </div>
-  </div>
 </footer>
 <app-buyer-login-modal-form></app-buyer-login-modal-form>
 <app-buyer-registration-modal-form></app-buyer-registration-modal-form>

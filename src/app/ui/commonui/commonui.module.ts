@@ -6,8 +6,9 @@ import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SearchForComponent } from '../../components/search-for/search-for.component';
+import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 
-const UI = [ProductListComponent, SearchForComponent];
+const UI = [ProductListComponent, SearchForComponent, BreadcrumbsComponent];
 
 @NgModule({
   declarations: [UI],

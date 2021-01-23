@@ -20,6 +20,7 @@ export class ProductDetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.productId = this.route.snapshot.params['id'];
     this.getProduct.productDetails(this.productId).subscribe(item => {
       this.prodcutDetails = item.data[0];
