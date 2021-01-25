@@ -1,3 +1,5 @@
+<app-buyer-login-modal-form></app-buyer-login-modal-form>
+<app-buyer-registration-modal-form></app-buyer-registration-modal-form>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo"></a>
@@ -23,19 +25,19 @@
             <app-search-for></app-search-for>
           </li>
           <li class="nav-item" style="margin-left: 42px;">
-            <a class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
+            <a (click)=show_buyer_login(); class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
             <div class="user-name">
               <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="">
               <span *ngIf="loggedInUser">{{userName}}</span>
             </div>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" (click)="show_lang_drop();">
               <a class="nav-link" id="en-btn" ngbDropdownToggle>
                 <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px;">
                 <img src="../assets/down-carrot.svg" alt="">
               </a>
-              <div ngbDropdownMenu aria-labelledby="en-btn">
+              <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
                 <div ngbDropdownItem>
                   <label class="lan-radio-btn">
                     <img src="../assets/en-lan.svg" alt="">
@@ -68,11 +70,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" (click)="handle_notification_drop()">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="">
               </a>
-              <div ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+              <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <button ngbDropdownItem>Your order #3342 has been confirmed!</button>
                 <div style="padding: 0 30px;">
                   <mat-divider></mat-divider>
@@ -97,18 +99,18 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+          <li class="nav-item" (click)="handle_accnt_drop_down();">
+            <div ngbDropdown class="d-inline-block" >
               <a class="nav-link" ngbDropdownToggle>
                 <img src="../assets/hamburger.svg" alt="">
               </a>
-              <div ngbDropdownMenu class="profile-list">
-                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My
-                  Profile</button>
+              <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
+                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My Profile</button>
                 <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
                 <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
                 <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
                 <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
+                <button *ngIf="loggedInUser" ngbDropdownItem><img alt="">Logout</button>
               </div>
             </div>
           </li>
@@ -183,12 +185,6 @@
               <span class="menu-underline"></span>
             </a>
           </li>
-          <li class="nav-item" *ngIf="!loggedInUser">
-            <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer login</a>
-          </li>
-          <li class="nav-item" *ngIf="!loggedInUser">
-            <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer Registration</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -244,5 +240,3 @@
     </div>
   </div>
 </footer>
-<app-buyer-login-modal-form></app-buyer-login-modal-form>
-<app-buyer-registration-modal-form></app-buyer-registration-modal-form>

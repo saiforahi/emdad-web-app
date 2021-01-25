@@ -1,0 +1,78 @@
+.login_btn{
+	background: #F49814;
+	border-radius: 5px;
+	margin-top: 40px;
+	font-family: Jost;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 35px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+.edit-button {
+	cursor: pointer;
+}
+.page-header{
+	font-family: Jost;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 48px;
+	line-height: 69px;
+
+	/* #2B2B2B */
+
+	color: #2B2B2B;
+}
+.rounded-circle{
+	display: inline-block;
+    width: 100px;
+    background: #EFEFEF;
+    height: 100px;
+    position: relative;
+    text-align: center;
+}
+.plus-icon{
+	position: absolute;
+    bottom: 0px;
+    right: 10px;
+}
+.pro-img{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.form-control{
+	background: #EFEFEF;
+	border-radius: 5px;
+	font-family: Jost;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 29px;
+	/* identical to box height */
+
+
+	color: black;
+}
+.form-label{
+	font-family: Jost;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 29px;
+	color: #2B2B2B;
+}
+.container-custom{
+    border-radius: 50%;
+}
+
+
+

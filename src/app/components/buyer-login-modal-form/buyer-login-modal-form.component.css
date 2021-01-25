@@ -7,9 +7,6 @@
     /* #2B2B2B */
     color: #2B2B2B;
 }
-.modal-header{
-    margin-top: 20px;
-}
 .modal-content{
     max-width: 700px;
     max-height: 765px;
@@ -41,4 +38,7 @@ border-radius: 5px;
 }
 .modal{
     background-color: #000000c7;
+}
+.form-label{
+    font-size: 12px;
 }
