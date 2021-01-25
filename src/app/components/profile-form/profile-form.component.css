@@ -1,3 +1,20 @@
+.edit-button {
+	cursor: pointer;
+}
+.page-header{
+	font-family: Jost;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 48px;
+	line-height: 69px;
+
+	/* #2B2B2B */
+
+	color: #2B2B2B;
+}
+/* .rounded-circle{
+	background: url('../../../assets/images/Ellipse_13.svg');
+} */
 .form-control{
 	background: #EFEFEF;
 	border-radius: 5px;
@@ -17,6 +34,22 @@
 	font-weight: normal;
 	font-size: 20px;
 	line-height: 29px;
+	/* identical to box height */
+
+
+	color: #2B2B2B;
+}
+.list-group-item{
+	font-family: Jost;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 35px;
+	/* identical to box height */
+
+
+	/* #2B2B2B */
+
 	color: #2B2B2B;
 }
 
@@ -30,7 +63,8 @@
 	font-size: 24px;
 	line-height: 35px;
 	/* identical to box height */
+
 	text-align: center;
-	background: #F49814;
+
 	color: #FFFFFF;
 }

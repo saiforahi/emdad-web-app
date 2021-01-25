@@ -18,13 +18,13 @@ const routes: Routes = [
         (m) => m.LoginPageModule
       ),
   },
-  {
-    path: 'buyer/login',
-    loadChildren: () =>
-      import('./pages/login-page/login-page.module').then(
-        (m) => m.LoginPageModule
-      ),
-  },
+  // {
+  //   path: 'buyer/login',
+  //   loadChildren: () =>
+  //     import('./pages/login-page/login-page.module').then(
+  //       (m) => m.LoginPageModule
+  //     ),
+  // },
   {
     path: 'signup',
     loadChildren: () =>

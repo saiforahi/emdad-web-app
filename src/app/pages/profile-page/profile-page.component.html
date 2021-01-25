@@ -1,62 +1,24 @@
-<div *ngIf="userInfo && !changePass && !editProfileState">
-	<h4>User Profile</h4>
-	<a class="edit-button" (click)="editProfileState = true">Edit</a>
-	<table class="table table-borderless">
-		<tbody>
-			<tr>
-				<td>Full Name</td>
-				<td>{{ userInfo.full_name }}</td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>{{ userMail }}</td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>
-					<button (click)="changePass = true">change password</button>
-				</td>
-			</tr>
-			<tr>
-				<td>Phone</td>
-				<td>{{ userInfo.phone }}</td>
-			</tr>
-			<tr>
-				<td>Gender</td>
-				<td *ngIf="userInfo.gender == 'M'">Male</td>
-				<td *ngIf="userInfo.gender == 'F'">Female</td>
-			</tr>
-			<tr>
-				<td>Date of Birth</td>
-				<td>{{ userInfo.dob }}</td>
-			</tr>
-			<tr *ngIf="userInfo.store_name !== undefined">
-				<td>Store Name</td>
-				<td>{{ userInfo.store_name }}</td>
-			</tr>
-			<tr *ngIf="userInfo.store_address !== undefined">
-				<td>Store Address</td>
-				<td>{{ userInfo.store_address }}</td>
-			</tr>
-			<tr>
-				<td>Address</td>
-				<td>{{ userInfo.address }}</td>
-			</tr>
-			<tr>
-				<td>City</td>
-				<td *ngIf="userInfo.city && cities.length">
-					<!-- {{ city[userInfo.city].name }} -->
-				</td>
-			</tr>
-			<tr>
-				<td>Country</td>
-				<!-- <td>{{ country[1].name }}</td> -->
-			</tr>
-		</tbody>
-	</table>
+<div class="container">
+	<div class="row">
+		<h3 style="margin-left: 20px;">My Profile</h3>
+	</div>
+	<div class="row">    
+		<div class="col-md-4">
+			<div class="card-body" style="background: #FFFFFF;">
+				<ul class="list-group list-group-flush">
+					<li [ngClass]="(show_profile_form===true)?'list-group-item active':'list-group-item'" (click)=" show_change_pass_form=false;show_profile_form=!show_profile_form;show_order_history=false;show_manage_quotations=false">Profile Settings</li>
+					<li [ngClass]="(show_change_pass_form===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=!show_change_pass_form;show_order_history=false;show_manage_quotations=false" >Change Password</li>
+					<li [ngClass]="(show_order_history===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=false;show_order_history=!show_order_history;show_manage_quotations=false" class="list-group-item">Order History</li>
+					<li [ngClass]="(show_manage_quotations===true)?'list-group-item active':'list-group-item'" (click)="show_manage_quotations=!show_manage_quotations;show_change_pass_form=false;show_order_history=false;show_profile_form=false;">Manage Quotation</li>
+					<li class="list-group-item" (click)="logout()">Logout</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-8" style="margin-bottom: 120px; margin-top: 40px;">
+			<app-change-password-form *ngIf="show_change_pass_form"></app-change-password-form>
+			<app-edit-profile-form *ngIf="show_profile_form" [userId]="userId"></app-edit-profile-form>
+			<app-order-history-table *ngIf="show_order_history"></app-order-history-table>
+			<app-manage-quotations-table *ngIf="show_manage_quotations"></app-manage-quotations-table>
+		</div>
+	</div>
 </div>
-<p>{{ error | json }}</p>
-<app-change-password-form *ngIf="changePass"></app-change-password-form>
-<app-edit-profile-form *ngIf="editProfileState" [userId]="userId" [userInfo]="userInfo" [editProfileState]="editProfileState"
-	[countries]="countries" [cities]="cities" (setEditProfile)="setEditProfile($event)"
-	(updateCities)="updateCities($event)" (updateEditedUserInfo)="updateEditedUserInfo($event)"></app-edit-profile-form>

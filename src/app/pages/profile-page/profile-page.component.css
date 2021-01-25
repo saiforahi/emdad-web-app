@@ -1,3 +1,18 @@
-.edit-button {
+.list-group-item{
+	font-family: Jost;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 35px;
+	/* identical to box height */
+	/* #2B2B2B */
+	color: #2B2B2B;
+	border: none;
 	cursor: pointer;
+}
+
+.active{
+	background: #F49814;
+	color: #FFFFFF;
+	border-radius: 5px;
 }
