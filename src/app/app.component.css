@@ -53,6 +53,8 @@ nav .dropdown-item {
     background: #fff;
     padding: 40px 0;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.02);
+    font-size: 18px;
+    text-transform: capitalize;
 }
 
 .all-products-list .row {
@@ -211,6 +213,10 @@ footer .social-links .list-group-item a {
     border: none;
     font-size: 20px;
     text-transform: uppercase;
+}
+
+.list-group-item {
+    background-color: inherit;
 }
 
 footer .footer-link-div .list-group-item {

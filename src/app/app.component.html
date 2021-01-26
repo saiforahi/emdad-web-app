@@ -38,22 +38,22 @@
                             <div ngbDropdownMenu aria-labelledby="en-btn">
                                 <div ngbDropdownItem>
                                     <label class="lan-radio-btn">
-                    <img src="../assets/en-lan.svg" alt="">
-                    <span class="lan-title">English</span>
-                    <input type="radio" name="language">
-                    <span class="checkmark"></span>
-                  </label>
+                                        <img src="../assets/en-lan.svg" alt="">
+                                        <span class="lan-title">English</span>
+                                        <input type="radio" name="language">
+                                        <span class="checkmark"></span>
+                                    </label>
                                 </div>
                                 <div style="padding: 0 30px;">
                                     <mat-divider></mat-divider>
                                 </div>
                                 <div ngbDropdownItem>
                                     <label class="lan-radio-btn">
-                    <img src="../assets/ar-lan.svg" alt="">
-                    <span class="lan-title">Arabic</span>
-                    <input type="radio" name="language">
-                    <span class="checkmark"></span>
-                  </label>
+                                        <img src="../assets/ar-lan.svg" alt="">
+                                        <span class="lan-title">Arabic</span>
+                                        <input type="radio" name="language">
+                                        <span class="checkmark"></span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -103,12 +103,14 @@
                                 <img src="../assets/hamburger.svg" alt="">
                             </a>
                             <div ngbDropdownMenu class="profile-list">
-                                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My
-                  Profile</button>
+                                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img
+                                        src="../assets/Profile.svg" alt="">My
+                                    Profile</button>
                                 <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
                                 <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
                                 <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
-                                <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
+                                <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support
+                                    ticket</button>
                             </div>
                         </div>
                     </li>
@@ -140,60 +142,63 @@
 </nav>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu">
     <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+            aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent2">
             <div class="float-right">
                 <ul class="navbar-nav">
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link" [routerLink]="['/']">
-              Home
-              <span class="menu-underline active"></span>
-            </a>
+                            Home
+                            <span class="menu-underline active"></span>
+                        </a>
                     </li>
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link">
-              About Us
-              <span class="menu-underline"></span>
-            </a>
+                            About Us
+                            <span class="menu-underline"></span>
+                        </a>
                     </li>
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link">
-              Categories
-              <span class="menu-underline"></span>
-            </a>
+                            Categories
+                            <span class="menu-underline"></span>
+                        </a>
                     </li>
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link">
-              Our Partners
-              <span class="menu-underline"></span>
-            </a>
+                            Our Partners
+                            <span class="menu-underline"></span>
+                        </a>
                     </li>
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link">
-              Constact Us
-              <span class="menu-underline"></span>
-            </a>
+                            Constact Us
+                            <span class="menu-underline"></span>
+                        </a>
                     </li>
                     <li class="nav-item active" style="margin-right: 17px;">
                         <a class="nav-link">
-              Sell on Emdad
-              <span class="menu-underline"></span>
-            </a>
+                            Sell on Emdad
+                            <span class="menu-underline"></span>
+                        </a>
                     </li>
                     <li class="nav-item" *ngIf="!loggedInUser">
-                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer login</a>
+                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_login(); type="button">Buyer
+                            login</a>
                     </li>
                     <li class="nav-item" *ngIf="!loggedInUser">
-                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer Registration</a>
+                        <a class="nav-link" data-toggle="modal" (click)=show_buyer_registration(); type="button">Buyer
+                            Registration</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<div style="margin-top: 200px; background: #F4F4F4;">
+<div style="margin-top: 200px;">
     <router-outlet></router-outlet>
 </div>
 <footer>

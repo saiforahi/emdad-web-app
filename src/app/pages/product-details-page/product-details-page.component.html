@@ -1,18 +1,28 @@
 <section>
     <app-breadcrumbs></app-breadcrumbs>
-    <div class="container">
-        <h4>Product Deatails</h4>
-        <div class="row" *ngIf="prodcutDetails">
-            <div class="col-md-6">
-                {{prodcutDetails.name}}
-                <p>{{prodcutDetails.unit_price}}</p>
-                <p>Seller: {{prodcutDetails.seller.full_name}}</p>
-                <p><button mat-button (click)="addToCart(prodcutDetails);">+ CART</button></p>
-                <p><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]">search by seller</a></p>
-            </div>
-            <div class="col-md-6">
-                <div *ngFor="let img of sliderImgArray">
-                    <img [src]="img" alt="prod img">
+    <div style="background: #fff;">
+        <div class="container">
+            <div class="row prodcutDetails" *ngIf="prodcutDetails">
+                <div class="col-md-6">
+                    <div class="img-slider-div">
+                        <pinch-zoom>
+                            <img class="img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img">
+                        </pinch-zoom>
+                        <div class="slider-btn-div">
+                            <button (click)="prevImg();" [disabled]="prevBtnDisabled"><</button>
+                            <button (click)="nextImg();" [disabled]="nextBtnDisabled">></button>
+                        </div>
+                        <div class="zoom-btn-div">
+                            <!-- <button (click)="zoomImg();">+</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    {{prodcutDetails.name}}
+                    <p>{{prodcutDetails.unit_price}}</p>
+                    <p>Seller: {{prodcutDetails.seller.full_name}}</p>
+                    <p><button mat-button (click)="addToCart(prodcutDetails);">+ CART</button></p>
+                    <p><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]">search by seller</a></p>
                 </div>
             </div>
         </div>

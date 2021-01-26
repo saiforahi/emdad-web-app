@@ -2,6 +2,30 @@ a {
     text-decoration: none;
 }
 
+.prodcutDetails {
+    padding: 60px 0;
+}
+
+.img-slider-div {
+    position: relative;
+}
+
+.slider-btn-div {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.slider-btn-div button{
+    margin-right: 15px;
+}
+
+.zoom-btn-div {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
 @media only screen and (min-width: 1200px) {
     .container {
         max-width: 1600px !important;

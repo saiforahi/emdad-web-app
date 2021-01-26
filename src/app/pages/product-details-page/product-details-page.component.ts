@@ -13,6 +13,9 @@ export class ProductDetailsPageComponent implements OnInit {
   prodcutDetails;
   sliderImgArray;
   prodCartArray: any[];
+  currentImg = 0;
+  nextBtnDisabled: boolean = false;
+  prevBtnDisabled: boolean = true;
 
   constructor(
     private getProduct:GetProductService,
@@ -27,6 +30,26 @@ export class ProductDetailsPageComponent implements OnInit {
       this.sliderImgArray = ['http://127.0.0.1:8000'+item.data[0].image1, 'http://127.0.0.1:8000'+item.data[0].image2];
       console.log(this.prodcutDetails);
     })
+  }
+
+  nextImg(){
+    if(this.currentImg <= this.sliderImgArray.length-1){
+      this.currentImg++;
+      this.prevBtnDisabled = false;
+    }
+    if(this.currentImg == this.sliderImgArray.length-1){
+      this.nextBtnDisabled = true;
+    }
+  }
+
+  prevImg(){
+    if(this.currentImg > 0){
+      this.currentImg--;
+      this.nextBtnDisabled = false;
+    }
+    if(this.currentImg == 0){
+      this.prevBtnDisabled = true;
+    }
   }
 
   addToCart(prod){

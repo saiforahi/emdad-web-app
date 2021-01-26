@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   uGroup;
   items;
   showOnScroll = false;
-  showAllProdDiv: boolean = true;
+  showAllProdDiv: boolean = false;
   categories: any;
   currentUrl;
 
