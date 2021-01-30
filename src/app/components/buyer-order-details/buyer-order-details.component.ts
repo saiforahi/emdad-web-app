@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Orders } from 'src/app/shared/models/mocks/Orders';
 import { OrderService } from '../../shared/services/order.service';
 @Component({
-  selector: 'app-order-history-table',
-  templateUrl: './order-history-table.component.html',
-  styleUrls: ['./order-history-table.component.css'],
+  selector: 'app-buyer-order-details',
+  templateUrl: './buyer-order-details.component.html',
+  styleUrls: ['./buyer-order-details.component.css'],
 })
-export class OrderHistoryComponent implements OnInit {
+export class BuyerOrderDetailsComponent implements OnInit {
   orders=[];
   constructor(private orderService: OrderService) {}
 

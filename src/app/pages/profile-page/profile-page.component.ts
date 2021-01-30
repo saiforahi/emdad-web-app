@@ -78,7 +78,9 @@ export class ProfilePageComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-
+  show_logout_modal(){
+    document.getElementById('profileLogout').style.display="block"
+  }
   onCountryChange(countryId) {
     this.countryList.allCities(countryId).subscribe(
       (data) => {

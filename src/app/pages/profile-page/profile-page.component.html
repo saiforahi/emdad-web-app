@@ -10,7 +10,7 @@
 					<li [ngClass]="(show_change_pass_form===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=!show_change_pass_form;show_order_history=false;show_manage_quotations=false" >Change Password</li>
 					<li [ngClass]="(show_order_history===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=false;show_order_history=!show_order_history;show_manage_quotations=false" class="list-group-item">Order History</li>
 					<li [ngClass]="(show_manage_quotations===true)?'list-group-item active':'list-group-item'" (click)="show_manage_quotations=!show_manage_quotations;show_change_pass_form=false;show_order_history=false;show_profile_form=false;">Manage Quotation</li>
-					<li class="list-group-item" (click)="logout()">Logout</li>
+					<li class="list-group-item" (click)="show_logout_modal()">Logout</li>
 				</ul>
 			</div>
 		</div>
@@ -19,6 +19,8 @@
 			<app-edit-profile-form *ngIf="show_profile_form" [userId]="userId"></app-edit-profile-form>
 			<app-order-history-table *ngIf="show_order_history"></app-order-history-table>
 			<app-manage-quotations-table *ngIf="show_manage_quotations"></app-manage-quotations-table>
+			<app-buyer-order-details></app-buyer-order-details>
+			<profile-logout-modal></profile-logout-modal>
 		</div>
 	</div>
 </div>
