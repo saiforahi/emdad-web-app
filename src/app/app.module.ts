@@ -16,10 +16,19 @@ import { CategoryMenuComponent } from './components/category-menu/category-menu.
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from './ui/commonui/commonui.module';
 import { BuyerSigninFormComponent } from './components/buyer-login-modal-form/buyer-login-modal-form.component';
-import {BuyerRegistrationFormComponent} from './components/buyer-registration-modal-form/buyer-registration-modal-form.component';
+import { BuyerRegistrationFormComponent } from './components/buyer-registration-modal-form/buyer-registration-modal-form.component';
+import { SupportTicketPageComponent } from './pages/support-ticket-page/support-ticket-page.component';
+import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-page.component';
 
 @NgModule({
-  declarations: [AppComponent, CategoryMenuComponent,BuyerSigninFormComponent,BuyerRegistrationFormComponent],
+  declarations: [
+    AppComponent,
+    CategoryMenuComponent,
+    BuyerSigninFormComponent,
+    BuyerRegistrationFormComponent,
+    SupportTicketPageComponent,
+    OpenTicketPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +38,7 @@ import {BuyerRegistrationFormComponent} from './components/buyer-registration-mo
     BrowserAnimationsModule,
     ReactiveFormsModule,
     LazyLoadImageModule,
-    CommonuiModule
+    CommonuiModule,
   ],
   exports: [MaterialModule, FormsModule, ReactiveFormsModule],
   providers: [

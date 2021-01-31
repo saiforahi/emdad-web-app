@@ -46,7 +46,7 @@ const routes: Routes = [
       import('./pages/profile-page/profile-page.module').then(
         (m) => m.ProfilePageModule
       ),
-      canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'add',
@@ -90,14 +90,14 @@ const routes: Routes = [
       import('./pages/reset-password-page/reset-password-page.module').then(
         (m) => m.ResetPasswordPageModule
       ),
-      canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'subscription/plans',
     loadChildren: () =>
-      import('./pages/subscription-plan-page/subscription-plan-page.module').then(
-        (m) => m.SubscriptionPlanPageModule
-      ),
+      import(
+        './pages/subscription-plan-page/subscription-plan-page.module'
+      ).then((m) => m.SubscriptionPlanPageModule),
   },
   {
     path: 'subscription/payment',
@@ -109,9 +109,9 @@ const routes: Routes = [
   {
     path: 'subscription/plans/history',
     loadChildren: () =>
-      import('./pages/seller-subscription-history-page/seller-subscription-history-page.module').then(
-        (m) => m.SellerSubscriptionHistoryPageModule
-      ),
+      import(
+        './pages/seller-subscription-history-page/seller-subscription-history-page.module'
+      ).then((m) => m.SellerSubscriptionHistoryPageModule),
   },
   {
     path: 'order/checkout',
@@ -125,6 +125,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/seller-orders-page/seller-orders-page.module').then(
         (m) => m.SellerOrdersPageModule
+      ),
+  },
+  {
+    path: 'support-ticket',
+    loadChildren: () =>
+      import('./pages/support-ticket-page/support-ticket-page.module').then(
+        (m) => m.SupportTicketPageModule
+      ),
+  },
+  {
+    path: 'open-ticket',
+    loadChildren: () =>
+      import('./pages/open-ticket-page/open-ticket-page.module').then(
+        (m) => m.OpenTicketPageModule
       ),
   },
   {
