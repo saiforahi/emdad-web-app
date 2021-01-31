@@ -53,9 +53,33 @@ export class AppComponent implements OnInit {
   logout() {
     this.UserAuthService.logout();
   }
-  show_buyer_login() {
-    document.getElementById('buyerRegistration').style.display = 'none';
-    document.getElementById('buyerLogin').style.display = 'block';
+  show_lang_drop(){
+    if(document.getElementById('lang-drop-down').classList.contains('show')){
+      document.getElementById('lang-drop-down').classList.remove('show');
+    }
+    else if(!document.getElementById('lang-drop-down').classList.contains('show')){
+      document.getElementById('lang-drop-down').classList.remove('show');
+    }
+  }
+  handle_accnt_drop_down(){
+    if(document.getElementById('accnt-drop-down').classList.contains('show')){
+      document.getElementById('accnt-drop-down').classList.remove('show');
+    }
+    else if(!document.getElementById('accnt-drop-down').classList.contains('show')){
+      document.getElementById('accnt-drop-down').classList.add('show');
+    }
+  }
+  handle_notification_drop(){
+    if(document.getElementById('noti-panel').classList.contains('show')){
+      document.getElementById('noti-panel').classList.remove('show')
+    }
+    else if(!document.getElementById('noti-panel').classList.contains('show')){
+      document.getElementById('noti-panel').classList.add('show');
+    }
+  }
+  show_buyer_login(){
+    document.getElementById('buyerRegistration').style.display="none";
+    document.getElementById('buyerLogin').style.display="block";
   }
   show_buyer_registration() {
     document.getElementById('buyerLogin').style.display = 'none';

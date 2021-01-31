@@ -1,33 +1,224 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+*:focus {
+  outline: none;
 }
 
 .prodcutDetails {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 .img-slider-div {
-    position: relative;
+  position: relative;
 }
 
 .slider-btn-div {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
-.slider-btn-div button{
-    margin-right: 15px;
+.slider-btn-div button {
+  margin-right: 15px;
 }
 
 .zoom-btn-div {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 
+.prod-img {
+  height: 450px;
+}
+
+.prodcutDetails /deep/ .mat-raised-button {
+  min-width: 60px !important;
+  min-height: 60px !important;
+}
+
+.prodcutDetails /deep/ .pz-zoom-button.pz-zoom-control-position-bottom {
+  bottom: 20px;
+  right: 20px;
+  min-width: 60px;
+  min-height: 60px;
+  left: unset;
+}
+
+.wishlist-review-div,
+.cart-quote-btn-div {
+  padding: 40px 0 0;
+}
+
+.wishlist-review-div img {
+  margin-right: 15px;
+}
+
+.wishlist-review-div button {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.prod-delivery-info {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.quantity-input input {
+  border-radius: 0px;
+  border: 1px solid #6c757d;
+  font-size: 35px;
+  border-left: none;
+  width: 80px;
+}
+
+.quantity-input button {
+  min-width: 80px;
+  min-height: 80px;
+  background: none;
+}
+
+.cart-quote-btn-div button.add-to-cart-btn {
+  width: 250px;
+  height: 80px;
+  background: #f49814;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #fff;
+}
+
+.cart-quote-btn-div button.req-for-quote-btn {
+  height: 80px;
+  border: 1px solid #f49814;
+  color: #f49814;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.prod-name {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  color: #2b2b2b;
+}
+.prod-price {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+}
+
+.seller-name,
+.brand-name,
+.prod-details-header {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.seller-name span,
+.brand-name span,
+.prod-details-header span {
+  font-style: bold;
+}
+
+.prod-details-header {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+.border-bottom-75 {
+  position: absolute;
+  width: 75%;
+  border-bottom: 2px solid #2b2b2b;
+  bottom: 0;
+  left: 0;
+}
+
+.prod-details {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.similar-prod-holder {
+  background: #6c757d;
+}
+
+.similar-prod-header {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 56px;
+  margin: 40px 0 60px;
+}
+
+ngb-carousel /deep/ .carousel-control-prev {
+  background: #eaeaea;
+  border-radius: 10px;
+  right: 100px;
+  left: unset;
+  top: -134px;
+  background: #ccc;
+  width: 80px;
+  height: 80px;
+}
+
+ngb-carousel /deep/ .carousel-control-next {
+  background: #eaeaea;
+  border-radius: 10px;
+  right: 0;
+  top: -134px;
+  background: #ccc;
+  width: 80px;
+  height: 80px;
+}
+
+ngb-carousel /deep/ .carousel-control-prev-icon {
+  background-image: url("../../../assets/left-arrow.svg") !important;
+}
+
+ngb-carousel /deep/ .carousel-control-next-icon {
+  background-image: url("../../../assets/right-arrow.svg") !important;
+}
+.reviews-holder {
+  background: #fff;
+  padding: 60px 0;
+}
+.reviews-holder button {
+  background: #454f63;
+  color: #ddd;
+  padding: 23px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.seller-description {
+  background: #ddd;
+  padding: 100px 0 225px;
+}
 @media only screen and (min-width: 1200px) {
-    .container {
-        max-width: 1600px !important;
-    }
+  .container {
+    max-width: 1600px !important;
+  }
 }
