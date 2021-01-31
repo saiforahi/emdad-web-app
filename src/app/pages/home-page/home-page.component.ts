@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { GetProductService } from '../../shared/services/get-product.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,7 +32,7 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.router.url.split('/').length < 3){
+    if (this.router.url.split('/').length < 3) {
       this.prodInRow6 = true;
     }
     console.log(this.prodInRow6);
@@ -146,7 +146,7 @@ export class HomePageComponent implements OnInit {
     }
     if (this.nextBatchProdLink == null) {
       this.prodEnd = true;
-      this.openSnackBar("No more product to show!", "OK");
+      this.openSnackBar('No more product to show!', 'OK');
     }
   }
 
