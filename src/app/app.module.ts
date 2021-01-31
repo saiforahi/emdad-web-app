@@ -17,6 +17,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from './ui/commonui/commonui.module';
 import { BuyerSigninFormComponent } from './components/buyer-login-modal-form/buyer-login-modal-form.component';
 import { BuyerRegistrationFormComponent } from './components/buyer-registration-modal-form/buyer-registration-modal-form.component';
+import { SupportTicketPageComponent } from './pages/support-ticket-page/support-ticket-page.component';
+import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { BuyerRegistrationFormComponent } from './components/buyer-registration-
     CategoryMenuComponent,
     BuyerSigninFormComponent,
     BuyerRegistrationFormComponent,
+    SupportTicketPageComponent,
+    OpenTicketPageComponent,
   ],
   imports: [
     BrowserModule,
