@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Jost,Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Jost, Roboto, "Helvetica Neue", sans-serif;
+    background: #e5e5e5;
+}
+
 a,
 a label {
     cursor: pointer;

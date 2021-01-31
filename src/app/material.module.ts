@@ -10,7 +10,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatExpansionModule,
+  ],
   exports: [
     MatMenuModule,
     MatButtonModule,
@@ -18,7 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDividerModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

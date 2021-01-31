@@ -1,0 +1,22 @@
+<mat-card class="example-card mt-3">
+    <a [routerLink]="['/product/details/', product.id]">
+        <div>
+            <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="product.image1" [defaultImage]="defaultImage"
+                alt="product image" />
+            <img *ngIf="product.image1 == null" mat-card-image
+                src="http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png" alt="product image" />
+            <mat-card-content>
+                <p class="product-name">
+                    {{ product.name }}
+                </p>
+                <p class="product-price">${{ product.unit_price }}</p>
+                <p class="store-name">Store name</p>
+            </mat-card-content>
+        </div>
+    </a>
+    <div class="example-button-container">
+        <button (click)="addToWishlist($event)" mat-fab aria-label="Example icon button with a heart icon">
+            <img class="wish-icon" src="../../../assets/wish.svg" alt="" />
+        </button>
+    </div>
+</mat-card>

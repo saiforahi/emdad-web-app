@@ -1,15 +1,139 @@
-<h4>Product Deatails</h4>
-<div class="row" *ngIf="prodcutDetails">
-    <div class="col-md-6">
-        {{prodcutDetails.name}}
-        <p>{{prodcutDetails.unit_price}}</p>
-        <p>Seller: {{prodcutDetails.seller.full_name}}</p>
-        <p><button mat-button (click)="addToCart(prodcutDetails);">+ CART</button></p>
-        <p><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]">search by seller</a></p>
-    </div>
-    <div class="col-md-6">
-        <div *ngFor="let img of sliderImgArray">
-            <img [src]="img" alt="prod img">
+<section>
+    <app-breadcrumbs></app-breadcrumbs>
+    <div style="background: #fff">
+        <div class="container">
+            <div class="row prodcutDetails" *ngIf="prodcutDetails">
+                <div class="col-md-6">
+                    <div class="img-slider-div">
+                        <pinch-zoom>
+                            <img class="prod-img img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img" />
+                        </pinch-zoom>
+                        <div class="slider-btn-div">
+                            <button mat-raised-button (click)="prevImg()" [disabled]="prevBtnDisabled">
+                                <img src="../../../assets/left-arrow.svg" alt="" />
+                            </button>
+                            <button mat-raised-button (click)="nextImg()" [disabled]="nextBtnDisabled">
+                                <img src="../../../assets/right-arrow.svg" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="wishlist-review-div">
+                        <button mat-button>
+                            <img src="../../../assets/wishlist-icon.svg" alt="" />Add to
+                            Wishlist
+                        </button>
+                        <button mat-button>
+                            <img src="../../../assets/review-icon.svg" alt="" />Customer
+                            Review <span>(02)</span>
+                        </button>
+                    </div>
+                    <div class="prod-delivery-info">
+                        <p>
+                            <i class="fas fa-info-circle"></i> 28 days Ex-works (Washington,
+                            Manchester)
+                        </p>
+                        <p>
+                            <b>Shop Pickup Location:</b> Washington Ave. Manchester, Kentucky
+                            39495
+                        </p>
+                    </div>
+                    <div class="quantity-input">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><img src="../../../assets/minus.svg"
+                                    alt=""></button>
+                            <input #unit value="" min="1" max="" />
+                            <!-- {{ orders_details[i].quantity }} {{ inCart.stock_quantity }} -->
+                            <button type="button" class="btn btn-secondary"><img src="../../../assets/plus.svg"
+                                    alt=""></button>
+                        </div>
+                    </div>
+                    <br>
+                    <h5><b>Stock:</b> 387</h5>
+                    <div class="cart-quote-btn-div">
+                        <button class="add-to-cart-btn" mat-button>Add to Cart</button>
+                        &nbsp;
+                        <button class="req-for-quote-btn" mat-button>
+                            <i class="far fa-file-excel"></i> Request for Quotation
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="prod-name">
+                        {{ prodcutDetails.name | titlecase}}
+                    </p>
+                    <p class="prod-price">Unit Price: {{ prodcutDetails.unit_price }}</p>
+                    <p class="seller-name"><span>Seller Name:</span> <a href="#">{{ prodcutDetails.seller.full_name
+                            }}</a></p>
+                    <p class="brand-name"><span>Brand Name:</span> {{ prodcutDetails.seller.full_name }}</p>
+                    <p class="prod-details-header"><span>Product Details</span><span class="border-bottom-75"></span>
+                    </p>
+                    <p class="prod-details">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non quaerat
+                        voluptatibus quas reprehenderit. Expedita harum totam repudiandae explicabo sint omnis. Minus,
+                        perspiciatis modi molestiae ea pariatur id ullam expedita mollitia nihil nulla perferendis alias
+                        et eum debitis distinctio a non rem ducimus? Quos similique, sequi nesciunt, ad voluptatum
+                        aperiam illo dignissimos accusantium quas vel aliquam quod voluptates incidunt alias commodi,
+                        assumenda libero perspiciatis. Alias voluptatum minima similique neque facilis, veniam earum
+                        quia temporibus perspiciatis iusto assumenda vitae quis esse eius, repudiandae nihil, ipsam
+                        harum accusantium aut doloremque a omnis. Perferendis voluptate obcaecati non necessitatibus
+                        iusto aspernatur beatae commodi! Quo dignissimos voluptatibus totam soluta. Totam corporis nisi
+                        aspernatur suscipit. Eligendi voluptatem fugit, corporis alias repellendus veritatis rerum velit
+                        praesentium quos similique reiciendis et qui assumenda sit ipsum quia, quas, quibusdam est
+                        voluptas quaerat tempora perspiciatis! Quis, a provident magni, sint vero eum dolorum unde
+                        adipisci impedit iste alias, non aut sequi.</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="similar-product-holder">
+        <div class="container">
+            <h4 class="similar-prod-header">Similar Products</h4>
+            <ngb-carousel #carousel [showNavigationArrows]="showNavigationArrows"
+                [showNavigationIndicators]="showNavigationIndicators">
+                <p *ngFor="let product of relatedProducts">{{product.name}}</p>
+                <ng-template ngbSlide *ngFor="let image of sliderImgArray">
+                    <div class="row">
+                        <div class="col-md-2" *ngFor="let product of relatedProducts">
+                            <app-product-card [product]="product"></app-product-card>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+            <h4 class="similar-prod-header">Reviews</h4>
+        </div>
+    </div>
+    <div class="reviews-holder">
+        <div class="container">
+            <div class="comment-div">
+                <p class="commenter-name mb-0"><b>Theresa Webb</b></p>
+                <span><i class="far fa-clock"></i> 5  days ago</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At possimus ullam eaque. Provident sint quisquam quaerat deleniti odio voluptates quo repellat nihil cumque. Laboriosam, hic autem. Culpa consequatur atque unde veniam sapiente repellendus at obcaecati distinctio sit labore, perferendis laboriosam assumenda deserunt quis debitis excepturi officiis nostrum ratione non esse! Explicabo neque delectus sequi inventore reiciendis, aliquam earum animi obcaecati! Possimus ab enim commodi beatae assumenda fugiat placeat vel qui! Quibusdam repellat illo error eius illum placeat dolore sunt nemo quia doloribus praesentium corrupti quaerat delectus optio atque rerum suscipit maiores, possimus saepe incidunt facere similique? Harum ipsa porro eum debitis soluta impedit velit voluptatem hic perspiciatis officiis! Dicta culpa ipsum maiores nobis quos eligendi magnam sunt, sapiente cupiditate. Obcaecati neque optio, delectus itaque fuga qui quas blanditiis repudiandae harum ipsum. Aut ipsum quaerat quidem earum in. Facere, odit qui cupiditate ratione veniam quidem libero, maiores, sit maxime illo illum.</p>
+            </div>
+            <hr>
+            <div class="comment-div">
+                <p class="commenter-name mb-0"><b>Theresa Webb</b></p>
+                <span><i class="far fa-clock"></i> 5  days ago</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At possimus ullam eaque. Provident sint quisquam quaerat deleniti odio voluptates quo repellat nihil cumque. Laboriosam, hic autem. Culpa consequatur atque unde veniam sapiente repellendus at obcaecati distinctio sit labore, perferendis laboriosam assumenda deserunt quis debitis excepturi officiis nostrum ratione non esse! Explicabo neque delectus sequi inventore reiciendis, aliquam earum animi obcaecati! Possimus ab enim commodi beatae assumenda fugiat placeat vel qui! Quibusdam repellat illo error eius illum placeat dolore sunt nemo quia doloribus praesentium corrupti quaerat delectus optio atque rerum suscipit maiores, possimus saepe incidunt facere similique? Harum ipsa porro eum debitis soluta impedit velit voluptatem hic perspiciatis officiis! Dicta culpa ipsum maiores nobis quos eligendi magnam sunt, sapiente cupiditate. Obcaecati neque optio, delectus itaque fuga qui quas blanditiis repudiandae harum ipsum. Aut ipsum quaerat quidem earum in. Facere, odit qui cupiditate ratione veniam quidem libero, maiores, sit maxime illo illum.</p>
+            </div>
+            <div class="text-center mt-5">
+                <button mat-raised-button>Submit yor review</button>
+            </div>
+        </div>
+    </div>
+    <div class="seller-description">
+        <div class="container">
+            <h4 class="similar-prod-header">Seller Description</h4>
+            <div class="comment-div">
+                <p class="commenter-name mb-0"><b>CEVENNESFE OFFICIAL STORE</b></p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+                </p>
+            </div>
+            <div class="comment-div">
+                <p class="commenter-name mb-0"><b>Address</b></p>
+                <p>3891 Ranchview Dr. Richardson, California 62639</p>
+            </div>
+        </div>
+    </div>
+</section>
