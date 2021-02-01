@@ -30,23 +30,36 @@
             </div>
           </div>
           <div class="wishlist-review-div">
-            <button mat-button>
+            <button class="mb-3" mat-button>
               <img src="../../../assets/wishlist-icon.svg" alt="" />Add to
               Wishlist
             </button>
-            <button mat-button>
+            <button class="mb-3" mat-button>
               <img src="../../../assets/review-icon.svg" alt="" />Customer
               Review <span>(02)</span>
             </button>
           </div>
           <div class="prod-delivery-info">
             <p>
-              <i class="fas fa-info-circle"></i> 28 days Ex-works (Washington,
-              Manchester)
+              <i class="fas fa-info-circle"></i> ({{
+                prodcutDetails.ex_works_lead_time
+              }}) days Ex-works
+              <ng-template
+                *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa"
+                >{{ prodcutDetails.pickup_address[0].city }}</ng-template
+              >
+              <ng-template #cityNa>(Not Specified)</ng-template>
             </p>
             <p>
-              <b>Shop Pickup Location:</b> Washington Ave. Manchester, Kentucky
-              39495
+              <b>Shop Pickup Location: </b>
+              <ng-template
+                *ngIf="
+                  prodcutDetails.pickup_address.length > 0;
+                  else pickAddressNa
+                "
+                >{{ prodcutDetails.pickup_address[0].address }}</ng-template
+              >
+              <ng-template #pickAddressNa>Not Specified</ng-template>
             </p>
           </div>
           <div class="quantity-input">
@@ -62,7 +75,7 @@
             </div>
           </div>
           <br />
-          <h5><b>Stock:</b> 387</h5>
+          <h5><b>Stock: </b> {{ prodcutDetails.stock_quantity }}</h5>
           <div class="cart-quote-btn-div">
             <button class="add-to-cart-btn" mat-button>Add to Cart</button>
             &nbsp;
@@ -81,34 +94,28 @@
           </p>
           <p class="prod-price">Unit Price: {{ prodcutDetails.unit_price }}</p>
           <p class="seller-name">
-            <span>Seller Name:</span>
-            <a href="#">{{ prodcutDetails.seller.full_name }}</a>
+            <span>Seller Name: </span
+            ><a
+              [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+              style="text-decoration: underline; color: #2b2b2b"
+              >{{ prodcutDetails.seller.full_name | titlecase }}</a
+            >
           </p>
           <p class="brand-name">
-            <span>Brand Name:</span> {{ prodcutDetails.seller.full_name }}
+            <span>Brand Name: </span>
+            <ng-template *ngIf="prodcutDetails.brand; else brandNa">
+              {{ prodcutDetails.brand }}
+            </ng-template>
+            <ng-template #brandNa> Not Specified </ng-template>
           </p>
           <p class="prod-details-header">
             <span>Product Details</span><span class="border-bottom-75"></span>
           </p>
           <p class="prod-details">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-            quaerat voluptatibus quas reprehenderit. Expedita harum totam
-            repudiandae explicabo sint omnis. Minus, perspiciatis modi molestiae
-            ea pariatur id ullam expedita mollitia nihil nulla perferendis alias
-            et eum debitis distinctio a non rem ducimus? Quos similique, sequi
-            nesciunt, ad voluptatum aperiam illo dignissimos accusantium quas
-            vel aliquam quod voluptates incidunt alias commodi, assumenda libero
-            perspiciatis. Alias voluptatum minima similique neque facilis,
-            veniam earum quia temporibus perspiciatis iusto assumenda vitae quis
-            esse eius, repudiandae nihil, ipsam harum accusantium aut doloremque
-            a omnis. Perferendis voluptate obcaecati non necessitatibus iusto
-            aspernatur beatae commodi! Quo dignissimos voluptatibus totam
-            soluta. Totam corporis nisi aspernatur suscipit. Eligendi voluptatem
-            fugit, corporis alias repellendus veritatis rerum velit praesentium
-            quos similique reiciendis et qui assumenda sit ipsum quia, quas,
-            quibusdam est voluptas quaerat tempora perspiciatis! Quis, a
-            provident magni, sint vero eum dolorum unde adipisci impedit iste
-            alias, non aut sequi.
+            <ng-template *ngIf="prodcutDetails.description; else descriptionNa">
+              {{ prodcutDetails.description }}
+            </ng-template>
+            <ng-template #descriptionNa>Not Specified</ng-template>
           </p>
         </div>
       </div>
@@ -184,7 +191,10 @@
         </p>
       </div>
       <div class="text-center mt-5">
-        <button mat-raised-button>Submit yor review</button>
+        <button mat-raised-button (click)="show_review_modal()">
+          Submit yor review
+        </button>
+        <app-product-review-modal></app-product-review-modal>
       </div>
     </div>
   </div>

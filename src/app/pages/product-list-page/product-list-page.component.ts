@@ -21,6 +21,12 @@ export class ProductListPageComponent implements OnInit {
   categories: any;
   expandedCat;
   expandedSubCat;
+  sellerCat = [
+    {"cat_name": "three wheeler", "id": 2},
+    {"cat_name": "scooter", "id": 3},
+    {"cat_name": "car", "id": 4},
+    {"cat_name": "bus", "id": 5}
+  ]
 
   constructor(
     private getProduct: GetProductService,

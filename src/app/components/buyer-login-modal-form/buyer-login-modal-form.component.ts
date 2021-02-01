@@ -5,44 +5,43 @@ import { UserAuthService } from '../../shared/services/user-auth.service';
 @Component({
   selector: 'app-buyer-login-modal-form',
   templateUrl: './buyer-login-modal-form.component.html',
-  styleUrls: ['./buyer-login-modal-form.component.css']
+  styleUrls: ['./buyer-login-modal-form.component.css'],
 })
 export class BuyerSigninFormComponent implements OnInit {
-
   error: any;
   msg;
   group: string;
-  constructor(
-    private authService: UserAuthService,
-    private router: Router,
-  ) { }
+  constructor(private authService: UserAuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.group="buyer"
+    this.group = 'buyer';
   }
-  hide_buyer_login(){
-    document.getElementById('buyerLogin').style.display="none";
+
+  hide_buyer_login() {
+    document.getElementById('buyerLogin').style.display = 'none';
   }
-  show_buyer_registration_modal_form():void{
-    document.getElementById('buyerLogin').style.display="none";
-    document.getElementById('buyerRegistration').style.display="block";
+
+  show_buyer_registration_modal_form(): void {
+    document.getElementById('buyerLogin').style.display = 'none';
+    document.getElementById('buyerRegistration').style.display = 'block';
   }
-  show_forget_password():void{
-    document.getElementById('buyerLogin').style.display="none";
+
+  show_forget_password(): void {
+    document.getElementById('buyerLogin').style.display = 'none';
     this.router.navigate(['/forget-password']);
   }
+  
   signin(email: string, password: string) {
     this.authService.login(email, password, this.group).subscribe(
-      success => {
-        document.getElementById('buyerLogin').style.display="none";
+      (success) => {
+        document.getElementById('buyerLogin').style.display = 'none';
         console.log(success);
         this.router.navigate(['']);
       },
-      error => {
+      (error) => {
         this.error = error;
         console.log(error);
       }
     );
   }
-
 }
