@@ -37,10 +37,10 @@ export class ProductDetailsPageComponent implements OnInit {
         'http://127.0.0.1:8000' + item.data[0].image1,
         'http://127.0.0.1:8000' + item.data[0].image2,
       ];
-      // console.log(this.prodcutDetails);
+      console.log(this.prodcutDetails);
       this.getProduct.getProductByCategory(this.prodcutDetails.category.id).subscribe(item => {
         this.relatedProducts = item.data.results;
-        console.log('prod list:' ,this.relatedProducts)
+        // console.log('prod list:' ,this.relatedProducts)
       })
     });
   }
@@ -65,10 +65,6 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
 
-  // nextItem(source:NgbSlideEventSource){
-  //   this.carousel.next(source?: NgbSlideEventSource);
-  // }
-
   addToCart(prod) {
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
@@ -80,5 +76,9 @@ export class ProductDetailsPageComponent implements OnInit {
     this.prodCartArray.push(prod);
     console.log(prod);
     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+  }
+
+  show_review_modal(){
+    document.getElementById('prodReviewModal').style.display="block";
   }
 }
