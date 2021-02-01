@@ -7,13 +7,14 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { MaterialModule } from '../../material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ProductReviewModalComponent } from './product-review-modal/product-review-modal.component';
 
 const routes: Routes = [
   { path: '', component: ProductDetailsPageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
-  declarations: [ProductDetailsPageComponent],
+  declarations: [ProductDetailsPageComponent, ProductReviewModalComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
