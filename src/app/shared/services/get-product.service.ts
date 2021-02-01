@@ -6,13 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GetProductService {
+  productDetailsData: any = undefined;
   constructor(private http: HttpClient) {}
 
   product(): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
   }
 
-  // return only 12 items 
+  // return only 12 items
   popularProduct(): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/product/list/`);
   }
@@ -22,7 +23,10 @@ export class GetProductService {
   }
 
   productDetails(id): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8000/api/product/details/${id}`);
+    this.productDetailsData = this.http.get(
+      `http://127.0.0.1:8000/api/product/details/${id}/`
+    );
+    return this.productDetailsData;
   }
 
   getProductBySeller(id): Observable<any> {

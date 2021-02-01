@@ -142,6 +142,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'rfq',
+    loadChildren: () =>
+      import('./pages/rfq-page/rfq-page.module').then((m) => m.RfqPageModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./pages/error-page/error-page.module').then(
