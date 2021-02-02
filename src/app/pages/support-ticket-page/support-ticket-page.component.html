@@ -84,7 +84,9 @@
 
           <div class="row">
             <div class="col-3"><strong>Date</strong></div>
-            <div class="col">{{ selectedSupportTicket.date }}</div>
+            <div class="col">
+              {{ formatDate(selectedSupportTicket.issue_date) }}
+            </div>
           </div>
 
           <div class="row">

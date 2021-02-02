@@ -51,4 +51,8 @@ export class SupportTicketPageComponent implements OnInit {
       this.toggleSort = !this.toggleSort;
     }
   }
+
+  formatDate(d: string): string {
+    return new Date(d).toDateString();
+  }
 }
