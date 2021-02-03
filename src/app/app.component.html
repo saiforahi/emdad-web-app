@@ -115,12 +115,25 @@
                 <img src="../assets/hamburger.svg" alt="" />
               </a>
               <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
-                <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My Profile</button>
-                <button ngbDropdownItem [routerLink]="['track-orders']"><img src="../assets/Location.svg" alt="">Track Order</button>
-                <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
-                <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
-                <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>
-                <button *ngIf="loggedInUser" ngbDropdownItem><img alt="">Logout</button>
+                <button ngbDropdownItem [routerLink]="['profile/', uId]">
+                  <img src="../assets/Profile.svg" alt="" />My Profile
+                </button>
+                <button ngbDropdownItem>
+                  <img src="../assets/Location.svg" alt="" />Track Order
+                </button>
+                <button ngbDropdownItem [routerLink]="['wishlist']">
+                  <img src="../assets/Heart.svg" alt=""/>My Wishlist
+                </button>
+                <button ngbDropdownItem>
+                  <img src="../assets/Document.svg" alt="" />Quotations
+                </button>
+                <button ngbDropdownItem [routerLink]="['/support-ticket']">
+                  <img src="../assets/Danger.svg" alt="" />Raise a support
+                  ticket
+                </button>
+                <button *ngIf="loggedInUser" ngbDropdownItem>
+                  <img alt="" />Logout
+                </button>
               </div>
             </div>
           </li>

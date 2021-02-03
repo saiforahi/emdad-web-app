@@ -1,0 +1,8 @@
+<app-breadcrumbs></app-breadcrumbs>
+<section class="container">
+    <div class="row" *ngIf="products">
+        <div class="col-md-2" *ngFor="let product of products">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      </div>
+</section>
