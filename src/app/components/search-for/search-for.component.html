@@ -1,7 +1,7 @@
 <div class="input-group search-input">
-    <input type="text" class="form-control" placeholder="Search by products...">
+    <input type="text" class="form-control" placeholder="Search by products..." #searchInput>
     <div class="input-group-append">
-        <a href="">
+        <a (click)="search(searchInput.value)">
             <span class="input-group-text" id="basic-addon2"><img src="../assets/search.svg" alt=""></span>
         </a>
     </div>

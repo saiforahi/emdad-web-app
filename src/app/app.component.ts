@@ -100,10 +100,10 @@ export class AppComponent implements OnInit {
       if (pos >= 1100) {
         //Do your action here
         this.showOnScroll = true;
-        console.log(pos, this.showOnScroll);
+        // console.log(pos, this.showOnScroll);
       } else {
         this.showOnScroll = false;
-        console.log(pos, this.showOnScroll);
+        // console.log(pos, this.showOnScroll);
       }
     }
 }
