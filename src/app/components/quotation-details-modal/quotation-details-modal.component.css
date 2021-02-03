@@ -4,7 +4,6 @@
     font-size: 38px;
     line-height: 49px;
     text-align: center;
-    /* #2B2B2B */
     color: #2B2B2B;
 }
 .modal-content{
@@ -16,29 +15,18 @@
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
 }
-.form-control{
-    background: #EFEFEF;
-    border-radius: 5px;
-}
-.col-4{
-    font-size: 12px;
-}
-.btn{
-    background: #454F63;
-    border-radius: 5px;
-}
-.footer{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 29px;
-/* identical to box height */
-    text-align: center;
-    color: #2B2B2B;
-}
 .modal{
     background-color: #000000c7;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2B2B2B;
 }
-.form-label{
-    font-size: 12px;
+
+.comment-textarea{
+    background: #EFEFEF;
+    border-radius: 5px;
+    margin-top:10px ;
 }

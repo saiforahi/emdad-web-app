@@ -9,3 +9,13 @@
 #quantityInput input[type=number] {
   -moz-appearance: textfield;
 }
+
+.quan-box{
+  border: 1px solid #CFCFCF;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.proceed-btn{
+  background: #F49814;
+  border-radius: 5px;
+}

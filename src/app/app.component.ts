@@ -55,18 +55,20 @@ export class AppComponent implements OnInit {
   }
   show_lang_drop(){
     if(document.getElementById('lang-drop-down').classList.contains('show')){
-      document.getElementById('lang-drop-down').classList.remove('show');
+      //document.getElementById('lang-drop-down').classList.remove('show');
     }
-    else if(!document.getElementById('lang-drop-down').classList.contains('show')){
-      document.getElementById('lang-drop-down').classList.remove('show');
+    else{
+      //document.getElementById('lang-drop-down').classList.add('show');
     }
   }
   handle_accnt_drop_down(){
     if(document.getElementById('accnt-drop-down').classList.contains('show')){
-      document.getElementById('accnt-drop-down').classList.remove('show');
+      //document.getElementById('accnt-drop-down').classList.remove('show');
+      //document.getElementById('en-btn').setAttribute('area-expanded','false');
     }
-    else if(!document.getElementById('accnt-drop-down').classList.contains('show')){
-      document.getElementById('accnt-drop-down').classList.add('show');
+    else{
+      //document.getElementById('en-btn').setAttribute('area-expanded','true');
+     // document.getElementById('accnt-drop-down').classList.add('show');
     }
   }
   handle_notification_drop(){

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import {config} from '../../../config';
+import {Orders} from '../models/mocks/Orders';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +13,7 @@ export class OrderService {
     }),
   };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
-
   constructor(private http: HttpClient) {}
-
   putOrder(finalCart): Observable<any>{
     return this.http.post(`http://127.0.0.1:8000/api/order/add/`, finalCart, this.httpOptions)
   }
@@ -36,4 +35,16 @@ export class OrderService {
     return this.http.post(`http://127.0.0.1:8000/api/order/update/tracking/status/${sellerId}/`, orderData, this.httpOptions);
   }
 
+  get_order_list():Observable<any> {
+     //return of(Orders);
+    return this.http.get(config.base_url+"api/order/list/"+localStorage.getItem('uid')+'/',this.httpOptions);
+  }
+
+  get_buyer_order_list():Observable<any>{
+    return this.http.get(config.base_url+"api/buyer/order/list/"+localStorage.getItem('uid')+"/",this.httpOptions)
+  }
+
+  get_buyer_order_details(order_id:string):Observable<any>{
+    return this.http.get(config.base_url+"api/buyer/order/details/"+order_id+"/",this.httpOptions)
+  }
 }
