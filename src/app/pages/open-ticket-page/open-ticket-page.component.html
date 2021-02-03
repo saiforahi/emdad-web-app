@@ -1,0 +1,118 @@
+<div>
+  <app-breadcrumbs></app-breadcrumbs>
+  <div class="container">
+    <!-- <div class="nav-section mt-5 mb-5">
+      <span> <a href="#"> Home </a> / Open a New Ticket</span>
+    </div> -->
+
+    <div class="card mb-4 mt-4 text-center">
+      <div class="mt-5 mb-3">
+        <img
+          src="../../../assets/open_ticket_image.svg"
+          alt="..."
+          class="img-fluid"
+          style="width: 90%"
+        />
+      </div>
+
+      <div class="card-body">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </div>
+    </div>
+
+    <div class="card">
+      <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <label
+              for="subjectError"
+              *ngIf="ticketForm.get('title').errors && submitted"
+              class="errors ml-1"
+              >required</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Write your subject here"
+              formControlName="title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Tell Us More</label>
+            <label
+              for="descriptionError"
+              *ngIf="ticketForm.get('description').errors && submitted"
+              class="errors ml-1"
+              >required</label
+            >
+            <textarea
+              type="text"
+              class="form-control"
+              placeholder="Write down the issue in details..."
+              rows="7"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="orderNumber">Order Number(Optional)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Order Number"
+                    formControlName="order_code"
+                  />
+                </div>
+              </div>
+              <div class="col d-flex">
+                <div class="form-group">
+                  <label for="uploadImage"> Upload Image </label>
+                  <div class="form-group imageUploadButton">
+                    <i class="fa fa-upload"></i>
+                    <input
+                      type="file"
+                      name="images"
+                      id="images"
+                      (change)="handleFileSelect($event)"
+                      formControlName="image"
+                    />
+                  </div>
+                </div>
+                <div class="form-group ml-3" *ngIf="selectedImage">
+                  <label for="preview"> Preview</label>
+                  <div class="form-group">
+                    <img
+                      class="imageUploadButton form-group"
+                      alt=""
+                      id="preview"
+                    />
+                    <button
+                      class="btn btn-outline-warning form-group ml-1"
+                      (click)="removeImage()"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-warning col-2" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

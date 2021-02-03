@@ -28,6 +28,7 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "ng-lazyload-image": "^9.1.0",
+    "ngx-pinch-zoom": "^2.5.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

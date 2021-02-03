@@ -1,0 +1,56 @@
+.nav-section {
+  /* position: fixed; */
+  width: 1920px;
+
+  background: #ffffff;
+}
+
+.open-ticket-button {
+  width: 400px !important;
+  margin-right: 20px;
+}
+
+.modal-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 49px;
+  text-align: center;
+  /* #2B2B2B */
+  color: #2b2b2b;
+}
+.modal-content {
+  max-width: 700px;
+  max-height: 765px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+}
+
+.modal {
+  background-color: #000000c7;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+.table thead th {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  /* identical to box height */
+
+  border-top: none;
+  /* #2B2B2B */
+
+  color: #2b2b2b;
+}
+.table tbody tr {
+  background: #efefef;
+  border-radius: 5px;
+}

@@ -12,6 +12,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SellerOrdersPageComponent, OrderDetailsModalComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), CommonuiModule, NgbModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    CommonuiModule,
+    NgbModule,
+  ],
 })
 export class SellerOrdersPageModule {}

@@ -46,7 +46,7 @@ const routes: Routes = [
       import('./pages/profile-page/profile-page.module').then(
         (m) => m.ProfilePageModule
       ),
-      canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'add',
@@ -90,14 +90,14 @@ const routes: Routes = [
       import('./pages/reset-password-page/reset-password-page.module').then(
         (m) => m.ResetPasswordPageModule
       ),
-      canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'subscription/plans',
     loadChildren: () =>
-      import('./pages/subscription-plan-page/subscription-plan-page.module').then(
-        (m) => m.SubscriptionPlanPageModule
-      ),
+      import(
+        './pages/subscription-plan-page/subscription-plan-page.module'
+      ).then((m) => m.SubscriptionPlanPageModule),
   },
   {
     path: 'subscription/payment',
@@ -109,9 +109,9 @@ const routes: Routes = [
   {
     path: 'subscription/plans/history',
     loadChildren: () =>
-      import('./pages/seller-subscription-history-page/seller-subscription-history-page.module').then(
-        (m) => m.SellerSubscriptionHistoryPageModule
-      ),
+      import(
+        './pages/seller-subscription-history-page/seller-subscription-history-page.module'
+      ).then((m) => m.SellerSubscriptionHistoryPageModule),
   },
   {
     path: 'order/checkout',
@@ -130,6 +130,32 @@ const routes: Routes = [
   { path: 'order/details/:id', loadChildren: () => import('./pages/buyer-order-history-details/buyer-order-history-details.module').then(m => m.BuyerOrderHistoryDetailsModule) },
   { path: 'track-orders', loadChildren: () => import('./pages/track-order/track-order.module').then(m => m.TrackOrderModule) },
   { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
+  {
+    path: 'support-ticket',
+    loadChildren: () =>
+      import('./pages/support-ticket-page/support-ticket-page.module').then(
+        (m) => m.SupportTicketPageModule
+      ),
+  },
+  {
+    path: 'open-ticket',
+    loadChildren: () =>
+      import('./pages/open-ticket-page/open-ticket-page.module').then(
+        (m) => m.OpenTicketPageModule
+      ),
+  },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/search-page/search-page.module').then(
+        (m) => m.SearchPageModule
+      ),
+  },
+  {
+    path: 'rfq',
+    loadChildren: () =>
+      import('./pages/rfq-page/rfq-page.module').then((m) => m.RfqPageModule),
+  },
   {
     path: '**',
     loadChildren: () =>
