@@ -19,14 +19,18 @@ export class ProductDetailsPageComponent implements OnInit {
   prevBtnDisabled: boolean = true;
   showNavigationArrows = true;
   showNavigationIndicators = false;
-  images = ['../../../assets/review-icon.svg', '../../../assets/review-icon.svg', '../../../assets/review-icon.svg']
+  images = [
+    '../../../assets/review-icon.svg',
+    '../../../assets/review-icon.svg',
+    '../../../assets/review-icon.svg',
+  ];
   carousel: any;
   relatedProducts: any;
 
   constructor(
     private getProduct: GetProductService,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -38,10 +42,12 @@ export class ProductDetailsPageComponent implements OnInit {
         'http://127.0.0.1:8000' + item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
-      this.getProduct.getProductByCategory(this.prodcutDetails.category.id).subscribe(item => {
-        this.relatedProducts = item.data.results;
-        // console.log('prod list:' ,this.relatedProducts)
-      })
+      this.getProduct
+        .getProductByCategory(this.prodcutDetails.category.id)
+        .subscribe((item) => {
+          this.relatedProducts = item.data.results;
+          // console.log('prod list:' ,this.relatedProducts)
+        });
     });
   }
 
@@ -65,20 +71,26 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
 
-  addToCart(prod) {
+  addToCart() {
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
     if (existingCart != null) {
       existingCart.forEach((element) => {
-        this.prodCartArray.push(element);
+        if (element.id !== this.prodcutDetails.id)
+          this.prodCartArray.push(element);
       });
     }
-    this.prodCartArray.push(prod);
-    console.log(prod);
-    localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+    // if product details available only then add to it in the cart array
+    if (this.prodcutDetails) {
+      this.prodCartArray.push(this.prodcutDetails);
+      // console.log('#####');
+      // console.log(this.prodCartArray);
+      // console.log('#####');
+      localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+    }
   }
 
-  show_review_modal(){
-    document.getElementById('prodReviewModal').style.display="block";
+  show_review_modal() {
+    document.getElementById('prodReviewModal').style.display = 'block';
   }
 }
