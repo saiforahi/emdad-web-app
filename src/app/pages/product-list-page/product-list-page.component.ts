@@ -22,10 +22,10 @@ export class ProductListPageComponent implements OnInit {
   expandedCat;
   expandedSubCat;
   sellerCat = [
-    {"cat_name": "three wheeler", "id": 2},
-    {"cat_name": "scooter", "id": 3},
-    {"cat_name": "car", "id": 4},
-    {"cat_name": "bus", "id": 5}
+    {"cat_name": "cat 3", "id": 2},
+    {"cat_name": "cat 6", "id": 3},
+    {"cat_name": "cat 4", "id": 4},
+    {"cat_name": "cat 2", "id": 5}
   ]
 
   constructor(

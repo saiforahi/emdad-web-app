@@ -8,7 +8,7 @@
 <section class="categories">
     <div class="container">
         <div class="row">
-            <div class="col-md-2" *ngFor="let category of categories | slice:0:5; let i = index">
+            <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
                 <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/cat-icon.svg" alt="">
@@ -40,8 +40,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="single-category">
+            <!-- <div class="col-md-2">
+                <div class="single-category" [routerLink]="['/']">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/Category.svg" alt="">
                     </div>
@@ -49,7 +49,7 @@
                         All Categories
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -57,7 +57,8 @@
     <div class="product-list-header">
         Popular Products
     </div>
-    <app-popular-products></app-popular-products>
+    <!-- <app-popular-products></app-popular-products> -->
+    <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
 </section>
 <section class="container">
     <div class="product-list-header">
