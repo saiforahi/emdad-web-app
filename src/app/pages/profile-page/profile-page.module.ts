@@ -9,7 +9,7 @@ import {OrderHistoryComponent} from '../../components/order-history-table/order-
 import {ManageQuotations} from '../../components/manage-quotations-table/manage-quotations-table.component';
 import {ProfileLogoutModal} from '../../components/profile-logout-modal/profile-logout-modal.component';
 import {QuotationDetailsModal} from '../../components/quotation-details-modal/quotation-details-modal.component';
-import { BuyerOrderDetailsComponent } from 'src/app/components/buyer-order-details/buyer-order-details.component';
+
 const routes: Routes = [
 	{ path: '', component: ProfilePageComponent, pathMatch: 'full' },
 ];
@@ -22,8 +22,7 @@ const routes: Routes = [
 		OrderHistoryComponent,
 		ManageQuotations,
 		ProfileLogoutModal,
-		QuotationDetailsModal,
-		BuyerOrderDetailsComponent
+		QuotationDetailsModal
 	],
 	imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })

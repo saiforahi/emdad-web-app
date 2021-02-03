@@ -1,16 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpInterceptor,
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 import { CountryListService } from '../../shared/services/country-list.service';
+import { Order } from 'src/app/shared/models/Order.model';
+import { Quotation } from '../../shared/models/quotation.model'
 
 @Component({
   selector: 'app-profile-page',
@@ -33,6 +26,7 @@ export class ProfilePageComponent implements OnInit {
   show_profile_form;
   show_order_history;
   show_manage_quotations;
+  channel_quotation:Quotation
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
@@ -64,7 +58,10 @@ export class ProfilePageComponent implements OnInit {
       alert('access is denied');
     }
   }
-
+  pass_quotation_to_modal(quotation:Quotation){
+    this.channel_quotation=quotation
+    document.getElementById('quotationDetails').style.display="block"
+  }
   logout(){
     this.authService.logout();
   }

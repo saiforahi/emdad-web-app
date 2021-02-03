@@ -32,7 +32,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <div ngbDropdown class="d-inline-block" (click)="show_lang_drop();">
+            <div ngbDropdown class="d-inline-block">
               <a class="nav-link" id="en-btn" ngbDropdownToggle>
                 <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px;">
                 <img src="../assets/down-carrot.svg" alt="">
@@ -99,14 +99,14 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" (click)="handle_accnt_drop_down();">
-            <div ngbDropdown class="d-inline-block" >
+          <li class="nav-item" >
+            <div ngbDropdown class="d-inline-block" (click)="handle_accnt_drop_down();">
               <a class="nav-link" ngbDropdownToggle>
                 <img src="../assets/hamburger.svg" alt="">
               </a>
               <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
                 <button ngbDropdownItem [routerLink]="['profile/', uId]"><img src="../assets/Profile.svg" alt="">My Profile</button>
-                <button ngbDropdownItem><img src="../assets/Location.svg" alt="">Track Order</button>
+                <button ngbDropdownItem [routerLink]="['track-orders']"><img src="../assets/Location.svg" alt="">Track Order</button>
                 <button ngbDropdownItem><img src="../assets/Heart.svg" alt="">My Wishlist</button>
                 <button ngbDropdownItem><img src="../assets/Document.svg" alt="">Quotations</button>
                 <button ngbDropdownItem><img src="../assets/Danger.svg" alt="">Raise a support ticket</button>

@@ -7,7 +7,7 @@ import { OrderService } from '../../shared/services/order.service';
   styleUrls: ['./order-history-table.component.css'],
 })
 export class OrderHistoryComponent implements OnInit {
-  orders=[];
+  orders:any=[];
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
@@ -16,7 +16,10 @@ export class OrderHistoryComponent implements OnInit {
     console.log(this.orders)
   }
   get_orders(){
-    this.orders=Orders
-    //this.orderService.get_order_list().subscribe(res=>this.orders=res.data);
+    //this.orders=Orders
+    this.orderService.get_buyer_order_list().subscribe(res=>{
+      this.orders=res.data;
+      console.log(this.orders);
+    });
   }
 }

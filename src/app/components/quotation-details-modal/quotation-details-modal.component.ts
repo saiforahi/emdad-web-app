@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Quotation} from '../quotation-details-modal/quotation'
+import {Quotation} from '../../shared/models/quotation.model'
 @Component({
     selector: 'quotation-details-modal',
     styleUrls: ['./quotation-details-modal.component.css'],

@@ -3,7 +3,7 @@ export interface Quotation {
     RFQ: number;
     date: Date;
     product_name:string;
-    sellet_name:string;
+    seller_name:string;
     quantity:number;
     unit_price:number;
     total_price:number;

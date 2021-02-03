@@ -10,17 +10,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="highlighted">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Blah Blah</td>
+        <tr *ngFor="let quotation of quotations" class="highlighted">
+            <th scope="row">{{quotation.id}}</th>
+            <td>{{quotation.date}}</td>
+            <td>{{quotation.RFQ}}</td>
+            <td>{{quotation.seller_name}}</td>
+            <td>{{quotation}}</td>
             <td>
-                <button class="btn btn-primary" type="button">view</button>
+                <button class="btn btn-primary" type="button" (click)="show_quotation_details(quotation)">view</button>
             </td>
         </tr>
-        <tr class="spacer">
+        <!-- <tr class="spacer">
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
@@ -29,16 +29,6 @@
             <td>
                 <button class="btn btn-primary" type="button">view</button>
             </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Blah Blah</td>
-            <td>
-                <button class="btn btn-primary" type="button">view</button>
-            </td>
-        </tr>
+        </tr> -->
       </tbody>
 </table>

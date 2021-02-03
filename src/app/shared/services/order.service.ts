@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {config} from '../../../config';
-
+import {Orders} from '../models/mocks/Orders';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +36,15 @@ export class OrderService {
   }
 
   get_order_list():Observable<any> {
-    // return of(Orders);
-    return this.http.get(config.base_url+"api/order/list/"+localStorage.getItem('uid'),this.httpOptions);
+     //return of(Orders);
+    return this.http.get(config.base_url+"api/order/list/"+localStorage.getItem('uid')+'/',this.httpOptions);
+  }
+
+  get_buyer_order_list():Observable<any>{
+    return this.http.get(config.base_url+"api/buyer/order/list/"+localStorage.getItem('uid')+"/",this.httpOptions)
+  }
+
+  get_buyer_order_details(order_id:string):Observable<any>{
+    return this.http.get(config.base_url+"api/buyer/order/details/"+order_id+"/",this.httpOptions)
   }
 }

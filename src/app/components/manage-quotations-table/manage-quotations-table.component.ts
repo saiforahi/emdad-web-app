@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { OrderService } from '../../shared/services/order.service';
-import { Quotation } from '../quotation-details-modal/quotation';
-
+import { Component, Output,EventEmitter, OnInit } from '@angular/core';
+import { QuotationService } from '../../shared/services/quotation.service';
+import { Quotation } from '../../shared/models/quotation.model';
+import {Quotations} from '../../shared/models/mocks/Quotations';
 @Component({
   selector: 'app-manage-quotations-table',
   templateUrl: './manage-quotations-table.component.html',
@@ -9,8 +9,14 @@ import { Quotation } from '../quotation-details-modal/quotation';
 })
 export class ManageQuotations implements OnInit {
   quotation_to_show:Quotation;
-  
-  constructor(private orders: OrderService) {}
+  quotations:Quotation[]
+  @Output()quotation=new EventEmitter<Quotation>();
+  constructor(private quotationService: QuotationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quotations=Quotations;
+  }
+  show_quotation_details(quotation:Quotation){
+    this.quotation.emit(quotation);
+  }
 }

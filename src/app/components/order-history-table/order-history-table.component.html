@@ -10,12 +10,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders">
-          <th scope="row">{{order.order_id}}</th>
+          <th scope="row">#{{order.order_code}}</th>
           <td>{{order.payment_date}}</td>
           <td>{{order.delivery_date}}</td>
-          <td>{{order.amount}}</td>
+          <td>{{order.total_amount}}</td>
           <td>
-            <button class="btn btn-primary" type="button">view</button>
+            <button class="btn btn-primary" type="button" [routerLink]="['order/details/',order.id]">view</button>
           </td>
         </tr>
       </tbody>

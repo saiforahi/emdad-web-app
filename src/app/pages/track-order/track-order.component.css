@@ -1,0 +1,62 @@
+.table {
+    border-collapse: separate;
+    border-spacing:0 15px;
+}
+.table thead th{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    border-top: none;
+    /* #2B2B2B */
+
+    color: #2B2B2B;
+}
+.table tbody tr{
+    background: #EFEFEF;
+    border-radius: 5px;
+}
+.btn-primary {
+    color: rgb(0, 0, 0);
+    background-color: inherit;
+    border-style: none !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #F49814;
+    border-color: #F49814; /*set the color you want here*/
+}
+.table td, .table th{
+    vertical-align: middle !important;
+}
+.table tbody tr:hover {
+    outline-style: solid;
+    outline-color: #F49814;
+    background: #FFFFFF;
+    
+    border: 2px solid #F49814;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+}
+.a-filter{
+    border: 2px solid #2B2B2B;
+box-sizing: border-box;
+border-radius: 5px;
+width: 239px;
+height: 80px;
+text-align: center;
+background: none !important;
+color: black !important;
+font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 35px;
+/* identical to box height */
+
+text-align: center;
+}

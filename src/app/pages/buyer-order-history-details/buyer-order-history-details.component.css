@@ -1,0 +1,33 @@
+
+.header-text{
+    background-color: #FFFFFF;
+}
+.sub-text{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: rgba(43, 43, 43, 0.5);
+}
+h5{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 32px;
+    color: #2B2B2B;
+}
+.download-btn{
+    background: #F49814;
+    border-radius: 5px;
+    border: none;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+}
