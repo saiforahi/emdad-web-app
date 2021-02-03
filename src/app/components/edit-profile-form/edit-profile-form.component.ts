@@ -63,6 +63,7 @@ export class EditProfileFormComponent implements OnInit {
 			(success) => console.log(success),
 			(error) => console.error(error)
 		);
+		localStorage.setItem('user_info',this.editUserInfo)
 	}
 	getCountries() {
 		this.countryList.allCountries().subscribe(

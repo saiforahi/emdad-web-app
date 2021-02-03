@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-
+import {UserAuthService} from '../../shared/services/user-auth.service'
 interface Cash_Details {
   subtotal: number;
   discount: number;
@@ -17,13 +17,18 @@ export class CheckoutComponent implements OnInit {
   isCard:boolean;
   isWired:boolean;
   new_address:boolean;
-  cash_details:Cash_Details;
-  constructor(private route:ActivatedRoute) { }
+  cash_details:any;
+  address:any;
+  constructor(private route:ActivatedRoute,private authService: UserAuthService) { }
 
   ngOnInit(): void {
     this.isCard=true;
     this.isWired=false;
-    this.cash_details=this.route.snapshot.params['cash_details']
+    this.cash_details=localStorage.getItem('finalCart')
+    this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
+			this.address = data.data.address;
+			// if country is already set then load the cities of the country
+		});
   }
   show_card_inputs(){
     this.isWired=false;
