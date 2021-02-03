@@ -5,26 +5,18 @@
           <th scope="col">Payment Date</th>
           <th scope="col">Delivery Date</th>
           <th scope="col">Amount</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr class="highlighted">
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr class="spacer">
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor="let order of orders">
+          <th scope="row">#{{order.order_code}}</th>
+          <td>{{order.payment_date}}</td>
+          <td>{{order.delivery_date}}</td>
+          <td>{{order.total_amount}}</td>
+          <td>
+            <button class="btn btn-primary" type="button" [routerLink]="['order/details/',order.id]">view</button>
+          </td>
         </tr>
       </tbody>
 </table>

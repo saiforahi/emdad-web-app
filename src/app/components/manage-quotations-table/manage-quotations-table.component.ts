@@ -1,15 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { OrderService } from '../../shared/services/order.service';
-
+import { Component, Output,EventEmitter, OnInit } from '@angular/core';
+import { QuotationService } from '../../shared/services/quotation.service';
+import { Quotation } from '../../shared/models/quotation.model';
+import {Quotations} from '../../shared/models/mocks/Quotations';
 @Component({
   selector: 'app-manage-quotations-table',
   templateUrl: './manage-quotations-table.component.html',
   styleUrls: ['./manage-quotations-table.component.css'],
 })
 export class ManageQuotations implements OnInit {
-  
-  constructor(private orders: OrderService) {}
+  quotation_to_show:Quotation;
+  quotations:Quotation[]
+  @Output()quotation=new EventEmitter<Quotation>();
+  constructor(private quotationService: QuotationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quotations=Quotations;
+  }
+  show_quotation_details(quotation:Quotation){
+    this.quotation.emit(quotation);
+  }
 }

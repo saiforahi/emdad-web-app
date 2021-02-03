@@ -1,0 +1,37 @@
+<div class="modal animated fadeIn" id="quotationDetails" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg rounded-0" style="padding:30px ;">
+            <!-- <div style="border: none;" class="modal-header text-center">
+                <button (click)=hide(); type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body row d-flex flex-column">
+                <div class="justify-content-between" style="padding-top: 20px;">
+                    <p class="d-inline-block">Quotation ID: {{quotation.id}}</p>
+                    <button (click)=hide(); type="button" class="btn float-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <p style="padding-top: 20px;">RFQ ID: {{quotation.RFQ}}</p>
+                <p style="padding-top: 20px;">Date: {{quotation.date}}</p>
+                <p style="padding-top: 20px;">Product Name: {{quotation.product_name}}</p>
+                <p style="padding-top: 20px;">Seller Name: {{quotation.seller_name}}</p>
+                <p style="padding-top: 20px;">Quantity: {{quotation.quantity}}</p>
+                <p style="padding-top: 20px;">Unit Price: {{quotation.unit_price}}</p>
+                <p style="padding-top: 20px;">Total Price: {{quotation.total_price}}</p>
+                <p style="padding-top: 20px;">Attachments: </p>
+                <p style="padding-top: 20px;">Comments</p>
+                <textarea class="comment-textarea" style="padding-top: 20px;" placeholder="Please tell us why you want to deny..."></textarea>
+            </div>
+            <!-- <div class="btn-group flex-left">
+                <button class="btn">Add</button>
+                <button class="btn" type="button">Deny</button>
+            </div> -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { config } from '../../../config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuotationService {
-  private readonly URL = 'http://127.0.0.1:8000/api/quote/create/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }),
+  };
+  statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
   constructor(private http: HttpClient) {}
+  get_user_quotation_list(): Observable<any> {
+    return this.http.get(
+      config.base_url +
+        'api/quote/user/wise/' +
+        localStorage.getItem('uid') +
+        '/',
+      this.httpOptions
+    );
+  }
 
   createQuotation(rfqData: any): Observable<any> {
     let httpOptions = {
@@ -15,6 +30,10 @@ export class QuotationService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.post(this.URL, rfqData, httpOptions);
+    return this.http.post(
+      config.base_url + '/api/quote/create/',
+      rfqData,
+      httpOptions
+    );
   }
 }

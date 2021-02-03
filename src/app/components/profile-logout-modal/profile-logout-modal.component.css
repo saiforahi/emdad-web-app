@@ -1,0 +1,66 @@
+.btn{
+    background: #454F63;
+    border-radius: 5px;
+}
+.modal{
+    background-color: #000000c7;
+}
+.modal-dialog{
+    max-width: 1200px;
+    max-height: 413px;
+}
+.modal-content{
+    max-width: 1200px;
+    max-height: 765px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0);
+}
+.header{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 69px;
+    text-align: center;
+
+    /* #2B2B2B */
+
+    color: #2B2B2B;
+}
+.logout-text{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    justify-content: center;
+    text-align: center;
+
+    /* #2B2B2B */
+
+    color: #2B2B2B;
+}
+
+.btn-ok{
+    background: #DF1E26;
+    border-radius: 5px;
+}
+.btn-cancel{
+    border: 2px solid #2B2B2B;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.btn{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+}
