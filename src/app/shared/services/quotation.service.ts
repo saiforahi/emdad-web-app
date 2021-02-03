@@ -31,7 +31,7 @@ export class QuotationService {
       }),
     };
     return this.http.post(
-      config.base_url + '/api/quote/create/',
+      config.base_url + 'api/quote/create/',
       rfqData,
       httpOptions
     );
