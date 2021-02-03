@@ -35,11 +35,11 @@ export class HomePageComponent implements OnInit {
     if (this.router.url.split('/').length < 3) {
       this.prodInRow6 = true;
     }
-    console.log(this.prodInRow6);
+    // console.log(this.prodInRow6);
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
-      console.log(this.categories);
+      // console.log(this.categories);
     });
     // recent products list
     this.getProduct.product().subscribe((item) => {
@@ -48,7 +48,7 @@ export class HomePageComponent implements OnInit {
       if (this.nextBatchProdLink == null) {
         this.prodEnd = true;
       }
-      console.log(item);
+      // console.log(item);
     });
   }
 

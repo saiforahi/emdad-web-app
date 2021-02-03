@@ -142,6 +142,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/search-page/search-page.module').then(
+        (m) => m.SearchPageModule
+      ),
+  },
+  {
     path: 'rfq',
     loadChildren: () =>
       import('./pages/rfq-page/rfq-page.module').then((m) => m.RfqPageModule),

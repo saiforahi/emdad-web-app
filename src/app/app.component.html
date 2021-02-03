@@ -2,17 +2,11 @@
 <app-buyer-registration-modal-form></app-buyer-registration-modal-form>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"
-      ><img src="../assets/logo.svg" alt="logo"
-    /></a>
+    <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" /></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
       <div class="">
         <ul class="navbar-nav">
-          <li
-            *ngIf="showOnScroll"
-            class="nav-item active"
-            style="margin-right: 17px"
-          >
+          <li *ngIf="showOnScroll" class="nav-item active" style="margin-right: 17px">
             <a class="nav-link" (click)="showAllProdlist()">
               <span>All Products </span>
               <img src="../assets/down-carrot.svg" alt="" />
@@ -23,22 +17,17 @@
                   <div class="col-md-2" *ngFor="let category of categories">
                     <a [routerLink]="['/products/category/', category.id]">{{
                       category.name
-                    }}</a>
+                      }}</a>
                   </div>
                 </div>
               </div>
             </div>
           </li>
-          <li *ngIf="showOnScroll" class="nav-item">
+          <li [ngClass]="{'d-none':!showOnScroll, 'd-block':showOnScroll}" class="nav-item">
             <app-search-for></app-search-for>
           </li>
           <li class="nav-item" style="margin-left: 42px">
-            <a
-              (click)="show_buyer_login()"
-              class="nav-link"
-              *ngIf="!loggedInUser"
-              >Sign in/ Sign up</a
-            >
+            <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
             <div class="user-name">
               <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="" />
               <span *ngIf="loggedInUser">{{ userName }}</span>
@@ -47,11 +36,7 @@
           <li class="nav-item">
             <div ngbDropdown class="d-inline-block" (click)="show_lang_drop()">
               <a class="nav-link" id="en-btn" ngbDropdownToggle>
-                <img
-                  src="../assets/en-lan.svg"
-                  alt=""
-                  style="margin-right: 7.5px"
-                />
+                <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
                 <img src="../assets/down-carrot.svg" alt="" />
               </a>
               <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
@@ -87,20 +72,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <div
-              ngbDropdown
-              class="d-inline-block"
-              (click)="handle_notification_drop()"
-            >
+            <div ngbDropdown class="d-inline-block" (click)="handle_notification_drop()">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" />
               </a>
-              <div
-                id="noti-panel"
-                ngbDropdownMenu
-                aria-labelledby="notification-btn"
-                class="notification-list"
-              >
+              <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <button ngbDropdownItem>
                   Your order #3342 has been confirmed!
                 </button>
@@ -187,19 +163,10 @@
     </div>
   </div>
 </nav>
-<nav
-  class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu"
->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu">
   <div class="container">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent2"
-      aria-controls="navbarSupportedContent2"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+      aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent2">
@@ -242,22 +209,11 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="!loggedInUser">
-            <a
-              class="nav-link"
-              data-toggle="modal"
-              (click)="show_buyer_login()"
-              type="button"
-              >Buyer login</a
-            >
+            <a class="nav-link" data-toggle="modal" (click)="show_buyer_login()" type="button">Buyer login</a>
           </li>
           <li class="nav-item" *ngIf="!loggedInUser">
-            <a
-              class="nav-link"
-              data-toggle="modal"
-              (click)="show_buyer_registration()"
-              type="button"
-              >Buyer Registration</a
-            >
+            <a class="nav-link" data-toggle="modal" (click)="show_buyer_registration()" type="button">Buyer
+              Registration</a>
           </li>
         </ul>
       </div>
