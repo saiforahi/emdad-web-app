@@ -5,17 +5,47 @@
 <br>
 <a [routerLink]="['/buyer/login']">login</a> -->
 
-<div class="row d-flex justify-content-center" style="margin-bottom: 50px; margin-top: 100px;">
-    <div class="col-auto text-align-center">
-        <h3 class="fp-header">Forget Password</h3>
-        <p class="fp-para">Lost Password? Please enter your email address</p>
-        <p class="fp-para">You will recieve a link to create a new password via email.</p>
-        <div class="email-box input-group mb-">
-            <input #email type="email" class="form-control" placeholder="Enter your email here" aria-label="Enter your email here" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button (click)="sendMail(email.value);" class="btn btn-outline-secondary" type="button">Reset Password</button>
-            </div>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center forget-password-page">
+    <div class="card col-md-6 text-align-center">
+      <h3 class="fp-header">Forget Password</h3>
+      <p class="fp-para">Lost Password? Please enter your email address</p>
+      <p class="fp-para">
+        You will recieve a link to create a new password via email.
+      </p>
+      <div class="email-box input-group mb-">
+        <input
+          #email
+          type="email"
+          class="form-control"
+          placeholder="Enter your email here"
+          aria-label="Enter your email here"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button
+            (click)="sendMail(email.value)"
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            Reset Password
+          </button>
         </div>
-        <p *ngIf="error">{{error}}</p>
+      </div>
+      <p *ngIf="error">{{ error }}</p>
     </div>
+
+    <div class="col-md-6 d-flex">
+      <div class="image-wrapper w-100 p-auto m-auto">
+        <div
+          class="login-image d-flex justify-content-center align-self-center"
+        >
+          <img
+            class="mw-100 align-self-center"
+            src="../../../assets/images/login-image.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
