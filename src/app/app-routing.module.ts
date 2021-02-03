@@ -129,7 +129,7 @@ const routes: Routes = [
   },
   { path: 'order/details/:order_id', loadChildren: () => import('./pages/buyer-order-history-details/buyer-order-history-details.module').then(m => m.BuyerOrderHistoryDetailsModule) },
   { path: 'track-orders', loadChildren: () => import('./pages/track-order/track-order.module').then(m => m.TrackOrderModule) },
-  { path: 'checkout/:cash_details', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
+  { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
   {
     path: 'support-ticket',
     loadChildren: () =>
