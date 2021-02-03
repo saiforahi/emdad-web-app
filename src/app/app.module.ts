@@ -19,6 +19,7 @@ import { BuyerSigninFormComponent } from './components/buyer-login-modal-form/bu
 import { BuyerRegistrationFormComponent } from './components/buyer-registration-modal-form/buyer-registration-modal-form.component';
 import { SupportTicketPageComponent } from './pages/support-ticket-page/support-ticket-page.component';
 import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-page.component';
+import { RfqPageComponent } from './pages/rfq-page/rfq-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-pa
     BuyerRegistrationFormComponent,
     SupportTicketPageComponent,
     OpenTicketPageComponent,
+    RfqPageComponent,
   ],
   imports: [
     BrowserModule,
