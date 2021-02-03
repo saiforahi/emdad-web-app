@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.isCard=true;
     this.isWired=false;
-    this.cash_details=localStorage.getItem('finalCart')
+    this.cash_details=JSON.parse(localStorage.getItem('finalCart'))
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
 			this.address = data.data.address;
 			// if country is already set then load the cities of the country
