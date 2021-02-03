@@ -8,19 +8,19 @@
             <div class="row p-4" style="margin-top: 40px;">
                 <div class="col-sm-7 address-row">
                     <div class="row ">
-                        <div class="col-sm-2" style="margin-top: 25px;">
+                        <!-- <div class="col-sm-2" style="margin-top: 25px;">
                             <img src="../../assets/radio-button-on.svg">
-                        </div>
-                        <div class="col-sm-10">
+                        </div> -->
+                        <div class="col-sm-10 p-4">
                             <div class="row" style="padding-top: 10px;">
-                                <p>Abu Raihan Zilani<br/>4517 Washington Ave. Manchester, Kentucky 39495</p>
+                                <p>Abu Raihan Zilani<br/>{{address}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 add-address p-4" style="margin-left: 20px;">
+                <!-- <div class="col-sm-4 add-address p-4" style="margin-left: 20px;">
                     <button (click)="show_address_form()" class="btn btn-default btn-block" type="button"><span><i class="fas fa-plus"></i></span>  New Address</button>
-                </div>
+                </div> -->
             </div>
             <div *ngIf="new_address" class="row p-4 card-body" style="margin-top: 40px; ">
                 <div class="form-group w-100 row">
