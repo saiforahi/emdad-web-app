@@ -38,7 +38,7 @@ const routes: Routes = [
       import('./pages/cart-page/cart-page.module').then(
         (m) => m.CartPageModule
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'profile/:id',
@@ -127,9 +127,25 @@ const routes: Routes = [
         (m) => m.SellerOrdersPageModule
       ),
   },
-  { path: 'order/details/:id', loadChildren: () => import('./pages/buyer-order-history-details/buyer-order-history-details.module').then(m => m.BuyerOrderHistoryDetailsModule) },
-  { path: 'track-orders', loadChildren: () => import('./pages/track-order/track-order.module').then(m => m.TrackOrderModule) },
-  { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
+  {
+    path: 'order/details/:id',
+    loadChildren: () =>
+      import(
+        './pages/buyer-order-history-details/buyer-order-history-details.module'
+      ).then((m) => m.BuyerOrderHistoryDetailsModule),
+  },
+  {
+    path: 'track-orders',
+    loadChildren: () =>
+      import('./pages/track-order/track-order.module').then(
+        (m) => m.TrackOrderModule
+      ),
+  },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./pages/checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
   {
     path: 'support-ticket',
     loadChildren: () =>

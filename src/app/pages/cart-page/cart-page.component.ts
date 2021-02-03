@@ -34,14 +34,14 @@ interface Orders_Details {
   vat_amount: number;
   commission?: string;
   product: number;
-};
+}
 
 interface Tracking_Order {
   seller: number;
   order_created_by: number;
   order_creation_date: string;
   status: number;
-};
+}
 
 @Component({
   selector: 'app-cart-page',
@@ -65,28 +65,39 @@ export class CartPageComponent implements OnInit {
   couponId: any = '';
   commissionAmount: string;
 
-  constructor(private authService: UserAuthService,
+  constructor(
+    private authService: UserAuthService,
     private coupon: CouponService,
     private vat: VatService,
-    private commission: CommissionService) {}
+    private commission: CommissionService
+  ) {}
 
   ngOnInit(): void {
     this.authService.uId.subscribe((item) => {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    this.generateOrderData(this.productInCart);
-    this.calcTotalPrice(this.orders_details);
-    this.vat.getVat().subscribe(item =>{
+    console.log('*****');
+    console.log(this.productInCart);
+    console.log('*****');
+
+    this.vat.getVat().subscribe((item) => {
       this.vatAmount = parseInt(item.data[0].percentage);
-    })
-    this.commission.getCommission().subscribe(item =>{
+      this.generateOrderData(this.productInCart);
+      this.calcSubTotalPrice(this.orders_details);
+      this.calcTotalPrice();
+    });
+    this.commission.getCommission().subscribe((item) => {
       this.commissionAmount = item.data[0].percentage.toString();
-    })
+      this.generateOrderData(this.productInCart);
+      this.calcSubTotalPrice(this.orders_details);
+      this.calcTotalPrice();
+    });
+
     console.log(this.orders_details, this.tracking_order);
   }
 
-  generateOrderData(productInCart){
+  generateOrderData(productInCart) {
     this.orders_details = [];
     this.tracking_order = [];
     productInCart.forEach((element) => {
@@ -95,12 +106,14 @@ export class CartPageComponent implements OnInit {
         quantity: 1,
         seller: element.seller.id,
         unit_price: element.unit_price,
-        vat_amount: null,
-        pickup_address: null,
-        commission: ''
+        vat_amount: this.vatAmount,
+        pickup_address: element.pickup_address,
+        commission: element.commission,
       });
-      var sellerFind = this.tracking_order.find(x => x.seller === element.seller.id);
-      if(sellerFind == undefined){
+      var sellerFind = this.tracking_order.find(
+        (x) => x.seller === element.seller.id
+      );
+      if (sellerFind == undefined) {
         this.tracking_order.push({
           seller: element.seller.id,
           status: 1,
@@ -118,32 +131,56 @@ export class CartPageComponent implements OnInit {
       }
     });
     this.generateOrderData(this.productInCart);
-    console.log(this.productInCart)
-    this.calcTotalPrice(this.orders_details);
+    console.log(this.productInCart);
+    this.calcSubTotalPrice(this.orders_details);
+    this.calcTotalPrice();
     localStorage.setItem('prodCartArray', JSON.stringify(this.productInCart));
     console.log(this.orders_details, this.tracking_order);
   }
 
-  calcTotalPrice(orders_details) {
+  calcPrice(index): number {
+    return (
+      this.orders_details[index].unit_price *
+      this.orders_details[index].quantity
+    );
+  }
+
+  calcSubTotalPrice(orders_details) {
     this.subTotal = 0;
     orders_details.forEach((element) => {
-      this.subTotal += parseFloat(element.unit_price) * parseFloat(element.quantity);
+      this.subTotal +=
+        parseFloat(element.unit_price) * parseFloat(element.quantity);
     });
   }
 
+  calcTotalPrice() {
+    this.total_amount = this.subTotal - this.couponDiscount + this.vatAmount;
+  }
+
   addQuantity(index) {
-    this.orders_details[index].quantity += 1;
-    console.log(this.orders_details);
-    this.calcTotalPrice(this.orders_details);
+    // increment only if quantity is <= stock_quantity
+    if (
+      this.orders_details[index].quantity + 1 <=
+      this.productInCart[index].stock_quantity
+    ) {
+      this.orders_details[index].quantity += 1;
+      console.log(this.orders_details);
+      this.calcSubTotalPrice(this.orders_details);
+      this.calcTotalPrice();
+    }
   }
 
   delQuantity(index) {
-    this.orders_details[index].quantity -= 1;
-    console.log(this.orders_details);
-    this.calcTotalPrice(this.orders_details);
+    // decrement only if quantity is >= 1
+    if (this.orders_details[index].quantity - 1 >= 1) {
+      this.orders_details[index].quantity -= 1;
+      console.log(this.orders_details);
+      this.calcSubTotalPrice(this.orders_details);
+      this.calcTotalPrice();
+    }
   }
 
-  applyCoupon(coupon_code){
+  applyCoupon(coupon_code) {
     const coupon_section = 2; // 1 for buyer and 2 for seller
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
@@ -153,32 +190,36 @@ export class CartPageComponent implements OnInit {
         } else {
           this.msg =
             'you got ' + success.data[0].discount_amount + ' discount.';
-            this.couponDiscount = parseInt(success.data[0].discount_amount);
-            this.couponId = success.data[0].id;
+          this.couponDiscount = parseInt(success.data[0].discount_amount);
+          this.couponId = success.data[0].id;
         }
       },
       (error) => {
         this.error = error;
         console.log(error);
       }
-    )
+    );
   }
 
-  proceedToCheckout(){
-    this.orders_details.forEach(element => {
+  proceedToCheckout() {
+    this.orders_details.forEach((element) => {
       element.vat_amount = this.vatAmount;
       element.commission = this.commissionAmount;
     });
     var finalCart = {
-      "total_amount": this.subTotal - this.couponDiscount + this.vatAmount,
-      "buyer": this.userId,
-      "payment_type": "1",
-      "discount_coupon_amount": this.couponDiscount,
-      "discount_coupon": this.couponId,
-      "orders_details": this.orders_details,
-      "tracking_order": this.tracking_order
-    }
-    localStorage.setItem("finalCart", JSON.stringify(finalCart));
-    console.log(localStorage.getItem("finalCart"))
+      // total_amount: this.subTotal - this.couponDiscount + this.vatAmount,
+      // buyer: this.userId,
+      // payment_type: '1',
+      // discount_coupon_amount: this.couponDiscount,
+      // discount_coupon: this.couponId,
+      // orders_details: this.orders_details,
+      // tracking_order: this.tracking_order,
+      subtotal: this.subTotal,
+      discount: this.commissionAmount,
+      vat: this.vatAmount,
+      total: this.total_amount,
+    };
+    localStorage.setItem('finalCart', JSON.stringify(finalCart));
+    console.log(localStorage.getItem('finalCart'));
   }
 }
