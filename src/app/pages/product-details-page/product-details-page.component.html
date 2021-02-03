@@ -62,22 +62,22 @@
               <ng-template #pickAddressNa>Not Specified</ng-template>
             </p>
           </div>
-          <div class="quantity-input">
+          <!-- <div class="quantity-input">
             <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-secondary">
                 <img src="../../../assets/minus.svg" alt="" />
               </button>
-              <input #unit value="" min="1" max="" />
-              <!-- {{ orders_details[i].quantity }} {{ inCart.stock_quantity }} -->
+              <input #unit value="1" min="1" max="" />
               <button type="button" class="btn btn-secondary">
                 <img src="../../../assets/plus.svg" alt="" />
               </button>
             </div>
-          </div>
-          <br />
+          </div> -->
           <h5><b>Stock: </b> {{ prodcutDetails.stock_quantity }}</h5>
           <div class="cart-quote-btn-div">
-            <button class="add-to-cart-btn" mat-button>Add to Cart</button>
+            <button class="add-to-cart-btn" mat-button (click)="addToCart()">
+              Add to Cart
+            </button>
             &nbsp;
             <button
               class="req-for-quote-btn"

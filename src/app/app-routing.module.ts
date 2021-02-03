@@ -38,7 +38,7 @@ const routes: Routes = [
       import('./pages/cart-page/cart-page.module').then(
         (m) => m.CartPageModule
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'profile/:id',
@@ -159,7 +159,9 @@ const routes: Routes = [
   {
     path: 'wishlist',
     loadChildren: () =>
-      import('./pages/wishlist-page/wishlist-page.module').then((m) => m.WishlistPageModule),
+      import('./pages/wishlist-page/wishlist-page.module').then(
+        (m) => m.WishlistPageModule
+      ),
   },
   {
     path: '**',

@@ -29,6 +29,8 @@ export class ProductCardComponent implements OnInit {
     this.prodCartArray.push(prod);
     console.log(prod);
     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+
+    console.log(localStorage.getItem('prodCartArray'));
   }
 
   addToWishlist(prod_id) {
