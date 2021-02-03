@@ -101,6 +101,8 @@
           <button
             class="btn btn-primary btn-block proceed-btn w-100"
             style="outline: none"
+            [routerLink]="['/checkout']"
+            (click)="proceedToCheckout()"
           >
             Proceed
           </button>
