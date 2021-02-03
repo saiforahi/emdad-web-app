@@ -1,7 +1,7 @@
 <app-breadcrumbs></app-breadcrumbs>
 <section class="container">
     <div class="row" *ngIf="products">
-        <div [ngClass]="{'col-md-2':prodInRow6, 'col-md-3':!prodInRow6}" *ngFor="let product of products">
+        <div class="col-md-2" *ngFor="let product of products">
           <app-product-card [product]="product"></app-product-card>
         </div>
       </div>

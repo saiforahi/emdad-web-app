@@ -154,6 +154,11 @@ const routes: Routes = [
       import('./pages/rfq-page/rfq-page.module').then((m) => m.RfqPageModule),
   },
   {
+    path: 'wishlist',
+    loadChildren: () =>
+      import('./pages/wishlist-page/wishlist-page.module').then((m) => m.WishlistPageModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./pages/error-page/error-page.module').then(
