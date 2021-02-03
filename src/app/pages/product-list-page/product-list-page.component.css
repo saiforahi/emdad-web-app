@@ -3,6 +3,8 @@
   height: 500px;
   text-align: center;
   background: rgb(247, 65, 135);
+  background: url('../../../assets/images/banner.jpg') no-repeat;
+  background-size: 100%;
 }
 .banner img {
   width: 100%;

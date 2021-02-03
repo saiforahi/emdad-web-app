@@ -128,7 +128,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'order/details/:id',
+    path: 'order/details/:order_id',
     loadChildren: () =>
       import(
         './pages/buyer-order-history-details/buyer-order-history-details.module'
@@ -142,7 +142,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'checkout',
+    path: 'checkout/:cash_details',
     loadChildren: () =>
       import('./pages/checkout/checkout.module').then((m) => m.CheckoutModule),
   },
@@ -171,6 +171,13 @@ const routes: Routes = [
     path: 'rfq',
     loadChildren: () =>
       import('./pages/rfq-page/rfq-page.module').then((m) => m.RfqPageModule),
+  },
+  {
+    path: 'wishlist',
+    loadChildren: () =>
+      import('./pages/wishlist-page/wishlist-page.module').then(
+        (m) => m.WishlistPageModule
+      ),
   },
   {
     path: '**',
