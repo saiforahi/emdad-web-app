@@ -9,14 +9,20 @@ import {Quotations} from '../../shared/models/mocks/Quotations';
 })
 export class ManageQuotations implements OnInit {
   quotation_to_show:Quotation;
-  quotations:Quotation[]
+  quotations:any[]=[]
   @Output()quotation=new EventEmitter<Quotation>();
   constructor(private quotationService: QuotationService) {}
 
   ngOnInit(): void {
-    this.quotations=Quotations;
+    this.get_quotation_list();
   }
   show_quotation_details(quotation:Quotation){
     this.quotation.emit(quotation);
+  }
+  get_quotation_list(){
+    this.quotationService.get_user_quotation_list().subscribe(
+      (success)=>{console.log(success.data);this.quotations=success.data},
+      (error)=>{}
+    )
   }
 }

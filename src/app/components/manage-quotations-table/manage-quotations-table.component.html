@@ -1,4 +1,5 @@
-<table class="table">
+<div class="row p-4">
+  <table class="table">
     <thead>
         <tr>
           <th scope="col">Quotation ID</th>
@@ -12,10 +13,10 @@
       <tbody>
         <tr *ngFor="let quotation of quotations" class="highlighted">
             <th scope="row">{{quotation.id}}</th>
-            <td>{{quotation.date}}</td>
+            <td>{{quotation.quotation[0].message_date|date}}</td>
             <td>{{quotation.RFQ}}</td>
             <td>{{quotation.seller_name}}</td>
-            <td>{{quotation}}</td>
+            <td>{{quotation.is_accepted?"Accepted":"Not Accepted"}}</td>
             <td>
                 <button class="btn btn-primary" type="button" (click)="show_quotation_details(quotation)">view</button>
             </td>
@@ -32,3 +33,4 @@
         </tr> -->
       </tbody>
 </table>
+</div>
