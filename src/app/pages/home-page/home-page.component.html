@@ -34,7 +34,8 @@
                         </div>
                         <div class="col-md-4">
                             <p class="children" *ngFor="let subCatChild of subCatChildrens; let i = index">
-                                <span><a [routerLink]="['/products/category/', subCatChild.id]">{{subCatChild.name}}</a></span>
+                                <span><a
+                                        [routerLink]="['/products/category/', subCatChild.id]">{{subCatChild.name}}</a></span>
                             </p>
                         </div>
                     </div>
@@ -66,13 +67,17 @@
     </div>
     <div class="row">
         <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
-            <a [routerLink]="['products/category/', category.children[0].children[0].id]" *ngIf="category.children[0].children[0].name">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>{{category.children[0].children[0].name}}</span>
-                </div>
-            </a>
+            <span *ngIf="category.children">
+                <span *ngIf="category.children[0].children">
+                    <a [routerLink]="['products/category/', category.children[0].children[0].id]">
+                        <div class="cat-round-bg">
+                            <img src="../../../assets/popular-cat.svg" alt="">
+                            <img src="../../../assets/popular-cat-dark.svg" alt="">
+                            <span>{{category.children[0].children[0].name}}</span>
+                        </div>
+                    </a>
+                </span>
+            </span>
         </div>
     </div>
 </section>
@@ -82,7 +87,8 @@
     </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
     <div class="view-more-btn-div">
-        <button (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img src="../../../assets/down-carrot-light.svg" alt=""></button>
+        <button (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img
+                src="../../../assets/down-carrot-light.svg" alt=""></button>
     </div>
 </section>
 <!-- <section class="container">
