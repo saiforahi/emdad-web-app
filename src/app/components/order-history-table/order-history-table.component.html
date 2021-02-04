@@ -12,8 +12,8 @@
       <tbody>
         <tr *ngFor="let order of orders">
           <th scope="row">#{{order.order_code}}</th>
-          <td>{{order.order_payment[0].created_at | date}}</td>
-          <td>{{order.tracking_order[0].delivery_date|date}}</td>
+          <td>{{order.order_payment[0]!==undefined?order.order_payment[0].created_at:"" | date}}</td>
+          <td>{{order.tracking_order[0]!==undefined?order.tracking_order[0].delivery_date:"" | date}}</td>
           <td>{{order.total_amount}}</td>
           <td>
             <button class="btn btn-primary" type="button" [routerLink]="['/order/details/',order.id]">view</button>

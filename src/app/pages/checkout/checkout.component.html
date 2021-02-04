@@ -13,7 +13,7 @@
                         </div> -->
                         <div class="col-sm-10 p-4">
                             <div class="row" style="padding-top: 10px;">
-                                <p>Abu Raihan Zilani<br/>{{address}}</p>
+                                <p>{{user.full_name}}<br/>{{user.address}}</p>
                             </div>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
             </div>
             <div *ngIf="isCard" class="row card-body" style="margin-top: 40px; ">
                 <div class="form-group w-100 row">
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
                         <label class="form-label">Card Number</label>
                         <input class="form-control" type="text" placeholder="Enter Card Number..."/>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group w-100 row">
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <label class="form-label">Card Holder</label>
                         <input class="form-control" type="text" placeholder="Enter Card Holder name..."/>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="col-lg-3">
                         <label class="form-label">CVV</label>
                         <input class="form-control" type="text" placeholder="Enter CVV number"/>
-                    </div>
+                    </div> -->
                     <div class="col-lg-6">
                         <button class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
                     </div>

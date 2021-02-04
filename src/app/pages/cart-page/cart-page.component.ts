@@ -136,7 +136,7 @@ export class CartPageComponent implements OnInit {
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
-        pickup_address: element.pickup_address,
+        pickup_address: element.pickup_address.id,
         commission: parseFloat(element.commission),
       });
       var sellerFind = this.tracking_order.find(
@@ -271,16 +271,16 @@ export class CartPageComponent implements OnInit {
       vat: this.vatAmount,
       total: this.total_amount,
     };
-    let cart_json = {
-      total_amount: this.total_amount,
-      buyer: localStorage.getItem('uid'),
-      payment_type: this.payment_type,
-      discount_coupon_amount: this.discount_coupon_amount,
-      discount_coupon: this.discount_coupon,
-      order_details: this.orders_details,
-      tracking_order: this.tracking_order,
-    };
-    localStorage.setItem('cart_json', JSON.stringify(cart_json));
+    let cart_json={
+      total_amount:this.total_amount,
+      buyer:localStorage.getItem('uid'),
+      payment_type:this.payment_type,
+      discount_coupon_amount:this.discount_coupon_amount,
+      discount_coupon:this.discount_coupon,
+      orders_details:this.orders_details,
+      tracking_order:this.tracking_order
+    }
+    localStorage.setItem('cart_json',JSON.stringify(cart_json));
     localStorage.setItem('finalCart', JSON.stringify(finalCart));
     console.log(localStorage.getItem('cart_json'));
   }
