@@ -89,8 +89,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/reset-password-page/reset-password-page.module').then(
         (m) => m.ResetPasswordPageModule
-      ),
-    canActivate: [AuthGuard],
+      )
   },
   {
     path: 'subscription/plans',
