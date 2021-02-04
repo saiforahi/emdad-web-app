@@ -16,14 +16,6 @@ export class SearchForComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
-    // this.route.queryParams.subscribe((params) => {
-    //   console.log(params.query);
-    //   this.searchService.search(params.query).subscribe((item) => {
-    //     console.log(item);
-    //     this.searchService.searchProducts = item.data.results;
-    //   });
-    // });
   }
 
   search(query) {

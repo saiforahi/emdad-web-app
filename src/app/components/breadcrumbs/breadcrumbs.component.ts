@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
   @Input() directoryString = '';
+  @Input() searchLength?;
 
   constructor() { }
 
