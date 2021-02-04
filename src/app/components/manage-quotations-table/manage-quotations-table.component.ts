@@ -21,7 +21,7 @@ export class ManageQuotations implements OnInit {
   }
   get_quotation_list(){
     this.quotationService.get_user_quotation_list().subscribe(
-      (success)=>{console.log(success.data);this.quotations=success.data},
+      (success)=>{this.quotations=success.data;console.log(this.quotations);},
       (error)=>{}
     )
   }
