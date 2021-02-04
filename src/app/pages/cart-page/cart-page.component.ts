@@ -32,7 +32,7 @@ interface Orders_Details {
   seller: number;
   pickup_address?: number;
   vat_amount: number;
-  commission?: string;
+  commission?: number;
   product: number;
 }
 
@@ -50,20 +50,43 @@ interface Tracking_Order {
 })
 export class CartPageComponent implements OnInit {
   userId: any;
-  productInCart;
   subTotal: number = 0;
-  total_amount;
+  total_amount = 0;
   payment_type;
   discount_coupon_amount;
-  discount_coupon;
-  orders_details: Orders_Details[] = [];
+  discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
   msg: any;
   error: any;
   vatAmount;
   couponDiscount: any = 0;
+  couponType: any;
   couponId: any = '';
-  commissionAmount: string;
+  commissionAmount: number;
+  totalItems = 0;
+  // providing default value to prevnet error
+  productInCart = [
+    {
+      id: '',
+      name: '',
+      unit_price: '',
+      stock_quantity: '',
+      image1: '',
+      image2: '',
+    },
+  ];
+  // providing default value to prevnet error
+  orders_details: Orders_Details[] = [
+    {
+      quantity: 0,
+      unit_price: 0,
+      seller: 0,
+      pickup_address: 0,
+      vat_amount: 0,
+      commission: 0,
+      product: 0,
+    },
+  ];
 
   constructor(
     private authService: UserAuthService,
@@ -77,9 +100,9 @@ export class CartPageComponent implements OnInit {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    console.log('*****');
-    console.log(this.productInCart);
-    console.log('*****');
+    // console.log('*****');
+    // console.log(this.productInCart);
+    // console.log('*****');
 
     this.vat.getVat().subscribe((item) => {
       this.vatAmount = parseInt(item.data[0].percentage);
@@ -94,7 +117,7 @@ export class CartPageComponent implements OnInit {
       this.calcTotalPrice();
     });
 
-    console.log(this.orders_details, this.tracking_order);
+    // console.log(this.orders_details, this.tracking_order);
   }
 
   generateOrderData(productInCart) {
@@ -105,10 +128,10 @@ export class CartPageComponent implements OnInit {
         product: element.id,
         quantity: 1,
         seller: element.seller.id,
-        unit_price: element.unit_price,
+        unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
         pickup_address: element.pickup_address,
-        commission: element.commission,
+        commission: parseFloat(element.commission),
       });
       var sellerFind = this.tracking_order.find(
         (x) => x.seller === element.seller.id
@@ -131,40 +154,61 @@ export class CartPageComponent implements OnInit {
       }
     });
     this.generateOrderData(this.productInCart);
-    console.log(this.productInCart);
+    // console.log(this.productInCart);
     this.calcSubTotalPrice(this.orders_details);
     this.calcTotalPrice();
     localStorage.setItem('prodCartArray', JSON.stringify(this.productInCart));
-    console.log(this.orders_details, this.tracking_order);
+    // console.log(this.orders_details, this.tracking_order);
   }
 
   calcPrice(index): number {
-    return (
-      this.orders_details[index].unit_price *
-      this.orders_details[index].quantity
-    );
+    if (this.orders_details[index])
+      return (
+        (this.orders_details[index].unit_price +
+          this.orders_details[index].commission) *
+        this.orders_details[index].quantity
+      );
+    return 0;
   }
 
   calcSubTotalPrice(orders_details) {
     this.subTotal = 0;
+    this.totalItems = 0;
     orders_details.forEach((element) => {
       this.subTotal +=
-        parseFloat(element.unit_price) * parseFloat(element.quantity);
+        parseFloat(element.unit_price) * parseFloat(element.quantity) +
+        parseFloat(element.commission);
+      this.totalItems += element.quantity;
     });
   }
 
   calcTotalPrice() {
-    this.total_amount = this.subTotal - this.couponDiscount + this.vatAmount;
+    let vatAmount =
+      (this.subTotal - this.couponDiscount) * (this.vatAmount / 100);
+
+    let discountAmount = 0;
+    // flat type discount
+    if (this.couponType === 1) {
+      discountAmount = this.couponDiscount;
+      if (discountAmount > this.subTotal) discountAmount = this.subTotal;
+    }
+    // percentage type discount
+    if (this.couponType === 2) {
+      discountAmount = this.subTotal * (this.couponDiscount / 100);
+    }
+
+    if (this.subTotal > 0)
+      this.total_amount = this.subTotal - discountAmount + vatAmount;
   }
 
   addQuantity(index) {
     // increment only if quantity is <= stock_quantity
     if (
       this.orders_details[index].quantity + 1 <=
-      this.productInCart[index].stock_quantity
+      parseFloat(this.productInCart[index].stock_quantity)
     ) {
       this.orders_details[index].quantity += 1;
-      console.log(this.orders_details);
+      // console.log(this.orders_details);
       this.calcSubTotalPrice(this.orders_details);
       this.calcTotalPrice();
     }
@@ -174,24 +218,26 @@ export class CartPageComponent implements OnInit {
     // decrement only if quantity is >= 1
     if (this.orders_details[index].quantity - 1 >= 1) {
       this.orders_details[index].quantity -= 1;
-      console.log(this.orders_details);
+      // console.log(this.orders_details);
       this.calcSubTotalPrice(this.orders_details);
       this.calcTotalPrice();
     }
   }
 
-  applyCoupon(coupon_code) {
-    const coupon_section = 2; // 1 for buyer and 2 for seller
+  applyCoupon() {
+    let coupon_code = this.discount_coupon;
+    const coupon_section = 2; // 1 for subscription, 2 for order
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
-        console.log(success);
+        // console.log(success);
         if (success.data == undefined) {
           this.msg = success.message;
         } else {
-          this.msg =
-            'you got ' + success.data[0].discount_amount + ' discount.';
+          this.msg = `${success.data[0].coupon_title} applied!`;
           this.couponDiscount = parseInt(success.data[0].discount_amount);
           this.couponId = success.data[0].id;
+          this.couponType = success.data[0].coupon_type;
+          this.calcTotalPrice();
         }
       },
       (error) => {

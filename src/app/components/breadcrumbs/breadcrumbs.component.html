@@ -1,9 +1,9 @@
 <div class="breadcrumbs">
     <div class="container">
-        <div class="url d-inline-block">Home / <span>Categories</span></div>
+        <div class="url d-inline-block"><a [routerLink]="['/']">Home</a> / <span>{{directoryString | titlecase}}</span></div>
         <div class="d-inline-block float-right">
-            <span class="serach-result">Search Result - 104 items</span>
-            <a class="clear-btn" href="">Clear All</a>
+            <span class="serach-result" *ngIf="directoryString == 'Search Result'">Search Result - {{searchLength}} items</span>
+            <!-- <a class="clear-btn" *ngIf="directoryString == 'Search Result'">Clear All</a> -->
             <button mat-raised-button><i class="fas fa-bars"></i></button>
             <button mat-raised-button><i class="fas fa-th-large"></i></button>
             <div class="d-inline-block">
