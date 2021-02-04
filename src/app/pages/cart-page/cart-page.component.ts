@@ -58,7 +58,7 @@ export class CartPageComponent implements OnInit {
   tracking_order: Tracking_Order[] = [];
   msg: any;
   error: any;
-  vatAmount;
+  vatAmount = 0;
   couponDiscount: any = 0;
   couponType: any;
   couponId: any = '';
@@ -100,10 +100,12 @@ export class CartPageComponent implements OnInit {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    // console.log('*****');
+    // console.log('#####');
     // console.log(this.productInCart);
-    // console.log('*****');
+    // console.log('#####');
 
+    // too much repetead work
+    // need to update
     this.vat.getVat().subscribe((item) => {
       this.vatAmount = parseInt(item.data[0].percentage);
       this.generateOrderData(this.productInCart);
@@ -116,6 +118,10 @@ export class CartPageComponent implements OnInit {
       this.calcSubTotalPrice(this.orders_details);
       this.calcTotalPrice();
     });
+
+    this.generateOrderData(this.productInCart);
+    this.calcSubTotalPrice(this.orders_details);
+    this.calcTotalPrice();
 
     // console.log(this.orders_details, this.tracking_order);
   }
@@ -265,16 +271,16 @@ export class CartPageComponent implements OnInit {
       vat: this.vatAmount,
       total: this.total_amount,
     };
-    let cart_json={
-      total_amount:this.total_amount,
-      buyer:localStorage.getItem('uid'),
-      payment_type:this.payment_type,
-      discount_coupon_amount:this.discount_coupon_amount,
-      discount_coupon:this.discount_coupon,
-      order_details:this.orders_details,
-      tracking_order:this.tracking_order
-    }
-    localStorage.setItem('cart_json',JSON.stringify(cart_json));
+    let cart_json = {
+      total_amount: this.total_amount,
+      buyer: localStorage.getItem('uid'),
+      payment_type: this.payment_type,
+      discount_coupon_amount: this.discount_coupon_amount,
+      discount_coupon: this.discount_coupon,
+      order_details: this.orders_details,
+      tracking_order: this.tracking_order,
+    };
+    localStorage.setItem('cart_json', JSON.stringify(cart_json));
     localStorage.setItem('finalCart', JSON.stringify(finalCart));
     console.log(localStorage.getItem('cart_json'));
   }
