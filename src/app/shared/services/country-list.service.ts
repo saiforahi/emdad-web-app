@@ -3,26 +3,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root',
+  providedIn: 'root',
 })
 export class CountryListService {
-	countryUrl: string = 'http://127.0.0.1:8000/api/country/list';
-	cityUrl: string = '';
+  countryUrl: string = 'http://127.0.0.1:8000/api/country/list';
+  cityUrl: string = '';
 
-	constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-	allCountries(): Observable<any> {
-		return this.http.get(this.countryUrl);
-	}
+  allCountries(): Observable<any> {
+    return this.http.get(this.countryUrl);
+  }
 
-	allCities(id: number): Observable<any> {
-		this.cityUrl = `http://127.0.0.1:8000/api/city/list/${id}`;
-		return this.http.get(this.cityUrl);
-	}
+  allCities(id: number): Observable<any> {
+    this.cityUrl = `http://127.0.0.1:8000/api/city/list/${id}`;
+    return this.http.get(this.cityUrl);
+  }
 
-	getCountryOfCity(cityId): Observable<any>{
-		this.cityUrl = `http://localhost:8000/api/city/details/${cityId}`;
-		return this.http.get(this.cityUrl);
-	}
-	
+  getCountryOfCity(cityId): Observable<any> {
+    this.cityUrl = `http://localhost:8000/api/city/details/${cityId}`;
+    return this.http.get(this.cityUrl);
+  }
 }

@@ -1,78 +1,85 @@
-.login_btn{
-	background: #F49814;
-	border-radius: 5px;
-	margin-top: 40px;
-	font-family: Jost;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 35px;
-	/* identical to box height */
+.login_btn {
+  background: #f49814;
+  border-radius: 5px;
+  margin-top: 40px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  /* identical to box height */
 
-	text-align: center;
+  text-align: center;
 
-	color: #FFFFFF;
+  color: #ffffff;
 }
 .edit-button {
-	cursor: pointer;
+  cursor: pointer;
 }
-.page-header{
-	font-family: Jost;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 48px;
-	line-height: 69px;
+.page-header {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 69px;
 
-	/* #2B2B2B */
+  /* #2B2B2B */
 
-	color: #2B2B2B;
+  color: #2b2b2b;
 }
-.rounded-circle{
-	display: inline-block;
-    width: 100px;
-    background: #EFEFEF;
-    height: 100px;
-    position: relative;
-    text-align: center;
+.rounded-circle {
+  display: inline-block;
+  width: 100px;
+  background: #efefef;
+  height: 100px;
+  position: relative;
+  text-align: center;
 }
-.plus-icon{
-	position: absolute;
-    bottom: 0px;
-    right: 10px;
+.plus-icon {
+  /* position: absolute; */
+  position: relative;
+  margin-top: 70px;
+  padding-right: 200px;
+  /* bottom: 0px; */
+  /* right: 10px; */
 }
-.pro-img{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
+.pro-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
-.form-control{
-	background: #EFEFEF;
-	border-radius: 5px;
-	font-family: Jost;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 20px;
-	line-height: 29px;
-	/* identical to box height */
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  /* identical to box height */
 
-
-	color: black;
+  color: black;
 }
-.form-label{
-	font-family: Jost;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 20px;
-	line-height: 29px;
-	color: #2B2B2B;
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
 }
-.container-custom{
-    border-radius: 50%;
+.container-custom {
+  border-radius: 50%;
 }
 
+#profile_pic {
+  opacity: 0;
+}
 
-
+.imageUploadButton {
+  position: relative;
+}
