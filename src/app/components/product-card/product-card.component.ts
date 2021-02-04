@@ -10,7 +10,7 @@ import { WishlistService } from '../../shared/services/wishlist.service';
 export class ProductCardComponent implements OnInit {
   @Input() product;
   defaultImage =
-    'http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png';
+    '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
 
   constructor(private wishlist: WishlistService,
