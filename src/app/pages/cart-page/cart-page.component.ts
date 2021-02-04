@@ -130,7 +130,7 @@ export class CartPageComponent implements OnInit {
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
-        pickup_address: element.pickup_address,
+        pickup_address: element.pickup_address.id,
         commission: parseFloat(element.commission),
       });
       var sellerFind = this.tracking_order.find(
@@ -271,7 +271,7 @@ export class CartPageComponent implements OnInit {
       payment_type:this.payment_type,
       discount_coupon_amount:this.discount_coupon_amount,
       discount_coupon:this.discount_coupon,
-      order_details:this.orders_details,
+      orders_details:this.orders_details,
       tracking_order:this.tracking_order
     }
     localStorage.setItem('cart_json',JSON.stringify(cart_json));

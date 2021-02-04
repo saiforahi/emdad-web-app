@@ -47,4 +47,12 @@ export class OrderService {
   get_buyer_order_details(order_id:string):Observable<any>{
     return this.http.get(config.base_url+"api/buyer/order/details/"+order_id+"/",this.httpOptions)
   }
+
+  add_payment(data):Observable<any>{
+    return this.http.post(config.base_url+"api/order/payment/trans/",data,this.httpOptions)
+  }
+
+  verify_payment(data):Observable<any>{
+    return this.http.post(config.base_url+"api/order/payment/check/",data,this.httpOptions)
+  }
 }

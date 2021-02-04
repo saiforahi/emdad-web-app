@@ -188,6 +188,7 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  { path: 'payment-verify', loadChildren: () => import('./pages/payment-verify/payment-verify.module').then(m => m.PaymentVerifyModule) },
   {
     path: '**',
     loadChildren: () =>
