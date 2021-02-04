@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 import { CountryListService } from '../../shared/services/country-list.service';
 import { Order } from 'src/app/shared/models/Order.model';
-import { Quotation } from '../../shared/models/quotation.model'
+import { Quotation } from '../../shared/models/quotation.model';
 
 @Component({
   selector: 'app-profile-page',
@@ -26,23 +26,23 @@ export class ProfilePageComponent implements OnInit {
   show_profile_form;
   show_order_history;
   show_manage_quotations;
-  channel_quotation:Quotation
+  channel_quotation: Quotation;
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
     private countryList: CountryListService
-  ) { 
-    this.show_change_pass_form=false;
-    this.show_profile_form=true;
-    this.show_order_history=false;
-    this.show_manage_quotations=false;
+  ) {
+    this.show_change_pass_form = false;
+    this.show_profile_form = true;
+    this.show_order_history = false;
+    this.show_manage_quotations = false;
   }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
-    this.authService.uName.subscribe(data => {
-        this.userMail = data;
-    })
+    this.authService.uName.subscribe((data) => {
+      this.userMail = data;
+    });
     if (this.userId == localStorage.getItem('uid')) {
       this.getCountries();
       this.authService.getUser(this.userId).subscribe((data) => {
@@ -58,41 +58,41 @@ export class ProfilePageComponent implements OnInit {
       alert('access is denied');
     }
   }
-  pass_quotation_to_modal(quotation:Quotation){
-    this.channel_quotation=quotation
-    document.getElementById('quotationDetails').style.display="block"
+  pass_quotation_to_modal(quotation: Quotation) {
+    this.channel_quotation = quotation;
+    document.getElementById('quotationDetails').style.display = 'block';
   }
-  logout(){
+  logout() {
     this.authService.logout();
   }
   getCountries() {
     this.countryList.allCountries().subscribe(
       (data) => {
         this.country = data.data;
-        console.log(data.data)
+        console.log(data.data);
         this.countries = ['select one', ...data.data];
       },
       (err) => console.error(err)
     );
   }
-  show_logout_modal(){
-    document.getElementById('profileLogout').style.display="block"
+  show_logout_modal() {
+    document.getElementById('profileLogout').style.display = 'block';
   }
   onCountryChange(countryId) {
     this.countryList.allCities(countryId).subscribe(
       (data) => {
         this.city = data.data;
-        console.log(data.data)
+        console.log(data.data);
         this.cities = ['select one', ...data.data];
       },
       (err) => console.error(err)
     );
   }
 
-  getCountryOfCity(cityId){
-    this.countryList.getCountryOfCity(cityId).subscribe(item =>{
+  getCountryOfCity(cityId) {
+    this.countryList.getCountryOfCity(cityId).subscribe((item) => {
       this.country = item;
-    })
+    });
   }
 
   setEditProfile(editProfileState: boolean) {
