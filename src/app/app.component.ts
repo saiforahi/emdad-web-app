@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { UserAuthService } from './shared/services/user-auth.service';
 import { GetCategoryService } from './shared/services/get-category.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private UserAuthService: UserAuthService,
-    private getCategory: GetCategoryService
+    private getCategory: GetCategoryService,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class AppComponent implements OnInit {
     this.UserAuthService.uGroup.subscribe((data) => {
       if (data != null) {
         this.uGroup = data;
+        // this.openSnackBar("You have logged in successfuly.", "ok")
         console.log('group', this.uGroup);
       }
     });
@@ -50,8 +53,15 @@ export class AppComponent implements OnInit {
     });
   }
 
+  openSnackBar(message, action) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
   logout() {
     this.UserAuthService.logout();
+    this.openSnackBar("You have been logged out.", "ok")
   }
   show_lang_drop(){
     if(document.getElementById('lang-drop-down').classList.contains('show')){

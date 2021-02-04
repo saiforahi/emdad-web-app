@@ -1,64 +1,48 @@
 <section>
-  <app-breadcrumbs [directoryString]="prodcutDetails.category.name+' / '+prodcutDetails.name"></app-breadcrumbs>
+  <app-breadcrumbs *ngIf="prodcutDetails" [directoryString]="prodcutDetails.category.name+' / '+prodcutDetails.name">
+  </app-breadcrumbs>
   <div style="background: #fff">
     <div class="container">
       <div class="row prodcutDetails" *ngIf="prodcutDetails">
         <div class="col-md-6">
           <div class="img-slider-div">
             <pinch-zoom>
-              <img
-                class="prod-img img-fluid"
-                [src]="sliderImgArray[currentImg]"
-                alt="prod img"
-              />
+              <img class="prod-img img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img" />
             </pinch-zoom>
             <div class="slider-btn-div">
-              <button
-                mat-raised-button
-                (click)="prevImg()"
-                [disabled]="prevBtnDisabled"
-              >
+              <button mat-raised-button (click)="prevImg()" [disabled]="prevBtnDisabled">
                 <img src="../../../assets/left-arrow.svg" alt="" />
               </button>
-              <button
-                mat-raised-button
-                (click)="nextImg()"
-                [disabled]="nextBtnDisabled"
-              >
+              <button mat-raised-button (click)="nextImg()" [disabled]="nextBtnDisabled">
                 <img src="../../../assets/right-arrow.svg" alt="" />
               </button>
             </div>
           </div>
           <div class="wishlist-review-div">
-            <button class="mb-3" mat-button>
+            <button class="mb-3" mat-button (click)="addToWishlist(prodcutDetails.id)">
               <img src="../../../assets/wishlist-icon.svg" alt="" />Add to
               Wishlist
             </button>
             <button class="mb-3" mat-button>
               <img src="../../../assets/review-icon.svg" alt="" />Customer
-              Review <span>(02)</span>
+              <!-- Review <span *ngIf="commentlist">({{commentlist.data.length - 1}})</span> -->
             </button>
           </div>
           <div class="prod-delivery-info">
             <p>
               <i class="fas fa-info-circle"></i> ({{
-                prodcutDetails.ex_works_lead_time
+              prodcutDetails.ex_works_lead_time
               }}) days Ex-works
-              <ng-template
-                *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa"
-                >{{ prodcutDetails.pickup_address[0].city }}</ng-template
-              >
+              <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa">{{
+                prodcutDetails.pickup_address[0].city }}</ng-template>
               <ng-template #cityNa>(Not Specified)</ng-template>
             </p>
             <p>
               <b>Shop Pickup Location: </b>
-              <ng-template
-                *ngIf="
+              <ng-template *ngIf="
                   prodcutDetails.pickup_address.length > 0;
                   else pickAddressNa
-                "
-                >{{ prodcutDetails.pickup_address[0].address }}</ng-template
-              >
+                ">{{ prodcutDetails.pickup_address[0].address }}</ng-template>
               <ng-template #pickAddressNa>Not Specified</ng-template>
             </p>
           </div>
@@ -79,11 +63,7 @@
               Add to Cart
             </button>
             &nbsp;
-            <button
-              class="req-for-quote-btn"
-              mat-button
-              [routerLink]="['/rfq/']"
-            >
+            <button class="req-for-quote-btn" mat-button [routerLink]="['/rfq/']">
               <i class="far fa-file-excel"></i> Request for Quotation
             </button>
           </div>
@@ -94,12 +74,8 @@
           </p>
           <p class="prod-price">Unit Price: {{ prodcutDetails.unit_price }}</p>
           <p class="seller-name">
-            <span>Seller Name: </span
-            ><a
-              [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
-              style="text-decoration: underline; color: #2b2b2b"
-              >{{ prodcutDetails.seller.full_name | titlecase }}</a
-            >
+            <span>Seller Name: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+              style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.full_name | titlecase }}</a>
           </p>
           <p class="brand-name">
             <span>Brand Name: </span>
@@ -124,15 +100,12 @@
   <div class="similar-product-holder">
     <div class="container">
       <h4 class="similar-prod-header">Similar Products</h4>
-      <ngb-carousel
-        #carousel
-        [showNavigationArrows]="showNavigationArrows"
-        [showNavigationIndicators]="showNavigationIndicators"
-      >
+      <ngb-carousel #carousel [showNavigationArrows]="showNavigationArrows"
+        [showNavigationIndicators]="showNavigationIndicators">
         <p *ngFor="let product of relatedProducts">{{ product.name }}</p>
         <ng-template ngbSlide *ngFor="let image of sliderImgArray">
           <div class="row">
-            <div class="col-md-2" *ngFor="let product of relatedProducts">
+            <div class="col-md-2" *ngFor="let product of relatedProducts | slice:0:6;">
               <app-product-card [product]="product"></app-product-card>
             </div>
           </div>
@@ -194,7 +167,7 @@
         <button mat-raised-button (click)="show_review_modal()">
           Submit yor review
         </button>
-        <app-product-review-modal></app-product-review-modal>
+        <app-product-review-modal [prodcutDetails]="prodcutDetails"></app-product-review-modal>
       </div>
     </div>
   </div>

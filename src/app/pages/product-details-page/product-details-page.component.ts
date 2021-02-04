@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../shared/services/get-product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { WishlistService } from 'src/app/shared/services/wishlist.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -26,10 +29,14 @@ export class ProductDetailsPageComponent implements OnInit {
   ];
   carousel: any;
   relatedProducts: any;
+  commentlist: Object;
 
   constructor(
     private getProduct: GetProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private wishlist: WishlistService,
+    private snackBar: MatSnackBar,
+    private comments: CustomerReviewService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +55,10 @@ export class ProductDetailsPageComponent implements OnInit {
           this.relatedProducts = item.data.results;
           // console.log('prod list:' ,this.relatedProducts)
         });
+      this.comments.getComments(this.prodcutDetails.id).subscribe((item) => {
+        this.commentlist = item;
+        console.log(this.commentlist)
+      });
     });
   }
 
@@ -87,10 +98,23 @@ export class ProductDetailsPageComponent implements OnInit {
       // console.log(this.prodCartArray);
       // console.log('#####');
       localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+      this.openSnackBar("Product added to cart!", "ok");
     }
   }
 
   show_review_modal() {
     document.getElementById('prodReviewModal').style.display = 'block';
+  }
+
+  addToWishlist(prod_id) {
+    this.wishlist.addTowishlist(prod_id).subscribe((item) => {
+      this.openSnackBar('Added to wishlist successfuly!', 'OK');
+    });
+  }
+
+  openSnackBar(message, action) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 }

@@ -72,7 +72,7 @@
                     <p><strong>Account Number: 702 555-0122</strong></p>
                 </div>
                 <div class="row">
-                    <button class="btn btn-primary me-md-2 save-btn col-lg-6" type="button">Proceed</button>
+                    <button class="btn btn-primary me-md-2 save-btn col-lg-6" type="button" (click)="make_order()" >Proceed</button>
                 </div>
             </div>
             <div *ngIf="isCard" class="row card-body" style="margin-top: 40px; ">
@@ -96,7 +96,7 @@
                         <input class="form-control" type="text" placeholder="Enter CVV number"/>
                     </div>
                     <div class="col-lg-6">
-                        <button class="btn btn-block save-btn" type="button">Proceed</button>
+                        <button class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
                     </div>
                 </div>
             </div>

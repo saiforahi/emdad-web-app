@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { OrderService } from 'src/app/shared/services/order.service';
 import {UserAuthService} from '../../shared/services/user-auth.service'
 interface Cash_Details {
   subtotal: number;
@@ -19,12 +20,13 @@ export class CheckoutComponent implements OnInit {
   new_address:boolean;
   cash_details:any;
   address:any;
-  constructor(private route:ActivatedRoute,private authService: UserAuthService) { }
+  constructor(private route:ActivatedRoute,private authService: UserAuthService,private orderService:OrderService) { }
 
   ngOnInit(): void {
     this.isCard=true;
     this.isWired=false;
     this.cash_details=JSON.parse(localStorage.getItem('finalCart'))
+    console.log(this.cash_details)
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
 			this.address = data.data.address;
 			// if country is already set then load the cities of the country
@@ -41,4 +43,10 @@ export class CheckoutComponent implements OnInit {
   show_address_form(){
     this.new_address=!this.new_address
   }
+  make_order(){
+    console.log(JSON.parse(localStorage.getItem('cart_json')))
+    this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe(
+      (success)=>{console.log(success.data)}
+    )
+  } 
 }
