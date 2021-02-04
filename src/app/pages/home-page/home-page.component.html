@@ -8,7 +8,7 @@
 <section class="categories">
     <div class="container">
         <div class="row">
-            <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
+            <div class="col-md-2" *ngFor="let category of categories | slice:0:5; let i = index">
                 <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/cat-icon.svg" alt="">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-2">
+            <div class="col-md-2">
                 <div class="single-category" [routerLink]="['/']">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/Category.svg" alt="">
@@ -49,7 +49,7 @@
                         All Categories
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>
@@ -65,57 +65,12 @@
         Popular Categories
     </div>
     <div class="row">
-        <div class="col-md-2">
-            <a [routerLink]="['']">
+        <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
+            <a [routerLink]="['products/category/', category.children[0].children[0].id]" *ngIf="category.children[0].children[0].name">
                 <div class="cat-round-bg">
                     <img src="../../../assets/popular-cat.svg" alt="">
                     <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['']">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['']">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['']">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['']">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['']">
-                <div class="cat-round-bg">
-                    <img src="../../../assets/popular-cat.svg" alt="">
-                    <img src="../../../assets/popular-cat-dark.svg" alt="">
-                    <span>Stationary & Office</span>
+                    <span>{{category.children[0].children[0].name}}</span>
                 </div>
             </a>
         </div>

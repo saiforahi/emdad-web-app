@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { GetProductService } from '../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../shared/services/get-category.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-list-page',
@@ -32,7 +33,8 @@ export class ProductListPageComponent implements OnInit {
     private getProduct: GetProductService,
     private router: Router,
     private route: ActivatedRoute,
-    private getCategories: GetCategoryService
+    private getCategories: GetCategoryService,
+    private snackBar: MatSnackBar,
   ) {
     this.route.paramMap.subscribe((params) => {
       this.ngOnInit();
@@ -77,6 +79,29 @@ export class ProductListPageComponent implements OnInit {
     this.router.navigate(['/products/category/', ChildCatId]);
     localStorage.setItem("expandedSubCat", subCatId);
     localStorage.setItem("expandedCat", catId);
+  }
+
+  getNextBatchproduct() {
+    if (this.nextBatchProdLink != null) {
+      //Do your action here
+      console.log('reached bootm');
+      this.getProduct
+        .getNextBatchProduct(this.nextBatchProdLink)
+        .subscribe((item) => {
+          this.products = [...this.products, ...item.data.results];
+          this.nextBatchProdLink = item.data.links.next;
+        });
+    }
+    if (this.nextBatchProdLink == null) {
+      this.prodEnd = true;
+      this.openSnackBar('No more product to show!', 'OK');
+    }
+  }
+
+  openSnackBar(message, action) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 
   // @HostListener('window:scroll')
