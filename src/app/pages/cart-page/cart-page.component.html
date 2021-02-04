@@ -15,7 +15,7 @@
               src="http://localhost:8000{{ product.image1 }}"
             />
             <div class="media-body pt-4 pb-5 pl-5 row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <h5 class="mt-0 mb-1">{{ product.name }}</h5>
                 <p class="sub-text" *ngIf="product.delivery_method === 1">
                   (DDP)
@@ -29,7 +29,9 @@
                   ><img src="../../../assets/minus.svg"
                 /></span>
                 <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
-                  <p class="sub-text">{{ orders_details[i].quantity }}</p>
+                  <p class="sub-text" *ngIf="orders_details[i]">
+                    {{ orders_details[i].quantity }}
+                  </p>
                 </div>
                 <span (click)="addQuantity(i)" class="custom-btn"
                   ><img src="../../../assets/plus.svg"
@@ -58,35 +60,44 @@
             </div> -->
       <div class="d-flex justify-content-between">
         <div>
-          <p>Sub Total ({{ orders_details.length }} items)</p>
+          <p>Sub Total ({{ totalItems }} items)</p>
         </div>
         <div>${{ subTotal }}</div>
       </div>
       <div class="d-flex justify-content-between">
         <div>
           <input
-            #couponInput
+            [(ngModel)]="discount_coupon"
             type="text"
             class="form-control w-100 col"
-            placeholder="Apply discount coupon(not working)"
+            placeholder="Apply discount coupon"
           />
         </div>
         <div>
-          <button class="btn btn-primary btn-block proceed-btn">Apply</button>
+          <button
+            class="btn btn-primary btn-block proceed-btn"
+            (click)="applyCoupon()"
+          >
+            Apply
+          </button>
         </div>
       </div>
+      <div *ngIf="msg">
+        <span>{{ msg }}</span>
+      </div>
       <hr />
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between" *ngIf="couponDiscount > 0">
         <div>
           <p>Discount</p>
         </div>
-        <div>${{ commissionAmount }}</div>
+        <div *ngIf="couponType === 1">${{ couponDiscount }}</div>
+        <div *ngIf="couponType === 2">{{ couponDiscount }}%</div>
       </div>
       <div class="d-flex justify-content-between">
         <div>
           <p>Vat</p>
         </div>
-        <div>${{ vatAmount }}</div>
+        <div>{{ vatAmount }}%</div>
       </div>
       <div class="d-flex justify-content-between">
         <div>
