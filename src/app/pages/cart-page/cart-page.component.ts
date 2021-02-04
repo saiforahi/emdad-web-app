@@ -58,7 +58,7 @@ export class CartPageComponent implements OnInit {
   tracking_order: Tracking_Order[] = [];
   msg: any;
   error: any;
-  vatAmount;
+  vatAmount = 0;
   couponDiscount: any = 0;
   couponType: any;
   couponId: any = '';
@@ -104,6 +104,8 @@ export class CartPageComponent implements OnInit {
     // console.log(this.productInCart);
     // console.log('*****');
 
+    // too much repetead work
+    // need to update
     this.vat.getVat().subscribe((item) => {
       this.vatAmount = parseInt(item.data[0].percentage);
       this.generateOrderData(this.productInCart);
@@ -116,6 +118,10 @@ export class CartPageComponent implements OnInit {
       this.calcSubTotalPrice(this.orders_details);
       this.calcTotalPrice();
     });
+
+    this.generateOrderData(this.productInCart);
+    this.calcSubTotalPrice(this.orders_details);
+    this.calcTotalPrice();
 
     // console.log(this.orders_details, this.tracking_order);
   }
