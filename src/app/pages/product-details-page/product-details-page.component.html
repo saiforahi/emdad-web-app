@@ -1,5 +1,5 @@
 <section>
-  <app-breadcrumbs></app-breadcrumbs>
+  <app-breadcrumbs [directoryString]="prodcutDetails.category.name+' / '+prodcutDetails.name"></app-breadcrumbs>
   <div style="background: #fff">
     <div class="container">
       <div class="row prodcutDetails" *ngIf="prodcutDetails">
