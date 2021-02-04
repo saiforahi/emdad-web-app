@@ -4,6 +4,7 @@ import { ResetPasswordPageComponent } from './reset-password-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordFormComponent } from '../../components//reset-password-form/reset-password-form.component';
+import { MaterialModule } from '../../material.module';
 
 const routes: Routes = [
   { path: '', component: ResetPasswordPageComponent, pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule
   ],
 })
 export class ResetPasswordPageModule {}
