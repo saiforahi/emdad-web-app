@@ -13,8 +13,10 @@ export class ProductCardComponent implements OnInit {
     'http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png';
   prodCartArray = [];
 
-  constructor(private wishlist: WishlistService,
-    private snackBar: MatSnackBar) {}
+  constructor(
+    private wishlist: WishlistService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,9 +36,9 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToWishlist(prod_id) {
-    this.wishlist.addTowishlist(prod_id).subscribe(item => {
+    this.wishlist.addTowishlist(prod_id).subscribe((item) => {
       this.openSnackBar('Added to wishlist successfuly!', 'OK');
-    })
+    });
   }
 
   openSnackBar(message, action) {

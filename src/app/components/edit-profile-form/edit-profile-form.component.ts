@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   HttpClient,
   HttpHeaders,
@@ -24,10 +25,12 @@ export class EditProfileFormComponent implements OnInit {
   error;
   country;
   profile_pic: any = undefined;
+  new_profile_pic: any = undefined;
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
-    private countryList: CountryListService
+    private countryList: CountryListService,
+    private snackBar: MatSnackBar
   ) {}
 
   @Input() userId;
@@ -61,14 +64,19 @@ export class EditProfileFormComponent implements OnInit {
     // }
   }
   saveData() {
-    console.log('***');
-    console.log(this.editUserInfo);
-    console.log('***');
+    // console.log('***');
+    // console.log(this.editUserInfo);
+    // console.log('***');
     this.updateUserInfo();
-    // this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
-    // 	(success) => console.log(success),
-    // 	(error) => console.error(error)
-    // );
+    console.log(this.editUserInfo);
+    delete this.editUserInfo.profile_pic;
+    this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
+      (success) => {
+        console.log(success);
+        this.openSnackBar('Profile Updated!', 'OK');
+      },
+      (error) => console.error(error)
+    );
     localStorage.setItem('user_info', this.editUserInfo);
   }
   getCountries() {
@@ -100,5 +108,27 @@ export class EditProfileFormComponent implements OnInit {
 
   updateUserInfo() {
     this.updateEditedUserInfo.emit(this.editUserInfo);
+  }
+
+  uploadProfilePic(event: any) {
+    let file = event.target.files[0];
+
+    let profilePic = new FormData();
+    profilePic.append('profile_pic', file, file.name);
+
+    // upload the picture immidiately
+    this.authService.updateProfile(this.userId, profilePic).subscribe(
+      (success: any) => {
+        this.openSnackBar('Profile Picture Updated!', 'OK');
+        this.profile_pic = 'http://localhost:8000' + success.data.profile_pic;
+      },
+      (error) => console.error(error)
+    );
+  }
+
+  openSnackBar(message, action) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 }
