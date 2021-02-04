@@ -100,9 +100,9 @@ export class CartPageComponent implements OnInit {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    // console.log('*****');
+    // console.log('#####');
     // console.log(this.productInCart);
-    // console.log('*****');
+    // console.log('#####');
 
     // too much repetead work
     // need to update
@@ -271,16 +271,16 @@ export class CartPageComponent implements OnInit {
       vat: this.vatAmount,
       total: this.total_amount,
     };
-    let cart_json={
-      total_amount:this.total_amount,
-      buyer:localStorage.getItem('uid'),
-      payment_type:this.payment_type,
-      discount_coupon_amount:this.discount_coupon_amount,
-      discount_coupon:this.discount_coupon,
-      order_details:this.orders_details,
-      tracking_order:this.tracking_order
-    }
-    localStorage.setItem('cart_json',JSON.stringify(cart_json));
+    let cart_json = {
+      total_amount: this.total_amount,
+      buyer: localStorage.getItem('uid'),
+      payment_type: this.payment_type,
+      discount_coupon_amount: this.discount_coupon_amount,
+      discount_coupon: this.discount_coupon,
+      order_details: this.orders_details,
+      tracking_order: this.tracking_order,
+    };
+    localStorage.setItem('cart_json', JSON.stringify(cart_json));
     localStorage.setItem('finalCart', JSON.stringify(finalCart));
     console.log(localStorage.getItem('cart_json'));
   }
