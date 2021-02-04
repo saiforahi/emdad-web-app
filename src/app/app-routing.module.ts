@@ -119,6 +119,7 @@ const routes: Routes = [
       import('./pages/checkout-page/checkout-page.module').then(
         (m) => m.CheckoutPageModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'orders',
@@ -126,6 +127,7 @@ const routes: Routes = [
       import('./pages/seller-orders-page/seller-orders-page.module').then(
         (m) => m.SellerOrdersPageModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'order/details/:order_id',
@@ -133,6 +135,7 @@ const routes: Routes = [
       import(
         './pages/buyer-order-history-details/buyer-order-history-details.module'
       ).then((m) => m.BuyerOrderHistoryDetailsModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'track-orders',
@@ -140,11 +143,13 @@ const routes: Routes = [
       import('./pages/track-order/track-order.module').then(
         (m) => m.TrackOrderModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'checkout',
     loadChildren: () =>
       import('./pages/checkout/checkout.module').then((m) => m.CheckoutModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'support-ticket',
@@ -181,6 +186,7 @@ const routes: Routes = [
       import('./pages/wishlist-page/wishlist-page.module').then(
         (m) => m.WishlistPageModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
