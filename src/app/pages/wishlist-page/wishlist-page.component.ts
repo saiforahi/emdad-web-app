@@ -19,7 +19,7 @@ export class WishlistPageComponent implements OnInit {
       var initProducts = item.data[0];
       initProducts.forEach(element => {
         console.log(element.product)
-        this.product.productDetails(element.product).subscribe(item2 => {
+        this.product.productDetails(element.product.id).subscribe(item2 => {
           this.products.push(item2.data[0]);
           console.log(item2.data[0])
         })

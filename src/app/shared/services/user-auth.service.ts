@@ -126,6 +126,7 @@ export class UserAuthService {
     this.uName.next(null);
     this.uId.next(null);
     this.uGroup.next(null);
+    localStorage.clear();
     this.router.navigate(['/']);
   }
   refreshToken() {

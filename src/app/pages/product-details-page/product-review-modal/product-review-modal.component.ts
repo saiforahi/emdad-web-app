@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
-
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-product-review-modal',
   templateUrl: './product-review-modal.component.html',
@@ -15,7 +15,7 @@ export class ProductReviewModalComponent implements OnInit {
   constructor(
     private comments: CustomerReviewService,
     private user: UserAuthService,
-    
+    private router:Router,
     private snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
@@ -30,10 +30,10 @@ export class ProductReviewModalComponent implements OnInit {
 
   addComments(review){
     // const data = {"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}
-    this.comments.addComments({"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}).subscribe(item => {
+    this.comments.addComments({"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}).subscribe((item:any) => {
       // console.log(item.message);
       document.getElementById('prodReviewModal').style.display="none";
-      this.openSnackBar(item.message, "ok");
+      this.openSnackBar("Comment Added!", "ok");
     })
   }
 

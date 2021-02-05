@@ -131,7 +131,7 @@
                   <img src="../assets/Danger.svg" alt="" />Raise a support
                   ticket
                 </button>
-                <button *ngIf="loggedInUser" ngbDropdownItem>
+                <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem>
                   <img alt="" />Logout
                 </button>
               </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Component({
@@ -32,6 +33,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
         console.log(success)
         if(success.success==="True"){
           this.hide_buyer_registration();
+          swal("Succeed!",this.msg,"success")
         }
       },
       error => this.error = error
