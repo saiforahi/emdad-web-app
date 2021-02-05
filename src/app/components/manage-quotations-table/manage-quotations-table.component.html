@@ -28,7 +28,9 @@
         <td>
           {{ quotation.seller !== undefined ? quotation.seller.full_name : "" }}
         </td>
-        <td>{{ quotation.status === 1 ? "Pending" : "Accepted" }}</td>
+        <td *ngIf="quotation.status === 1">Initiated</td>
+        <td *ngIf="quotation.status === 2">Sent</td>
+        <td *ngIf="quotation.status === 3">Completed</td>
         <td>
           <button
             class="btn btn-primary"
