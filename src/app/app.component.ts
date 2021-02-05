@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     this.UserAuthService.uGroup.subscribe((data) => {
       if (data != null) {
         this.uGroup = data;
-        // this.openSnackBar("You have logged in successfuly.", "ok")
+        // this.openSnackBar("You have logged in successfuly.", "ok");
         console.log('group', this.uGroup);
       }
     });
