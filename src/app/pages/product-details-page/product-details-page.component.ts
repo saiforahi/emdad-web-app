@@ -57,7 +57,7 @@ export class ProductDetailsPageComponent implements OnInit {
         });
       this.comments.getComments(this.prodcutDetails.id).subscribe((item) => {
         this.commentlist = item;
-        console.log(this.commentlist)
+        console.log(this.commentlist);
       });
     });
   }
