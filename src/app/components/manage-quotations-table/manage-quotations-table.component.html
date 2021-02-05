@@ -85,7 +85,7 @@
         <p>RFQ ID: {{ quotation.rfq[0].id }}</p>
         <p>Date: {{ formatDate(quotation.created_at) }}</p>
         <p>Product Name: {{ quotation.product.name }}</p>
-        <p>Seller Name: {{ quotation.seller.name }}</p>
+        <p>Seller Name: {{ quotation.seller.full_name }}</p>
         <p>Quantity: {{ quotation.quantity }}</p>
         <p>Unit Price: {{ quotation.product.unit_price }}</p>
         <p>Total Price: {{ quotation.total_price }}</p>
