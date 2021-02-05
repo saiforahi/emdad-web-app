@@ -49,8 +49,10 @@ export class EditProfileFormComponent implements OnInit {
       console.log('#####');
       console.log(this.editUserInfo);
       console.log('#####');
-      this.profile_pic =
-        'http://localhost:8000' + this.editUserInfo.profile_pic;
+      // if profile_pic is a string(path), then set the value
+      if (typeof this.editUserInfo.profile_pic === 'string')
+        this.profile_pic =
+          'http://localhost:8000' + this.editUserInfo.profile_pic;
       // if country is already set then load the cities of the country
       if (this.editUserInfo.country) {
         this.onCountryChange(this.editUserInfo.country);

@@ -58,10 +58,13 @@ export class ProfilePageComponent implements OnInit {
       alert('access is denied');
     }
   }
-  pass_quotation_to_modal(quotation: Quotation) {
-    this.channel_quotation = quotation;
-    document.getElementById('quotationDetails').style.display = 'block';
-  }
+  // pass_quotation_to_modal(quotation: Quotation) {
+  //   console.log('$$$$$$$$$');
+  //   console.log(quotation);
+  //   console.log('$$$$$$$$$');
+  //   this.channel_quotation = quotation;
+  //   document.getElementById('quotationDetails').style.display = 'block';
+  // }
   logout() {
     this.authService.logout();
   }

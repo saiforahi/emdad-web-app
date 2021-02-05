@@ -1,26 +1,96 @@
 <div class="container">
-	<div class="row">
-		<h3 style="margin-left: 20px;">My Profile</h3>
-	</div>
-	<div class="row">    
-		<div class="col-md-4">
-			<div class="card-body" style="background: #FFFFFF;">
-				<ul class="list-group list-group-flush">
-					<li [ngClass]="(show_profile_form===true)?'list-group-item active':'list-group-item'" (click)=" show_change_pass_form=false;show_profile_form=!show_profile_form;show_order_history=false;show_manage_quotations=false">Profile Settings</li>
-					<li [ngClass]="(show_change_pass_form===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=!show_change_pass_form;show_order_history=false;show_manage_quotations=false" >Change Password</li>
-					<li [ngClass]="(show_order_history===true)?'list-group-item active':'list-group-item'" (click)="show_profile_form=false;show_change_pass_form=false;show_order_history=!show_order_history;show_manage_quotations=false" class="list-group-item">Order History</li>
-					<li [ngClass]="(show_manage_quotations===true)?'list-group-item active':'list-group-item'" (click)="show_manage_quotations=!show_manage_quotations;show_change_pass_form=false;show_order_history=false;show_profile_form=false;">Manage Quotation</li>
-					<li class="list-group-item" (click)="show_logout_modal()">Logout</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-8" style="margin-bottom: 120px; background: #FFFFFF;">
-			<app-change-password-form *ngIf="show_change_pass_form"></app-change-password-form>
-			<app-edit-profile-form *ngIf="show_profile_form" [userId]="userId"></app-edit-profile-form>
-			<app-order-history-table *ngIf="show_order_history"></app-order-history-table>
-			<app-manage-quotations-table *ngIf="show_manage_quotations" (quotation)="pass_quotation_to_modal($event)" ></app-manage-quotations-table>
-			<quotation-details-modal [quotation]="channel_quotation"></quotation-details-modal>
-			<profile-logout-modal></profile-logout-modal>
-		</div>
-	</div>
+  <div class="row">
+    <h3 style="margin-left: 20px">My Profile</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card-body" style="background: #ffffff">
+        <ul class="list-group list-group-flush">
+          <li
+            [ngClass]="
+              show_profile_form === true
+                ? 'list-group-item active'
+                : 'list-group-item'
+            "
+            (click)="
+              show_change_pass_form = false;
+              show_profile_form = !show_profile_form;
+              show_order_history = false;
+              show_manage_quotations = false
+            "
+          >
+            Profile Settings
+          </li>
+          <li
+            [ngClass]="
+              show_change_pass_form === true
+                ? 'list-group-item active'
+                : 'list-group-item'
+            "
+            (click)="
+              show_profile_form = false;
+              show_change_pass_form = !show_change_pass_form;
+              show_order_history = false;
+              show_manage_quotations = false
+            "
+          >
+            Change Password
+          </li>
+          <li
+            [ngClass]="
+              show_order_history === true
+                ? 'list-group-item active'
+                : 'list-group-item'
+            "
+            (click)="
+              show_profile_form = false;
+              show_change_pass_form = false;
+              show_order_history = !show_order_history;
+              show_manage_quotations = false
+            "
+            class="list-group-item"
+          >
+            Order History
+          </li>
+          <li
+            [ngClass]="
+              show_manage_quotations === true
+                ? 'list-group-item active'
+                : 'list-group-item'
+            "
+            (click)="
+              show_manage_quotations = !show_manage_quotations;
+              show_change_pass_form = false;
+              show_order_history = false;
+              show_profile_form = false
+            "
+          >
+            Manage Quotation
+          </li>
+          <li class="list-group-item" (click)="show_logout_modal()">Logout</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8" style="margin-bottom: 120px; background: #ffffff">
+      <app-change-password-form
+        *ngIf="show_change_pass_form"
+      ></app-change-password-form>
+      <app-edit-profile-form
+        *ngIf="show_profile_form"
+        [userId]="userId"
+      ></app-edit-profile-form>
+      <app-order-history-table
+        *ngIf="show_order_history"
+      ></app-order-history-table>
+      <app-manage-quotations-table
+        *ngIf="show_manage_quotations"
+      ></app-manage-quotations-table>
+      <!-- quotation modal is now in manage-quotation-table -->
+      <!-- <quotation-details-modal
+        (quotation)="pass_quotation_to_modal($event)"
+        [quotation]="channel_quotation"
+      ></quotation-details-modal> -->
+      <profile-logout-modal></profile-logout-modal>
+    </div>
+  </div>
 </div>
