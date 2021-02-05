@@ -30,6 +30,9 @@ export class BuyerRegistrationFormComponent implements OnInit {
         // this.router.navigate(['/login']);
         this.msg = success.message;
         console.log(success)
+        if(success.success==="True"){
+          this.hide_buyer_registration();
+        }
       },
       error => this.error = error
     );
