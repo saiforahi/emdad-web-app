@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private route:ActivatedRoute,private authService: UserAuthService,private orderService:OrderService,) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'))
     this.isCard=true;
     this.isWired=false;
     this.cash_details=JSON.parse(localStorage.getItem('finalCart'))
@@ -57,7 +58,7 @@ export class CheckoutComponent implements OnInit {
       "cart_amount":        data.data[0].total_amount,
       "customer_details": {
           "name": this.user.full_name,
-          "email": "user@mail.com",
+          "email": localStorage.getItem('username'),
           "phone": this.user.phone,
           "street1": "404, 11th st, void",
           "city": "Dubai",
@@ -85,7 +86,9 @@ export class CheckoutComponent implements OnInit {
     this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe(
       (success)=>{
         this.add_order_response=success;
+        console.log(this.add_order_response);
         localStorage.setItem('temp_order_id',this.add_order_response.data[0].id)
+        //console.log(JSON.stringify(this.populate_payment_object(this.add_order_response)))
         this.add_payment();
       }
     )

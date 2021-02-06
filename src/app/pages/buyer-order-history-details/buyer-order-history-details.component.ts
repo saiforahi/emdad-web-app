@@ -55,4 +55,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   calTotal(){
     return this.vat+this.discount+this.subTotal;
   }
+
+  cal_individual_total(index){
+    return this.orders[index].unit_price*this.orders[index].quantity
+  }
 }

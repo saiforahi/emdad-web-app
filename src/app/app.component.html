@@ -118,9 +118,9 @@
                 <button ngbDropdownItem [routerLink]="['profile/', uId]">
                   <img src="../assets/Profile.svg" alt="" />My Profile
                 </button>
-                <!-- <button ngbDropdownItem>
+                <button ngbDropdownItem [routerLink]="['track-orders']">
                   <img src="../assets/Location.svg" alt="" />Track Order
-                </button> -->
+                </button>
                 <button ngbDropdownItem [routerLink]="['wishlist']">
                   <img src="../assets/Heart.svg" alt=""/>My Wishlist
                 </button>
@@ -131,7 +131,7 @@
                   <img src="../assets/Danger.svg" alt="" />Raise a support
                   ticket
                 </button>
-                <button *ngIf="loggedInUser" ngbDropdownItem>
+                <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem>
                   <img alt="" />Logout
                 </button>
               </div>

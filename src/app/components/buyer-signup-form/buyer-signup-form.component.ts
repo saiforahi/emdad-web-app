@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Component({
@@ -27,7 +28,6 @@ export class BuyerSignupFormComponent implements OnInit {
       success => {
         // this.router.navigate(['/login']);
         this.msg = success.message;
-        console.log(success)
       },
       error => this.error = error
     );
