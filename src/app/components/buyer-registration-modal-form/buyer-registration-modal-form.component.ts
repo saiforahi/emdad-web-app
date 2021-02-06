@@ -10,6 +10,7 @@ import { UserAuthService } from '../../shared/services/user-auth.service';
 })
 export class BuyerRegistrationFormComponent implements OnInit {
   error: any;
+  click:boolean=false;
   msg;
   constructor(
     private authService: UserAuthService,
@@ -17,6 +18,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.click=false;
   }
   hide_buyer_registration(){
     document.getElementById('buyerRegistration').style.display="none";
@@ -26,6 +28,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
     document.getElementById('buyerLogin').style.display="block";
   }
   signup(full_name: string, email: string, phone: String, password: string) {
+    this.click=true;
     this.authService.signup(full_name, email, phone, password).subscribe(
       success => {
         // this.router.navigate(['/login']);
