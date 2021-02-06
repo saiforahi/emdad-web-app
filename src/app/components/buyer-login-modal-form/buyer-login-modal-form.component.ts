@@ -42,6 +42,7 @@ export class BuyerSigninFormComponent implements OnInit {
       (error) => {
         this.error = error;
         console.log(error);
+        swal("Failed!",error.message,"error")
       }
     );
   }
