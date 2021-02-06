@@ -1,9 +1,9 @@
-a{
-    text-decoration: none;
-    color: inherit;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 button:focus {
-    outline: none;
+  outline: none;
 }
 .banner {
   color: #fff;
@@ -12,7 +12,7 @@ button:focus {
   height: 270px;
   text-align: center;
   background: rgb(247, 65, 135);
-  background: url('../../../assets/images/banner.jpg') no-repeat;
+  background: url("../../../assets/images/banner.jpg") no-repeat;
   background-size: 100%;
 }
 .banner img {
@@ -30,7 +30,7 @@ button:focus {
 
 .categories {
   min-height: 120px;
-  background-color: #e3e3e3;
+  background-color: #fff;
   padding: 0;
   position: relative;
 }
@@ -43,14 +43,15 @@ button:focus {
   padding: 20px 15px;
   background: unset;
   transition: 0.3s;
+  background: #fff;
 }
 
 .single-category.active {
-  background: #ddd;
+  background: #FAFAFA;
 }
 
 .single-category:hover {
-  background: #ddd;
+  background: #FAFAFA;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -59,7 +60,7 @@ button:focus {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #c4c4c4;
+  background-color: #1f4f9e;
   padding: 20px;
   display: inline-block;
   margin-right: 10px;
@@ -81,9 +82,10 @@ button:focus {
   position: absolute;
   top: 120px;
   left: 0;
-  background: #ddd;
+  background: #FAFAFA;
   z-index: 9;
   padding: 40px 0;
+  box-shadow: 0 30px 30px rgb(0 0 0 / 10%);
 }
 
 .subCatItem,
@@ -100,14 +102,16 @@ button:focus {
 .subCatItem span:hover,
 .children span:hover {
   cursor: pointer;
-  border-bottom: 1px solid #2b2b2b;
+  border-bottom: 1px solid #f49814;
   padding-bottom: 10px;
+  color: #f49814;
 }
 
 .subCatItem span.active,
 .children span.active {
-  border-bottom: 1px solid #2b2b2b;
+  border-bottom: 1px solid #f49814;
   padding-bottom: 10px;
+  color: #f49814;
 }
 
 .product-list-header {
@@ -120,76 +124,76 @@ button:focus {
 }
 
 .cat-round-bg {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: #ddd;
-    text-align: center;
-    padding: 50px;
-    margin: auto;
-    color: #2b2b2b;
-    transition: 0.3s;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #fff;
+  text-align: center;
+  padding: 50px;
+  margin: auto;
+  color: #2b2b2b;
+  transition: 0.3s;
 }
 
 .cat-round-bg:hover {
-    background: #2b2b2b;
-    color: #fff;
-    transition: 0.3s;
+  background: #f49814;
+  color: #fff;
+  transition: 0.3s;
 }
 
-.cat-round-bg img{
-    margin: auto;
+.cat-round-bg img {
+  margin: auto;
 }
 
-.cat-round-bg img:nth-child(1){
-    display: none;
+.cat-round-bg img:nth-child(1) {
+  display: none;
 }
 
-.cat-round-bg img:nth-child(2){
-    display: block;
+.cat-round-bg img:nth-child(2) {
+  display: block;
 }
 
 .cat-round-bg:hover img:nth-child(1) {
-    display: block;
+  display: block;
 }
 
 .cat-round-bg:hover img:nth-child(2) {
-    display: none;
+  display: none;
 }
 
 .view-more-btn-div {
-    text-align: center;
-    padding: 60px 0 90px;
+  text-align: center;
+  padding: 60px 0 90px;
 }
 
-.view-more-btn-div button{
-    background: #454F63;
-    color: #fff;
-    padding: 22px 35px;
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    border-radius: 5px;
+.view-more-btn-div button {
+  background: #f49814;
+  color: #fff;
+  padding: 22px 35px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  border-radius: 5px;
 }
 
 .send-suggestion-div {
-    padding: 55px 100px;
-    background: #ddd;
-    color: #2b2b2b;
-    font-family: Jost;
-font-style: normal;
-font-weight: 500;
-font-size: 48px;
+  padding: 55px 100px;
+  background: #ddd;
+  color: #2b2b2b;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
 }
-.send-suggestion-div button{
-    background: #2b2b2b;
-    color: #fff;
-    padding: 17px 55px;
-    border-radius: 35px;
-    font-size: 24px;
-    font-weight: 500;
-    vertical-align: bottom;
+.send-suggestion-div button {
+  background: #2b2b2b;
+  color: #fff;
+  padding: 17px 55px;
+  border-radius: 35px;
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: bottom;
 }
 @media only screen and (min-width: 1200px) {
   .container {

@@ -1,9 +1,14 @@
+*:focus {
+  outline: none;
+}
+
 .search-input input {
   height: 70px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border: none;
   background: #eaeaea;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 40%);
 }
 
 .search-input .input-group-text {
@@ -15,4 +20,13 @@
 
 input:focus {
   box-shadow: none !important;
+}
+
+button {
+  background: #F49814;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 0 15px;
 }
