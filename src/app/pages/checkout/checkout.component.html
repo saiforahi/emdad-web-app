@@ -66,13 +66,17 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="isWired" class="card-body" style="margin-top: 40px; align-items: flex-start;">
-                <div class="row">
+            <div *ngIf="isWired" class="d-flex flex-column" style="margin-top: 40px; align-items: flex-start;">
+                <div class="p-2">
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
                     <p><strong>Account Number: 702 555-0122</strong></p>
                 </div>
-                <div class="row">
-                    <button class="btn btn-primary me-md-2 save-btn col-lg-6" type="button" (click)="make_order()" >Proceed</button>
+                <div class="p-2">
+                    <button *ngIf="show_loader===false" class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
+                    <button *ngIf="show_loader" class="btn btn-block save-btn" type="button" disabled>
+                        <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
                 </div>
             </div>
             <div *ngIf="isCard" class="row card-body" style="margin-top: 40px; ">
@@ -96,7 +100,11 @@
                         <input class="form-control" type="text" placeholder="Enter CVV number"/>
                     </div> -->
                     <div class="col-lg-6">
-                        <button class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
+                        <button *ngIf="show_loader===false" class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
+                        <button *ngIf="show_loader" class="btn btn-block save-btn" type="button" disabled>
+                            <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
                     </div>
                 </div>
             </div>
