@@ -14,7 +14,7 @@ export class SubscriptionService {
   constructor(private http: HttpClient, private authService: UserAuthService) {}
 
   plans(): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8000/api/subscription/plans`);
+    return this.http.get(`http://127.0.0.1:8000/api/subscription/plans/`);
   }
 
   subscribeToPlan(
@@ -41,10 +41,12 @@ export class SubscriptionService {
     });
   }
 
-  subscriptionHistory(uid): Observable<any>{
-    this.authService.uId.subscribe(item => {
-      this.userId = item
-    })
-    return this.http.get(`http://127.0.0.1:8000/api/subscription/history/${this.userId}/`);
+  subscriptionHistory(uid): Observable<any> {
+    this.authService.uId.subscribe((item) => {
+      this.userId = item;
+    });
+    return this.http.get(
+      `http://127.0.0.1:8000/api/subscription/history/${this.userId}/`
+    );
   }
 }

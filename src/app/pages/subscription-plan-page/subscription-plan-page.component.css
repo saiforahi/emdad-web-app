@@ -1,0 +1,21 @@
+.title {
+  font-family: Jost;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 69px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.custom-btn {
+  /* #454F63 */
+  color: white;
+  background: #454f63;
+  border-radius: 5px;
+}
+
+.apply-coupon-button {
+  /* width: 100px; */
+  width: 100%;
+}
