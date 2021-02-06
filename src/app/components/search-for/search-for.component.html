@@ -1,8 +1,8 @@
 <div class="input-group search-input">
     <input type="text" class="form-control" placeholder="Search by products..." #searchInput>
     <div class="input-group-append">
-        <a (click)="search(searchInput.value)">
+        <button (click)="search(searchInput.value)" mat-raised-button>
             <span class="input-group-text" id="basic-addon2"><img src="../assets/search.svg" alt=""></span>
-        </a>
+        </button>
     </div>
 </div>

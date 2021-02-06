@@ -32,8 +32,12 @@ nav {
     margin-top: 13px;
 }
 
+.nav-link.active {
+    color: #F49814 !important;
+}
+
 nav .dropdown-menu {
-    top: 92px;
+    top: 90px;
     left: unset;
     right: 0;
     border: none;
@@ -156,6 +160,11 @@ nav .profile-list img {
     position: relative;
 }
 
+.secondary-menu .nav-link:hover {
+    color: #F49814 !important;
+    transition: ease-in 0.3s;
+}
+
 .secondary-menu .nav-link:hover .menu-underline {
     width: 60%;
     transition: ease-in 0.3s;
@@ -171,7 +180,7 @@ nav .profile-list img {
     bottom: 8px;
     left: 8px;
     width: 0%;
-    border-bottom: 1px solid #2b2b2b;
+    border-bottom: 1px solid #F49814;
     transition: ease-in 0.3s;
 }
 
@@ -181,6 +190,7 @@ button:focus {
 
 footer {
     padding: 60px 0 70px;
+    background: #F4F4F4;
 }
 
 .slogan {
@@ -204,9 +214,16 @@ footer .list-group-item {
 footer .social-links .list-group-item a {
     color: #2b2b2b;
     padding: 18px 24px;
-    border-radius: 10px;
-    background: #ddd;
+    border-radius: 50%;
+    background: #fff;
     font-size: 20px;
+    transition: 0.3s;
+}
+
+footer .social-links .list-group-item a:hover {
+    color: #fff;
+    background: #F49814;
+    transition: 0.3s;
 }
 
 .footer-link-div ul li {

@@ -9,8 +9,7 @@ import { WishlistService } from '../../shared/services/wishlist.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product;
-  defaultImage =
-    '../assets/images/default-image-620x600.jpg';
+  defaultImage = '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
 
   constructor(
@@ -18,7 +17,9 @@ export class ProductCardComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.product)
+  }
 
   addToCart(prod) {
     this.prodCartArray = [];
@@ -31,13 +32,11 @@ export class ProductCardComponent implements OnInit {
     this.prodCartArray.push(prod);
     console.log(prod);
     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
-
-    console.log(localStorage.getItem('prodCartArray'));
   }
 
   addToWishlist(prod_id) {
-    this.wishlist.addTowishlist(prod_id).subscribe((item) => {
-      this.openSnackBar('Added to wishlist successfuly!', 'OK');
+    this.wishlist.addTowishlist(prod_id).subscribe((item: any) => {
+      this.openSnackBar(item.message, 'OK');
     });
   }
 
@@ -46,14 +45,13 @@ export class ProductCardComponent implements OnInit {
       duration: 5000,
     });
   }
-  //http://127.0.0.1:8000/api/product/list/
-  slice_image_url(url:string){
-    if(url.includes('http://127.0.0.1:8000')){
-      console.log(url.slice(21))
+  
+  slice_image_url(url: string) {
+    if (url.includes('http://127.0.0.1:8000')) {
+      // console.log(url.slice(21));
       return url.slice(21);
-    }
-    else{
-      console.log(url)
+    } else {
+      console.log(url);
       return url;
     }
   }
