@@ -15,6 +15,7 @@ interface Cash_Details {
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  show_loader:boolean=false;
   add_order_response:any;
   add_payment_response:any;
   isCard:boolean;
@@ -78,6 +79,9 @@ export class CheckoutComponent implements OnInit {
     )
   }
   make_order(){
+    this.show_loader=true;
+    console.log(localStorage.getItem('cart_json'))
+    console.log(localStorage.getItem('token'))
     this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe(
       (success)=>{
         this.add_order_response=success;
