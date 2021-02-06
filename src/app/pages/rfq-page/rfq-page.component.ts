@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { QuotationService } from '../../shared/services/quotation.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-rfq-page',
@@ -68,6 +69,7 @@ export class RfqPageComponent implements OnInit {
       this.quotationService.createQuotation(this.rfqForm.value).subscribe(
         (res) => {
           console.log(res);
+          swal("Succeed!","Request for quotation Successfull","success")
           this.router.navigate(['/']);
         },
         (err) => console.error(err)

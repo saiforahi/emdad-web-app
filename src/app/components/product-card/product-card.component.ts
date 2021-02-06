@@ -46,4 +46,15 @@ export class ProductCardComponent implements OnInit {
       duration: 5000,
     });
   }
+  //http://127.0.0.1:8000/api/product/list/
+  slice_image_url(url:string){
+    if(url.includes('http://127.0.0.1:8000')){
+      console.log(url.slice(21))
+      return url.slice(21);
+    }
+    else{
+      console.log(url)
+      return url;
+    }
+  }
 }
