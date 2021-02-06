@@ -32,6 +32,7 @@ export class ProductReviewModalComponent implements OnInit {
     // const data = {"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}
     this.comments.addComments({"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}).subscribe((item:any) => {
       // console.log(item.message);
+      // var comment: object = item;
       document.getElementById('prodReviewModal').style.display="none";
       this.openSnackBar("Comment Added!", "ok");
     })

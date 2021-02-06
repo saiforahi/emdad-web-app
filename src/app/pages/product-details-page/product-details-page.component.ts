@@ -29,7 +29,7 @@ export class ProductDetailsPageComponent implements OnInit {
   ];
   carousel: any;
   relatedProducts: any;
-  commentlist: Object;
+  commentlist: any;
 
   constructor(
     private getProduct: GetProductService,
@@ -98,7 +98,7 @@ export class ProductDetailsPageComponent implements OnInit {
       // console.log(this.prodCartArray);
       // console.log('#####');
       localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
-      this.openSnackBar("Product added to cart!", "ok");
+      this.openSnackBar('Product added to cart!', 'ok');
     }
   }
 

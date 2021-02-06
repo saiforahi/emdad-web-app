@@ -28,7 +28,9 @@
         <td>
           {{ quotation.seller !== undefined ? quotation.seller.full_name : "" }}
         </td>
-        <td>{{ quotation.status === 1 ? "Pending" : "Accepted" }}</td>
+        <td *ngIf="quotation.status === 1">Initiated</td>
+        <td *ngIf="quotation.status === 2">Sent</td>
+        <td *ngIf="quotation.status === 3">Completed</td>
         <td>
           <button
             class="btn btn-primary"
@@ -83,7 +85,7 @@
         <p>RFQ ID: {{ quotation.rfq[0].id }}</p>
         <p>Date: {{ formatDate(quotation.created_at) }}</p>
         <p>Product Name: {{ quotation.product.name }}</p>
-        <p>Seller Name: {{ quotation.seller.name }}</p>
+        <p>Seller Name: {{ quotation.seller.full_name }}</p>
         <p>Quantity: {{ quotation.quantity }}</p>
         <p>Unit Price: {{ quotation.product.unit_price }}</p>
         <p>Total Price: {{ quotation.total_price }}</p>
