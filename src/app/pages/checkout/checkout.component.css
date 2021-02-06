@@ -31,10 +31,8 @@
 }
 .pay-option{
     background: #FFFFFF;
-box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
-border-radius: 5px;
-
-    
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
 }
 .pay-option:hover{
     border: 2px solid #F49814;
@@ -42,9 +40,13 @@ border-radius: 5px;
     border-radius: 5px;
 }
 
+.pay-option-selected{
+    background: #FFFFFF;
+    border: 2px solid #F49814;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
 
-@media only screen and (min-width: 1200px) {
-    .container {
-      max-width: 1600px !important;
-    }
-  }
+.cash-div{
+    background: #FFFFFF;
+}

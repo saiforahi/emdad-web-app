@@ -37,7 +37,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-md btn-block login_btn" type="button" (click)="signup(full_name.value, email.value, phone.value, password.value)" >Sign Up</button>
+                        <button class="btn btn-primary btn-md btn-block login_btn" id="signUpBtn" type="button" (click)="signup(full_name.value, email.value, phone.value, password.value)" [disabled]="click===true" >Sign Up</button>
+                    </div>
+                    <div *ngIf="click" class="form-group row footer">
+                        <div class="col-sm-auto">
+                            <label>Processing...</label>
+                        </div>
                     </div>
                     <div class="form-group row footer">
                         <div class="col-sm-auto">
