@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ import { BuyerRegistrationFormComponent } from './components/buyer-registration-
 import { SupportTicketPageComponent } from './pages/support-ticket-page/support-ticket-page.component';
 import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-page.component';
 import { RfqPageComponent } from './pages/rfq-page/rfq-page.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,9 @@ import { RfqPageComponent } from './pages/rfq-page/rfq-page.component';
     ReactiveFormsModule,
     LazyLoadImageModule,
     CommonuiModule,
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [MaterialModule, FormsModule, ReactiveFormsModule],
   providers: [
     UserAuthService,
