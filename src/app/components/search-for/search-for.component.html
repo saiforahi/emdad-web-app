@@ -1,5 +1,5 @@
 <div class="input-group search-input">
-    <input type="text" class="form-control" placeholder="Search by products..." #searchInput>
+    <input type="text" class="form-control" placeholder="Search by products..." #searchInput (keydown.enter)="search(searchInput.value)">
     <div class="input-group-append">
         <button (click)="search(searchInput.value)" mat-raised-button>
             <span class="input-group-text" id="basic-addon2"><img src="../assets/search.svg" alt=""></span>

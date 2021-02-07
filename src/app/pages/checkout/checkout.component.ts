@@ -54,28 +54,45 @@ export class CheckoutComponent implements OnInit {
     this.new_address=!this.new_address
   }
   populate_payment_object(data){
-    this.orderService.get_active_shipping_address_of_buyer().subscribe(
-      (success)=>{
-        console.log(success.data)
-        return {
-          "tran_type":"sale",
-          "cart_description":   "sale",
-          "cart_id":            "400000000000001",
-          "cart_currency":      "SAR",
-          "cart_amount":        data.data[0].total_amount,
-          "customer_details": {
-              "name": this.user.full_name,
-              "email": localStorage.getItem('username'),
-              "phone": this.user.phone,
-              "street1": success.data.address,
-              "city": success.data.city.name,
-              "state": "DU",
-              "country": success.data.country.iso2,
-              "ip": "127.0.0.1"
-          }
-        }
+    // this.orderService.get_active_shipping_address_of_buyer().subscribe(
+    //   (success)=>{
+    //     console.log(success.data)
+    //     return {
+    //       "tran_type":"sale",
+    //       "cart_description":   "sale",
+    //       "cart_id":            "400000000000001",
+    //       "cart_currency":      "SAR",
+    //       "cart_amount":        data.data[0].total_amount,
+    //       "customer_details": {
+    //           "name": this.user.full_name,
+    //           "email": localStorage.getItem('username'),
+    //           "phone": this.user.phone,
+    //           "street1": success.data.address,
+    //           "city": success.data.city.name,
+    //           "state": "DU",
+    //           "country": success.data.country.iso2,
+    //           "ip": "127.0.0.1"
+    //       }
+    //     }
+    //   }
+    // )
+    return {
+      "tran_type":"sale",
+      "cart_description":   "sale",
+      "cart_id":            "400000000000001",
+      "cart_currency":      "SAR",
+      "cart_amount":        data.data[0].total_amount,
+      "customer_details": {
+          "name": this.user.full_name,
+          "email": localStorage.getItem('username'),
+          "phone": this.user.phone,
+          "street1": "success.data.address",
+          "city": "success.data.city.name",
+          "state": "DU",
+          "country": "success.data.country.iso2",
+          "ip": "127.0.0.1"
       }
-    )
+    }
   }
   add_payment(){
     this.orderService.add_payment(this.populate_payment_object(this.add_order_response)).subscribe(

@@ -30,9 +30,6 @@ export class BuyerSigninFormComponent implements OnInit {
     document.getElementById('buyerLogin').style.display = 'none';
     this.router.navigate(['/forget-password']);
   }
-  onPressEnter(event:KeyboardEvent){
-    console
-  }
   signin(email: string, password: string) {
     this.authService.login(email, password, this.group).subscribe(
       (success) => {
