@@ -11,6 +11,8 @@ import {
 } from '@angular/common/http';
 import { UserAuthService } from '../../shared/services/user-auth.service';
 import { CountryListService } from '../../shared/services/country-list.service';
+import swal from 'sweetalert';
+import { config } from 'src/config';
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -66,20 +68,18 @@ export class EditProfileFormComponent implements OnInit {
     // }
   }
   saveData() {
-    // console.log('***');
-    // console.log(this.editUserInfo);
-    // console.log('***');
-    this.updateUserInfo();
-    console.log(this.editUserInfo);
-    delete this.editUserInfo.profile_pic;
-    this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
-      (success) => {
-        console.log(success);
-        this.openSnackBar('Profile Updated!', 'OK');
-      },
-      (error) => console.error(error)
-    );
-    localStorage.setItem('user_info', this.editUserInfo);
+    if(this.is_form_valid()){
+      this.updateUserInfo();
+      console.log(this.editUserInfo);
+      delete this.editUserInfo.profile_pic;
+      this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
+        (success) => {
+          localStorage.setItem('user_info', this.editUserInfo);
+          swal("Updated!","Profile Updated!","success")
+        },
+        (error) => console.error(error)
+      );
+    }
   }
   getCountries() {
     this.countryList.allCountries().subscribe(
@@ -114,7 +114,6 @@ export class EditProfileFormComponent implements OnInit {
 
   uploadProfilePic(event: any) {
     let file = event.target.files[0];
-
     let profilePic = new FormData();
     profilePic.append('profile_pic', file, file.name);
 
@@ -122,7 +121,7 @@ export class EditProfileFormComponent implements OnInit {
     this.authService.updateProfile(this.userId, profilePic).subscribe(
       (success: any) => {
         this.openSnackBar('Profile Picture Updated!', 'OK');
-        this.profile_pic = 'http://localhost:8000' + success.data.profile_pic;
+        this.profile_pic = config.base_url + success.data.profile_pic;
       },
       (error) => console.error(error)
     );
@@ -132,5 +131,28 @@ export class EditProfileFormComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 5000,
     });
+  }
+
+  is_form_valid() : boolean {
+    let is_valid=false;
+    if(typeof this.editUserInfo.full_name==='string' && this.editUserInfo.full_name.toString().length>0){
+      is_valid=true;
+    }
+    else{
+      is_valid=false
+    }
+    if(typeof this.editUserInfo.zip_code==='number' && this.editUserInfo.zip_code.toString().length>0){
+      is_valid=true;
+    }
+    else{
+      is_valid=false
+    }
+    if(typeof this.editUserInfo.address==='string' && this.editUserInfo.address.toString().length>0){
+      is_valid=true;
+    }
+    else{
+      is_valid=false
+    }
+    return is_valid;
   }
 }
