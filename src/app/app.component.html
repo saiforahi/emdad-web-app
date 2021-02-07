@@ -27,7 +27,7 @@
             <app-search-for></app-search-for>
           </li>
           <li class="nav-item" style="margin-left: 42px">
-            <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in/ Sign up</a>
+            <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in / Sign up</a>
             <div class="user-name">
               <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="" />
               <span *ngIf="loggedInUser">{{ userName }}</span>
