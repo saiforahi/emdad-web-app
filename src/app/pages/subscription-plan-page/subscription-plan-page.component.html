@@ -5,7 +5,10 @@
     <div *ngIf="plans">
       <div class="row">
         <div class="col-6" *ngFor="let plan of plans">
-          <div class="card text-center p-3" (click)="selectedPlan(plan)">
+          <div
+            class="card text-center p-3 plan-card"
+            (click)="selectedPlan(plan)"
+          >
             <h4>{{ plan.title }}</h4>
             <p>{{ plan.fees }}</p>
             <input #planId type="text" hidden value="{{ plan.id }}" />

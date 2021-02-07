@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubscriptionService } from '../../shared/services/subscription.service';
 import { CouponService } from '../../shared/services/coupon.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscription-plan-page',
@@ -17,7 +18,8 @@ export class SubscriptionPlanPageComponent implements OnInit {
   constructor(
     private subscriptions: SubscriptionService,
     private coupons: CouponService,
-    private authService: UserAuthService
+    private authService: UserAuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,15 +27,16 @@ export class SubscriptionPlanPageComponent implements OnInit {
       console.log(item);
       this.plans = item.data[0];
     });
-    this.authService.uId.subscribe(item => {
-      this.userId = item
-    })
+    this.authService.uId.subscribe((item) => {
+      this.userId = item;
+    });
   }
 
   selectedPlan(selectedPlan) {
-    localStorage.setItem("selectedPlanId", selectedPlan.id);
-    localStorage.setItem("selectedPlanTitle", selectedPlan.subscription_plan);
-    localStorage.setItem("selectedPlanFees", selectedPlan.fees);
+    localStorage.setItem('selectedPlanId', selectedPlan.id);
+    localStorage.setItem('selectedPlanTitle', selectedPlan.subscription_plan);
+    localStorage.setItem('selectedPlanFees', selectedPlan.fees);
+    this.router.navigate(['/subscription/payment']);
   }
 
   applyCoupon(coupon_code) {
@@ -47,8 +50,11 @@ export class SubscriptionPlanPageComponent implements OnInit {
         } else {
           this.msg =
             'you got ' + success.data[0].discount_amount + ' discount.';
-            localStorage.setItem("couponDiscount", success.data[0].discount_amount);
-            localStorage.setItem("couponId", success.data[0].id);
+          localStorage.setItem(
+            'couponDiscount',
+            success.data[0].discount_amount
+          );
+          localStorage.setItem('couponId', success.data[0].id);
         }
       },
       (error) => {
