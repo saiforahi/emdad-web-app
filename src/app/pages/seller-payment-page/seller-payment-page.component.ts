@@ -20,12 +20,12 @@ export class SellerPaymentPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.selectedPlan = {
-    //   id: localStorage.getItem('selectedPlanId'),
-    //   subscription_plan: localStorage.getItem('selectedPlanTitle'),
-    //   fees: localStorage.getItem('selectedPlanFees'),
-    // };
-    this.selectedPlan = 1;
+    this.selectedPlan = {
+      id: localStorage.getItem('selectedPlanId'),
+      subscription_plan: localStorage.getItem('selectedPlanTitle'),
+      fees: localStorage.getItem('selectedPlanFees'),
+    };
+    // this.selectedPlan = 1;
     this.couponDiscount = localStorage.getItem('couponDiscount');
     this.vat.getVat().subscribe((item) => {
       console.log(item.data);

@@ -19,3 +19,10 @@
   /* width: 100px; */
   width: 100%;
 }
+
+.plan-card {
+  cursor: pointer;
+}
+.plan-card:hover {
+  border-color: #454f63;
+}

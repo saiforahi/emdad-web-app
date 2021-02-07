@@ -33,9 +33,13 @@
     <div class="col-md-4">
       <div class="card mt-3 p-3">
         <p class="mb-3">
-          {{ selectedPlan.subscription_plan }}: ${{ selectedPlan.fees }}
+          {{
+            selectedPlan.subscription_plan === "h" ? "Half Yearly" : "Yearly"
+          }}: ${{ selectedPlan.fees }}
         </p>
-        <p class="mb-3">Discount: {{ couponDiscount }}</p>
+        <p class="mb-3">
+          Discount: {{ couponDiscount ? couponDiscount : "N/A" }}
+        </p>
         <p class="mb-3">
           VAT: ({{ vatAmmount }}%)
           {{ ((selectedPlan.fees - couponDiscount) * vatAmmount) / 100 }}
