@@ -1,22 +1,50 @@
-<button [routerLink]="['/subscription/plans/history/']">subscription history</button>
-<br>
-<br>
-<div class="row" *ngIf="plans">
-    <div class="col-md-6" *ngFor="let plan of plans">
-        <div class="card" (click)="selectedPlan(plan);">
-            <h4>{{plan.subscription_plan}}</h4>
-            <p>{{plan.fees}}</p>
-            <input #planId type="text" hidden value="{{plan.id}}">
+<div class="container">
+  <h4 class="title">Choose Subscription Plan</h4>
+
+  <div class="card p-4">
+    <div *ngIf="plans">
+      <div class="row">
+        <div class="col-6" *ngFor="let plan of plans">
+          <div class="card text-center p-3" (click)="selectedPlan(plan)">
+            <h4>{{ plan.title }}</h4>
+            <p>{{ plan.fees }}</p>
+            <input #planId type="text" hidden value="{{ plan.id }}" />
+          </div>
         </div>
+      </div>
     </div>
+    <div class="row mt-4 mb-3">
+      <div class="col-sm-4">
+        <input
+          class="form-control mb-2"
+          type="text"
+          #coupon
+          placeholder="Enter discount coupon"
+        />
+      </div>
+
+      <div class="col-sm-2">
+        <button
+          class="btn btn-outline-secondary custom-btn apply-coupon-button"
+          (click)="applyCoupon(coupon.value)"
+        >
+          Apply
+        </button>
+      </div>
+
+      <div class="col-sm-2">
+        <p *ngIf="msg">{{ msg }}</p>
+        <p>{{ error?.error.message }}</p>
+        <p *ngIf="error" style="color: red">{{ error?.error.global }}</p>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-outline-secondary custom-btn col-sm-3"
+      [routerLink]="['/subscription/payment']"
+    >
+      Proceed to Pay
+    </button>
+    <br />
+  </div>
 </div>
-<br>
-<div>
-    <input type="text" #coupon placeholder="enter coupon code">
-    <button (click)="applyCoupon(coupon.value);">Apply Coupon</button>
-    <p *ngIf="msg">{{msg}}</p>
-    <p>{{ error?.error.message }}</p>
-    <p *ngIf="error" style="color: red;">{{ error?.error.global}}</p>
-</div>
-<br>
-<button [routerLink]="['/subscription/payment']">proceed to payment</button>

@@ -3,15 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.css']
+  styleUrls: ['./signup-page.component.css'],
 })
 export class SignupPageComponent implements OnInit {
-
   isbuyer = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  handleFileSelect(event) {}
 }

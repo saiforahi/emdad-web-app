@@ -16,15 +16,16 @@ export class SellerPaymentPageComponent implements OnInit {
   constructor(
     private subscriptions: SubscriptionService,
     private vat: VatService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.selectedPlan = {
-      id: localStorage.getItem('selectedPlanId'),
-      subscription_plan: localStorage.getItem('selectedPlanTitle'),
-      fees: localStorage.getItem('selectedPlanFees'),
-    };
+    // this.selectedPlan = {
+    //   id: localStorage.getItem('selectedPlanId'),
+    //   subscription_plan: localStorage.getItem('selectedPlanTitle'),
+    //   fees: localStorage.getItem('selectedPlanFees'),
+    // };
+    this.selectedPlan = 1;
     this.couponDiscount = localStorage.getItem('couponDiscount');
     this.vat.getVat().subscribe((item) => {
       console.log(item.data);
@@ -33,8 +34,9 @@ export class SellerPaymentPageComponent implements OnInit {
   }
 
   proceedTopay() {
-    const calcullatedVat = (this.selectedPlan.fees - this.couponDiscount) * this.vatAmmount / 100;
-    console.log(calcullatedVat)
+    const calcullatedVat =
+      ((this.selectedPlan.fees - this.couponDiscount) * this.vatAmmount) / 100;
+    console.log(calcullatedVat);
     this.subscriptions
       .subscribeToPlan(
         this.selectedPlan.fees,
@@ -49,7 +51,7 @@ export class SellerPaymentPageComponent implements OnInit {
       )
       .subscribe((item) => {
         console.log(item);
-        if(item != undefined){
+        if (item != undefined) {
           localStorage.removeItem('selectedPlanId');
           localStorage.removeItem('selectedPlanTitle');
           localStorage.removeItem('selectedPlanFees');
