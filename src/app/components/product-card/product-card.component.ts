@@ -30,7 +30,7 @@ export class ProductCardComponent implements OnInit {
       });
     }
     this.prodCartArray.push(prod);
-    console.log(prod);
+    // console.log(prod);
     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
   }
 
@@ -51,7 +51,7 @@ export class ProductCardComponent implements OnInit {
       // console.log(url.slice(21));
       return url.slice(21);
     } else {
-      console.log(url);
+      // console.log(url);
       return url;
     }
   }

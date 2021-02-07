@@ -12,7 +12,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
-import {config} from '../../../config';
+import { config } from '../../../config';
+
 interface JWTPayload {
   user_id: number;
   username: string;
@@ -56,7 +57,9 @@ export class UserAuthService {
   }
 
   login(email: string, password: string, group: String): Observable<any> {
-    return this.http.post(config.base_url+'api/login/', { email, password, group }).pipe(
+    return this.http
+      .post(config.base_url + 'api/login/', { email, password, group })
+      .pipe(
         tap((response) => {
           this.setSession(response);
         }),
@@ -76,6 +79,7 @@ export class UserAuthService {
       httpOptions
     );
   }
+
   signup(
     full_name: String,
     email: String,
@@ -91,6 +95,7 @@ export class UserAuthService {
       })
       .pipe(shareReplay());
   }
+
   sellerSignup(
     full_name,
     email,
@@ -129,6 +134,7 @@ export class UserAuthService {
     localStorage.clear();
     this.router.navigate(['/']);
   }
+
   refreshToken() {
     if (
       moment().isBetween(
@@ -145,17 +151,21 @@ export class UserAuthService {
         .subscribe();
     }
   }
+
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
   }
+
   isLoggedIn() {
     return moment().isBefore(this.getExpiration());
   }
+
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+
   changePassword(old_password, new_password) {
     let httpOptions = {
       headers: new HttpHeaders({
@@ -169,17 +179,20 @@ export class UserAuthService {
       httpOptions
     );
   }
+
   forgotPassword(email): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/password_reset/', {
       email,
     });
   }
+
   resetPassword(token, password): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/password_reset/confirm/', {
       token,
       password,
     });
   }
+
   updateProfile(userId: number, user: any) {
     console.log(user);
     let httpOptions = {
@@ -226,12 +239,11 @@ export class AuthGuard implements CanActivate {
   canActivate() {
     if (this.UserAuthService.isLoggedIn()) {
       this.UserAuthService.refreshToken();
-
       return true;
     } else {
       this.UserAuthService.logout();
-      this.router.navigate(['/buyer/login']);
-
+      // this.router.navigate(['/buyer/login']);
+      document.getElementById('buyerLogin').style.display = 'block';
       return false;
     }
   }
