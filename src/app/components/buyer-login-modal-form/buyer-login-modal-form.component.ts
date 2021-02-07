@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../../shared/services/user-auth.service';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 @Component({
   selector: 'app-buyer-login-modal-form',
   templateUrl: './buyer-login-modal-form.component.html',
@@ -11,6 +11,7 @@ export class BuyerSigninFormComponent implements OnInit {
   error: any;
   msg;
   group: string;
+  
   constructor(private authService: UserAuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -35,13 +36,13 @@ export class BuyerSigninFormComponent implements OnInit {
       (success) => {
         document.getElementById('buyerLogin').style.display = 'none';
         console.log(success);
-        swal("Succeed","You have logged in successfully","success")
+        swal('Succeed', 'You have logged in successfully', 'success');
         this.router.navigate(['']);
       },
       (error) => {
         this.error = error;
         console.log(error);
-        swal("Failed!",error.message,"error")
+        swal('Failed!', error.message, 'error');
       }
     );
   }

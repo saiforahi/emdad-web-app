@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -61,38 +61,42 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.UserAuthService.logout();
-    this.openSnackBar("You have been logged out.", "ok")
+    this.openSnackBar('You have been logged out.', 'ok');
   }
-  show_lang_drop(){
-    if(document.getElementById('lang-drop-down').classList.contains('show')){
+
+  show_lang_drop() {
+    if (document.getElementById('lang-drop-down').classList.contains('show')) {
       document.getElementById('lang-drop-down').classList.remove('show');
-    }
-    else{
+    } else {
       document.getElementById('lang-drop-down').classList.add('show');
     }
   }
-  handle_accnt_drop_down(){
-    if(document.getElementById('accnt-drop-down').classList.contains('show')){
+
+  handle_accnt_drop_down() {
+    if (document.getElementById('accnt-drop-down').classList.contains('show')) {
       document.getElementById('accnt-drop-down').classList.remove('show');
-      document.getElementById('en-btn').setAttribute('area-expanded','false');
-    }
-    else{
-      document.getElementById('en-btn').setAttribute('area-expanded','true');
+      document.getElementById('en-btn').setAttribute('area-expanded', 'false');
+    } else {
+      document.getElementById('en-btn').setAttribute('area-expanded', 'true');
       document.getElementById('accnt-drop-down').classList.add('show');
     }
   }
-  handle_notification_drop(){
-    if(document.getElementById('noti-panel').classList.contains('show')){
-      document.getElementById('noti-panel').classList.remove('show')
-    }
-    else if(!document.getElementById('noti-panel').classList.contains('show')){
+
+  handle_notification_drop() {
+    if (document.getElementById('noti-panel').classList.contains('show')) {
+      document.getElementById('noti-panel').classList.remove('show');
+    } else if (
+      !document.getElementById('noti-panel').classList.contains('show')
+    ) {
       document.getElementById('noti-panel').classList.add('show');
     }
   }
-  show_buyer_login(){
-    document.getElementById('buyerRegistration').style.display="none";
-    document.getElementById('buyerLogin').style.display="block";
+
+  show_buyer_login() {
+    document.getElementById('buyerRegistration').style.display = 'none';
+    document.getElementById('buyerLogin').style.display = 'block';
   }
+
   show_buyer_registration() {
     document.getElementById('buyerLogin').style.display = 'none';
     document.getElementById('buyerRegistration').style.display = 'block';
@@ -109,13 +113,13 @@ export class AppComponent implements OnInit {
       document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-      if (pos >= 1100) {
-        //Do your action here
-        this.showOnScroll = true;
-        // console.log(pos, this.showOnScroll);
-      } else {
-        this.showOnScroll = false;
-        // console.log(pos, this.showOnScroll);
-      }
+    if (pos >= 1100) {
+      //Do your action here
+      this.showOnScroll = true;
+      // console.log(pos, this.showOnScroll);
+    } else {
+      this.showOnScroll = false;
+      // console.log(pos, this.showOnScroll);
     }
+  }
 }

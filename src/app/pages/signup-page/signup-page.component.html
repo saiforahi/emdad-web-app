@@ -1,5 +1,240 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <div class="col">
+          <select
+            style="float: right; margin-top: 60px"
+            name="language"
+            class="form-select lang-btn"
+          >
+            <option class="lang">Arabic</option>
+          </select>
+        </div>
 
-<app-buyer-signup-form *ngIf="isbuyer"></app-buyer-signup-form>
-<app-seller-signup-form *ngIf="!isbuyer"></app-seller-signup-form>
-<span *ngIf="isbuyer">Want to sell something in emdad! <button (click)="isbuyer = false">Register</button> here.</span>
-<button *ngIf="!isbuyer" (click)="isbuyer = true">Back</button>
+        <!-- <div class="col">
+
+          <button style="float: right;margin-top: 20px;" class="btn lang-btn">Arabic</button>
+        </div> -->
+      </div>
+      <div class="card signup-card">
+        <div class="card-header">
+          <h1 class="signup-header">Register</h1>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input
+                id="companyName"
+                name="companyName"
+                class="form-control form-control-md"
+                type="text"
+              />
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="companyEmail">Company Email</label>
+                  <input
+                    id="companyEmail"
+                    name="companyEmail"
+                    type="email"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="companyPhone">Company Phone Number</label>
+                <input
+                  id="companyPhone"
+                  name="companyPhone"
+                  type="text"
+                  class="form-control form-control-md"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="passwordConfirm">Confirm Password</label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  class="form-control form-control-md"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="companyAddress">Company Address</label>
+              <input
+                id="companyAddress"
+                name="companyAddress"
+                class="form-control form-control-md"
+                type="text"
+              />
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="commercialRegstration"
+                    >Commercial Registration</label
+                  >
+                  <input
+                    id="commercialRegistration"
+                    name="commercialRegistration"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="expiryDate">Expiry Date</label>
+                <input
+                  id="expiryDate"
+                  name="expiryDate"
+                  type="date"
+                  class="form-control form-control-md"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input
+                    id="city"
+                    name="city"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="country">Country</label>
+                <input
+                  id="country"
+                  name="country"
+                  type="text"
+                  class="form-control form-control-md"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="area">Area</label>
+                  <input
+                    id="area"
+                    name="area"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="zipcode">Zip Code</label>
+                <input
+                  id="zipcode"
+                  name="zipcode"
+                  type="text"
+                  class="form-control form-control-md"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="uploadImage"> Attachments</label>
+              <div class="form-group imageUploadButton">
+                <i class="fa fa-upload"></i>
+                <input
+                  type="file"
+                  name="images"
+                  id="images"
+                  (change)="handleFileSelect($event)"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-check mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="autoSizingCheck"
+                />
+                <label class="form-check-label" for="autoSizingCheck"
+                  >I agree to EMDAD Terms and Condtions, Privacy Policy &
+                  Provided Correctness of information</label
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button
+                class="btn btn-primary btn-block signup_btn"
+                type="button"
+              >
+                Register
+              </button>
+            </div>
+            <div class="form-group">
+              <div class="text-center">
+                <label
+                  >Already have an account?<a
+                    class="ml-2"
+                    [routerLink]="['/seller/login']"
+                    >Sign In</a
+                  ></label
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex">
+      <div class="image-wrapper w-100 p-auto m-auto">
+        <div
+          class="login-image d-flex justify-content-center align-self-center"
+        >
+          <img
+            class="mw-100 align-self-center"
+            src="../../../assets/images/login-image.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div style="text-align:center">
+  <h1>
+    Login
+  </h1>
+</div>
+
+<input #username type='text' placeholder='username'>
+<input #password type='password' placeholder='password'>
+<button (click)="login(username.value, password.value)">login</button>
+<a [routerLink]="['/forget-password']">forgot password?</a>
+<br>
+<br>
+<a [routerLink]="['/seller/login']">Seller Login</a> -->
