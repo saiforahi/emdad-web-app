@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card mb-4">
       <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
         <div class="card-body">
           <div class="form-group">
@@ -84,6 +84,7 @@
                       type="file"
                       name="images"
                       id="images"
+                      accept="image/*"
                       (change)="handleFileSelect($event)"
                       formControlName="image"
                     />

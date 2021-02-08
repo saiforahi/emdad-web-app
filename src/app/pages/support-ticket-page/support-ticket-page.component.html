@@ -75,6 +75,7 @@
             </div>
           </div>
         </div> -->
+        
           <div class="row">
             <div class="col-3"><strong>Ticket ID</strong></div>
             <div class="col">
@@ -107,6 +108,11 @@
             <div class="col-3"><strong>Status</strong></div>
             <div class="col">
               {{ status[selectedSupportTicket.status] }}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <a href="javascript:void(0);" (click)="download(selectedSupportTicket.image)">Download Ticket Image</a>
             </div>
           </div>
         </div>

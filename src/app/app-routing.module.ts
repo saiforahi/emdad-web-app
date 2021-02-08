@@ -200,7 +200,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload',anchorScrolling:'enabled',scrollPositionRestoration: 'enabled'}),
   ],
   exports: [RouterModule],
 })

@@ -23,9 +23,8 @@
               <img src="../../../assets/wishlist-icon.svg" alt="" />Add to
               Wishlist
             </button>
-            <button class="mb-3" mat-button>
-              <img src="../../../assets/review-icon.svg" alt="" />Customer
-              Review <span *ngIf="commentlist">({{commentlist.data[0].length}})</span>
+            <button class="mb-3" mat-button (click)="scroll_to_reviews('reviews')">
+              <img src="../../../assets/review-icon.svg" alt="" />Customer Review <span *ngIf="commentlist">{{commentlist.data[0].length}}</span>
             </button>
           </div>
           <div class="prod-delivery-info">
@@ -105,13 +104,13 @@
         <p *ngFor="let product of relatedProducts">{{ product.name }}</p>
         <ng-template ngbSlide *ngFor="let image of sliderImgArray">
           <div class="row">
-            <div class="col-md-2" *ngFor="let product of relatedProducts | slice:0:6;">
-              <app-product-card [product]="product"></app-product-card>
+            <div id="reviews" class="col-md-2" *ngFor="let product of relatedProducts | slice:0:6;">
+              <app-product-card [product]="product" ></app-product-card>
             </div>
           </div>
         </ng-template>
       </ngb-carousel>
-      <h4 class="similar-prod-header">Reviews</h4>
+      <h4 class="similar-prod-header" >Reviews</h4>
     </div>
   </div>
   <div class="reviews-holder" *ngIf="commentlist">
