@@ -14,6 +14,10 @@ a {
   position: relative;
 }
 
+pinch-zoom /deep/ .pinch-zoom-content{
+  background: #fff;
+}
+
 .slider-btn-div {
   position: absolute;
   bottom: 20px;

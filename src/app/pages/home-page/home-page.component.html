@@ -86,8 +86,9 @@
         Recent Products
     </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
+    <p *ngIf="prodEnd" class="text-center mt-5"><b>No more products to show</b></p>
     <div class="view-more-btn-div">
-        <button (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img
+        <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img
                 src="../../../assets/down-carrot-light.svg" alt=""></button>
     </div>
 </section>
