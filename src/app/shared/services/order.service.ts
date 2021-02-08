@@ -57,6 +57,6 @@ export class OrderService {
   }
 
   get_active_shipping_address_of_buyer():Observable<any>{
-    return this.http.get(config.base_url+"/api/address/book/default/"+localStorage.getItem('uid')+"/",this.httpOptions)
+    return this.http.get(config.base_url+"api/address/book/default/"+localStorage.getItem('uid')+"/",this.httpOptions)
   }
 }
