@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     if (this.router.url.split('/').length < 3) {
       this.prodInRow6 = true;
     }
@@ -146,7 +147,7 @@ export class HomePageComponent implements OnInit {
     }
     if (this.nextBatchProdLink == null) {
       this.prodEnd = true;
-      this.openSnackBar('No more product to show!', 'OK');
+      // this.openSnackBar('No more product to show!', 'OK');
     }
   }
 

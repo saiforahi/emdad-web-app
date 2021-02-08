@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WishlistService } from '../../shared/services/wishlist.service';
+import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Component({
   selector: 'app-product-card',
@@ -11,14 +12,19 @@ export class ProductCardComponent implements OnInit {
   @Input() product;
   defaultImage = '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
+  userId;
 
   constructor(
     private wishlist: WishlistService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private user:UserAuthService
   ) {}
 
   ngOnInit(): void {
     // console.log(this.product)
+    this.user.uId.subscribe(item =>{
+      this.userId = item;
+    })
   }
 
   addToCart(prod) {
@@ -35,9 +41,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToWishlist(prod_id) {
-    this.wishlist.addTowishlist(prod_id).subscribe((item: any) => {
-      this.openSnackBar(item.message, 'OK');
-    });
+    if(this.userId){
+      this.wishlist.addTowishlist(prod_id).subscribe((item: any) => {
+        this.openSnackBar(item.message, 'OK');
+      });
+    }else {
+      document.getElementById('buyerLogin').style.display = 'block';
+    }
   }
 
   openSnackBar(message, action) {

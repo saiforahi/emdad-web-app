@@ -94,7 +94,7 @@ export class ProductListPageComponent implements OnInit {
     }
     if (this.nextBatchProdLink == null) {
       this.prodEnd = true;
-      this.openSnackBar('No more product to show!', 'OK');
+      // this.openSnackBar('No more product to show!', 'OK');
     }
   }
 
