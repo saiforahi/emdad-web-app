@@ -1,70 +1,93 @@
-.login_btn{
-    background: #454F63;
-    border-radius: 5px;
+.login_btn {
+  background: #1f4f9e;
+  border-radius: 5px;
 }
-.login-card{
-    top: 20px;
+.login-card {
+  top: 20px;
 }
-.login-header{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 69px;
-    text-align: center;
-    /* #2B2B2B */
-    color: #2B2B2B;
+.login-header {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  /* line-height: 69px; */
+  text-align: center;
+  /* #2B2B2B */
+  color: #2b2b2b;
 }
-.card{
-    border: none;
+.card {
+  border: none;
 }
-.btn{
-    border: none;
+.btn {
+  border: none;
 }
-.card-header{
-    background-color: #f8f9fa00;
+.card-header {
+  background-color: #f8f9fa00;
+  border: none;
 }
-.form-label{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 29px;
-    /* identical to box height */
-    color: #2B2B2B;
-}
-.bottom-text{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 29px;
-    /* identical to box height */
 
-    text-align: center;
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+}
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  /* identical to box height */
+  color: #2b2b2b;
+}
+.bottom-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 29px;
+  /* identical to box height */
 
-    color: #2B2B2B;
-}
-.lang-btn{
-    background: #454F63;
-    border-radius: 30px;
-    font-size: 12px;
-    line-height: 12px;
-    font-style: normal;
-    color: #FFFFFF;
+  text-align: center;
 
+  color: #2b2b2b;
 }
-.lang{
-    font-size: 12px;
-    color: #FFFFFF;
+
+.input-group-text {
+  border-right: 0 !important;
 }
-.image-wrapper{
-    margin-top: 60px;
-    background: #EAEAEA;
-    border-radius: 20px;
+
+.lang-btn {
+  background: #f49814;
+  font-style: normal;
+  color: #ffffff;
+  border-radius: 30px;
+  margin-left: auto;
 }
-.login-image{
-    max-height: 238px;
-    /* margin-left: 66.98%;
-    margin-right: 20.1%;
-    margin-top: 393px; */
-    vertical-align: middle;
+.lang {
+  font-size: 12px;
+  color: #ffffff;
+}
+.image-wrapper {
+  margin-top: 60px;
+  background: #eaeaea;
+  border-radius: 20px;
+}
+
+.slogan {
+  color: #ffffff;
+}
+
+.slogan-description {
+  color: #ffffff;
+}
+
+.card-footer {
+  border-color: #ffffff !important;
+}
+
+.footer-text {
+  color: #ffffff;
+}
+
+.social-icon {
+  margin-left: 20px;
+  margin-right: 20px;
 }

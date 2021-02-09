@@ -2,54 +2,31 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group row">
-        <div class="col">
-          <select
-            style="float: right; margin-top: 60px"
-            name="language"
-            class="form-select lang-btn"
-          >
-            <option class="lang">Arabic</option>
-          </select>
+        <div class="col d-flex justify-content-right">
+          <button class="lang-btn">
+            <i class="fas fa-language"></i>
+            Arabic
+          </button>
         </div>
-
-        <!-- <div class="col">
-
-          <button style="float: right;margin-top: 20px;" class="btn lang-btn">Arabic</button>
-        </div> -->
       </div>
       <div class="card signup-card">
         <div class="card-header">
-          <h1 class="signup-header">Register</h1>
+          <h1 class="signup-header">Join Us</h1>
+          <h4 class="login-sub-header text-center">
+            Let’s begin the journey !
+          </h4>
         </div>
         <div class="card-body">
           <form>
             <div class="form-group">
               <label for="companyName">Company Name</label>
-              <input
-                id="companyName"
-                name="companyName"
-                class="form-control form-control-md"
-                type="text"
-              />
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="companyEmail">Company Email</label>
-                  <input
-                    id="companyEmail"
-                    name="companyEmail"
-                    type="email"
-                    class="form-control form-control-md"
-                  />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
                 </div>
-              </div>
-              <div class="col">
-                <label for="companyPhone">Company Phone Number</label>
                 <input
-                  id="companyPhone"
-                  name="companyPhone"
+                  id="companyName"
+                  name="companyName"
                   type="text"
                   class="form-control form-control-md"
                 />
@@ -59,34 +36,82 @@
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="password">Password</label>
+                  <label for="companyEmail">Company Email</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input
+                      id="companyEmail"
+                      name="companyEmail"
+                      type="email"
+                      class="form-control form-control-md"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <label for="companyPhone">Company Phone Number</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
                   <input
-                    id="password"
-                    name="password"
+                    id="companyPhone"
+                    name="companyPhone"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      class="form-control form-control-md"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <label for="passwordConfirm">Confirm Password</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
                     type="password"
                     class="form-control form-control-md"
                   />
                 </div>
               </div>
-              <div class="col">
-                <label for="passwordConfirm">Confirm Password</label>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  class="form-control form-control-md"
-                />
-              </div>
             </div>
 
             <div class="form-group">
               <label for="companyAddress">Company Address</label>
-              <input
-                id="companyAddress"
-                name="companyAddress"
-                class="form-control form-control-md"
-                type="text"
-              />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input
+                  id="companyAddress"
+                  name="companyAddress"
+                  class="form-control form-control-md"
+                  type="text"
+                />
+              </div>
             </div>
 
             <div class="row">
@@ -95,22 +120,32 @@
                   <label for="commercialRegstration"
                     >Commercial Registration</label
                   >
-                  <input
-                    id="commercialRegistration"
-                    name="commercialRegistration"
-                    type="text"
-                    class="form-control form-control-md"
-                  />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input
+                      id="commercialRegistration"
+                      name="commercialRegistration"
+                      type="text"
+                      class="form-control form-control-md"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="col">
                 <label for="expiryDate">Expiry Date</label>
-                <input
-                  id="expiryDate"
-                  name="expiryDate"
-                  type="date"
-                  class="form-control form-control-md"
-                />
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input
+                    id="expiryDate"
+                    name="expiryDate"
+                    type="date"
+                    class="form-control form-control-md"
+                  />
+                </div>
               </div>
             </div>
 
@@ -118,22 +153,32 @@
               <div class="col">
                 <div class="form-group">
                   <label for="city">City</label>
-                  <input
-                    id="city"
-                    name="city"
-                    type="text"
-                    class="form-control form-control-md"
-                  />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input
+                      id="city"
+                      name="city"
+                      type="text"
+                      class="form-control form-control-md"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="col">
                 <label for="country">Country</label>
-                <input
-                  id="country"
-                  name="country"
-                  type="text"
-                  class="form-control form-control-md"
-                />
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input
+                    id="country"
+                    name="country"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
               </div>
             </div>
 
@@ -141,22 +186,32 @@
               <div class="col">
                 <div class="form-group">
                   <label for="area">Area</label>
-                  <input
-                    id="area"
-                    name="area"
-                    type="text"
-                    class="form-control form-control-md"
-                  />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input
+                      id="area"
+                      name="area"
+                      type="text"
+                      class="form-control form-control-md"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="col">
                 <label for="zipcode">Zip Code</label>
-                <input
-                  id="zipcode"
-                  name="zipcode"
-                  type="text"
-                  class="form-control form-control-md"
-                />
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input
+                    id="zipcode"
+                    name="zipcode"
+                    type="text"
+                    class="form-control form-control-md"
+                  />
+                </div>
               </div>
             </div>
 
@@ -210,15 +265,61 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 d-flex">
-      <div class="image-wrapper w-100 p-auto m-auto">
-        <div
-          class="login-image d-flex justify-content-center align-self-center"
-        >
-          <img
-            class="mw-100 align-self-center"
-            src="../../../assets/images/login-image.svg"
-          />
+    <div class="col-md-6">
+      <div class="card bg-dark text-white">
+        <img
+          src="../../../assets/login_page_image.svg"
+          alt="align-self-center"
+          class="card-img"
+        />
+        <div class="card-img-overlay p-5">
+          <div class="row d-flex justify-content-center mb-2">
+            <img src="../../../assets/emdad_logo.svg" alt="align-self-center" />
+          </div>
+          <div class="row d-flex justify-content-center mb-4">
+            <h3 class="slogan">Your Slogan Here...</h3>
+          </div>
+          <div class="row d-flex justify-content-center mb-5">
+            <h5 class="slogan-description" align="center">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s
+            </h5>
+          </div>
+          <div class="row d-flex justify-content-center mb-2">
+            <div class="social-media">
+              <a href="www.twitter.com">
+                <img
+                  src="../../../assets/twitter.svg"
+                  class="social-icon"
+                  alt="align-self-center"
+              /></a>
+              <a href="www.instagram.com">
+                <img
+                  src="../../../assets/instagram.svg"
+                  alt="align-self-center"
+                  class="social-icon"
+              /></a>
+              <a href="www.youtube.com">
+                <img
+                  src="../../../assets/youtube.svg"
+                  class="social-icon"
+                  alt="align-self-center"
+              /></a>
+              <a href="www.pinterest.com">
+                <img
+                  src="../../../assets/pinterest.svg"
+                  class="social-icon"
+                  alt="align-self-center"
+              /></a>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <span class="footer-text"
+              >6391 Elgin St. Celina, Delaware (907) 555-0101
+              emdad@example.com</span
+            >
+          </div>
         </div>
       </div>
     </div>
