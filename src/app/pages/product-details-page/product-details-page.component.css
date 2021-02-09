@@ -226,3 +226,6 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     max-width: 1600px !important;
   }
 }
+.module {
+  scroll-behavior: smooth;
+}

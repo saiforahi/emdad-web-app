@@ -5,7 +5,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
-
+import {ViewportScroller} from '@angular/common'
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -36,7 +36,8 @@ export class ProductDetailsPageComponent implements OnInit {
     private route: ActivatedRoute,
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
-    private comments: CustomerReviewService
+    private comments: CustomerReviewService,
+    private viewportScroller:ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +62,9 @@ export class ProductDetailsPageComponent implements OnInit {
       });
     });
   }
-
+  scroll_to_reviews(element_id:string){
+    this.viewportScroller.scrollToAnchor(element_id);
+  }
   nextImg() {
     if (this.currentImg <= this.sliderImgArray.length - 1) {
       this.currentImg++;
