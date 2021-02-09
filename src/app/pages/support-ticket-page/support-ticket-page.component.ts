@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { FileService } from '../../shared/services/file.service';
+import * as fileSaver from 'file-saver';
 import { TicketService } from '../../shared/services/ticket.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class SupportTicketPageComponent implements OnInit {
   supportTicketData = [];
   // providing a default dummy data to prevent error
   selectedSupportTicket = {
+    image: '',
     issue_code: '123456',
     issue_date: '12-03-2021',
     title:
@@ -23,12 +25,12 @@ export class SupportTicketPageComponent implements OnInit {
   toggleSort = true;
   status = ['Initiative', 'Undergoing', 'Resolved'];
 
-  constructor(private ticketService: TicketService) {}
+  constructor(private ticketService: TicketService,private fileService: FileService) {}
 
   ngOnInit(): void {
     let uid = localStorage.getItem('uid');
     this.ticketService.getTickets(uid).subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       this.supportTicketData = data.data;
     });
   }
@@ -50,7 +52,17 @@ export class SupportTicketPageComponent implements OnInit {
       this.toggleSort = !this.toggleSort;
     }
   }
-
+  download(ticket_image_url:string) {
+    this.fileService.downloadFile(ticket_image_url).subscribe(response => {
+      console.log(response)
+			let blob:any = new Blob([response], { type: "text/plain;charset=utf-8" });
+			const url = window.URL.createObjectURL(blob);
+			//window.open(url);
+			//window.location.href = response.url;
+			fileSaver.saveAs(blob, 'employees.jpg');
+		}), error => console.log('Error downloading the file'),
+    () => console.info('File downloaded successfully');
+  }
   formatDate(d: string): string {
     return new Date(d).toDateString();
   }

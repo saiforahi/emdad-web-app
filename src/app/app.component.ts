@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { UserAuthService } from './shared/services/user-auth.service';
 import { GetCategoryService } from './shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   items;
   showOnScroll = false;
   showAllProdDiv: boolean = false;
-  categories: any;
+  categories: Observable<any>;
   currentUrl;
 
   constructor(
@@ -54,7 +55,16 @@ export class AppComponent implements OnInit {
     });
     this.getCategory.category().subscribe((item) => {
       // console.log(item);
-      this.categories = item;
+      const tempCategories: any = [];
+      item.forEach((element: any) => {
+        element.children.forEach((element2: any) => {
+          element2.children.forEach((element3: any) => {
+            tempCategories.push(element3);
+          });
+        });
+      });
+      this.categories = tempCategories;
+      // console.log(this.categories)
     });
   }
 

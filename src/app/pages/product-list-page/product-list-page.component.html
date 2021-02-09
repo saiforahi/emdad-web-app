@@ -26,8 +26,7 @@
         </div>
     </nav>
 </section>
-<!-- +products[0].children[0].children[0].name -->
-<app-breadcrumbs [directoryString]="'Categories / '+products[0].category.name" [searchLength]="products.length"></app-breadcrumbs>
+<app-breadcrumbs *ngIf="products[0]" [directoryString]="'Categories / '+products[0].category.name" [searchLength]="products.length"></app-breadcrumbs>
 <section class="container">
     <div class="row">
         <div class="col-md-3">

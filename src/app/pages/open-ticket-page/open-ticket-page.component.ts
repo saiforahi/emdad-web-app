@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 
 import { TicketService } from '../../shared/services/ticket.service';
 
@@ -60,6 +61,7 @@ export class OpenTicketPageComponent implements OnInit {
         .subscribe((response) => {
           console.log(response);
           this.router.navigate(['/support-ticket']);
+          swal("Created!","Support ticket created successfully","success")
         });
     }
   }
