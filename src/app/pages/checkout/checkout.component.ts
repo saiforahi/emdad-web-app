@@ -27,6 +27,11 @@ export class CheckoutComponent implements OnInit {
   constructor(private route:ActivatedRoute,private authService: UserAuthService,private orderService:OrderService,private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     console.log(localStorage.getItem('token'))
     this.isCard=true;
     this.isWired=false;
@@ -54,24 +59,45 @@ export class CheckoutComponent implements OnInit {
     this.new_address=!this.new_address
   }
   populate_payment_object(data){
+    
+  }
+  add_payment(){
     this.orderService.get_active_shipping_address_of_buyer().subscribe(
       (success)=>{
-        console.log(success.data)
-        this.orderService.add_payment({
-          "tran_type":"sale",
-          "cart_description":   "sale",
-          "cart_id":            "400000000000001",
-          "cart_currency":      "SAR",
-          "cart_amount":        data.data[0].total_amount,
+        console.log(JSON.stringify({
+          "tran_type" : "sale",
+          "cart_description" : "sale",
+          "cart_id" : "400000000000001",
+          "cart_currency" : "SAR",
+          "cart_amount" : this.add_order_response.data[0].total_amount,
           "customer_details": {
-              "name": this.user.full_name,
-              "email": localStorage.getItem('username'),
-              "phone": this.user.phone,
-              "street1": success.data[0].address,
-              "city": success.data[0].city.name,
-              "state": "DU",
-              "country": success.data[0].city.country.iso2,
-              "ip": "127.0.0.1"
+            "name": this.user.full_name,
+            "email": localStorage.getItem('username'),
+            "phone": this.user.phone,
+            "street1": success.data[0].address,
+            "city": success.data[0].city.name,
+            "state": "DU",
+            "country": success.data[0].city.country.iso2,
+            "zip_code": this.user.zip_code,
+            "ip": "127.0.0.1"
+          }
+        }))
+        this.orderService.add_payment({
+          "tran_type" : "sale",
+          "cart_description" : "sale",
+          "cart_id" : "400000000000001",
+          "cart_currency" : "SAR",
+          "cart_amount" : this.add_order_response.data[0].total_amount,
+          "customer_details": {
+            "name": this.user.full_name,
+            "email": localStorage.getItem('username'),
+            "phone": this.user.phone,
+            "street1": success.data[0].address,
+            "city": success.data[0].city.name,
+            "state": "DU",
+            "country": success.data[0].city.country.iso2,
+            "zip_code": this.user.zip_code,
+            "ip": "127.0.0.1"
           }
         }).subscribe(
           (success)=>{
@@ -84,27 +110,6 @@ export class CheckoutComponent implements OnInit {
         )
       }
     )
-    // return {
-    //   "tran_type":"sale",
-    //   "cart_description":   "sale",
-    //   "cart_id":            "400000000000001",
-    //   "cart_currency":      "SAR",
-    //   "cart_amount":        data.data[0].total_amount,
-    //   "customer_details": {
-    //       "name": this.user.full_name,
-    //       "email": localStorage.getItem('username'),
-    //       "phone": this.user.phone,
-    //       "street1": "success.data.address",
-    //       "city": "success.data.city.name",
-    //       "state": "DU",
-    //       "country": "success.data.country.iso2",
-    //       "ip": "127.0.0.1"
-    //   }
-    // }
-  }
-  add_payment(){
-    //console.log(this.populate_payment_object(this.add_order_response))
-    this.populate_payment_object(this.add_order_response)
   }
   make_order(){
     //this.show_loader=true;
@@ -114,7 +119,7 @@ export class CheckoutComponent implements OnInit {
     this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe(
       (success)=>{
         this.add_order_response=success;
-        console.log(this.add_order_response);
+        //console.log(this.add_order_response);
         localStorage.setItem('temp_order_id',this.add_order_response.data[0].id)
         //console.log(JSON.stringify(this.populate_payment_object(this.add_order_response)))
         this.add_payment();

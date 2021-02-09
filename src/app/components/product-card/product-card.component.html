@@ -6,7 +6,7 @@
             </div>
             <mat-card-content>
                 <p class="product-name">
-                    {{ product.name }}
+                    {{product.name | slice:0:20}}{{product.name.length>20?'...':''}}
                 </p>
                 <p class="product-price">${{ product.unit_price }}</p>
                 <p class="store-name">{{product.seller.full_name | titlecase}}</p>

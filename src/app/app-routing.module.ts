@@ -112,14 +112,6 @@ const routes: Routes = [
       ).then((m) => m.SellerSubscriptionHistoryPageModule),
   },
   {
-    path: 'order/checkout',
-    loadChildren: () =>
-      import('./pages/checkout-page/checkout-page.module').then(
-        (m) => m.CheckoutPageModule
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'orders',
     loadChildren: () =>
       import('./pages/seller-orders-page/seller-orders-page.module').then(

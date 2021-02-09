@@ -27,6 +27,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     this.UserAuthService.uName.subscribe((data) => {
       if (data == null) {
         this.loggedInUser = false;
