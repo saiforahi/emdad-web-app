@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/cart-page/cart-page.module').then(
         (m) => m.CartPageModule
-      )
+      ),
   },
   {
     path: 'profile/:id',
@@ -88,7 +88,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/reset-password-page/reset-password-page.module').then(
         (m) => m.ResetPasswordPageModule
-      )
+      ),
   },
   {
     path: 'subscription/plans',
@@ -110,14 +110,6 @@ const routes: Routes = [
       import(
         './pages/seller-subscription-history-page/seller-subscription-history-page.module'
       ).then((m) => m.SellerSubscriptionHistoryPageModule),
-  },
-  {
-    path: 'order/checkout',
-    loadChildren: () =>
-      import('./pages/checkout-page/checkout-page.module').then(
-        (m) => m.CheckoutPageModule
-      ),
-    canActivate: [AuthGuard],
   },
   {
     path: 'orders',
@@ -186,7 +178,20 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-  { path: 'payment-verify', loadChildren: () => import('./pages/payment-verify/payment-verify.module').then(m => m.PaymentVerifyModule) },
+  {
+    path: 'payment-verify',
+    loadChildren: () =>
+      import('./pages/payment-verify/payment-verify.module').then(
+        (m) => m.PaymentVerifyModule
+      ),
+  },
+  {
+    path: 'sell-on-emdad',
+    loadChildren: () =>
+      import('./pages/sell-on-emdad-page/sell-on-emdad-page.module').then(
+        (m) => m.SellOnEmdadPageModule
+      ),
+  },
   {
     path: '**',
     loadChildren: () =>
