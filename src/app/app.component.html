@@ -15,9 +15,9 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-2" *ngFor="let category of categories">
-                    <a [routerLink]="['/products/category/', category.id]">{{
-                      category.name
-                      }}</a>
+                        <a [routerLink]="['/products/category/', category.id]">{{
+                          category.name
+                          }}</a>
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" >
+          <li class="nav-item">
             <div ngbDropdown class="d-inline-block" (click)="handle_accnt_drop_down();">
               <a class="nav-link" ngbDropdownToggle>
                 <img src="../assets/hamburger.svg" alt="" />
@@ -122,7 +122,7 @@
                   <img src="../assets/Location.svg" alt="" />Track Order
                 </button>
                 <button ngbDropdownItem [routerLink]="['wishlist']">
-                  <img src="../assets/Heart.svg" alt=""/>My Wishlist
+                  <img src="../assets/Heart.svg" alt="" />My Wishlist
                 </button>
                 <!-- <button ngbDropdownItem>
                   <img src="../assets/Document.svg" alt="" />Quotations
