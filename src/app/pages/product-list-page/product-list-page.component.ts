@@ -47,7 +47,7 @@ export class ProductListPageComponent implements OnInit {
       this.prodInRow6 = false;
     }
     this.getCategories.category().subscribe((item) => {
-      console.log(item);
+      // console.log(item);
       this.categories = item;
     });
     this.sellerId = this.route.snapshot.params['id'];
