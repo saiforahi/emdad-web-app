@@ -30,7 +30,7 @@ export class SupportTicketPageComponent implements OnInit {
   ngOnInit(): void {
     let uid = localStorage.getItem('uid');
     this.ticketService.getTickets(uid).subscribe((data) => {
-      console.log(data);
+      //console.log(data.data[0].image.split('/')[]);
       this.supportTicketData = data.data;
     });
   }
@@ -62,6 +62,10 @@ export class SupportTicketPageComponent implements OnInit {
 			fileSaver.saveAs(blob, 'employees.jpg');
 		}), error => console.log('Error downloading the file'),
     () => console.info('File downloaded successfully');
+  }
+  get_image_name(image_url:string){
+    let param_array=image_url.split('/')
+    return param_array[param_array.length-1]
   }
   formatDate(d: string): string {
     return new Date(d).toDateString();

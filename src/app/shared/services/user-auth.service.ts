@@ -29,7 +29,7 @@ export class UserAuthService {
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
+  emailVerificationStatus : BehaviorSubject<any> = new BehaviorSubject<any>(null)
   constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
@@ -151,7 +151,10 @@ export class UserAuthService {
         .subscribe();
     }
   }
-
+  verify_email(token:string){
+    return this.http.get(config.base_url+'api/registration/profile/verify/'+token+'/')
+  }
+  
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
