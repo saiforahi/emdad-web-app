@@ -3,6 +3,7 @@ import { UserAuthService } from './shared/services/user-auth.service';
 import { GetCategoryService } from './shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,17 @@ export class AppComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
+    // if(sessionStorage.getItem('email_verified')==="true"){
+    //   sessionStorage.removeItem('email_verified')
+    //   swal('Verified!',"Email Verified Successfully","success")
+    // }
+    this.UserAuthService.emailVerificationStatus.subscribe(
+      (result)=>{
+        if(result){
+          swal('Verified!',"Email Verified Successfully","success")
+        }
+      }
+    )
     this.UserAuthService.uName.subscribe((data) => {
       if (data == null) {
         this.loggedInUser = false;

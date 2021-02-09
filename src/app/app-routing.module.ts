@@ -192,6 +192,13 @@ const routes: Routes = [
         (m) => m.SellOnEmdadPageModule
       ),
   },
+  { 
+    path: 'registration/profile/verify/:token', 
+    loadChildren: () => 
+      import('./pages/verify-profile-page/verify-profile-page.module').then(
+        m => m.VerifyProfilePageModule
+      ) 
+  },
   {
     path: '**',
     loadChildren: () =>
