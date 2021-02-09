@@ -39,7 +39,7 @@ export class UserAuthService {
   private setSession(authResult) {
     const token = authResult.token;
     const payload = <JWTPayload>jwt_decode(token);
-    console.log(authResult);
+    console.log(payload);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('group', authResult.group);
