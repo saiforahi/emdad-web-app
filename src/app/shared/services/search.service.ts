@@ -3,15 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
   searchProducts: Observable<any>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   search(query): Observable<any> {
-    return this.http.get(`http://127.0.0.1:8000/api/product/filter/list?search=` + query);
+    return this.http.get(
+      `http://182.160.97.250:8002/api/product/filter/list?search=` + query
+    );
   }
 
   // getSearchProducts(): Observable<any>{

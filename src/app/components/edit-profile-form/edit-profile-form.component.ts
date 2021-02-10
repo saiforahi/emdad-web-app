@@ -54,7 +54,7 @@ export class EditProfileFormComponent implements OnInit {
       // if profile_pic is a string(path), then set the value
       if (typeof this.editUserInfo.profile_pic === 'string')
         this.profile_pic =
-          'http://localhost:8000' + this.editUserInfo.profile_pic;
+          'http://182.160.97.250:8002' + this.editUserInfo.profile_pic;
       // if country is already set then load the cities of the country
       if (this.editUserInfo.country) {
         this.onCountryChange(this.editUserInfo.country);
@@ -68,14 +68,14 @@ export class EditProfileFormComponent implements OnInit {
     // }
   }
   saveData() {
-    if(this.is_form_valid()){
+    if (this.is_form_valid()) {
       this.updateUserInfo();
       console.log(this.editUserInfo);
       delete this.editUserInfo.profile_pic;
       this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
         (success) => {
           localStorage.setItem('user_info', this.editUserInfo);
-          swal("Updated!","Profile Updated!","success")
+          swal('Updated!', 'Profile Updated!', 'success');
         },
         (error) => console.error(error)
       );
@@ -133,25 +133,31 @@ export class EditProfileFormComponent implements OnInit {
     });
   }
 
-  is_form_valid() : boolean {
-    let is_valid=false;
-    if(typeof this.editUserInfo.full_name==='string' && this.editUserInfo.full_name.toString().length>0){
-      is_valid=true;
+  is_form_valid(): boolean {
+    let is_valid = false;
+    if (
+      typeof this.editUserInfo.full_name === 'string' &&
+      this.editUserInfo.full_name.toString().length > 0
+    ) {
+      is_valid = true;
+    } else {
+      is_valid = false;
     }
-    else{
-      is_valid=false
+    if (
+      typeof this.editUserInfo.zip_code === 'number' &&
+      this.editUserInfo.zip_code.toString().length > 0
+    ) {
+      is_valid = true;
+    } else {
+      is_valid = false;
     }
-    if(typeof this.editUserInfo.zip_code==='number' && this.editUserInfo.zip_code.toString().length>0){
-      is_valid=true;
-    }
-    else{
-      is_valid=false
-    }
-    if(typeof this.editUserInfo.address==='string' && this.editUserInfo.address.toString().length>0){
-      is_valid=true;
-    }
-    else{
-      is_valid=false
+    if (
+      typeof this.editUserInfo.address === 'string' &&
+      this.editUserInfo.address.toString().length > 0
+    ) {
+      is_valid = true;
+    } else {
+      is_valid = false;
     }
     return is_valid;
   }

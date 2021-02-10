@@ -5,7 +5,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
-import {ViewportScroller} from '@angular/common'
+import { ViewportScroller } from '@angular/common';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -37,7 +37,7 @@ export class ProductDetailsPageComponent implements OnInit {
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
     private comments: CustomerReviewService,
-    private viewportScroller:ViewportScroller
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +46,8 @@ export class ProductDetailsPageComponent implements OnInit {
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
       this.sliderImgArray = [
-        'http://127.0.0.1:8000' + item.data[0].image1,
-        'http://127.0.0.1:8000' + item.data[0].image2,
+        'http://182.160.97.250:8002' + item.data[0].image1,
+        'http://182.160.97.250:8002' + item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
       this.getProduct
@@ -62,7 +62,7 @@ export class ProductDetailsPageComponent implements OnInit {
       });
     });
   }
-  scroll_to_reviews(element_id:string){
+  scroll_to_reviews(element_id: string) {
     this.viewportScroller.scrollToAnchor(element_id);
   }
   nextImg() {

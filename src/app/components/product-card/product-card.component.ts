@@ -17,14 +17,14 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
-    private user:UserAuthService
+    private user: UserAuthService
   ) {}
 
   ngOnInit(): void {
     // console.log(this.product)
-    this.user.uId.subscribe(item =>{
+    this.user.uId.subscribe((item) => {
       this.userId = item;
-    })
+    });
   }
 
   addToCart(prod) {
@@ -41,11 +41,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToWishlist(prod_id) {
-    if(this.userId){
+    if (this.userId) {
       this.wishlist.addTowishlist(prod_id).subscribe((item: any) => {
         this.openSnackBar(item.message, 'OK');
       });
-    }else {
+    } else {
       document.getElementById('buyerLogin').style.display = 'block';
     }
   }
@@ -55,9 +55,9 @@ export class ProductCardComponent implements OnInit {
       duration: 5000,
     });
   }
-  
+
   slice_image_url(url: string) {
-    if (url.includes('http://127.0.0.1:8000')) {
+    if (url.includes('http://182.160.97.250:8002')) {
       // console.log(url.slice(21));
       return url.slice(21);
     } else {

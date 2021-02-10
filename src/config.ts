@@ -1,4 +1,3 @@
-export const config={
-    base_url:'http://127.0.0.1:8000/'
-}
-
+export const config = {
+  base_url: 'http://182.160.97.250:8002/',
+};

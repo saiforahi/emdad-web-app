@@ -6,11 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GetCategoryService {
-  private readonly URL = 'http://127.0.0.1:8000/category/';
+  private readonly URL = 'http://182.160.97.250:8002/category/';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   category(): Observable<any> {
     return this.http.get(this.URL);

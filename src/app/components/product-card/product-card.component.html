@@ -1,23 +1,36 @@
 <mat-card class="example-card mt-3">
-    <a [routerLink]="['/product/details/', product.id]">
-        <div>
-            <div class="prod-img-div">
-                <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="'http://localhost:8000'+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
-            </div>
-            <mat-card-content>
-                <p class="product-name">
-                    {{product.name | slice:0:20}}{{product.name.length>20?'...':''}}
-                </p>
-                <p class="product-price">${{ product.unit_price }}</p>
-                <p class="store-name">{{product.seller.full_name | titlecase}}</p>
-            </mat-card-content>
-        </div>
-    </a>
-    <div class="example-button-container">
-        <button (click)="addToWishlist(product.id)" mat-fab aria-label="Example icon button with a heart icon">
-            <img class="wish-icon" src="../../../assets/wish.svg" alt="" />
-            <!-- <i class="far fa-heart"></i>
-            <i class="fas fa-heart"></i> -->
-        </button>
+  <a [routerLink]="['/product/details/', product.id]">
+    <div>
+      <div class="prod-img-div">
+        <img
+          *ngIf="product.image1 != null"
+          mat-card-image
+          [lazyLoad]="
+            'http://182.160.97.250:8002' + slice_image_url(product.image1)
+          "
+          [defaultImage]="defaultImage"
+          alt="product image"
+        />
+      </div>
+      <mat-card-content>
+        <p class="product-name">
+          {{ product.name | slice: 0:20
+          }}{{ product.name.length > 20 ? "..." : "" }}
+        </p>
+        <p class="product-price">${{ product.unit_price }}</p>
+        <p class="store-name">{{ product.seller.full_name | titlecase }}</p>
+      </mat-card-content>
     </div>
+  </a>
+  <div class="example-button-container">
+    <button
+      (click)="addToWishlist(product.id)"
+      mat-fab
+      aria-label="Example icon button with a heart icon"
+    >
+      <img class="wish-icon" src="../../../assets/wish.svg" alt="" />
+      <!-- <i class="far fa-heart"></i>
+            <i class="fas fa-heart"></i> -->
+    </button>
+  </div>
 </mat-card>

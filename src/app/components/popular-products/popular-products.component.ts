@@ -8,16 +8,16 @@ import { GetProductService } from '../../shared/services/get-product.service';
 })
 export class PopularProductsComponent implements OnInit {
   defaultImage =
-    'http://127.0.0.1:8000/media/uploads/product/images/prod-img500x500.png';
+    'http://182.160.97.250:8002/media/uploads/product/images/prod-img500x500.png';
   popularProducts: any;
 
   constructor(private getProducts: GetProductService) {}
 
   ngOnInit(): void {
-    this.getProducts.popularProduct().subscribe(item =>{
-      console.log(item)
+    this.getProducts.popularProduct().subscribe((item) => {
+      console.log(item);
       this.popularProducts = item.data.results;
-    })
+    });
   }
 
   addToWishlist(e) {

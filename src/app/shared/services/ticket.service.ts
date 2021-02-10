@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TicketService {
-  private readonly URL_issue_add = 'http://127.0.0.1:8000/api/issue/add/';
+  private readonly URL_issue_add = 'http://182.160.97.250:8002/api/issue/add/';
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class TicketService {
 
   getTickets(uid): Observable<any> {
     // let uid = localStorage.getItem('uid');
-    let URL_issue_list = `http://127.0.0.1:8000/api/issue/list/${uid}/`;
+    let URL_issue_list = `http://182.160.97.250:8002/api/issue/list/${uid}/`;
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('token'),
