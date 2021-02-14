@@ -1,0 +1,105 @@
+.banner {
+  position: relative;
+  height: 500px;
+  text-align: center;
+  background: rgb(247, 65, 135);
+  background: url('../../../../assets/images/banner.jpg') no-repeat;
+  background-size: 100%;
+}
+.banner img {
+  width: 100%;
+  height: 100%;
+}
+
+.side-nav-bar {
+  background: #ddd;
+  margin-top: 1rem;
+  padding: 30px;
+  min-height: calc(100vh - 215px);
+}
+
+.cat-head {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.expanded-div .cat-head {
+  font-size: 18px;
+}
+
+.mat-expansion-panel {
+  background: none;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+.expanded-div .mat-expansion-panel-header {
+  border-bottom: none;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 0px 16px 24px !important;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.expanded-div ::ng-deep .mat-expansion-indicator::after {
+  display: none !important;
+}
+
+.plus,
+.minus {
+  font-size: 24px;
+}
+
+.expanded-div .mat-expansion-panel-header-description {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  margin-right: 0px !important;
+}
+
+h4.store-name-header {
+  padding: 40px 0;
+  text-align: center;
+}
+
+nav {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.view-more-btn-div {
+  text-align: center;
+  padding: 60px 0 90px;
+}
+
+.view-more-btn-div button{
+  background: #f49814;
+  color: #fff;
+  padding: 22px 35px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+}
