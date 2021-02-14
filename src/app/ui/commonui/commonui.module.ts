@@ -10,8 +10,20 @@ import { BreadcrumbsComponent } from '../../buyer/components/breadcrumbs/breadcr
 import { ProductCardComponent } from '../../buyer/components/product-card/product-card.component';
 import { HeaderComponent } from 'src/app/buyer/components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BuyerSigninFormComponent } from 'src/app/buyer/components/buyer-login-modal-form/buyer-login-modal-form.component';
+import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-registration-modal-form/buyer-Registration-modal-form.component';
+import { FooterComponent } from 'src/app/buyer/components/footer/footer.component';
 
-const UI = [ProductListComponent, SearchForComponent, BreadcrumbsComponent, ProductCardComponent, HeaderComponent];
+const UI = [
+  ProductListComponent,
+  SearchForComponent,
+  BreadcrumbsComponent,
+  ProductCardComponent,
+  HeaderComponent,
+  BuyerSigninFormComponent,
+  BuyerRegistrationFormComponent,
+  FooterComponent
+];
 
 @NgModule({
   declarations: [UI],
@@ -22,7 +34,7 @@ const UI = [ProductListComponent, SearchForComponent, BreadcrumbsComponent, Prod
     FormsModule,
     ReactiveFormsModule,
     LazyLoadImageModule,
-    NgbModule
+    NgbModule,
   ],
   exports: [UI],
 })

@@ -15,8 +15,8 @@ import { MaterialModule } from './material.module';
 import { CategoryMenuComponent } from './buyer/components/category-menu/category-menu.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from './ui/commonui/commonui.module';
-import { BuyerSigninFormComponent } from './buyer/components/buyer-login-modal-form/buyer-login-modal-form.component';
-import { BuyerRegistrationFormComponent } from './buyer/components/buyer-registration-modal-form/buyer-registration-modal-form.component';
+// import { BuyerSigninFormComponent } from './buyer/components/buyer-login-modal-form/buyer-login-modal-form.component';
+// import { BuyerRegistrationFormComponent } from './buyer/components/buyer-registration-modal-form/buyer-registration-modal-form.component';
 import { SupportTicketPageComponent } from './buyer/pages/support-ticket-page/support-ticket-page.component';
 import { OpenTicketPageComponent } from './buyer/pages/open-ticket-page/open-ticket-page.component';
 import { RfqPageComponent } from './buyer/pages/rfq-page/rfq-page.component';
@@ -27,8 +27,8 @@ import { BuyerModule } from './buyer/buyer.module';
   declarations: [
     AppComponent,
     CategoryMenuComponent,
-    BuyerSigninFormComponent,
-    BuyerRegistrationFormComponent,
+    // BuyerSigninFormComponent,
+    // BuyerRegistrationFormComponent,
     SupportTicketPageComponent,
     OpenTicketPageComponent,
     RfqPageComponent,

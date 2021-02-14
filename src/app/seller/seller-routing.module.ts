@@ -16,14 +16,14 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'seller/login',
+        path: 'login',
         loadChildren: () =>
           import('./pages/login-page/login-page.module').then(
             (m) => m.LoginPageModule
           ),
       },
       {
-        path: 'seller/signup',
+        path: 'signup',
         loadChildren: () =>
           import('./pages/signup-page/signup-page.module').then(
             (m) => m.SignupPageModule

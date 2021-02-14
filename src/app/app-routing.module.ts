@@ -15,13 +15,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),
   },
-  { 
-    path: 'registration/profile/verify/:token', 
-    loadChildren: () => 
-      import('./pages/verify-profile-page/verify-profile-page.module').then(
-        m => m.VerifyProfilePageModule
-      ) 
-  },
   {
     path: '**',
     loadChildren: () =>
