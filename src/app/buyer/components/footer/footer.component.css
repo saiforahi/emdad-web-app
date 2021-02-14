@@ -1,0 +1,74 @@
+a:hover {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+button:focus {
+    outline: none;
+}
+
+footer {
+    padding: 60px 0 70px;
+    background: #F4F4F4;
+}
+
+.slogan {
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: 20px 0 13px;
+}
+
+footer .list-group-horizontal {
+    display: inline-flex;
+}
+
+footer .list-group-item {
+    padding: 30px 17px;
+    border: none;
+}
+
+footer .social-links .list-group-item a {
+    color: #2b2b2b;
+    padding: 18px 24px;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+footer .social-links .list-group-item a:hover {
+    color: #fff;
+    background: #F49814;
+    transition: 0.3s;
+}
+
+.footer-link-div ul li {
+    border: none;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.list-group-item {
+    background-color: inherit;
+}
+
+footer .footer-link-div .list-group-item {
+    padding: 20px 17px;
+}
+
+.link-head {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 1600px !important;
+    }
+}
