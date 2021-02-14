@@ -1,6 +1,6 @@
 <div class="breadcrumbs">
     <div class="container">
-        <div class="url d-inline-block"><a [routerLink]="['/']">Home</a> / <span>{{directoryString | titlecase}}</span></div>
+        <div class="url d-inline-block"><a [routerLink]="['/']">Home</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':directoryString}}</span></div>
         <div class="d-inline-block float-right">
             <span class="serach-result" *ngIf="directoryString == 'Search Result'">Search Result - {{searchLength}} items</span>
             <!-- <a class="clear-btn" *ngIf="directoryString == 'Search Result'">Clear All</a> -->

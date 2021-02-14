@@ -1,4 +1,4 @@
-<div>
+<div class="mb-4">
   <!-- <div class="nav-section mt-5 mb-5">
     <span> <a href="#"> Home </a> / Raise a Support Ticket</span>
   </div> -->
@@ -13,6 +13,7 @@
         <button
           class="btn btn-warning open-ticket-button"
           [routerLink]="['/open-ticket/']"
+          style="color: white;"
         >
           Open a new ticket
         </button>
@@ -112,7 +113,7 @@
           </div>
           <div class="row mt-2">
             <div class="col">
-              <a href="javascript:void(0);" (click)="download(selectedSupportTicket.image)">Download Ticket Image</a>
+              <a class="a-download" href="javascript:void(0);" (click)="download(selectedSupportTicket.image)"><i class="fas fa-file-download"></i> Download {{get_image_name(selectedSupportTicket.image)}}</a>
             </div>
           </div>
         </div>
