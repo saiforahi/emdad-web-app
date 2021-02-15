@@ -1,117 +1,89 @@
-<div class="container" >
+<div class="container">
     <div class="row">
-        <h3>Checkout</h3>
+        <div class="col">
+            <h3 class="mx-auto pl-4">Checkout</h3>
+        </div>
     </div>
-    <div class="row" style="margin-right: 60px;">
-        <div class="col-lg-8 p-2 border-outline" style="text-align: left;">
+    <div class="row">
+        <div class="col-md-8 border-outline" style="text-align: left;">
             <div class="p-4" style="background: #FFFFFF;">
-                <h4>Address</h4>
-                <div class="row p-4" style="margin-top: 40px;">
-                    <div class="col-sm-7 address-row">
-                        <div class="row ">
+                <h4>Addresses</h4>
+                <div class="row p-4">
+                    <div class="col-sm-7">
+                        <div [ngClass]="selected_address===i?'row address-row address-row-selected':'row address-row'" class="row address-row" id="{{'address_div_'+address.id}}" *ngFor="let address of addresses; let i=index" (click)="selected_address=i" style="cursor: pointer;">
                             <!-- <div class="col-sm-2" style="margin-top: 25px;">
                                 <img src="../../assets/radio-button-on.svg">
                             </div> -->
-                            <div class="col-sm-10 p-4">
-                                <div class="row" style="padding-top: 10px;">
-                                    <p>{{user.full_name}}<br/>{{user.address}}</p>
+                            <mat-radio-group [(ngModel)]="selected_address">
+                                <mat-radio-button class="p-2 example-radio-button" [value]="i" color="accent">
+                                    {{address.address}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <div class="col-sm-10 p-4">
+                                <div class="row">
+                                    <p>{{user.full_name}}<br/>{{address.address}}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</p>
                                 </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin-left: 20px;">
+                        <div class="container">
+                            <div class="add-address">
+                                <button (click)="show_address_form()" class="btn btn-default btn-block" type="button"><span><i class="fas fa-plus"></i></span>  New Address</button>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-sm-4 add-address p-4" style="margin-left: 20px;">
-                        <button (click)="show_address_form()" class="btn btn-default btn-block" type="button"><span><i class="fas fa-plus"></i></span>  New Address</button>
-                    </div> -->
                 </div>
             </div>
-            <div *ngIf="new_address" class="row p-4 card-body" style="margin-top: 40px; ">
-                <div class="form-group w-100 row">
-                    <div class="col-lg-12">
-                        <label class="form-label">Address</label>
-                        <input class="form-control" type="text" placeholder="Enter Address"/>
+            <div *ngIf="new_address" class="container">
+                <form [formGroup]="addressForm" (ngSubmit)="onNewAddressFormSubmit()">
+                    <div  class="row p-4 card-body">
+                        <div class="form-group w-100 row">
+                            <div class="col-lg-12">
+                                <label class="form-label">Address</label>
+                                <label *ngIf="addressForm.get('address').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                <input class="form-control" type="text" placeholder="Enter Address" formControlName="address" />
+                            </div>
+                        </div>
+                        <div class="form-group w-100 row">
+                            <div class="col-lg-6">
+                                <label class="form-label">City</label>
+                                <label *ngIf="addressForm.get('city').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                <select class="form-control w-100" formControlName="city">
+                                    <option value="-1" selected>Select City</option>
+                                    <option *ngFor="let city of cities; let i=index" [value]="city.id|number">{{city.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Country</label>
+                                <label *ngIf="addressForm.get('country').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                <select class="form-control w-100" formControlName="country" (input)="onCountryChange($event.target.value)" >
+                                    <option value="-1" selected>Select Country</option>
+                                    <option *ngFor="let country of countries; let i=index" [value]="country.id">{{country.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group w-100 row">
+                            <div class="col-lg-6">
+                                <label class="form-label">Area</label>
+                                <input class="form-control" placeholder="Enter Area" type="text" formControlName="area" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Zip Code</label>
+                                <label *ngIf="addressForm.get('zip_code').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                <input class="form-control" placeholder="Enter Zip code" type="text" formControlName="zip_code" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row w-100">
+                            <div class="col-lg-6">
+                                <button class="btn btn-block save-btn" type="submit"  value="submit">Save</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group w-100 row">
-                    <div class="col-lg-6">
-                        <label class="form-label">City</label>
-                        <input class="form-control" type="text" placeholder="Enter City name"/>
-                    </div>
-                    <div class="col-lg-6">
-                        <label class="form-label">Country</label>
-                        <input class="form-control" type="text" placeholder="Enter Country"/>
-                    </div>
-                </div>
-                <div class="form-group w-100 row">
-                    <div class="col-lg-6">
-                        <label class="form-label">Area</label>
-                        <input class="form-control" placeholder="Enter Area" type="text"/>
-                    </div>
-                    <div class="col-lg-6">
-                        <label class="form-label">Zip Code</label>
-                        <input class="form-control" placeholder="Enter Zip code" type="text"/>
-                    </div>
-                </div>
-                <div class="form-group row w-100">
-                    <div class="col-lg-6">
-                        <button class="btn btn-block save-btn" type="button">Save</button>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top: 40px;">
-                <h4>Choose Payment Method</h4>
-                <div class="row" style="margin-top: 40px;">
-                    <div class="col-lg-6">
-                        <a id="a_card" class="btn btn-block pay-option pay-option-selected p-4" (click)="show_card_inputs()">Card</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <a id="a_wire" class="btn btn-block pay-option p-4" (click)="show_wired_inputs()">Wire Transfer</a>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="isWired" class="d-flex flex-column" style="margin-top: 40px; align-items: flex-start;">
-                <div class="p-2">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
-                    <p><strong>Account Number: 702 555-0122</strong></p>
-                </div>
-                <div class="p-2">
-                    <button *ngIf="show_loader===false" class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
-                    <button *ngIf="show_loader" class="btn btn-block save-btn" type="button" disabled>
-                        <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
-                        Loading...
-                    </button>
-                </div>
-            </div>
-            <div *ngIf="isCard" class="row card-body" style="margin-top: 40px; ">
-                <div class="form-group w-100 row">
-                    <!-- <div class="col-lg-12">
-                        <label class="form-label">Card Number</label>
-                        <input class="form-control" type="text" placeholder="Enter Card Number..."/>
-                    </div> -->
-                </div>
-                <div class="form-group w-100 row">
-                    <!-- <div class="col-lg-6">
-                        <label class="form-label">Card Holder</label>
-                        <input class="form-control" type="text" placeholder="Enter Card Holder name..."/>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="form-label">Expires</label>
-                        <input class="form-control" type="text" placeholder="Enter Card Expire date"/>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="form-label">CVV</label>
-                        <input class="form-control" type="text" placeholder="Enter CVV number"/>
-                    </div> -->
-                    <div class="col-lg-6">
-                        <button *ngIf="show_loader===false" class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
-                        <button *ngIf="show_loader" class="btn btn-block save-btn" type="button" disabled>
-                            <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-4">
             <div class="cash-div p-4">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -123,13 +95,14 @@
                     <div>
                         <p>Discount</p>
                     </div>
-                    <div>${{cash_details.discount}}</div>
+                    <div *ngIf="cash_details.discount_type===1">${{cash_details.discount}}</div>
+                    <div *ngIf="cash_details.discount_type===2">{{cash_details.discount}}%</div>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div>
                         <p>Vat</p>
                     </div>
-                    <div>${{cash_details.vat}}</div>
+                    <div>{{cash_details.vat}}%</div>
                 </div>
                 <hr/>
                 <div class="d-flex justify-content-between">
@@ -140,6 +113,28 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row p-4">
+        <div class="container mt-5">
+            <h4>Choose Payment Method</h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <a id="a_card" class="btn btn-block pay-option pay-option-selected p-4" (click)="show_card_inputs()">Card</a>
+                </div>
+                <div class="col-lg-6">
+                    <a id="a_wire" class="btn btn-block pay-option p-4" (click)="show_wired_inputs()">Wire Transfer</a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isWired" class="row p-4">
+            <div class="p-2">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
+                <p><strong>Account Number: 702 555-0122</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="row-cols-4 p-4">
+        <button class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
     </div>
 </div>
 <ngx-spinner></ngx-spinner>
