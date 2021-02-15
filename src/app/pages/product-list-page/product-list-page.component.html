@@ -43,7 +43,7 @@
                         <div class="expanded-div">
                             <!-- level one -->
                             <mat-accordion *ngFor="let cat of categories">
-                                <mat-expansion-panel [expanded]="expandedCat == cat.id" #subCat>
+                                <mat-expansion-panel [expanded]="expandedCat === cat.id" #subCat>
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
                                             <div class="cat-head">

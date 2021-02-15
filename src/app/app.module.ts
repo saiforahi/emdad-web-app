@@ -21,6 +21,7 @@ import { SupportTicketPageComponent } from './pages/support-ticket-page/support-
 import { OpenTicketPageComponent } from './pages/open-ticket-page/open-ticket-page.component';
 import { RfqPageComponent } from './pages/rfq-page/rfq-page.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,

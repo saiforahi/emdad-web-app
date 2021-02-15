@@ -266,15 +266,9 @@ export class CartPageComponent implements OnInit {
       element.commission = this.commissionAmount;
     });
     var finalCart = {
-      // total_amount: this.subTotal - this.couponDiscount + this.vatAmount,
-      // buyer: this.userId,
-      // payment_type: '1',
-      // discount_coupon_amount: this.couponDiscount,
-      // discount_coupon: this.couponId,
-      // orders_details: this.orders_details,
-      // tracking_order: this.tracking_order,
       subtotal: this.subTotal,
-      discount: this.commissionAmount,
+      discount: this.discount_coupon,
+      discount_type:this.couponType,
       vat: this.vatAmount,
       total: this.total_amount,
     };
