@@ -1,8 +1,15 @@
 .address-row{
     background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.address-row-selected{
     border: 2px solid #F49814;
     box-sizing: border-box;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
 .add-address{
@@ -19,7 +26,7 @@
 .save-btn{
     background: #F49814;
     border-radius: 5px;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     font-family: Jost;
     font-style: normal;
     font-weight: 500;
@@ -50,3 +57,17 @@
 .cash-div{
     background: #FFFFFF;
 }
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.errors {
+    color: red;
+  }

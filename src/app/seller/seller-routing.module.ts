@@ -30,8 +30,10 @@ const routes: Routes = [
             (m) => m.SignupPageModule
           ),
       },
+      { path: 'seller/forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) },
     ],
   },
+  
 ];
 
 @NgModule({

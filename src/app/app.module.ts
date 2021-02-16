@@ -29,8 +29,6 @@ import { BuyerModule } from './buyer/buyer.module';
   declarations: [
     AppComponent,
     CategoryMenuComponent,
-    // BuyerSigninFormComponent,
-    // BuyerRegistrationFormComponent,
     SupportTicketPageComponent,
     OpenTicketPageComponent,
     RfqPageComponent,
