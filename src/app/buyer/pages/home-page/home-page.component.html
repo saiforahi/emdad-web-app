@@ -69,7 +69,7 @@
         <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
             <span *ngIf="category.children">
                 <span *ngIf="category.children[0].children">
-                    <a [routerLink]="['products/category/', category.children[0].children[0].id]" (click)="set_selected_child_category(category.children[0].children[0].id)">
+                    <a [routerLink]="['/products/category/', category.children[0].children[0].id]" (click)="set_selected_child_category(category.children[0].children[0].id)">
                         <div class="cat-round-bg">
                             <img src="../../../assets/popular-cat.svg" alt="">
                             <img src="../../../assets/popular-cat-dark.svg" alt="">

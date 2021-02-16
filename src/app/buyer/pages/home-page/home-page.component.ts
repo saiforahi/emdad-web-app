@@ -69,6 +69,7 @@ export class HomePageComponent implements OnInit {
     localStorage.setItem('expandedCat',cat_id);
     localStorage.setItem('expandedSubCat',sub_cat_id)
   }
+
   // remove empty children form the array
   removeEmptyChildren(data) {
     data.forEach((key) => {
