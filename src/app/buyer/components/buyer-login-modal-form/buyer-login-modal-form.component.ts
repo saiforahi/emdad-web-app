@@ -11,7 +11,7 @@ export class BuyerSigninFormComponent implements OnInit {
   error: any;
   msg;
   group: string;
-  
+
   constructor(private authService: UserAuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -31,6 +31,7 @@ export class BuyerSigninFormComponent implements OnInit {
     document.getElementById('buyerLogin').style.display = 'none';
     this.router.navigate(['/forget-password']);
   }
+
   signin(email: string, password: string) {
     this.authService.login(email, password, this.group).subscribe(
       (success) => {

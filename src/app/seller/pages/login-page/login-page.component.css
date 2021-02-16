@@ -1,25 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+a {
+  color: inherit;
+}
+
+.container {
+  padding: 60px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.login-form-holder {
+  padding: 0 60px;
+}
+
 .login_btn {
   background: #1f4f9e;
   border-radius: 5px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 24px;
 }
-.login-card {
-  top: 20px;
-}
+
 .login-header {
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 48px;
-  /* line-height: 69px; */
   text-align: center;
-  /* #2B2B2B */
   color: #2b2b2b;
+  margin-top: 70px;
+  margin-bottom: 10px;
 }
+
+.login-sub-header {
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+
 .card {
   border: none;
+  width: 100%;
 }
+
 .btn {
   border: none;
 }
+
 .card-header {
   background-color: #f8f9fa00;
   border: none;
@@ -28,30 +64,42 @@
 .form-control {
   background: #efefef;
   border-radius: 5px;
+  border: none;
+  height: 80px;
 }
+
 .form-label {
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
   line-height: 29px;
-  /* identical to box height */
   color: #2b2b2b;
 }
+
 .bottom-text {
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 29px;
-  /* identical to box height */
-
   text-align: center;
-
   color: #2b2b2b;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: 7px;
+}
+
 .input-group-text {
-  border-right: 0 !important;
+  border: 0 !important;
+  background: #efefef;
+  padding: 0 22px;
+  font-size: 17px;
+}
+
+.form-control:focus {
+  box-shadow: none;
 }
 
 .lang-btn {
@@ -60,11 +108,18 @@
   color: #ffffff;
   border-radius: 30px;
   margin-left: auto;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  border: none;
+  padding: 0 20px;
 }
+
 .lang {
   font-size: 12px;
   color: #ffffff;
 }
+
 .image-wrapper {
   margin-top: 60px;
   background: #eaeaea;
@@ -73,6 +128,9 @@
 
 .slogan {
   color: #ffffff;
+  margin: 30px 0 35px;
+  font-weight: unset;
+  font-size: 30px;
 }
 
 .slogan-description {
@@ -90,4 +148,42 @@
 .social-icon {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.login-page-social {
+  background: url("../../../../assets/images/login-page-bg.png") center 100%
+    no-repeat;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.card-img-overlay {
+  padding: 105px 65px;
+}
+
+.social-media{
+  margin-bottom: 50px;
+}
+
+.social-media button {
+  color: #1f4f9e;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  margin-right: 15px;
+}
+
+.alert-danger{
+  background: transparent;
+  border: none;
+  color: #ff5f92;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
 }

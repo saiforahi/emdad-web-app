@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../shared/services/user-auth.service';
+import { SellerAuthGuard } from '../shared/services/user-auth.service';
 import { SellerComponent } from './seller.component';
 
 const routes: Routes = [
@@ -14,6 +14,7 @@ const routes: Routes = [
           import('./pages/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'login',

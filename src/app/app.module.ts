@@ -8,6 +8,8 @@ import {
   UserAuthService,
   AuthInterceptor,
   AuthGuard,
+  SellerAuthInterceptor,
+  SellerAuthGuard
 } from '../app/shared/services/user-auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,9 +54,14 @@ import { BuyerModule } from './buyer/buyer.module';
   providers: [
     UserAuthService,
     AuthGuard,
+    SellerAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: SellerAuthInterceptor,
       multi: true,
     },
   ],

@@ -1,92 +1,117 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <div class="form-group row">
-        <div class="col d-flex justify-content-right">
-          <button class="lang-btn">
-            <i class="fas fa-language"></i>
-            Arabic
-          </button>
-        </div>
+    <div class="col-md-6 login-form-holder">
+      <div class="float-right">
+        <button mat-raised-button class="lang-btn">
+          <i class="fas fa-language"></i>
+          Arabic
+        </button>
       </div>
-      <div class="card login-card">
+      <div class="card">
         <div class="card-header">
-          <h1 class="login-header">Login in</h1>
+          <h1 class="login-header">Login</h1>
           <h4 class="login-sub-header text-center">Hi, Let’s get started !</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="sellerLoginForm" (ngSubmit)="onSubmit(sellerLoginForm.value)">
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Company email</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
+                  <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                 </div>
-                <input #email id="email" name="email" class="form-control form-control-md" type="email" />
+                <!-- email -->
+                <input id="email" class="form-control form-control-md" type="email" formControlName="email" required />
+              </div>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.required">
+                  <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                </div>
+                <div *ngIf="email.errors?.pattern">
+                  <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+                </div>
               </div>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
+                  <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
                 </div>
-                <input #password id="password" name="password" type="password" class="form-control form-control-md" />
+                <!-- password -->
+                <input id="password" [type]="showPassState ? 'text' : 'password'" class="form-control form-control-md" formControlName="password"
+                  required />
+                <div class="input-group-prepend" *ngIf="!showPassState" (click)="showPass();">
+                  <div class="input-group-text">
+                    <i class="fas fa-eye"></i>
+                  </div>
+                </div>
+                <div class="input-group-prepend" *ngIf="showPassState" (click)="hidePass();">
+                  <div class="input-group-text">
+                    <i class="fas fa-eye-slash"></i>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required">
+                  <app-form-input-alert [alertMsg]="'Password is required.'"></app-form-input-alert>
+                </div>
+                <div *ngIf="password.errors?.minLength">
+                  <app-form-input-alert [alertMsg]="'password length is minimum 8 characters.'"></app-form-input-alert>
+                </div>
               </div>
             </div>
             <div class="form-group row justify-content-between">
-              <div class="col-4">
-                <div class="form-check mb-2">
+              <div class="col-6">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="autoSizingCheck" />
                   <label class="form-check-label" for="autoSizingCheck">Remember me</label>
                 </div>
               </div>
-              <div class="col-4">
-                <a [routerLink]="['/forget-password']"><label>Forgot password?</label></a>
+              <div class="col-6 text-right">
+                <a [routerLink]="['/forget-password']"><label>Forgot your password?</label></a>
               </div>
             </div>
             <div class="form-group">
-              <button (click)="login(email.value, password.value)" class="btn btn-primary btn-md btn-block login_btn"
-                type="button">
+              <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn">
                 Sign In
               </button>
             </div>
             <div class="form-group">
               <div class="text-center">
-                <label>No account yet?<a [routerLink]="['/seller/signup']" class="ml-1">Create an account</a></label>
+                <label>Not a seller, yet?<a [routerLink]="['/dashboard/signup']" class="ml-1"> Join Us</a></label>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="col-md-6 d-flex">
-      <div class="card bg-dark text-white">
-        <img src="../../../assets/login_page_image.svg" alt="align-self-center" class="card-img" />
-        <div class="card-img-overlay p-5">
-          <div class="row d-flex justify-content-center mb-2">
-            <img src="../../../assets/emdad_logo.svg" alt="align-self-center" />
+    <div class="col-md-6">
+      <div class="card text-white login-page-social">
+        <div class="card-img-overlay">
+          <div class="row justify-content-center">
+            <img src="../../../assets/logo-white.svg" alt="align-self-center" />
           </div>
-          <div class="row d-flex justify-content-center mb-4">
-            <h3 class="slogan">Your Slogan Here...</h3>
+          <div class="row justify-content-center mb-4">
+            <h3 class="slogan">YOUR SLOGAN HERE</h3>
           </div>
-          <div class="row d-flex justify-content-center mb-5">
-            <h5 class="slogan-description" align="center">
+          <div class="row justify-content-center ">
+            <h5 class="slogan-description text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s
             </h5>
           </div>
-          <div class="row d-flex justify-content-center mb-2">
+          <div class="row justify-content-center">
             <div class="social-media">
-              <a href="www.twitter.com">
-                <img src="../../../assets/twitter.svg" class="social-icon" alt="align-self-center" /></a>
-              <a href="www.instagram.com">
-                <img src="../../../assets/instagram.svg" alt="align-self-center" class="social-icon" /></a>
-              <a href="www.youtube.com">
-                <img src="../../../assets/youtube.svg" class="social-icon" alt="align-self-center" /></a>
-              <a href="www.pinterest.com">
-                <img src="../../../assets/pinterest.svg" class="social-icon" alt="align-self-center" /></a>
+              <a target="blank" href="www.facebook.com"><button mat-raised-button>
+                  <i class="fab fa-facebook-f"></i></button></a>
+              <button mat-raised-button>
+                <i class="fab fa-twitter"></i></button>
+              <button mat-raised-button>
+                <i class="fab fa-youtube"></i></button>
+              <button mat-raised-button>
+                <i class="fab fa-pinterest-p"></i></button>
             </div>
           </div>
           <div class="card-footer text-center">

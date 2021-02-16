@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   loggedInUser = false;
   userName;
   uId;
-  uGroup;
+  // uGroup;
   items;
   showOnScroll = false;
   showAllProdDiv: boolean = false;
@@ -45,13 +45,13 @@ export class HeaderComponent implements OnInit {
         this.uId = data;
       }
     });
-    this.UserAuthService.uGroup.subscribe((data) => {
-      if (data != null) {
-        this.uGroup = data;
-        // this.openSnackBar("You have logged in successfuly.", "ok");
-        console.log('group', this.uGroup);
-      }
-    });
+    // this.UserAuthService.uGroup.subscribe((data) => {
+    //   if (data != null) {
+    //     this.uGroup = data;
+    //     // this.openSnackBar("You have logged in successfuly.", "ok");
+    //     console.log('group', this.uGroup);
+    //   }
+    // });
     this.getCategory.category().subscribe((item) => {
       // console.log(item);
       const tempCategories: any = [];
