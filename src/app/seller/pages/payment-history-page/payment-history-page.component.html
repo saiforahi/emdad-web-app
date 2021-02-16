@@ -1,0 +1,38 @@
+<div class="row p-4">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Payment Date</th>
+            <th scope="col">Subscription Plan Name</th>
+            <th scope="col">Expired Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subscription of subscriptionList; let i = index" class="highlighted">
+            <th scope="row">{{ subscription.start_date|date}}</th>
+            <td>
+                <!-- {{
+                quotation.quotation[0] !== undefined
+                    ? quotation.quotation[0].message_date
+                    : ("" | date)
+                }} -->
+                {{ get_subscription_name(subscription.subscription_plan) }}
+            </td>
+            <td>{{ subscription.end_date !== undefined ? subscription.end_date : "" | date }}</td>
+            
+            </tr>
+            <!-- <tr class="spacer">
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Blah Blah</td>
+                <td>
+                    <button class="btn btn-primary" type="button">view</button>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+</div>
+  
+  

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserAuthService } from './user-auth.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -11,8 +9,12 @@ export class SubscriptionService {
   couponApplied;
   userId: any;
 
-  constructor(private http: HttpClient, private authService: UserAuthService) {}
-
+  constructor(private http: HttpClient) {}
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }),
+  };
   plans(): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/subscription/plans/`);
   }
@@ -41,12 +43,9 @@ export class SubscriptionService {
     });
   }
 
-  subscriptionHistory(uid): Observable<any> {
-    this.authService.uId.subscribe((item) => {
-      this.userId = item;
-    });
+  subscriptionHistory(): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:8000/api/subscription/history/${this.userId}/`
+      `http://127.0.0.1:8000/api/subscription/history/${localStorage.getItem('s_uid')}/`
     );
   }
 }
