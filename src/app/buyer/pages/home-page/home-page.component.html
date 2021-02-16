@@ -35,7 +35,7 @@
                         <div class="col-md-4">
                             <p class="children" *ngFor="let subCatChild of subCatChildrens; let i = index">
                                 <span><a
-                                        [routerLink]="['/products/category/', subCatChild.id]">{{subCatChild.name}}</a></span>
+                                        [routerLink]="['/products/category/', subCatChild.id]" (click)="set_selected_child_category(subCatChild.id)">{{subCatChild.name}}</a></span>
                             </p>
                         </div>
                     </div>

@@ -39,7 +39,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
           swal("Succeed!",this.msg,"success")
         }
       },
-      error => this.error = error
+      error => {this.error = error;this.click=false}
     );
   }
 

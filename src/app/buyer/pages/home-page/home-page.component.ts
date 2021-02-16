@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
-      // console.log(this.categories);
+      //console.log(this.categories);
     });
     // recent products list
     this.getProduct.product().subscribe((item) => {
@@ -173,7 +173,7 @@ export class HomePageComponent implements OnInit {
       duration: 5000,
     });
   }
-
+  
   // @HostListener('window:scroll')
   // onWindowScroll() {
   //   //In chrome and some browser scroll is given to body tag

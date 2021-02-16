@@ -6,7 +6,7 @@ import {Orders} from '../models/mocks/Orders';
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class AddressService {
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -58,5 +58,11 @@ export class OrderService {
 
   get_active_shipping_address_of_buyer():Observable<any>{
     return this.http.get(config.base_url+"api/address/book/default/"+localStorage.getItem('uid')+"/",this.httpOptions)
+  }
+  add_address(new_address):Observable<any>{
+    return this.http.post(config.base_url+'api/address/book/add/',new_address,this.httpOptions)
+  }
+  get_addresses():Observable<any>{
+    return this.http.get(config.base_url+'api/address/book/list/'+localStorage.getItem('uid')+'/',this.httpOptions)
   }
 }
