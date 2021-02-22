@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import swal from 'sweetalert';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login-page',
@@ -29,10 +30,12 @@ export class LoginPageComponent implements OnInit {
     private authService: UserAuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.hide();
     this.group = this.router.url.split('/', 3)[1];
     console.log(this.group);
     this.sellerLoginForm = this.fb.group({
@@ -44,8 +47,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(value) {
-    // login code goes here
-    console.log(value);
+    this.spinner.show();
+    // console.log(value);
     this.authService.login(value.email, value.password, 'seller').subscribe(
       (success) => {
         console.log(success);
@@ -67,17 +70,4 @@ export class LoginPageComponent implements OnInit {
   hidePass() {
     this.showPassState = false;
   }
-
-  // login(email: string, password: string) {
-  //   this.authService.login(email, password, this.group).subscribe(
-  //     (success) => {
-  //       console.log(success);
-  //       this.router.navigate(['']);
-  //     },
-  //     (error) => {
-  //       this.error = error;
-  //       console.log(error);
-  //     }
-  //   );
-  // }
 }

@@ -21,14 +21,14 @@ export class SellerSignupFormComponent implements OnInit {
   }
 
   signup(full_name, email, phone, password, gender, adrress, store_address, store_name, zip_code) {
-    this.authService.sellerSignup(full_name, email, phone, password, gender, adrress, store_address, store_name, zip_code).subscribe(
-      success => {
-        // this.router.navigate(['/login']);
-        this.msg = success.message;
-        console.log(success)
-      },
-      error => this.error = error
-    );
+    // this.authService.sellerSignup(full_name, email, phone, password, gender, adrress, store_address, store_name, zip_code).subscribe(
+    //   success => {
+    //     // this.router.navigate(['/login']);
+    //     this.msg = success.message;
+    //     console.log(success)
+    //   },
+    //   error => this.error = error
+    // );
   }
 
 }

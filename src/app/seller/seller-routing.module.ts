@@ -30,12 +30,15 @@ const routes: Routes = [
             (m) => m.SignupPageModule
           ),
       },
-      { path: 'payment-history', loadChildren: () => import('./pages/payment-history-page/payment-history-page.module').then(m => m.PaymentHistoryPageModule) },
-      { path: 'forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) }
+      {
+        path: 'seller/forgot-password',
+        loadChildren: () =>
+          import(
+            './pages/forgot-password-page/forgot-password-page.module'
+          ).then((m) => m.ForgotPasswordPageModule),
+      },
     ],
   },
-  
-  
 ];
 
 @NgModule({
