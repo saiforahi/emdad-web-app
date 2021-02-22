@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group row">
@@ -223,7 +223,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- <div style="text-align:center">
   <h1>
@@ -238,3 +238,361 @@
 <br>
 <br>
 <a [routerLink]="['/seller/login']">Seller Login</a> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 login-form-holder">
+      <div class="float-right">
+        <button mat-raised-button class="lang-btn">
+          <i class="fas fa-language"></i>
+          Arabic
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h1 class="login-header">Join Us</h1>
+          <h4 class="login-sub-header text-center">Let’s begin the journey !</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="sellerRegForm" (ngSubmit)="onSubmit(sellerRegForm.value)">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="comName">Company Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-home"></i></div>
+                    </div>
+                    <!-- comName -->
+                    <input id="comName" class="form-control form-control-md" type="text" formControlName="comName"
+                      required />
+                  </div>
+                  <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
+                    <div *ngIf="comName.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Company email</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                    </div>
+                    <!-- email -->
+                    <input id="email" class="form-control form-control-md" type="email" formControlName="email"
+                      required />
+                  </div>
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div *ngIf="email.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                    </div>
+                    <div *ngIf="email.errors?.pattern">
+                      <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="comPhone">Company Phone</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                    </div>
+                    <!-- phone -->
+                    <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
+                      required />
+                  </div>
+                  <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
+                    <div *ngIf="comPhone.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Company Phone is required.'"></app-form-input-alert>
+                    </div>
+                    <div *ngIf="comPhone.errors?.pattern">
+                      <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                    </div>
+                    <!-- password -->
+                    <input id="password" [type]="showPassState ? 'text' : 'password'"
+                      class="form-control form-control-md" formControlName="password" required (keyup)="matchBothPassord(password.value, confPassword.value)"/>
+                    <div class="input-group-prepend" *ngIf="!showPassState" (click)="showPass();">
+                      <div class="input-group-text">
+                        <i class="fas fa-eye"></i>
+                      </div>
+                    </div>
+                    <div class="input-group-prepend" *ngIf="showPassState" (click)="hidePass();">
+                      <div class="input-group-text">
+                        <i class="fas fa-eye-slash"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Password is required.'"></app-form-input-alert>
+                    </div>
+                    <!-- <div *ngIf="password.errors?.minLength">
+                      <app-form-input-alert [alertMsg]="'password length is minimum 8 characters.'">
+                      </app-form-input-alert>
+                    </div> -->
+                  </div>
+                  <div *ngIf="passMatched && confPassword.value != ''">
+                    <app-form-input-alert [alertMsg]="'Both password should match!'"></app-form-input-alert>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="password">Confirm Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                    </div>
+                    <!-- confirm password -->
+                    <input id="confPassword" [type]="confShowPassState ? 'text' : 'password'"
+                      class="form-control form-control-md" formControlName="confPassword" required (keyup)="matchBothPassord(password.value, confPassword.value)"/>
+                    <div class="input-group-prepend" *ngIf="!confShowPassState" (click)="confShowPass();">
+                      <div class="input-group-text">
+                        <i class="fas fa-eye"></i>
+                      </div>
+                    </div>
+                    <div class="input-group-prepend" *ngIf="confShowPassState" (click)="confHidePass();">
+                      <div class="input-group-text">
+                        <i class="fas fa-eye-slash"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="confPassword.invalid && (confPassword.dirty || confPassword.touched)">
+                    <div *ngIf="confPassword.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Confirm password.'"></app-form-input-alert>
+                    </div>
+                    <!-- <div *ngIf="confPassword.errors?.minLength">
+                      <app-form-input-alert [alertMsg]="'password length is minimum 8 characters.'">
+                      </app-form-input-alert>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="comAddress">Company Address</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <!-- company Address -->
+                    <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
+                      required />
+                  </div>
+                  <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
+                    <div *ngIf="comAddress.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="comRegistration">Commercial Registration</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-file-alt"></i></div>
+                    </div>
+                    <!-- Commercial Registration -->
+                    <input id="comRegistration" class="form-control form-control-md" type="text"
+                      formControlName="comRegistration" />
+                  </div>
+                  <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
+                    <div *ngIf="comRegistration.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
+                      </app-form-input-alert>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="expDate">Expiary Date</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
+                    </div>
+                    <!-- Commercial Registration -->
+                    <input id="expDate" class="form-control form-control-md" type="date" formControlName="expDate" />
+                  </div>
+                  <!-- <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
+                    <div *ngIf="expDate.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Registration expiration date is required.'">
+                      </app-form-input-alert>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <!-- company country -->
+                    <select id="country" class="form-control form-control-md" type="text" formControlName="country" (change)="getciTyList($event.target.value)">
+                      <option value="" disabled>Select Country</option>
+                      <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                    <div *ngIf="country.errors?.required">
+                      <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <!-- company city -->
+                    <select id="city" class="form-control form-control-md" type="text" formControlName="city">
+                      <option value="" disabled>Select City</option>
+                      <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="city.invalid && (city.dirty || city.touched)">
+                    <div *ngIf="city.errors?.required">
+                      <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="area">Area</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <!-- area -->
+                    <input id="area" class="form-control form-control-md" type="text" formControlName="area" />
+                  </div>
+                  <!-- <div *ngIf="area.invalid && (area.dirty || area.touched)">
+                    <div *ngIf="area.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="zipCode">Zip code</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-ellipsis-h"></i></div>
+                    </div>
+                    <!-- zipCode -->
+                    <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" />
+                  </div>
+                  <!-- <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+                    <div *ngIf="zipCode.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="d-block">Attachments</label>
+                  <label for="attachments" class="custom-file-upload">
+                    <!-- Attachments -->
+                    <input id="attachments" class="form-control form-control-md" type="file"
+                      formControlName="attachments" (change)="handleFileSelect($event);" />
+                  </label>
+                  <ul class="attached-file">
+                    <li *ngFor="let file of selectedImage; let i = index;">
+                      {{file.name}}
+                      <button mat-raised-button (click)="removeFile(i);">X</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agrreToPolicy" formControlName="agrreToPolicy"/>
+                    <label class="form-check-label" for="agrreToPolicy">I agree to EMDAD Terms and Condtions,
+                      Privacy
+                      Policy & Provided Correctness of information</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn" [disabled]="sellerRegForm.invalid || passMatched">
+                    Register
+                  </button>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <div class="text-center">
+                    <label>Already have an account? <a [routerLink]="['/dashboard/login']"
+                        class="ml-1">Login</a></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-white login-page-social">
+        <div class="card-img-overlay">
+          <div class="row justify-content-center">
+            <img src="../../../assets/logo-white.svg" alt="align-self-center" />
+          </div>
+          <div class="row justify-content-center mb-4">
+            <h3 class="slogan">YOUR SLOGAN HERE</h3>
+          </div>
+          <div class="row justify-content-center ">
+            <h5 class="slogan-description text-center">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s
+            </h5>
+          </div>
+          <div class="row justify-content-center">
+            <div class="social-media">
+              <a target="blank" href="www.facebook.com"><button mat-raised-button>
+                  <i class="fab fa-facebook-f"></i></button></a>
+              <button mat-raised-button>
+                <i class="fab fa-twitter"></i></button>
+              <button mat-raised-button>
+                <i class="fab fa-youtube"></i></button>
+              <button mat-raised-button>
+                <i class="fab fa-pinterest-p"></i></button>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <span class="footer-text">6391 Elgin St. Celina, Delaware (907) 555-0101
+              emdad@example.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>
