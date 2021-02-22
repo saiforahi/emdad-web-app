@@ -8,7 +8,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -21,7 +24,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSidenavModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatToolbarModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatMenuModule,
@@ -32,7 +37,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSidenavModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatToolbarModule,
+    MatSlideToggleModule
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }

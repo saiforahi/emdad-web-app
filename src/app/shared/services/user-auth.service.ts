@@ -13,6 +13,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 import { config } from '../../../config';
+import { SubscriptionService } from './subscription.service';
 
 interface JWTPayload {
   user_id: number;
@@ -349,12 +350,16 @@ export class AuthGuard implements CanActivate {
 export class SellerAuthGuard implements CanActivate {
   constructor(
     private UserAuthService: UserAuthService,
-    private router: Router
+    private router: Router,
+    private subscription: SubscriptionService
   ) {}
 
   canActivate() {
     if (this.UserAuthService.sellerIsLoggedIn()) {
       this.UserAuthService.sellerRefreshToken();
+      // this.subscription.subscriptionHistory().subscribe(item => {
+      //   console.log(item);
+      // })
       return true;
     } else {
       this.UserAuthService.sellerLogout();

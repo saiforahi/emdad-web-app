@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class SubscriptionService {
   selectedPlan;
   couponApplied;
@@ -15,6 +17,7 @@ export class SubscriptionService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };
+  
   plans(): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/subscription/plans/`);
   }
@@ -45,7 +48,9 @@ export class SubscriptionService {
 
   subscriptionHistory(): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:8000/api/subscription/history/${localStorage.getItem('s_uid')}/`
+      `http://127.0.0.1:8000/api/subscription/history/${localStorage.getItem(
+        's_uid'
+      )}/`
     );
   }
 }
