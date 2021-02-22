@@ -103,13 +103,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'subscription/plans/history',
-        loadChildren: () =>
-          import(
-            './pages/seller-subscription-history-page/seller-subscription-history-page.module'
-          ).then((m) => m.SellerSubscriptionHistoryPageModule),
-      },
-      {
         path: 'orders',
         loadChildren: () =>
           import('./pages/seller-orders-page/seller-orders-page.module').then(
