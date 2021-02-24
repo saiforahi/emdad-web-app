@@ -44,6 +44,20 @@ const routes: Routes = [
             './pages/payment-history-page/payment-history-page.module'
           ).then((m) => m.PaymentHistoryPageModule),
       },
+      {
+        path: 'subscription-plan',
+        loadChildren: () =>
+          import(
+            './pages/subscription-plan-page/subscription-plan-page.module'
+          ).then((m) => m.SubscriptionPlanPageModule),
+      },
+      {
+        path: 'payment',
+        loadChildren: () =>
+          import(
+            './pages/payment-page/payment-page.module'
+          ).then((m) => m.PaymentPageModule),
+      },
     ],
   },
 ];

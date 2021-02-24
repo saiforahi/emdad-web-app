@@ -33,7 +33,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
-      '#fff';
+      '#f9f9f9';
   }
 
   setSideMenuCollapseVar() {

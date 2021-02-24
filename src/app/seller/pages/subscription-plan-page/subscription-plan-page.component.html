@@ -1,0 +1,33 @@
+<section>
+    <h2 class="page-heading">Choose Subscription Plan</h2>
+</section>
+<section class="subs-plan-holder">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="plan-card plan-card-active">
+                <p class="plan-title">Semi - Annually</p>
+                <p class="plan-price">$4.80 <span>VAT Inclusive</span></p>
+                <mat-checkbox class="plan-check" [checked]="true"></mat-checkbox>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="plan-card">
+                <p class="plan-title">Annually</p>
+                <p class="plan-price">$3.50/yr <span>VAT Inclusive</span></p>
+                <!-- <mat-checkbox class="plan-check"></mat-checkbox> -->
+            </div>
+        </div>
+    </div>
+    <div class="apply-coupon-holder">
+        <div class="form-group d-inline-block">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><img src="../../../../assets/coupon.svg" alt=""></div>
+                </div>
+                <input id="email" class="form-control form-control-md" type="text" formControlName="email" required placeholder="Enter discount coupon"/>
+            </div>
+        </div>
+        <button mat-raised-button>Apply</button>
+        <button [routerLink]="['/dashboard/payment']" class="d-block mt-5" mat-raised-button>Proceed to pay</button>
+    </div>
+</section>
