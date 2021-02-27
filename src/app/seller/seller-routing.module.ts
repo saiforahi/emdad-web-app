@@ -30,36 +30,12 @@ const routes: Routes = [
             (m) => m.SignupPageModule
           ),
       },
-      {
-        path: 'forgot-password',
-        loadChildren: () =>
-          import(
-            './pages/forgot-password-page/forgot-password-page.module'
-          ).then((m) => m.ForgotPasswordPageModule),
-      },
-      {
-        path: 'payment-history',
-        loadChildren: () =>
-          import(
-            './pages/payment-history-page/payment-history-page.module'
-          ).then((m) => m.PaymentHistoryPageModule),
-      },
-      {
-        path: 'subscription-plan',
-        loadChildren: () =>
-          import(
-            './pages/subscription-plan-page/subscription-plan-page.module'
-          ).then((m) => m.SubscriptionPlanPageModule),
-      },
-      {
-        path: 'payment',
-        loadChildren: () =>
-          import(
-            './pages/payment-page/payment-page.module'
-          ).then((m) => m.PaymentPageModule),
-      },
+      { path: 'change-password', loadChildren: () => import('./pages/change-password-page/change-password-page.module').then(m => m.ChangePasswordPageModule) },
+      { path: 'forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) }
     ],
   },
+  
+  
 ];
 
 @NgModule({

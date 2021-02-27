@@ -1,6 +1,6 @@
 .side-nav-bar {
     background: #ddd;
-    margin-top: 1rem;
+    
     padding: 30px;
     min-height: calc(100vh - 215px);
   }
@@ -68,9 +68,44 @@
     font-weight: normal;
     font-size: 20px;
   }
+  .d-flex{
+    background: #1F4F9E;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    color: #FFFFFF;
+  }
   
   @media only screen and (min-width: 1200px) {
     .container {
       max-width: 1600px !important;
     }
+  }
+
+  .example-h2 {
+    margin: 0 8px 16px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 8px;
+  }
+  
+  .mat-slider-horizontal {
+    width: 300px;
+  }
+  
+  .mat-slider-vertical {
+    height: 300px;
+  }
+  
+  .example-result-card h2 {
+    margin: 0 8px;
   }

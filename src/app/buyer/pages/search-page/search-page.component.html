@@ -2,6 +2,11 @@
 <section class="container">
     <div class="row">
         <div class="col-md-3">
+            <div class="d-flex">
+                <div class="p-3" style="padding-left: 5px;">
+                    Filter By
+                </div>
+            </div>
             <div class="side-nav-bar">
                 <mat-accordion>
                     <mat-expansion-panel [expanded]="true">
@@ -62,6 +67,56 @@
                                     </div>
                                 </mat-expansion-panel>
                             </mat-accordion>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="cat-head">
+                                    Brands
+                                </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="expanded-div mt-2">
+                            <mat-panel-title *ngFor="let brand of brands">
+                                <div class="p-2">
+                                    <mat-checkbox class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
+                                </div>
+                            </mat-panel-title>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="cat-head">
+                                    Colors
+                                </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="expanded-div mt-2">
+                            <mat-panel-title *ngFor="let color of colors">
+                                <div class="p-2">
+                                    <mat-checkbox class="example-margin">{{color.name | titlecase}}</mat-checkbox>
+                                </div>
+                            </mat-panel-title>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="cat-head">
+                                    Price
+                                </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="expanded-div mt-2">
+                            <mat-slider class="w-100 ml-0" ></mat-slider>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
