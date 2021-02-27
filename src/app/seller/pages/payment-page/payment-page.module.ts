@@ -1,28 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignupPageComponent } from './signup-page.component';
-import { SellerSignupFormComponent } from '../../../buyer/components/seller-signup-form/seller-signup-form.component';
+import { PaymentPageComponent } from './payment-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { MaterialModule } from 'src/app/material.module';
 
 const routes: Routes = [
-  {path:'', component: SignupPageComponent, pathMatch:'full'}
+  {path:'', component: PaymentPageComponent, pathMatch:'full'}
 ]
 
 @NgModule({
-  declarations: [
-    SignupPageComponent,
-    SellerSignupFormComponent
-  ],
+  declarations: [PaymentPageComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     CommonuiModule,
-    NgxSpinnerModule
+    MaterialModule
   ]
 })
-export class SignupPageModule { }
+export class PaymentPageModule { }

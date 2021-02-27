@@ -13,6 +13,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 import { config } from '../../../config';
+import { SubscriptionService } from './subscription.service';
 
 interface JWTPayload {
   user_id: number;
@@ -125,29 +126,9 @@ export class UserAuthService {
       .pipe(shareReplay());
   }
 
-  sellerSignup(
-    full_name,
-    email,
-    phone,
-    password,
-    gender,
-    adrress,
-    store_address,
-    store_name,
-    zip_code
-  ): Observable<any> {
+  sellerSignup(data): Observable<any> {
     return this.http
-      .post('http://127.0.0.1:8000/api/buyer/registration/', {
-        full_name,
-        email,
-        phone,
-        password,
-        gender,
-        adrress,
-        store_address,
-        store_name,
-        zip_code,
-      })
+      .post('http://127.0.0.1:8000/api/seller/registration/', data)
       .pipe(shareReplay());
   }
 
@@ -298,14 +279,13 @@ export class UserAuthService {
       }),
     };
     if (user.user_type === 'buyer') {
-    var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
-    } else if (user.user_type === 'seller'){
+      var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
+    } else if (user.user_type === 'seller') {
       const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
     }
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
 }
-
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -370,12 +350,16 @@ export class AuthGuard implements CanActivate {
 export class SellerAuthGuard implements CanActivate {
   constructor(
     private UserAuthService: UserAuthService,
-    private router: Router
+    private router: Router,
+    private subscription: SubscriptionService
   ) {}
 
   canActivate() {
     if (this.UserAuthService.sellerIsLoggedIn()) {
       this.UserAuthService.sellerRefreshToken();
+      // this.subscription.subscriptionHistory().subscribe(item => {
+      //   console.log(item);
+      // })
       return true;
     } else {
       this.UserAuthService.sellerLogout();

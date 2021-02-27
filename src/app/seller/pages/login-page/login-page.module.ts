@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 const routes: Routes = [
   {path:'', component: LoginPageComponent, pathMatch:'full'}
@@ -16,7 +17,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    CommonuiModule
+    CommonuiModule,
+    NgxSpinnerModule
   ]
 })
 export class LoginPageModule { }
