@@ -30,9 +30,11 @@ const routes: Routes = [
             (m) => m.SignupPageModule
           ),
       },
-      { path: 'seller/forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) },
+      { path: 'change-password', loadChildren: () => import('./pages/change-password-page/change-password-page.module').then(m => m.ChangePasswordPageModule) },
+      { path: 'forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) }
     ],
   },
+  
   
 ];
 
