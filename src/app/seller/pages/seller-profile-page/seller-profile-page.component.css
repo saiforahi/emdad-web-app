@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.page-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.card {
+  padding: 40px;
+  border: none;
+  border-radius: 0;
+}
+
+.profile-banner-holder {
+  position: relative;
+}
+
+.profile-banner-holder img {
+  width: 100%;
+}
+
+.banner-img-up-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 48px;
+  min-width: 48px;
+  height: 48px !important;
+  padding: 0;
+}
+
+.banner-img-up-btn img {
+  width: 24px;
+  height: 22px;
+}
+
+.seller-pro-pic-holder {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 5px solid #fff;
+  background: #fff;
+}
+
+.seller-pro-pic-holder img {
+  width: 150px;
+  height: 150px;
+}
+
+.pro-img-up-btn {
+  position: absolute;
+  background: #f49814;
+  color: #fff;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  padding: 0;
+}
+
+.pro-img-up-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.profile-form-holder {
+    margin-top: 110px;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  padding: 60px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.login-form-holder {
+  padding: 0 60px;
+}
+
+.login_btn {
+  background: #1f4f9e;
+  border-radius: 5px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 24px;
+  width: 300px;
+}
+
+.login-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  text-align: center;
+  color: #2b2b2b;
+  margin-top: 70px;
+  margin-bottom: 10px;
+}
+
+.login-sub-header {
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.card {
+  border: none;
+  width: 100%;
+}
+
+.btn {
+  border: none;
+}
+
+.card-header {
+  background-color: #f8f9fa00;
+  border: none;
+}
+
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  border: none;
+  height: 80px;
+}
+
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
+}
+
+.bottom-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: 7px;
+}
+
+.input-group-text {
+  border: 0 !important;
+  background: #efefef;
+  padding: 0 22px;
+  font-size: 17px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.lang-btn {
+  background: #f49814;
+  font-style: normal;
+  color: #ffffff;
+  border-radius: 30px;
+  margin-left: auto;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  border: none;
+  padding: 0 20px;
+}
+
+.lang {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.image-wrapper {
+  margin-top: 60px;
+  background: #eaeaea;
+  border-radius: 20px;
+}
+
+.slogan {
+  color: #ffffff;
+  margin: 30px 0 35px;
+  font-weight: unset;
+  font-size: 30px;
+}
+
+.slogan-description {
+  color: #ffffff;
+}
+
+.card-footer {
+  border-color: #ffffff !important;
+}
+
+.footer-text {
+  color: #ffffff;
+}
+
+.social-icon {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.login-page-social {
+  background: url("../../../../assets/images/login-page-bg.png") center 100%
+    no-repeat;
+  width: 100%;
+  height: 760px;
+  border-radius: 20px;
+}
+
+.card-img-overlay {
+  padding: 105px 65px;
+}
+
+.social-media {
+  margin-bottom: 50px;
+}
+
+.social-media button {
+  color: #1f4f9e;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  margin-right: 15px;
+}
+
+.alert-danger {
+  background: transparent;
+  border: none;
+  color: #ff5f92;
+}
+
+.card-body {
+  padding: 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 80px;
+  height: 80px;
+  background-image: url("../../../../assets/upload.svg");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center center;
+  border-radius: 5px;
+  border: 3px dashed #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.attached-file {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.attached-file {
+  list-style: none !important;
+  font-size: 20px;
+}
+
+.attached-file button {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background: #ff4b55;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+}

@@ -1,0 +1,122 @@
+<section>
+    <h2 class="page-heading">Bank Account Information</h2>
+</section>
+<section class="card mb-5">
+    <form [formGroup]="bankInfoForm" (ngSubmit)="onSubmit(bankInfoForm.value)">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="bankAcNumber">Bank Account Number</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                </div>
+                <!-- bankAcNumber -->
+                <input id="bankAcNumber" class="form-control form-control-md" type="text" formControlName="bankAcNumber"
+                  required />
+              </div>
+              <div *ngIf="bankAcNumber.invalid && (bankAcNumber.dirty || bankAcNumber.touched)">
+                <div *ngIf="bankAcNumber.errors?.required">
+                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="d-block">Stamped Account Letter</label>
+              <label for="attachments" class="custom-file-upload">
+                <!-- Attachments -->
+                <input id="attachments" class="form-control form-control-md" type="file"
+                  formControlName="attachments" (change)="handleFileSelect($event);" />
+              </label>
+              <ul class="attached-file">
+                <li *ngFor="let file of selectedImage; let i = index;">
+                  {{file.name}}
+                  <button mat-raised-button (click)="removeFile(i);">X</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="bankName">Name of Bank</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                </div>
+                <!-- bankName -->
+                <input id="bankName" class="form-control form-control-md" type="text" formControlName="bankName"
+                  required />
+              </div>
+              <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)">
+                <div *ngIf="bankName.errors?.required">
+                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="swiftCode">Swift Code</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                </div>
+                <!-- swiftCode -->
+                <input id="swiftCode" class="form-control form-control-md" type="text" formControlName="swiftCode"
+                  required />
+              </div>
+              <div *ngIf="swiftCode.invalid && (swiftCode.dirty || swiftCode.touched)">
+                <div *ngIf="swiftCode.errors?.required">
+                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="accountName">Account Name</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                </div>
+                <!-- accountName -->
+                <input id="accountName" class="form-control form-control-md" type="text" formControlName="accountName"
+                  required />
+              </div>
+              <div *ngIf="accountName.invalid && (accountName.dirty || accountName.touched)">
+                <div *ngIf="accountName.errors?.required">
+                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="bankAddress">Bank address</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                </div>
+                <!-- company Address -->
+                <input id="bankAddress" class="form-control form-control-md" type="text" formControlName="bankAddress"
+                  required />
+              </div>
+              <div *ngIf="bankAddress.invalid && (bankAddress.dirty || bankAddress.touched)">
+                <div *ngIf="bankAddress.errors?.required">
+                  <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn" [disabled]="bankInfoForm.invalid || passMatched">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+</section>

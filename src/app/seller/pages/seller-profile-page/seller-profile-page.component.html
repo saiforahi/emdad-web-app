@@ -1,0 +1,232 @@
+<section>
+  <h2 class="page-heading">Company Profile</h2>
+</section>
+<section class="card mb-5">
+  <div class="profile-banner-holder">
+    <img src="../../../../assets/images/profile-banner.png" alt="">
+    <button mat-raised-button class="banner-img-up-btn"><img src="../../../../assets/banner-img-up-icon.svg"
+        alt=""></button>
+    <div class="seller-pro-pic-holder">
+      <img src="../../../../assets/images/seller-pro-pic.png" alt="">
+      <button mat-raised-button class="pro-img-up-btn"><img src="../../../../assets/Plus-light.svg" alt=""></button>
+    </div>
+  </div>
+  <div class="profile-form-holder">
+    <form [formGroup]="sellerProfileForm" (ngSubmit)="onSubmit(sellerProfileForm.value)">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="comName">Company Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-home"></i></div>
+              </div>
+              <!-- comName -->
+              <input id="comName" class="form-control form-control-md" type="text" formControlName="comName" required />
+            </div>
+            <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
+              <div *ngIf="comName.errors?.required">
+                <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Company email</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+              </div>
+              <!-- email -->
+              <input id="email" class="form-control form-control-md" type="email" formControlName="email" required />
+            </div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors?.required">
+                <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+              </div>
+              <div *ngIf="email.errors?.pattern">
+                <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="comPhone">Company Phone</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-phone"></i></div>
+              </div>
+              <!-- phone -->
+              <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
+                required />
+            </div>
+            <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
+              <div *ngIf="comPhone.errors?.required">
+                <app-form-input-alert [alertMsg]="'Company Phone is required.'"></app-form-input-alert>
+              </div>
+              <div *ngIf="comPhone.errors?.pattern">
+                <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="comAddress">Company Address</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+              </div>
+              <!-- company Address -->
+              <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
+                required />
+            </div>
+            <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
+              <div *ngIf="comAddress.errors?.required">
+                <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="comRegistration">Commercial Registration</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-file-alt"></i></div>
+              </div>
+              <!-- Commercial Registration -->
+              <input id="comRegistration" class="form-control form-control-md" type="text"
+                formControlName="comRegistration" />
+            </div>
+            <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
+                    <div *ngIf="comRegistration.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
+                      </app-form-input-alert>
+                    </div>
+                  </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="expDate">Expiary Date</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
+              </div>
+              <!-- Commercial Registration -->
+              <input id="expDate" class="form-control form-control-md" type="date" formControlName="expDate" />
+            </div>
+            <!-- <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
+                    <div *ngIf="expDate.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Registration expiration date is required.'">
+                      </app-form-input-alert>
+                    </div>
+                  </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+              </div>
+              <!-- company country -->
+              <select id="country" class="form-control form-control-md" type="text" formControlName="country"
+                (change)="getciTyList($event.target.value)">
+                <option value="" disabled>Select Country</option>
+                <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="country.invalid && (country.dirty || country.touched)">
+              <div *ngIf="country.errors?.required">
+                <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="city">City</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+              </div>
+              <!-- company city -->
+              <select id="city" class="form-control form-control-md" type="text" formControlName="city">
+                <option value="" disabled>Select City</option>
+                <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="city.invalid && (city.dirty || city.touched)">
+              <div *ngIf="city.errors?.required">
+                <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="area">Area</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+              </div>
+              <!-- area -->
+              <input id="area" class="form-control form-control-md" type="text" formControlName="area" />
+            </div>
+            <!-- <div *ngIf="area.invalid && (area.dirty || area.touched)">
+                    <div *ngIf="area.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="zipCode">Zip code</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-ellipsis-h"></i></div>
+              </div>
+              <!-- zipCode -->
+              <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" />
+            </div>
+            <!-- <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+                    <div *ngIf="zipCode.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div> -->
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="d-block">Attachments</label>
+            <label for="attachments" class="custom-file-upload">
+              <!-- Attachments -->
+              <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
+                (change)="handleFileSelect($event);" />
+            </label>
+            <ul class="attached-file">
+              <li *ngFor="let file of selectedImage; let i = index;">
+                {{file.name}}
+                <button mat-raised-button (click)="removeFile(i);">X</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+              [disabled]="sellerProfileForm.invalid || passMatched">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

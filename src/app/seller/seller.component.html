@@ -5,7 +5,7 @@
     <!-- side menu -->
     <section class="side-menu-holder">
       <ul>
-        <a mat-button href="">
+        <a mat-button [routerLink]="['/dashboard']">
           <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
         </a>
         <!-- <a mat-button href=""> -->
@@ -20,9 +20,9 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
-                  <a href=""><li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li></a>
-                  <a href=""><li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li></a>
-                  <a href=""><li><img src="../../assets/dot-light.svg" alt=""> Change Password</li></a>
+                  <a [routerLink]="['/dashboard/profile']"><li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li></a>
+                  <a [routerLink]="['/dashboard/bank-info']"><li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li></a>
+                  <a [routerLink]="['/dashboard/change-password']"><li><img src="../../assets/dot-light.svg" alt=""> Change Password</li></a>
                 </ul>
               </mat-expansion-panel>
             </mat-accordion>
