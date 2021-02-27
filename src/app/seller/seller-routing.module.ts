@@ -30,12 +30,36 @@ const routes: Routes = [
             (m) => m.SignupPageModule
           ),
       },
-      { path: 'change-password', loadChildren: () => import('./pages/change-password-page/change-password-page.module').then(m => m.ChangePasswordPageModule) },
-      { path: 'forgot-password', loadChildren: () => import('./pages/forgot-password-page/forgot-password-page.module').then(m => m.ForgotPasswordPageModule) }
+      {
+        path: 'forgot-password',
+        loadChildren: () =>
+          import(
+            './pages/forgot-password-page/forgot-password-page.module'
+          ).then((m) => m.ForgotPasswordPageModule),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./pages/seller-profile-page/seller-profile-page.module').then(
+            (m) => m.SellerProfilePageModule
+          ),
+      },
+      {
+        path: 'bank-info',
+        loadChildren: () =>
+          import('./pages/bank-info-page/bank-info-page.module').then(
+            (m) => m.BankInfoPageModule
+          ),
+      },
+      {
+        path: 'change-password',
+        loadChildren: () =>
+          import(
+            './pages/seller-change-pass-page/seller-change-pass-page.module'
+          ).then((m) => m.SellerChangePassPageModule),
+      },
     ],
   },
-  
-  
 ];
 
 @NgModule({
