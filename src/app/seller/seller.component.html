@@ -2,6 +2,49 @@
   <mat-sidenav *ngIf="showNavigation" #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0"
     [fixedBottomGap]="0">
     <img src="../../assets/logo.svg" alt="">
+    <!-- side menu -->
+    <section class="side-menu-holder">
+      <ul>
+        <a mat-button href="">
+          <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
+        </a>
+        <!-- <a mat-button href=""> -->
+          <li class="accordion-menu-item">
+            <!-- Manage Profile -->
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <img src="../../assets/seller-Profile.svg" alt="">
+                    Manage Profile
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="child-item">
+                  <a href=""><li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li></a>
+                  <a href=""><li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li></a>
+                  <a href=""><li><img src="../../assets/dot-light.svg" alt=""> Change Password</li></a>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </li>
+        <!-- </a> -->
+        <a mat-button href="">
+          <li><img src="../../assets/Wallet.svg" alt=""> Manage Subscription</li>
+        </a>
+        <a mat-button href="">
+          <li><img src="../../assets/Chart.svg" alt=""> Manage Products</li>
+        </a>
+        <a mat-button href="">
+          <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
+        </a>
+        <a mat-button href="">
+          <li><img src="../../assets/Buy.svg" alt=""> Manage Order</li>
+        </a>
+        <a mat-button href="">
+          <li><img src="../../assets/Chat.svg" alt=""> Support</li>
+        </a>
+      </ul>
+    </section>
   </mat-sidenav>
   <mat-sidenav-content>
     <nav *ngIf="showNavigation" class="navbar navbar-expand-lg navbar-light bg-light"
