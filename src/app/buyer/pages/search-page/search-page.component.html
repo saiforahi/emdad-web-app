@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="side-nav-bar">
-                <mat-accordion>
+                <!-- <mat-accordion>
                     <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -18,7 +18,7 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div class="expanded-div">
-                            <!-- level one -->
+                            level one
                             <mat-accordion *ngFor="let cat of categories">
                                 <mat-expansion-panel [expanded]="expandedCat == cat.id" #subCat>
                                     <mat-expansion-panel-header>
@@ -36,7 +36,7 @@
                                         <div *ngIf="cat.children.length == 0">
                                             No item to show
                                         </div>
-                                        <!-- level two -->
+                                        level two
                                         <mat-accordion *ngFor="let subcategory of cat.children">
                                             <mat-expansion-panel [expanded]="expandedSubCat == subcategory.id" #childCat>
                                                 <mat-expansion-panel-header>
@@ -54,9 +54,8 @@
                                                     <div *ngIf="subcategory.children.length == 0">
                                                         No item to show
                                                     </div>
-                                                    <!-- level three -->
+                                                    
                                                     <div *ngFor="let child of subcategory.children">
-                                                        <!-- [routerLink]="['/products/category/', child.id]" -->
                                                         <a (click)="getProdOnFilter(child.id, subcategory.id, cat.id);">
                                                             {{child.name | titlecase}}
                                                         </a>
@@ -69,7 +68,7 @@
                             </mat-accordion>
                         </div>
                     </mat-expansion-panel>
-                </mat-accordion>
+                </mat-accordion> -->
                 <mat-accordion>
                     <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header>
@@ -82,7 +81,7 @@
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let brand of brands">
                                 <div class="p-2">
-                                    <mat-checkbox class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
+                                    <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
                                 </div>
                             </mat-panel-title>
                         </div>
@@ -100,7 +99,7 @@
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let color of colors">
                                 <div class="p-2">
-                                    <mat-checkbox class="example-margin">{{color.name | titlecase}}</mat-checkbox>
+                                    <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="example-margin">{{color.name | titlecase}}</mat-checkbox>
                                 </div>
                             </mat-panel-title>
                         </div>
