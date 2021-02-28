@@ -1,0 +1,11 @@
+variables:
+  GIT_CLEAN_FLAGS: none # disable git clean ** this is important **
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - npm install
+    - echo "deployed successfully :)"
