@@ -7,4 +7,5 @@ stages:
 deploy:
   stage: deploy
   script:
+    - npm install
     - echo "deployed successfully :)"
