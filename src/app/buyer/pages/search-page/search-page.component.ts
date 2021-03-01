@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
@@ -10,6 +10,7 @@ import { SearchService } from '../../../shared/services/search.service';
 })
 export class SearchPageComponent implements OnInit {
   products: any=[];
+  style:string;
   expandedSubCat: number;
   expandedCat: number;
   categories: any;
@@ -21,6 +22,7 @@ export class SearchPageComponent implements OnInit {
   max_price:any;
   _brand:any;
   _color:any;
+  
   constructor(
     private searchService: SearchService,
     private router: Router,
@@ -30,6 +32,7 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.style='grid'
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
@@ -99,9 +102,8 @@ export class SearchPageComponent implements OnInit {
         this.products = item.data.results;
       });
     });
-    // this.searchService.filter_products('search='+query).subscribe((result)=>{
-    //   this.products=result.data.results
-    //   console.log(this.products)
-    // })
+  }
+  set_style(value:string){
+    this.style=value;
   }
 }
