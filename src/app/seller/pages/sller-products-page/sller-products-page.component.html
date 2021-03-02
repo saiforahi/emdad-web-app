@@ -1,0 +1,126 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="120" [fixedBottomGap]="0">
+        <!-- side menu -->
+        <section class="side-menu-holder">
+            <mat-accordion *ngFor="let cat of categories">
+                <mat-expansion-panel [expanded]="expandedCat === cat.id" #subCat>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="cat-head" style="font-size: 20px;">
+                                {{cat.name | titlecase}}
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="expanded-div" [ngClass]="sideMenuCollapsed? 'd-none' : 'd-block'">
+                        <div *ngIf="cat.children.length == 0" style="font-size: 18px;">
+                            No item to show
+                        </div>
+                        <!-- level two -->
+                        <mat-accordion *ngFor="let subcategory of cat.children">
+                            <mat-expansion-panel [expanded]="expandedSubCat == subcategory.id" #childCat>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="cat-head" style="font-size: 18px;">
+                                            {{subcategory.name | titlecase}}
+                                        </div>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        <span class="plus" *ngIf="!childCat.expanded">+</span>
+                                        <span class="minus" *ngIf="childCat.expanded">-</span>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div class="expanded-div">
+                                    <div *ngIf="subcategory.children.length == 0" style="font-size: 18px;">
+                                        No item to show
+                                    </div>
+                                    <!-- level three -->
+                                    <div *ngFor="let child of subcategory.children">
+                                        <!-- [routerLink]="['/products/category/', child.id]" -->
+                                        <a (click)="getProdOnFilter(child.id, subcategory.id, cat.id);"
+                                            style="font-size: 18px;">
+                                            {{child.name | titlecase}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </section>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="container" style="background: #f9f9f9; min-height: calc(100vh - 120px);">
+            <button *ngIf="sideMenuCollapsed" class="toggle-slide-menu-btn" mat-button (click)="toggleSidenav()"
+                (click)="setSideMenuCollapseVar()">
+                <i class="fas fa-arrow-circle-right"></i>
+            </button>
+            <button *ngIf="!sideMenuCollapsed" class="toggle-slide-menu-btn" mat-button (click)="toggleSidenav()"
+                (click)="setSideMenuCollapseVar()">
+                <i class="fas fa-arrow-circle-left"></i>
+            </button>
+            <section class="page-heading-holder">
+                <h2 class="page-heading d-inline-block">Product Categories</h2>
+                <button mat-raised-button class="float-right d-inline-block" (click)="openDialog()"><img src="../../../../assets/Delete.svg"
+                        alt=""> Bulk Delete</button>
+            </section>
+            <section>
+                <app-seller-breadcrumbs [directoryString]="'Products / All'"></app-seller-breadcrumbs>
+            </section>
+            <section class="mt-5">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef>No.</th>
+                        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Name</th>
+                        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef>Weight</th>
+                        <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef>Symbol</th>
+                        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+                    </ng-container>
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button class="edit-product-btn" mat-raised-button><img src="../../../../assets/Edit.svg"
+                                    alt=""></button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </section>
+            <mat-paginator [length]="100" [pageSize]="30"></mat-paginator>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -14,7 +14,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatInputModule} from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -33,7 +36,9 @@ import {MatInputModule} from '@angular/material/input';
     MatCheckboxModule,
     MatTableModule,
     MatSliderModule,
-    MatInputModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule,
   ],
   exports: [
     MatMenuModule,
@@ -50,7 +55,9 @@ import {MatInputModule} from '@angular/material/input';
     MatCheckboxModule,
     MatTableModule,
     MatSliderModule,
-    MatInputModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule,
   ],
 })
 export class MaterialModule {}

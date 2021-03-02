@@ -205,6 +205,10 @@ mat-panel-title img {
   margin-right: 20px !important;
 }
 
+.accordion-menu-item {
+  margin: 25px 0 !important;
+}
+
 .accordion-menu-item /deep/ .mat-expansion-panel-body {
   padding: 0 0 0 14px;
 }

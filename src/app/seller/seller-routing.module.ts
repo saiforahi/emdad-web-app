@@ -58,6 +58,41 @@ const routes: Routes = [
             './pages/seller-change-pass-page/seller-change-pass-page.module'
           ).then((m) => m.SellerChangePassPageModule),
       },
+      {
+        path: 'payment-history',
+        loadChildren: () =>
+          import(
+            './pages/seller-payment-history-page/seller-payment-history-page.module'
+          ).then((m) => m.SellerPaymentHistoryPageModule),
+      },
+      {
+        path: 'subscription-plan',
+        loadChildren: () =>
+          import(
+            './pages/subscription-plan-page/subscription-plan-page.module'
+          ).then((m) => m.SubscriptionPlanPageModule),
+      },
+      {
+        path: 'upload-products',
+        loadChildren: () =>
+          import(
+            './pages/upload-products-page/upload-products-page.module'
+          ).then((m) => m.UploadProductsPageModule),
+      },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import(
+            './pages/sller-products-page/sller-products-page.module'
+          ).then((m) => m.SllerProductsPageModule),
+      },
+      {
+        path: 'bulk-products-upload',
+        loadChildren: () =>
+          import(
+            './pages/sller-products-page/sller-products-page.module'
+          ).then((m) => m.SllerProductsPageModule),
+      },
     ],
   },
 ];
