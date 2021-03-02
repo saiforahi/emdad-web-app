@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { SearchService } from '../../../shared/services/search.service';
-
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -11,6 +10,7 @@ import { SearchService } from '../../../shared/services/search.service';
 })
 export class SearchPageComponent implements OnInit {
   products: any=[];
+  style:string;
   expandedSubCat: number;
   expandedCat: number;
   categories: any;
@@ -20,6 +20,9 @@ export class SearchPageComponent implements OnInit {
   price= new FormControl(0)
   min_price:any;
   max_price:any;
+  _brand:any;
+  _color:any;
+  
   constructor(
     private searchService: SearchService,
     private router: Router,
@@ -29,6 +32,7 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.style='grid'
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
@@ -75,5 +79,31 @@ export class SearchPageComponent implements OnInit {
     this.products.forEach(product => {
       
     });
+  }
+  setBrand(brand_name){
+    this._brand=brand_name
+    this._filter()
+  }
+  setColor(color_name){
+    this._color=color_name
+    this._filter()
+  }
+  _filter(){
+    let query=''
+    if(this._brand!==null && this._brand!==undefined && this._brand!==''){
+      query+='brand='+this._brand
+    }
+    if(this._color!==null && this._color!==undefined && this._color!==''){
+      query+='&color='+this._color
+    }
+    console.log(query)
+    this.route.queryParams.subscribe((params) => {
+      this.searchService.filter_products('search='+params.query+'&'+query).subscribe((item) => {
+        this.products = item.data.results;
+      });
+    });
+  }
+  set_style(value:string){
+    this.style=value;
   }
 }

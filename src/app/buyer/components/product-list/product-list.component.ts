@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-list',
@@ -10,10 +10,13 @@ export class ProductListComponent implements OnInit {
   @Input() products = [];
   @Input() prodEnd;
   @Input() prodInRow6;
-
+  @Input() view_style;
   constructor() { }
 
   ngOnInit(): void {
+    if(this.view_style!=='grid' && this.view_style!=='list'){
+      this.view_style='grid'
+    }
   }
 
 }

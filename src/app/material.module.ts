@@ -15,7 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -36,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatTableModule,
     MatSliderModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
   ],
   exports: [
     MatMenuModule,
@@ -54,7 +56,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatTableModule,
     MatSliderModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
   ],
 })
 export class MaterialModule {}
