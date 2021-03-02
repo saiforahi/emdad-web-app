@@ -43,7 +43,7 @@ footer .social-links .list-group-item a {
 
 footer .social-links .list-group-item a:hover {
     color: #fff;
-    background: #F49814;
+    background: #1F4F9E;
     transition: 0.3s;
 }
 
@@ -71,4 +71,11 @@ footer .footer-link-div .list-group-item {
     .container {
         max-width: 1600px !important;
     }
+}
+
+.copyright{
+    height: 146px;
+    line-height: 146px;
+    background: inherit;
+    text-align: center;
 }

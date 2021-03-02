@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output,EventEmitter,OnChanges,SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
@@ -11,7 +11,9 @@ export class BreadcrumbsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.view_style.emit('grid')
     this.view_style.subscribe(value=>{
+      console.log('value',value)
       if(value==='list'){
         document.getElementById('list_btn').style.backgroundColor="#1F4F9E"
         document.getElementById('list_btn').style.color="#FFFFFF"
@@ -40,9 +42,5 @@ export class BreadcrumbsComponent implements OnInit {
       document.getElementById('grid_btn').style.backgroundColor="#fff"
       document.getElementById('grid_btn').style.color="#000000"
     }
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
-    console.log('changes')
   }
 }

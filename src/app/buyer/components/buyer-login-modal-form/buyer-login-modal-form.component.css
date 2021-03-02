@@ -42,3 +42,11 @@
 .form-label{
     font-size: 12px;
 }
+.login_btn{
+    background: #1F4F9E;
+    border-radius: 5px;
+}
+.create-accnt{
+    color: #1F4F9E;
+    text-decoration: underline;
+}

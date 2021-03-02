@@ -27,7 +27,7 @@
     color: #2B2B2B;
 }
 .btn{
-    background: #454F63;
+    background: #1F4F9E;
     border-radius: 5px;
 }
 .modal-content{
@@ -38,4 +38,7 @@
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
+}
+.sign-in-link{
+    text-decoration: underline;
 }

@@ -1,8 +1,16 @@
 <div class="input-group search-input">
-    <input type="text" class="form-control" placeholder="Search by products..." #searchInput (keydown.enter)="search(searchInput.value)">
+    <input (focus)="update_suggestions(searchInput.value)" (focusout)="focusOutFunction()" (input)="update_suggestions(searchInput.value)" type="text" class="form-control" placeholder="Search by products..." #searchInput (keydown.enter)="search(searchInput.value)">
     <div class="input-group-append">
         <button (click)="search(searchInput.value)" mat-raised-button>
             <span class="input-group-text" id="basic-addon2"><img src="../assets/search.svg" alt=""></span>
         </button>
+    </div>
+</div>
+<div *ngIf="show_suggestion" class="container suggestion-box mt-2">
+    <div class="d-flex flex-column">
+        <div class="p-2 flex-start" *ngFor="let product of products;let i=index">
+            <p class="prod-name pt-2">{{product.name}}</p>
+            <mat-divider *ngIf="i!=products.length-1"></mat-divider>
+        </div>
     </div>
 </div>

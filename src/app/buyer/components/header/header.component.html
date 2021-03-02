@@ -165,12 +165,11 @@
 </nav>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu">
   <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
-      aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      <div class="float-right">
+    <div class="collapse navbar-collapse flex-row justify-content-between" id="navbarSupportedContent2">
+      <div class="float-left">
         <ul class="navbar-nav">
           <li class="nav-item" style="margin-right: 17px">
             <a class="nav-link active" [routerLink]="['/']">
@@ -202,12 +201,6 @@
               <span class="menu-underline"></span>
             </a>
           </li>
-          <li class="nav-item" style="margin-right: 17px">
-            <a class="nav-link" [routerLink]="['sell-on-emdad']">
-              Sell on Emdad
-              <span class="menu-underline"></span>
-            </a>
-          </li>
           <!-- <li class="nav-item" *ngIf="!loggedInUser">
               <a class="nav-link" data-toggle="modal" (click)="show_buyer_login()" type="button">Buyer login</a>
             </li>
@@ -216,6 +209,11 @@
                 Registration</a>
             </li> -->
         </ul>
+      </div>
+      <div class="nav-item sell-emdad">
+        <a class="nav-link" [routerLink]="['sell-on-emdad']">
+          Sell on Emdad
+        </a>
       </div>
     </div>
   </div>
