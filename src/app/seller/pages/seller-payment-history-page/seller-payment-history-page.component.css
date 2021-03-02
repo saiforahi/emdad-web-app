@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.page-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.card {
+  padding: 40px;
+  border: none;
+  border-radius: 0;
+}
+
+.mat-table {
+  background-color: transparent !important;
+  padding: 0 20px;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+  height: 60px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+tr.mat-row:hover,
+tr.mat-footer-row:hover {
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  transition: 0.3s;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px !important;
+}
+
+table tr:last-child td {
+  border-bottom: 0 solid;
+}
+
+th {
+  font-weight: 500;
+  font-size: 18px;
+  color: #2b2b2b;
+}
+
+td {
+  font-weight: normal;
+  font-size: 18px;
+  color: #2b2b2b;
+}

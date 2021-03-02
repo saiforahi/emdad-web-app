@@ -19,76 +19,6 @@
   border-radius: 0;
 }
 
-.profile-banner-holder {
-  position: relative;
-}
-
-.profile-banner-holder img {
-  width: 100%;
-}
-
-.banner-img-up-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  width: 48px;
-  min-width: 48px;
-  height: 48px !important;
-  padding: 0;
-}
-
-.banner-img-up-btn img {
-  width: 24px;
-  height: 22px;
-}
-
-.seller-pro-pic-holder {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 5px solid #fff;
-  background: #fff;
-}
-
-.seller-pro-pic-holder img {
-  width: 150px;
-  height: 150px;
-}
-
-.pro-img-up-btn {
-  position: absolute;
-  background: #f49814;
-  color: #fff;
-  border-radius: 50%;
-  bottom: 0;
-  right: 0;
-  width: 45px;
-  height: 45px;
-  min-width: 45px;
-  padding: 0;
-}
-
-.pro-img-up-btn img {
-  width: 18px;
-  height: 18px;
-}
-
-.profile-form-holder {
-    margin-top: 110px;
-}
-
-a {
-  color: inherit;
-}
-
-.container {
-  padding: 60px;
-}
-
 .login-form-holder {
   padding: 0 60px;
 }
@@ -300,6 +230,11 @@ input[type="file"] {
   border: none;
   color: #fff;
   font-size: 16px;
+}
+
+textarea {
+  height: 150px !important;
+  padding: 15px;
 }
 
 @media only screen and (min-width: 1200px) {

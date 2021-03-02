@@ -1,0 +1,224 @@
+<section>
+    <h2 class="page-heading">Upload Products</h2>
+</section>
+<section class="card mb-5">
+    <form [formGroup]="productUploadForm" (ngSubmit)="onSubmit(productUploadForm.value)">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)">
+                        <option disabled>Select Category</option>
+                        <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" #subCatId (change)="setChildCAt(subCatId.value)">
+                        <option disabled>Select Sub-Category</option>
+                        <option value="{{subCat.id}}" *ngFor="let subCat of subCategories">{{subCat.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg">
+                        <option disabled>Select Child Category</option>
+                        <option value="{{child.id}}" *ngFor="let child of childCategories">{{child.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="prodName">Product Name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodName -->
+                        <input id="prodName" class="form-control form-control-md" type="text" formControlName="prodName"
+                            required />
+                    </div>
+                    <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
+                        <div *ngIf="prodName.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="prodDetails">Product Details</label>
+                    <div class="input-group">
+                        <!-- prodDetails -->
+                        <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text" formControlName="prodDetails"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="manufactererName">Manufacturer Name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- manufactererName -->
+                        <input id="manufactererName" class="form-control form-control-md" type="text" formControlName="manufactererName"
+                            required />
+                    </div>
+                    <div *ngIf="manufactererName.invalid && (manufactererName.dirty || manufactererName.touched)">
+                        <div *ngIf="manufactererName.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodStock">Product Stock</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodStock -->
+                        <input id="prodStock" class="form-control form-control-md" type="text" formControlName="prodStock"
+                            required />
+                    </div>
+                    <div *ngIf="prodStock.invalid && (prodStock.dirty || prodStock.touched)">
+                        <div *ngIf="prodStock.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodSize">Size</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodSize -->
+                        <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize"
+                            required />
+                    </div>
+                    <div *ngIf="prodSize.invalid && (prodSize.dirty || prodSize.touched)">
+                        <div *ngIf="prodSize.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="unitOfMeasure">Unit of Measurement</label>
+                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)">
+                        <!-- <option disabled>Unit of Measurement</option> -->
+                        <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodDeliMethod">Product Delivery Method</label>
+                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)">
+                        <!-- <option disabled>Unit of Measurement</option> -->
+                        <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="leadTime">Set Lead Time</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- leadTime -->
+                        <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime"
+                            required />
+                    </div>
+                    <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
+                        <div *ngIf="leadTime.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ddp">DDP Destination</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- ddp -->
+                        <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp"
+                            required />
+                    </div>
+                    <div *ngIf="ddp.invalid && (ddp.dirty || ddp.touched)">
+                        <div *ngIf="ddp.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodPrice">Product Unit Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodPrice -->
+                        <input id="prodPrice" class="form-control form-control-md" type="text" formControlName="prodPrice"
+                            required />
+                    </div>
+                    <div *ngIf="prodPrice.invalid && (prodPrice.dirty || prodPrice.touched)">
+                        <div *ngIf="prodPrice.errors?.required">
+                            <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="d-block">Product Image</label>
+                    <label for="prodImage" class="custom-file-upload">
+                        <input id="prodImage" class="form-control form-control-md" type="file"
+                            formControlName="prodImage" (change)="handleFileSelect($event);" />
+                    </label>
+                    <ul class="attached-file">
+                        <li *ngFor="let file of selectedImage; let i = index;">
+                            {{file.name}}
+                            <button mat-raised-button (click)="removeFile(i);">X</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="d-block">Product Attachments</label>
+                    <label for="attachments" class="custom-file-upload">
+                        <input id="attachments" class="form-control form-control-md" type="file"
+                            formControlName="attachments" (change)="handleFileSelect($event);" />
+                    </label>
+                    <ul class="attached-file">
+                        <li *ngFor="let file of selectedImage; let i = index;">
+                            {{file.name}}
+                            <button mat-raised-button (click)="removeFile(i);">X</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+                        [disabled]="productUploadForm.invalid">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

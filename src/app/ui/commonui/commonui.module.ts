@@ -14,6 +14,7 @@ import { BuyerSigninFormComponent } from 'src/app/buyer/components/buyer-login-m
 import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-registration-modal-form/buyer-Registration-modal-form.component';
 import { FooterComponent } from 'src/app/buyer/components/footer/footer.component';
 import { FormInputAlertComponent } from 'src/app/seller/components/form-input-alert/form-input-alert.component';
+import { SellerBreadcrumbsComponent } from 'src/app/seller/components/seller-breadcrumbs/seller-breadcrumbs.component';
 
 const UI = [
   ProductListComponent,
@@ -24,7 +25,8 @@ const UI = [
   BuyerSigninFormComponent,
   BuyerRegistrationFormComponent,
   FooterComponent,
-  FormInputAlertComponent
+  FormInputAlertComponent,
+  SellerBreadcrumbsComponent
 ];
 
 @NgModule({

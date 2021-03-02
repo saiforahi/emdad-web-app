@@ -8,32 +8,78 @@
         <a mat-button [routerLink]="['/dashboard']">
           <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
         </a>
-        <!-- <a mat-button href=""> -->
-          <li class="accordion-menu-item">
-            <!-- Manage Profile -->
-            <mat-accordion>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <img src="../../assets/seller-Profile.svg" alt="">
-                    Manage Profile
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ul class="child-item">
-                  <a [routerLink]="['/dashboard/profile']"><li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li></a>
-                  <a [routerLink]="['/dashboard/bank-info']"><li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li></a>
-                  <a [routerLink]="['/dashboard/change-password']"><li><img src="../../assets/dot-light.svg" alt=""> Change Password</li></a>
-                </ul>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </li>
-        <!-- </a> -->
-        <a mat-button href="">
-          <li><img src="../../assets/Wallet.svg" alt=""> Manage Subscription</li>
-        </a>
-        <a mat-button href="">
+        <li class="accordion-menu-item">
+          <!-- Manage Profile -->
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <img src="../../assets/seller-Profile.svg" alt="">
+                  Manage Profile
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ul class="child-item">
+                <a [routerLink]="['/dashboard/profile']">
+                  <li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li>
+                </a>
+                <a [routerLink]="['/dashboard/bank-info']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li>
+                </a>
+                <a [routerLink]="['/dashboard/change-password']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Change Password</li>
+                </a>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </li>
+        <li class="accordion-menu-item">
+          <!-- Manage Profile -->
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <img src="../../assets/Wallet.svg" alt="">
+                  Manage Subscription
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ul class="child-item">
+                <a [routerLink]="['/dashboard/subscription-plan']">
+                  <li class="active"><img src="../../assets/dot.svg" alt=""> Subscription Plan</li>
+                </a>
+                <a [routerLink]="['/dashboard/payment-history']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Payment History</li>
+                </a>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </li>
+        <!-- <a mat-button href="">
           <li><img src="../../assets/Chart.svg" alt=""> Manage Products</li>
-        </a>
+        </a> -->
+        <li class="accordion-menu-item">
+          <!-- Manage Profile -->
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <img src="../../assets/Chart.svg" alt="">
+                  Manage Products
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ul class="child-item">
+                <a [routerLink]="['/dashboard/products/categories']">
+                  <li class="active"><img src="../../assets/dot.svg" alt=""> Product Categories</li>
+                </a>
+                <a [routerLink]="['']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Bulk Products Import</li>
+                </a>
+                <a [routerLink]="['/dashboard/upload-products']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Upload Products</li>
+                </a>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </li>
         <a mat-button href="">
           <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
         </a>

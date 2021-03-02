@@ -52,6 +52,7 @@ export class HomePageComponent implements OnInit {
       // console.log(item);
     });
   }
+  
   set_selected_child_category(child_id){
     let cat_id;
     let sub_cat_id;
