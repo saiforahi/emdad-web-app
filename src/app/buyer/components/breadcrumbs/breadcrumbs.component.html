@@ -1,19 +1,19 @@
 <div class="breadcrumbs">
     <div class="container">
-        <div class="url d-inline-block"><a [routerLink]="['/']">Home</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':directoryString}}</span></div>
+        <div class="url d-inline-block"><a [routerLink]="['/']">Home</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span></div>
         <div class="d-inline-block float-right">
             <span class="serach-result" *ngIf="directoryString == 'Search Result'">Search Result - {{searchLength}} items</span>
             <!-- <a class="clear-btn" *ngIf="directoryString == 'Search Result'">Clear All</a> -->
-            <button mat-raised-button><i class="fas fa-bars"></i></button>
-            <button mat-raised-button><i class="fas fa-th-large"></i></button>
-            <div class="d-inline-block">
+            <button id="list_btn" mat-raised-button (click)="emit_style_change('list')" ><i class="fas fa-bars"></i></button>
+            <button id="grid_btn" mat-raised-button (click)="emit_style_change('grid')"><i class="fas fa-th-large"></i></button>
+            <!-- <div class="d-inline-block">
                 <select class="form-control form-control-lg">
                     <option>Sort by Relevance</option>
                     <option>Large select 2</option>
                     <option>Large select 3</option>
                     <option>Large select 4</option>
                 </select>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

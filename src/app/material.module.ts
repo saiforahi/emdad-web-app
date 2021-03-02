@@ -14,7 +14,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
-
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,6 +33,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatCheckboxModule,
     MatTableModule,
     MatSliderModule,
+    MatInputModule
   ],
   exports: [
     MatMenuModule,
@@ -49,6 +50,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatCheckboxModule,
     MatTableModule,
     MatSliderModule,
+    MatInputModule
   ],
 })
 export class MaterialModule {}

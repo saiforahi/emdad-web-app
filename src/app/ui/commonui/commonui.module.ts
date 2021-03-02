@@ -14,12 +14,13 @@ import { BuyerSigninFormComponent } from 'src/app/buyer/components/buyer-login-m
 import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-registration-modal-form/buyer-Registration-modal-form.component';
 import { FooterComponent } from 'src/app/buyer/components/footer/footer.component';
 import { FormInputAlertComponent } from 'src/app/seller/components/form-input-alert/form-input-alert.component';
-
+import {ProductCardHorizonalComponent} from '../../buyer/components/product-card-horizonal/product-card-horizonal.component'
 const UI = [
   ProductListComponent,
   SearchForComponent,
   BreadcrumbsComponent,
   ProductCardComponent,
+  ProductCardHorizonalComponent,
   HeaderComponent,
   BuyerSigninFormComponent,
   BuyerRegistrationFormComponent,
