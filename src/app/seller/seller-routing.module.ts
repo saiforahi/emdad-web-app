@@ -93,6 +93,13 @@ const routes: Routes = [
             './pages/sller-products-page/sller-products-page.module'
           ).then((m) => m.SllerProductsPageModule),
       },
+      {
+        path: 'manage-quotations',
+        loadChildren: () =>
+          import(
+            './pages/manage-quotations/manage-quotations.module'
+          ).then((m) => m.ManageQuotationsModule),
+      },
     ],
   },
 ];

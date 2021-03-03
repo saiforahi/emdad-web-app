@@ -1,0 +1,151 @@
+<section class="dialogue-holder">
+    <mat-dialog-content class="mat-typography">
+        <div class="media">
+            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
+                alt="Generic placeholder image">
+            <div class="media-body">
+                <p><b>Product Name:</b><span> Minimal Flower Vase</span></p>
+                <p><b>Product Description:</b><span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut
+                        ullamcorper leo, eget euismod orci.</span></p>
+                <p><b>Unite Price: $19</b></p>
+            </div>
+        </div>
+        <div class="quotation-details">
+            <p><b>Quotation ID: </b><span>#100589</span></p>
+            <p><b>RFQ ID: </b><span>#12589</span></p>
+            <p><b>Date: </b><span>Dec 2, 2020 | Time: 9:42PM</span></p>
+            <p><b>Buyer Name: </b><span>Abu Raihan Zilani</span></p>
+            <p><b>Quantity: </b><span>1290</span></p>
+            <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
+                    eget euismod orci.
+                    Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum sociis
+                    natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+
+        </div>
+        <mat-accordion>
+            <mat-expansion-panel expanded="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <b>Date:</b> Dec 5, 2020 | Time: 9:42PM
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p><b>Quantity: </b><span>1290</span></p>
+                <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
+                        eget euismod orci.
+                        Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum
+                        sociis
+                        natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <b>Date:</b> Dec 5, 2020 | Time: 9:42PM
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p><b>Quantity: </b><span>1290</span></p>
+                <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
+                        eget euismod orci.
+                        Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum
+                        sociis
+                        natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <b>Date:</b> Dec 5, 2020 | Time: 9:42PM
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p><b>Quantity: </b><span>1290</span></p>
+                <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
+                        eget euismod orci.
+                        Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum
+                        sociis
+                        natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="rfq-form-holder">
+            <form>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="prodQuantity">Product Quantity</label>
+                            <input id="prodQuantity" class="form-control form-control-md" type="prodQuantity"
+                                 required />
+                                 <!-- formControlName="prodQuantity" -->
+                            <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <div *ngIf="email.errors?.required">
+                                    <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                                </div>
+                                <div *ngIf="email.errors?.pattern">
+                                    <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="unitPrice">Unit Price</label>
+                            <input id="unitPrice" class="form-control form-control-md" type="unitPrice"
+                                 required />
+                                 <!-- formControlName="unitPrice" -->
+                            <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <div *ngIf="email.errors?.required">
+                                    <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                                </div>
+                                <div *ngIf="email.errors?.pattern">
+                                    <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="totalPrice">Total Price</label>
+                            <input id="totalPrice" class="form-control form-control-md" type="totalPrice"
+                                 required />
+                                 <!-- formControlName="totalPrice" -->
+                            <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <div *ngIf="email.errors?.required">
+                                    <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                                </div>
+                                <div *ngIf="email.errors?.pattern">
+                                    <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="d-block">Attachments</label>
+                            <label for="attachments" class="custom-file-upload">
+                                <!-- Attachments -->
+                                <input id="attachments" class="form-control form-control-md" type="file"
+                                     (change)="handleFileSelect($event);" />
+                                     <!-- formControlName="attachments" -->
+                            </label>
+                            <ul class="attached-file">
+                                <li *ngFor="let file of selectedImage; let i = index;">
+                                    {{file.name}}
+                                    <button mat-raised-button (click)="removeFile(i);">X</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-0">
+                    <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn">
+                        Resubmit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </mat-dialog-content>
+    <!-- <mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="true" class="del-btn">Delete</button>
+        <button mat-button mat-dialog-close class="cancel-btn">Cancel</button>
+    </mat-dialog-actions> -->
+</section>
