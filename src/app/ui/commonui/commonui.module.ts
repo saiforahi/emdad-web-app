@@ -15,8 +15,8 @@ import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-r
 import { FooterComponent } from 'src/app/buyer/components/footer/footer.component';
 import { FormInputAlertComponent } from 'src/app/seller/components/form-input-alert/form-input-alert.component';
 import { SellerBreadcrumbsComponent } from 'src/app/seller/components/seller-breadcrumbs/seller-breadcrumbs.component';
+import {ProductCardHorizonalComponent} from '../../buyer/components/product-card-horizonal/product-card-horizonal.component';
 
-import {ProductCardHorizonalComponent} from '../../buyer/components/product-card-horizonal/product-card-horizonal.component'
 const UI = [
   ProductListComponent,
   SearchForComponent,
