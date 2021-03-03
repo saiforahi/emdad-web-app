@@ -33,7 +33,7 @@ nav {
 }
 
 .nav-link.active {
-    color: #F49814 !important;
+    color: #1F4F9E !important;
 }
 
 nav .dropdown-menu {
@@ -161,7 +161,7 @@ nav .profile-list img {
 }
 
 .secondary-menu .nav-link:hover {
-    color: #F49814 !important;
+    color: #1F4F9E !important;
     transition: ease-in 0.3s;
 }
 
@@ -180,7 +180,7 @@ nav .profile-list img {
     bottom: 8px;
     left: 8px;
     width: 0%;
-    border-bottom: 1px solid #F49814;
+    border-bottom: 1px solid #1F4F9E;
     transition: ease-in 0.3s;
 }
 
@@ -192,4 +192,18 @@ button:focus {
     .container {
         max-width: 1600px !important;
     }
+}
+.sell-emdad{
+    background: #1F4F9E;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+}
+.sell-emdad:hover{
+    color: #FFFFFF;
 }
