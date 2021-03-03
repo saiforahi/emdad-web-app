@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WishlistService } from '../../../shared/services/wishlist.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
+import { GetProductService } from '../../../shared/services/get-product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-card-horizonal',
   templateUrl: './product-card-horizonal.component.html',
@@ -16,7 +18,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
-    private user:UserAuthService
+    private user:UserAuthService, private ProductService:GetProductService,private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,11 @@ export class ProductCardHorizonalComponent implements OnInit {
       // console.log(url);
       return url;
     }
+  }
+  go_to_rfq(){
+    console.log('id',this.product.id)
+    this.ProductService.productDetails(this.product.id).subscribe(response=>{
+      this.router.navigate(['/rfq/']);
+    })
   }
 }

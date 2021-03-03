@@ -71,3 +71,7 @@
 .errors {
     color: red;
   }
+
+.mat-radio-button .mat-accent .mat-radio-inner-circle{
+    background-color: #1F4F9E;
+}
