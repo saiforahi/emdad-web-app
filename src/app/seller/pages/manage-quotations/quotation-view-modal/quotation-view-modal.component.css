@@ -1,0 +1,157 @@
+.dialogue-holder img {
+  width: 150px;
+  height: 150px;
+}
+
+.media-body,
+.quotation-details {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 30px;
+  width: 900px;
+  border-radius: 0;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+  border-bottom: 1px solid #eaeaea;
+  border-radius: 0;
+}
+
+::ng-deep .mat-expansion-panel-header {
+  padding: 0 24px 0 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
+}
+
+::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header {
+  background: none !important;
+}
+
+::ng-deep
+  .mat-expansion-panel:not(.mat-expanded)
+  .mat-expansion-panel-header:hover:not([aria-disabled="true"]) {
+  background: none !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 24px 0 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
+}
+
+.rfq-form-holder {
+  padding: 30px 0 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+.login_btn {
+  background: #1f4f9e;
+  border-radius: 5px;
+  height: 60px;
+  width: 300px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.btn {
+  border: none;
+}
+
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  border: none;
+  height: 60px;
+}
+
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
+}
+
+.bottom-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: 7px;
+}
+
+.input-group-text {
+  border: 0 !important;
+  background: #efefef;
+  padding: 0 22px;
+  font-size: 17px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 80px;
+  height: 80px;
+  background-image: url("../../../../../assets/upload.svg");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center center;
+  border-radius: 5px;
+  border: 3px dashed #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.attached-file {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.attached-file {
+  list-style: none !important;
+  font-size: 20px;
+}
+
+.attached-file button {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background: #ff4b55;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+}

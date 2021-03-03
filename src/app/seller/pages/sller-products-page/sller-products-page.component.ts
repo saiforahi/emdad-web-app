@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -34,7 +34,14 @@ export class SllerProductsPageComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   sideMenuCollapsed = false;
   loggedInUser = true;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'select', 'edit'];
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'weight',
+    'symbol',
+    'select',
+    'edit',
+  ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   resultsLength = [];
@@ -57,7 +64,7 @@ export class SllerProductsPageComponent implements OnInit {
     this.expandedCat = parseInt(localStorage.getItem('expandedCat'));
     this.expandedSubCat = parseInt(localStorage.getItem('expandedSubCat'));
   }
-  
+
   toggleSidenav() {
     this.sidenav.toggle();
     console.log(this.sidenav.toggle);
@@ -70,7 +77,7 @@ export class SllerProductsPageComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogueComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -94,9 +101,9 @@ export class SllerProductsPageComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */
@@ -104,6 +111,8 @@ export class SllerProductsPageComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.position + 1
+    }`;
   }
 }
