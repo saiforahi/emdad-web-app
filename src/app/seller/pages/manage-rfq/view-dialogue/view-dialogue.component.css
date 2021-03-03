@@ -1,0 +1,157 @@
+*:focus {
+    outline: none;
+    border:transparent;
+  }
+  ::ng-deep .mat-dialog-container {
+    padding: 30px;
+    border-radius: 5px;
+    font-family: Jost;
+  }
+  .quote-button{
+    background: #1F4F9E;
+    border-radius: 0;
+    color: #ffffff;
+    font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+text-align: center;
+padding: 20px 80px;
+
+
+  }
+  .quote-btn-div{
+    text-align: center;
+  }
+  .quote-button:hover{
+    box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+    transition: 0.3s;
+
+  }
+  .form-label{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    float: left !important;
+    color: #2b2b2b;
+
+  }
+.file-label{
+  font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2b2b2b;
+}
+.alert-danger {
+  background: transparent;
+  border: none;
+  color: #ff5f92;
+  float: left !important;
+  font-family: Jost;
+ 
+}  
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  border: none;
+  height: 60px;
+}
+.input-group-text{
+  background-color: #EFEFEF;
+   border: 0px transparent;
+   height: 60px;
+   font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+
+color: #2B2B2B;
+}
+input[type=number]{
+  height: 60px !important;
+}
+input[type=number] {
+  -moz-appearance: textfield ;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  .stick{
+      font-size:18px;
+      line-height: 26px;
+  }
+  .align-left{
+    text-align: left !important;
+    font-family: Jost;
+  }
+/*attachments*/
+input[type="file"] {
+    display: none;
+  }
+
+  
+  .custom-file-upload {
+    width: 80px;
+    height: 80px;
+    background-image: url("../../../../../assets/upload.svg");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center center;
+    border-radius: 5px;
+    border: 3px dashed #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+ .attached-file {
+    
+   /*  vertical-align: top; */
+    list-style: none !important;
+    font-size: 16px;
+  }
+  
+  .attached-file{
+    display: inline-block !important;
+  }
+   
+  .attached-file button {
+  /*   border-radius: 50%;
+    width: 24px;
+    height: 24px; */
+    background: #ff4b55;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    
+  }
+  .login_btn{
+    background: #1F4F9E;
+    border-radius: 5px;
+    font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+text-align: center;
+float: left;
+width: 230px;
+height: 60px;
+
+/* white */
+
+
+  }
