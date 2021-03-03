@@ -23,7 +23,7 @@
             <p><strong class="sar-text">SAR {{product.unit_price|number:'1.0-0'}}</strong> / each</p>
         </div>
         <div class="row justify-content-between p-3 mt-3">
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="width: 100%;">
                 <mat-form-field class="example-form-field">
                     <mat-label>Qty</mat-label>
                     <input matInput type="text">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row p-3">
-            <button class="btn btn-block request-btn align-self-center"><img src="assets/file_plus.svg"/> Request for quotation</button>
+            <button class="btn btn-block request-btn align-self-center" (click)="go_to_rfq()" [routerLink]="['/rfq/']"><img src="assets/file_plus.svg"/> Request for quotation</button>
         </div>
     </div>
 </div>
