@@ -79,6 +79,12 @@ const routes: Routes = [
             './pages/upload-products-page/upload-products-page.module'
           ).then((m) => m.UploadProductsPageModule),
       },
+     { path: 'manage-rfqs',
+      loadChildren: () =>
+        import(
+          './pages/manage-rfq/manage-rfq.module'
+        ).then((m) => m.ManageRfqModule),
+    },
       {
         path: 'products',
         loadChildren: () =>

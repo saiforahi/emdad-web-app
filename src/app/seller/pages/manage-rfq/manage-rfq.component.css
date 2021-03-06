@@ -1,0 +1,84 @@
+*:focus {
+    outline: none;
+  }
+.heading{
+    display:flex;
+}
+.page-heading {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    padding: 40px 0;
+    margin: 0;
+    width:80%;
+  }
+  #status{
+    width: 20%;
+height: 70px;
+border: 2px solid #1F4F9E;
+box-sizing: border-box;
+border-radius: 5px;
+margin-right: 15px;
+color: #1F4F9E !important;
+align-items: center;
+font-weight: 400;
+font-style:normal;
+font-Size :20px;
+line-height: 28.9px;
+margin-top: 40px;
+
+  }
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px !important;
+    box-shadow: none;
+  }
+  .mat-table{
+    padding: 0 20px;
+  }
+  th{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2B2B2B;
+    padding: 20px 0;
+  }
+
+  td{
+      text-transform: capitalize;
+      font-family: Jost;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 18px;
+  line-height: 26px;
+   color: #2B2B2B;
+  }
+
+  tr.mat-row,
+tr.mat-footer-row {
+  height: 80px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  border-radius: 5px !important;
+  transition: 0.3s;
+  
+}
+
+tr.mat-row:hover,
+tr.mat-footer-row:hover {
+  box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+  transition: 0.3s;
+}
+ 
+.mat-button{
+    font-family: Jost;
+    font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+align-self: right;
+}
