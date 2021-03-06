@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CurrentOrdersPageComponent } from './current-orders-page.component';
+import { SellerOrderHistoryPageComponent } from './seller-order-history-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
-import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
+import { OrderHistoryModalComponent } from './order-history-modal/order-history-modal.component';
 
 const routes: Routes = [
-  {path:'', component: CurrentOrdersPageComponent, pathMatch:'full'}
-]
+  { path: '', component: SellerOrderHistoryPageComponent, pathMatch: 'full' },
+];
 
 @NgModule({
-  declarations: [CurrentOrdersPageComponent, OrderViewModalComponent],
+  declarations: [SellerOrderHistoryPageComponent, OrderHistoryModalComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,8 +21,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonuiModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
   ],
-  entryComponents: [OrderViewModalComponent],
+  entryComponents: [OrderHistoryModalComponent],
 })
-export class CurrentOrdersPageModule { }
+export class SellerOrderHistoryPageModule {}

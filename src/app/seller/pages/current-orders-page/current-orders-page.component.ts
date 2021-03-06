@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
 
 export interface PeriodicElement {
   name: string;
@@ -8,8 +9,6 @@ export interface PeriodicElement {
   symbol: string;
   status: number;
 }
-
-// 1, 'Created'),(2, 'confirmed'),(3,'processing'),(4, 'delivered'),(5, ‘completed’
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', status: 1},
@@ -37,13 +36,13 @@ export class CurrentOrdersPageComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
   openDialog() {
-    // const dialogRef = this.dialog.open(QuotationViewModalComponent, {
-    //   autoFocus: false,
-    //   data: {}
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    const dialogRef = this.dialog.open(OrderViewModalComponent, {
+      autoFocus: false,
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

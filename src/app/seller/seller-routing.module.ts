@@ -113,6 +113,13 @@ const routes: Routes = [
             './pages/current-orders-page/current-orders-page.module'
           ).then((m) => m.CurrentOrdersPageModule),
       },
+      {
+        path: 'order-history',
+        loadChildren: () =>
+          import(
+            './pages/seller-order-history-page/seller-order-history-page.module'
+          ).then((m) => m.SellerOrderHistoryPageModule),
+      },
     ],
   },
 ];
