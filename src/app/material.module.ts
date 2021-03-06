@@ -17,6 +17,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
+    MatChipsModule,
   ],
   exports: [
     MatMenuModule,
@@ -58,6 +60,7 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
+    MatChipsModule,
   ],
 })
 export class MaterialModule {}

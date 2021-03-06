@@ -33,7 +33,7 @@
           </mat-accordion>
         </li>
         <li class="accordion-menu-item">
-          <!-- Manage Profile -->
+          <!-- Manage Subscription -->
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
@@ -53,11 +53,8 @@
             </mat-expansion-panel>
           </mat-accordion>
         </li>
-        <!-- <a mat-button href="">
-          <li><img src="../../assets/Chart.svg" alt=""> Manage Products</li>
-        </a> -->
         <li class="accordion-menu-item">
-          <!-- Manage Profile -->
+          <!-- Manage Products -->
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
@@ -86,9 +83,30 @@
         <a mat-button [routerLink]="['/dashboard/manage-quotations']">
           <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
         </a>
-        <a mat-button href="">
-          <li><img src="../../assets/Buy.svg" alt=""> Manage Order</li>
-        </a>
+        <li class="accordion-menu-item">
+          <!-- Manage Order -->
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <img src="../../assets/Buy.svg" alt="">
+                  Manage Order
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ul class="child-item">
+                <a [routerLink]="['/dashboard/current-orders']">
+                  <li class="active"><img src="../../assets/dot.svg" alt=""> Current Order</li>
+                </a>
+                <a [routerLink]="['']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Order History</li>
+                </a>
+                <a [routerLink]="['/dashboard/upload-products']">
+                  <li><img src="../../assets/dot-light.svg" alt=""> Invoices</li>
+                </a>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </li>
         <a mat-button href="">
           <li><img src="../../assets/Chat.svg" alt=""> Support</li>
         </a>

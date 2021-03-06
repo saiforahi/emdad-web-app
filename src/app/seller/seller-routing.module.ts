@@ -106,6 +106,13 @@ const routes: Routes = [
             './pages/manage-quotations/manage-quotations.module'
           ).then((m) => m.ManageQuotationsModule),
       },
+      {
+        path: 'current-orders',
+        loadChildren: () =>
+          import(
+            './pages/current-orders-page/current-orders-page.module'
+          ).then((m) => m.CurrentOrdersPageModule),
+      },
     ],
   },
 ];
