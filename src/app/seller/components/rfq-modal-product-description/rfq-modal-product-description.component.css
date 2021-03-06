@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+*:focus {
+    outline: none !important;
+    border:transparent;
+  }
+.img-div img{
+    /* width:150px; */
+    height: 150px;
+    border-radius: 5px;
+}
+.content-desc{
+    font-family: Jost;
+    margin-bottom: 15px;
+}
+.product-upper-desc{
+   text-align: left !important;
+   color: #2B2B2B;
+}
+.prod-head{
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+
+/* #2B2B2B */
+
+color: #2B2B2B;
+}
+.prod-desc{
+    font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+
+/* #2B2B2B */
+
+color: #2B2B2B;
+}
+
+.mat-dialog-actions>button{
+    background-color: white !important;
+    background: white !important;
+    color: #FF4B55;
+ float: right;
+   margin-top: -35px;
+   padding: 0;
+   font-size: 16px;
+   font-weight: normal !important;
+   outline: none !important;
+   border: 0px transparent !important;
+  
+}
+
+@media all and (min-width:1200px) and (max-width:1299px){
+.product-upper-desc p{
+    padding-left:20px;
+}
+}
