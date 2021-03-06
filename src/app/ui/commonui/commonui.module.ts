@@ -16,7 +16,7 @@ import { FooterComponent } from 'src/app/buyer/components/footer/footer.componen
 import { FormInputAlertComponent } from 'src/app/seller/components/form-input-alert/form-input-alert.component';
 import { SellerBreadcrumbsComponent } from 'src/app/seller/components/seller-breadcrumbs/seller-breadcrumbs.component';
 import {ProductCardHorizonalComponent} from '../../buyer/components/product-card-horizonal/product-card-horizonal.component';
-
+import {RfqModalProductDescriptionComponent} from '../../seller/components/rfq-modal-product-description/rfq-modal-product-description.component';
 const UI = [
   ProductListComponent,
   SearchForComponent,
@@ -28,7 +28,8 @@ const UI = [
   BuyerRegistrationFormComponent,
   FooterComponent,
   FormInputAlertComponent,
-  SellerBreadcrumbsComponent
+  SellerBreadcrumbsComponent,
+  RfqModalProductDescriptionComponent
 ];
 
 @NgModule({
