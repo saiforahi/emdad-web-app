@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.page-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.card {
+  padding: 40px;
+  border: none;
+  border-radius: 0;
+}
+
+.mat-table {
+  background-color: transparent !important;
+  padding: 0 20px;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+  height: 60px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+tr.mat-row:hover,
+tr.mat-footer-row:hover {
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  transition: 0.3s;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px !important;
+}
+
+table tr:last-child td {
+  border-bottom: 0 solid;
+}
+
+th {
+  font-weight: 500;
+  font-size: 18px;
+  color: #2b2b2b;
+}
+
+td {
+  font-weight: normal;
+  font-size: 18px;
+  color: #2b2b2b;
+}
+
+.page-heading-holder {
+  position: relative;
+}
+
+.page-heading-holder .form-control {
+  display: inline-block !important;
+  width: fit-content !important;
+}
+
+.page-heading-holder .sort-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.page-heading-holder select {
+  height: 70px !important;
+  border: 2px solid #1f4f9e;
+  color: #1f4f9e;
+  border-radius: 5px;
+  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+}
+
+.page-heading-holder select:focus {
+  border: 2px solid #454f63;
+  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+}
+
+.total-order-price {
+  text-align: right;
+  color: #1f4f9e;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.ticket-btn {
+  height: 70px;
+  background: #1f4f9e;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: normal;
+  font-size: 20px;
+  margin-right: 20px;
+}

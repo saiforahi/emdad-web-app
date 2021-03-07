@@ -1,0 +1,61 @@
+<mat-dialog-content class="mat-typography">
+    <section>
+        <h3 class="open-ticket-modal-header">
+            Create New Ticket
+        </h3>
+    </section>
+    <section>
+        <form [formGroup]="productUploadForm" (ngSubmit)="onSubmit(productUploadForm.value)">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="prodName">Subject</label>
+                        <div class="input-group">
+                            <!-- prodName -->
+                            <input id="prodName" class="form-control form-control-md" type="text"
+                                formControlName="prodName" required placeholder="Write your subject here"/>
+                        </div>
+                        <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
+                            <div *ngIf="prodName.errors?.required">
+                                <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="prodDetails">Details</label>
+                        <div class="input-group">
+                            <!-- prodDetails -->
+                            <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text"
+                                formControlName="prodDetails" placeholder="Write down the issue in details..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="d-block">Upload Image</label>
+                        <label for="prodImage" class="custom-file-upload">
+                            <input id="prodImage" class="form-control form-control-md" type="file"
+                                formControlName="prodImage" (change)="handleFileSelect($event);" />
+                        </label>
+                        <ul class="attached-file">
+                            <li *ngFor="let file of selectedImage; let i = index;">
+                                {{file.name}}
+                                <button mat-raised-button (click)="removeFile(i);">X</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+                            [disabled]="productUploadForm.invalid">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</mat-dialog-content>
