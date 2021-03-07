@@ -120,6 +120,13 @@ const routes: Routes = [
             './pages/seller-order-history-page/seller-order-history-page.module'
           ).then((m) => m.SellerOrderHistoryPageModule),
       },
+      {
+        path: 'invoices',
+        loadChildren: () =>
+          import(
+            './pages/seller-invoices-page/seller-invoices-page.module'
+          ).then((m) => m.SellerInvoicesPageModule),
+      },
     ],
   },
 ];
