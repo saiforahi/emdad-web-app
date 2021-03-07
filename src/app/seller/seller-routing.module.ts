@@ -79,39 +79,40 @@ const routes: Routes = [
             './pages/upload-products-page/upload-products-page.module'
           ).then((m) => m.UploadProductsPageModule),
       },
-     { path: 'manage-rfqs',
-      loadChildren: () =>
-        import(
-          './pages/manage-rfq/manage-rfq.module'
-        ).then((m) => m.ManageRfqModule),
-    },
+      {
+        path: 'manage-rfqs',
+        loadChildren: () =>
+          import('./pages/manage-rfq/manage-rfq.module').then(
+            (m) => m.ManageRfqModule
+          ),
+      },
       {
         path: 'products',
         loadChildren: () =>
-          import(
-            './pages/sller-products-page/sller-products-page.module'
-          ).then((m) => m.SllerProductsPageModule),
+          import('./pages/sller-products-page/sller-products-page.module').then(
+            (m) => m.SllerProductsPageModule
+          ),
       },
       {
         path: 'bulk-products-upload',
         loadChildren: () =>
-          import(
-            './pages/sller-products-page/sller-products-page.module'
-          ).then((m) => m.SllerProductsPageModule),
+          import('./pages/sller-products-page/sller-products-page.module').then(
+            (m) => m.SllerProductsPageModule
+          ),
       },
       {
         path: 'manage-quotations',
         loadChildren: () =>
-          import(
-            './pages/manage-quotations/manage-quotations.module'
-          ).then((m) => m.ManageQuotationsModule),
+          import('./pages/manage-quotations/manage-quotations.module').then(
+            (m) => m.ManageQuotationsModule
+          ),
       },
       {
         path: 'current-orders',
         loadChildren: () =>
-          import(
-            './pages/current-orders-page/current-orders-page.module'
-          ).then((m) => m.CurrentOrdersPageModule),
+          import('./pages/current-orders-page/current-orders-page.module').then(
+            (m) => m.CurrentOrdersPageModule
+          ),
       },
       {
         path: 'order-history',
@@ -126,6 +127,13 @@ const routes: Routes = [
           import(
             './pages/seller-invoices-page/seller-invoices-page.module'
           ).then((m) => m.SellerInvoicesPageModule),
+      },
+      {
+        path: 'support',
+        loadChildren: () =>
+          import(
+            './pages/support-page/support-page.module'
+          ).then((m) => m.SupportPageModule),
       },
     ],
   },

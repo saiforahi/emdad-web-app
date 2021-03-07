@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+.order-data {
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 30px;
+  width: 900px;
+  border-radius: 0;
+}
+
+.total-order-price {
+  text-align: right;
+  color: #2b2b2b;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.admin-response {
+  border-top: 1px solid #eaeaea;
+  padding: 30px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.admin-response:last-child {
+  padding: 30px 0 0;
+}
