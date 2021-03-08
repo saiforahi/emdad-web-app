@@ -39,6 +39,8 @@ export class UserAuthService {
   constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
+    this.s_uName.next(localStorage.getItem('s_username'));
+    this.s_uId.next(localStorage.getItem('s_uid'));
     // this.uGroup.next(localStorage.getItem('group'));
   }
 
@@ -64,9 +66,9 @@ export class UserAuthService {
       localStorage.setItem('s_username', payload.username);
       localStorage.setItem('s_uid', JSON.stringify(payload.user_id));
       localStorage.setItem('s_expires_at', JSON.stringify(expiresAt.valueOf()));
-      this.uName.next(localStorage.getItem('s_username'));
+      this.s_uName.next(localStorage.getItem('s_username'));
+      this.s_uId.next(localStorage.getItem('s_uid'));
       // this.uGroup.next(localStorage.getItem('group'));
-      this.uId.next(localStorage.getItem('uid'));
     }
   }
 
