@@ -40,6 +40,10 @@ mat-sidenav {
   padding-top: 20px !important;
 }
 
+a.active {
+  color: #1F4F9E;
+}
+
 a:hover {
   cursor: pointer;
 }
@@ -83,6 +87,11 @@ nav .dropdown-item {
 .user-name {
   margin: 5px 0 0;
 }
+
+.user-name:hover {
+  cursor: pointer;
+}
+
 
 .user-name img {
   width: 60px;
@@ -171,6 +180,7 @@ button:focus {
 .side-menu-holder ul li {
   margin: 0;
   font-size: 20px;
+  font-weight: normal;
 }
 
 .side-menu-holder ul li img {
@@ -196,8 +206,8 @@ button:focus {
 
 .mat-expansion-panel-header-title,
 .mat-expansion-panel-header-description {
-  font-size: 18px;
-  font-weight: 500 !important;
+  font-size: 20px !important;
+  font-weight: normal !important;
   line-height: 30px;
 }
 
