@@ -96,8 +96,8 @@ const routes: Routes = [
       {
         path: 'bulk-products-upload',
         loadChildren: () =>
-          import('./pages/sller-products-page/sller-products-page.module').then(
-            (m) => m.SllerProductsPageModule
+          import('./pages/bulk-upload-products/bulk-upload-products.module').then(
+            (m) => m.BulkUploadProductsModule
           ),
       },
       {
