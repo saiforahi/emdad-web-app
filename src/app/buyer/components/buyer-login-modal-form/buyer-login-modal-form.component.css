@@ -93,6 +93,10 @@
     background: #1F4F9E;
     border-radius: 5px;
 }
+.col-sm-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
 .create-accnt{
     color: #1F4F9E;
     text-decoration: underline;

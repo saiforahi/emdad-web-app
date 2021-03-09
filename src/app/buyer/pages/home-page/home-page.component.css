@@ -102,16 +102,20 @@ button:focus {
 .subCatItem span:hover,
 .children span:hover {
   cursor: pointer;
-  border-bottom: 1px solid #f49814;
+  /* border-bottom: 1px solid #f49814; */
+  border-bottom: 1px  solid #1f4f9e;
   padding-bottom: 10px;
-  color: #f49814;
+  /* color: #f49814; */
+  color: #1f4f9e;
 }
 
 .subCatItem span.active,
 .children span.active {
-  border-bottom: 1px solid #f49814;
+  /* border-bottom: 1px solid #f49814; */
+  border-bottom: 1px  solid #1f4f9e;
   padding-bottom: 10px;
-  color: #f49814;
+  /* color: #f49814; */
+  color: #1f4f9e;
 }
 
 .product-list-header {
@@ -126,23 +130,26 @@ button:focus {
 .cat-round-bg {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
-  background: #fff;
+  /* border-radius: 50%; */
+  background: #1F4F9E;
+  border-radius: 150px;
   text-align: center;
   padding: 50px;
   margin: auto;
-  color: #2b2b2b;
+  color: #fff;
   transition: 0.3s;
 }
 
 .cat-round-bg:hover {
-  background: #f49814;
+  background: #1F4F9E;
   color: #fff;
   transition: 0.3s;
 }
 
 .cat-round-bg img {
   margin: auto;
+  /* color: #fff; */
+  background: #FFFFFF;
 }
 
 .cat-round-bg img:nth-child(1) {
@@ -167,7 +174,8 @@ button:focus {
 }
 
 .view-more-btn-div button {
-  background: #f49814;
+  /* background: #f49814; */
+  background: #1f4f9e;
   color: #fff;
   padding: 22px 35px;
   font-family: Jost;

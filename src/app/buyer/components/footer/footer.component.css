@@ -58,6 +58,10 @@ footer .social-links .list-group-item a:hover {
     /* color: lawngreen; */
 }
 
+.list-group-item:hover{
+    color: #1f4f9e;
+}
+
 footer .footer-link-div .list-group-item {
     padding: 20px 17px;
 }
