@@ -87,9 +87,7 @@ export class CheckoutComponent implements OnInit {
     this.new_address = !this.new_address;
   }
   add_payment() {
-    this.orderService
-      .get_active_shipping_address_of_buyer()
-      .subscribe((success) => {
+    this.orderService.get_active_shipping_address_of_buyer().subscribe((success) => {
         // console.log(JSON.stringify({
         //   "tran_type" : "sale",
         //   "cart_description" : "sale",
@@ -145,9 +143,8 @@ export class CheckoutComponent implements OnInit {
       swal('Warning', 'Please select an address', 'warning');
     } else {
       this.spinner.show();
-      this.orderService
-        .putOrder(JSON.parse(localStorage.getItem('cart_json')))
-        .subscribe((success) => {
+      this.orderService.submit_card_info({})
+      this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe((success) => {
           this.add_order_response = success;
           localStorage.setItem(
             'temp_order_id',

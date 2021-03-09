@@ -8,6 +8,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonuiModule } from '../../../ui/commonui/commonui.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopularProductsComponent } from '../../components/popular-products/popular-products.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 const routes: Routes = [
   {path:'', component: HomePageComponent, pathMatch:'full'}
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomePageComponent,
-    PopularProductsComponent
+    PopularProductsComponent,
+    LoginDialogComponent
   ],
   imports: [
     CommonModule,
