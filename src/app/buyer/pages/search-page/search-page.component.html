@@ -80,9 +80,7 @@
                         </mat-expansion-panel-header>
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let brand of brands">
-                                <div class="p-2">
-                                    <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
-                                </div>
+                                <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -98,9 +96,7 @@
                         </mat-expansion-panel-header>
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let color of colors">
-                                <div class="p-2">
-                                    <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="example-margin">{{color.name | titlecase}}</mat-checkbox>
-                                </div>
+                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="example-margin">{{color.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -114,8 +110,11 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
+                        <mat-slider thumbLabel></mat-slider>
                         <div class="expanded-div mt-2">
-                            <mat-slider class="w-100 ml-0" ></mat-slider>
+                            <mat-panel-title *ngFor="let range of prices">
+                                <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')" class="example-margin">{{range.name}}</mat-checkbox>
+                            </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
