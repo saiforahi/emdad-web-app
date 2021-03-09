@@ -54,3 +54,8 @@
     color: #1F4F9E;
     text-decoration: underline;
 }
+
+.form-check-input{
+    position: absolute;
+    margin-top: 0.2rem;
+}

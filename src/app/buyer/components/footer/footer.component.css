@@ -57,7 +57,7 @@ footer .social-links .list-group-item a:hover {
     background-color: inherit;
 }
 
-.list-group-item:hover{
+.list-group-item a:hover{
     color: #1f4f9e;
 }
 
