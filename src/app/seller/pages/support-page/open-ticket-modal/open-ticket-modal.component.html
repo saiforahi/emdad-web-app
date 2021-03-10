@@ -5,52 +5,63 @@
         </h3>
     </section>
     <section>
-        <form [formGroup]="productUploadForm" (ngSubmit)="onSubmit(productUploadForm.value)">
+        <!--form for support ticket-->
+        <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="prodName">Subject</label>
+                        <label for="title">Subject</label>
                         <div class="input-group">
-                            <!-- prodName -->
-                            <input id="prodName" class="form-control form-control-md" type="text"
-                                formControlName="prodName" required placeholder="Write your subject here"/>
+                            <!-- title -->
+                            <input id="title" class="form-control form-control-md" type="text"
+                                formControlName="title" required placeholder="Write your subject here"/>
                         </div>
-                        <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
-                            <div *ngIf="prodName.errors?.required">
-                                <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                        <div *ngIf="title.invalid && (title.dirty || title.touched)">
+                            <div *ngIf="title.errors?.required">
+                                <app-form-input-alert [alertMsg]="'Issue Title is required'"></app-form-input-alert>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="prodDetails">Details</label>
+                        <label for="description">Details</label>
                         <div class="input-group">
-                            <!-- prodDetails -->
-                            <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text"
-                                formControlName="prodDetails" placeholder="Write down the issue in details..."></textarea>
+                            <!-- description -->
+                            <textarea rows="15" id="description" class="form-control form-control-md" type="text"
+                                formControlName="description" placeholder="Write down the issue in details..."></textarea>
+                        </div>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                            <div *ngIf="description.errors?.required">
+                                <app-form-input-alert [alertMsg]="'Issue Description is required.'"></app-form-input-alert>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="d-block">Upload Image</label>
-                        <label for="prodImage" class="custom-file-upload">
-                            <input id="prodImage" class="form-control form-control-md" type="file"
-                                formControlName="prodImage" (change)="handleFileSelect($event);" />
+                        <label for="image" class="custom-file-upload" *ngIf="isEnabled">
+                            <input id="image" class="form-control form-control-md" type="file" accept="image/*"
+                                formControlName="image" (change)="handleFileSelect($event);" [disabled]="isEnabled" />
                         </label>
-                        <ul class="attached-file">
-                            <li *ngFor="let file of selectedImage; let i = index;">
-                                {{file.name}}
-                                <button mat-raised-button (click)="removeFile(i);">X</button>
+                        <ul class="attached-file" *ngIf="selectedImage">
+                            <li >
+                                <img class="imageUploadButton form-group"
+                                
+                                id="preview"
+                              />
+                                <button mat-mini-fab (click)="removeFile();" class="mt-2">
+                                    <mat-icon>close</mat-icon>
+                                  </button>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
-                            [disabled]="productUploadForm.invalid">
+                        <button type="submit" mat-raised-button class="btn btn-primary btn-md  login_btn"
+                            [disabled]="ticketForm.invalid">
                             Submit
                         </button>
                     </div>
