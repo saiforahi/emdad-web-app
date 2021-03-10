@@ -41,6 +41,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-4">
+                                    <a (click)=show_forget_password(); ><label>Forgot your password?</label></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-md btn-block login_btn" type="button" (click)="signin(username.value,password.value)">Sign In</button>
+                            </div>
+                            <div class="form-group row footer">
+                                <div class="col-sm-auto">
+                                <label>No account yet?<a class="create-accnt" (click)=show_buyer_registration_modal_form();>Create an account</a></label>
+                                </div>
                             </div>
                         </div>
                     </div>

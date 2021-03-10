@@ -58,7 +58,7 @@ footer .social-links .list-group-item a:hover {
     /* color: lawngreen; */
 }
 
-.list-group-item:hover{
+.list-group-item a:hover{
     color: #1f4f9e;
 }
 
