@@ -13,12 +13,24 @@ export class QuotationService {
     }),
   };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+
   constructor(private http: HttpClient) {}
+
   get_user_quotation_list(): Observable<any> {
     return this.http.get(
       config.base_url +
         'api/quote/user/wise/' +
         localStorage.getItem('uid') +
+        '/',
+      this.httpOptions
+    );
+  }
+
+  get_seller_quotation_list(): Observable<any> {
+    return this.http.get(
+      config.base_url +
+        'api/quote/user/wise/' +
+        localStorage.getItem('s_uid') +
         '/',
       this.httpOptions
     );
