@@ -28,6 +28,16 @@ export class QuotationService {
     return this.http.get(`http://127.0.0.1:8000/api/quote/user/wise/`+localStorage.getItem('s_uid')+`/`,this.httpOptions)
   }
 
+  get_seller_quotation_list(): Observable<any> {
+    return this.http.get(
+      config.base_url +
+        'api/quote/user/wise/' +
+        localStorage.getItem('s_uid') +
+        '/',
+      this.httpOptions
+    );
+  }
+
   get_quotation_details(id): Observable<any> {
     return this.http.get(
       config.base_url + 'api/quote/details/' + id,

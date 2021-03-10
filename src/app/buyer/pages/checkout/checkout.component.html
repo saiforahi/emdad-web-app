@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h3 class="mx-auto pl-4">Checkout</h3>
+            <h3 class="mx-auto">Checkout</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 border-outline" style="text-align: left;">
             <div class="p-4" style="background: #FFFFFF;">
                 <h4>Addresses</h4>
-                <div class="row p-4">
+                <div class="row">
                     <div class="col-sm-7">
                         <div [ngClass]="selected_address===i?'row address-row address-row-selected':'row address-row'" class="row address-row" id="{{'address_div_'+address.id}}" *ngFor="let address of addresses; let i=index" (click)="selected_address=i" style="cursor: pointer;">
                             <!-- <div class="col-sm-2" style="margin-top: 25px;">
@@ -82,6 +82,110 @@
                     </div>
                 </form>
             </div>
+            <div class="row mt-5 mb-1">
+                <div class="col">
+                    <h4>Choose Payment Method</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a id="a_card" class="btn btn-block pay-option pay-option-selected p-4" (click)="show_card_inputs()">Card</a>
+                </div>
+                <div class="col-sm-6 float-left">
+                    <a id="a_wire" class="btn btn-block pay-option p-4" (click)="show_wired_inputs()">Wire Transfer</a>
+                </div>
+            </div>
+            <!-- <div class="card mt-3" *ngIf="isCard">
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Card Number</label>
+                            <input class="form-control" type="text" placeholder="Card Number"/>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Card Holder</label>
+                            <input class="form-control" type="text" placeholder="Card Holder"/>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Expires</label>
+                            <input type="text" class="form-control" placeholder="Expire date"/>
+                        </div>
+                        <div class="col-md-3">
+                            <label>CVC</label>
+                            <input type="text" class="form-control" placeholder="cvc"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button>Submit</button>
+                </div>
+            </div> -->
+            <mat-card class="example-card mt-4" style="margin-bottom: 120px">
+                <!-- <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>Shiba Inu</mat-card-title>
+                  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header> -->
+                <mat-card-content *ngIf="isWired">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
+                    <p><strong>Account Number: 702 555-0122</strong></p>
+                </mat-card-content>
+                <mat-card-content *ngIf="isCard">
+                    <div class="row">
+                        <div class="col">
+                            <!-- <label class="form-label">Card Number</label>
+                            <input class="form-control" type="text" placeholder="Card Number"/> -->
+                            <mat-form-field class="example-full-width w-100">
+                                <mat-label>Card Number</mat-label>
+                                <input matInput placeholder="Card Number" #card_number />
+                              </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width w-100">
+                                <mat-label>Card Holder</mat-label>
+                                <input matInput placeholder="Card Holder Name" data-paylib="number" #card_holder />
+                              </mat-form-field>
+                            <!-- <label class="form-label">Card Holder</label>
+                            <input class="form-control" type="text" placeholder="Card Holder"/> -->
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <label>Expires</label>
+                            <input type="text" class="form-control" placeholder="Expire date"/> -->
+                            <mat-form-field class="example-full-width w-100">
+                                <mat-label>Expires month</mat-label>
+                                <input matInput placeholder="Expiry date" data-paylib="expmonth" #card_expiry_date />
+                              </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <label>Expires</label>
+                            <input type="text" class="form-control" placeholder="Expire date"/> -->
+                            <mat-form-field class="example-full-width w-100">
+                                <mat-label>Expires Year</mat-label>
+                                <input matInput placeholder="Expiry date" data-paylib="expyear" #card_expiry_date />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <label>CVC</label>
+                            <input type="text" class="form-control" placeholder="cvc"/> -->
+                            <mat-form-field class="example-full-width w-100">
+                                <mat-label>CVV</mat-label>
+                                <input matInput placeholder="security code" data-paylib="cvv" #card_cvv />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button class="btn btn-block proceed-btn" mat-raised-button (click)="make_order()">Proceed</button>
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
         </div>
         <div class="col-md-4">
             <div class="cash-div p-4">
@@ -113,28 +217,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row p-4">
-        <div class="container mt-5">
-            <h4>Choose Payment Method</h4>
-            <div class="row">
-                <div class="col-lg-6">
-                    <a id="a_card" class="btn btn-block pay-option pay-option-selected p-4" (click)="show_card_inputs()">Card</a>
-                </div>
-                <div class="col-lg-6">
-                    <a id="a_wire" class="btn btn-block pay-option p-4" (click)="show_wired_inputs()">Wire Transfer</a>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="isWired" class="row p-4">
-            <div class="p-2">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
-                <p><strong>Account Number: 702 555-0122</strong></p>
-            </div>
-        </div>
-    </div>
-    <div class="row-cols-4 p-4">
-        <button class="btn btn-block save-btn" type="button" (click)="make_order()">Proceed</button>
     </div>
 </div>
 <ngx-spinner></ngx-spinner>

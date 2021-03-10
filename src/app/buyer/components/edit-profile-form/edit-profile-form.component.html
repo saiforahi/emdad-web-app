@@ -1,101 +1,5 @@
-<!-- <div *ngIf="editUserInfo && !changePass && editProfileState">
-	<h4>Edit Profile</h4>
-	<table class="table table-borderless">
-		<tbody>
-			<tr>
-				<td>Full Name</td>
-				<td>
-					<input [(ngModel)]="editUserInfo.full_name" />
-				</td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>
-					<input readonly [(ngModel)]="userMail" />
-				</td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>
-					<button (click)="changePass = true">change password</button>
-				</td>
-			</tr>
-			<tr>
-				<td>Phone</td>
-				<input type="text" [(ngModel)]="editUserInfo.phone" />
-			</tr>
-			<tr>
-				<td>Gender</td>
-				<td>
-					<select [(ngModel)]="editUserInfo.gender">
-						<option value="">Select</option>
-						<option value="F">Female</option>
-						<option value="M">Male</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Date of Birth</td>
-				<td>
-					<input type="date" [(ngModel)]="editUserInfo.dob" />
-				</td>
-			</tr>
-			<tr *ngIf="editUserInfo.store_name !== undefined">
-				<td>Store Name</td>
-				<td>
-					<input [(ngModel)]="editUserInfo.store_name" />
-				</td>
-			</tr>
-			<tr *ngIf="editUserInfo.store_address !== undefined">
-				<td>Store Address</td>
-				<td>
-					<input [(ngModel)]="editUserInfo.store_address" />
-				</td>
-			</tr>
-			<tr>
-				<td>Address</td>
-				<td>
-					<input [(ngModel)]="editUserInfo.address" />
-				</td>
-			</tr>
-			<tr>
-				<td>Country</td>
-				<td>
-					<select readonly [(ngModel)]="editUserInfo.country" (input)="onCountryChange($event.target.value)">
-						<option *ngFor="let country of countries" [value]="country.id">
-							{{ country.name }}
-						</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>City</td>
-				<td>
-					<select [(ngModel)]="editUserInfo.city" (input)="updateCityList()">
-						<option *ngFor="let city of editCities; let i = index" [value]="i">
-							{{ city.name }}
-						</option>
-					</select>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="row">
-		<div class="col-1">
-			<button class="btn btn-secondary" (click)="updateEditProfile()">
-				Cancel
-			</button>
-		</div>
-		<div class="col-1">
-			<button class="btn btn-primary" (click)="saveData()">Update</button>
-		</div>
-	</div>
-</div> -->
-
 <form>
-  <div
-    class="container container-custom d-flex justify-content-center mt-5 mb-5"
-  >
+  <div class="container container-custom d-flex justify-content-center mt-5 mb-5">
     <div class="rounded-circle">
       <img
         class="pro-img"
@@ -113,8 +17,9 @@
       </div>
     </div>
   </div>
+  
   <div class="form-group row">
-    <div class="col-sm">
+    <div class="col-sm-6">
       <label class="form-label">Full Name</label>
       <input
         name="full_name"
@@ -124,7 +29,7 @@
         type="text"
       />
     </div>
-    <!-- <div class="col-sm-6">
+    <div class="col-sm-6">
       <label class="form-label">Company Name (Optional)</label>
       <input
         name="company_name"
@@ -132,7 +37,7 @@
         placeholder="Company Name"
         type="text"
       />
-    </div> -->
+    </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-6">
@@ -168,9 +73,32 @@
     />
   </div>
   <div class="form-group row">
+    
+    <div class="col-sm-6">
+      <label class="form-label">City</label>
+      <input
+        name="area"
+        class="form-control"
+        placeholder="Gray St. Utica"
+        type="text"
+      />
+      <!-- <select class="form-control" name="city" [(ngModel)]="editUserInfo.city">
+        <option *ngFor="let city of editCities" [value]="city.id">
+          {{ city.name }}
+        </option>
+      </select> -->
+    </div>
+    
     <div class="col-sm-6">
       <label class="form-label">Country</label>
-      <select
+      <input
+        name="area"
+        class="form-control"
+        placeholder="USA"
+        type="text"
+      />
+      
+      <!-- <select
         class="form-control"
         name="country"
         [(ngModel)]="editUserInfo.country"
@@ -180,19 +108,12 @@
         <option *ngFor="let country of countries" [value]="country.id">
           {{ country.name }}
         </option>
-      </select>
+      </select> -->
     </div>
-    <div class="col-sm-6">
-      <label class="form-label">City</label>
-      <select class="form-control" name="city" [(ngModel)]="editUserInfo.city">
-        <option *ngFor="let city of editCities" [value]="city.id">
-          {{ city.name }}
-        </option>
-      </select>
-    </div>
+    
   </div>
   <div class="form-group row">
-    <!-- <div class="col-sm-6">
+    <div class="col-sm-6">
       <label class="form-label">Area</label>
       <input
         name="area"
@@ -200,7 +121,7 @@
         placeholder="Pennsylvania"
         type="text"
       />
-    </div> -->
+    </div>
     <div class="col-sm-6">
       <label class="form-label">Zip Code</label>
       <input

@@ -1,3 +1,21 @@
+.modal{
+    background: #FFFFFF;
+    box-shadow: 0px 10px 100px rgba(47, 47, 47, 0.05);
+}
+.rem-check{
+    margin-top: 7px;
+}
+.forget-pass{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    text-align: right;
+    color: #2B2B2B;
+    width: 124px;
+    height: 29px;
+}
 .modal-title{
     font-style: normal;
     font-weight: 500;
@@ -8,17 +26,28 @@
     color: #2B2B2B;
 }
 .modal-content{
-    max-width: 700px;
-    max-height: 765px;
+    /* max-width: 700px;
+    max-height: 765px; */
     background: #FFFFFF;
     -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
+    width: 700px;
+    height: 765px;
 }
 .form-control{
     background: #EFEFEF;
     border-radius: 5px;
+    height: 80px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+    color:black;
+    /* color: rgba(43, 43, 43, 0.3); */
 }
 .col-4{
     font-size: 12px;
@@ -26,27 +55,54 @@
 .btn{
     background: #454F63;
     border-radius: 5px;
+    width: 560px;
+    height: 80px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #FFFFFF;
 }
 .footer{
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 20px;
     line-height: 29px;
-/* identical to box height */
+    /* identical to box height */
     text-align: center;
     color: #2B2B2B;
+    align-items: center;
+    justify-content: center;
 }
 .modal{
     background-color: #000000c7;
 }
 .form-label{
-    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    color: #2B2B2B;
 }
 .login_btn{
     background: #1F4F9E;
     border-radius: 5px;
 }
+.col-sm-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
 .create-accnt{
     color: #1F4F9E;
     text-decoration: underline;
+}
+
+.form-check-input{
+    position: absolute;
+    margin-top: 0.2rem;
 }
