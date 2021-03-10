@@ -43,6 +43,7 @@ const routes: Routes = [
           import('./pages/seller-profile-page/seller-profile-page.module').then(
             (m) => m.SellerProfilePageModule
           ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'bank-info',
@@ -50,6 +51,7 @@ const routes: Routes = [
           import('./pages/bank-info-page/bank-info-page.module').then(
             (m) => m.BankInfoPageModule
           ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'change-password',
@@ -64,6 +66,7 @@ const routes: Routes = [
           import(
             './pages/seller-payment-history-page/seller-payment-history-page.module'
           ).then((m) => m.SellerPaymentHistoryPageModule),
+          canActivate: [SellerAuthGuard],
       },
       {
         path: 'subscription-plan',
@@ -71,6 +74,7 @@ const routes: Routes = [
           import(
             './pages/subscription-plan-page/subscription-plan-page.module'
           ).then((m) => m.SubscriptionPlanPageModule),
+          canActivate: [SellerAuthGuard],
       },
       {
         path: 'upload-products',
@@ -78,40 +82,47 @@ const routes: Routes = [
           import(
             './pages/upload-products-page/upload-products-page.module'
           ).then((m) => m.UploadProductsPageModule),
+          canActivate: [SellerAuthGuard],
       },
-     { path: 'manage-rfqs',
-      loadChildren: () =>
-        import(
-          './pages/manage-rfq/manage-rfq.module'
-        ).then((m) => m.ManageRfqModule),
-    },
+      {
+        path: 'manage-rfqs',
+        loadChildren: () =>
+          import('./pages/manage-rfq/manage-rfq.module').then(
+            (m) => m.ManageRfqModule
+          ),
+        canActivate: [SellerAuthGuard],
+      },
       {
         path: 'products',
         loadChildren: () =>
-          import(
-            './pages/sller-products-page/sller-products-page.module'
-          ).then((m) => m.SllerProductsPageModule),
+          import('./pages/sller-products-page/sller-products-page.module').then(
+            (m) => m.SllerProductsPageModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'bulk-products-upload',
         loadChildren: () =>
-          import(
-            './pages/sller-products-page/sller-products-page.module'
-          ).then((m) => m.SllerProductsPageModule),
+          import('./pages/bulk-upload-products/bulk-upload-products.module').then(
+            (m) => m.BulkUploadProductsModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'manage-quotations',
         loadChildren: () =>
-          import(
-            './pages/manage-quotations/manage-quotations.module'
-          ).then((m) => m.ManageQuotationsModule),
+          import('./pages/manage-quotations/manage-quotations.module').then(
+            (m) => m.ManageQuotationsModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'current-orders',
         loadChildren: () =>
-          import(
-            './pages/current-orders-page/current-orders-page.module'
-          ).then((m) => m.CurrentOrdersPageModule),
+          import('./pages/current-orders-page/current-orders-page.module').then(
+            (m) => m.CurrentOrdersPageModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'order-history',
@@ -119,6 +130,7 @@ const routes: Routes = [
           import(
             './pages/seller-order-history-page/seller-order-history-page.module'
           ).then((m) => m.SellerOrderHistoryPageModule),
+          canActivate: [SellerAuthGuard],
       },
       {
         path: 'invoices',
@@ -126,6 +138,15 @@ const routes: Routes = [
           import(
             './pages/seller-invoices-page/seller-invoices-page.module'
           ).then((m) => m.SellerInvoicesPageModule),
+          canActivate: [SellerAuthGuard],
+      },
+      {
+        path: 'support',
+        loadChildren: () =>
+          import('./pages/support-page/support-page.module').then(
+            (m) => m.SupportPageModule
+          ),
+          canActivate: [SellerAuthGuard],
       },
     ],
   },

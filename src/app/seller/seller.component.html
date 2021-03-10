@@ -1,17 +1,18 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav *ngIf="showNavigation" #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0"
+  <mat-sidenav *ngIf="loggedInUser" #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0"
     [fixedBottomGap]="0">
     <img src="../../assets/logo.svg" alt="">
     <!-- side menu -->
     <section class="side-menu-holder">
       <ul>
-        <a mat-button [routerLink]="['/dashboard']">
+        <a mat-button [routerLink]="['/dashboard']"
+          [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
           <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
         </a>
         <li class="accordion-menu-item">
           <!-- Manage Profile -->
-          <mat-accordion>
-            <mat-expansion-panel>
+          <mat-accordion >
+            <mat-expansion-panel [expanded]="activeRoute[2] == 'profile' || activeRoute[2] == 'bank-info' || activeRoute[2] == 'change-password'">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <img src="../../assets/seller-Profile.svg" alt="">
@@ -20,13 +21,24 @@
               </mat-expansion-panel-header>
               <ul class="child-item">
                 <a [routerLink]="['/dashboard/profile']">
-                  <li class="active"><img src="../../assets/dot.svg" alt=""> Company Profile</li>
+                  <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt=""> Company Profile
+                  </li>
                 </a>
                 <a [routerLink]="['/dashboard/bank-info']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Bank Account Information</li>
+                  <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
+                    Information
+                  </li>
                 </a>
                 <a [routerLink]="['/dashboard/change-password']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Change Password</li>
+                  <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/dot-light.svg" alt="">Change
+                    Password
+                  </li>
                 </a>
               </ul>
             </mat-expansion-panel>
@@ -35,7 +47,7 @@
         <li class="accordion-menu-item">
           <!-- Manage Subscription -->
           <mat-accordion>
-            <mat-expansion-panel>
+            <mat-expansion-panel [expanded]="activeRoute[2] == 'subscription-plan' || activeRoute[2] == 'payment-history'">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <img src="../../assets/Wallet.svg" alt="">
@@ -44,10 +56,18 @@
               </mat-expansion-panel-header>
               <ul class="child-item">
                 <a [routerLink]="['/dashboard/subscription-plan']">
-                  <li class="active"><img src="../../assets/dot.svg" alt=""> Subscription Plan</li>
+                  <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt="">
+                    Subscription Plan
+                  </li>
                 </a>
                 <a [routerLink]="['/dashboard/payment-history']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Payment History</li>
+                  <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">Payment
+                    History
+                  </li>
                 </a>
               </ul>
             </mat-expansion-panel>
@@ -56,7 +76,7 @@
         <li class="accordion-menu-item">
           <!-- Manage Products -->
           <mat-accordion>
-            <mat-expansion-panel>
+            <mat-expansion-panel [expanded]="activeRoute[2] == 'products' || activeRoute[2] == 'bulk-products-upload' || activeRoute[2] == 'upload-products'">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <img src="../../assets/Chart.svg" alt="">
@@ -64,29 +84,35 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <ul class="child-item">
-                <a [routerLink]="['/dashboard/products/categories']">
-                  <li class="active"><img src="../../assets/dot.svg" alt=""> Product Categories</li>
+                <a [routerLink]="['/dashboard/products']">
+                  <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt=""> Product Categories</li>
                 </a>
-                <a [routerLink]="['']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Bulk Products Import</li>
+                <a [routerLink]="['/dashboard/bulk-products-upload']">
+                  <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt=""> Bulk Products Import</li>
                 </a>
                 <a [routerLink]="['/dashboard/upload-products']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Upload Products</li>
+                  <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""> Upload Products</li>
                 </a>
               </ul>
             </mat-expansion-panel>
           </mat-accordion>
         </li>
-        <a mat-button [routerLink]="['/dashboard/manage-rfqs']">
+        <a mat-button [routerLink]="['/dashboard/manage-rfqs']" [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''">
           <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
         </a>
-        <a mat-button [routerLink]="['/dashboard/manage-quotations']">
+        <a mat-button [routerLink]="['/dashboard/manage-quotations']" [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''">
           <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
         </a>
         <li class="accordion-menu-item">
           <!-- Manage Order -->
           <mat-accordion>
-            <mat-expansion-panel>
+            <mat-expansion-panel [expanded]="activeRoute[2] == 'current-orders' || activeRoute[2] == 'order-history' || activeRoute[2] == 'invoices'">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <img src="../../assets/Buy.svg" alt="">
@@ -95,26 +121,32 @@
               </mat-expansion-panel-header>
               <ul class="child-item">
                 <a [routerLink]="['/dashboard/current-orders']">
-                  <li class="active"><img src="../../assets/dot.svg" alt=""> Current Order</li>
+                  <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""> Current Order</li>
                 </a>
                 <a [routerLink]="['/dashboard/order-history']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Order History</li>
+                  <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""> Order History</li>
                 </a>
                 <a [routerLink]="['/dashboard/invoices']">
-                  <li><img src="../../assets/dot-light.svg" alt=""> Invoices</li>
+                  <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
+                    <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="">
+                    <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt=""> Invoices</li>
                 </a>
               </ul>
             </mat-expansion-panel>
           </mat-accordion>
         </li>
-        <a mat-button href="">
+        <a mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
           <li><img src="../../assets/Chat.svg" alt=""> Support</li>
         </a>
       </ul>
     </section>
   </mat-sidenav>
   <mat-sidenav-content>
-    <nav *ngIf="showNavigation" class="navbar navbar-expand-lg navbar-light bg-light"
+    <nav *ngIf="loggedInUser" class="navbar navbar-expand-lg navbar-light bg-light"
       [ngClass]="sideMenuCollapsed ? 'nav-fluid':''">
       <button *ngIf="sideMenuCollapsed" class="toggle-slide-menu-btn" mat-button (click)="toggleSidenav()"
         (click)="setSideMenuCollapseVar()">
@@ -125,11 +157,20 @@
         <i class="fas fa-arrow-circle-left"></i>
       </button>
       <div class="container">
+        <!-- top navbar -->
         <ul class="navbar-nav">
-          <li class="nav-item" style="margin-left: 42px">
-            <div class="user-name">
+          <li class="nav-item" style="margin-right: 30px" ngbDropdown>
+            <div class="user-name" ngbDropdownToggle>
               <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="" />
-              <span *ngIf="loggedInUser">pial noamn</span>
+              <span *ngIf="loggedInUser">{{userName}}</span>
+            </div>
+            <div ngbDropdownMenu>
+              <div ngbDropdownItem (click)="logout();">
+                <label class="">
+                  <img src="../assets/seller-logout.svg" alt="" />
+                  <span class="lan-title">Log out</span>
+                </label>
+              </div>
             </div>
           </li>
           <li class="nav-item">

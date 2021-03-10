@@ -59,4 +59,7 @@ export class OrderService {
   get_active_shipping_address_of_buyer():Observable<any>{
     return this.http.get(config.base_url+"api/address/book/default/"+localStorage.getItem('uid')+"/",this.httpOptions)
   }
+  submit_card_info(data:any):Observable<any>{
+    return this.http.post(config.base_url+'api/order/payment/trans/token/',data,this.httpOptions)
+  }
 }

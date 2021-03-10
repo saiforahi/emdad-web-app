@@ -17,12 +17,13 @@ export class SearchPageComponent implements OnInit {
   prodInRow6: boolean;
   brands:any=[];
   colors:any=[];
+  prices:any=[];
   price= new FormControl(0)
   min_price:any;
   max_price:any;
   _brand:any;
   _color:any;
-  
+  _price:any;
   constructor(
     private searchService: SearchService,
     private router: Router,
@@ -51,34 +52,35 @@ export class SearchPageComponent implements OnInit {
     this.expandedSubCat = parseInt(localStorage.getItem('expandedSubCat'));
     //
   }
-
   getProdOnFilter(ChildCatId, subCatId, catId) {
     this.router.navigate(['/products/category/', ChildCatId]);
     localStorage.setItem('expandedSubCat', subCatId);
     localStorage.setItem('expandedCat', catId);
   }
-
   get_menus(){
-    let min_price=this.products[0].unit_price;
+    this.min_price=this.products[0].unit_price;
+    this.max_price=this.products[0].unit_price;
     Array.from(this.products).forEach((product:any)=>{
-      if(min_price>product.unit_price){
-        min_price=product.unit_price
+      if(this.min_price>product.unit_price){
+        this.min_price=product.unit_price
+      }
+      if(this.max_price<product.unit_price){
+        this.max_price=product.unit_price
       }
       this.brands.push(product.brand)
       this.colors.push(product.color)
     })
-    this.min_price=min_price;
-    console.log('min',this.min_price)
     this.brands=this.brands.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting brands
     this.colors=this.colors.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting colors
-    console.log('brands',this.brands)
-    console.log('colors',this.colors)
+    this.prices=this.get_price_ranges()
   }
-  set_prices(){
-    let price=0;
-    this.products.forEach(product => {
-      
-    });
+  get_price_ranges(){
+    let range=(this.max_price-this.min_price)/3
+    let ranges=new Array()
+    ranges.push({value:(Math.trunc(this.min_price)-1)+' '+((Math.trunc(this.min_price)+range+1)),name:'$'+Math.trunc(this.min_price)+' to $'+(Math.trunc(this.min_price)+range)})
+    ranges.push({value:(Math.trunc(this.min_price)+range-1)+' '+(Math.trunc(this.min_price)+(range*2)+1),name:'$'+(Math.trunc(this.min_price)+range)+' to $'+(Math.trunc(this.min_price)+(range*2))})
+    ranges.push({value:(Math.trunc(this.min_price)+(range*2)-1)+' '+(Math.trunc(this.max_price)+1),name:'$'+(Math.trunc(this.min_price)+(range*2))+' to $'+Math.trunc(this.max_price)})
+    return ranges;
   }
   setBrand(brand_name){
     this._brand=brand_name
@@ -88,13 +90,30 @@ export class SearchPageComponent implements OnInit {
     this._color=color_name
     this._filter()
   }
+  setPrice(price){
+    this._price=price
+    this._filter()
+  }
   _filter(){
-    let query=''
+    let query:string=''
     if(this._brand!==null && this._brand!==undefined && this._brand!==''){
       query+='brand='+this._brand
     }
     if(this._color!==null && this._color!==undefined && this._color!==''){
-      query+='&color='+this._color
+      if(query.includes('brand')){
+        query+='&color='+this._color
+      }
+      else{
+        query+='color='+this._color
+      }
+    }
+    if(this._price!==null && this._price!==undefined && this._price!==''){
+      if(query.includes('color') || query.includes('brand')){
+        query+='&min_price='+this._price.split(" ")[0]+'&max_price='+this._price.split(" ")[1]
+      }
+      else{
+        query+='min_price='+this._price.split(" ")[0]+'&max_price='+this._price.split(" ")[1]
+      }
     }
     console.log(query)
     this.route.queryParams.subscribe((params) => {
