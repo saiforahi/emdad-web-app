@@ -7,9 +7,9 @@
 
 <div class="container-fluid">
   <div class="row d-flex justify-content-center forget-password-page">
-    <div class="card col-md-6 text-align-center">
-      <h3 class="fp-header">Forgot your password</h3>
-      <p class="fp-para">Lost your Password? Please enter your email address</p>
+    <div class="card col-md-6 text-align-center" style="background: #E5E5E5;">
+      <h3 class="fp-header">Forget Password</h3>
+      <p class="fp-para">Lost Password? Please enter your email address</p>
       <p class="fp-para">
         You will recieve a link to create a new password via email.
       </p>
@@ -25,7 +25,7 @@
         <div class="input-group-append">
           <button
             (click)="sendMail(email.value)"
-            class="btn btn-outline-secondary"
+            class="btn btn-outline-secondary frgt-btn"
             type="button"
           >
             Reset Password

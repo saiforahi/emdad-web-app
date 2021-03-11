@@ -143,9 +143,9 @@ export class CheckoutComponent implements OnInit {
       swal('Warning', 'Please select an address', 'warning');
     } else {
       this.spinner.show();
-      this.orderService.submit_card_info({})
       this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe((success) => {
           this.add_order_response = success;
+          console.log(this.add_order_response)
           localStorage.setItem(
             'temp_order_id',
             this.add_order_response.data[0].id

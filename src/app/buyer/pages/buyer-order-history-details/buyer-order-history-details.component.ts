@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
+
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
