@@ -1,3 +1,6 @@
+<mat-dialog-actions align="end" class="p-0 m-0">
+    <button mat-dialog-close class="close-btn"><i class="fas fa-times mt-0 p-0"></i></button>
+</mat-dialog-actions>
 <mat-dialog-content class="mat-typography">
     <section>
         <h3 class="open-ticket-modal-header">
@@ -38,6 +41,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Image upload-->
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="d-block">Upload Image</label>
@@ -45,6 +49,7 @@
                             <input id="image" class="form-control form-control-md" type="file" accept="image/*"
                                 formControlName="image" (change)="handleFileSelect($event);" [disabled]="isEnabled" />
                         </label>
+                        <!--showing the attached files thumbnails-->
                         <ul class="attached-file" *ngIf="selectedImage">
                             <li >
                                 <img class="imageUploadButton form-group"
@@ -58,6 +63,7 @@
                         </ul>
                     </div>
                 </div>
+                <!--Submit-->
                 <div class="col-12">
                     <div class="form-group">
                         <button type="submit" mat-raised-button class="btn btn-primary btn-md  login_btn"
