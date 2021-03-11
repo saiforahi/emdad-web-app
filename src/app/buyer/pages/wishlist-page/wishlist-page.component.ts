@@ -10,7 +10,7 @@ import { GetProductService } from '../../../shared/services/get-product.service'
 })
 export class WishlistPageComponent implements OnInit {
   products = [];
-
+  
   constructor(private wishlist: WishlistService, private product: GetProductService) { }
 
   ngOnInit(): void {

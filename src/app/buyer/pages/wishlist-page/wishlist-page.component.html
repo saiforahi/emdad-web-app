@@ -1,5 +1,5 @@
 <app-breadcrumbs [directoryString]="'Wishlist'"></app-breadcrumbs>
-<section class="container">
+<section class="container" style="margin-bottom: 120px;">
     <div class="row" *ngIf="products">
         <div class="col-md-2" *ngFor="let product of products">
           <app-product-card [product]="product"></app-product-card>
