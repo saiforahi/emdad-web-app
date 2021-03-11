@@ -161,6 +161,12 @@ nav .profile-list img {
   position: relative;
 }
 
+.secondary-menu .emdad-sell {
+    margin-top: 100px !important;
+    background-color: violet;
+    position: relative;
+}
+
 .secondary-menu .nav-link:hover {
   color: #1F4F9E !important;
   transition: ease-in 0.3s;
@@ -241,4 +247,31 @@ button:focus {
 
 .suggestion-box {
   width: inherit;
+}
+
+.sell-on-emdad-button{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    font-family: Jost, Roboto, "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: block;
+    padding: .5rem 1rem;
+    color: inherit;
+    margin-top: 0px !important;
+    position: relative;
 }

@@ -33,9 +33,9 @@ export class SellerComponent implements OnInit, AfterViewInit {
     private UserAuthService: UserAuthService
   ) {
     router.events.subscribe((val: any) => {
-      if(val.url)
+      if(val.url){
         this.activeRoute = val.url.split("/");
-      console.log(this.activeRoute);
+      }
     });
   }
 

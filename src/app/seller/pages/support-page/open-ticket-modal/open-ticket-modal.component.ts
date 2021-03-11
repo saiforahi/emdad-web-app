@@ -6,8 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+/* import { UserAuthService } from 'src/app/shared/services/user-auth.service'; */
 import swal from 'sweetalert';
+import { Router } from '@angular/router';
+
+import { TicketService } from '../../../../shared/services/ticket.service';
 
 @Component({
   selector: 'app-open-ticket-modal',
@@ -15,65 +18,93 @@ import swal from 'sweetalert';
   styleUrls: ['./open-ticket-modal.component.css'],
 })
 export class OpenTicketModalComponent implements OnInit {
+  /** INITIALIZATION */
   error: any;
   msg;
   group: string;
-  productUploadForm: FormGroup;
-  prodName: AbstractControl;
-  prodDetails: AbstractControl;
-  prodImage: AbstractControl;
-  productUploadFormData: any;
-  selectedImage: any;
 
+  fileName;
+  imgDisplay:any=[];
+  title: AbstractControl;
+  description: AbstractControl;
+  image: AbstractControl;
+isEnabled:boolean = true;
+  selectedImage: any ;
+  newArray:any=[];
+  ticketForm = this.fb.group({
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    image: [''],
+  });
+  ticketFormData = new FormData();
   constructor(
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
-    private authService: UserAuthService
-  ) {}
-
+ 
+    private ticketService: TicketService,
+    private router: Router,
+ 
+  ) { }
   ngOnInit(): void {
-    this.productUploadForm = this.fb.group({
-      prodName: ['', [Validators.required]],
-      prodDetails: [''],
-      prodImage: [''],
-    });
-    this.prodName = this.productUploadForm.controls['prodName'];
-    this.prodDetails = this.productUploadForm.controls['prodDetails'];
-    this.prodImage = this.productUploadForm.controls['prodImage'];
+    let uid = localStorage.getItem('s_uid');
+     if(uid === null){
+       this.router.navigate(['/']);
+     }
+    this.ticketFormData.append('user', uid);
+
+    this.title = this.ticketForm.controls['title'];
+    this.description = this.ticketForm.controls['description'];
+    this.image = this.ticketForm.controls['image'];
+
+
+
+
   }
 
-  onSubmit(value) {
+/** FORM SUBMISSION */
+  onSubmit():void {
     // console.log(value);
-    this.spinner.show();
-    this.productUploadFormData.append('email', value.email);
-    this.productUploadFormData.append('password', value.password);
-    this.productUploadFormData.append('store_name', value.prodName);
-    this.productUploadFormData.append('phone', value.prodDetails);
-    this.productUploadFormData.append('store_address', value.comAddress);
-    this.productUploadFormData.append('zip_code', value.zipCode);
-    this.authService.sellerSignup(this.productUploadFormData).subscribe(
-      (success) => {
-        console.log(success);
-        swal('Succeed', 'You have registered successfully', 'success');
-      },
-      (error: any) => {
-        this.error = error.error.email.toString();
-        console.log(error);
-        // if(error.email){
-        //   swal('Failed!', error.email, 'error');
-        // }
-        swal('Failed!', this.error, 'error');
-      }
-    );
-  }
+   this.ticketFormData.append('title',this.ticketForm.value.title);
+   this.ticketFormData.append('description',this.ticketForm.value.description);
+   this.ticketService.openTicket(this.ticketFormData).subscribe((response) =>{
+     console.log(response);
+     this.router.navigate(['/dashboard/support']);
+     swal("Created!","Support ticket created successfully","success")
+   })
 
-  handleFileSelect(event) {
-    var reader = new FileReader();
-    this.selectedImage.push(event.target.files[0]);
-    console.log(this.selectedImage);
-  }
 
-  removeFile(id) {
-    this.selectedImage.splice(id, 1);
+  }
+/** FILE SELECT AND UPLOAD TO FORM FUNCTION */
+handleFileSelect(event) {
+  var reader = new FileReader();
+  this.selectedImage = event.target.files[0];
+
+  reader.readAsDataURL(this.selectedImage);
+  reader.onload = function (readEvent: any) {
+    document
+      .getElementById('preview')
+      .setAttribute('src', readEvent.target.result);
+  };
+
+  // putting the image in formData
+  this.ticketFormData.append(
+    'image',
+    this.selectedImage,
+    this.selectedImage.name
+  );
+  console.log(this.selectedImage);
+  console.log(this.selectedImage.name);
+}
+
+
+/***REMOVE FILE FROM FORM */
+  removeFile() {
+   /*  this.selectedImage.splice(id, 1);
+    if(this.selectedImage.length == 0 || this.selectedImage.length < 2){
+      this.isEnabled = true;
+    
+    } */
+    this.selectedImage = null;
+    this.ticketFormData.delete('image');
   }
 }
