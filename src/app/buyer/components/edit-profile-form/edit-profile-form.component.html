@@ -1,12 +1,12 @@
 <form>
-  <div class="container container-custom d-flex justify-content-center mt-5 mb-5">
+  <div class="container container-custom d-flex mt-5 mb-5">
     <div class="rounded-circle">
       <img
         class="pro-img"
         *ngIf="profile_pic === undefined"
         src="../../../assets/images/avatar.svg"
       />
-      <img class="pro-img" *ngIf="profile_pic" src="{{ profile_pic }}" />
+      <img class="pro-img align-self-center" *ngIf="profile_pic" src="{{ profile_pic }}" />
       <div class="plus-icon">
         <i class="fas fa-plus-circle"></i>
         <input
