@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@types/jwt-decode": "^3.1.0",
     "@types/sweetalert": "^2.0.4",
+    "angular-create-pdf": "^2.0.0",
     "bootstrap": "^4.5.3",
     "file-saver": "^2.0.5",
     "jwt-decode": "^3.1.2",

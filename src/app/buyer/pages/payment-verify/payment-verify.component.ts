@@ -29,7 +29,9 @@ export class PaymentVerifyComponent implements OnInit {
         if(success.success==="True"){
           //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
           swal("Succeed!","Payment Verified","success").then((isValid)=>{
-            this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
+            let order_id=localStorage.getItem('temp_order_id');
+            localStorage.removeItem('temp_order_id')
+            this.router.navigate(['/order/details/',order_id]);
           })
         }
       }
