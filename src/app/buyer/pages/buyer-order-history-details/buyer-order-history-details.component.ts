@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
+import { AngularCreatePdfService } from 'angular-create-pdf';
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
@@ -15,7 +16,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   discount:any;
   vat:any;
   total:any;
-  constructor(private route:ActivatedRoute,private orderService:OrderService) { }
+  constructor(private route:ActivatedRoute,private orderService:OrderService,private pdfService: AngularCreatePdfService) { }
 
   ngOnInit(): void {
     this.base_url=config.base_url;
@@ -58,5 +59,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
 
   cal_individual_total(index){
     return this.orders[index].unit_price*this.orders[index].quantity
+  }
+  createPdfTem(ele: any) {
+    this.pdfService.createPdf(ele, 'invoice.pdf');
   }
 }
