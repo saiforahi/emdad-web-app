@@ -2,15 +2,14 @@
     <h2 class="page-heading d-inline-block">Ticket List</h2>
     <div class="sort-btn d-inline-block">
         <button mat-raised-button class="ticket-btn" (click)="openTicket();">New Ticket</button>
-        <select class="form-control form-control-lg">
-            <option>Filter by Status</option>
-            <!-- <option>Paid</option>
-            <option>Unpaid</option> -->
-        </select>
+    <!--     <select class="form-control form-control-lg">
+            <option>Filter by Status</option> </select> -->
+            <!--filter button-->
+            <button mat-stroked-button class="filterBtn" (click)="sortTable(supportIssues);">Filter by Status <mat-icon>expand_more</mat-icon></button>
     </div>
 </section>
 <section class="card mb-5">
-    <table mat-table [dataSource]="supportIssues " class="mat-elevation-z8">
+    <table mat-table [dataSource]="supportIssues " class="mat-elevation-z8" matSort>
         <!-- REPORT ID Column -->
         <ng-container matColumnDef="Report ID">
             <th mat-header-cell *matHeaderCellDef>Report ID</th>
@@ -23,12 +22,10 @@
         </ng-container>
         <!-- Status Column -->
      <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <th mat-header-cell *matHeaderCellDef >Status</th>
             <td mat-cell *matCellDef="let element">
-                <span *ngIf="element.status == 1">Running</span>
-                <span *ngIf="element.status == 2">Solved</span>
-                <span *ngIf="element.status == 0">-</span>
-               
+  
+               {{status[element.status]}}
             </td>
         </ng-container>
 
@@ -36,7 +33,7 @@
         <ng-container matColumnDef="View">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <button class="edit-product-btn" mat-button (click)="ticketView()">View</button>
+                <button class="edit-product-btn" mat-button (click)="ticketView(element);">View</button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColoumns"></tr>

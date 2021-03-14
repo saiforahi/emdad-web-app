@@ -42,7 +42,7 @@ button {
   /* identical to box height */
   color: #2B2B2B;
   max-height: 300px;
-  width: inherit;
+  width: 100%;
 }
 .prod-name{
   font-style: normal;

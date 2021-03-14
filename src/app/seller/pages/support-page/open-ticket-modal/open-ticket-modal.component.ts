@@ -31,6 +31,7 @@ export class OpenTicketModalComponent implements OnInit {
 isEnabled:boolean = true;
   selectedImage: any ;
   newArray:any=[];
+    /** Form data initialization */
   ticketForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
@@ -46,6 +47,7 @@ isEnabled:boolean = true;
  
   ) { }
   ngOnInit(): void {
+  /**Get current seller's id */
     let uid = localStorage.getItem('s_uid');
      if(uid === null){
        this.router.navigate(['/']);

@@ -91,8 +91,8 @@ pinch-zoom /deep/ .pinch-zoom-content{
 .cart-quote-btn-div button.add-to-cart-btn {
   width: 250px;
   height: 80px;
-  background: #f49814;
-  border-radius: 5px;
+  background: #1F4F9E;
+border-radius: 5px;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
@@ -102,8 +102,8 @@ pinch-zoom /deep/ .pinch-zoom-content{
 
 .cart-quote-btn-div button.req-for-quote-btn {
   height: 80px;
-  border: 1px solid #f49814;
-  color: #f49814;
+  border: 1px solid #1F4F9E;
+  color: #1F4F9E;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
@@ -208,7 +208,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   padding: 60px 0;
 }
 .reviews-holder button {
-  background: #454f63;
+  background: #1F4F9E;
   color: #ddd;
   padding: 23px;
   font-family: Jost;

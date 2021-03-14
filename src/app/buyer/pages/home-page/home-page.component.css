@@ -148,8 +148,8 @@ button:focus {
 
 .cat-round-bg img {
   margin: auto;
-  /* color: #fff; */
-  background: #FFFFFF;
+  color: #fff;
+  /* background: #FFFFFF; */
 }
 
 .cat-round-bg img:nth-child(1) {

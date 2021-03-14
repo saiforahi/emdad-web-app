@@ -40,12 +40,10 @@ export class SearchPageComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.searchService.search(params.query).subscribe((item) => {
         this.products = item.data.results;
-        console.log('products',this.products)
         this.get_menus();
       });
     });
     this.getCategories.category().subscribe((item) => {
-      console.log(item);
       this.categories = item;
     });
     this.expandedCat = parseInt(localStorage.getItem('expandedCat'));
