@@ -38,7 +38,9 @@ export class QuotationService {
 
   get_quotation_details(id): Observable<any> {
     return this.http.get(
-      config.base_url + 'api/quote/details/' + id,
+      config.base_url +'api/quote/details/' 
+      +id 
+      +'/',
       this.httpOptions
     );
   }
