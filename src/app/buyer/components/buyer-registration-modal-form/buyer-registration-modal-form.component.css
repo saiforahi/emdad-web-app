@@ -16,7 +16,14 @@
 }
 
 .form-label{
-    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    color: #2B2B2B;
 }
 .footer{
     font-style: normal;
@@ -32,13 +39,13 @@
     border-radius: 5px;
 }
 .modal-content{
-    max-width: 700px;
-    max-height: 765px;
     background: #FFFFFF;
     -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
+    background: #FFFFFF;
+    box-shadow: 0px 10px 100px rgba(47, 47, 47, 0.05);
 }
 .col-sm-auto{
     margin-right: auto;
@@ -46,4 +53,22 @@
 }
 .sign-in-link{
     text-decoration: underline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #2B2B2B;
+}
+.sign-in-text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    text-align: center;
+    color: #2B2B2B;
 }
