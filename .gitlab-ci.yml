@@ -7,5 +7,6 @@ stages:
 deploy:
   stage: deploy
   script:
+    - gitlab-runner version
     - npm install
     - echo "deployed successfully :)"
