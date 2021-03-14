@@ -13,6 +13,14 @@
 .form-control{
     background: #EFEFEF;
     border-radius: 5px;
+    height: 80px;
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    color: rgba(43, 43, 43, 0.3);
 }
 
 .form-label{
@@ -37,6 +45,7 @@
 .btn{
     background: #1F4F9E;
     border-radius: 5px;
+    width: 560px;
 }
 .modal-content{
     background: #FFFFFF;
@@ -46,6 +55,8 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0);
     background: #FFFFFF;
     box-shadow: 0px 10px 100px rgba(47, 47, 47, 0.05);
+    overflow-y: scroll;
+    max-height: calc(100vh - 120px);
 }
 .col-sm-auto{
     margin-right: auto;
