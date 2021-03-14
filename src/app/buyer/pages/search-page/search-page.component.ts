@@ -24,6 +24,7 @@ export class SearchPageComponent implements OnInit {
   _brand:any;
   _color:any;
   _price:any;
+  price_slider_value;
   constructor(
     private searchService: SearchService,
     private router: Router,
@@ -50,6 +51,9 @@ export class SearchPageComponent implements OnInit {
     this.expandedSubCat = parseInt(localStorage.getItem('expandedSubCat'));
     //
   }
+  onSliderChange(event){
+    console.log(event.value)
+  }
   getProdOnFilter(ChildCatId, subCatId, catId) {
     this.router.navigate(['/products/category/', ChildCatId]);
     localStorage.setItem('expandedSubCat', subCatId);
@@ -73,7 +77,7 @@ export class SearchPageComponent implements OnInit {
     this.prices=this.get_price_ranges()
   }
   get_price_ranges(){
-    let range=(this.max_price-this.min_price)/3
+    let range=Math.trunc((this.max_price-this.min_price)/3)
     let ranges=new Array()
     ranges.push({value:(Math.trunc(this.min_price)-1)+' '+((Math.trunc(this.min_price)+range+1)),name:'$'+Math.trunc(this.min_price)+' to $'+(Math.trunc(this.min_price)+range)})
     ranges.push({value:(Math.trunc(this.min_price)+range-1)+' '+(Math.trunc(this.min_price)+(range*2)+1),name:'$'+(Math.trunc(this.min_price)+range)+' to $'+(Math.trunc(this.min_price)+(range*2))})
