@@ -11,12 +11,12 @@ import { ProductCardComponent } from '../../buyer/components/product-card/produc
 import { HeaderComponent } from 'src/app/buyer/components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BuyerSigninFormComponent } from 'src/app/buyer/components/buyer-login-modal-form/buyer-login-modal-form.component';
-import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-registration-modal-form/buyer-Registration-modal-form.component';
+import { BuyerRegistrationFormComponent } from 'src/app/buyer/components/buyer-registration-modal-form/buyer-registration-modal-form.component';
 import { FooterComponent } from 'src/app/buyer/components/footer/footer.component';
 import { FormInputAlertComponent } from 'src/app/seller/components/form-input-alert/form-input-alert.component';
 import { SellerBreadcrumbsComponent } from 'src/app/seller/components/seller-breadcrumbs/seller-breadcrumbs.component';
-import {ProductCardHorizonalComponent} from '../../buyer/components/product-card-horizonal/product-card-horizonal.component';
-import {RfqModalProductDescriptionComponent} from '../../seller/components/rfq-modal-product-description/rfq-modal-product-description.component';
+import { ProductCardHorizonalComponent } from '../../buyer/components/product-card-horizonal/product-card-horizonal.component';
+import { RfqModalProductDescriptionComponent } from '../../seller/components/rfq-modal-product-description/rfq-modal-product-description.component';
 const UI = [
   ProductListComponent,
   SearchForComponent,
@@ -29,7 +29,7 @@ const UI = [
   FooterComponent,
   FormInputAlertComponent,
   SellerBreadcrumbsComponent,
-  RfqModalProductDescriptionComponent
+  RfqModalProductDescriptionComponent,
 ];
 
 @NgModule({
