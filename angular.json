@@ -68,7 +68,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "emdad-web-app:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json",
+            "port": 8006
           },
           "configurations": {
             "production": {
