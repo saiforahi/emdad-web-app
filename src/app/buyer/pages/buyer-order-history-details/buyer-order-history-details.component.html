@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" #pdfContainer>
 	<div class="row" >
         <h3 style="margin-top: 20pxx;">Order Details</h3>
     </div>
@@ -64,7 +64,7 @@
         <p><strong>Payment Date: </strong>Dec 21, 2020</p>
         <div class="row">
             <div class="col-md-5">
-                <button class="btn btn-primary btn-md download-btn">Download Invoice</button>
+                <button class="btn btn-primary btn-md download-btn" (click)="createPdfTem(pdfContainer)">Download Invoice</button>
             </div>
         </div>
     </div>

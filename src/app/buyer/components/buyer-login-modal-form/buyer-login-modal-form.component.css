@@ -33,8 +33,6 @@
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
-    width: 700px;
-    height: 765px;
 }
 .form-control{
     background: #EFEFEF;
@@ -55,8 +53,8 @@
 .btn{
     background: #454F63;
     border-radius: 5px;
-    width: 560px;
-    height: 80px;
+    /* width: 560px;
+    height: 80px; */
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
