@@ -58,6 +58,7 @@ export class ViewDialogueComponent implements OnInit {
     this.rfqDetailsData = data.rfqDetails;
     this.rfqId=this.rfqDetailsData.id;
     console.log("id",this.rfqId);
+    
   }
 
   ngOnInit(): void {
@@ -73,6 +74,7 @@ export class ViewDialogueComponent implements OnInit {
    
 
     //initializing form fields
+
     this.quantity = this.prodRfqForm.controls['quantity'];
     this.unitPrice = this.prodRfqForm.controls['unitPrice'];
     this.totalPrice = this.prodRfqForm.controls['totalPrice'];

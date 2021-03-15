@@ -7,7 +7,9 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./rfq-modal-product-description.component.css']
 })
 export class RfqModalProductDescriptionComponent implements OnInit {
-@Input() rfqDetailData;
+//Getting related data to quotation id from parent manage-rfq page
+  @Input() rfqDetailData;
+
   constructor() { }
 
   ngOnInit(): void {

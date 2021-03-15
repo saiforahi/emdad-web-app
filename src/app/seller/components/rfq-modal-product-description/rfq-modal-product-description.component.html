@@ -2,9 +2,10 @@
 
     <div class="row mt-2">
         <div class="col-md-2 img-div">
+            <!--show image-->
             <img src='http://localhost:8000{{rfqDetailData.product.image1}}' alt="no image">
         </div>
-
+        <!--product detail from seller show-->
         <div class="col-md-9 product-upper-desc mt-2">
             <p><span class="prod-head">Product Name: </span> <span
                     class="prod-desc">{{rfqDetailData.product.name}}</span></p>
@@ -14,12 +15,14 @@
                     class="prod-head">{{rfqDetailData.product.unit_price}}</span></p>
         </div>
         <div class="col-md-1 close-btns">
+            <!--dialogue close button-->
             <mat-dialog-actions align="end" class="p-0 m-0">
                 <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
             </mat-dialog-actions>
         </div>
     </div>
     <div class="row">
+        <!--Data from buyer end show-->
         <div class="col-md-12 mt-3">
             <p><span class="prod-head">RFQ ID: </span><span class="prod-desc"> # {{rfqDetailData.quotation_code}}</span>
             </p>
