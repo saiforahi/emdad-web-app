@@ -1,15 +1,14 @@
-<section class="content-desc container">
+<section class="content-desc container" *ngIf="rfqDetailData">
     
         <div class="row mt-2">
             <div class="col-md-2 img-div">
-                <img src="../../../../assets/Rectangle-78vase.png" alt="vase">
+                <img src='http://localhost:8000{{rfqDetailData.product.image1}}' alt="no image">
             </div>
             
             <div class="col-md-9 product-upper-desc mt-2">
-                <p><span class="prod-head">Product Name: </span> <span class="prod-desc">Minimal Flower Vase</span></p>
-                <p><span class="prod-head">Product Description:</span> <span class="prod-desc"> Lorem ipsum dolor sit
-                        amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci.</span></p>
-                <p><span class="prod-head">Unite Price: </span> <span class="prod-head">$19</span></p>
+                <p><span class="prod-head">Product Name: </span> <span class="prod-desc">{{rfqDetailData.product.name}}</span></p>
+                <p><span class="prod-head">Product Description:</span> <span class="prod-desc"> {{rfqDetailData.product.description}}</span></p>
+                <p><span class="prod-head">Unit Price: </span> <span class="prod-head">{{rfqDetailData.product.unit_price}}</span></p>
             </div>
             <div class="col-md-1 close-btns">
                 <mat-dialog-actions align="end" class="p-0 m-0">
@@ -19,13 +18,11 @@
         </div>
         <div class="row">
             <div class="col-md-12 mt-3">
-<p><span class="prod-head">RFQ ID: </span><span class="prod-desc"> #12589</span></p>
-<p><span class="prod-head">Date: </span><span class="prod-desc">Dec 2, 2020  |  Time: 9:42PM</span></p>
-<p><span class="prod-head">Buyer Name: </span><span class="prod-desc">Abu Raihan Zilani</span></p>
-<p><span class="prod-head">Quantity: </span><span class="prod-desc">1290</span></p>
-<p><span class="prod-head">Message: </span><span class="prod-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. 
-    Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum sociis 
-    natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+<p><span class="prod-head">RFQ ID: </span><span class="prod-desc"> # {{rfqDetailData.quotation_code}}</span></p>
+<p><span class="prod-head">Date: </span><span class="prod-desc">{{rfqDetailData.created_at | date : mediumDate}}  |  Time: {{rfqDetailData.created_at | date : 'shortTime'}}</span></p>
+<p><span class="prod-head">Buyer Name: </span><span class="prod-desc">{{rfqDetailData.buyer.full_name}}</span></p>
+<p><span class="prod-head">Quantity: </span><span class="prod-desc">{{rfqDetailData.quantity}}</span></p>
+<p><span class="prod-head">Message: </span><span class="prod-desc">{{rfqDetailData.quotation[0].message}}</span></p>
 
 
             </div>

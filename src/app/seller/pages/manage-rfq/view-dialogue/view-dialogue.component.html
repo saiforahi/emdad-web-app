@@ -2,8 +2,8 @@
 
 
 
-    <mat-dialog-content class="mat-typography">
-        <app-rfq-modal-product-description></app-rfq-modal-product-description>
+    <mat-dialog-content class="mat-typography" *ngIf="rfqDetailsData">
+        <app-rfq-modal-product-description [rfqDetailData]="rfqDetailAll"></app-rfq-modal-product-description>
         <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">Make A Quotation</button></div>
         
 
@@ -66,10 +66,10 @@
                           <div>
                           <label class="file-label d-block">Quotation Attachments:</label>
                         </div>
-                          <label for="attachments" class="custom-file-upload float-left">
+                          <label for="attachments" class="custom-file-upload float-left" *ngIf="isEnabled">
                             <!-- Attachments -->
                             <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
-                              (change)="handleFileSelect($event);" />
+                              (change)="handleFileSelect($event);" *ngIf="isEnabled"/>
                           </label>
                           <ul class="attached-file">
                             <li *ngFor="let file of selectedImage; let i = index;">
