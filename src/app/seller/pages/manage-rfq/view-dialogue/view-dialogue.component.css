@@ -11,7 +11,7 @@
   .mat-dialog-content{
     font-family: Jost;
     min-height: 550px;
-    min-width: 900px;
+    /* min-width: 900px; */
   
    
   }
@@ -138,11 +138,15 @@ input[type="file"] {
   .attached-file{
     display: inline-block !important;
   }
+  .attached-file li{
+    margin-top: 5px;
+  }
    
   .attached-file button {
   /*   border-radius: 50%;
-    width: 24px;
-    height: 24px; */
+  */
+    width: 30px;
+    height: 30px; 
     background: #ff4b55;
     border: none;
     color: #fff;
@@ -158,13 +162,16 @@ font-weight: 500;
 font-size: 18px;
 line-height: 26px;
 /* identical to box height */
-
 text-align: center;
 float: left;
 width: 230px;
 height: 60px;
 
 /* white */
-
-
+}
+  .mat-icon{
+    font-size: 14px;
+  }
+  .file-warn{
+    text-align: left !important;
   }

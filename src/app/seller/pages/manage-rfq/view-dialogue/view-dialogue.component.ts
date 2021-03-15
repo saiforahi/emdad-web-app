@@ -4,19 +4,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { QuotationService } from '../../../../shared/services/quotation.service';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-view-dialogue',
   templateUrl: './view-dialogue.component.html',
   styleUrls: ['./view-dialogue.component.css']
 })
 export class ViewDialogueComponent implements OnInit {
+ //initialization
   btnShow: boolean = true;
   isShown: boolean = false;
   error: any;
   msg;
-  prodRfqForm: FormGroup;
+ /*  prodRfqForm: FormGroup; */
   quoteFormShow: boolean = false;
-  prodQuantity: AbstractControl;
+  quantity: AbstractControl;
   unitPrice: AbstractControl;
   totalPrice: AbstractControl;
   attachments: AbstractControl;
@@ -28,7 +30,26 @@ export class ViewDialogueComponent implements OnInit {
   rfqId:any;
   attachment1:AbstractControl;
   attachment2:AbstractControl;
+  rfq:AbstractControl;
   isEnabled:boolean = true;
+   uid:any;
+  submitted = false;
+     // form for making a quotation seller side
+     prodRfqForm = this.fb.group({
+      quantity: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
+      unitPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
+      totalPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
+      attachments: [''],
+      attachment1:[''],
+      attachment2:[''], 
+   /*    quotation: this.fb.array([
+        this.fb.group({
+          message: '',
+          user: '',
+        }),
+      ]), */
+      rfq: { status: 1 },
+    });
   constructor(private fb: FormBuilder,
     private router: Router,
     private authService: UserAuthService,
@@ -40,6 +61,8 @@ export class ViewDialogueComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.uid = localStorage.getItem('s_uid');
+    console.log('uid',this.uid);
     //Getting data for a individual rfq request
     this.quoteDetails.get_quotation_details(this.rfqId).subscribe(
       item => {
@@ -47,26 +70,35 @@ export class ViewDialogueComponent implements OnInit {
         console.log("Product details:", this.rfqDetailAll);
       }
     )
-    // form for making a quotation seller side
-    this.prodRfqForm = this.fb.group({
-      prodQuantity: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      unitPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      totalPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      attachments: [''],
-      attachment1:[''],
-      attachment2:['']
-    });
+   
+
     //initializing form fields
-    this.prodQuantity = this.prodRfqForm.controls['prodQuantity'];
+    this.quantity = this.prodRfqForm.controls['quantity'];
     this.unitPrice = this.prodRfqForm.controls['unitPrice'];
     this.totalPrice = this.prodRfqForm.controls['totalPrice'];
-    this.attachments = this.prodRfqForm.controls['attachments'];
-  }
+    this.attachment1 = this.prodRfqForm.controls['attachment1'];
+    this.attachment2 = this.prodRfqForm.controls['attachment2'];
+    this.attachment2 = this.prodRfqForm.controls['attachments'];
+    
+    }
   //form submit
-  onSubmit(value) {
-    this.prodRfqFormData.append("prodQuantity", value.prodQuantity);
-    this.prodRfqFormData.append("unitPrice", value.unitPrice);
-    this.prodRfqFormData.append("totalPrice", value.totalPrice);
+  onSubmit():void {
+    
+ /*  this.prodRfqFormData.append('attachment1',this.prodRfqForm.value.attachment1);
+  this.prodRfqFormData.append('attachment2',this.prodRfqForm.value.attachment2); */
+  this.prodRfqFormData.append('quantity',this.prodRfqForm.value.quantity);
+  this.prodRfqFormData.append('unit_price',this.prodRfqForm.value.unitPrice);
+  this.prodRfqFormData.append('total_price',this.prodRfqForm.value.totalPrice);
+  this.prodRfqFormData.append('status',this.prodRfqForm.value.status);
+  this.prodRfqForm.patchValue({ quotation: [{ message: '', user: this.uid }] });
+    this.quoteDetails.updateQuotation(this.rfqId,this.prodRfqFormData).subscribe(
+      (res) =>{
+        console.log(res);
+        swal("Submitted Quotation Successfully");
+      },
+      (err) => console.error(err)
+    );
+
   }
   //file upload
   handleFileSelect(event) {
@@ -74,13 +106,14 @@ export class ViewDialogueComponent implements OnInit {
     this.selectedImage.push(event.target.files[0]);
     console.log(this.selectedImage);
     if(this.selectedImage.length == 1){
-      this.attachment1=this.selectedImage[0];
-      this.attachment2=null;
+      this.attachment1=this.selectedImage[0].name;
+      console.log("this",this.attachment1);
+      this.attachment2 = null;
     }
     else if(this.selectedImage.length == 2){
-      this.attachment1 = this.selectedImage[0];
+      this.attachment1 = this.selectedImage[0].name;
       console.log(this.attachment1);
-      this.attachment2 = this.selectedImage[1];
+      this.attachment2 = this.selectedImage[1].name;
       console.log(this.attachment2);
       this.isEnabled = false;
     
