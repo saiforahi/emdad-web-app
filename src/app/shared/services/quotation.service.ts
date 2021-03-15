@@ -63,7 +63,7 @@ export class QuotationService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.put(
+  return this.http.put(
       `http://127.0.0.1:8000/api/quote/update/${id}/`,
       formData,
       httpOptions
