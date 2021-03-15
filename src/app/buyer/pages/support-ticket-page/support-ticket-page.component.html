@@ -10,11 +10,7 @@
         <h4>Raise A Support Ticket</h4>
       </div>
       <div class="col-md-7 d-flex justify-content-end">
-        <button
-          class="btn btn-warning open-ticket-button"
-          [routerLink]="['/open-ticket/']"
-          style="color: white;"
-        >
+        <button class="btn open-ticket-button" [routerLink]="['/open-ticket/']" style="color: white;">
           Open a new ticket
         </button>
         <button class="btn btn-outline-secondary" (click)="sortTable()">
@@ -49,23 +45,11 @@
     </div>
 
     <!-- modal -->
-    <div
-      class="modal animated fadeIn"
-      id="supportTicketModal"
-      role="dialog"
-      tabindex="-1"
-      aria-hidden="true"
-    >
+    <div class="modal animated fadeIn" id="supportTicketModal" role="dialog" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg rounded-0 p-4">
           <div style="border: none" class="modal-header text-center">
-            <button
-              (click)="hideModal()"
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button (click)="hideModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -76,7 +60,7 @@
             </div>
           </div>
         </div> -->
-        
+
           <div class="row">
             <div class="col-3"><strong>Ticket ID</strong></div>
             <div class="col">
@@ -113,7 +97,8 @@
           </div>
           <div class="row mt-2">
             <div class="col">
-              <a class="a-download" href="javascript:void(0);" (click)="download(selectedSupportTicket.image)"><i class="fas fa-file-download"></i> Download {{get_image_name(selectedSupportTicket.image)}}</a>
+              <a class="a-download" href="javascript:void(0);" (click)="download(selectedSupportTicket.image)"><i
+                  class="fas fa-file-download"></i> Download {{get_image_name(selectedSupportTicket.image)}}</a>
             </div>
           </div>
         </div>

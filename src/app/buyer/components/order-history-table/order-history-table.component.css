@@ -21,12 +21,15 @@
 }
 .table tbody tr:hover {
     outline-style: solid;
-    outline-color: #F49814;
+    outline-color: #1F4F9E;
     background: #FFFFFF;
-    border: 2px solid #F49814;
+    border: 2px solid #1F4F9E;
     box-sizing: border-box;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
     border-radius: 5px;
+}
+.table td, .table th{
+    vertical-align: middle !important;
 }
 .btn-primary {
     color: rgb(0, 0, 0);
@@ -35,6 +38,6 @@
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #F49814;
-    border-color: #F49814; /*set the color you want here*/
+    background-color: #1F4F9E;
+    border-color: #1F4F9E; /*set the color you want here*/
 }
