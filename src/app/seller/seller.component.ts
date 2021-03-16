@@ -8,6 +8,8 @@ import {
 import { NavigationEnd, Router } from '@angular/router';
 import { UserAuthService } from '../shared/services/user-auth.service';
 import swal from 'sweetalert';
+import { SpinnerService } from '../shared/services/spinner.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-seller',
@@ -22,6 +24,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidenav') sidenav: any;
   activeRoute: string[];
+  showSpinner: any;
   toggleSidenav() {
     this.sidenav.toggle();
     console.log(this.sidenav.toggle);
@@ -30,7 +33,9 @@ export class SellerComponent implements OnInit, AfterViewInit {
   constructor(
     private elementRef: ElementRef,
     private router: Router,
-    private UserAuthService: UserAuthService
+    private UserAuthService: UserAuthService,
+    private spinner: SpinnerService,
+    private ngxSpinner: NgxSpinnerService
   ) {
     router.events.subscribe((val: any) => {
       if(val.url){
@@ -59,6 +64,13 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.uId = data;
       }
     });
+    this.spinner.showSpinner.subscribe(item =>{
+      if(item == true){
+        this.ngxSpinner.show();
+      }else if(item == false){
+        this.ngxSpinner.hide();
+      }
+    })
   }
 
   ngAfterViewInit() {

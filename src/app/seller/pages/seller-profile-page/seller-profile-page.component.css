@@ -264,6 +264,15 @@ input[type="radio"] {
   padding: 0;
 }
 
+.seller-description .form-control {
+  height: 150px !important;
+}
+
+.seller-description .input-group-text {
+  display: unset;
+  padding-top: 6px;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -285,6 +294,7 @@ input[type="file"] {
 .attached-file {
   display: inline-block;
   vertical-align: top;
+  padding-left: 0;
 }
 
 .attached-file {
@@ -295,11 +305,27 @@ input[type="file"] {
 .attached-file button {
   border-radius: 50%;
   width: 24px;
+  min-width: 24px;
   height: 24px;
   background: #ff4b55;
   border: none;
   color: #fff;
   font-size: 16px;
+  padding: 0;
+}
+
+.already-added-file {
+  list-style: none;
+  padding-left: 0;
+}
+
+.already-added-file li span:hover{
+  cursor: pointer;
+}
+
+.already-added-file button{
+  box-shadow: none;
+  color: #ff4b55;
 }
 
 @media only screen and (min-width: 1200px) {

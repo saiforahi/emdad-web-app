@@ -11,10 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let quotation of quotationDetails; let i = index"
-        class="highlighted"
-      >
+      <tr *ngFor="let quotation of quotationDetails; let i = index" class="highlighted">
         <th scope="row">{{ quotation.id }}</th>
         <td>
           <!-- {{
@@ -32,11 +29,7 @@
         <td *ngIf="quotation.status === 2">Sent</td>
         <td *ngIf="quotation.status === 3">Completed</td>
         <td>
-          <button
-            class="btn btn-primary"
-            type="button"
-            (click)="show_quotation_details(i)"
-          >
+          <button class="btn btn-primary" type="button" (click)="show_quotation_details(i)">
             view
           </button>
         </td>
@@ -55,13 +48,7 @@
   </table>
 </div>
 
-<div
-  class="modal animated fadeIn"
-  id="quotationDetails"
-  role="dialog"
-  tabindex="-1"
-  aria-hidden="true"
->
+<div class="modal animated fadeIn" id="quotationDetails" role="dialog" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-0 p-3">
       <!-- <div style="border: none;" class="modal-header text-center">
@@ -72,13 +59,7 @@
       <div class="modal-body row d-flex flex-column">
         <div class="justify-content-between">
           <p class="d-inline-block">Quotation ID: {{ quotation.id }}</p>
-          <button
-            (click)="hideModal()"
-            type="button"
-            class="btn float-right"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button (click)="hideModal()" type="button" class="btn float-right" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -91,10 +72,7 @@
         <p>Total Price: {{ quotation.total_price }}</p>
         <p>Attachments:</p>
         <p>Comments</p>
-        <textarea
-          class="comment-textarea"
-          placeholder="Please tell us why you want to deny..."
-        ></textarea>
+        <textarea class="comment-textarea" placeholder="Please tell us why you want to deny..."></textarea>
       </div>
       <!-- <div class="btn-group flex-left">
                 <button class="btn">Add</button>
