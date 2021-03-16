@@ -90,3 +90,12 @@ td {
   border: 2px solid #454f63;
   box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
 }
+.no-data {
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 30px;
+  color: #2b2b2b;
+}
