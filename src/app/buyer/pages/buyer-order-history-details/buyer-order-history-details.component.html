@@ -1,5 +1,5 @@
 <div class="container" #pdfContainer>
-	<div class="row justify-content-between" >
+    <div class="row justify-content-between">
         <h3 class="col header" style="margin-top: 20px;">Order Details</h3>
         <button class="btn status-btn" style="margin-right: 32px;">Order Confirmed</button>
     </div>
@@ -11,9 +11,10 @@
     <div class="row justify-content-between" style="margin-top: 30px;">
         <div class="col-sm-8">
             <div class="card-body" style="background: #FFFFFF;">
-                <ul class="list-unstyled" >
+                <ul class="list-unstyled">
                     <li class="media" *ngFor="let product of orders;let i=index">
-                        <img class="mr-3 mt-3" src="{{'http://127.0.0.1:8000'+product.product.image1}}" alt="Generic placeholder image">
+                        <img class="mr-3 mt-3" src="{{'http://127.0.0.1:8000'+product.product.image1}}"
+                            alt="Generic placeholder image">
                         <div class="media-body pt-4 pb-5 pl-5 row">
                             <div class="col-md-6">
                                 <h5 class="mt-0 mb-1">{{product.product.name}}</h5>
@@ -50,7 +51,7 @@
                     </div>
                     <div>${{calVat()}}</div>
                 </div>
-                <hr/>
+                <hr />
                 <div class="d-flex justify-content-between">
                     <div>
                         <p>Total</p>
@@ -68,7 +69,8 @@
             <p><strong>Payment Date: </strong>Dec 21, 2020</p>
             <div class="row">
                 <div class="col-md-5">
-                    <button class="btn btn-primary btn-md download-btn" (click)="createPdfTem(pdfContainer)">Download Invoice</button>
+                    <button class="btn btn-primary btn-md download-btn" (click)="createPdfTem(pdfContainer)">Download
+                        Invoice</button>
                 </div>
             </div>
         </div>

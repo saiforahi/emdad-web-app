@@ -6,13 +6,13 @@
     </div>
     <div class="row">
         <div class="col-md-8 border-outline" style="text-align: left;">
-            <div class="p-4" style="background: #FFFFFF;">
+            <div class="card-body" style="background: #FFFFFF;">
                 <h4>Addresses</h4>
                 <div class="row">
                     <div class="col-sm-7">
                         <div [ngClass]="selected_address===i?'row address-row address-row-selected':'row address-row'" class="row address-row" id="{{'address_div_'+address.id}}" *ngFor="let address of addresses; let i=index" (click)="selected_address=i" style="cursor: pointer;">
                             <mat-radio-group [(ngModel)]="selected_address">
-                                <mat-radio-button class="p-2 example-radio-button" [value]="i" color="accent">
+                                <mat-radio-button class="p-2 example-radio-button ml-2" [value]="i" color="accent">
                                     {{address.address}}
                                 </mat-radio-button>
                             </mat-radio-group>
@@ -75,7 +75,7 @@
                 </form>
             </div>
             <div class="card-body mt-5" style="background: #FFFFFF;">
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col">
                         <h4>Choose Payment Method</h4>
                     </div>
