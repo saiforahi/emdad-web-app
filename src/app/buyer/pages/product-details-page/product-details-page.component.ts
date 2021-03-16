@@ -6,6 +6,7 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 import {ViewportScroller} from '@angular/common'
+import { config } from 'src/config';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -46,8 +47,8 @@ export class ProductDetailsPageComponent implements OnInit {
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
       this.sliderImgArray = [
-        'http://127.0.0.1:8000' + item.data[0].image1,
-        'http://127.0.0.1:8000' + item.data[0].image2,
+        config.base_url.substring(0,config.base_url.length-1) + item.data[0].image1,
+        config.base_url.substring(0,config.base_url.length-1) + item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
       this.getProduct
