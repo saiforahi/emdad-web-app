@@ -19,7 +19,7 @@
             <label for="comName">Company Name</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-home"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Home.svg" alt=""></div>
               </div>
               <!-- comName -->
               <input id="comName" class="form-control form-control-md" type="text" formControlName="comName" required />
@@ -36,18 +36,10 @@
             <label for="email">Company email</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Message.svg" alt=""></div>
               </div>
               <!-- email -->
-              <input id="email" class="form-control form-control-md" type="email" formControlName="email" required />
-            </div>
-            <div *ngIf="email.invalid && (email.dirty || email.touched)">
-              <div *ngIf="email.errors?.required">
-                <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
-              </div>
-              <div *ngIf="email.errors?.pattern">
-                <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
-              </div>
+              <input id="email" class="form-control form-control-md" type="email" formControlName="email" disabled/>
             </div>
           </div>
         </div>
@@ -56,7 +48,7 @@
             <label for="comPhone">Company Phone</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Call.svg" alt=""></div>
               </div>
               <!-- phone -->
               <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
@@ -77,7 +69,7 @@
             <label for="comAddress">Company Address</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
               </div>
               <!-- company Address -->
               <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
@@ -90,49 +82,35 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <div class="form-group">
             <label for="comRegistration">Commercial Registration</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-file-alt"></i></div>
               </div>
-              <!-- Commercial Registration -->
               <input id="comRegistration" class="form-control form-control-md" type="text"
                 formControlName="comRegistration" />
             </div>
-            <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
-                    <div *ngIf="comRegistration.errors?.required">
-                      <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
-                      </app-form-input-alert>
-                    </div>
-                  </div> -->
           </div>
-        </div>
-        <div class="col-md-6">
+        </div> -->
+        <!-- <div class="col-md-6">
           <div class="form-group">
             <label for="expDate">Expiary Date</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
               </div>
-              <!-- Commercial Registration -->
               <input id="expDate" class="form-control form-control-md" type="date" formControlName="expDate" />
             </div>
-            <!-- <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
-                    <div *ngIf="expDate.errors?.required">
-                      <app-form-input-alert [alertMsg]="'Registration expiration date is required.'">
-                      </app-form-input-alert>
-                    </div>
-                  </div> -->
           </div>
-        </div>
+        </div> -->
         <div class="col-md-6">
           <div class="form-group">
             <label for="country">Country</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
               </div>
               <!-- company country -->
               <select id="country" class="form-control form-control-md" type="text" formControlName="country"
@@ -153,7 +131,7 @@
             <label for="city">City</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
               </div>
               <!-- company city -->
               <select id="city" class="form-control form-control-md" type="text" formControlName="city">
@@ -173,7 +151,7 @@
             <label for="area">Area</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
               </div>
               <!-- area -->
               <input id="area" class="form-control form-control-md" type="text" formControlName="area" />
@@ -190,7 +168,7 @@
             <label for="zipCode">Zip code</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-ellipsis-h"></i></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
               </div>
               <!-- zipCode -->
               <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" />
@@ -202,18 +180,46 @@
                   </div> -->
           </div>
         </div>
+        <div class="col-md-12 seller-description">
+          <div class="form-group">
+            <label for="sellerDescription">Seller Description</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt=""></div>
+              </div>
+              <!-- sellerDescription -->
+              <textarea id="sellerDescription" class="form-control form-control-md" type="text" formControlName="sellerDescription" rows="10"></textarea>
+            </div>
+            <!-- <div *ngIf="sellerDescription.invalid && (sellerDescription.dirty || sellerDescription.touched)">
+                    <div *ngIf="sellerDescription.errors?.required">
+                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                    </div>
+                  </div> -->
+          </div>
+        </div>
         <div class="col-md-12">
           <div class="form-group">
-            <label class="d-block">Attachments</label>
-            <label for="attachments" class="custom-file-upload">
+            <label class="d-block">Attachments <small>(max. two attachments allowed)</small></label>
+            <ul class="already-added-file d-block">
+              <li *ngIf="userData?.seller_attachment1">
+                <span (click)="download(userData.seller_attachment1)" >{{splitFileName(userData.seller_attachment1)}}</span>&nbsp;
+                <button mat-button type="button" *ngIf="userData.seller_attachment1 != undefined" (click)="deleteExistingFile('seller_attachment1');"><i class="fas fa-trash-alt"></i></button>
+              </li>
+              <li *ngIf="userData?.seller_attachment2">
+                <span (click)="download(userData.seller_attachment2)" >{{splitFileName(userData.seller_attachment2)}}</span>&nbsp;
+                <button mat-button type="button" *ngIf="userData.seller_attachment2 != undefined" (click)="deleteExistingFile('seller_attachment2');"><i class="fas fa-trash-alt"></i></button>
+              </li>
+            </ul>
+            <label for="attachments" class="custom-file-upload" *ngIf="selectedImage.length + existingFiles < 2">
               <!-- Attachments -->
               <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
-                (change)="handleFileSelect($event);" />
+                (change)="handleFileSelect($event);"/>
             </label>
+            <span *ngIf="selectedImage.length + existingFiles < 2">&nbsp;</span>
             <ul class="attached-file">
               <li *ngFor="let file of selectedImage; let i = index;">
                 {{file.name}}
-                <button mat-raised-button (click)="removeFile(i);">X</button>
+                <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" style="margin-bottom: 14px;"></button>
               </li>
             </ul>
           </div>

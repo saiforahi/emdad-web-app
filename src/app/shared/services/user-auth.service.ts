@@ -275,17 +275,38 @@ export class UserAuthService {
 
   updateProfile(userId: number, user: any) {
     console.log(user);
-    let httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      }),
-    };
     if (user.user_type === 'buyer') {
+      var httpOptions = {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        }),
+      };
       var updateURL = `http://127.0.0.1:8000/api/buyer/profile/update/${userId}/`;
-    } else if (user.user_type === 'seller') {
-      const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
     }
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
+  }
+
+  updateSellerProfile(userId, user: any) {
+    console.log(user);
+    var httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+      }),
+    };
+    const updateURL = `http://127.0.0.1:8000/api/seller/profile/update/${userId}/`;
+    return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
+  }
+
+  deleteSellerAttachments(column_name) {
+    var httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+      }),
+    };
+    const updateURL = `http://127.0.0.1:8000/api/user/file/delete/${localStorage.getItem(
+      's_uid'
+    )}/${column_name}/`;
+    return this.http.get(updateURL, httpOptions);
   }
 }
 

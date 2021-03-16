@@ -18,7 +18,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     CommonuiModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class SellerProfilePageModule { }

@@ -191,7 +191,7 @@
                     <ul class="attached-file">
                         <li *ngFor="let file of selectedImage; let i = index;">
                             {{file.name}}
-                            <button mat-raised-button (click)="removeFile(i);">X</button>
+                            <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
                         </li>
                     </ul>
                 </div>
@@ -206,7 +206,7 @@
                     <ul class="attached-file">
                         <li *ngFor="let file of selectedImage; let i = index;">
                             {{file.name}}
-                            <button mat-raised-button (click)="removeFile(i);">X</button>
+                            <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
                         </li>
                     </ul>
                 </div>
