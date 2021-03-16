@@ -32,11 +32,6 @@
 font-weight: normal;
 font-size: 24px;
 line-height: 35px;
-/* identical to box height */
-
-
-/* #2B2B2B */
-
 color: #2B2B2B;
 }
 .vat-text{
@@ -102,4 +97,14 @@ color: #2B2B2B;
   .container {
     max-width: 1260px !important;
   }
+}
+
+.header{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 69px;
+  /* #2B2B2B */
+
+  color: #2B2B2B;
 }

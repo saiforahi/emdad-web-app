@@ -1,21 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { QuotationViewModalComponent } from './quotation-view-modal/quotation-view-modal.component';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-];
+import { QuotationService } from 'src/app/shared/services/quotation.service';
+//import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-manage-quotations',
@@ -24,16 +11,28 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class ManageQuotationsComponent implements OnInit {
-
+//INITIALIZATION
+quotationData: any;
+status = ['Initiative', 'Sent', 'Completed'];
+displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view'];
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private quote: QuotationService,
+    //private paginator: MatPaginator,
   ) { }
 
   ngOnInit(): void {
+     // RFQ table data
+     this.quote.get_seller_quotation_list().subscribe(item => {
+      // console.log(item);
+      this.quotationData = item.data;
+      console.log("RFQ table Data",this.quotationData);
+
+    })
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit'];
-  dataSource = ELEMENT_DATA;
+ 
+
 
   openDialog() {
     const dialogRef = this.dialog.open(QuotationViewModalComponent, {

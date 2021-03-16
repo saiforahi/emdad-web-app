@@ -13,9 +13,25 @@
 .form-control{
     background: #EFEFEF;
     border-radius: 5px;
+    height: 80px;
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    color: rgba(43, 43, 43, 0.3);
 }
+
 .form-label{
-    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    color: #2B2B2B;
 }
 .footer{
     font-style: normal;
@@ -29,16 +45,41 @@
 .btn{
     background: #1F4F9E;
     border-radius: 5px;
+    width: 560px;
 }
 .modal-content{
-    max-width: 700px;
-    max-height: 765px;
     background: #FFFFFF;
     -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
     -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
     box-shadow: 0 5px 15px rgba(0,0,0,0);
+    background: #FFFFFF;
+    box-shadow: 0px 10px 100px rgba(47, 47, 47, 0.05);
+    overflow-y: scroll;
+    max-height: calc(100vh - 120px);
+}
+.col-sm-auto{
+    margin-right: auto;
+    margin-left: auto;
 }
 .sign-in-link{
     text-decoration: underline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #2B2B2B;
+}
+.sign-in-text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    text-align: center;
+    color: #2B2B2B;
 }

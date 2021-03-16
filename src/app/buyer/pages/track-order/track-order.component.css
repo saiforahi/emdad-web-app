@@ -26,37 +26,40 @@
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #F49814;
-    border-color: #F49814; /*set the color you want here*/
+    background-color: #1F4F9E;
+    border-color: #1F4F9E; /*set the color you want here*/
 }
 .table td, .table th{
     vertical-align: middle !important;
 }
 .table tbody tr:hover {
     outline-style: solid;
-    outline-color: #F49814;
+    outline-color: #1F4F9E;
     background: #FFFFFF;
-    
-    border: 2px solid #F49814;
+    border: 2px solid #1F4F9E;
     box-sizing: border-box;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
     border-radius: 5px;
 }
 .a-filter{
     border: 2px solid #2B2B2B;
-box-sizing: border-box;
-border-radius: 5px;
-width: 239px;
-height: 80px;
-text-align: center;
-background: none !important;
-color: black !important;
-font-family: Jost;
-font-style: normal;
-font-weight: normal;
-font-size: 24px;
-line-height: 35px;
-/* identical to box height */
-
-text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 239px;
+    height: 80px;
+    text-align: center;
+    background: none !important;
+    color: black !important;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 35px;
+    /* identical to box height */
+    text-align: center;
 }
+@media only screen and (min-width: 1200px) {
+    .container {
+      max-width: 1600px !important;
+    }
+  }

@@ -1,19 +1,23 @@
 <section class="dialogue-holder">
+    <mat-dialog-actions align="end" class="p-0 m-0">
+        <button mat-dialog-close class="close-btn"><i class="fas fa-times mt-0 p-0"></i></button>
+    </mat-dialog-actions>
     <mat-dialog-content class="mat-typography">
-        <div class="order-data">
-            <p><b>Report ID: </b><span>#12589</span></p>
-            <p><b>Date:</b><span> Nov 25, 2020</span></p>
-            <p><b>Subject: </b><span>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</span></p>
-            <p><b>Details: </b><span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</span></p>
-            <p><b>Status: Running</b></p>
+       
+        <!-- ORIGINAL ISSUE POST DISPLAY-->
+        <div class="order-data" *ngIf="issueData">
+            <p><b>Report ID: </b><span>#{{issueData.issue_code}}</span></p>
+            <p><b>Date:</b><span> {{issueData.issue_date | date}}</span></p>
+            <p><b>Subject: </b><span>{{issueData.title}}</span></p>
+            <p><b>Details: </b><span> {{issueData.description}}</span></p>
+            <p><b>Status: {{status[issueData.status]}}</b></p>
         </div>
-        <div class="admin-response">
-            <p><b>Admin Response</b> <span>Dec 3, 2020</span></p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse totam excepturi perspiciatis accusamus ut explicabo.</p>
+        <!-- FOLLOW UP RESPONSES BY ADMIN DISPLAY-->
+       <div *ngIf="adminResponse != 0">
+        <div class="admin-response" *ngFor="let response of adminResponse;">
+            <p><b>Admin Response</b> <span class="ml-3">{{response.created_at | date}}</span></p>
+            <p>{{response.message}}</p>
         </div>
-        <div class="admin-response">
-            <p><b>Admin Response</b> <span>Dec 3, 2020</span></p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse totam excepturi perspiciatis accusamus ut explicabo.</p>
-        </div>
+    </div>
     </mat-dialog-content>
 </section>

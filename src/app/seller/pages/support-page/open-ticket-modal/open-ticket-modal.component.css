@@ -20,12 +20,19 @@
 }
 
 .login_btn {
-  background: #1f4f9e;
+  background: #1F4F9E;
   border-radius: 5px;
-  height: 80px;
-  font-weight: 500;
-  font-size: 24px;
-  width: 300px;
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+text-align: center;
+float: left;
+width: 230px;
+height: 60px;
 }
 
 label {
@@ -111,30 +118,58 @@ input[type="file"] {
 }
 
 .attached-file {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: top;
 }
-
+.attached-file li{
+ padding-right: 15px !important;
+}
 .attached-file {
   list-style: none !important;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .attached-file button {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
+ /*  border-radius: 50%;*/
+/*   width: 20px;
+  height: 20px;  */
   background: #ff4b55;
   border: none;
   color: #fff;
   font-size: 16px;
+ position: absolute;
+ top:10px;
+margin-left: -5px;
+}
+.mat-mini-fab{
+  width:30px;
+  height: 30px;
+}
+.mat-icon{
+  font-size: 14px;
 }
 
 textarea {
   height: 150px !important;
   padding: 15px;
 }
-
+.attached-file img{
+  height: 80px;
+  width: 80px;
+  border-radius: 5px;
+}
+button.close-btn{
+  background-color: white !important;
+    background: white !important;
+    color: #FF4B55;
+ float: right;
+  /*  margin-top: -35px; */
+   padding: 0;
+   font-size: 16px;
+   font-weight: normal !important;
+   outline: none !important;
+   border: 0px transparent !important;
+}
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;

@@ -1,12 +1,16 @@
 <div class="container" style="padding-top: 65px;">
-    <div class="row">
-        <h3 style="margin-left: 20px;">Track Order</h3>
-        <div class="d-inline-block" style="margin-left: auto;">
-          <select class="form-control form-control-lg">
-              <option >Sort by Relevance</option>
-              <option *ngFor="let status of statuses">{{status}}</option>
+    <div class="d-flex justify-content-between">
+        <h3>Track Order</h3>
+        <div class="d-inline-block">
+          <select (change)="change_filter_value($event.target.value)" class="form-control form-control-lg border border-dark" style="background: inherit;">
+              <option value="-1">Filter by Status</option>
+              <option value="1">Created</option>
+              <option value="2">Confirmed</option>
+              <option value="3">Processing</option>
+              <option value="4">Delivered</option>
+              <option value="5">Completed</option>
           </select>
-        </div>
+        </div> 
         <!-- <div class="dropdown show" style="margin-left: auto;">
             <a class="btn btn-secondary dropdown-toggle a-filter" (click)="handle_dropdown()" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Filter By Status
@@ -28,12 +32,12 @@
                       <th scope="col"></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngFor="let order of orders">
-                      <th scope="row">{{order.order_id}}</th>
+                  <tbody *ngIf="filtered_orders">
+                    <tr *ngFor="let order of filtered_orders">
+                      <th scope="row">{{order.order_code}}</th>
                       <td>{{order.payment_date}}</td>
-                      <td>{{order.delivery_date}}</td>
-                      <td>{{order.amount}}</td>
+                      <td>{{order.total_amount}}</td>
+                      <td>{{get_status(order.tracking_order[0].status)}}</td>
                       <td>
                         <button class="btn btn-primary" type="button">view</button>
                       </td>

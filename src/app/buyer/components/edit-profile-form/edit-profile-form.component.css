@@ -10,7 +10,7 @@
   /* identical to box height */
 
   text-align: center;
-
+  height: 80px;
   color: #ffffff;
 }
 .edit-button {
@@ -34,12 +34,15 @@
   height: 100px;
   position: relative;
   text-align: center;
+  /* margin-left: -920px; */
+  float: left;
+  align-items: flex-start;
 }
 .plus-icon {
   /* position: absolute; */
   position: relative;
   margin-top: 70px;
-  margin-left: 90px;
+  margin-left: 80px;
   /* bottom: 0px; */
   /* right: 10px; */
 }
@@ -63,6 +66,7 @@
   /* identical to box height */
 
   color: black;
+  height: 80px;
 }
 .form-label {
   font-family: Jost;

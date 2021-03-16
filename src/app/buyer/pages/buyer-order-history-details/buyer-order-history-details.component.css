@@ -1,6 +1,13 @@
 
-.header-text{
-    background-color: #FFFFFF;
+.header{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 69px;
+
+    /* #2B2B2B */
+
+    color: #2B2B2B;
 }
 .sub-text{
     font-family: Jost;
@@ -9,6 +16,13 @@
     font-size: 18px;
     line-height: 26px;
     color: rgba(43, 43, 43, 0.5);
+}
+.order-num{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #2B2B2B;
 }
 h5{
     font-family: Jost;
@@ -19,7 +33,7 @@ h5{
     color: #2B2B2B;
 }
 .download-btn{
-    background: #F49814;
+    background: #1F4F9E;
     border-radius: 5px;
     border: none;
     font-family: Jost;
@@ -31,7 +45,20 @@ h5{
     text-align: center;
     color: #FFFFFF;
 }
+.status-btn{
+    background: rgba(73, 185, 127, 0.2);
+    border-radius: 24px;
+    height: 48px;
+    margin: auto;
+    color: #49B97F;
+    cursor:default;
+}
 img{
     width: 120px;
     height: 120px;
+}
+@media only screen and (min-width: 1200px) {
+    .container {
+      max-width: 1600px !important;
+    }
 }

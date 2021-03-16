@@ -2,7 +2,7 @@
     <div class="col-md-7 p-2 border-right">
         <div class="row">
             <div class="col-md-6">
-                <a>
+                <a class="prod-img">
                     <img class="w-100" *ngIf="product.image1 != null" mat-card-image [lazyLoad]="'http://localhost:8000'+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
                 </a>
             </div>

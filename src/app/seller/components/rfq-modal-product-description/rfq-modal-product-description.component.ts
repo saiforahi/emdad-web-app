@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-rfq-modal-product-description',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rfq-modal-product-description.component.css']
 })
 export class RfqModalProductDescriptionComponent implements OnInit {
-
+@Input() rfqDetailData;
   constructor() { }
 
   ngOnInit(): void {

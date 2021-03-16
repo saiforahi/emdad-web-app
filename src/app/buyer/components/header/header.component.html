@@ -23,7 +23,7 @@
               </div>
             </div>
           </li>
-          <li [ngClass]="{'d-none':!showOnScroll, 'd-block':showOnScroll}" class="nav-item">
+          <li [ngClass]="{'d-none':!showOnScroll, 'd-block':showOnScroll}" class="nav-item search-prod">
             <app-search-for></app-search-for>
           </li>
           <li class="nav-item" style="margin-left: 42px">
@@ -131,8 +131,8 @@
                   <img src="../assets/Danger.svg" alt="" />Raise a support
                   ticket
                 </button>
-                <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem>
-                  <img alt="" />Logout
+                <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem style="color: #FF4B55;">
+                  <img alt="" src="../assets/Logout.svg" />Logout
                 </button>
               </div>
             </div>
@@ -183,12 +183,12 @@
               <span class="menu-underline"></span>
             </a>
           </li>
-          <!-- <li class="nav-item" style="margin-right: 17px">
-              <a class="nav-link">
-                Categories
-                <span class="menu-underline"></span>
-              </a>
-            </li> -->
+          <li class="nav-item" style="margin-right: 17px">
+            <a class="nav-link">
+              Categories
+              <span class="menu-underline"></span>
+            </a>
+          </li>
           <li class="nav-item" style="margin-right: 17px">
             <a class="nav-link">
               Our Partners
@@ -197,7 +197,7 @@
           </li>
           <li class="nav-item" style="margin-right: 17px">
             <a class="nav-link">
-              Constact Us
+              Contact Us
               <span class="menu-underline"></span>
             </a>
           </li>
@@ -211,7 +211,7 @@
         </ul>
       </div>
       <div class="nav-item sell-emdad">
-        <a class="nav-link" [routerLink]="['sell-on-emdad']">
+        <a class="sell-emdad-link" [routerLink]="['sell-on-emdad']">
           Sell on Emdad
         </a>
       </div>
