@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WishlistService } from '../../../shared/services/wishlist.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
+import { config } from 'src/config';
 
 @Component({
   selector: 'app-product-card',
@@ -11,6 +12,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 export class ProductCardComponent implements OnInit {
   @Input() product;
   defaultImage = '../assets/images/default-image-620x600.jpg';
+  base_url=config.base_url;
   prodCartArray = [];
   userId;
 
