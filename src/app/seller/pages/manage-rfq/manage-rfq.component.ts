@@ -16,6 +16,7 @@ export class ManageRfqComponent implements OnInit {
   rfqTableData: any;
   lowValue: number = 0;
   highValue: number = 10;
+  toggleSort = true;
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
@@ -47,6 +48,18 @@ export class ManageRfqComponent implements OnInit {
       }
     });
     
+  }
+  //Sort by date or time
+  sortTable() {
+    if (this.toggleSort) {
+      this.rfqTableData.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.rfqTableData;
+    } else {
+      this.rfqTableData.sort((b, a) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.rfqTableData;
+    }
   }
 
 }

@@ -9,18 +9,18 @@
 
         <div class="quote-form container" *ngIf="isShown">
             <mat-divider></mat-divider>
-            <form [formGroup]="prodRfqForm" (ngSubmit)="onSubmit()" class="mt-5">
+            <form [formGroup]="prodRfqForm" (ngSubmit)="onSubmit(prodRfqForm.value)" class="mt-5">
                 <div class="row">
                     <!--INPUT FOR PRODUCT QUANTITY-->
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label" for="quantity">Product Quantity</label>
                             <input id="quantity" class="form-control form-control-md" type="number"
-                            formControlName="quantity" required />
+                            formControlName="quantity"  required />
                             <!--ERROR CHECK-->
                             <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="align-left">
                                 <div *ngIf="quantity.errors?.required" class="align-left">
-                                    <app-form-input-alert [alertMsg]="'Product quantity is required.'">
+                                    <app-form-input-alert [alertMsg]="'Product quantity is required (digits only).'">
                                     </app-form-input-alert>
                                 </div>
                             </div>     
@@ -42,7 +42,7 @@
                             <!--ERROR CHECK-->
                             <div *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched)" class="align-left">
                                 <div *ngIf="unitPrice.errors?.required">
-                                    <app-form-input-alert [alertMsg]="'Unit Price is required.'"></app-form-input-alert>
+                                    <app-form-input-alert [alertMsg]="'Unit Price is required (digits only).'"></app-form-input-alert>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <!-- ERROR CHECK -->
                             <div *ngIf="totalPrice.invalid && (totalPrice.dirty || totalPrice.touched)" class="align-left">
                                 <div *ngIf="totalPrice.errors?.required">
-                                    <app-form-input-alert [alertMsg]="'Total Price is required.'">
+                                    <app-form-input-alert [alertMsg]="'Total Price is required (digits only).'">
                                     </app-form-input-alert>
                                 </div>
                             </div>  
@@ -96,7 +96,7 @@
         
                     <div class="col-md-12">
                         <div class="form-group mt-3">
-                            <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"  [disabled]="prodRfqForm.invalid">
+                            <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn" mat-dialog-close  [disabled]="prodRfqForm.invalid">
                                 Submit
                             </button>
                         </div>
