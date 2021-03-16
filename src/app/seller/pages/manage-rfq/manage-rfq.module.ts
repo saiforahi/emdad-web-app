@@ -26,3 +26,4 @@ const routes: Routes = [
   entryComponents: [ViewDialogueComponent],
 })
 export class ManageRfqModule { }
+

@@ -2,20 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ViewDialogueComponent } from './view-dialogue/view-dialogue.component';
+import { QuotationService } from 'src/app/shared/services/quotation.service';
+import{PageEvent} from '@angular/material/paginator'
 
-export interface PeriodicElement {
-  id: number;
-  d_date: string;
-  status: string;
-  buyer: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1,d_date: '12/13/21',status: 'delivered', buyer: 'hamza'},
-  {id: 2,d_date: '12/13/21',status: 'delivered', buyer: 'hamza'},
-  {id: 3,d_date: '12/13/21',status: 'delivered', buyer: 'hamza'},
-  {id: 4,d_date: '12/13/21',status: 'delivered', buyer: 'hamza'},
-  {id: 5,d_date: '12/13/21',status: 'delivered', buyer: 'hamza'},
-];
 
 @Component({
   selector: 'app-manage-rfq',
@@ -23,23 +12,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./manage-rfq.component.css']
 })
 export class ManageRfqComponent implements OnInit {
- 
-
+  //INITIALIZATION
+  rfqTableData: any;
+  lowValue: number = 0;
+  highValue: number = 10;
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
+  displayedColumns: string[] = ['id', 'date', 'status', 'buyer','view'];
   constructor(
     public dialog: MatDialog,
     private router: Router,
+    private rfq: QuotationService
   ) { }
 
   ngOnInit(): void {
-  }
-  displayedColumns: string[] = ['id', 'd_date', 'status', 'buyer','view'];
-  dataSource = ELEMENT_DATA;
-  openDialog() {
-    const dialogRef = this.dialog.open(ViewDialogueComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+       // RFQ table data
+       this.rfq.get_seller_quotation_list().subscribe(item => {
+        // console.log(item);
+        this.rfqTableData = item.data;
+        console.log("RFQ table Data",this.rfqTableData);
+      })
 
+  }
+ 
+  //OPEN THE DIALOG FOR VIEWING RFQ DETAILS
+  openDialog(item) {
+    const dialogRef = this.dialog.open(ViewDialogueComponent,{
+      autoFocus: false,
+      data:{
+        rfqDetails:item,
+      }
+    });
+    
+  }
 
 }
