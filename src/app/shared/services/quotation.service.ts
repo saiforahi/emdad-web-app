@@ -57,4 +57,17 @@ export class QuotationService {
       httpOptions
     );
   }
+  updateQuotation(id,formData:any): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.put(
+      `http://127.0.0.1:8000/api/quote/update/${id}/`,
+     formData,
+      httpOptions
+    );
+  }
+
 }
