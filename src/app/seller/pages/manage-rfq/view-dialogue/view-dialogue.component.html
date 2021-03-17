@@ -1,108 +1,109 @@
+<mat-dialog-content class="mat-typography" *ngIf="rfqDetailsData">
+    <app-rfq-modal-product-description [rfqDetailData]="rfqDetailAll"></app-rfq-modal-product-description>
+    <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">Make A
+            Quotation</button></div>
 
 
-
-
-    <mat-dialog-content class="mat-typography" *ngIf="rfqDetailsData">
-        <app-rfq-modal-product-description [rfqDetailData]="rfqDetailAll"></app-rfq-modal-product-description>
-        <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">Make A Quotation</button></div>
-        
-
-        <div class="quote-form container" *ngIf="isShown">
-            <mat-divider></mat-divider>
-            <form [formGroup]="prodRfqForm" (ngSubmit)="onSubmit(prodRfqForm.value)" class="mt-5">
-                <div class="row">
-                    <!--INPUT FOR PRODUCT QUANTITY-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="form-label" for="quantity">Product Quantity</label>
-                            <input id="quantity" class="form-control form-control-md" type="number"
-                            formControlName="quantity"  required />
-                            <!--ERROR CHECK-->
-                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="align-left">
-                                <div *ngIf="quantity.errors?.required" class="align-left">
-                                    <app-form-input-alert [alertMsg]="'Product quantity is required (digits only).'">
-                                    </app-form-input-alert>
-                                </div>
-                            </div>     
+    <div class="quote-form container" *ngIf="isShown">
+        <mat-divider></mat-divider>
+        <form [formGroup]="prodRfqForm" (ngSubmit)="onSubmit(prodRfqForm.value)" class="mt-5">
+            <div class="row">
+                <!--INPUT FOR PRODUCT QUANTITY-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">Product Quantity</label>
+                        <input id="quantity" class="form-control form-control-md" type="number"
+                            formControlName="quantity" required />
+                        <!--ERROR CHECK-->
+                        <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="align-left">
+                            <div *ngIf="quantity.errors?.required" class="align-left">
+                                <app-form-input-alert [alertMsg]="'Product quantity is required (digits only).'">
+                                </app-form-input-alert>
+                            </div>
                         </div>
-
                     </div>
-                    <!--INPUT FOR UNIT PRICE-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="form-label" for="unitPrice">Unit Price (VAT Exclusive) </label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
-                                </div>
-                                <input id="unitPrice" class="form-control form-control-md" type="number"
+
+                </div>
+                <!--INPUT FOR UNIT PRICE-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label" for="unitPrice">Unit Price (VAT Exclusive) </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
+                            </div>
+                            <input id="unitPrice" class="form-control form-control-md" type="number"
                                 formControlName="unitPrice" required />
 
-                            </div>
-                            <!--ERROR CHECK-->
-                            <div *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched)" class="align-left">
-                                <div *ngIf="unitPrice.errors?.required">
-                                    <app-form-input-alert [alertMsg]="'Unit Price is required (digits only).'"></app-form-input-alert>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <!--INPUT FOR TOTAL PRICE-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="form-label" for="totalPrice">Total Price (VAT Exclusive) </label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div> 
-                                </div>
-                                <input id="totalPrice" class="form-control form-control-md" type="number"
-                                formControlName="totalPrice" required />
-                            </div> 
-                            <!-- ERROR CHECK -->
-                            <div *ngIf="totalPrice.invalid && (totalPrice.dirty || totalPrice.touched)" class="align-left">
-                                <div *ngIf="totalPrice.errors?.required">
-                                    <app-form-input-alert [alertMsg]="'Total Price is required (digits only).'">
-                                    </app-form-input-alert>
-                                </div>
-                            </div>  
-                        </div>     
-                    </div>
-                    <!--ATTACHMENTS-->
-                    <div class="col-md-12">
-                        <!--label show and warning message show-->
-                        <div class="form-group">
-                            <div class="file-warn">
-                                <label class="file-label d-block">Quotation Attachments:</label>
-                                <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
+                        <!--ERROR CHECK-->
+                        <div *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched)" class="align-left">
+                            <div *ngIf="unitPrice.errors?.required">
+                                <app-form-input-alert [alertMsg]="'Unit Price is required (digits only).'">
                                 </app-form-input-alert>
-                            </div> 
-                             <!--FILE UPLOAD-->  
-                            <label for="attachments" class="custom-file-upload float-left" *ngIf="isEnabled">
-                                <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
-                              (change)="handleFileSelect($event);" *ngIf="isEnabled"/>
-                            </label>
-                            <!--Attached file show-->
-                            <ul class="attached-file">
-                                <li *ngFor="let file of selectedImage; let i = index;">
-                                    {{file.name}}
-                                    <button mat-mini-fab (click)="removeFile(i);"><mat-icon>close</mat-icon></button>
-                                </li>   
-                            </ul>
-                            
-
-                        </div>
-                    </div> 
-                    <!-- SUBMIT BUTTON-->
-        
-                    <div class="col-md-12">
-                        <div class="form-group mt-3">
-                            <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn" mat-dialog-close  [disabled]="prodRfqForm.invalid">
-                                Submit
-                            </button>
+                            </div>
                         </div>
                     </div>
-                </div> 
-            </form>
+                </div>
+                <!--INPUT FOR TOTAL PRICE-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label" for="totalPrice">Total Price (VAT Exclusive) </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
+                            </div>
+                            <input id="totalPrice" class="form-control form-control-md" type="number"
+                                formControlName="totalPrice" required />
+                        </div>
+                        <!-- ERROR CHECK -->
+                        <div *ngIf="totalPrice.invalid && (totalPrice.dirty || totalPrice.touched)" class="align-left">
+                            <div *ngIf="totalPrice.errors?.required">
+                                <app-form-input-alert [alertMsg]="'Total Price is required (digits only).'">
+                                </app-form-input-alert>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--ATTACHMENTS-->
+                <div class="col-md-12">
+                    <!--label show and warning message show-->
+                    <div class="form-group">
+                        <div class="file-warn">
+                            <label class="file-label d-block">Quotation Attachments:</label>
+                            <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
+                            </app-form-input-alert>
+                        </div>
+                        <!--FILE UPLOAD-->
+                        <label for="attachments" class="custom-file-upload float-left" *ngIf="isEnabled">
+                            <input id="attachments" class="form-control form-control-md" type="file"
+                                formControlName="attachments" (change)="handleFileSelect($event);" *ngIf="isEnabled" />
+                        </label>
+                        <!--Attached file show-->
+                        <ul class="attached-file">
+                            <li *ngFor="let file of selectedImage; let i = index;">
+                                {{file.name}}
+                                <button mat-mini-fab (click)="removeFile(i);">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </li>
+                        </ul>
 
-        </div>
-    </mat-dialog-content>
+
+                    </div>
+                </div>
+                <!-- SUBMIT BUTTON-->
+
+                <div class="col-md-12">
+                    <div class="form-group mt-3">
+                        <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
+                            mat-dialog-close [disabled]="prodRfqForm.invalid">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</mat-dialog-content>

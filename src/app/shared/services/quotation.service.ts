@@ -66,9 +66,9 @@ export class QuotationService {
     };
     const updateURL = `http://127.0.0.1:8000/api/quote/update/${id}/`;
     return this.http.put(
-      updateURL,
-     formData,
-      httpOptions
+    updateURL,
+    formData,
+    httpOptions
     ).pipe(shareReplay());
   }
 
