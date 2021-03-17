@@ -14,14 +14,14 @@ export class QuotationService {
   };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   get_user_quotation_list(): Observable<any> {
     return this.http.get(
       config.base_url +
-        'api/quote/user/wise/' +
-        localStorage.getItem('uid') +
-        '/',
+      'api/quote/user/wise/' +
+      localStorage.getItem('uid') +
+      '/',
       this.httpOptions
     );
   }
@@ -29,18 +29,18 @@ export class QuotationService {
   get_seller_quotation_list(): Observable<any> {
     return this.http.get(
       config.base_url +
-        'api/quote/user/wise/' +
-        localStorage.getItem('s_uid') +
-        '/',
+      'api/quote/user/wise/' +
+      localStorage.getItem('s_uid') +
+      '/',
       this.httpOptions
     );
   }
 
   get_quotation_details(id): Observable<any> {
     return this.http.get(
-      config.base_url +'api/quote/details/' 
-      +id 
-      +'/',
+      config.base_url + 'api/quote/details/'
+      + id
+      + '/',
       this.httpOptions
     );
   }
@@ -57,15 +57,15 @@ export class QuotationService {
       httpOptions
     );
   }
-  updateQuotation(id,formData:any): Observable<any>{
+  updateQuotation(id, formData: any): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
     return this.http.put(
-      `http://127.0.0.1:8000/api/quote/update/${id}/`,
-     formData,
+      config.base_url+'api/quote/update/'+id+'/',
+      formData,
       httpOptions
     );
   }
