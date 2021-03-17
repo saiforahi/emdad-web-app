@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { config } from '../../../config';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -63,11 +64,12 @@ export class QuotationService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
+    const updateURL = `http://127.0.0.1:8000/api/quote/update/${id}/`;
     return this.http.put(
-      config.base_url+'api/quote/update/'+id+'/',
-      formData,
-      httpOptions
-    );
+    updateURL,
+    formData,
+    httpOptions
+    ).pipe(shareReplay());
   }
 
 }

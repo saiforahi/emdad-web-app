@@ -109,3 +109,16 @@ align-self: right;
   color: #2b2b2b;
 }
 
+.mat-stroked-button{
+  width: 230px;
+height: 70px;
+border: 2px solid #1F4F9E;
+color: #1F4F9E;
+box-sizing: border-box;
+border-radius: 5px;
+font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 29px;
+}

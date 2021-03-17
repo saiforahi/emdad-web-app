@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { QuotationService } from '../../../../shared/services/quotation.service';
+
+
 import swal from 'sweetalert';
 @Component({
   selector: 'app-view-dialogue',
@@ -11,12 +13,12 @@ import swal from 'sweetalert';
   styleUrls: ['./view-dialogue.component.css']
 })
 export class ViewDialogueComponent implements OnInit {
- //initialization
+  //initialization
   btnShow: boolean = true;
   isShown: boolean = false;
   error: any;
   msg;
- /*  prodRfqForm: FormGroup; */
+  prodRfqForm: FormGroup;
   quoteFormShow: boolean = false;
   quantity: AbstractControl;
   unitPrice: AbstractControl;
@@ -24,46 +26,63 @@ export class ViewDialogueComponent implements OnInit {
   attachments: AbstractControl;
   numberPattern = '^[0-9]$';
   selectedImage: any = [];
+  quotation: AbstractControl;
   prodRfqFormData = new FormData();
   rfqDetailsData: any;
   rfqDetailAll: any;
-  rfqId:any;
-  attachment1:AbstractControl;
-  attachment2:AbstractControl;
-  rfq:AbstractControl;
-  isEnabled:boolean = true;
-   uid:any;
+  rfqId: any;
+  attachment1: AbstractControl;
+  attachment2: AbstractControl;
+  rfq: AbstractControl;
+  isEnabled: boolean = true;
+  uid;
   submitted = false;
-     // form for making a quotation seller side
-     prodRfqForm = this.fb.group({
-      quantity: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      unitPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      totalPrice: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      attachments: [''],
-      attachment1:[''],
-      attachment2:[''], 
-   /*    quotation: this.fb.array([
-        this.fb.group({
-          message: '',
-          user: '',
-        }),
-      ]), */
-      rfq: { status: 1 },
-    });
-  constructor(private fb: FormBuilder,
+  existingFiles: number;
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private authService: UserAuthService,
     private quoteDetails: QuotationService,
+
     @Inject(MAT_DIALOG_DATA) data: { rfqDetails: any }) {
     this.rfqDetailsData = data.rfqDetails;
-    this.rfqId=this.rfqDetailsData.id;
-    console.log("id",this.rfqId);
-    
+    this.rfqId = this.rfqDetailsData.id;
+    console.log("id", this.rfqId);
+
   }
 
   ngOnInit(): void {
+    //get user id and rfq detail and pass it to rfq child component
+
     this.uid = localStorage.getItem('s_uid');
-    console.log('uid',this.uid);
+    console.log('uid', this.uid);
+    // form for making a quotation seller side
+    this.prodRfqForm = this.fb.group({
+      quantity: ['', [Validators.required]],
+      unitPrice: ['', [Validators.required]],
+      totalPrice: ['', [Validators.required]],
+      attachments: [''],
+      status: 3,
+
+      quotation: this.fb.array([
+        this.fb.group({
+          message: '',
+          user: this.uid,
+          quantity: this.quantity,
+          unit_price: this.unitPrice,
+          total_price: this.totalPrice
+        }),
+      ]),
+
+    });
+    //initializing form fields
+
+    this.quantity = this.prodRfqForm.controls['quantity'];
+    this.unitPrice = this.prodRfqForm.controls['unitPrice'];
+    this.totalPrice = this.prodRfqForm.controls['totalPrice'];
+    this.attachments = this.prodRfqForm.controls['attachment'];
+    this.quotation = this.prodRfqForm.controls['quotation'];
+
     //Getting data for a individual rfq request
     this.quoteDetails.get_quotation_details(this.rfqId).subscribe(
       item => {
@@ -71,34 +90,82 @@ export class ViewDialogueComponent implements OnInit {
         console.log("Product details:", this.rfqDetailAll);
       }
     )
-   
 
-    //initializing form fields
-
-    this.quantity = this.prodRfqForm.controls['quantity'];
-    this.unitPrice = this.prodRfqForm.controls['unitPrice'];
-    this.totalPrice = this.prodRfqForm.controls['totalPrice'];
-    this.attachment1 = this.prodRfqForm.controls['attachment1'];
-    this.attachment2 = this.prodRfqForm.controls['attachment2'];
-    this.attachment2 = this.prodRfqForm.controls['attachments'];
-    
-    }
+  }
   //form submit
-  onSubmit():void {
-    
- /*  this.prodRfqFormData.append('attachment1',this.prodRfqForm.value.attachment1);
-  this.prodRfqFormData.append('attachment2',this.prodRfqForm.value.attachment2); */
-  this.prodRfqFormData.append('quantity',this.prodRfqForm.value.quantity);
-  this.prodRfqFormData.append('unit_price',this.prodRfqForm.value.unitPrice);
-  this.prodRfqFormData.append('total_price',this.prodRfqForm.value.totalPrice);
-  this.prodRfqFormData.append('status',this.prodRfqForm.value.status);
-  this.prodRfqForm.patchValue({ quotation: [{ message: '', user: this.uid }] });
-    this.quoteDetails.updateQuotation(this.rfqId,this.prodRfqFormData).subscribe(
-      (res) =>{
+  onSubmit(value) {
+
+
+    this.prodRfqFormData.append('quantity', value.quantity);
+    this.prodRfqFormData.append('unit_price', value.unitPrice);
+    this.prodRfqFormData.append('total_price', value.totalPrice);
+    this.prodRfqFormData.append('status', value.status);
+    this.prodRfqFormData.append('quotation', value.quotation)
+
+
+    //image attachment issues
+
+    if (
+      (this.rfqDetailsData.attachment1 == null || this.rfqDetailsData.attachment1 != null) &&
+      (this.rfqDetailsData.attachment2 == null && this.rfqDetailsData.attachment2 != null) &&
+      this.selectedImage.length == 2
+    ) {
+      // if two files to upload
+      console.log("condition one")
+      this.prodRfqFormData.append(
+        'attachment1',
+        this.selectedImage[0]
+      );
+      this.prodRfqFormData.append(
+        'attachment2',
+        this.selectedImage[1]
+      );
+    } else if (
+      this.rfqDetailsData.attachment1 == null &&
+      this.selectedImage.length == 1
+    ) {
+      // if only one file to upload in attachment1 
+      console.log("condition two")
+      this.prodRfqFormData.append(
+        'attachment1',
+        this.selectedImage[0]
+      );
+      // this.prodRfqFormData.append(
+      //   'attachment2',
+      //   null
+      // );
+    } else if (
+      this.rfqDetailsData.attachment2 == null &&
+      this.selectedImage.length == 1
+    ) {
+      // if only one file to upload in attachment2
+      console.log("condition three")
+      // this.prodRfqFormData.append(
+      //   'attachment1',
+      //   null
+      // );
+      this.prodRfqFormData.append(
+        'attachment2',
+        this.selectedImage[0]
+      );
+    }
+    else if (this.rfqDetailsData.attachment1 == null && this.rfqDetailsData.attachment2 == null && this.selectedImage.length == 0) {
+      this.prodRfqFormData.append("attachment1", this.rfqDetailsData.attachment1);
+      this.prodRfqFormData.append("attachment2", this.rfqDetailsData.attachment2)
+
+    }
+
+
+    this.quoteDetails.updateQuotation(this.rfqId, this.prodRfqFormData).subscribe(
+      (res) => {
         console.log(res);
-        swal("Submitted Quotation Successfully");
+        swal('Succeed', "Submitted Quotation Successfully", 'success');
+
       },
-      (err) => console.error(err)
+      (err) => {
+        console.error(err);
+        swal('Failed!', "Something went wrong", 'error');
+      }
     );
 
   }
@@ -107,24 +174,25 @@ export class ViewDialogueComponent implements OnInit {
     var reader = new FileReader();
     this.selectedImage.push(event.target.files[0]);
     console.log(this.selectedImage);
-    if(this.selectedImage.length == 1){
-      this.attachment1=this.selectedImage[0].name;
-      console.log("this",this.attachment1);
-      this.attachment2 = null;
-    }
-    else if(this.selectedImage.length == 2){
-      this.attachment1 = this.selectedImage[0].name;
-      console.log(this.attachment1);
-      this.attachment2 = this.selectedImage[1].name;
-      console.log(this.attachment2);
+    /*    if(this.selectedImage.length == 1){
+         this.attachment1=this.selectedImage[0].name;
+         console.log("this",this.attachment1);
+         this.attachment2 = null;
+       } */
+    if (this.selectedImage.length == 2) {
+      /*    this.attachment1 = this.selectedImage[0].name;
+         console.log(this.attachment1);
+         this.attachment2 = this.selectedImage[1].name;
+         console.log(this.attachment2); */
       this.isEnabled = false;
-    
+
     }
+
   }
-//file remove
+  //file remove
   removeFile(id) {
     this.selectedImage.splice(id, 1);
-    if(this.selectedImage.length<2){
+    if (this.selectedImage.length < 2) {
       this.isEnabled = true;
     }
   }
