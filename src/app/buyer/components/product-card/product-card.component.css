@@ -20,7 +20,7 @@ img {
 .product-price {
   font-family: Jost;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 20px;
   margin-bottom: 5px;
 }
@@ -41,7 +41,7 @@ mat-card {
   padding: 0px;
 }
 
-mat-card:hover img {
+mat-card:hover .prod-img-div img {
   /* filter: grayscale(100%); */
   opacity: 0.5;
   transition: 0.3s;

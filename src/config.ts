@@ -1,4 +1,5 @@
 export const config={
-    base_url:'http://dma.com.bd:8002/'
+    base_url:'http://127.0.0.1:8000/',
+    img_base_url:'http://127.0.0.1:8000'
 }
 

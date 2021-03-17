@@ -9,11 +9,11 @@ button:focus {
   color: #fff;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
   position: relative;
-  height: 270px;
+  height: 470px;
   text-align: center;
   background: rgb(247, 65, 135);
-  background: url("../../../../assets/images/banner.jpg") no-repeat;
-  background-size: 100%;
+  background: url("../../../../assets/Rectangle-16.png") no-repeat;
+  background-size: cover;
 }
 .banner img {
   width: 100%;
@@ -26,6 +26,10 @@ button:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.search-holder h2 {
+  font-size: 48px;
 }
 
 .categories {
@@ -47,11 +51,11 @@ button:focus {
 }
 
 .single-category.active {
-  background: #FAFAFA;
+  background: #fafafa;
 }
 
 .single-category:hover {
-  background: #FAFAFA;
+  background: #fafafa;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -73,6 +77,9 @@ button:focus {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
 }
 
 .subCategory {
@@ -82,7 +89,7 @@ button:focus {
   position: absolute;
   top: 120px;
   left: 0;
-  background: #FAFAFA;
+  background: #fafafa;
   z-index: 9;
   padding: 40px 0;
   box-shadow: 0 30px 30px rgb(0 0 0 / 10%);
@@ -97,22 +104,28 @@ button:focus {
 .subCatItem span,
 .children span {
   margin-left: 15px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  transition: 0.3s;
+  padding-bottom: 10px;
 }
 
 .subCatItem span:hover,
 .children span:hover {
   cursor: pointer;
   /* border-bottom: 1px solid #f49814; */
-  border-bottom: 1px  solid #1f4f9e;
-  padding-bottom: 10px;
+  border-bottom: 1px solid #1f4f9e;
   /* color: #f49814; */
   color: #1f4f9e;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
 .subCatItem span.active,
 .children span.active {
   /* border-bottom: 1px solid #f49814; */
-  border-bottom: 1px  solid #1f4f9e;
+  border-bottom: 1px solid #1f4f9e;
   padding-bottom: 10px;
   /* color: #f49814; */
   color: #1f4f9e;
@@ -131,17 +144,17 @@ button:focus {
   width: 200px;
   height: 200px;
   /* border-radius: 50%; */
-  background: #1F4F9E;
+  background: #fff;
   border-radius: 150px;
   text-align: center;
   padding: 50px;
   margin: auto;
-  color: #fff;
+  color: #2b2b2b;
   transition: 0.3s;
 }
 
 .cat-round-bg:hover {
-  background: #1F4F9E;
+  background: #1f4f9e;
   color: #fff;
   transition: 0.3s;
 }

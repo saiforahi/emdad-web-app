@@ -1,7 +1,7 @@
 <section class="banner">
     <!-- <img src="" alt=""> banner image-->
     <div class="search-holder">
-        <h2>Search for Products</h2>
+        <h2>Search for products</h2>
         <app-search-for class="m-auto"></app-search-for>
     </div>
 </section>
@@ -11,7 +11,8 @@
             <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
                 <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
                     <div class="cat-icon-holder">
-                        <img src="../../../assets/cat-icon.svg" alt="">
+                        <img *ngIf="category.icon == null" src="../../../assets/Category.svg" alt="">
+                        <img *ngIf="category.icon != null" src="{{imgBaseUrl}}{{category.icon}}" alt="">
                     </div>
                     <div class="cat-title">
                         {{category.name}}
