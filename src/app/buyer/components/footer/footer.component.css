@@ -10,7 +10,7 @@ button:focus {
 }
 
 footer {
-    padding: 60px 0 70px;
+    padding: 60px 0 0;
     background: #F4F4F4;
 }
 
@@ -83,4 +83,5 @@ footer .footer-link-div .list-group-item {
     line-height: 146px;
     background: inherit;
     text-align: center;
+    background: #E9E9E9;
 }

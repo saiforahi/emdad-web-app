@@ -9,6 +9,10 @@
   border: none;
   background: #eaeaea;
   box-shadow: 0 1px 3px rgb(0 0 0 / 40%);
+  font-style: normal;
+  font-weight: normal;
+  padding: 5px 25px;
+  font-size: 24px;
 }
 
 .search-input .input-group-text {
@@ -23,16 +27,16 @@ input:focus {
 }
 
 button {
-  background: #1F4F9E;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    padding: 0 15px;
+  background: #1f4f9e;
+  border-top-right-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding: 0 25px;
 }
-.suggestion-box{
+.suggestion-box {
   position: absolute;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.07);
   border-radius: 10px;
   font-style: normal;
@@ -40,17 +44,17 @@ button {
   font-size: 18px;
   line-height: 26px;
   /* identical to box height */
-  color: #2B2B2B;
+  color: #2b2b2b;
   max-height: 300px;
   width: 100%;
 }
-.prod-name{
+.prod-name {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
   /* identical to box height */
-  color: #2B2B2B;
+  color: #2b2b2b;
   text-align: start;
   text-shadow: none;
 }

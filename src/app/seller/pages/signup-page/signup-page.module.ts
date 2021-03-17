@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignupPageComponent } from './signup-page.component';
-import { SellerSignupFormComponent } from '../../../buyer/components/seller-signup-form/seller-signup-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
@@ -13,8 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    SignupPageComponent,
-    SellerSignupFormComponent
+    SignupPageComponent
   ],
   imports: [
     CommonModule,
