@@ -3,6 +3,7 @@ import { GetCategoryService } from 'src/app/shared/services/get-category.service
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { config } from '../../../../config';
 
 @Component({
   selector: 'app-home-page',
@@ -23,13 +24,16 @@ export class HomePageComponent implements OnInit {
   activesubcategory: any;
   durationInSeconds: number = 5;
   prodInRow6;
+  imgBaseUrl;
 
   constructor(
     private categoryServices: GetCategoryService,
     private getProduct: GetProductService,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+    this.imgBaseUrl = config.img_base_url;
+  }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -40,7 +44,7 @@ export class HomePageComponent implements OnInit {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
-      //console.log(this.categories);
+      console.log(this.categories);
     });
     // recent products list
     this.getProduct.product().subscribe((item) => {

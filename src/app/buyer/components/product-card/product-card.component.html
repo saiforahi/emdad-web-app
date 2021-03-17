@@ -2,7 +2,7 @@
     <a [routerLink]="['/product/details/', product.id]">
         <div>
             <div class="prod-img-div">
-                <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="'http://localhost:8000'+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
+                <img *ngIf="product.image1 != null" mat-card-image [lazyLoad]="base_url.substring(0,base_url.length-1)+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
             </div>
             <mat-card-content>
                 <p class="product-name">

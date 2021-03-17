@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { config } from 'src/config';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,12 @@ export class CountryListService {
   }
 
   allCities(id: number): Observable<any> {
-    this.cityUrl = `http://127.0.0.1:8000/api/city/list/${id}`;
+    this.cityUrl = config.base_url+'api/city/list/'+id+'/';
     return this.http.get(this.cityUrl);
   }
 
   getCountryOfCity(cityId): Observable<any> {
-    this.cityUrl = `http://localhost:8000/api/city/details/${cityId}`;
+    this.cityUrl = config.base_url+'api/city/details/'+cityId+'/';
     return this.http.get(this.cityUrl);
   }
 }
