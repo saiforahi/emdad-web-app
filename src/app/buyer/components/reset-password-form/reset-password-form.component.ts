@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-reset-password-form',
@@ -21,16 +22,17 @@ export class ResetPasswordFormComponent implements OnInit {
       (success) => {
         this.msg = success.status;
         if (this.msg == 'OK') {
-          this.msg = "password has been changed successfully.";
+          this.msg = 'password has been changed successfully.';
           this.error = '';
-          // this.router.navigate(['/login']);
+          swal('Succeed', 'Password reset successfully!', 'success');
+          this.router.navigate(['/']);
         }
         console.log(success);
       },
       (error) => {
         console.log(error);
         if (error.status == 404) {
-          this.msg = "token has been expired.";
+          this.msg = 'token has been expired.';
           // this.router.navigate(['/login']);
         }
         if (error.status == 400) {
