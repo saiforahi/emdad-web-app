@@ -1,9 +1,6 @@
 import {
-  AfterViewInit,
   Component,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
+  OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
