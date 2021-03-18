@@ -188,7 +188,7 @@ const routes: Routes = [
             (m) => m.SellOnEmdadPageModule
           ),
       },
-      
+
       {
         path: 'about-us',
         loadChildren: () =>
@@ -196,14 +196,13 @@ const routes: Routes = [
             (m) => m.AboutUsModule
           ),
       },
-    {
-        path: 'our-partners',
-        loadChildren: () =>
-          import('./pages/our-partners/our-partners.module').then(
-            (m) => m.OurPartnersModule
-          ),
-      },
-   
+      // {
+      //   path: 'our-partners',
+      //   loadChildren: () =>
+      //     import('./pages/our-partners/our-partners.module').then(
+      //       (m) => m.OurPartnersModule
+      //     ),
+      // },
       {
         path: 'registration/profile/verify/:token',
         loadChildren: () =>
