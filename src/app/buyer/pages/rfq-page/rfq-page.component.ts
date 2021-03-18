@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { QuotationService } from '../../../shared/services/quotation.service';
 import swal from 'sweetalert';
+import { config } from '../../../../config';
 
 @Component({
   selector: 'app-rfq-page',
@@ -15,6 +16,8 @@ export class RfqPageComponent implements OnInit {
   productData: any = { seller: {} }; // this weird initialization is for error handling :(
   image: any = null;
   submitted = false;
+  base_url = config.base_url.slice(0, config.base_url.length - 1); // / is with base_url so remove that
+  clicked = false;
 
   rfqForm = this.formBuilder.group({
     product: '',
@@ -59,8 +62,9 @@ export class RfqPageComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.rfqForm.value);
     this.submitted = true;
+    this.clicked = true;
+
     if (
       this.rfqForm.get('email').errors == null &&
       this.rfqForm.get('phone').errors == null &&
@@ -69,10 +73,14 @@ export class RfqPageComponent implements OnInit {
       this.quotationService.createQuotation(this.rfqForm.value).subscribe(
         (res) => {
           console.log(res);
-          swal("Succeed!","Request for quotation Successfull","success")
+          swal('Succeed!', 'Request for quotation Successfull', 'success');
           this.router.navigate(['/']);
         },
-        (err) => console.error(err)
+        (err) => {
+          console.error(err);
+          swal('Failed!', err.message, 'error');
+          this.clicked = false;
+        }
       );
     }
   }

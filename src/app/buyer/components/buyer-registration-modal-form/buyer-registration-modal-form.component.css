@@ -1,5 +1,9 @@
 *:focus {
-    box-shadow: none;
+  box-shadow: none;
+}
+
+.errors {
+  color: red;
 }
 
 .modal {
