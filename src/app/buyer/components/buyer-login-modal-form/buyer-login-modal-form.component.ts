@@ -38,7 +38,7 @@ export class BuyerSigninFormComponent implements OnInit {
         document.getElementById('buyerLogin').style.display = 'none';
         console.log(success);
         swal('Succeed', 'You have logged in successfully', 'success');
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.error = error;

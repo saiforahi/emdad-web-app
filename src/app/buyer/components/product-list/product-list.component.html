@@ -2,7 +2,7 @@
 <!-- <div class="container"> -->
 <div *ngIf="products">
   <div *ngIf="view_style==='grid'" class="row">
-    <div [ngClass]="{'col-md-2':prodInRow6, 'col-md-3':!prodInRow6}" *ngFor="let product of products">
+    <div [ngClass]="{'col-md-2':prodInRow6, 'col-md-3':!prodInRow6}" *ngFor="let product of products" class="col-6 col-sm-4">
       <app-product-card [product]="product"></app-product-card>
     </div>
   </div>

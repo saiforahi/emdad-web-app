@@ -6,6 +6,7 @@ a:hover {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 nav {
@@ -206,12 +207,6 @@ button:focus {
   outline: none;
 }
 
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
-}
-
 .sell-emdad {
   background: #1f4f9e;
   border-radius: 24px;
@@ -251,12 +246,6 @@ button:focus {
   margin-top: 0px !important;
   position: relative;
 }
-.sell-emdad:hover {
-}
-
-/* .search-prod > *{
-    width: inherit !important;
-} */
 
 .suggestion-box {
   width: inherit;
@@ -290,4 +279,102 @@ button:focus {
   color: inherit;
   margin-top: 0px !important;
   position: relative;
+}
+
+#accnt-drop-down button.active {
+  color: #1f4f9e;
+  font-weight: 600;
+  background: #e8e8e8;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .d-sx-none {
+    display: none;
+  }
+  nav {
+    height: 60px;
+  }
+  .navbar-brand {
+    margin: auto;
+  }
+  .navbar-brand img {
+    height: 38px !important;
+  }
+  .menu-btn {
+    position: absolute;
+    left: 0px;
+    border-radius: 50%;
+    min-width: 64px;
+    height: 64px;
+  }
+  .side-menu-holder {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    left: -100%;
+    top: 0;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .side-menu-div {
+    position: absolute;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
+    left: -300px;
+    top: 0;
+    transition: 0.5s;
+  }
+  .side-menu-holder-active {
+    left: 0;
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .side-menu-div-active {
+    left: 0;
+    transition: 0.5s;
+  }
+  .side-menu {
+    position: relative;
+    padding: 40px 30px;
+  }
+  .side-menu .close-btn {
+    position: absolute;
+    top: 21px;
+    right: 1px;
+    border-radius: 50%;
+    min-width: 64px;
+    height: 64px;
+  }
+  .menu-list {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-list li{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .menu-list li img{
+    width: 20px;
+    height: 20px;
+    vertical-align: sub;
+  }
+  .menu-list li span{
+    padding-left: 15px;
+  }
+  .menu-list li.active span{
+    color: #1f4f9e;
+    font-weight: 600;
+  }
 }

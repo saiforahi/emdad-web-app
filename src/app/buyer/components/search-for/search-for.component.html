@@ -1,5 +1,7 @@
 <div class="input-group search-input">
-    <input (focus)="update_suggestions(searchInput.value)" (focusout)="focusOutFunction()" (input)="update_suggestions(searchInput.value)" type="text" class="form-control" placeholder="Search by products..." #searchInput (keydown.enter)="search(searchInput.value)">
+    <input (focus)="update_suggestions(searchInput.value)" (focusout)="focusOutFunction()"
+        (input)="update_suggestions(searchInput.value)" type="text" class="form-control"
+        placeholder="Search by products..." #searchInput (keydown.enter)="search(searchInput.value)">
     <div class="input-group-append">
         <button (click)="search(searchInput.value)" mat-raised-button>
             <span class="input-group-text" id="basic-addon2"><img src="../assets/search.svg" alt=""></span>

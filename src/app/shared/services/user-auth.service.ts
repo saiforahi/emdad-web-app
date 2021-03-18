@@ -144,7 +144,7 @@ export class UserAuthService {
     this.uId.next(null);
     // this.uGroup.next(null);
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   sellerLogout() {
