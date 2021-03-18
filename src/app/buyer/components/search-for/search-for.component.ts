@@ -10,6 +10,7 @@ import { SearchService } from '../../../shared/services/search.service';
 export class SearchForComponent implements OnInit {
   products:any;
   show_suggestion:boolean;
+  searchInput:string;
   constructor(
     private router: Router,
     private searchService: SearchService,
@@ -17,11 +18,12 @@ export class SearchForComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.searchInput.length)
   }
 
-  search(query) {
+  search() {
     this.router.navigate(['/search'], {
-      queryParams: { query: query },
+      queryParams: { query: this.searchInput },
     });
   }
   focusOutFunction(){
@@ -30,9 +32,13 @@ export class SearchForComponent implements OnInit {
     }
     this.show_suggestion=false;
   }
-  update_suggestions(query:string){
-    if(query.length>0){
-      this.searchService.search(query).subscribe(result=>{
+  setItem(prod_name:string){
+    console.log(prod_name)
+    this.searchInput=prod_name
+  }
+  update_suggestions(){
+    if(this.searchInput!==undefined){
+      this.searchService.search(this.searchInput).subscribe(result=>{
         this.products=result.data.results
         this.show_suggestion=true;
         if(document.getElementById('cat_menu')){
