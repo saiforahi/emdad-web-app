@@ -14,6 +14,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   @Input() product;
   defaultImage = '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
+  prod_qty:number;
   userId;
   img_base_url=config.img_base_url
   constructor(
@@ -31,6 +32,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   }
 
   addToCart(prod) {
+    prod.cart_qty=this.prod_qty>0?this.prod_qty:1
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
     if (existingCart != null) {

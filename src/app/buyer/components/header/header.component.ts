@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
   ) {
     router.events.subscribe((val: any) => {
-      if(val.url){
+      if (val.url) {
         this.activeRoute = val.url.split("/");
       }
     });
@@ -131,12 +131,12 @@ export class HeaderComponent implements OnInit {
     this.showAllProdDiv = !this.showAllProdDiv;
   }
 
-  showMenu(){
+  showMenu() {
     this.showSideMenu = true;
     console.log(this.showSideMenu)
   }
 
-  closeMenu(){
+  closeMenu() {
     this.showSideMenu = false;
   }
 
