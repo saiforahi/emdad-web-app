@@ -17,7 +17,8 @@
                 <span>About Us </span></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Category-small.svg" alt="">
                 <span>Categories</span></a></li>
-            <li><a [routerLink]="['our-partners']" (click)="closeMenu();"><img src="../../../../assets/2-User.svg" alt="">
+            <li><a [routerLink]="['our-partners']" (click)="closeMenu();"><img src="../../../../assets/2-User.svg"
+                  alt="">
                 <span>Our Partners</span></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Call-small.svg" alt="">
                 <span>Contact Us</span></a></li>
@@ -49,7 +50,8 @@
             </div>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>Change Language </span></a></li>
-            <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']" (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart
+            <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
+                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart
                 </span></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
                 <span>Notifications </span></a></li>
@@ -91,15 +93,17 @@
             <li [ngClass]="{'d-none':!showOnScroll, 'd-block':showOnScroll}" class="nav-item search-prod">
               <app-search-for></app-search-for>
             </li>
-            <li class="nav-item" style="margin-left: 42px">
+            <li class="nav-item" style="margin-right: 42px">
               <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in / Sign up</a>
               <div class="user-name">
-                <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="" />
-                <span *ngIf="loggedInUser">{{ userName }}</span>
+                <a [routerLink]="['profile/', uId]">
+                  <img *ngIf="loggedInUser" src="../assets/Profile.svg" alt="" />
+                  <span *ngIf="loggedInUser">{{ userName }}</span>
+                </a>
               </div>
             </li>
             <li class="nav-item">
-              <div ngbDropdown class="d-inline-block" (click)="show_lang_drop()">
+              <div ngbDropdown class="d-inline-block">
                 <a class="nav-link" id="en-btn" ngbDropdownToggle>
                   <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
                   <img src="../assets/down-carrot.svg" alt="" />
@@ -137,7 +141,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <div ngbDropdown class="d-inline-block" (click)="handle_notification_drop()">
+              <!-- (click)="handle_notification_drop()" -->
+              <div ngbDropdown class="d-inline-block">
                 <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                   <img src="../assets/notification.svg" alt="" />
                 </a>
@@ -175,24 +180,29 @@
               </div>
             </li>
             <li class="nav-item">
-              <div ngbDropdown class="d-inline-block" (click)="handle_accnt_drop_down();">
+              <!-- (click)="handle_accnt_drop_down();" -->
+              <div ngbDropdown class="d-inline-block">
                 <a class="nav-link" ngbDropdownToggle>
                   <img src="../assets/hamburger.svg" alt="" />
                 </a>
                 <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
-                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''" [routerLink]="['profile/', uId]">
+                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''"
+                    [routerLink]="['profile/', uId]">
                     <img src="../assets/Profile.svg" alt="" />My Profile
                   </button>
-                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''" [routerLink]="['track-orders']">
+                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''"
+                    [routerLink]="['track-orders']">
                     <img src="../assets/Location.svg" alt="" />Track Order
                   </button>
-                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'wishlist' ? 'active' : ''" [routerLink]="['wishlist']">
+                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'wishlist' ? 'active' : ''"
+                    [routerLink]="['wishlist']">
                     <img src="../assets/Heart.svg" alt="" />My Wishlist
                   </button>
                   <!-- <button ngbDropdownItem>
                     <img src="../assets/Document.svg" alt="" />Quotations
                   </button> -->
-                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''" [routerLink]="['/support-ticket']">
+                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"
+                    [routerLink]="['/support-ticket']">
                     <img src="../assets/Danger.svg" alt="" />Raise a support
                     ticket
                   </button>
