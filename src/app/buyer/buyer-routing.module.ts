@@ -5,6 +5,7 @@ import { BuyerComponent } from './buyer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   {
     path: '',
     component: BuyerComponent,
@@ -187,6 +188,22 @@ const routes: Routes = [
             (m) => m.SellOnEmdadPageModule
           ),
       },
+      
+      {
+        path: 'about-us',
+        loadChildren: () =>
+          import('./pages/about-us/about-us.module').then(
+            (m) => m.AboutUsModule
+          ),
+      },
+    {
+        path: 'our-partners',
+        loadChildren: () =>
+          import('./pages/our-partners/our-partners.module').then(
+            (m) => m.OurPartnersModule
+          ),
+      },
+   
       {
         path: 'registration/profile/verify/:token',
         loadChildren: () =>
