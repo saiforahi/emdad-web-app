@@ -9,6 +9,7 @@ import {
   HttpHandler,
   HttpEvent,
 } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { CountryListService } from '../../../shared/services/country-list.service';
 import swal from 'sweetalert';
@@ -28,11 +29,16 @@ export class EditProfileFormComponent implements OnInit {
   country;
   profile_pic: any = undefined;
   new_profile_pic: any = undefined;
+  addressError: any = undefined;
+  countryError: any = undefined;
+  cityError: any = undefined;
+
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
     private countryList: CountryListService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private spinner: NgxSpinnerService
   ) {}
 
   @Input() userId;
@@ -48,9 +54,7 @@ export class EditProfileFormComponent implements OnInit {
     });
     this.authService.getUser(this.userId).subscribe((data) => {
       this.editUserInfo = data.data;
-      console.log('#####');
-      console.log(this.editUserInfo);
-      console.log('#####');
+
       // if profile_pic is a string(path), then set the value
       if (typeof this.editUserInfo.profile_pic === 'string')
         this.profile_pic =
@@ -68,38 +72,58 @@ export class EditProfileFormComponent implements OnInit {
     // }
   }
   saveData() {
-    // if (this.is_form_valid()) {
     this.updateUserInfo();
+    this.spinner.show();
 
-    delete this.editUserInfo.profile_pic;
-    this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
-      (success) => {
-        localStorage.setItem('user_info', this.editUserInfo);
-        swal('Updated!', 'Profile Updated!', 'success');
-      },
-      (error) => console.error(error)
-    );
-    // }
+    // clearing errors before form submission
+    this.addressError = false;
+    this.countryError = false;
+    this.cityError = false;
+
+    if (this.editUserInfo.address.length === 0) {
+      this.addressError = true;
+      this.spinner.hide();
+    }
+    if (this.editUserInfo.country === null) {
+      this.countryError = true;
+      this.spinner.hide();
+    }
+    if (this.editUserInfo.city === null) {
+      this.cityError = true;
+      this.spinner.hide();
+    }
+
+    if (!this.addressError && !this.countryError && !this.cityError) {
+      delete this.editUserInfo.profile_pic;
+      this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
+        (success) => {
+          localStorage.setItem('user_info', this.editUserInfo);
+          this.spinner.hide();
+          swal('Updated!', 'Profile Updated!', 'success');
+        },
+        (error) => console.error(error)
+      );
+    }
   }
   getCountries() {
     this.countryList.allCountries().subscribe(
       (data) => {
         this.countries = [...data.data];
-        console.log(this.countries);
+        // console.log(this.countries);
       },
       (err) => console.error(err)
     );
   }
   onCountryChange(countryId) {
     // reset city if countryId changed
-    console.log(countryId);
+    // console.log(countryId);
     if (countryId !== this.editUserInfo.country) {
       this.editUserInfo.city = '';
     }
     this.countryList.allCities(countryId).subscribe(
       (data) => {
         this.editCities = [...data.data];
-        console.log(this.editCities);
+        // console.log(this.editCities);
       },
       (err) => console.error(err)
     );
@@ -116,10 +140,12 @@ export class EditProfileFormComponent implements OnInit {
     let file = event.target.files[0];
     let profilePic = new FormData();
     profilePic.append('profile_pic', file, file.name);
+    this.spinner.show();
 
     // upload the picture immidiately
     this.authService.updateProfile(this.userId, profilePic).subscribe(
       (success: any) => {
+        this.spinner.hide();
         this.openSnackBar('Profile Picture Updated!', 'OK');
         this.profile_pic = config.base_url + success.data.profile_pic.slice(1);
       },
@@ -131,34 +157,5 @@ export class EditProfileFormComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 5000,
     });
-  }
-
-  is_form_valid(): boolean {
-    let is_valid = false;
-    if (
-      typeof this.editUserInfo.full_name === 'string' &&
-      this.editUserInfo.full_name.toString().length > 0
-    ) {
-      is_valid = true;
-    } else {
-      is_valid = false;
-    }
-    if (
-      typeof this.editUserInfo.zip_code === 'number' &&
-      this.editUserInfo.zip_code.toString().length > 0
-    ) {
-      is_valid = true;
-    } else {
-      is_valid = false;
-    }
-    if (
-      typeof this.editUserInfo.address === 'string' &&
-      this.editUserInfo.address.toString().length > 0
-    ) {
-      is_valid = true;
-    } else {
-      is_valid = false;
-    }
-    return is_valid;
   }
 }
