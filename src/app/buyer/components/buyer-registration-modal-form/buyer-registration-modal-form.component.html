@@ -73,9 +73,15 @@
                   <label class="form-label" for="password">Password</label>
                   <label
                     for="passwordError"
+                    *ngIf="passwordValidationMessage"
+                    class="errors ml-1"
+                    >*{{ passwordValidationMessage }}</label
+                  >
+                  <label
+                    for="passwordError"
                     *ngIf="signUpForm.get('password').errors && submitted"
                     class="errors ml-1"
-                    >required</label
+                    >*required</label
                   >
                   <input
                     class="form-control"
