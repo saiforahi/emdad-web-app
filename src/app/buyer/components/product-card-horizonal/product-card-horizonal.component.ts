@@ -4,6 +4,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { config } from 'src/config';
 @Component({
   selector: 'app-product-card-horizonal',
   templateUrl: './product-card-horizonal.component.html',
@@ -14,7 +15,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   defaultImage = '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
   userId;
-
+  img_base_url=config.img_base_url
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
@@ -38,7 +39,6 @@ export class ProductCardHorizonalComponent implements OnInit {
       });
     }
     this.prodCartArray.push(prod);
-    // console.log(prod);
     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
     this.openSnackBar('Added to Cart','OK')
   }
@@ -60,7 +60,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   }
   
   slice_image_url(url: string) {
-    if (url.includes('http://127.0.0.1:8000')) {
+    if (url.includes(this.img_base_url)) {
       // console.log(url.slice(21));
       return url.slice(21);
     } else {
