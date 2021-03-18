@@ -4,6 +4,7 @@ import { GetCategoryService } from '../../../shared/services/get-category.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { config } from '../../../../config';
 
 @Component({
   selector: 'app-header',
@@ -22,12 +23,13 @@ export class HeaderComponent implements OnInit {
   currentUrl;
   showSideMenu = false;
   activeRoute: any;
+  loggedInUserImg: string = '';
 
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
     private snackBar: MatSnackBar,
-    private router: Router,
+    private router: Router
   ) {
     router.events.subscribe((val: any) => {
       if (val.url) {
@@ -49,6 +51,12 @@ export class HeaderComponent implements OnInit {
       } else {
         this.loggedInUser = true;
         this.userName = data;
+      }
+    });
+    this.UserAuthService.uImg.subscribe((data) => {
+      if (data != null) {
+        this.loggedInUserImg = config.img_base_url + data;
+        console.log(this.loggedInUserImg)
       }
     });
     this.UserAuthService.uId.subscribe((data) => {

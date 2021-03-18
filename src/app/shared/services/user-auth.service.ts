@@ -20,6 +20,7 @@ interface JWTPayload {
   username: string;
   email: string;
   exp: number;
+  profile_pic: string
 }
 
 @Injectable({
@@ -29,6 +30,7 @@ export class UserAuthService {
   private apiRoot = config.base_url + 'auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  uImg: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   // uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   s_uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   s_uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -39,6 +41,7 @@ export class UserAuthService {
   constructor(private http: HttpClient, private router: Router) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
+    this.uImg.next(localStorage.getItem('uimg'));
     this.s_uName.next(localStorage.getItem('s_username'));
     this.s_uId.next(localStorage.getItem('s_uid'));
     // this.uGroup.next(localStorage.getItem('group'));
@@ -52,10 +55,12 @@ export class UserAuthService {
       const expiresAt = moment.unix(payload.exp);
       localStorage.setItem('token', authResult.token);
       localStorage.setItem('username', payload.username);
+      localStorage.setItem('userimage', payload.profile_pic);
       localStorage.setItem('uid', JSON.stringify(payload.user_id));
       // localStorage.setItem('group', authResult.group);
       localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
       this.uName.next(localStorage.getItem('username'));
+      this.uImg.next(localStorage.getItem('uimg'));
       this.uId.next(localStorage.getItem('uid'));
       // this.uGroup.next(localStorage.getItem('group'));
     }
@@ -141,6 +146,7 @@ export class UserAuthService {
     // localStorage.removeItem('uGroup');
     localStorage.removeItem('expires_at');
     this.uName.next(null);
+    this.uImg.next(null);
     this.uId.next(null);
     // this.uGroup.next(null);
 
