@@ -8,9 +8,9 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./search-for.component.css'],
 })
 export class SearchForComponent implements OnInit {
-  products:any;
+  products:any = [];
   show_suggestion:boolean;
-  searchInput:string;
+  searchInput:string = '';
   constructor(
     private router: Router,
     private searchService: SearchService,
