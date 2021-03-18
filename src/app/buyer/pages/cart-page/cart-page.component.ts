@@ -3,6 +3,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { CouponService } from '../../../shared/services/coupon.service';
 import { VatService } from '../../../shared/services/vat.service';
 import { CommissionService } from '../../../shared/services/commission.services';
+import { config } from 'src/config';
 
 // interface Orders {
 //   total_amount?: number;
@@ -64,6 +65,7 @@ export class CartPageComponent implements OnInit {
   couponId: any = '';
   commissionAmount: number;
   totalItems = 0;
+  img_base_url = config.img_base_url
   // providing default value to prevnet error
   productInCart = [
     {
@@ -93,7 +95,7 @@ export class CartPageComponent implements OnInit {
     private coupon: CouponService,
     private vat: VatService,
     private commission: CommissionService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     window.scrollTo({
@@ -268,7 +270,7 @@ export class CartPageComponent implements OnInit {
     var finalCart = {
       subtotal: this.subTotal,
       discount: this.discount_coupon,
-      discount_type:this.couponType,
+      discount_type: this.couponType,
       vat: this.vatAmount,
       total: this.total_amount,
     };

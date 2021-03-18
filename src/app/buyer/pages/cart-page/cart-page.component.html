@@ -6,7 +6,7 @@
     <div class="col-md-8" style="background: #FFFFFF;">
       <div class="row mb-4 card-body" *ngFor="let product of productInCart; let i = index">
         <div class="col-md-2">
-          <img class="product-img" src="http://localhost:8000{{ product.image1 }}" />
+          <img class="product-img" [src]="this.img_base_url+product.image1" />
         </div>
         <div class="col-md-4" style="margin-left: 40px;">
           <div class="d-flex flex-column">

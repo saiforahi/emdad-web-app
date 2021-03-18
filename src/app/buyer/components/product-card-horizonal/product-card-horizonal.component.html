@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <a class="prod-img">
-                    <img class="w-100" *ngIf="product.image1 != null" mat-card-image [lazyLoad]="'http://localhost:8000'+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
+                    <img class="w-100" *ngIf="product.image1 != null" mat-card-image [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
                 </a>
             </div>
             <div class="col-md-6">
@@ -26,7 +26,7 @@
             <div class="col-sm-4" style="width: 100%;">
                 <mat-form-field class="example-form-field">
                     <mat-label>Qty</mat-label>
-                    <input matInput type="text">
+                    <input matInput type="text" #prod_qty>
                 </mat-form-field>
             </div>
             <div class="col-sm-8">
