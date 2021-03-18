@@ -97,7 +97,7 @@
               <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in / Sign up</a>
               <div class="user-name">
                 <a [routerLink]="['profile/', uId]">
-                  <img *ngIf="loggedInUserImg == ''" src="../../../../assets/Profile.svg" alt="" />
+                  <img *ngIf="loggedInUser && loggedInUserImg == ''" src="../../../../assets/Profile.svg" alt="" />
                   <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
                   <span *ngIf="loggedInUser">{{ userName }}</span>
                 </a>
