@@ -7,7 +7,7 @@ import { config } from 'src/config';
   providedIn: 'root',
 })
 export class CountryListService {
-  countryUrl: string = 'http://127.0.0.1:8000/api/country/list';
+  countryUrl: string = config.base_url + 'api/country/list';
   cityUrl: string = '';
 
   constructor(private http: HttpClient) {}
@@ -17,12 +17,12 @@ export class CountryListService {
   }
 
   allCities(id: number): Observable<any> {
-    this.cityUrl = config.base_url+'api/city/list/'+id+'/';
+    this.cityUrl = config.base_url + 'api/city/list/' + id + '/';
     return this.http.get(this.cityUrl);
   }
 
   getCountryOfCity(cityId): Observable<any> {
-    this.cityUrl = config.base_url+'api/city/details/'+cityId+'/';
+    this.cityUrl = config.base_url + 'api/city/details/' + cityId + '/';
     return this.http.get(this.cityUrl);
   }
 }

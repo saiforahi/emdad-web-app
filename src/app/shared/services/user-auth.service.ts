@@ -289,16 +289,13 @@ export class UserAuthService {
   }
 
   updateProfile(userId: number, user: any) {
-    console.log(user);
-    if (user.user_type === 'buyer') {
-      var httpOptions = {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-        }),
-      };
-      var updateURL =
-        config.base_url + 'api/buyer/profile/update/' + userId + '/';
-    }
+    var httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    var updateURL =
+      config.base_url + 'api/buyer/profile/update/' + userId + '/';
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
 
