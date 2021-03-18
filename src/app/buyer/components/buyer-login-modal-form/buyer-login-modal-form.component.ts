@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import swal from 'sweetalert';
 @Component({
   selector: 'app-buyer-login-modal-form',
@@ -23,7 +24,8 @@ export class BuyerSigninFormComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +74,7 @@ export class BuyerSigninFormComponent implements OnInit {
   }
 
   signin() {
+    this.spinner.show();
     var email = this.signInForm.get('email');
     var password = this.signInForm.get('password');
     this.submitted = true;
@@ -91,6 +94,7 @@ export class BuyerSigninFormComponent implements OnInit {
             localStorage.removeItem('password');
             this.signInForm.reset();
           }
+          this.spinner.hide();
 
           this.submitted = false;
           this.router.navigate(['/home']);
@@ -98,9 +102,12 @@ export class BuyerSigninFormComponent implements OnInit {
         (error) => {
           this.submitted = false;
           this.error = error;
+          this.spinner.hide();
           swal('Failed!', 'User with this credential not found', 'error');
         }
       );
+    } else {
+      this.spinner.hide();
     }
   }
 }

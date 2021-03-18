@@ -13,7 +13,7 @@ import { MaterialModule } from '../material.module';
     BuyerRoutingModule,
     NgbModule,
     MaterialModule,
-    CommonuiModule
-  ]
+    CommonuiModule,
+  ],
 })
-export class BuyerModule { }
+export class BuyerModule {}

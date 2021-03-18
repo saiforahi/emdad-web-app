@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-buyer-registration-modal-form',
@@ -33,7 +34,8 @@ export class BuyerRegistrationFormComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -57,14 +59,20 @@ export class BuyerRegistrationFormComponent implements OnInit {
 
   validatePassword(password: string) {
     var containsChracter = false;
+    var containsDigit = false;
 
     var numbers: string = '1234567890';
-    for (var i = 0; i < password.length; i++) {
+    var i;
+    for (i = 0; i < password.length; i++) {
       if (!numbers.includes(password[i])) {
         containsChracter = true;
-        break;
+      }
+      if (numbers.includes(password[i])) {
+        containsDigit = true;
       }
     }
+
+    if (!containsDigit) return 'Password should contains at least one digit';
     if (!containsChracter)
       return 'Password should contains at least one character';
     if (password.length < 8) return 'Password length should be 8 characters';
@@ -72,6 +80,8 @@ export class BuyerRegistrationFormComponent implements OnInit {
   }
 
   signup() {
+    this.spinner.show();
+
     var full_name = this.signUpForm.get('full_name');
     var email = this.signUpForm.get('email');
     var phone = this.signUpForm.get('phone');
@@ -105,6 +115,9 @@ export class BuyerRegistrationFormComponent implements OnInit {
             // this.router.navigate(['/login']);
             this.msg = success.message;
             console.log(success);
+            this.spinner.hide();
+            this.click = false;
+            this.submitted = false;
             if (success.success === 'True') {
               this.hide_buyer_registration();
               swal('Succeed!', this.msg, 'success');
@@ -114,11 +127,14 @@ export class BuyerRegistrationFormComponent implements OnInit {
             // ****************
             // only handling email error; need to update
             // ****************
+            this.spinner.hide();
+            this.click = false;
             this.error = error.error.email[0];
             swal('Failed!', this.error, 'error');
-            this.click = false;
           }
         );
+    } else {
+      this.spinner.hide();
     }
   }
 }
