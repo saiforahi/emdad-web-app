@@ -15,6 +15,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
   msg;
   passwordNotMatch: boolean = false;
   submitted: boolean = false;
+  passwordValidationMessage: any = null;
   // full_name: string = '';
   // email: string = '';
   // phone: string = '';
@@ -54,6 +55,22 @@ export class BuyerRegistrationFormComponent implements OnInit {
     this.passwordNotMatch = false;
   }
 
+  validatePassword(password: string) {
+    var containsChracter = false;
+
+    var numbers: string = '1234567890';
+    for (var i = 0; i < password.length; i++) {
+      if (!numbers.includes(password[i])) {
+        containsChracter = true;
+        break;
+      }
+    }
+    if (!containsChracter)
+      return 'Password should contains at least one character';
+    if (password.length < 8) return 'Password length should be 8 characters';
+    return null;
+  }
+
   signup() {
     var full_name = this.signUpForm.get('full_name');
     var email = this.signUpForm.get('email');
@@ -61,6 +78,7 @@ export class BuyerRegistrationFormComponent implements OnInit {
     var password = this.signUpForm.get('password');
     var confirm_pass = this.signUpForm.get('confirm_pass');
     this.submitted = true;
+    this.passwordValidationMessage = null;
 
     if (password.value !== confirm_pass.value) {
       this.passwordNotMatch = true;
@@ -68,11 +86,16 @@ export class BuyerRegistrationFormComponent implements OnInit {
       this.passwordNotMatch = false;
     }
 
+    if (this.validatePassword(password.value)) {
+      this.passwordValidationMessage = this.validatePassword(password.value);
+    }
+
     if (
       full_name.errors === null &&
       email.errors === null &&
       password.errors === null &&
-      !this.passwordNotMatch
+      !this.passwordNotMatch &&
+      this.passwordValidationMessage === null
     ) {
       this.click = true;
       this.authService
