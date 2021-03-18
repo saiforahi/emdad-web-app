@@ -10,14 +10,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopularProductsComponent } from '../../components/popular-products/popular-products.component';
 
 const routes: Routes = [
-  {path:'', component: HomePageComponent, pathMatch:'full'}
-]
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
+];
 
 @NgModule({
-  declarations: [
-    HomePageComponent,
-    PopularProductsComponent
-  ],
+  declarations: [HomePageComponent, PopularProductsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -25,7 +22,7 @@ const routes: Routes = [
     MaterialModule,
     LazyLoadImageModule,
     CommonuiModule,
-    NgbModule
-  ]
+    NgbModule,
+  ],
 })
-export class HomePageModule { }
+export class HomePageModule {}
