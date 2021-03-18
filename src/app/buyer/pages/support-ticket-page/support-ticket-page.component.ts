@@ -25,7 +25,10 @@ export class SupportTicketPageComponent implements OnInit {
   toggleSort = true;
   status = ['Initiative', 'Undergoing', 'Resolved'];
 
-  constructor(private ticketService: TicketService,private fileService: FileService) {}
+  constructor(
+    private ticketService: TicketService,
+    private fileService: FileService
+  ) {}
 
   ngOnInit(): void {
     let uid = localStorage.getItem('uid');
@@ -52,20 +55,23 @@ export class SupportTicketPageComponent implements OnInit {
       this.toggleSort = !this.toggleSort;
     }
   }
-  download(ticket_image_url:string) {
-    this.fileService.downloadFile(ticket_image_url).subscribe(response => {
-      console.log(response)
-			let blob:any = new Blob([response], { type: "text/plain;charset=utf-8" });
-			const url = window.URL.createObjectURL(blob);
-			//window.open(url);
-			//window.location.href = response.url;
-			fileSaver.saveAs(blob, 'employees.jpg');
-		}), error => console.log('Error downloading the file'),
-    () => console.info('File downloaded successfully');
+  download(ticket_image_url: string) {
+    this.fileService.downloadFile(ticket_image_url).subscribe((response) => {
+      // console.log(response);
+      let blob: any = new Blob([response], {
+        type: 'text/plain;charset=utf-8',
+      });
+      const url = window.URL.createObjectURL(blob);
+      //window.open(url);
+      //window.location.href = response.url;
+      fileSaver.saveAs(blob, 'employees.jpg');
+    }),
+      (error) => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
   }
-  get_image_name(image_url:string){
-    let param_array=image_url.split('/')
-    return param_array[param_array.length-1]
+  get_image_name(image_url: string) {
+    let param_array = image_url.split('/');
+    return param_array[param_array.length - 1];
   }
   formatDate(d: string): string {
     return new Date(d).toDateString();

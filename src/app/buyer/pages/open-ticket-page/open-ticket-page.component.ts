@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { TicketService } from '../../../shared/services/ticket.service';
 
@@ -27,7 +28,8 @@ export class OpenTicketPageComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class OpenTicketPageComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    this.spinner.show();
     if (
       this.ticketForm.get('title').errors === null &&
       this.ticketForm.get('description').errors === null
@@ -56,13 +59,22 @@ export class OpenTicketPageComponent implements OnInit {
         this.ticketForm.value.order_code
       );
 
-      this.ticketService
-        .openTicket(this.ticketFormData)
-        .subscribe((response) => {
-          console.log(response);
+      this.ticketService.openTicket(this.ticketFormData).subscribe(
+        (response) => {
+          this.spinner.hide();
+          // console.log(response);
           this.router.navigate(['/support-ticket']);
-          swal("Created!","Support ticket created successfully","success")
-        });
+          swal('Created!', 'Support ticket created successfully', 'success');
+        },
+        (error) => {
+          this.spinner.hide();
+          swal(
+            'Ticket Creation Error',
+            'Support ticket creatiion failed',
+            'error'
+          );
+        }
+      );
     }
   }
 
@@ -83,8 +95,8 @@ export class OpenTicketPageComponent implements OnInit {
       this.selectedImage,
       this.selectedImage.name
     );
-    console.log(this.selectedImage);
-    console.log(this.selectedImage.name);
+    // console.log(this.selectedImage);
+    // console.log(this.selectedImage.name);
   }
 
   removeImage() {
