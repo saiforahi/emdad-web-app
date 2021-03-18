@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { QuotationService } from '../../../shared/services/quotation.service';
 import swal from 'sweetalert';
@@ -40,7 +41,8 @@ export class RfqPageComponent implements OnInit {
     private getProduct: GetProductService,
     private formBuilder: FormBuilder,
     private quotationService: QuotationService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class RfqPageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.clicked = true;
+    this.spinner.show();
 
     if (
       this.rfqForm.get('email').errors == null &&
@@ -73,6 +76,7 @@ export class RfqPageComponent implements OnInit {
       this.quotationService.createQuotation(this.rfqForm.value).subscribe(
         (res) => {
           console.log(res);
+          this.spinner.hide();
           swal('Succeed!', 'Request for quotation Successfull', 'success');
           this.router.navigate(['/']);
         },

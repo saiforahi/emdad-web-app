@@ -98,8 +98,7 @@ export class BuyerSigninFormComponent implements OnInit {
         (error) => {
           this.submitted = false;
           this.error = error;
-          console.log(error);
-          swal('Failed!', error.message, 'error');
+          swal('Failed!', 'User with this credential not found', 'error');
         }
       );
     }
