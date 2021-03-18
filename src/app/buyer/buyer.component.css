@@ -1,0 +1,11 @@
+@media only screen and (max-width: 991px) {
+  .router-outlet-holder {
+    margin-top: 60px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .router-outlet-holder {
+    margin-top: 200px;
+  }
+}

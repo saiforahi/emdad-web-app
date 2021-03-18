@@ -3,6 +3,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,14 +20,24 @@ export class HeaderComponent implements OnInit {
   showAllProdDiv: boolean = false;
   categories: Observable<any>;
   currentUrl;
+  showSideMenu = false;
+  activeRoute: any;
 
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private router: Router,
+  ) {
+    router.events.subscribe((val: any) => {
+      if(val.url){
+        this.activeRoute = val.url.split("/");
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.activeRoute = this.router.url.split('/');
     window.scrollTo({
       top: 0,
       left: 0,
@@ -118,6 +129,15 @@ export class HeaderComponent implements OnInit {
 
   showAllProdlist() {
     this.showAllProdDiv = !this.showAllProdDiv;
+  }
+
+  showMenu(){
+    this.showSideMenu = true;
+    console.log(this.showSideMenu)
+  }
+
+  closeMenu(){
+    this.showSideMenu = false;
   }
 
   @HostListener('window:scroll')

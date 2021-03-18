@@ -159,7 +159,7 @@ export class UserAuthService {
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   sellerLogout() {

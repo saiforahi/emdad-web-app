@@ -93,7 +93,7 @@ export class BuyerSigninFormComponent implements OnInit {
           }
 
           this.submitted = false;
-          this.router.navigate(['']);
+          this.router.navigate(['/home']);
         },
         (error) => {
           this.submitted = false;
