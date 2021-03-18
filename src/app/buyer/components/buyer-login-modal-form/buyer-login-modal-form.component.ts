@@ -28,6 +28,19 @@ export class BuyerSigninFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = 'buyer';
+    this.rememberMe = false;
+
+    var email = localStorage.getItem('email');
+    var password = localStorage.getItem('password');
+
+    if (email !== null && email !== 'null') {
+      this.signInForm.controls['email'].setValue(localStorage.getItem('email'));
+      this.rememberMe = true;
+    }
+    if (password !== null && password !== 'null')
+      this.signInForm.controls['password'].setValue(
+        localStorage.getItem('password')
+      );
   }
 
   hide_buyer_login() {
@@ -41,11 +54,21 @@ export class BuyerSigninFormComponent implements OnInit {
     document.getElementById('buyerRegistration').style.display = 'block';
     this.signInForm.reset();
     this.submitted = false;
+
+    if (localStorage.getItem('email') !== 'null') {
+      this.signInForm.controls['email'].setValue(localStorage.getItem('email'));
+      this.rememberMe = true;
+    }
+    if (localStorage.getItem('password') !== 'null')
+      this.signInForm.controls['password'].setValue(
+        localStorage.getItem('password')
+      );
   }
 
   show_forget_password(): void {
     document.getElementById('buyerLogin').style.display = 'none';
     this.router.navigate(['/forget-password']);
+    this.rememberMe = false;
   }
 
   signin() {
@@ -57,8 +80,19 @@ export class BuyerSigninFormComponent implements OnInit {
       this.authService.login(email.value, password.value, this.group).subscribe(
         (success) => {
           document.getElementById('buyerLogin').style.display = 'none';
-          console.log(success);
+          // console.log(success);
           swal('Succeed', 'You have logged in successfully', 'success');
+
+          if (this.rememberMe) {
+            localStorage.setItem('email', email.value);
+            localStorage.setItem('password', password.value);
+          } else {
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            this.signInForm.reset();
+          }
+
+          this.submitted = false;
           this.router.navigate(['']);
         },
         (error) => {

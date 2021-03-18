@@ -26,7 +26,7 @@ interface JWTPayload {
   providedIn: 'root',
 })
 export class UserAuthService {
-  private apiRoot = config.base_url+'auth/';
+  private apiRoot = config.base_url + 'auth/';
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   // uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -94,7 +94,7 @@ export class UserAuthService {
       }),
     };
     return this.http.get(
-      config.base_url+'api/profile/details/' + id + '/',
+      config.base_url + 'api/profile/details/' + id + '/',
       httpOptions
     );
   }
@@ -107,7 +107,7 @@ export class UserAuthService {
       }),
     };
     return this.http.get(
-      config.base_url+'api/profile/details/' + id + '/',
+      config.base_url + 'api/profile/details/' + id + '/',
       httpOptions
     );
   }
@@ -119,7 +119,7 @@ export class UserAuthService {
     password: String
   ): Observable<any> {
     return this.http
-      .post(config.base_url+'api/buyer/registration/', {
+      .post(config.base_url + 'api/buyer/registration/', {
         full_name,
         email,
         phone,
@@ -130,7 +130,7 @@ export class UserAuthService {
 
   sellerSignup(data): Observable<any> {
     return this.http
-      .post(config.base_url+'api/seller/registration/', data)
+      .post(config.base_url + 'api/seller/registration/', data)
       .pipe(shareReplay());
   }
 
@@ -143,7 +143,22 @@ export class UserAuthService {
     this.uName.next(null);
     this.uId.next(null);
     // this.uGroup.next(null);
+
+    // for remeberMe case email and password will be stored
+    var email = localStorage.getItem('email');
+    var password = localStorage.getItem('password');
+
     localStorage.clear();
+
+    if (
+      email !== 'null' &&
+      email !== null &&
+      password !== 'null' &&
+      password !== null
+    ) {
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+    }
     this.router.navigate(['/']);
   }
 
@@ -240,7 +255,7 @@ export class UserAuthService {
       }),
     };
     return this.http.put(
-      config.base_url+'api/change/password/',
+      config.base_url + 'api/change/password/',
       { old_password, new_password },
       httpOptions
     );
@@ -254,20 +269,20 @@ export class UserAuthService {
       }),
     };
     return this.http.put(
-      config.base_url+'api/change/password/',
+      config.base_url + 'api/change/password/',
       { old_password, new_password },
       httpOptions
     );
   }
 
   forgotPassword(email): Observable<any> {
-    return this.http.post(config.base_url+'api/password_reset/', {
+    return this.http.post(config.base_url + 'api/password_reset/', {
       email,
     });
   }
 
   resetPassword(token, password): Observable<any> {
-    return this.http.post(config.base_url+'api/password_reset/confirm/', {
+    return this.http.post(config.base_url + 'api/password_reset/confirm/', {
       token,
       password,
     });
@@ -281,7 +296,8 @@ export class UserAuthService {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
         }),
       };
-      var updateURL = config.base_url+'api/buyer/profile/update/'+userId+'/';
+      var updateURL =
+        config.base_url + 'api/buyer/profile/update/' + userId + '/';
     }
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
@@ -293,7 +309,8 @@ export class UserAuthService {
         Authorization: 'Bearer ' + localStorage.getItem('s_token'),
       }),
     };
-    const updateURL = config.base_url+'api/seller/profile/update/'+userId+'/'
+    const updateURL =
+      config.base_url + 'api/seller/profile/update/' + userId + '/';
     return this.http.post(updateURL, user, httpOptions).pipe(shareReplay());
   }
 
@@ -303,7 +320,13 @@ export class UserAuthService {
         Authorization: 'Bearer ' + localStorage.getItem('s_token'),
       }),
     };
-    const updateURL = config.base_url+'api/user/file/delete/'+localStorage.getItem('s_uid')+'/'+column_name+'/';
+    const updateURL =
+      config.base_url +
+      'api/user/file/delete/' +
+      localStorage.getItem('s_uid') +
+      '/' +
+      column_name +
+      '/';
     return this.http.get(updateURL, httpOptions);
   }
 }
