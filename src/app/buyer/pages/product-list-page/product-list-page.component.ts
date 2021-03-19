@@ -16,7 +16,6 @@ export class ProductListPageComponent implements OnInit {
   products: any = [];
   prodEnd;
   nextBatchProdLink;
-  categoryId;
   category: any;
   prevParam;
   prodInRow6;
@@ -29,8 +28,10 @@ export class ProductListPageComponent implements OnInit {
   _brand: any;
   _color: any;
   _price: any;
-  _category: any;
+  selected_child_category: any;
+  selected_child_category_name: any;
   colors: any = [];
+  brands:any=[];
   prices: any = [];
   sellerCat = [
     { "cat_name": "cat 3", "id": 2 },
@@ -57,29 +58,30 @@ export class ProductListPageComponent implements OnInit {
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
-    this.categoryId = this.route.snapshot.params['id'];
+    this.selected_child_category = this.route.snapshot.params['id'];
     this.getCategories.category().subscribe((item) => {
       // console.log(item);
       this.categories = item;
-      console.log('categories',this.categories)
       this.categories.forEach(element => {
         element.children.forEach(element1 => {
           element1.children.forEach(element2 => {
-            if (element2.id == this.categoryId) {
+            if (element2.id == this.selected_child_category) {
+              this.selected_child_category_name=element2.name
+              this.expandedSubCat=element1.id
               this.category = element
             }
           });
         });
       });
     });
+    
     this.sellerId = this.route.snapshot.params['id'];
-    this.expandedCat = parseInt(localStorage.getItem("expandedCat"));
-    this.expandedSubCat = parseInt(localStorage.getItem("expandedSubCat"));
+    // this.expandedCat = parseInt(localStorage.getItem("expandedCat"));
+    // this.expandedSubCat = parseInt(localStorage.getItem("expandedSubCat"));
     // check for is seller ==>
     const getUrlStr = this.router.url;
     const newstr = getUrlStr.substr(10, 6);
     this.isSeller = newstr == 'seller' ? true : false;
-    // <==
     // if its not the seller-page then its the category page
     if (this.isSeller == true) {
       // get product by seller
@@ -89,9 +91,10 @@ export class ProductListPageComponent implements OnInit {
       });
     } else {
       // get product by category
-      this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
+      this.getProduct.getProductByCategory(this.selected_child_category).subscribe((item) => {
         this.products = item.data.results;
         this.get_menus();
+        this.prices = this.get_price_ranges()
         this.nextBatchProdLink = item.data.links.next;
       });
     }
@@ -99,8 +102,8 @@ export class ProductListPageComponent implements OnInit {
   set_style(value: string) {
     this.style = value;
   }
-  setBrand(brand_name) {
-    this._brand = brand_name
+  setBrand(brand_name){
+    this._brand=brand_name
     this._filter()
   }
   setColor(color_name) {
@@ -111,31 +114,51 @@ export class ProductListPageComponent implements OnInit {
     this._price = price
     this._filter()
   }
-  get_menus() {
+  onSliderChange(event){
+    let query: string = 'category=' + this.selected_child_category_name
+    if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
+      query += '&brand=' + this._brand
+    }
+    if (this._color !== null && this._color !== undefined && this._color !== '') {
+      query += '&color=' + this._color
+    }
+    console.log(query + '&min_price='+this.min_price+'&max_price='+event.value)
+    this.searchService.filter_products(query + '&min_price='+this.min_price+'&max_price='+event.value).subscribe((item) => {
+      this.products = item.data.results;
+      console.log(this.products)
+      this.get_menus()
+    });
+  }
+  get_menus() { //setting menues from product list
     if (this.products.length > 0) {
-      this.min_price = this.products[0].unit_price;
-      this.max_price = this.products[0].unit_price;
       Array.from(this.products).forEach((product: any) => {
-        if (this.min_price > product.unit_price) {
-          this.min_price = product.unit_price
+        if(product.color!==null){
+          this.colors.push(product.color)
         }
-        if (this.max_price < product.unit_price) {
-          this.max_price = product.unit_price
+        if(product.brand!==null){
+          this.brands.push(product.brand)
         }
-        this.colors.push(product.color)
       })
+      this._color=""
+      this._brand=""
+      this.brands=this.brands.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting brands
       this.colors = this.colors.filter((value, index, array) => array.findIndex(t => (t.id === value.id)) === index) //setting colors
-      this.prices = this.get_price_ranges()
     }
   }
   getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {
-    this._category = ChildCatName;
-    //this.get_menus();
     this.router.navigate(['/products/category/', ChildCatId]);
-    localStorage.setItem("expandedSubCat", subCatId);
-    localStorage.setItem("expandedCat", catId);
   }
   get_price_ranges() {
+    this.min_price = this.products[0].unit_price;
+    this.max_price = this.products[0].unit_price;
+    Array.from(this.products).forEach((product: any) => {
+      if (this.min_price > product.unit_price) {
+        this.min_price = product.unit_price
+      }
+      if (this.max_price < product.unit_price) {
+        this.max_price = product.unit_price
+      }
+    })
     if (this.max_price !== this.min_price) {
       let range = Math.trunc((this.max_price - this.min_price) / 3)
       let ranges = new Array()
@@ -147,7 +170,6 @@ export class ProductListPageComponent implements OnInit {
   }
   getNextBatchproduct() {
     if (this.nextBatchProdLink != null) {
-      //Do your action here
       console.log('reached bootm');
       this.getProduct
         .getNextBatchProduct(this.nextBatchProdLink)
@@ -171,27 +193,18 @@ export class ProductListPageComponent implements OnInit {
   _filter() {
     let query: string = ''
     if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
-      query += 'brand=' + this._brand
+      query += '&brand=' + this._brand
     }
     if (this._color !== null && this._color !== undefined && this._color !== '') {
-      if (query.includes('brand')) {
-        query += '&color=' + this._color
-      }
-      else {
-        query += 'color=' + this._color
-      }
+      query += '&color=' + this._color
     }
     if (this._price !== null && this._price !== undefined && this._price !== '') {
-      if (query.includes('color')) {
-        query += '&min_price=' + this._price.split(" ")[0] + '&max_price=' + this._price.split(" ")[1]
-      }
-      else {
-        query += 'min_price=' + this._price.split(" ")[0] + '&max_price=' + this._price.split(" ")[1]
-      }
+      query += '&min_price=' + this._price.split(" ")[0] + '&max_price=' + this._price.split(" ")[1]
     }
-    console.log('category=' + this._category + '&' + query)
-    this.searchService.filter_products('category=' + this._category + '&' + query).subscribe((item) => {
+    console.log('category=' + this.selected_child_category_name +query)
+    this.searchService.filter_products('category=' + this.selected_child_category_name +  query).subscribe((item) => {
       this.products = item.data.results;
+      console.log(this.products)
       this.get_menus()
     });
   }

@@ -17,7 +17,7 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="expanded-div mt-2">
+                        <div *ngIf="brands" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let brand of brands">
                                 <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>

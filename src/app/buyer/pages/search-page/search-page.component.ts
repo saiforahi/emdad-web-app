@@ -55,13 +55,12 @@ export class SearchPageComponent implements OnInit {
     console.log(event.value)
   }
   getProdOnFilter(ChildCatId, subCatId, catId) {
-    this.router.navigate(['/products/category/', ChildCatId]);
-    localStorage.setItem('expandedSubCat', subCatId);
-    localStorage.setItem('expandedCat', catId);
+    this.router.navigate(['/products/category/', ChildCatId])
   }
   get_menus(){
     this.min_price=this.products[0].unit_price;
     this.max_price=this.products[0].unit_price;
+    console.log(this.products)
     Array.from(this.products).forEach((product:any)=>{
       if(this.min_price>product.unit_price){
         this.min_price=product.unit_price
@@ -69,8 +68,12 @@ export class SearchPageComponent implements OnInit {
       if(this.max_price<product.unit_price){
         this.max_price=product.unit_price
       }
-      this.brands.push(product.brand)
-      this.colors.push(product.color)
+      if(product.brand!==null){
+        this.brands.push(product.brand)
+      }
+      if(product.color!==null){
+        this.colors.push(product.color)
+      }
     })
     this.brands=this.brands.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting brands
     this.colors=this.colors.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting colors

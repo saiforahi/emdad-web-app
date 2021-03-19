@@ -1,9 +1,37 @@
+<section *ngIf="isSeller" class="banner">
+    <!-- <img src="" alt=""> banner image-->
+</section>
+<section *ngIf="isSeller" style="background: #fff;">
+    <h4 class="container store-name-header mb-0">CEVENNESFE OFFICIAL STORE</h4>
+</section>
+<section *ngIf="isSeller" class="seller-cat-menu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
+        <div class="container">
+            <span class="navbar-brand"><img class="rounded" src="../../../assets/images/avatar.svg" alt="seller logo"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+                aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                <div>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active" style="margin-right: 17px;" *ngFor="let cat of sellerCat">
+                            <a class="nav-link" [routerLink]="['/']">
+                                {{cat.cat_name | titlecase}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>
 <app-breadcrumbs *ngIf="products[0]" [directoryString]="'Categories / '+products[0].category.name" [searchLength]="products.length" (view_style)="set_style($event)"></app-breadcrumbs>
 <section class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="d-flex">
-                <div class="p-3 cat-header w-100" style="padding-left: 5px;">
+                <div class="p-3 cat-header w-100">
                     Categories
                 </div>
             </div>
@@ -46,7 +74,7 @@
                                         <!-- level three -->
                                         <div *ngFor="let child of subcategory.children">
                                             <!-- [routerLink]="['/products/category/', child.id]" -->
-                                            <p [ngClass]="categoryId == child.id ? 'active_cat child-cat' : 'child-cat'" (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
+                                            <p [ngClass]="selected_child_category == child.id ? 'ative-child-cat' : 'child-cat'" (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
                                                 {{child.name | titlecase}}
                                             </p>
                                         </div>
@@ -61,13 +89,13 @@
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 <div class="cat-head">
-                                    Colors
+                                    Brands
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="expanded-div">
-                            <mat-panel-title *ngFor="let color of colors">
-                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="example-margin">{{color.name | titlecase}}</mat-checkbox>
+                        <div *ngIf="brands" class="expanded-div">
+                            <mat-panel-title *ngFor="let brand of brands">
+                                <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="color-check-box">{{brand.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -77,11 +105,27 @@
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 <div class="cat-head">
+                                    Colors
+                                </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="expanded-div">
+                            <mat-panel-title *ngFor="let color of colors">
+                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="color-check-box">{{color.name | titlecase}}</mat-checkbox>
+                            </mat-panel-title>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion *ngIf="prices">
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="cat-head">
                                     Price
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <mat-slider thumbLabel></mat-slider>
+                        <mat-slider (input)="onSliderChange($event)" [max]="max_price" [min]="min_price+1" thumbLabel></mat-slider>
                         <div class="expanded-div">
                             <mat-panel-title *ngFor="let range of prices">
                                 <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')" class="example-margin">{{range.name}}</mat-checkbox>

@@ -31,10 +31,9 @@
   font-size: 24px;
   line-height: 35px;
   /* identical to box height */
-
+  padding-left: 5px;
   background: #89A1C8;
   /* white */
-
   color: #FFFFFF;
 }
 .cat-title{
@@ -79,14 +78,19 @@
   font-weight: normal;
   font-size: 18px;
 }
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
-  opacity: 0.03 !important;
-  background-color: #F49814!important;
-}
 
+.color-check-box{
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2B2B2B;
+  margin:  10px 0px 0px 0px !important;
+}
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-    background-color: #F49814;
-  }
+  background-color: #F49814;
+}
 /* mat slider css */
 ::ng-deep .mat-slider-horizontal{
   width: 100% !important;
@@ -163,8 +167,11 @@ nav {
 .child-cat{
   margin-left: 10px;
   cursor: pointer;
+  color: black;
 }
-.ative_cat{
+.ative-child-cat{
+  margin-left: 10px;
+  cursor: pointer;
   color: #F49814;
 }
 
