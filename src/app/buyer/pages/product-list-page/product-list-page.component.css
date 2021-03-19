@@ -171,7 +171,7 @@ nav {
 .product-list-content {
   width: 75%;
   float: left;
-  padding: 0 15px 0 30px;
+  padding: 0 15px 0 15px;
 }
 .cat-menu-toggle-btn {
   display: none;
@@ -277,6 +277,10 @@ nav {
   }
   .expanded-div {
     font-size: 16px;
+  }
+  .view-more-btn-div {
+    text-align: center;
+    padding: 20px 0 30px;
   }
   .view-more-btn-div button {
     padding: 0px 35px;

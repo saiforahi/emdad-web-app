@@ -1,5 +1,33 @@
+.view-more-btn-div {
+  text-align: center;
+  padding: 60px 0 90px;
+}
+
+.view-more-btn-div button {
+  background: #1f4f9e;
+  color: #fff;
+  padding: 22px 35px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 1200px) {
-    .container {
-      max-width: 1600px !important;
-    }
+  .container {
+    max-width: 1600px !important;
   }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .view-more-btn-div {
+    text-align: center;
+    padding: 20px 0 30px;
+  }
+  .view-more-btn-div button {
+    padding: 0px 35px;
+    font-size: 16px;
+    height: 40px;
+  }
+}
