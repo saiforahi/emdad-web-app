@@ -92,7 +92,47 @@ mat-card:hover button {
   margin-bottom: 0px !important;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 575px) {
+  mat-card-content {
+    padding: 0 16px 16px;
+  }
+  .product-name {
+    margin: 10px 0 5px !important;
+    font-size: 12px;
+  }
+  .product-price {
+    font-size: 16px;
+  }
+  .store-name {
+    font-size: 12px;
+  }
+  mat-card button {
+    top: 10px;
+    right: 10px;
+    height: 35px;
+    width: 35px;
+  }
+  mat-card button img {
+    height: 15px;
+  }
+  ::ng-deep .mat-fab .mat-button-wrapper {
+    padding: 4px 0 !important;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 450px) {
+  img {
+    height: 120px;
+  }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 575px) {
+  img {
+    height: 170px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 991px) {
   img {
     height: 120px;
   }
@@ -120,5 +160,17 @@ mat-card:hover button {
   }
   ::ng-deep .mat-fab .mat-button-wrapper {
     padding: 4px 0 !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  img {
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  img {
+    height: 150px;
   }
 }

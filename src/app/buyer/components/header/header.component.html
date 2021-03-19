@@ -68,7 +68,7 @@
 </section>
 <section class=" d-sx-none d-sm-none d-md-none d-lg-block">
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <div class="container pl-0 pr-0">
+    <div class="container">
       <a class="navbar-brand" [routerLink]="['/home']"><img src="../assets/logo.svg" alt="logo" /></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <div class="">
@@ -93,8 +93,11 @@
             <li [ngClass]="{'d-none':!showOnScroll, 'd-block':showOnScroll}" class="nav-item search-prod">
               <app-search-for></app-search-for>
             </li>
-            <li class="nav-item" style="margin: 0 42px">
-              <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">Sign in / Sign up</a>
+            <li class="nav-item user-name-holder">
+              <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">
+                <span class="sign-text">Sign in / Sign up</span>
+                <img class="sign-icon" src="../../../../assets/Login.svg" alt="">
+              </a>
               <div class="user-name">
                 <a [routerLink]="['profile/', uId]">
                   <img *ngIf="loggedInUser && loggedInUserImg == ''" src="../../../../assets/Profile.svg" alt="" />
@@ -242,7 +245,7 @@
 </section>
 <section class=" d-sx-none d-sm-none d-md-none d-lg-block">
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light secondary-menu">
-    <div class="container pl-0 pr-0">
+    <div class="container">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
         aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

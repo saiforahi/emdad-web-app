@@ -162,7 +162,7 @@ nav .profile-list img {
 
 .secondary-menu {
   height: 80px;
-  background:rgba(244, 244, 244, 0.9) !important;
+  background: rgba(244, 244, 244, 0.9) !important;
   box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
   z-index: 9;
@@ -287,6 +287,17 @@ button:focus {
   background: #e8e8e8;
 }
 
+.user-name-holder {
+  margin: 0 42px;
+}
+
+.user-name-holder .sign-text {
+  display: inline-block;
+}
+.user-name-holder .sign-icon {
+  display: none;
+}
+
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
@@ -359,22 +370,59 @@ button:focus {
     list-style: none;
     padding: 0;
   }
-  .menu-list li{
+  .menu-list li {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     margin-bottom: 20px;
   }
-  .menu-list li img{
+  .menu-list li img {
     width: 20px;
     height: 20px;
     vertical-align: sub;
   }
-  .menu-list li span{
+  .menu-list li span {
     padding-left: 15px;
   }
-  .menu-list li.active span{
+  .menu-list li.active span {
     color: #1f4f9e;
     font-weight: 600;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .navbar-brand img {
+    height: 50px;
+  }
+  .user-name-holder {
+    margin: 0 15px;
+  }
+  .user-name-holder .sign-text {
+    display: none;
+  }
+  .user-name-holder .sign-icon {
+    display: inline-block;
+    height: 30px;
+  }
+  .user-name span {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .navbar-brand img {
+    height: 50px;
+  }
+  .user-name-holder {
+    margin: 0 15px;
+  }
+  .user-name-holder .sign-text {
+    display: inline-block;
+  }
+  .user-name-holder .sign-icon {
+    display: none;
+  }
+  .user-name span {
+    display: none;
   }
 }
