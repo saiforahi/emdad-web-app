@@ -47,12 +47,13 @@
   background: #efefef;
   border-radius: 5px;
 }
+
 .btn {
   background: #454f63;
   border-radius: 5px;
   color: white;
-  margin-left: 15px;
 }
+
 .frgt-btn {
   background: #1f4f9e;
   border-radius: 5px;
@@ -70,15 +71,63 @@
   color: black;
 }
 
-.input-group:not(.has-validation) > .form-control:not(:last-child) {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.input-group > .input-group-append > .btn {
+.btn {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
+  height: 80px;
+  margin-top: 15px;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .fp-header {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .fp-para {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .form-control {
+    height: 50px;
+    font-size: 16px;
+  }
+  .btn {
+    font-weight: 500;
+    height: 50px;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .form-control {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  .fp-header {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .fp-para {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .form-control {
+    height: 60px;
+    font-size: 18px;
+  }
+  .btn {
+    font-weight: 500;
+    height: 60px;
+    margin-top: 15px;
+    font-size: 18px;
+  }
 }
