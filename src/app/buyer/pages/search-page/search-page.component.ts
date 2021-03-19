@@ -77,12 +77,14 @@ export class SearchPageComponent implements OnInit {
     this.prices=this.get_price_ranges()
   }
   get_price_ranges(){
-    let range=Math.trunc((this.max_price-this.min_price)/3)
-    let ranges=new Array()
-    ranges.push({value:(Math.trunc(this.min_price)-1)+' '+((Math.trunc(this.min_price)+range+1)),name:'$'+Math.trunc(this.min_price)+' to $'+(Math.trunc(this.min_price)+range)})
-    ranges.push({value:(Math.trunc(this.min_price)+range-1)+' '+(Math.trunc(this.min_price)+(range*2)+1),name:'$'+(Math.trunc(this.min_price)+range)+' to $'+(Math.trunc(this.min_price)+(range*2))})
-    ranges.push({value:(Math.trunc(this.min_price)+(range*2)-1)+' '+(Math.trunc(this.max_price)+1),name:'$'+(Math.trunc(this.min_price)+(range*2))+' to $'+Math.trunc(this.max_price)})
-    return ranges;
+    if(this.max_price!==this.min_price){
+      let range=Math.trunc((this.max_price-this.min_price)/3)
+      let ranges=new Array()
+      ranges.push({value:(Math.trunc(this.min_price)-1)+' '+((Math.trunc(this.min_price)+range+1)),name:'$'+Math.trunc(this.min_price)+' to $'+(Math.trunc(this.min_price)+range)})
+      ranges.push({value:(Math.trunc(this.min_price)+range-1)+' '+(Math.trunc(this.min_price)+(range*2)+1),name:'$'+(Math.trunc(this.min_price)+range)+' to $'+(Math.trunc(this.min_price)+(range*2))})
+      ranges.push({value:(Math.trunc(this.min_price)+(range*2)-1)+' '+(Math.trunc(this.max_price)+1),name:'$'+(Math.trunc(this.min_price)+(range*2))+' to $'+Math.trunc(this.max_price)})
+      return ranges;
+    }
   }
   setBrand(brand_name){
     this._brand=brand_name

@@ -1,31 +1,3 @@
-<section *ngIf="isSeller" class="banner">
-    <!-- <img src="" alt=""> banner image-->
-</section>
-<section *ngIf="isSeller" style="background: #fff;">
-    <h4 class="container store-name-header mb-0">CEVENNESFE OFFICIAL STORE</h4>
-</section>
-<section *ngIf="isSeller" class="seller-cat-menu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
-        <div class="container">
-            <span class="navbar-brand"><img class="rounded" src="../../../assets/images/avatar.svg" alt="seller logo"></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
-                aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <div>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active" style="margin-right: 17px;" *ngFor="let cat of sellerCat">
-                            <a class="nav-link" [routerLink]="['/']">
-                                {{cat.cat_name | titlecase}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</section>
 <app-breadcrumbs *ngIf="products[0]" [directoryString]="'Categories / '+products[0].category.name" [searchLength]="products.length" (view_style)="set_style($event)"></app-breadcrumbs>
 <section class="container">
     <div class="row">
@@ -74,9 +46,9 @@
                                         <!-- level three -->
                                         <div *ngFor="let child of subcategory.children">
                                             <!-- [routerLink]="['/products/category/', child.id]" -->
-                                            <a style="margin-left: 10px;" (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
+                                            <p [ngClass]="categoryId == child.id ? 'active_cat child-cat' : 'child-cat'" (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
                                                 {{child.name | titlecase}}
-                                            </a>
+                                            </p>
                                         </div>
                                     </div>
                                 </mat-expansion-panel>

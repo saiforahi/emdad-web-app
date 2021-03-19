@@ -160,6 +160,13 @@ nav {
 .example-margin {
   margin: 8px;
 }
+.child-cat{
+  margin-left: 10px;
+  cursor: pointer;
+}
+.ative_cat{
+  color: #F49814;
+}
 
 
 /* search page styles */

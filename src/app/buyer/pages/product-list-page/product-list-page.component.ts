@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
@@ -11,33 +11,32 @@ import { SearchService } from '../../../shared/services/search.service';
 })
 export class ProductListPageComponent implements OnInit {
   sellerId;
-  style:string;
+  style: string;
   isSeller = false;
-  products = [];
+  products: any = [];
   prodEnd;
   nextBatchProdLink;
   categoryId;
-  category:any;
+  category: any;
   prevParam;
   prodInRow6;
   panelOpenState = true;
   categories: any;
   expandedCat;
   expandedSubCat;
-  min_price:any;
-  max_price:any;
-  _brand:any;
-  _color:any;
-  _price:any;
-  _category:any;
-  brands:any=[];
-  colors:any=[];
-  prices:any=[];
+  min_price: any;
+  max_price: any;
+  _brand: any;
+  _color: any;
+  _price: any;
+  _category: any;
+  colors: any = [];
+  prices: any = [];
   sellerCat = [
-    {"cat_name": "cat 3", "id": 2},
-    {"cat_name": "cat 6", "id": 3},
-    {"cat_name": "cat 4", "id": 4},
-    {"cat_name": "cat 2", "id": 5}
+    { "cat_name": "cat 3", "id": 2 },
+    { "cat_name": "cat 6", "id": 3 },
+    { "cat_name": "cat 4", "id": 4 },
+    { "cat_name": "cat 2", "id": 5 }
   ]
   constructor(
     private getProduct: GetProductService,
@@ -45,7 +44,7 @@ export class ProductListPageComponent implements OnInit {
     private route: ActivatedRoute,
     private getCategories: GetCategoryService,
     private snackBar: MatSnackBar,
-    private searchService:SearchService
+    private searchService: SearchService
   ) {
     this.route.paramMap.subscribe((params) => {
       this.ngOnInit();
@@ -54,7 +53,7 @@ export class ProductListPageComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.style='grid'
+    this.style = 'grid'
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
@@ -62,12 +61,12 @@ export class ProductListPageComponent implements OnInit {
     this.getCategories.category().subscribe((item) => {
       // console.log(item);
       this.categories = item;
-      console.log(this.categories)
+      console.log('categories',this.categories)
       this.categories.forEach(element => {
         element.children.forEach(element1 => {
           element1.children.forEach(element2 => {
-            if(element2.id==this.categoryId){
-              this.category=element
+            if (element2.id == this.categoryId) {
+              this.category = element
             }
           });
         });
@@ -82,13 +81,13 @@ export class ProductListPageComponent implements OnInit {
     this.isSeller = newstr == 'seller' ? true : false;
     // <==
     // if its not the seller-page then its the category page
-    if(this.isSeller == true) {
+    if (this.isSeller == true) {
       // get product by seller
       this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
         this.products = item.data.results;
         this.nextBatchProdLink = item.data.links.next;
       });
-    }else{
+    } else {
       // get product by category
       this.getProduct.getProductByCategory(this.categoryId).subscribe((item) => {
         this.products = item.data.results;
@@ -97,52 +96,52 @@ export class ProductListPageComponent implements OnInit {
       });
     }
   }
-  set_style(value:string){
-    this.style=value;
+  set_style(value: string) {
+    this.style = value;
   }
-  setBrand(brand_name){
-    this._brand=brand_name
+  setBrand(brand_name) {
+    this._brand = brand_name
     this._filter()
   }
-  setColor(color_name){
-    this._color=color_name
+  setColor(color_name) {
+    this._color = color_name
     this._filter()
   }
-  setPrice(price){
-    this._price=price
+  setPrice(price) {
+    this._price = price
     this._filter()
   }
-  get_menus(){
-    this.min_price=this.products[0].unit_price;
-    this.max_price=this.products[0].unit_price;
-    Array.from(this.products).forEach((product:any)=>{
-      if(this.min_price>product.unit_price){
-        this.min_price=product.unit_price
-      }
-      if(this.max_price<product.unit_price){
-        this.max_price=product.unit_price
-      }
-      this.brands.push(product.brand)
-      this.colors.push(product.color)
-    })
-    this.brands=this.brands.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting brands
-    this.colors=this.colors.filter((value,index,array)=>array.findIndex(t=>(t.id === value.id))===index) //setting colors
-    this.prices=this.get_price_ranges()
+  get_menus() {
+    if (this.products.length > 0) {
+      this.min_price = this.products[0].unit_price;
+      this.max_price = this.products[0].unit_price;
+      Array.from(this.products).forEach((product: any) => {
+        if (this.min_price > product.unit_price) {
+          this.min_price = product.unit_price
+        }
+        if (this.max_price < product.unit_price) {
+          this.max_price = product.unit_price
+        }
+        this.colors.push(product.color)
+      })
+      this.colors = this.colors.filter((value, index, array) => array.findIndex(t => (t.id === value.id)) === index) //setting colors
+      this.prices = this.get_price_ranges()
+    }
   }
-  getProdOnFilter(ChildCatId, subCatId, catId,ChildCatName) {
-    this._category=ChildCatName;
-    this.get_menus();
+  getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {
+    this._category = ChildCatName;
+    //this.get_menus();
     this.router.navigate(['/products/category/', ChildCatId]);
     localStorage.setItem("expandedSubCat", subCatId);
     localStorage.setItem("expandedCat", catId);
   }
-  get_price_ranges(){
-    if(this.max_price!==this.min_price){
-      let range=(this.max_price-this.min_price)/3
-      let ranges=new Array()
-      ranges.push({value:(Math.trunc(this.min_price)-1)+' '+((Math.trunc(this.min_price)+range+1)),name:'$'+Math.trunc(this.min_price)+' to $'+(Math.trunc(this.min_price)+range)})
-      ranges.push({value:(Math.trunc(this.min_price)+range-1)+' '+(Math.trunc(this.min_price)+(range*2)+1),name:'$'+(Math.trunc(this.min_price)+range)+' to $'+(Math.trunc(this.min_price)+(range*2))})
-      ranges.push({value:(Math.trunc(this.min_price)+(range*2)-1)+' '+(Math.trunc(this.max_price)+1),name:'$'+(Math.trunc(this.min_price)+(range*2))+' to $'+Math.trunc(this.max_price)})
+  get_price_ranges() {
+    if (this.max_price !== this.min_price) {
+      let range = Math.trunc((this.max_price - this.min_price) / 3)
+      let ranges = new Array()
+      ranges.push({ value: (Math.trunc(this.min_price) - 1) + ' ' + ((Math.trunc(this.min_price) + range + 1)), name: '$' + Math.trunc(this.min_price) + ' to $' + (Math.trunc(this.min_price) + range) })
+      ranges.push({ value: (Math.trunc(this.min_price) + range - 1) + ' ' + (Math.trunc(this.min_price) + (range * 2) + 1), name: '$' + (Math.trunc(this.min_price) + range) + ' to $' + (Math.trunc(this.min_price) + (range * 2)) })
+      ranges.push({ value: (Math.trunc(this.min_price) + (range * 2) - 1) + ' ' + (Math.trunc(this.max_price) + 1), name: '$' + (Math.trunc(this.min_price) + (range * 2)) + ' to $' + Math.trunc(this.max_price) })
       return ranges;
     }
   }
@@ -168,40 +167,30 @@ export class ProductListPageComponent implements OnInit {
       duration: 5000,
     });
   }
-  // _filter(){
-  //   let filtered:any=[]
-  //   this.products.forEach(product=>{
-  //     if(this._color.length>0){
-  //       if(product.color.name===this._color){
-  //         filtered.push(product)
-  //       }
-  //     }
-  //   })
-  //   console.log(filtered)
-  // }
-  _filter(){
-    console.log(this.category)
-    let query:string=''
-    if(this._brand!==null && this._brand!==undefined && this._brand!==''){
-      query+='brand='+this._brand
+
+  _filter() {
+    let query: string = ''
+    if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
+      query += 'brand=' + this._brand
     }
-    if(this._color!==null && this._color!==undefined && this._color!==''){
-      if(query.includes('brand')){
-        query+='&color='+this._color
+    if (this._color !== null && this._color !== undefined && this._color !== '') {
+      if (query.includes('brand')) {
+        query += '&color=' + this._color
       }
-      else{
-        query+='color='+this._color
+      else {
+        query += 'color=' + this._color
       }
     }
-    if(this._price!==null && this._price!==undefined && this._price!==''){
-      if(query.includes('color') || query.includes('brand')){
-        query+='&min_price='+this._price.split(" ")[0]+'&max_price='+this._price.split(" ")[1]
+    if (this._price !== null && this._price !== undefined && this._price !== '') {
+      if (query.includes('color')) {
+        query += '&min_price=' + this._price.split(" ")[0] + '&max_price=' + this._price.split(" ")[1]
       }
-      else{
-        query+='min_price='+this._price.split(" ")[0]+'&max_price='+this._price.split(" ")[1]
+      else {
+        query += 'min_price=' + this._price.split(" ")[0] + '&max_price=' + this._price.split(" ")[1]
       }
     }
-    this.searchService.filter_products('category='+this._category+'&'+query).subscribe((item) => {
+    console.log('category=' + this._category + '&' + query)
+    this.searchService.filter_products('category=' + this._category + '&' + query).subscribe((item) => {
       this.products = item.data.results;
       this.get_menus()
     });
