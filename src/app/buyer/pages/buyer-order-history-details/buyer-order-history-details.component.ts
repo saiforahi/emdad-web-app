@@ -16,10 +16,12 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   discount:any;
   vat:any;
   total:any;
+  img_base_url;
   constructor(private route:ActivatedRoute,private orderService:OrderService,private pdfService: AngularCreatePdfService) { }
 
   ngOnInit(): void {
     this.base_url=config.base_url;
+    this.img_base_url=config.img_base_url
     this.order_id=this.route.snapshot.params['order_id'];
     this.orderService.get_buyer_order_details(this.order_id).subscribe(
       (success)=>{console.log(success.data);this.orders=success.data},
@@ -61,6 +63,6 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     return this.orders[index].unit_price*this.orders[index].quantity
   }
   createPdfTem(ele: any) {
-    this.pdfService.createPdf(ele, 'invoice.pdf');
+    //this.pdfService.createPdf(ele, 'invoice.pdf');
   }
 }
