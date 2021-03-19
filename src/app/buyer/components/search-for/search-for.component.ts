@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../../shared/services/search.service';
 
@@ -8,9 +8,13 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./search-for.component.css'],
 })
 export class SearchForComponent implements OnInit {
+  @ViewChildren('searchInputDiv')
+  searchInputDiv: QueryList<ElementRef>;
   products:any = [];
   show_suggestion:boolean;
   searchInput:string = '';
+
+
   constructor(
     private router: Router,
     private searchService: SearchService,
@@ -37,6 +41,7 @@ export class SearchForComponent implements OnInit {
     this.searchInput=prod_name
   }
   update_suggestions(){
+    console.log(this.searchInputDiv);
     if(this.searchInput!==undefined){
       this.searchService.search(this.searchInput).subscribe(result=>{
         this.products=result.data.results
