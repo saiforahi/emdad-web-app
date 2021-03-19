@@ -33,6 +33,7 @@ export class ProductListPageComponent implements OnInit {
   brands:any=[];
   colors:any=[];
   prices:any=[];
+  catMenuToggle = false;
   sellerCat = [
     {"cat_name": "cat 3", "id": 2},
     {"cat_name": "cat 6", "id": 3},
@@ -205,5 +206,13 @@ export class ProductListPageComponent implements OnInit {
       this.products = item.data.results;
       this.get_menus()
     });
+  }
+
+  showCatMenu(){
+    this.catMenuToggle = true;
+  }
+
+  closeCatMenu(){
+    this.catMenuToggle = false;
   }
 }
