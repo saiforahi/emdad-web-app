@@ -11,7 +11,7 @@ a {
 
 nav {
   height: 120px;
-  background: #F4F4F4 !important;
+  background: #f4f4f4 !important;
 }
 
 .navbar-brand img {
@@ -296,6 +296,20 @@ button:focus {
 }
 .user-name-holder .sign-icon {
   display: none;
+}
+
+.cart-length {
+  position: absolute;
+  background: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 50px;
+  right: 125px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.8;
 }
 
 @media only screen and (min-width: 1200px) {

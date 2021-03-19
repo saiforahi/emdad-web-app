@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { config } from '../../../../config';
+import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 
 @Component({
   selector: 'app-header',
@@ -24,12 +25,14 @@ export class HeaderComponent implements OnInit {
   showSideMenu = false;
   activeRoute: any;
   loggedInUserImg: string = '';
+  cartLength: any;
 
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private cart: CartServiceService
   ) {
     router.events.subscribe((val: any) => {
       if (val.url) {
@@ -84,6 +87,10 @@ export class HeaderComponent implements OnInit {
       this.categories = tempCategories;
       // console.log(this.categories)
     });
+    this.cart.existingCartLength.subscribe(item => {
+      this.cartLength = item;
+      console.log(item)
+    })
   }
 
   openSnackBar(message, action) {

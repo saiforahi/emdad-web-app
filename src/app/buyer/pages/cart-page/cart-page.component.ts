@@ -4,6 +4,7 @@ import { CouponService } from '../../../shared/services/coupon.service';
 import { VatService } from '../../../shared/services/vat.service';
 import { CommissionService } from '../../../shared/services/commission.services';
 import { config } from 'src/config';
+import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 
 // interface Orders {
 //   total_amount?: number;
@@ -96,7 +97,8 @@ export class CartPageComponent implements OnInit {
     private authService: UserAuthService,
     private coupon: CouponService,
     private vat: VatService,
-    private commission: CommissionService
+    private commission: CommissionService,
+    private cart: CartServiceService
   ) {}
 
   ngOnInit(): void {
@@ -171,6 +173,7 @@ export class CartPageComponent implements OnInit {
         this.productInCart.splice(index, 1);
       }
     });
+    this.cart.existingCartLength.next(this.productInCart.length - 1 > 0 ? this.productInCart.length - 1 : null);
     this.generateOrderData(this.productInCart);
     // console.log(this.productInCart);
     this.calcSubTotalPrice(this.orders_details);
