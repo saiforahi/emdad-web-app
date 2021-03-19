@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
@@ -12,6 +12,7 @@ import { SearchService } from '../../../shared/services/search.service';
 export class ProductListPageComponent implements OnInit {
   sellerId;
   style: string;
+  @Output() view_style=new EventEmitter<string> ()
   isSeller = false;
   products = [];
   prodEnd;
@@ -57,26 +58,11 @@ export class ProductListPageComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.style = 'grid';
+    // this.view_style.emit(this.style)
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
     this.selected_child_category = this.route.snapshot.params['id'];
-    this.getCategories.category().subscribe((item) => {
-      // console.log(item);
-      this.categories = item;
-      // console.log(this.categories)
-      this.categories.forEach((element) => {
-        element.children.forEach((element1) => {
-          element1.children.forEach((element2) => {
-            if (element2.id == this.selected_child_category) {
-              this.selected_child_category_name = element2.name;
-              this.expandedSubCat = element1.id;
-              this.category = element;
-            }
-          });
-        });
-      });
-    });
     this.sellerId = this.route.snapshot.params['id'];
     // this.expandedCat = parseInt(localStorage.getItem("expandedCat"));
     // this.expandedSubCat = parseInt(localStorage.getItem("expandedSubCat"));
@@ -87,9 +73,12 @@ export class ProductListPageComponent implements OnInit {
     // <==
     // if its not the seller-page then its the category page
     if (this.isSeller == true) {
-      // get product by seller
-      this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
+        // get product by seller
+        this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
         this.products = item.data.results;
+        this.set_seller_categories(this.products)
+        this.get_menus();
+        this.prices = this.get_price_ranges();
         this.nextBatchProdLink = item.data.links.next;
       });
     } else {
@@ -98,13 +87,63 @@ export class ProductListPageComponent implements OnInit {
         .getProductByCategory(this.selected_child_category)
         .subscribe((item) => {
           this.products = item.data.results;
-          this.get_menus();
-          this.prices = this.get_price_ranges();
-          this.nextBatchProdLink = item.data.links.next;
+          this.getCategories.category().subscribe((item) => {
+            item.forEach((element) => {
+              element.children.forEach((element1) => {
+                element1.children.forEach((element2) => {
+                  if (element2.id == this.selected_child_category) {
+                    this.selected_child_category_name = element2.name;
+                    this.expandedSubCat = element1.id;
+                    this.category = element;
+                  }
+                });
+              });
+            });
+            this.get_menus();
+            this.prices = this.get_price_ranges();
+            this.nextBatchProdLink = item.data.links.next;
+          });
+          
         });
     }
   }
 
+  set_seller_categories(products:Array<any>){
+    this.categories=[]
+    let temp_categories:Array<any>=[]
+    products.forEach(product=>{
+      temp_categories.push(product.category)
+    })
+    console.log('categories from products',temp_categories)
+    temp_categories = temp_categories.filter(
+      (category, index, temp_categories) =>
+      temp_categories.findIndex((t) => t.id === category.id) === index
+    );
+    console.log('categories from products after filter',temp_categories)
+    this.getCategories.category().subscribe((item) => {
+      console.log('items from api',item)
+      item.forEach((element) => {
+        element.children.forEach((element1) => {
+          element1.children.forEach((element2) => {
+            temp_categories.forEach(category=>{
+              if(category.id==element2.id){
+                let exists=false;
+                this.categories.forEach(cat => {
+                  if(cat.id==element.id){
+                    exists=true
+                  }
+                });
+                if(!exists){
+                  this.categories.push(element)
+                }
+              }
+            })
+          });
+        });
+      });
+    });
+    // console.log('categories from products after filter',this.categories)
+  }
   set_style(value: string) {
     this.style = value;
   }
@@ -155,20 +194,12 @@ export class ProductListPageComponent implements OnInit {
   }
 
   get_menus() {
-    // this.min_price = this.products[0].unit_price;
-    // this.max_price = this.products[0].unit_price;
+    this.brands=[]
+    this.colors=[]
     Array.from(this.products).forEach((product: any) => {
-      // if (this.min_price > product.unit_price) {
-      //   this.min_price = product.unit_price;
-      // }
-      // if (this.max_price < product.unit_price) {
-      //   this.max_price = product.unit_price;
-      // }
       if (product.color !== null) {
         this.colors.push(product.color);
       }
-      // this.brands.push(product.brand);
-      // this.colors.push(product.color);
       if (product.brand !== null) {
         this.brands.push(product.brand);
       }
@@ -183,9 +214,11 @@ export class ProductListPageComponent implements OnInit {
       (value, index, array) =>
         array.findIndex((t) => t.id === value.id) === index
     ); //setting colors
+    console.log(this.brands)
   }
 
   getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {
+    this.style = 'grid';
     this.router.navigate(['/products/category/', ChildCatId]);
   }
 
@@ -193,28 +226,17 @@ export class ProductListPageComponent implements OnInit {
     this.min_price = this.products[0].unit_price;
     this.max_price = this.products[0].unit_price;
     Array.from(this.products).forEach((product: any) => {
-      if (this.min_price > product.unit_price) {
-        this.min_price = product.unit_price;
+      if (this.min_price > parseInt(product.unit_price)) {
+        this.min_price = parseInt(product.unit_price);
       }
-      if (this.max_price < product.unit_price) {
-        this.max_price = product.unit_price;
+      if ( parseInt(product.unit_price) >= this.max_price ) {
+        this.max_price = parseInt(product.unit_price);
       }
     });
     if (this.max_price !== this.min_price) {
-      let range = (this.max_price - this.min_price) / 3;
+      let range = Math.trunc((this.max_price - this.min_price) / 3);
       let ranges = new Array();
-      ranges.push({
-        value:
-          Math.trunc(this.min_price) -
-          1 +
-          ' ' +
-          (Math.trunc(this.min_price) + range + 1),
-        name:
-          '$' +
-          Math.trunc(this.min_price) +
-          ' to $' +
-          (Math.trunc(this.min_price) + range),
-      });
+      ranges.push({value:Math.trunc(this.min_price) -1 +' ' +(Math.trunc(this.min_price) + range + 1),name:'$' +Math.trunc(this.min_price) +' to $' +(Math.trunc(this.min_price) + range)});
       ranges.push({
         value:
           Math.trunc(this.min_price) +
@@ -253,6 +275,8 @@ export class ProductListPageComponent implements OnInit {
         .getNextBatchProduct(this.nextBatchProdLink)
         .subscribe((item) => {
           this.products = [...this.products, ...item.data.results];
+          this.get_menus()
+          this.prices = this.get_price_ranges();
           this.nextBatchProdLink = item.data.links.next;
         });
     }
@@ -267,18 +291,6 @@ export class ProductListPageComponent implements OnInit {
       duration: 5000,
     });
   }
-
-  // _filter(){
-  //   let filtered:any=[]
-  //   this.products.forEach(product=>{
-  //     if(this._color.length>0){
-  //       if(product.color.name===this._color){
-  //         filtered.push(product)
-  //       }
-  //     }
-  //   })
-  //   console.log(filtered)
-  // }
 
   _filter() {
     console.log(this.category);
@@ -308,7 +320,7 @@ export class ProductListPageComponent implements OnInit {
         '&max_price=' +
         this._price.split(' ')[1];
     }
-    console.log('category=' + this.selected_child_category_name + query);
+    // console.log('category=' + this.selected_child_category_name + query);
     this.searchService
       .filter_products('category=' + this.selected_child_category_name + query)
       .subscribe((item) => {
