@@ -83,3 +83,9 @@ button {
     height: 25px;
   }
 }
+
+@media only screen and (min-width: 1400px) and (max-width: 1499px) {
+  .search-input input {
+    width: 270px;
+  }
+}
