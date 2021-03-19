@@ -170,6 +170,9 @@ nav {
   float: left;
   padding: 0 15px;
 }
+.cat-menu-toggle-btn {
+  display: none;
+}
 
 @media only screen and (min-width: 1200px) {
   .container {
@@ -216,9 +219,6 @@ nav {
   .product-list-content {
     width: 100%;
     padding: 0;
-  }
-  .cat-menu-toggle-btn {
-    display: none;
   }
   .cat-menu-toggle-btn {
     display: block;
