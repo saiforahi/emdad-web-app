@@ -51,8 +51,8 @@
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>Change Language </span></a></li>
             <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
-                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart
-                </span></a></li>
+                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart 
+                </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
                 <span>Notifications </span></a></li>
             <div *ngIf="loggedInUser">
@@ -142,6 +142,7 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/cart']">
                 <img src="../assets/bag.svg" alt="" />
+                <span *ngIf="cartLength != null" class="cart-length">{{cartLength}}</span>
               </a>
             </li>
             <li class="nav-item">

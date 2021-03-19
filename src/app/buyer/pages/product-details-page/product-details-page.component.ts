@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 import { ViewportScroller } from '@angular/common';
 import { config } from 'src/config';
+import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -39,7 +40,8 @@ export class ProductDetailsPageComponent implements OnInit {
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
     private comments: CustomerReviewService,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private cart: CartServiceService
   ) {}
 
   ngOnInit(): void {
@@ -95,6 +97,7 @@ export class ProductDetailsPageComponent implements OnInit {
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
     if (existingCart != null) {
+      this.cart.existingCartLength.next(existingCart.length + 1);
       existingCart.forEach((element) => {
         if (element.id !== this.prodcutDetails.id)
           this.prodCartArray.push(element);
