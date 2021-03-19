@@ -308,6 +308,9 @@ height: 88px;
       .text-div h1{
         text-align: center !important;
       }
+      .text-div p{
+        text-align: center;
+      }
 }
 @media all and (min-width:768px) and (max-width:1100px){
   .text-div h1,.head{
@@ -390,6 +393,9 @@ height: 88px;
 }
 .text-div h1{
   text-align: center !important;
+}
+.text-div p{
+  text-align: center;
 }
 }
 @media all and (min-width:290px) and (max-width:600px){
