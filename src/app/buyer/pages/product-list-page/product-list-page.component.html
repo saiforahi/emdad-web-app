@@ -32,11 +32,11 @@
 <section class="container clearfix">
     <button *ngIf="!catMenuToggle" mat-button class="cat-menu-toggle-btn" (click)="showCatMenu();"><img
             src="../../../../assets/cat-filter.svg" alt=""></button>
-    <button mat-button class="cat-menu-close-btn" [ngClass]="{'active':catMenuToggle, '':!catMenuToggle}" (click)="closeCatMenu();"><img src="../../../../assets/close.svg"
-            alt=""></button>
+    <button mat-button class="cat-menu-close-btn" [ngClass]="{'active':catMenuToggle, '':!catMenuToggle}"
+        (click)="closeCatMenu();"><img src="../../../../assets/close.svg" alt=""></button>
     <div class="side-cat-menu" [ngClass]="{'active':catMenuToggle, '':!catMenuToggle}">
         <div class="d-flex">
-            <div class="p-3 cat-header w-100" style="padding-left: 5px;">
+            <div class="p-3 cat-header w-100">
                 Categories
             </div>
         </div>
@@ -79,14 +79,35 @@
                                     <!-- level three -->
                                     <div *ngFor="let child of subcategory.children">
                                         <!-- [routerLink]="['/products/category/', child.id]" -->
-                                        <a style="margin-left: 10px;"
+                                        <!-- <a style="margin-left: 10px;"
                                             (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
                                             {{child.name | titlecase}}
-                                        </a>
+                                        </a> -->
+                                        <p [ngClass]="selected_child_category == child.id ? 'active-child-cat' : 'child-cat'"
+                                            (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
+                                            {{child.name | titlecase}}
+                                        </p>
                                     </div>
                                 </div>
                             </mat-expansion-panel>
                         </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="cat-head">
+                                Brands
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div *ngIf="brands" class="expanded-div">
+                        <mat-panel-title *ngFor="let brand of brands">
+                            <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')"
+                                class="color-check-box">{{brand.name | titlecase}}</mat-checkbox>
+                        </mat-panel-title>
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
@@ -102,12 +123,12 @@
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let color of colors">
                             <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')"
-                                class="example-margin">{{color.name | titlecase}}</mat-checkbox>
+                                class="color-check-box">{{color.name | titlecase}}</mat-checkbox>
                         </mat-panel-title>
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
-            <mat-accordion>
+            <mat-accordion  *ngIf="prices">
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -116,7 +137,7 @@
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-slider thumbLabel></mat-slider>
+                    <mat-slider (input)="onSliderChange($event)" [max]="max_price" [min]="min_price+1" thumbLabel></mat-slider>
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let range of prices">
                             <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')"

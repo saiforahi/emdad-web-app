@@ -57,23 +57,23 @@ export class HomePageComponent implements OnInit {
     });
   }
   
-  set_selected_child_category(child_id){
-    let cat_id;
-    let sub_cat_id;
-    this.categories.forEach(element1 => {
-      element1.children.forEach(element2 => {
-        element2.children.forEach(element3 => {
-          if(element3.id===child_id){
-            console.log("Element 1",element1.id)
-            cat_id=element1.id;
-            sub_cat_id=element2.id;
-          }
-        });
-      });
-    });
-    localStorage.setItem('expandedCat',cat_id);
-    localStorage.setItem('expandedSubCat',sub_cat_id)
-  }
+  // set_selected_child_category(child_id){
+  //   let cat_id;
+  //   let sub_cat_id;
+  //   this.categories.forEach(element1 => {
+  //     element1.children.forEach(element2 => {
+  //       element2.children.forEach(element3 => {
+  //         if(element3.id===child_id){
+  //           console.log("Element 1",element1.id)
+  //           cat_id=element1.id;
+  //           sub_cat_id=element2.id;
+  //         }
+  //       });
+  //     });
+  //   });
+  //   localStorage.setItem('expandedCat',cat_id);
+  //   localStorage.setItem('expandedSubCat',sub_cat_id)
+  // }
 
   // remove empty children form the array
   removeEmptyChildren(data) {

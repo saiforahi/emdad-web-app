@@ -1,4 +1,5 @@
-<app-breadcrumbs [directoryString]="'Search Result'" [searchLength]="products.length" (view_style)="set_style($event)" ></app-breadcrumbs>
+<app-breadcrumbs [directoryString]="'Search Result'" [searchLength]="products.length" (view_style)="set_style($event)">
+</app-breadcrumbs>
 <section class="container">
     <div class="row">
         <div class="col-md-3">
@@ -17,9 +18,10 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="expanded-div mt-2">
+                        <div *ngIf="brands" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let brand of brands">
-                                <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')" class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
+                                <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')"
+                                    class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -35,7 +37,8 @@
                         </mat-expansion-panel-header>
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let color of colors">
-                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')" class="example-margin">{{color.name | titlecase}}</mat-checkbox>
+                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')"
+                                    class="example-margin">{{color.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -49,10 +52,12 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <mat-slider (input)="onSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value" [max]="max_price" [min]="min_price"></mat-slider>
+                        <mat-slider (input)="onSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value"
+                            [max]="max_price" [min]="min_price"></mat-slider>
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let range of prices">
-                                <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')" class="example-margin">{{range.name}}</mat-checkbox>
+                                <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')"
+                                    class="example-margin">{{range.name}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel>
@@ -69,7 +74,8 @@
         </div> -->
         <div class="col-md-9">
             <p *ngIf="products.length == 0" class="mt-5 text-center"><b>No Results Found!!!</b></p>
-            <app-product-list [products]="products" [prodEnd]="null" [prodInRow6]="prodInRow6" [view_style]="style" ></app-product-list>
+            <app-product-list [products]="products" [prodEnd]="null" [prodInRow6]="prodInRow6" [view_style]="style">
+            </app-product-list>
         </div>
     </div>
 </section>
