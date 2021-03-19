@@ -1,41 +1,44 @@
-<div class="row mb-5">
-    <div class="col-md-7 p-2 border-right">
+<section class="container pl-0 pr-0">
+    <div class="card">
         <div class="row">
-            <div class="col-md-6">
-                <a class="prod-img">
-                    <img class="w-100" *ngIf="product.image1 != null" mat-card-image [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage" alt="product image" />
-                </a>
+            <div class="col-md-7 border-right">
+                <div class="media">
+                    <img class="mr-3 prod-img" *ngIf="product.image1 != null"
+                        [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage"
+                        alt="product image">
+                    <div class="media-body">
+                        <p class="product-name">
+                            {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
+                        </p>
+                        <p class="store-name">{{product.seller.full_name | titlecase}}</p>
+                        <p class="stock"><span>Stock :</span> {{product.stock_quantity}}</p>
+                        <p class="product-price">${{ product.unit_price }}</p>
+                        <p class="pickup"><span>Shop Pickup Location :</span> {{product.pickup_address[0].address}}</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <p class="product-name">
-                    {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
-                </p>
-                <p class="store-name">{{product.seller.full_name | titlecase}}</p>
-                <p><strong>Stock :</strong> {{product.stock_quantity}}</p>
-                <p class="product-price">${{ product.unit_price }}</p>
-                <p><strong>Shop Pickup Location :</strong> {{product.pickup_address[0].address}}</p>
+            <!-- <mat-divider vertical class="float-right"></mat-divider> -->
+            <div class="col-md-5 justify-content-center mt-3 float-right">
+                <div class="justify-content-center">
+                    <p><strong class="sar-text">SAR {{product.unit_price|number:'1.0-0'}}</strong> / each</p>
+                </div>
+                <div class="row justify-content-between p-3 mt-3">
+                    <div class="col-sm-4" style="width: 100%;">
+                        <mat-form-field class="example-form-field">
+                            <mat-label>Qty</mat-label>
+                            <input matInput type="text" [(ngModel)]="prod_qty">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-8">
+                        <button mat-raised-button class="add-to-cart float-right" (click)="addToCart(product)">Add to
+                            Cart</button>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <button class="btn btn-block request-btn align-self-center" (click)="go_to_rfq()"
+                        [routerLink]="['/rfq/']"><img src="assets/file_plus.svg" /> Request for quotation</button>
+                </div>
             </div>
         </div>
     </div>
-    <!-- <mat-divider vertical class="float-right"></mat-divider> -->
-    <div class="col-md-5 justify-content-center mt-3 float-right">
-        <div class="row justify-content-center">
-            <p><strong class="sar-text">SAR {{product.unit_price|number:'1.0-0'}}</strong> / each</p>
-        </div>
-        <div class="row justify-content-between p-3 mt-3">
-            <div class="col-sm-4" style="width: 100%;">
-                <mat-form-field class="example-form-field">
-                    <mat-label>Qty</mat-label>
-                    <input matInput type="text"[(ngModel)]="prod_qty">
-                </mat-form-field>
-            </div>
-            <div class="col-sm-8">
-                <button mat-raised-button class="add-to-cart float-right" (click)="addToCart(product)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="row p-3">
-            <button class="btn btn-block request-btn align-self-center" (click)="go_to_rfq()" [routerLink]="['/rfq/']"><img src="assets/file_plus.svg"/> Request for quotation</button>
-        </div>
-    </div>
-</div>
-
+</section>
