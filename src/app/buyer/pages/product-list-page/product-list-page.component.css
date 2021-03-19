@@ -173,7 +173,7 @@ nav {
 .cat-menu-toggle-btn {
   display: none;
 }
-.cat-menu-toggle-btn {
+.cat-menu-close-btn {
   display: none;
 }
 
@@ -233,6 +233,7 @@ nav {
     position: relative;
   }
   .cat-menu-close-btn {
+    display: block;
     position: fixed;
     left: -100px;
     z-index: 999999999999;
