@@ -5,7 +5,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
-import {ViewportScroller} from '@angular/common'
+import { ViewportScroller } from '@angular/common';
 import { config } from 'src/config';
 @Component({
   selector: 'app-product-details-page',
@@ -31,6 +31,7 @@ export class ProductDetailsPageComponent implements OnInit {
   carousel: any;
   relatedProducts: any;
   commentlist: any;
+  commnetsEnd: boolean = false;
 
   constructor(
     private getProduct: GetProductService,
@@ -38,7 +39,7 @@ export class ProductDetailsPageComponent implements OnInit {
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
     private comments: CustomerReviewService,
-    private viewportScroller:ViewportScroller
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +48,10 @@ export class ProductDetailsPageComponent implements OnInit {
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
       this.sliderImgArray = [
-        config.base_url.substring(0,config.base_url.length-1) + item.data[0].image1,
-        config.base_url.substring(0,config.base_url.length-1) + item.data[0].image2,
+        config.base_url.substring(0, config.base_url.length - 1) +
+          item.data[0].image1,
+        config.base_url.substring(0, config.base_url.length - 1) +
+          item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
       this.getProduct
@@ -59,11 +62,13 @@ export class ProductDetailsPageComponent implements OnInit {
         });
       this.comments.getComments(this.prodcutDetails.id).subscribe((item) => {
         this.commentlist = item;
-        console.log(this.commentlist);
+        // alert(JSON.stringify(this.commentlist));
+        if (this.commentlist.data.links.next === null) this.commnetsEnd = true;
+        // console.log(this.commentlist);
       });
     });
   }
-  scroll_to_reviews(element_id:string){
+  scroll_to_reviews(element_id: string) {
     this.viewportScroller.scrollToAnchor(element_id);
   }
   nextImg() {
@@ -108,6 +113,19 @@ export class ProductDetailsPageComponent implements OnInit {
 
   show_review_modal() {
     document.getElementById('prodReviewModal').style.display = 'block';
+  }
+
+  getNextComments() {
+    if (this.commentlist.data.links.next !== null) {
+      this.comments
+        .getNextComments(this.commentlist.data.links.next)
+        .subscribe((comments) => {
+          this.commentlist = comments;
+          if (this.commentlist.data.links.next === null) {
+            this.commnetsEnd = true;
+          }
+        });
+    }
   }
 
   addToWishlist(prod_id) {

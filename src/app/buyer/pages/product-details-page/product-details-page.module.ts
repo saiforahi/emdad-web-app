@@ -8,6 +8,8 @@ import { MaterialModule } from '../../../material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ProductReviewModalComponent } from './product-review-modal/product-review-modal.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: ProductDetailsPageComponent, pathMatch: 'full' },
@@ -23,6 +25,8 @@ const routes: Routes = [
     MaterialModule,
     NgbModule,
     LazyLoadImageModule,
+    NgxSpinnerModule,
+    FormsModule,
   ],
 })
 export class ProductDetailsPageModule {}
