@@ -168,7 +168,7 @@ nav {
 .product-list-content {
   width: 75%;
   float: left;
-  padding: 0 15px;
+  padding: 0 15px 0 30px;
 }
 .cat-menu-toggle-btn {
   display: none;

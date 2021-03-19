@@ -6,7 +6,7 @@
       <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
-  <div *ngIf="view_style==='list'" class="p-2">
+  <div *ngIf="view_style==='list'">
     <div *ngFor="let product of products">
       <app-product-card-horizonal [product]="product"></app-product-card-horizonal>
     </div>
