@@ -1,15 +1,15 @@
 <div class="input-group search-input">
-    <input (focus)="update_suggestions()" (focusout)="focusOutFunction()"  (input)="update_suggestions()" type="text" class="form-control" placeholder="Search by products..." [(ngModel)]="searchInput" (keydown.enter)="search()">
+    <input #searchInputDiv (focus)="update_suggestions()" (focusout)="focusOutFunction()"  (input)="update_suggestions()" type="text" class="form-control" placeholder="Search by products..." [(ngModel)]="searchInput" (keydown.enter)="search()">
     <div class="input-group-append">
         <button (click)="search()" mat-raised-button>
             <span class="input-group-text"><img src="../assets/search.svg" alt=""></span>
         </button>
     </div>
 </div>
-<div *ngIf="show_suggestion" class="suggestion-box mt-2">
+<div *ngIf="show_suggestion" class="suggestion-box mt-2" [ngStyle]="{'width.px': searchInputDiv.offsetWidth + 98}">
     <div class="d-flex flex-column">
-        <div class="p-2 flex-start" *ngFor="let product of products;let i=index">
-            <p class="prod-name pt-2" (mousedown)="setItem(product.name)">{{product.name}}</p>
+        <div class="flex-start" *ngFor="let product of products;let i=index">
+            <p class="prod-name" (mousedown)="setItem(product.name)">{{product.name}}</p>
             <mat-divider *ngIf="i!=products.length-1"></mat-divider>
         </div>
     </div>
