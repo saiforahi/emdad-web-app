@@ -20,7 +20,7 @@ interface JWTPayload {
   username: string;
   email: string;
   exp: number;
-  profile_pic: string
+  profile_pic: string;
 }
 
 @Injectable({

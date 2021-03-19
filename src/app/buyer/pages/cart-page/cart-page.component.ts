@@ -65,7 +65,9 @@ export class CartPageComponent implements OnInit {
   couponId: any = '';
   commissionAmount: number;
   totalItems = 0;
-  img_base_url = config.img_base_url
+  img_base_url = config.img_base_url;
+  emptyCart: boolean = true;
+
   // providing default value to prevnet error
   productInCart = [
     {
@@ -95,18 +97,19 @@ export class CartPageComponent implements OnInit {
     private coupon: CouponService,
     private vat: VatService,
     private commission: CommissionService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
     this.authService.uId.subscribe((item) => {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
+    if (this.productInCart !== null) this.emptyCart = false;
     // console.log('#####');
     // console.log(this.productInCart);
     // console.log('#####');
@@ -137,10 +140,11 @@ export class CartPageComponent implements OnInit {
     this.orders_details = [];
     this.tracking_order = [];
     productInCart.forEach((element) => {
-      console.log(element)
+      console.log(element);
       this.orders_details.push({
         product: element.id,
-        quantity: element.cart_qty!==undefined?parseInt(element.cart_qty):1,
+        quantity:
+          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
