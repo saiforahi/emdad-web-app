@@ -11,7 +11,7 @@ a {
 
 nav {
   height: 120px;
-  background: #fff !important;
+  background: #F4F4F4 !important;
 }
 
 .navbar-brand img {
@@ -162,7 +162,7 @@ nav .profile-list img {
 
 .secondary-menu {
   height: 80px;
-  background: rgba(244, 244, 244, 0.9) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
   z-index: 9;

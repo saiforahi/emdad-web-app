@@ -63,3 +63,37 @@ a {
     max-width: 1600px !important;
   }
 }
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .col-sx-none {
+    display: none;
+  }
+  .breadcrumbs {
+    height: 60px;
+    margin: 80px 0 20px;
+    padding: 18px 0;
+  }
+  .url {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .breadcrumbs {
+    height: 70px;
+    margin: 220px 0 20px;
+    padding: 20px 0;
+  }
+  .url {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    line-height: 22px;
+    padding: 0;
+  }
+}
