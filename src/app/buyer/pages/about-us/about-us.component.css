@@ -19,9 +19,10 @@ display: flex;
  width: 50%;
 text-align: left;
 background: #E5E5E5;
-padding-top: 4.5%;
-padding-left: 2.5%;
-padding-right: 5.5%;
+padding-top: 45px;
+padding-left: 15px;
+padding-right:15px;
+padding-bottom: 15px;
 
 }
 .text-div h1{
@@ -41,30 +42,21 @@ font-weight: normal;
 font-size: 18px;
 line-height: 28px;
 color: #2B2B2B;
+
 }
 /* vision row styling*/
 .vision-row{
-    display: flex;
-    flex-wrap: nowrap;
+
     background: #FFFFFF;
-    padding-left: 6%;
-    padding-right: 6%;
-    padding-top: 6.25%;
-    padding-bottom: 5.5%;
+   
+    padding-top: 100px;
+    padding-bottom: 60px;
 }
 .vision-text{
     text-align: center !important;
-    width: 50%;
+  
 }
 
-.image-div{
-    padding-left:6%;  
-    width: 50%;
-    /* text-align: center; */
-  }
-  .image-div>img{
-/*  padding: 3%; */
-  }
 .head{
 font-family: Jost;
 font-style: normal;
@@ -102,39 +94,20 @@ ul li:before{
 }
 /* 3rd or mission row styling*/
 .mission-row{
-    display: flex;
-    flex-wrap: nowrap;
-    background: #E5E5E5;
-    padding-left: 6%;
-    padding-right: 5%;
-    padding-top: 6.25%;
-    padding-bottom: 5.5%;
+    background:#E5E5E5;
+    padding-top: 100px;
+    padding-bottom:80px;
    
 }
-.mission-div{
-   
-    padding-right:2.8%;  
-    width: 50%;
 
- }
- .mission-div img{
-     vertical-align: middle !important;
-     margin-top: 5.8%;
- }
-.mission-text{
-    text-align: left !important;
-    width: 50%;
-    padding-left:5.4%; 
-    padding-top: 2.7%;
-}
+
 
 /* 4th or values row styling*/
 .value-row{    
     background-color: #E5E5E5 !important;
-    padding-left: 6%;
-    padding-right: 6%;
-    padding-top: 6.25%;
-    padding-bottom: 6%;
+   
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 .values-text>.head{
     text-align: center !important;
@@ -148,260 +121,134 @@ line-height: 32px;
 text-align: center;
 color: #2B2B2B;
 }
-.values-text>p{
-    
-    margin-left: 3.5%;
-    margin-right: 3.5%;
+.value-para{
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 /* RESPONSIVE -_- *_* */
+@media only screen and (min-width: 1200px) {
+    .container {
+      max-width: 1600px !important;
+    }
+  }
+  @media all and (min-width:290px) and (max-width:521px){
+    .img-div-top img{
+        height: 300px !important;
+        width: 100% !important;
+    }
+  }
+  @media all and (min-width:521px) and (max-width:768px){
+.img-div-top img{
+    height: 400px;
+    width: 100%;
+}
+  }
+  @media all and (min-width:290px) and (max-width:992px){
+     .vision-row,.mission-row,.value-row{
+         padding-top: 30px;
+         padding-bottom: 30px;
+     } 
+     .head,.text-div h1 {
+         text-align: center !important;
+     }
+     .mission-text >.head{
+         padding-top: 35px;
+     }
+     .value-para{
+         padding-left: 5px;
+         padding-right: 5px;
+     }
+     .text-div p{
+         padding-left: 8px;
+         padding-right: 8px;
+     }
+  }
 @media all and (min-width:300px) and (max-width:599px){
     /* first row*/
-.first-row,.vision-row,.mission-row{
+.first-row{
     display: block !important;
     flex-wrap: initial;
 }
-.img-div-top,.text-div,.vision-text,.image-div,.mission-div,.mission-text{
-    width: 100% !important;
+.img-div-top,.text-div{
+    width: 100%;
     display: block;
 }
+
 .text-div >h1,.head{
     text-align: center !important;
     font-size: 28px;
 line-height: 40px;
 }
-.text-div p{
-    padding-bottom: 2.8%;
-}
-.vision-text{
-   padding-bottom: 3%;
-}
+
+
 .text-div > p{
     text-align: center;
     font-size: 16px;
 line-height: 20px;
 }
-.text-div,.vision-row,.mission-row,.value-row{
-    padding-left: 3%;
-    padding-right: 3%;
-}
+
 .vision-list,.values-text > p{
     font-size: 16px;
     line-height: 20px;  
 }
-.image-div,.mission-div{
-    text-align: center !important;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-/* .mission-div{
-    padding-right: 0;
-} */
-.mission-div img{
-    margin-top: 0;
-    /* min-height: 400px; */
-}
-.mission-text{
-    padding-left: 0;
-    padding-top: 0;
-    
-}
-.mission-text>h1{
-    margin-top: 4% !important;
-}
+
+
+
+
 
 }
 
 @media all and (min-width:599px) and (max-width:768px){
-    .first-row,.vision-row,.mission-row{
-        display: block !important;
-        flex-wrap: initial;
-    }
-    .img-div-top,.text-div,.vision-text,.image-div,.mission-div,.mission-text{
-        width: 100% !important;
-        display: block;
-    }
-    .text-div p{
-        padding-bottom: 2.8%;
-    }
-    .vision-text{
-        padding-bottom: 3%;
-     }
-    .text-div >h1,.head{
-        text-align: center !important;
-        font-size: 28px;
-    line-height: 36px;
-    }
-    .text-div > p{
-        text-align: center;
-        font-size: 18px;
-    line-height: 25px;
-    }
-    .text-div,.vision-row,.mission-row,.value-row{
-        padding-left: 3%;
-        padding-right: 3%;
-    }
-    .vision-list,.values-text > p{
-        font-size: 18px;
-        line-height: 25px;  
-    }
-    .image-div,.mission-div{
-        text-align: center !important;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-    /* .mission-div{
-        padding-right: 0;
-    } */
-    .mission-div img{
-        margin-top: 0;
-    }
-    .mission-text{
-        padding-left: 0;
-        padding-top: 0;
-        
-    }
-    .mission-text>h1{
-        margin-top: 4% !important;
-    }
-   
-}
-/*990px*/
-@media all and (min-width:768px) and (max-width:991px){
-    .first-row,.vision-row,.mission-row{
+    .first-row{
         display: block !important;
         flex-wrap: none;
     }
-    .img-div-top,.text-div,.vision-text,.image-div,.mission-div,.mission-text{
+    .img-div-top,.text-div{
         width: 100% !important;
         display: block;
     }
     .img-div-top img{
         width: 100% !important;
     }
-    .text-div p{
-        padding-bottom: 2.8%;
+   
+  
+   
+}
+/*990px*/
+@media all and (min-width:768px) and (max-width:991px){
+    .first-row{
+        display: block !important;
+        flex-wrap: none;
     }
-    .vision-text,.mission-text{
-        padding-left: 2%;
-        padding-right: 2%;
+    .img-div-top,.text-div{
+        width: 100% !important;
+        display: block;
     }
-    .vision-list{
-        padding-left: 7% !important;
-        padding-right: 7% !important;
-        display: inline-block;
-        word-break: break-all;
-        text-align: center !important;
+    .img-div-top img{
+        width: 100% !important;
     }
-     .vision-text{
-         padding-bottom: 3%;
-        /*  padding-left: 7% !important;
-         padding-right: 7% !important; */
-      }
-    .text-div >h1,.head{
-        text-align: center !important;
-        font-size: 28px;
-    line-height: 42px;
-    }
-    .text-div > p{
-        text-align: center;
-        font-size: 18px;
-    line-height: 26px;
-    }
-    .text-div,.vision-row,.mission-row,.value-row{
-        padding-left: 3%;
-        padding-right: 3%;
-    }
-    .vision-list,.values-text > p{
-        font-size: 18px;
-        line-height: 26px;  
-    }
-    .image-div,.mission-div{
-        text-align: center !important;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-    /* .mission-div{
-        padding-right: 0;
-    } */
-    .mission-div img{
-        margin-top: 0;
-    }
-    .mission-text{
-        padding-left: 0;
-        padding-top: 0;
-        
-    }
-    .mission-text>h1{
-        margin-top: 4% !important;
-    } 
+  
  
 
 }
 /*991px and all */
 @media all and (min-width:991px) and (max-width:1099px){
-    .first-row,.vision-row,.mission-row{
+    .first-row{
         display: block !important;
         flex-wrap: initial;
     }
-    .img-div-top,.text-div,.vision-text,.image-div,.mission-div,.mission-text{
+    .img-div-top,.text-div{
         width: 100% !important;
         display: block;
     }
     .img-div-top img{
         width: 100% !important;
     }
-    .text-div p{
-        padding-bottom: 2.8%;
-    }
-   .vision-list{
-       padding-left: 7% !important;
-       padding-right: 7% !important;
-       display: inline-block;
-       word-break: break-all;
-       text-align: center !important;
-   }
-    .vision-text{
-        padding-bottom: 3%;
-        padding-left: 7% !important;
-        padding-right: 7% !important;
-     }
-    .text-div >h1,.head{
+    .text-div h1{
         text-align: center !important;
-        font-size: 28px;
-    line-height: 45px;
-    }
-    .text-div > p{
-        text-align: center;
-        font-size: 18px;
-    line-height: 26px;
-    }
-    .text-div,.vision-row,.mission-row,.value-row{
-        padding-left: 3%;
-        padding-right: 3%;
-    }
-    .vision-list,.values-text > p{
-        font-size: 18px;
-        line-height: 26px;  
-    }
-
-    .image-div,.mission-div{
-        text-align: center !important;
-        padding-left: 2%;
-        padding-right: 2%;
     }
   
-    .mission-div img{
-        margin-top: 0;
-    }
-    .mission-text{
-       
-        padding-top: 0;
-        
-    }
-    .mission-text>h1{
-        margin-top: 4% !important;
-    } 
 }
 @media all and (min-width:1099px) and (max-width:1200px){
 .img-div-top img{
@@ -411,39 +258,24 @@ height:500px;
     font-size: 36px;
     line-height: 42px;  
 }
-.image-div >img,.mission-div>img{
-   height: 300px;
-   margin-top: 6% !important;
+
+
 }
-.text-div > p {
-   padding-bottom: 5.5%;
-}
-}
-@media all and (min-width:1200px) and (max-width:1399px){
+@media all and (min-width:1200px) {
     .img-div-top img{
-        height: 100%;
+        height:500px;
         }
         .text-div h1,.head{
             font-size: 36px;
             line-height: 46px;  
         }
-        .image-div,.mission-div{
-            padding-bottom: 3% !important;
-        }
-        .image-div > img,.mission-div > img{
-           height: 100%;
-           margin-top: 4% !important;
-        }
-        .text-div{
-            padding-top: 8%;
-        }
-      
+       
+     
+       
 }
-@media all and (min-width:1690px){
-.text-div{
-    padding-top: 6%;
-}
+/* @media all and (min-width:1690px){
+
 .img-div-top img{
     width: 100%;
 }
-}
+} */
