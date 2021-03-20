@@ -1,68 +1,83 @@
-.btn{
-    background: #454F63;
-    border-radius: 5px;
-}
-.modal{
-    background-color: #000000c7;
-}
-.modal-dialog{
-    max-width: 1200px;
-    max-height: 413px;
-}
-.modal-content{
-    max-width: 1200px;
-    max-height: 765px;
-    background: #FFFFFF;
-    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    box-shadow: 0 5px 15px rgba(0,0,0,0);
-}
-.header{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 69px;
-    text-align: center;
-
-    /* #2B2B2B */
-
-    color: #2B2B2B;
-}
-.logout-text{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
-    justify-content: center;
-    text-align: center;
-
-    /* #2B2B2B */
-
-    color:black;
+.btn {
+  background: #454f63;
+  border-radius: 5px;
 }
 
-.btn-ok{
-    background: #DF1E26;
-    border-radius: 5px;
-    color: #FFFFFF;
+.modal {
+  background-color: #000000c7;
 }
-.btn-cancel{
-    border: 2px solid #2B2B2B;
-    box-sizing: border-box;
-    border-radius: 5px;
-    background: #FFFFFF;
-    color: black;
+
+.modal-dialog {
+  max-width: 1200px;
+  max-height: 413px;
 }
-.btn{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 35px;
-    /* identical to box height */
-    text-align: center;
+
+.modal-content {
+  max-width: 1200px;
+  max-height: 765px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
+}
+
+.header {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 69px;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+.logout-text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  justify-content: center;
+  text-align: center;
+  color: black;
+}
+
+.btn-ok {
+  background: #df1e26;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.btn-cancel {
+  border: 2px solid #2b2b2b;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: #ffffff;
+  color: black;
+}
+
+.btn {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  .modal-content {
+    width: 80%;
+    margin: auto;
+  }
+  .header {
+    font-size: 30px;
+  }
+  .logout-text {
+    font-size: 18px;
+  }
+  .btn {
+    font-size: 18px;
+  }
 }
