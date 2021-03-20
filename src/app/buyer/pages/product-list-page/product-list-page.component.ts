@@ -35,12 +35,6 @@ export class ProductListPageComponent implements OnInit {
   catMenuToggle = false;
   selected_child_category: any;
   selected_child_category_name: any;
-  sellerCat = [
-    { cat_name: 'cat 3', id: 2 },
-    { cat_name: 'cat 6', id: 3 },
-    { cat_name: 'cat 4', id: 4 },
-    { cat_name: 'cat 2', id: 5 },
-  ];
 
   constructor(
     private getProduct: GetProductService,
@@ -79,7 +73,9 @@ export class ProductListPageComponent implements OnInit {
         this.set_seller_categories(this.products)
         this.get_menus();
         this.prices = this.get_price_ranges();
-        this.nextBatchProdLink = item.data.links.next;
+        if(item.data.links!=null){
+          this.nextBatchProdLink = item.data.links.next;
+        }
       });
     } else {
       // get product by category
@@ -101,7 +97,10 @@ export class ProductListPageComponent implements OnInit {
             });
             this.get_menus();
             this.prices = this.get_price_ranges();
-            this.nextBatchProdLink = item.data.links.next;
+            if(item.data.links!=null){
+              this.nextBatchProdLink = item.data.links.next;
+            }
+
           });
           
         });
@@ -223,8 +222,8 @@ export class ProductListPageComponent implements OnInit {
   }
 
   get_price_ranges() {
-    this.min_price = this.products[0].unit_price;
-    this.max_price = this.products[0].unit_price;
+    this.min_price = parseInt(this.products[0].unit_price);
+    this.max_price = parseInt(this.products[0].unit_price);
     Array.from(this.products).forEach((product: any) => {
       if (this.min_price > parseInt(product.unit_price)) {
         this.min_price = parseInt(product.unit_price);
@@ -233,7 +232,9 @@ export class ProductListPageComponent implements OnInit {
         this.max_price = parseInt(product.unit_price);
       }
     });
-    if (this.max_price !== this.min_price) {
+    console.log('max',this.max_price)
+    console.log('min',this.min_price)
+    if (this.max_price != this.min_price) {
       let range = Math.trunc((this.max_price - this.min_price) / 3);
       let ranges = new Array();
       ranges.push({value:Math.trunc(this.min_price) -1 +' ' +(Math.trunc(this.min_price) + range + 1),name:'$' +Math.trunc(this.min_price) +' to $' +(Math.trunc(this.min_price) + range)});
@@ -293,7 +294,6 @@ export class ProductListPageComponent implements OnInit {
   }
 
   _filter() {
-    console.log(this.category);
     let query: string = '';
     if (
       this._brand !== null &&
@@ -325,8 +325,7 @@ export class ProductListPageComponent implements OnInit {
       .filter_products('category=' + this.selected_child_category_name + query)
       .subscribe((item) => {
         this.products = item.data.results;
-        console.log(this.products);
-        this.get_menus();
+        //this.get_menus();
       });
   }
 
