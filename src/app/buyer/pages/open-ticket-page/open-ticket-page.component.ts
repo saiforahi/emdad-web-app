@@ -75,6 +75,8 @@ export class OpenTicketPageComponent implements OnInit {
           );
         }
       );
+    } else {
+      this.spinner.hide();
     }
   }
 

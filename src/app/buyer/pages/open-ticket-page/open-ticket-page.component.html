@@ -36,7 +36,7 @@
             for="subjectError"
             *ngIf="ticketForm.get('title').errors && submitted"
             class="errors ml-1"
-            >required</label
+            >* required</label
           >
           <input
             type="text"
@@ -51,7 +51,7 @@
             for="descriptionError"
             *ngIf="ticketForm.get('description').errors && submitted"
             class="errors ml-1"
-            >required</label
+            >* required</label
           >
           <textarea
             type="text"
