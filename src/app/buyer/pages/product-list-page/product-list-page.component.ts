@@ -14,6 +14,7 @@ export class ProductListPageComponent implements OnInit {
   style: string;
   @Output() view_style=new EventEmitter<string> ()
   isSeller = false;
+  isCategories=false
   products = [];
   prodEnd;
   nextBatchProdLink;
@@ -21,7 +22,7 @@ export class ProductListPageComponent implements OnInit {
   prevParam;
   prodInRow6;
   panelOpenState = true;
-  categories: any;
+  categories: Array<any>=[];
   expandedCat;
   expandedSubCat;
   min_price: any;
@@ -52,7 +53,6 @@ export class ProductListPageComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.style = 'grid';
-    // this.view_style.emit(this.style)
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
@@ -77,7 +77,7 @@ export class ProductListPageComponent implements OnInit {
           this.nextBatchProdLink = item.data.links.next;
         }
       });
-    } else {
+    } else if(this.selected_child_category!==undefined){
       // get product by category
       this.getProduct
         .getProductByCategory(this.selected_child_category)
@@ -105,9 +105,33 @@ export class ProductListPageComponent implements OnInit {
           
         });
     }
+    else if(this.router.url.substr(10,10)=='categories'){
+      this.isCategories=true
+      this.set_all_categories()
+      console.log('categories',this.categories)
+      this.getProduct.popularProduct().subscribe((products)=>{
+        this.products=products.data.results
+        console.log('popular products',this.products)
+        this.get_menus()
+        this.prices = this.get_price_ranges();
+        if(products.data.links!=null){
+          this.nextBatchProdLink = products.data.links.next;
+        }
+      })
+      console.log(this.categories)
+    }
   }
 
-  set_seller_categories(products:Array<any>){
+  set_all_categories(){ //setting categories for products/categories route
+    this.categories=[]
+    this.getCategories.category().subscribe((item) => {
+      item.forEach((element) => {
+        this.categories.push(element)
+      });
+    });
+  }
+
+  set_seller_categories(products:Array<any>){ //setting categories for seller wise products view
     this.categories=[]
     let temp_categories:Array<any>=[]
     products.forEach(product=>{
@@ -143,7 +167,7 @@ export class ProductListPageComponent implements OnInit {
     });
     // console.log('categories from products after filter',this.categories)
   }
-  set_style(value: string) {
+  set_style(value: string) { //setting product card style grid/list
     this.style = value;
   }
 
@@ -162,19 +186,31 @@ export class ProductListPageComponent implements OnInit {
     this._filter();
   }
 
-  onSliderChange(event) {
-    let query: string = 'category=' + this.selected_child_category_name;
+  onPriceSliderChange(event) {
+    console.log(event.value) //on price slider change event
+    let query: string
+    if(!this.isCategories && !this.isSeller){
+      query = 'category=' + this.selected_child_category_name;
+    }
+    else{
+      query=''
+    }
+    
     if (
       this._brand !== null &&
       this._brand !== undefined &&
-      this._brand !== ''
+      this._brand !== '' &&
+      !this.isCategories &&
+      !this.isCategories
     ) {
       query += '&brand=' + this._brand;
     }
     if (
       this._color !== null &&
       this._color !== undefined &&
-      this._color !== ''
+      this._color !== '' &&
+      !this.isCategories &&
+      !this.isCategories
     ) {
       query += '&color=' + this._color;
     }
@@ -192,7 +228,7 @@ export class ProductListPageComponent implements OnInit {
       });
   }
 
-  get_menus() {
+  get_menus() { //setting menus from product list
     this.brands=[]
     this.colors=[]
     Array.from(this.products).forEach((product: any) => {
@@ -213,7 +249,6 @@ export class ProductListPageComponent implements OnInit {
       (value, index, array) =>
         array.findIndex((t) => t.id === value.id) === index
     ); //setting colors
-    console.log(this.brands)
   }
 
   getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {

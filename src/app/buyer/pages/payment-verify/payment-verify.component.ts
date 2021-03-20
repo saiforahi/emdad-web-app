@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../../../shared/services/order.service'
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-payment-verify',
   templateUrl: './payment-verify.component.html',
@@ -9,9 +10,10 @@ import swal from 'sweetalert';
 })
 export class PaymentVerifyComponent implements OnInit {
 
-  constructor(private orderService:OrderService, private router:Router) { }
+  constructor(private orderService:OrderService, private router:Router,private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show()
     let data=JSON.parse(localStorage.getItem('payment_add_response'))
     //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
     let check_api_json={
@@ -28,12 +30,17 @@ export class PaymentVerifyComponent implements OnInit {
       (success)=>{
         if(success.success==="True"){
           //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
+          this.spinner.hide()
           swal("Succeed!","Payment Verified","success").then((isValid)=>{
             let order_id=localStorage.getItem('temp_order_id');
             localStorage.removeItem('temp_order_id')
             this.router.navigate(['/order/details/',order_id]);
           })
         }
+      },
+      (error)=>{
+        this.spinner.hide()
+        swal('Failed','Failed to verify payment','error')
       }
     )
   }
