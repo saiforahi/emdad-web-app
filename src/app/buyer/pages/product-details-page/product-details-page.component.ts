@@ -155,6 +155,13 @@ export class ProductDetailsPageComponent implements OnInit {
   addToWishlist(prod_id) {
     this.wishlist.addTowishlist(prod_id).subscribe((item) => {
       this.openSnackBar('Added to wishlist successfuly!', 'OK');
+      this.addToWishlistStatus = '0';
+    });
+  }
+
+  removeFromWishlist(prod_id) {
+    this.wishlist.removeFromWishllist(prod_id).subscribe((item) => {
+      this.openSnackBar('Successfully removed from wishlist!', 'OK');
       this.addToWishlistStatus = '1';
     });
   }
