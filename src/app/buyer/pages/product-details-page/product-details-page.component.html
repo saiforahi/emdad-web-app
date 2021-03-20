@@ -97,9 +97,9 @@
               </button>
             </div>
           </div> -->
-          <h5><b>Stock: </b> {{ prodcutDetails.stock_quantity }}</h5>
+          <h5><b>Stock: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}</h5>
           <div class="cart-quote-btn-div">
-            <button class="add-to-cart-btn" mat-button (click)="addToCart()">
+            <button type="button" [disabled]="get_quantity(prodcutDetails.stock_quantity)>0?false:true" [ngClass]="get_quantity(prodcutDetails.stock_quantity)>0? 'add-to-cart-btn':''" class="add-to-cart-btn" mat-button (click)="addToCart()">
               Add to Cart
             </button>
             &nbsp;

@@ -79,33 +79,33 @@ export class ProductListPageComponent implements OnInit {
         }
       });
     } 
-    // else if(this.selected_child_category!==undefined) {
-    //   // get product by category
-    //   this.getProduct
-    //     .getProductByCategory(this.selected_child_category)
-    //     .subscribe((item) => {
-    //       this.products = item.data.results;
-    //       this.getCategories.category().subscribe((item) => {
-    //         item.forEach((element) => {
-    //           element.children.forEach((element1) => {
-    //             element1.children.forEach((element2) => {
-    //               if (element2.id == this.selected_child_category) {
-    //                 this.selected_child_category_name = element2.name;
-    //                 this.expandedSubCat = element1.id;
-    //                 this.category = element;
-    //               }
-    //             });
-    //           });
-    //         });
-    //         this.get_menus();
-    //         this.prices = this.get_price_ranges();
-    //         if(item.data.links!=null){
-    //           this.nextBatchProdLink = item.data.links.next;
-    //         }
-    //       });
+    else if(this.selected_child_category!==undefined) {
+      // get product by category
+      this.getProduct
+        .getProductByCategory(this.selected_child_category)
+        .subscribe((item) => {
+          this.products = item.data.results;
+          this.getCategories.category().subscribe((item) => {
+            item.forEach((element) => {
+              element.children.forEach((element1) => {
+                element1.children.forEach((element2) => {
+                  if (element2.id == this.selected_child_category) {
+                    this.selected_child_category_name = element2.name;
+                    this.expandedSubCat = element1.id;
+                    this.category = element;
+                  }
+                });
+              });
+            });
+            this.get_menus();
+            this.prices = this.get_price_ranges();
+            if(item.data.links!=null){
+              this.nextBatchProdLink = item.data.links.next;
+            }
+          });
           
-    //     });
-    // }
+        });
+    }
     else if(this.router.url.substr(10,10)=='categories'){
       this.isCategories=true
       this.set_all_categories()

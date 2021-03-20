@@ -4,12 +4,14 @@
     box-sizing: border-box;
     border-radius: 5px;
     transition: 0.3s;
+    height: 108px;
 }
 .address-row-selected{
     border: 2px solid #1F4F9E;
     box-sizing: border-box;
     border-radius: 5px;
     transition: 0.3s;
+    height: 108px;
 }
 
 .add-address{
@@ -22,6 +24,17 @@
 .form-control{
     background: #EFEFEF;
     border-radius: 5px;
+    border: none;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+    color: rgba(43, 43, 43, 0.3);
+}
+.address-list{
+    margin-top: 40px;
 }
 .save-btn{
     background: #1F4F9E;
@@ -35,6 +48,8 @@
     /* identical to box height */
     text-align: center;
     color: #FFFFFF;
+    width: 300px;
+    height: 80px;
 }
 .pay-option{
     background: #FFFFFF;
@@ -117,4 +132,35 @@
     /* #2B2B2B */
 
     color: #2B2B2B;
+    /* margin-top: 60px; */
 }
+
+.new-address-btn{
+    width: 210px;
+    height: 108px;
+    background: #FFFFFF;
+    border: 2px solid #2B2B2B;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    /* #2B2B2B */
+
+    color: #2B2B2B;
+}
+/* .example-radio{
+    background: #FFFFFF;
+    
+    width: 650px;
+height: 108px;
+    border: 2px solid #1F4F9E;
+    box-sizing: border-box;
+    border-radius: 5px;
+} */

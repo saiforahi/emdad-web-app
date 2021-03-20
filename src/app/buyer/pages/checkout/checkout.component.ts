@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
@@ -29,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   add_payment_response: any;
   isCard: boolean;
   isWired: boolean;
+  payment_type:any;
   new_address: boolean;
   cash_details: any;
   addresses: any[] = [];
@@ -56,6 +54,7 @@ export class CheckoutComponent implements OnInit {
       console.log(this.countries);
     });
     this.isCard = true;
+    this.payment_type="1"
     this.isWired = false;
     this.cash_details = JSON.parse(localStorage.getItem('finalCart'));
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
@@ -69,80 +68,90 @@ export class CheckoutComponent implements OnInit {
     });
   }
   show_card_inputs() {
+    //
     document.getElementById('a_card').classList.add('pay-option-selected');
     document.getElementById('a_wire').classList.remove('pay-option-selected');
     this.isWired = false;
     this.isCard = true;
+    this.payment_type="1"
   }
   show_wired_inputs() {
     document.getElementById('a_wire').classList.add('pay-option-selected');
     document.getElementById('a_card').classList.remove('pay-option-selected');
     this.isCard = false;
     this.isWired = true;
+    this.payment_type="2"
   }
   show_address_form() {
+    //new address add form show action
     this.new_address = !this.new_address;
   }
   add_payment() {
-    this.orderService.get_active_shipping_address_of_buyer().subscribe((success) => {
-        // console.log(JSON.stringify({
-        //   "tran_type" : "sale",
-        //   "cart_description" : "sale",
-        //   "cart_id" : "400000000000001",
-        //   "cart_currency" : "SAR",
-        //   "cart_amount" : this.add_order_response.data[0].total_amount,
-        //   "customer_details": {
-        //     "name": this.user.full_name,
-        //     "email": localStorage.getItem('username'),
-        //     "phone": this.user.phone,
-        //     "street1": this.addresses[this.selected_address].address,
-        //     "city": this.addresses[this.selected_address].city.name,
-        //     "state": "DU",
-        //     "country": this.addresses[this.selected_address].city.country.iso2,
-        //     "zip_code": this.addresses[this.selected_address].zip_code,
-        //     "ip": "127.0.0.1"
-        //   }
-        // }))
-        this.orderService
-          .add_payment({
-            tran_type: 'sale',
-            cart_description: 'sale',
-            cart_id: '400000000000001',
-            cart_currency: 'SAR',
-            cart_amount: this.add_order_response.data[0].total_amount,
-            customer_details: {
-              name: this.user.full_name,
-              email: localStorage.getItem('username'),
-              phone: this.user.phone,
-              street1: this.addresses[this.selected_address].address,
-              city: this.addresses[this.selected_address].city.name,
-              state: 'DU',
-              country: this.addresses[this.selected_address].city.country.iso2,
-              zip_code: this.addresses[this.selected_address].zip_code,
-              ip: '127.0.0.1',
-            },
-          })
-          .subscribe((success) => {
-            localStorage.setItem(
-              'payment_add_response',
-              JSON.stringify(success)
-            );
-            console.log(
-              'payment_add_response',
-              JSON.parse(localStorage.getItem('payment_add_response'))
-            );
-            window.location.href = success.redirect_url;
-          });
+    //this.orderService.get_active_shipping_address_of_buyer().subscribe((success) => { //getting active shipping address of buyer
+    // console.log(JSON.stringify({
+    //   "tran_type" : "sale",
+    //   "cart_description" : "sale",
+    //   "cart_id" : "400000000000001",
+    //   "cart_currency" : "SAR",
+    //   "cart_amount" : this.add_order_response.data[0].total_amount,
+    //   "customer_details": {
+    //     "name": this.user.full_name,
+    //     "email": localStorage.getItem('username'),
+    //     "phone": this.user.phone,
+    //     "street1": this.addresses[this.selected_address].address,
+    //     "city": this.addresses[this.selected_address].city.name,
+    //     "state": "DU",
+    //     "country": this.addresses[this.selected_address].city.country.iso2,
+    //     "zip_code": this.addresses[this.selected_address].zip_code,
+    //     "ip": "127.0.0.1"
+    //   }
+    // }))
+
+    //});
+    this.orderService
+      .add_payment({
+        //adding order payment
+        Order: localStorage.getItem('temp_order_id'),
+        tran_type: 'sale',
+        cart_description: 'sale',
+        cart_id: '400000000000001',
+        cart_currency: 'SAR',
+        cart_amount: this.add_order_response.data[0].total_amount,
+        customer_details: {
+          name: this.user.full_name,
+          email: localStorage.getItem('username'),
+          phone: this.user.phone,
+          street1: this.addresses[this.selected_address].address,
+          city: this.addresses[this.selected_address].city.name,
+          state: 'DU',
+          country: this.addresses[this.selected_address].city.country.iso2,
+          zip_code: this.addresses[this.selected_address].zip_code,
+          ip: '127.0.0.1',
+        },
+      })
+      .subscribe((success) => {
+        localStorage.setItem('payment_add_response', JSON.stringify(success));
+        console.log(
+          'payment_add_response',
+          JSON.parse(localStorage.getItem('payment_add_response'))
+        );
+        window.location.href = success.redirect_url;
       });
   }
   make_order() {
+    //making order
     if (this.selected_address === undefined) {
       swal('Warning', 'Please select an address', 'warning');
     } else {
       this.spinner.show();
-      this.orderService.putOrder(JSON.parse(localStorage.getItem('cart_json'))).subscribe((success) => {
+      let data=JSON.parse(localStorage.getItem('cart_json'))
+      data.payment_type=this.payment_type;
+      console.log('cart_data',data)
+      this.orderService
+        .putOrder(data)
+        .subscribe((success) => {
           this.add_order_response = success;
-          console.log(this.add_order_response)
+          console.log(this.add_order_response);
           localStorage.setItem(
             'temp_order_id',
             this.add_order_response.data[0].id

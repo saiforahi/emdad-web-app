@@ -186,4 +186,13 @@ export class ProductDetailsPageComponent implements OnInit {
       duration: 5000,
     });
   }
+
+  get_quantity(value){
+    if(parseInt(value)>0){
+      return parseInt(value)
+    }
+    else{
+      return 0
+    }
+  }
 }
