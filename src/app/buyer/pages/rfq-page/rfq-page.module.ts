@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import{ CommonuiModule} from '../../../ui/commonui/commonui.module';
 import { RfqPageComponent } from './rfq-page.component';
 
 const routes: Routes = [
@@ -17,6 +17,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     NgxSpinnerModule,
+    CommonuiModule
   ],
 })
 export class RfqPageModule {}
