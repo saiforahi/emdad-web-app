@@ -1,13 +1,23 @@
 *:focus {
   outline: none;
 }
-
+.login{
+  background: #E5E5E5;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.register{
+  background: #E5E5E5;
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
 .login-holder {
   content: "";
-  background: #f49814 url("../../../../assets/sell-on-emdad-login-bg.svg")
+  background: #F49814 url("../../../../assets/sell-on-emdad-login-bg.svg")
     no-repeat 100%;
   padding: 20px;
-  margin: 280px 0 40px;
+ 
+
 }
 
 .login-holder h2 {
@@ -21,10 +31,20 @@
 .login-holder button {
   float: right;
   border-radius: 40px;
-  color: #f49814;
-  font-weight: 600;
-  font-size: 24px;
+  
+  
   padding: 10px 50px;
+  background: #FFFFFF;
+  font-family: Jost;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 35px;
+
+text-align: center;
+
+color: #F49814;
+
 }
 
 .register-holder {
@@ -36,34 +56,431 @@
 
 .register-holder h4 {
   font-weight: 500;
-  font-size: 32px;
+  font-size: 42px;
+  line-height: 61px;
   color: #1f4f9e;
 }
 
+
 .register-holder h2 {
-  font-weight: 500;
-  font-size: 42px;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 81px;
   color: #1f4f9e;
 }
 
 .register-holder p {
-  font-weight: normal;
+  
   font-size: 22px;
   line-height: 32px;
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+color: #2B2B2B;
 }
 
 .register-holder button {
   border-radius: 40px;
-  color: #fff;
+padding: 10px 50px;
+  background: #1F4F9E;
+  margin-top: 40px;
+  font-family: Jost;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 35px;
+text-align: center;
+color: #FFFFFF;
+box-shadow: none !important;
+}
+/*register holder mobile design*/
+.register-holder-mobile{
+  display: none !important;
+  height: auto !important;
+  padding: 20px !important;
+ /*  background-color: #FFFFFF; */
+
+}
+.register-holder-mobile h4{
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  color: #1f4f9e;
+ 
+}
+.register-holder-mobile h2{
+  font-weight: 600;
+  font-size: 45px;
+  line-height:71px;
+  color: #1f4f9e;
+}
+.register-holder-mobile p {
+  font-size: 20px;
+  line-height:28px;
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+color: #2B2B2B;
+}
+.register-holder-mobile button{
+  border-radius: 40px;
+  padding: 10px 50px;
+    background: #1F4F9E;
+    margin-top: 40px;
+    font-family: Jost;
+  font-style: normal;
   font-weight: 600;
   font-size: 24px;
-  padding: 10px 50px;
-  background: #f49814;
-  margin-top: 40px;
+  line-height: 35px;
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: none !important;
+  }
+ /*why us section*/
+ .why-us{
+  background: #E5E5E5;
+  padding-top: 10px;
+  padding-bottom: 60px;
+ }
+.heading{
+  font-family: Jost;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 52px;
+text-transform: capitalize;
+color: #2B2B2B;
+}
+.para{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.text-div{
+  vertical-align: middle !important;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+/*product portfolio*/
+.portfolio{
+  padding-top: 60px !important;
+  background: #E5E5E5;
+  padding-bottom: 60px;
+}
+.s-head,.s-head-p{
+  text-decoration: none;
+text-align: center !important;
+  background-image: url("../../../../assets/success-underline.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+height: 70px;
+  
+  
+}
+img.mat-card-image{
+min-height: 200px;
+}
+.prod-card-text{
+  text-align: center;
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+text-align: center;
+color: #2B2B2B;
+}
+.example{
+  border-radius: 10px !important;
+  background: #FFFFFF;
+  box-shadow: none !important;
+  box-shadow: 0 !important;
+}
+.heading-text{
+  margin-bottom: 50px;
+}
+.custom-row{
+  margin-top: 20px !important;
 }
 
+/*how to sell*/
+.how-to-sell{
+  background: #FFFFFF;
+  padding-top: 90px;
+  padding-bottom: 60px;
+}
+.step-text{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 35px;
+text-align: center;
+color: #2B2B2B;
+}
+.img-div{
+/*   height: 150px;
+  width: 150px;
+  border-radius: 50%; */
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  
+/*   -moz-border-radius: 50%;
+  -webkit-border-radius: 50%; */
+}
+/* .reg{
+  background: linear-gradient(203deg, #61BFFF 11.18%, #1980C7 87.95%);
+}
+.icon{
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+  align-self: center;
+  vertical-align: -webkit-baseline-middle;
+} */
+
+/*our partners section*/
+.second-row{
+  background: #E5E5E5;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+}
+.subheading{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 32px;
+text-align: center;
+color: #2B2B2B;
+}
+.heading-text{
+  padding-left: 70px;
+  padding-right:70px;
+}
+.card-text{
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 38px;
+text-align: center;
+ color: #2B2B2B;
+  
+}
+.card{
+  text-align: center !important;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #FFFFFF;
+box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
+border-radius: 10px !important;
+border-color: transparent !important;
+justify-content: center;
+align-items: center;
+}
+.card-img >img{
+  height: 100px;
+  width: 100px;
+}
+
+/*responsive -_- :( */
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
+}
+@media all and (min-width:290px) and (max-width:600px){
+img.mat-card-image{
+height: 150px;
+}
+.login-holder h2{
+  font-size: 32px;
+}
+
+.login-holder button{
+  font-size: 18px;
+  line-height: 25px;
+ 
+  padding: 10px 30px;
+}
+
+.register-holder-mobile button{
+  font-size: 18px;
+  line-height: 25px;
+ 
+  padding: 10px 30px;
+}
+.register-holder-mobile h4{
+  font-size: 30px;
+  line-height: 40px;
+}
+.register-holder-mobile h2{
+  font-size: 40px;
+  line-height: 51px;
+}
+.register-holder-mobile p{
+  font-size: 18px;
+  line-height: 26px;
+}
+.why-us{
+  padding-bottom: 20px;
+}
+.heading{
+  font-size: 28px;
+  line-height: 40px;
+}
+.para{
+  font-size: 15px;
+  line-height: 22px;
+}
+.prod-card-text{
+  font-size: 18px;
+  line-height: 25px;
+}
+.how-to-sell{
+  padding-top: 40px;
+}
+.second-row{
+  padding-top: 40px;
+}
+}
+@media all and (min-width:600px) and (max-width:992px){
+  .login-holder h2{
+    font-size: 38px;
+  }
+  
+  .login-holder button{
+    font-size: 22px;
+    line-height: 28px;
+   
+    padding: 10px 30px;
+  }
+  
+  .register-holder-mobile button{
+    font-size: 22px;
+    line-height: 28px;
+   
+    padding: 10px 30px;
+  }
+  .register-holder-mobile h4{
+    font-size: 35px;
+    line-height: 45px;
+  }
+  .register-holder-mobile h2{
+    font-size: 45px;
+    line-height: 61px;
+  }
+  .register-holder-mobile p{
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .why-us{
+    padding-bottom: 20px;
+  }
+  .heading{
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .para{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .prod-card-text{
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .how-to-sell{
+    padding-top: 40px;
+  }
+  .second-row{
+    padding-top: 40px;
+  }
+}
+@media all and (min-width:992px) and (max-width:1199px){
+  img.mat-card-image{
+    height: 150px;
+  }
+.why-us img{
+  width: 100%;
+}
+.register-holder{
+  padding-left: 30px !important;
+  background: url("../../../../assets/images/seller-image-bg.png") no-repeat 65%;
+}
+}
+@media all and (min-width:768px) and (max-width:1199px){
+  .card-text{
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+@media all and (min-width:290px) and (max-width:992px){
+  .register-holder{
+    display: none;
+  }
+  .register-holder-mobile{
+    display: block !important;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
+
+  }
+  .heading{
+    text-align: center !important;
+  }
+  .heading-text{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .text-div{
+    padding-left: 0;
+  }
+  img.mat-card-image{
+    height: 150px;
+    }
+
+
+}
+@media all and (min-width:290px) and (max-width:430px){
+  .login-holder button{
+    float: none !important;
+  }
+  .login-holder > a{
+    display: inline-block !important;
+    clear: both;
+  }
+}
+@media all and (min-width:371px) and (max-width:470px){
+  .s-head{
+    height: 70px;
+  }
+  .s-head-p{
+    height: 60px;
+  }
+}
+@media all and (min-width:290px) and (max-width:371px){
+  .s-head{
+    height: 95px;
+  }
+  .s-head-p{
+    height: 60px;
+  }
+}
+@media all and (min-width:290px) and (max-width:768px){
+  .login-holder > a{
+
+    
+  }
+  .login-holder{
+    padding: 25px;
+    background: #F49814 url("../../../../assets/sell-on-emdad-login-bg.svg")
+    no-repeat 60%;
+  }
+  
 }

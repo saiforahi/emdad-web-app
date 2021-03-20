@@ -1,25 +1,209 @@
-<section class="container">
-    <div class="login-holder">
-        <h2 class="d-inline-block">Allready a Seller?</h2>
-        <a target="_blank" [routerLink]="['/dashboard/login']">
-            <button mat-raised-button>Login</button>
-        </a>
-    </div>
-</section>
-<section class="container">
-    <div
-        style="background: linear-gradient(270deg, #FFFFFF 49.32%, rgba(249, 251, 251, 0.05) 60.53%, rgba(238, 244, 244, 0) 68.47%);">
-        <div class="register-holder">
-            <h4>READY TO BECOME</h4>
-            <h2>A EMDAD SELLER?</h2>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias soluta corrupti 
-                <br> 
-                pariatur id tempora aut facilis, sint perspiciatis odit eos ratione commodi!
-            </p>
-            <a target="_blank" [routerLink]="['/dashboard/signup']">
-                <button mat-raised-button>Sign UP</button>
+<section class="login">
+    <div class="container">
+        <div class="login-holder">
+            <h2 class="d-inline-block">Already a Seller?</h2>
+            <a target="_blank" [routerLink]="['/dashboard/login']">
+                <button mat-flat-button>Login</button>
             </a>
         </div>
     </div>
 </section>
+<section class="register">
+    <div class="container">
+        <div style="background:#FFFFFF url('../../../../assets/become-a-seller-left.png') left top no-repeat;">
+            <div class="register-holder">
+                <h4>READY TO BECOME</h4>
+                <h2>A EMDAD SELLER?</h2>
+                <br><br>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias soluta corrupti
+                    <br>
+                    pariatur id tempora aut facilis, sint perspiciatis odit eos ratione commodi!
+                </p>
+                <a target="_blank" [routerLink]="['/dashboard/signup']">
+                    <button mat-raised-button>Sign up</button>
+                </a>
+            </div>
+        </div>
+        <div class="register-holder-mobile">
+           
+            <h4>READY TO BECOME</h4>
+            <h2>A EMDAD SELLER?</h2>
+            <br><br>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias soluta corrupti
+                <br>
+                pariatur id tempora aut facilis, sint perspiciatis odit eos ratione commodi!
+            </p>
+            <a target="_blank" [routerLink]="['/dashboard/signup']">
+                <button mat-raised-button>Sign up</button>
+            </a>
+        </div>
+    </div>
+</section>
+<!--Why us section-->
+<section class="why-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-5 col-xs-12 col-sm-12 col-12">
+                <img src="../../../../assets/why-us.png" alt="group" class="img-fluid w-100">
+            </div>
+            <div class="col-md-12 col-lg-7 col-xs-12 col-sm-12 col-12">
+                <div class="text-div">
+                    <h1 class="heading pb-2">Why Us</h1>
+                    <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        <br><br>
+                        When an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                        has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                        essentially unchanged.
+                        <br><br>
+                        It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                        distribution of letters, as opposed to using 'Content here, content here', making it look like
+                        readable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--products portfolio section-->
+<section class="portfolio">
+    <div class="container">
+        <div class="heading-text">
+            <h1 class="pb-2 heading s-head-p">Products Portfolio</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 offset-lg-1 offset-md-0 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+                <mat-card class="example-card h-100">
+                    <img mat-card-image src="../../../../assets/construction-material.png"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p class="prod-card-text">
+                           Construction Material
+                        </p>
+                        </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+                <mat-card class="example-card h-100">
+                    <img mat-card-image src="../../../../assets/mro-spares.png"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p class="prod-card-text">
+                        MRO Spares
+                        </p>
+                        </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+                <mat-card class="example-card h-100">
+                    <img mat-card-image src="../../../../assets/piping.png"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p class="prod-card-text">
+                          Piping
+                        </p>
+                        </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+                <mat-card class="example-card h-100">
+                    <img mat-card-image src="../../../../assets/valves.png"
+                        alt="Photo of a Shiba Inu" class="img-fluid">
+                    <mat-card-content>
+                        <p class="prod-card-text">
+                           Valves
+                        </p>
+                        </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <mat-card class="example-card h-100">
+                    <img mat-card-image src="../../../../assets/construction-materia2.png"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p class="prod-card-text">
+                           Construction Material
+                        </p>
+                        </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--how to sell on emdad-->
+<section class="how-to-sell">
+    <div class="container">
+        <div class="heading-text">
+            <h1 class="pb-2 heading s-head">How to Sell on EMDAD</h1>
+        </div> 
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-xs-12 col-12">
+               <div class="img-div mt-3">
+                <img src="../../../../assets/how-to-sell.png" alt="" class="img-fluid">
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--our-partners section-->
+<div class="second-row">
+    <div class="container">
+
+        <div class="heading-text">
+            <h1 class="pb-2 heading text-center">Our Partners</h1>
+            <p class="subheading">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum
+                has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley
+                of type and scrambled it to make a type specimen book.</p>
+        </div>
+        <div class="row ">
+            <!--first line-->
+            <!--  <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 custom-row"></div> -->
+
+            <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <div class="card h-100">
+                    <div class="card-img text-center"> <img src="../../../../assets/HI8.png" alt="hi8 logo"
+                            class="img-fluid"></div>
+                    <span class="card-text">Fli8</span>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <div class="card h-100">
+                    <div class="card-img text-center"> <img src="../../../../assets/gr8.png" alt="gr8 logo"
+                            class="img-fluid"></div>
+                    <span class="card-text">gr.8</span>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <div class="card h-100">
+                    <div class="card-img text-center"> <img src="../../../../assets/96Points.png"
+                            alt="96points logo" class="img-fluid"></div>
+                    <span class="card-text">96 Points</span>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <div class="card h-100">
+                    <div class="card-img text-center"> <img src="../../../../assets/oem.png" alt="oemlogo"
+                            class="img-fluid"></div>
+                    <span class="card-text">oem</span>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+                <div class="card h-100">
+                    <div class="card-img text-center"> <img src="../../../../assets/sansui.png" alt="sansui"
+                            class="img-fluid"></div>
+                    <span class="card-text">Sansui</span>
+                </div>
+            </div>
+       
+        </div>
+
+
+
+    </div>
+</div>
