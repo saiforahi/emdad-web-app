@@ -19,6 +19,12 @@ export class CustomerReviewService {
     return this.http.get(link);
   }
 
+  getAllComments(prod_id): Observable<any> {
+    return this.http.get(
+      config.base_url + 'api/product/comment/total/' + prod_id + '/'
+    );
+  }
+
   addComments(comments: any) {
     return this.http.post(
       config.base_url + 'api/product/comment/add/',
