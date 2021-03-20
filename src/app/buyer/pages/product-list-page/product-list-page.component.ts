@@ -14,7 +14,7 @@ export class ProductListPageComponent implements OnInit {
   style: string;
   @Output() view_style=new EventEmitter<string> ()
   isSeller = false;
-  isCategories=false
+  isCategories = false;
   products = [];
   prodEnd;
   nextBatchProdLink;
@@ -77,7 +77,7 @@ export class ProductListPageComponent implements OnInit {
           this.nextBatchProdLink = item.data.links.next;
         }
       });
-    } else if(this.selected_child_category!==undefined){
+    } else if(this.selected_child_category!==undefined) {
       // get product by category
       this.getProduct
         .getProductByCategory(this.selected_child_category)
@@ -125,9 +125,10 @@ export class ProductListPageComponent implements OnInit {
   set_all_categories(){ //setting categories for products/categories route
     this.categories=[]
     this.getCategories.category().subscribe((item) => {
-      item.forEach((element) => {
-        this.categories.push(element)
-      });
+      this.categories=item
+      // item.forEach((element) => {
+      //   this.categories.push(element)
+      // });
     });
   }
 
