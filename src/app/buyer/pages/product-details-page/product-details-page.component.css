@@ -14,8 +14,8 @@ a {
   position: relative;
 }
 
-pinch-zoom /deep/ .pinch-zoom-content{
-  background: #fff;
+pinch-zoom /deep/ .pinch-zoom-content {
+  background: #efefef;
 }
 
 .slider-btn-div {
@@ -91,8 +91,8 @@ pinch-zoom /deep/ .pinch-zoom-content{
 .cart-quote-btn-div button.add-to-cart-btn {
   width: 250px;
   height: 80px;
-  background: #1F4F9E;
-border-radius: 5px;
+  background: #1f4f9e;
+  border-radius: 5px;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
@@ -102,8 +102,8 @@ border-radius: 5px;
 
 .cart-quote-btn-div button.req-for-quote-btn {
   height: 80px;
-  border: 1px solid #1F4F9E;
-  color: #1F4F9E;
+  border: 1px solid #1f4f9e;
+  color: #1f4f9e;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
@@ -203,12 +203,14 @@ ngb-carousel /deep/ .carousel-control-prev-icon {
 ngb-carousel /deep/ .carousel-control-next-icon {
   background-image: url("../../../../assets/right-arrow.svg") !important;
 }
+
 .reviews-holder {
   background: #fff;
   padding: 60px 0;
 }
+
 .reviews-holder button {
-  background: #1F4F9E;
+  background: #1f4f9e;
   color: #ddd;
   padding: 23px;
   font-family: Jost;
@@ -221,11 +223,217 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   background: #ddd;
   padding: 100px 0 225px;
 }
+
+.module {
+  scroll-behavior: smooth;
+}
+
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
 }
-.module {
-  scroll-behavior: smooth;
+
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  .prodcutDetails {
+    padding: 15px 0;
+  }
+  .prod-img {
+    height: 200px;
+  }
+  .prodcutDetails .mat-raised-button {
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+  .prodcutDetails .mat-raised-button img {
+    height: 10px;
+  }
+  .wishlist-review-div,
+  .cart-quote-btn-div {
+    padding: 15px 0 0;
+  }
+  .wishlist-review-div button {
+    font-size: 16px;
+    background: #efefef;
+    margin-right: 15px;
+  }
+  .wishlist-review-div button img {
+    height: 16px;
+  }
+  .prod-delivery-info {
+    font-size: 16px;
+  }
+  .prod-delivery-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .prod-delivery-info h5 {
+    font-size: 16px !important;
+  }
+  .cart-quote-btn-div button.add-to-cart-btn {
+    width: 115px;
+    height: 50px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .cart-quote-btn-div button.req-for-quote-btn {
+    height: 50px;
+    font-size: 16px;
+  }
+  .prod-name {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .prod-price,
+  .seller-name,
+  .brand-name,
+  .prod-details-header {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .similar-prod-header {
+    font-size: 20px;
+    margin: 15px 0 15px;
+  }
+  ngb-carousel /deep/ .carousel-control-prev {
+    border-radius: 5px;
+    right: 45px;
+    top: -47px;
+    width: 30px;
+    height: 30px;
+  }
+  ngb-carousel /deep/ .carousel-control-next {
+    border-radius: 5px;
+    right: 0;
+    top: -47px;
+    width: 30px;
+    height: 30px;
+  }
+  ngb-carousel /deep/ .carousel-control-prev-icon {
+    height: 15px;
+  }
+  ngb-carousel /deep/ .carousel-control-next-icon {
+    height: 15px;
+  }
+  .reviews-holder {
+    padding: 15px 0;
+  }
+  .reviews-holder h4 {
+    font-size: 16px;
+  }
+  .reviews-holder button {
+    padding: 0px 15px;
+    color: #fff;
+    height: 50px;
+    font-size: 16px;
+  }
+  .modal-title {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .seller-description {
+    padding: 15px 0 15px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  .prodcutDetails {
+    padding: 30px 0;
+  }
+  .prod-img {
+    height: 250px;
+  }
+  .prodcutDetails .mat-raised-button {
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+  .prodcutDetails .mat-raised-button img {
+    height: 10px;
+  }
+  .wishlist-review-div,
+  .cart-quote-btn-div {
+    padding: 20px 0 0;
+  }
+  .wishlist-review-div button {
+    font-size: 16px;
+    background: #efefef;
+    margin-right: 15px;
+  }
+  .wishlist-review-div button img {
+    height: 16px;
+  }
+  .prod-delivery-info {
+    font-size: 16px;
+  }
+  .prod-delivery-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .prod-delivery-info h5 {
+    font-size: 16px !important;
+  }
+  .cart-quote-btn-div button.add-to-cart-btn {
+    width: 115px;
+    height: 60px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .cart-quote-btn-div button.req-for-quote-btn {
+    height: 60px;
+    font-size: 18px;
+  }
+  .prod-name {
+    font-size: 22px;
+    margin-top: 15px;
+  }
+  .prod-price,
+  .seller-name,
+  .brand-name,
+  .prod-details-header {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .similar-prod-header {
+    font-size: 22px;
+    margin: 15px 0 15px;
+  }
+  ngb-carousel /deep/ .carousel-control-prev {
+    border-radius: 5px;
+    right: 45px;
+    top: -47px;
+    width: 30px;
+    height: 30px;
+  }
+  ngb-carousel /deep/ .carousel-control-next {
+    border-radius: 5px;
+    right: 0;
+    top: -47px;
+    width: 30px;
+    height: 30px;
+  }
+  ngb-carousel /deep/ .carousel-control-prev-icon {
+    height: 15px;
+  }
+  ngb-carousel /deep/ .carousel-control-next-icon {
+    height: 15px;
+  }
+  .reviews-holder {
+    padding: 15px 0;
+  }
+  .reviews-holder h4 {
+    font-size: 18px;
+  }
+  .reviews-holder button {
+    padding: 0px 15px;
+    color: #fff;
+    height: 60px;
+    font-size: 18px;
+  }
+  .modal-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .seller-description {
+    padding: 15px 0 15px;
+  }
 }
