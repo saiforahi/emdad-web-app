@@ -73,7 +73,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     doc.text('Date : '+this.formatDate(this.orders[0].order.order_datetime), 200,20,null,'right')
     doc.setFontSize(20);
     doc.setFont("Jost", "normal");
-    doc.text('Order ID: # '+this.order_id, 20, 30);
+    doc.text('Order ID: # '+this.orders[0].order.order_code, 20, 30);
     doc.setFontSize(12);
     //doc.text("This is centred text.", 105, 80, null, "center");
     //doc.text("And a little bit more underneath it.", 105, 90, null, "center");
@@ -99,8 +99,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
 
     // doc.text("10 degrees rotated", 20, 140, null, 10);
     // doc.text("-10 degrees rotated", 20, 160, null, -10);
-    doc.save('invoice_'+this.order_id+'.pdf')
     this.spinner.hide()
+    doc.save('invoice_'+this.order_id+'.pdf')
   }
   formatDate(date) {
     let d = new Date(date);
