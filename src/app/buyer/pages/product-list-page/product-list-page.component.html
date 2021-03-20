@@ -7,7 +7,7 @@
 <section *ngIf="isSeller" class="seller-cat-menu">
     <nav style="background: #F49814 !important;" class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
         <div class="container">
-            <span class="navbar-brand"><img class="rounded" src="../../../assets/images/avatar.svg" alt="seller logo" /></span>
+            <span class="navbar-brand"><img class="rounded" src="../../../assets/Group.svg" alt="seller logo" /></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
                 aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,6 +15,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <div>
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active" style="margin-right: 17px">
+                            <a class="nav-link" [routerLink]="['/']">
+                                CEVENNESFE OFFICIAL STORE
+                            </a>
+                        </li>
                         <li class="nav-item active" style="margin-right: 17px" *ngFor="let cat of categories">
                             <a class="nav-link" [routerLink]="['/']">
                                 {{ cat.name | titlecase }}
@@ -118,7 +123,7 @@
                         </mat-panel-description> -->
                     </mat-expansion-panel-header>
                     <div class="expanded-div">
-                        <div *ngIf="category.children.length == 0">No item to show</div>
+                        <div *ngIf="category.children?.length == 0">No item to show</div>
                         <!-- level two -->
                         <mat-accordion *ngFor="let subcategory of category.children">
                             <mat-expansion-panel [expanded]="expandedSubCat == subcategory.id" #childCat>
@@ -195,7 +200,7 @@
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
-            <mat-accordion *ngIf="prices">
+            <mat-accordion *ngIf="prices?.length>0">
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
