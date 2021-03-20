@@ -7,19 +7,26 @@ import { OrderService } from '../../../shared/services/order.service';
   styleUrls: ['./order-history-table.component.css'],
 })
 export class OrderHistoryComponent implements OnInit {
-  orders:any=[];
+  orderData: any;
+  displayedColumns: string[] = [
+    'Order ID',
+    'Payment Date',
+    'Delivery Date',
+    'Amount',
+    'view',
+  ];
+
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    //this.orderService.get_order_list().subscribe(res=>console.log(res.data));
     this.get_orders();
-    console.log(this.orders)
+    // console.log(this.orderData);
   }
-  get_orders(){
-    //this.orders=Orders
-    this.orderService.get_buyer_order_list().subscribe(res=>{
-      this.orders=res.data;
-      console.log(this.orders);
+
+  get_orders() {
+    this.orderService.get_buyer_order_list().subscribe((res) => {
+      this.orderData = res.data;
+      // console.log(this.orderData);
     });
   }
 }

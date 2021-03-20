@@ -304,8 +304,8 @@ button:focus {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  top: 50px;
-  right: 125px;
+  top: 20px;
+  right: 5px;
   text-align: center;
   color: #fff;
   font-size: 12px;
@@ -402,6 +402,16 @@ button:focus {
     color: #1f4f9e;
     font-weight: 600;
   }
+  .my-profile-menu ::ng-deep .mat-expansion-panel-header {
+    padding: 0 5px 0 0;
+    height: 24px;
+  }
+  .my-profile-menu ::ng-deep .mat-expansion-panel {
+    box-shadow: none;
+  }
+  .my-profile-menu ::ng-deep .mat-expansion-panel-body {
+    padding: 15px 24px 0px;
+}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

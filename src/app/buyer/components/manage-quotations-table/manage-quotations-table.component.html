@@ -1,4 +1,4 @@
-<div class="row p-4">
+<!-- <div class="row">
   <table class="table">
     <thead>
       <tr>
@@ -14,11 +14,6 @@
       <tr *ngFor="let quotation of quotationDetails; let i = index" class="highlighted">
         <th scope="row">{{ quotation.id }}</th>
         <td>
-          <!-- {{
-            quotation.quotation[0] !== undefined
-              ? quotation.quotation[0].message_date
-              : ("" | date)
-          }} -->
           {{ formatDate(quotation.created_at) }}
         </td>
         <td>{{ quotation.rfq !== undefined ? quotation.rfq[0].id : "" }}</td>
@@ -34,19 +29,65 @@
           </button>
         </td>
       </tr>
-      <!-- <tr class="spacer">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Blah Blah</td>
-            <td>
-                <button class="btn btn-primary" type="button">view</button>
-            </td>
-        </tr> -->
     </tbody>
   </table>
-</div>
+</div> -->
+
+<section>
+  <div class="card-body">
+    <table mat-table [dataSource]="quotationData">
+      <!-- quotation id Column -->
+      <ng-container matColumnDef="Quotation ID">
+        <th mat-header-cell *matHeaderCellDef>Quotation ID</th>
+        <td mat-cell *matCellDef="let element">#{{ element.id }}</td>
+      </ng-container>
+
+      <!-- date Column -->
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{
+          element.created_at | date }}</td>
+      </ng-container>
+
+      <!--rfq id Column -->
+      <ng-container matColumnDef="RFQ ID">
+        <th mat-header-cell *matHeaderCellDef>RFQ ID</th>
+        <td mat-cell *matCellDef="let element">{{
+          element.rfq !== undefined ? element.rfq[0].id : "" }}</td>
+      </ng-container>
+      <!-- buyer name Column -->
+      <ng-container matColumnDef="Seller Name">
+        <th mat-header-cell *matHeaderCellDef>Seller Name</th>
+        <td mat-cell *matCellDef="let element">{{element.seller !== undefined ? element.seller.full_name : ""}} </td>
+      </ng-container>
+      <!--view coloumn-->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.status == 1">Initiated</span>
+          <span *ngIf="element.status == 2">Sent</span>
+          <span *ngIf="element.status == 3"> Completed</span>
+          <span *ngIf="element.status == null"> - </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button class="edit-product-btn" mat-button (click)="show_quotation_details(i)"
+            align="right">View</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="quotationData.length" showFirstLastButtons
+      *ngIf="quotationData != undefined || quotationData != null"></mat-paginator>
+    <div class="no-data" *ngIf="quotationData == undefined || quotationData == null">
+      No data available
+    </div>
+  </div>
+</section>
 
 <div class="modal animated fadeIn" id="quotationDetails" role="dialog" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -56,7 +97,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div> -->
-      <div class="modal-body row d-flex flex-column">
+      <div class="modal-body row d-flex flex-column" *ngIf="quotation">
         <div class="justify-content-between">
           <p class="d-inline-block">Quotation ID: {{ quotation.id }}</p>
           <button (click)="hideModal()" type="button" class="btn float-right" data-dismiss="modal" aria-label="Close">

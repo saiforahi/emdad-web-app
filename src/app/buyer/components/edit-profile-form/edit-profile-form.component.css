@@ -1,3 +1,7 @@
+*:focus {
+  box-shadow: none;
+}
+
 .login_btn {
   background: #1f4f9e;
   border-radius: 5px;
@@ -7,26 +11,24 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
-
   text-align: center;
   height: 80px;
   color: #ffffff;
 }
+
 .edit-button {
   cursor: pointer;
 }
+
 .page-header {
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
   line-height: 69px;
-
-  /* #2B2B2B */
-
   color: #2b2b2b;
 }
+
 .rounded-circle {
   display: inline-block;
   width: 100px;
@@ -34,18 +36,17 @@
   height: 100px;
   position: relative;
   text-align: center;
-  /* margin-left: -920px; */
-  float: left;
   align-items: flex-start;
+  margin-bottom: 65px;
 }
+
 .plus-icon {
-  /* position: absolute; */
   position: relative;
   margin-top: 70px;
   margin-left: 80px;
-  /* bottom: 0px; */
-  /* right: 10px; */
+  color: #1f4f9e;
 }
+
 .pro-img {
   position: absolute;
   left: 50%;
@@ -55,6 +56,7 @@
   height: 100%;
   border-radius: 50%;
 }
+
 .form-control {
   background: #efefef;
   border-radius: 5px;
@@ -63,11 +65,11 @@
   font-weight: normal;
   font-size: 20px;
   line-height: 29px;
-  /* identical to box height */
-
   color: black;
   height: 80px;
+  border: none;
 }
+
 .form-label {
   font-family: Jost;
   font-style: normal;
@@ -76,6 +78,7 @@
   line-height: 29px;
   color: #2b2b2b;
 }
+
 .container-custom {
   border-radius: 50%;
 }
@@ -98,4 +101,75 @@
 
 .errors {
   color: red;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.card-body {
+  padding: 40px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .col-xs-none {
+    display: none;
+  }
+  .rounded-circle {
+    margin-bottom: 15px;
+    width: 70px;
+    height: 70px;
+  }
+  .plus-icon {
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+  .form-label {
+    font-size: 16px;
+  }
+  .form-control {
+    font-size: 16px;
+    height: 50px;
+  }
+  .login_btn {
+    height: 50px;
+    margin-top: 0;
+  }
+  .btn {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  .col-xs-none {
+    display: none;
+  }
+  .rounded-circle {
+    margin-bottom: 15px;
+    width: 70px;
+    height: 70px;
+  }
+  .plus-icon {
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+  .form-label {
+    font-size: 18px;
+  }
+  .form-control {
+    font-size: 18px;
+    height: 60px;
+  }
+  .login_btn {
+    height: 60px;
+    margin-top: 0;
+  }
+  .btn {
+    font-size: 18px;
+  }
 }
