@@ -31,6 +31,10 @@
 .table th {
   vertical-align: middle !important;
 } */
+*:focus {
+  box-shadow: none;
+}
+
 .mat-table {
   background-color: transparent !important;
   padding: 0 20px;
@@ -90,6 +94,74 @@ td {
   border-color: #1f4f9e;
 }
 
+.modal {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  border: none;
+  padding: 30px;
+}
+
+.modal-body {
+  padding: 0 1rem;
+}
+
+.modal-body p {
+  font-size: 18px;
+}
+
+.modal-body p span {
+  font-weight: 500;
+}
+
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: black;
+  height: 80px;
+  border: none;
+}
+
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
+}
+
+.deny-input {
+  margin-top: 40px;
+}
+
+.btn-div {
+  margin-top: 40px;
+}
+
+.btn-div button {
+  height: 55px;
+  font-size: 18px;
+}
+
+.btn-div button:first-child {
+  background: #1f4f9e;
+  color: #fff;
+  margin-right: 15px;
+}
+
+.btn-div button:last-child {
+  border: 1px solid #1f4f9e;
+  background: #fff;
+  color: #1f4f9e;
+}
+
 @media only screen and (min-width: 300px) and (max-width: 991px) {
   .card-body {
     padding: 0;
@@ -120,6 +192,30 @@ td {
   }
 
   td {
+    font-size: 16px;
+  }
+  .modal-body p {
+    font-size: 16px;
+  }
+  
+  .form-control {
+    font-size: 16px;
+  }
+  
+  .form-label {
+    font-size: 16px;
+  }
+  
+  .deny-input {
+    margin-top: 10px;
+  }
+  
+  .btn-div {
+    margin-top: 10px;
+  }
+  
+  .btn-div button {
+    height: 50px;
     font-size: 16px;
   }
 }
