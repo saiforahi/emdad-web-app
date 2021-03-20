@@ -21,12 +21,12 @@ export class ProfilePageComponent implements OnInit {
   userMail;
   country: any;
   city: any;
-
   show_change_pass_form;
   show_profile_form;
   show_order_history;
   show_manage_quotations;
   channel_quotation: Quotation;
+
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
@@ -39,6 +39,30 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      // Defaults to 0 if no query param provided.
+      if (params.activeItem == '1') {
+        this.show_change_pass_form = false;
+        this.show_profile_form = true;
+        this.show_order_history = false;
+        this.show_manage_quotations = false;
+      } else if (params.activeItem == '2') {
+        this.show_change_pass_form = true;
+        this.show_profile_form = false;
+        this.show_order_history = false;
+        this.show_manage_quotations = false;
+      } else if (params.activeItem == '3') {
+        this.show_change_pass_form = false;
+        this.show_profile_form = false;
+        this.show_order_history = true;
+        this.show_manage_quotations = false;
+      } else if (params.activeItem == '4') {
+        this.show_change_pass_form = false;
+        this.show_profile_form = false;
+        this.show_order_history = false;
+        this.show_manage_quotations = true;
+      }
+    });
     this.userId = this.route.snapshot.params['id'];
     this.authService.uName.subscribe((data) => {
       this.userMail = data;
@@ -58,6 +82,7 @@ export class ProfilePageComponent implements OnInit {
       alert('access is denied');
     }
   }
+
   // pass_quotation_to_modal(quotation: Quotation) {
   //   console.log('$$$$$$$$$');
   //   console.log(quotation);
@@ -65,9 +90,11 @@ export class ProfilePageComponent implements OnInit {
   //   this.channel_quotation = quotation;
   //   document.getElementById('quotationDetails').style.display = 'block';
   // }
+
   logout() {
     this.authService.logout();
   }
+
   getCountries() {
     this.countryList.allCountries().subscribe(
       (data) => {
@@ -78,9 +105,11 @@ export class ProfilePageComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
   show_logout_modal() {
     document.getElementById('profileLogout').style.display = 'block';
   }
+
   onCountryChange(countryId) {
     this.countryList.allCities(countryId).subscribe(
       (data) => {

@@ -10,6 +10,7 @@ import { OrderHistoryComponent } from '../../components/order-history-table/orde
 import { ManageQuotations } from '../../components/manage-quotations-table/manage-quotations-table.component';
 import { ProfileLogoutModal } from '../../components/profile-logout-modal/profile-logout-modal.component';
 // import {QuotationDetailsModal} from '../../components/quotation-details-modal/quotation-details-modal.component';
+import { MaterialModule } from 'src/app/material.module';
 
 const routes: Routes = [
   { path: '', component: ProfilePageComponent, pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
+    MaterialModule
   ],
 })
 export class ProfilePageModule {}

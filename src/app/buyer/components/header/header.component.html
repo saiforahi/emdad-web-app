@@ -32,9 +32,32 @@
                   src="../../../../assets/Login.svg" alt="">
                 <span>Sign In / Sign Up</span></span></li>
             <div *ngIf="loggedInUser">
-              <li [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''"><a [routerLink]="['profile/', uId]"
-                  (click)="closeMenu();"><img src="../../../../assets/Profile-small.svg" alt="">
-                  <span>My Profile</span></a></li>
+              <li [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''" class="my-profile-menu">
+                <!-- <a [routerLink]="['profile/', uId]" (click)="closeMenu();">
+                  <img src="../../../../assets/Profile-small.svg" alt="">
+                  <span>My Profile</span>
+                </a> -->
+                <mat-accordion>
+                  <mat-expansion-panel [expanded]="false">
+                      <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <div class="cat-head">
+                                <img src="../../../../assets/Profile-small.svg" alt="">
+                                <span>My Profile</span>
+                              </div>
+                          </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="expanded-div">
+                          <ul class="" style="list-style: none; padding: 0 0 0 11px;">
+                            <li [routerLink]="['profile/', uId]" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">Profile Settings</li>
+                            <li [routerLink]="['profile/', uId]" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">Change Password</li>
+                            <li [routerLink]="['profile/', uId]" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">Order History</li>
+                            <li [routerLink]="['profile/', uId]" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">Manage Quotation</li>
+                          </ul>
+                      </div>
+                  </mat-expansion-panel>
+              </mat-accordion>
+              </li>
               <li [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''"><a [routerLink]="['track-orders']"
                   (click)="closeMenu();"><img src="../../../../assets/Location-small.svg" alt=""> <span>Track Order
                   </span></a></li>
@@ -51,7 +74,7 @@
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>Change Language </span></a></li>
             <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
-                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart 
+                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart
                 </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
                 <span>Notifications </span></a></li>
@@ -139,7 +162,7 @@
                 <img src="../assets/down-carrot.svg" alt="">
               </a> -->
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="position: relative;">
               <a class="nav-link" [routerLink]="['/cart']">
                 <img src="../assets/bag.svg" alt="" />
                 <span *ngIf="cartLength != null" class="cart-length">{{cartLength}}</span>

@@ -1,43 +1,134 @@
-.table {
-    border-collapse: separate;
-    border-spacing:0 15px;
+/* .table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
 }
-.table thead th{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
-    /* identical to box height */
-
-    border-top: none;
-    /* #2B2B2B */
-
-    color: #2B2B2B;
+.table thead th {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  border-top: none;
+  color: #2b2b2b;
 }
-.table tbody tr{
-    background: #EFEFEF;
-    border-radius: 5px;
+.table tbody tr {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
 }
 .table tbody tr:hover {
-    outline-style: solid;
-    outline-color: #1F4F9E;
-    background: #FFFFFF;
-    border: 2px solid #1F4F9E;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
-    border-radius: 5px;
+  outline-style: solid;
+  outline-color: #1f4f9e;
+  border: 2px solid #1f4f9e;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
 }
-.table td, .table th{
-    vertical-align: middle !important;
+.table td {
+  border-top: none;
+}
+.table td,
+.table th {
+  vertical-align: middle !important;
+} */
+.mat-table {
+  background-color: transparent !important;
+  padding: 0 20px;
+}
+
+.card-body {
+  padding: 40px;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+  height: 60px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+tr.mat-row:hover,
+tr.mat-footer-row:hover {
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  transition: 0.3s;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px !important;
+}
+
+table tr:last-child td {
+  border-bottom: 0 solid;
+}
+
+th {
+  font-weight: 500;
+  font-size: 18px;
+  color: #2b2b2b;
+}
+
+td {
+  font-weight: normal;
+  font-size: 18px;
+  color: #2b2b2b;
 }
 .btn-primary {
-    color: rgb(0, 0, 0);
-    background-color: inherit;
-    border-style: none !important;
+  color: rgb(0, 0, 0);
+  background-color: inherit;
+  border-style: none !important;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
-    color: #fff;
-    background-color: #1F4F9E;
-    border-color: #1F4F9E; /*set the color you want here*/
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #1f4f9e;
+  border-color: #1f4f9e;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .card-body {
+    padding: 0;
+    overflow-x: auto;
+  }
+  .order-table-div {
+    padding: 0;
+  }
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0 0px 0 0px;
+  }
+  ::ng-deep .mat-paginator-container {
+    padding: 0 !important;
+  }
+  .mat-table {
+    padding: 15px;
+  }
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0 !important;
+  }
+  ::ng-deep th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    padding-left: 15px !important;
+  }
+  th {
+    font-size: 16px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+  th {
+    font-size: 16px;
+  }
+  td {
+    font-size: 16px;
+  }
 }

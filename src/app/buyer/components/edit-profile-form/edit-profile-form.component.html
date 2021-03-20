@@ -1,161 +1,97 @@
-<form>
-  <div class="container container-custom d-flex mt-5 mb-5">
-    <div class="rounded-circle">
-      <img
-        class="pro-img"
-        *ngIf="profile_pic === undefined"
-        src="../../../assets/images/avatar.svg"
-      />
-      <img
-        class="pro-img align-self-center"
-        *ngIf="profile_pic"
-        src="{{ profile_pic }}"
-      />
-      <div class="plus-icon">
-        <i class="fas fa-plus-circle"></i>
-        <input
-          type="file"
-          id="profile_pic"
-          (change)="uploadProfilePic($event)"
-        />
+<div class="card-body">
+  <form>
+    <div class="container-custom d-flex">
+      <div class="rounded-circle">
+        <img class="pro-img" *ngIf="profile_pic === undefined" src="../../../assets/images/avatar.svg" />
+        <img class="pro-img align-self-center" *ngIf="profile_pic" src="{{ profile_pic }}" />
+        <div class="plus-icon">
+          <i class="fas fa-plus-circle"></i>
+          <input type="file" id="profile_pic" (change)="uploadProfilePic($event)" />
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label class="form-label">Full Name</label>
-      <input
-        name="full_name"
-        [(ngModel)]="editUserInfo.full_name"
-        class="form-control"
-        placeholder="Enter Full Name"
-        type="text"
-      />
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input name="full_name" [(ngModel)]="editUserInfo.full_name" class="form-control"
+            placeholder="Enter Full Name" type="text" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Company Name (Optional)</label>
+          <input name="company_name" class="form-control" placeholder="Company Name" type="text" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input name="userMail" [(ngModel)]="userMail" class="form-control" placeholder="Email" type="email"
+            disabled />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Mobile Number</label>
+          <input name="phone" [(ngModel)]="editUserInfo.phone" class="form-control" placeholder="(704) 555-9871"
+            type="tel" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <label for="addressError" *ngIf="addressError" class="errors ml-1">required</label>
+          <input name="address" [(ngModel)]="editUserInfo.address" class="form-control"
+            placeholder="357 W. Gray St Utica PennSylvania 57867" type="text" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <label for="cityError" *ngIf="cityError" class="errors ml-1">required</label>
+          <select class="form-control" name="country" [(ngModel)]="editUserInfo.country"
+            (input)="onCountryChange($event.target.value)">
+            <option value="-1">Select one</option>
+            <option *ngFor="let country of countries" [value]="country.id">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <label for="cityError" *ngIf="cityError" class="errors ml-1">required</label>
+          <select class="form-control" name="city" [(ngModel)]="editUserInfo.city">
+            <option *ngFor="let city of editCities" [value]="city.id">
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Area</label>
+          <input name="area" class="form-control" [(ngModel)]="editUserInfo.area" placeholder="Pennsylvania"
+            type="text" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <label class="form-label">Zip Code</label>
+          <input name="zip" class="form-control" [(ngModel)]="editUserInfo.zip_code" (keydown.enter)="saveData()"
+            placeholder="57867" type="text" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div class="form-group">
+          <button class="btn btn-primary btn-md btn-block login_btn" (keydown.enter)="saveData()" (click)="saveData()">
+            Save
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <label class="form-label">Company Name (Optional)</label>
-      <input
-        name="company_name"
-        class="form-control"
-        placeholder="Company Name"
-        type="text"
-      />
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label class="form-label">Email</label>
-      <input
-        name="userMail"
-        [(ngModel)]="userMail"
-        class="form-control"
-        placeholder="Email"
-        type="email"
-        disabled
-      />
-    </div>
-    <div class="col-sm-6">
-      <label class="form-label">Mobile Number</label>
-      <input
-        name="phone"
-        [(ngModel)]="editUserInfo.phone"
-        class="form-control"
-        placeholder="(704) 555-9871"
-        type="tel"
-      />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">Address</label>
-    <label for="addressError" *ngIf="addressError" class="errors ml-1"
-      >required</label
-    >
-    <input
-      name="address"
-      [(ngModel)]="editUserInfo.address"
-      class="form-control"
-      placeholder="357 W. Gray St Utica PennSylvania 57867"
-      type="text"
-    />
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label class="form-label">City</label>
-      <label for="cityError" *ngIf="cityError" class="errors ml-1"
-        >required</label
-      >
-      <!-- <input
-        name="area"
-        class="form-control"
-        placeholder="Gray St. Utica"
-        type="text"
-      /> -->
-      <select class="form-control" name="city" [(ngModel)]="editUserInfo.city">
-        <option *ngFor="let city of editCities" [value]="city.id">
-          {{ city.name }}
-        </option>
-      </select>
-    </div>
-
-    <div class="col-sm-6">
-      <label class="form-label">Country</label>
-      <label for="cityError" *ngIf="cityError" class="errors ml-1"
-        >required</label
-      >
-      <!-- <input
-        name="area"
-        class="form-control"
-        placeholder="USA"
-        type="text"
-      /> -->
-
-      <select
-        class="form-control"
-        name="country"
-        [(ngModel)]="editUserInfo.country"
-        (input)="onCountryChange($event.target.value)"
-      >
-        <option value="-1">Select one</option>
-        <option *ngFor="let country of countries" [value]="country.id">
-          {{ country.name }}
-        </option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label class="form-label">Area</label>
-      <input
-        name="area"
-        class="form-control"
-        [(ngModel)]="editUserInfo.area"
-        placeholder="Pennsylvania"
-        type="text"
-      />
-    </div>
-    <div class="col-sm-6">
-      <label class="form-label">Zip Code</label>
-      <input
-        name="zip"
-        class="form-control"
-        [(ngModel)]="editUserInfo.zip_code"
-        (keydown.enter)="saveData()"
-        placeholder="57867"
-        type="text"
-      />
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <button
-        class="btn btn-primary btn-md btn-block login_btn"
-        (keydown.enter)="saveData()"
-        (click)="saveData()"
-      >
-        Save
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
 <ngx-spinner></ngx-spinner>
