@@ -74,6 +74,7 @@ export class ProductDetailsPageComponent implements OnInit {
       //     if (item.data.links.next === null) this.commnetsEnd = true;
       //     // console.log(this.commentlist);
       //   });
+      this.loadTotalCommentsCount();
       this.loadComments();
       this.wishlist
         .wishlistStatusCheck(this.productId)
@@ -131,11 +132,13 @@ export class ProductDetailsPageComponent implements OnInit {
     document.getElementById('prodReviewModal').style.display = 'block';
   }
 
-  loadComments() {
+  loadTotalCommentsCount() {
     this.comments.getAllComments(this.productId).subscribe((item) => {
       this.totalComments = item.total;
     });
+  }
 
+  loadComments() {
     this.commentlist = [];
     this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
       this.commentlist = [...this.commentlist, ...item.data.results];
@@ -144,6 +147,7 @@ export class ProductDetailsPageComponent implements OnInit {
       // console.log('*****');
       // alert(JSON.stringify(this.commentlist));
       this.nextCommentsLink = item.data.links.next;
+      this.loadTotalCommentsCount();
       // console.log(this.commentlist);
     });
   }
