@@ -14,6 +14,7 @@ export class ProductListPageComponent implements OnInit {
   style: string;
   @Output() view_style=new EventEmitter<string> ()
   isSeller = false;
+  isCategories = false;
   products = [];
   prodEnd;
   nextBatchProdLink;
@@ -21,7 +22,7 @@ export class ProductListPageComponent implements OnInit {
   prevParam;
   prodInRow6;
   panelOpenState = true;
-  categories: any;
+  categories: Array<any>=[];
   expandedCat;
   expandedSubCat;
   min_price: any;
@@ -77,7 +78,7 @@ export class ProductListPageComponent implements OnInit {
           this.nextBatchProdLink = item.data.links.next;
         }
       });
-    } else {
+    } else if(this.selected_child_category!==undefined) {
       // get product by category
       this.getProduct
         .getProductByCategory(this.selected_child_category)
@@ -105,6 +106,31 @@ export class ProductListPageComponent implements OnInit {
           
         });
     }
+    else if(this.router.url.substr(10,10)=='categories'){
+      this.isCategories=true
+      this.set_all_categories()
+      console.log('categories',this.categories)
+      this.getProduct.popularProduct().subscribe((products)=>{
+        this.products=products.data.results
+        console.log('popular products',this.products)
+        this.get_menus()
+        this.prices = this.get_price_ranges();
+        if(products.data.links!=null){
+          this.nextBatchProdLink = products.data.links.next;
+        }
+      })
+      console.log(this.categories)
+    }
+  }
+
+  set_all_categories(){ //setting categories for products/categories route
+    this.categories=[]
+    this.getCategories.category().subscribe((item) => {
+      this.categories=item
+      // item.forEach((element) => {
+      //   this.categories.push(element)
+      // });
+    });
   }
 
   set_seller_categories(products:Array<any>){
