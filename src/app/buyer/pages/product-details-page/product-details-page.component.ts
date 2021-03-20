@@ -6,6 +6,7 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 import { ViewportScroller } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 @Component({
@@ -31,6 +32,7 @@ export class ProductDetailsPageComponent implements OnInit {
   ];
   carousel: any;
   relatedProducts: any;
+  totalComments = 0;
   commentlist = [];
   nextCommentsLink = null;
   addToWishlistStatus: string = '0';
@@ -42,7 +44,8 @@ export class ProductDetailsPageComponent implements OnInit {
     private snackBar: MatSnackBar,
     private comments: CustomerReviewService,
     private viewportScroller: ViewportScroller,
-    private cart: CartServiceService
+    private cart: CartServiceService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -129,6 +132,10 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   loadComments() {
+    this.comments.getAllComments(this.productId).subscribe((item) => {
+      this.totalComments = item.total;
+    });
+
     this.commentlist = [];
     this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
       this.commentlist = [...this.commentlist, ...item.data.results];
@@ -142,12 +149,14 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   getNextComments() {
+    this.spinner.show();
     if (this.nextCommentsLink !== null) {
       this.comments
         .getNextComments(this.nextCommentsLink)
         .subscribe((comments) => {
           this.commentlist = [...this.commentlist, ...comments.data.results];
           this.nextCommentsLink = comments.data.links.next;
+          this.spinner.hide();
         });
     }
   }
