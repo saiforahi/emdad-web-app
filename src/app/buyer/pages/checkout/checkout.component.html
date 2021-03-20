@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row" style="margin-top: 60px;margin-bottom: 40px;">
+    <div class="row">
         <div class="col">
             <h3 class="mx-auto header">Checkout</h3>
         </div>
@@ -8,67 +8,67 @@
         <div class="col-md-8 border-outline" style="text-align: left;">
             <div class="card-body" style="background: #FFFFFF;">
                 <h4>Addresses</h4>
-                <div class="row">
-                    <div class="col-sm-7">
-                        <div [ngClass]="selected_address===i?'row address-row address-row-selected':'row address-row'" class="row address-row" id="{{'address_div_'+address.id}}" *ngFor="let address of addresses; let i=index" (click)="selected_address=i" style="cursor: pointer;">
+                <div class="row address-list">
+                    <div class="col-sm-8">
+                        <div [ngClass]="selected_address===i?'address-row address-row-selected':'address-row'" class="address-row card-body" id="{{'address_div_'+address.id}}" *ngFor="let address of addresses; let i=index" (click)="selected_address=i" style="cursor: pointer;">
                             <mat-radio-group [(ngModel)]="selected_address">
-                                <mat-radio-button class="p-2 example-radio-button ml-2" [value]="i" color="accent">
-                                    {{address.address}}
+                                <mat-radio-button class="example-radio ml-2" [value]="i" color="accent">
+                                    {{address.address}}<br>{{address.city.name}} {{address.city.country.name}} - {{address.zip_code}}
                                 </mat-radio-button>
                             </mat-radio-group>
                         </div>
                     </div>
-                    <div class="col-sm-4" style="margin-left: 20px;">
-                        <div class="container">
-                            <div class="add-address">
-                                <button (click)="show_address_form()" class="btn btn-default btn-block" type="button"><span><i class="fas fa-plus"></i></span>  New Address</button>
-                            </div>
-                        </div>
+                    <div class="col-sm-4">
+                        <button (click)="show_address_form()" class="new-address-btn" type="button"><span><i class="fas fa-plus"></i></span>  New Address</button>
                     </div>
                 </div>
             </div>
             <div *ngIf="new_address">
                 <form [formGroup]="addressForm" (ngSubmit)="onNewAddressFormSubmit()">
-                    <div class="row p-4 card-body">
-                        <div class="form-group w-100 row">
-                            <div class="col-lg-12">
-                                <label class="form-label">Address</label>
-                                <label *ngIf="addressForm.get('address').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
-                                <input class="form-control" type="text" placeholder="Enter Address" formControlName="address" />
-                            </div>
-                        </div>
-                        <div class="form-group w-100 row">
-                            <div class="col-lg-6">
-                                <label class="form-label">City</label>
-                                <label *ngIf="addressForm.get('city').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
-                                <select class="form-control w-100" formControlName="city">
-                                    <option value="-1" selected>Select City</option>
-                                    <option *ngFor="let city of cities; let i=index" [value]="city.id|number">{{city.name}}</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="form-label">Country</label>
-                                <label *ngIf="addressForm.get('country').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
-                                <select class="form-control w-100" formControlName="country" (input)="onCountryChange($event.target.value)" >
-                                    <option value="-1" selected>Select Country</option>
-                                    <option *ngFor="let country of countries; let i=index" [value]="country.id">{{country.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group w-100 row">
-                            <div class="col-lg-6">
-                                <label class="form-label">Area</label>
-                                <input class="form-control" placeholder="Enter Area" type="text" formControlName="area" />
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="form-label">Zip Code</label>
-                                <label *ngIf="addressForm.get('zip_code').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
-                                <input class="form-control" placeholder="Enter Zip code" type="text" formControlName="zip_code" required/>
-                            </div>
-                        </div>
-                        <div class="form-group row w-100">
-                            <div class="col-lg-6">
-                                <button class="btn btn-block save-btn" type="submit"  value="submit">Save</button>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-body">
+                                <div class="form-group w-100 row">
+                                    <div class="col-lg-12">
+                                        <label class="form-label">Address</label>
+                                        <label *ngIf="addressForm.get('address').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                        <input class="form-control" type="text" placeholder="Enter Address" formControlName="address" />
+                                    </div>
+                                </div>
+                                <div class="form-group w-100 row">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">City</label>
+                                        <label *ngIf="addressForm.get('city').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                        <select class="form-control w-100" formControlName="city">
+                                            <option value="-1" selected>Select City</option>
+                                            <option *ngFor="let city of cities; let i=index" [value]="city.id|number">{{city.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-label">Country</label>
+                                        <label *ngIf="addressForm.get('country').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                        <select class="form-control w-100" formControlName="country" (input)="onCountryChange($event.target.value)" >
+                                            <option value="-1" selected>Select Country</option>
+                                            <option *ngFor="let country of countries; let i=index" [value]="country.id">{{country.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group w-100 row">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">Area</label>
+                                        <input class="form-control" placeholder="Enter Area" type="text" formControlName="area" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-label">Zip Code</label>
+                                        <label *ngIf="addressForm.get('zip_code').errors && new_address_add_form_submitted" class="errors ml-1">required</label>
+                                        <input class="form-control" placeholder="Enter Zip code" type="text" formControlName="zip_code" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group row w-100" style="margin-top: 40px;">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-block save-btn" type="submit"  value="submit">Save</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook</p>
                         <p><strong>Account Number: 702 555-0122</strong></p>
                     </mat-card-content>
-                    <mat-card-content *ngIf="isCard">
+                    <!-- <mat-card-content *ngIf="isCard">
                         <div class="row">
                             <div class="col">
                                 <mat-form-field class="example-full-width w-100">
@@ -112,31 +112,25 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3">
-                                <!-- <label>Expires</label>
-                                <input type="text" class="form-control" placeholder="Expire date"/> -->
                                 <mat-form-field class="example-full-width w-100">
                                     <mat-label>Expires month</mat-label>
                                     <input matInput placeholder="Expiry date" data-paylib="expmonth" #card_expiry_date />
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3">
-                                <!-- <label>Expires</label>
-                                <input type="text" class="form-control" placeholder="Expire date"/> -->
                                 <mat-form-field class="example-full-width w-100">
                                     <mat-label>Expires Year</mat-label>
                                     <input matInput placeholder="Expiry date" data-paylib="expyear" #card_expiry_date />
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3">
-                                <!-- <label>CVC</label>
-                                <input type="text" class="form-control" placeholder="cvc"/> -->
                                 <mat-form-field class="example-full-width w-100">
                                     <mat-label>CVV</mat-label>
                                     <input matInput placeholder="security code" data-paylib="cvv" #card_cvv />
                                 </mat-form-field>
                             </div>
                         </div>
-                    </mat-card-content>
+                    </mat-card-content> -->
                     <mat-card-actions>
                         <div class="row">
                             <div class="col-sm-4">

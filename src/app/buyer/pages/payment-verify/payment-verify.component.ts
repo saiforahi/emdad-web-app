@@ -22,14 +22,14 @@ export class PaymentVerifyComponent implements OnInit {
     this.spinner.show();
     let data = JSON.parse(localStorage.getItem('payment_add_response'));
     //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
-    let check_api_json = {
+    let check_api_json = { //json data for verifying payment
       tran_ref: data.tran_ref,
+      Order: localStorage.getItem('temp_order_id'),
       cart_currency: data.cart_currency,
       cart_amount: data.cart_amount,
       cart_id: data.cart_id,
       cart_description: data.cart_description,
       tran_type: data.tran_type,
-      Order: localStorage.getItem('temp_order_id'),
     };
     console.log(JSON.stringify(check_api_json));
     this.orderService.verify_payment(check_api_json).subscribe(
