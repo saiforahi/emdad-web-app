@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -11,6 +11,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ProductReviewModalComponent implements OnInit {
   @Input() prodcutDetails;
+  @Input() commentlist;
+  @Input() loadComments;
   userId: any;
   reviewText: string = '';
 
@@ -51,6 +53,7 @@ export class ProductReviewModalComponent implements OnInit {
             this.openSnackBar(item.message, 'ok');
             this.spinner.hide();
             this.reviewText = '';
+            this.loadComments();
           },
           (error) => {
             document.getElementById('prodReviewModal').style.display = 'none';

@@ -39,10 +39,18 @@
             <button
               class="mb-3"
               mat-button
+              *ngIf="addToWishlistStatus == '1'"
               (click)="addToWishlist(prodcutDetails.id)"
             >
-              <img src="../../../assets/wishlist-icon.svg" alt="" />Add to
-              Wishlist
+              <img src="../../../assets/wish.svg" alt="" />Add to Wishlist
+            </button>
+            <button
+              class="mb-3"
+              mat-button
+              *ngIf="addToWishlistStatus == '0'"
+              (click)="addToWishlist(prodcutDetails.id)"
+            >
+              <img src="../../../assets/wish.svg" alt="" />Remove from Wishlist
             </button>
             <button
               class="mb-3"
@@ -51,9 +59,7 @@
             >
               <img src="../../../assets/review-icon.svg" alt="" />Customer
               Review
-              <span *ngIf="commentlist.data.results.length">{{
-                commentlist.data.results.length
-              }}</span>
+              <span *ngIf="commentlist.length">{{ commentlist.length }}</span>
             </button>
           </div>
           <div class="prod-delivery-info">
@@ -162,21 +168,29 @@
       <h4 class="similar-prod-header">Reviews</h4>
     </div>
   </div>
-  <div class="reviews-holder" *ngIf="commentlist">
+  <div class="reviews-holder">
     <div class="container">
-      <div class="comment-div" *ngFor="let comment of commentlist.data.results">
-        <p class="commenter-name mb-0">
-          <b>{{ comment.buyer.full_name }}</b>
-        </p>
-        <span
-          ><i class="far fa-clock"></i> {{ comment.created_at | date }}</span
-        >
-        <p>
-          {{ comment.comment }}
-        </p>
-        <hr />
+      <div *ngIf="commentlist.length">
+        <div class="comment-div" *ngFor="let comment of commentlist">
+          <p class="commenter-name mb-0">
+            <b>{{ comment.buyer.full_name }}</b>
+          </p>
+          <span
+            ><i class="far fa-clock"></i> {{ comment.created_at | date }}</span
+          >
+          <p>
+            {{ comment.comment }}
+          </p>
+          <hr />
+        </div>
       </div>
-      <h4 *ngIf="commentlist.data.results.length == 0" class="text-center">
+      <div class="text-center mt-5" *ngIf="nextCommentsLink !== null">
+        <button (click)="getNextComments()" class="submit-review-btn">
+          More Comments
+        </button>
+      </div>
+
+      <h4 *ngIf="commentlist.length === 0" class="text-center">
         <b>No Comments Posted Yet</b>
       </h4>
       <div class="text-center mt-5">
@@ -189,6 +203,8 @@
         </button>
         <app-product-review-modal
           [prodcutDetails]="prodcutDetails"
+          [commentlist]="commentlist"
+          [loadComments]="loadComments"
         ></app-product-review-modal>
       </div>
     </div>

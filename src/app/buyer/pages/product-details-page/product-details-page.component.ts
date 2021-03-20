@@ -31,8 +31,9 @@ export class ProductDetailsPageComponent implements OnInit {
   ];
   carousel: any;
   relatedProducts: any;
-  commentlist: any;
-  commnetsEnd: boolean = false;
+  commentlist = [];
+  nextCommentsLink = null;
+  addToWishlistStatus: string = '0';
 
   constructor(
     private getProduct: GetProductService,
@@ -62,12 +63,21 @@ export class ProductDetailsPageComponent implements OnInit {
           this.relatedProducts = item.data.results;
           // console.log('prod list:' ,this.relatedProducts)
         });
-      this.comments.getComments(this.prodcutDetails.id).subscribe((item) => {
-        this.commentlist = item;
-        // alert(JSON.stringify(this.commentlist));
-        if (this.commentlist.data.links.next === null) this.commnetsEnd = true;
-        // console.log(this.commentlist);
-      });
+      // this.comments
+      //   .getComments(this.prodcutDetails.id)
+      //   .subscribe((item: any) => {
+      //     this.commentlist = [...this.commentlist, ...item.data.results];
+      //     // alert(JSON.stringify(this.commentlist));
+      //     if (item.data.links.next === null) this.commnetsEnd = true;
+      //     // console.log(this.commentlist);
+      //   });
+      this.loadComments();
+      this.wishlist
+        .wishlistStatusCheck(this.productId)
+        .subscribe((data: any) => {
+          this.addToWishlistStatus = data.status;
+          // alert(this.addToWishlistStatus);
+        });
     });
   }
   scroll_to_reviews(element_id: string) {
@@ -118,15 +128,26 @@ export class ProductDetailsPageComponent implements OnInit {
     document.getElementById('prodReviewModal').style.display = 'block';
   }
 
+  loadComments() {
+    this.commentlist = [];
+    this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
+      this.commentlist = [...this.commentlist, ...item.data.results];
+      // console.log('*****');
+      // console.log(this.commentlist);
+      // console.log('*****');
+      // alert(JSON.stringify(this.commentlist));
+      this.nextCommentsLink = item.data.links.next;
+      // console.log(this.commentlist);
+    });
+  }
+
   getNextComments() {
-    if (this.commentlist.data.links.next !== null) {
+    if (this.nextCommentsLink !== null) {
       this.comments
-        .getNextComments(this.commentlist.data.links.next)
+        .getNextComments(this.nextCommentsLink)
         .subscribe((comments) => {
-          this.commentlist = comments;
-          if (this.commentlist.data.links.next === null) {
-            this.commnetsEnd = true;
-          }
+          this.commentlist = [...this.commentlist, ...comments.data.results];
+          this.nextCommentsLink = comments.data.links.next;
         });
     }
   }
@@ -134,6 +155,7 @@ export class ProductDetailsPageComponent implements OnInit {
   addToWishlist(prod_id) {
     this.wishlist.addTowishlist(prod_id).subscribe((item) => {
       this.openSnackBar('Added to wishlist successfuly!', 'OK');
+      this.addToWishlistStatus = '1';
     });
   }
 
