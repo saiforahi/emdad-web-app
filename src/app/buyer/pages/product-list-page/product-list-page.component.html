@@ -46,7 +46,7 @@
         </div>
     </div>
 </section>
-<app-breadcrumbs *ngIf="products[0]" [directoryString]="isCategories || isSeller?'Categories':'Categories / ' + products[0].category.name"
+<app-breadcrumbs *ngIf="products?.length>0" [directoryString]="isCategories?'Categories': isSeller?'Categories':'Categories / ' + products[0].category.name"
     [searchLength]="products.length" [style]="style" (view_style)="set_style($event)"></app-breadcrumbs>
 <section class="container clearfix">
     <button *ngIf="!catMenuToggle" mat-button class="cat-menu-toggle-btn" (click)="showCatMenu()">

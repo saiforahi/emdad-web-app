@@ -11,7 +11,7 @@ import { SearchService } from '../../../shared/services/search.service';
 })
 export class ProductListPageComponent implements OnInit {
   sellerId;
-  style: string;
+  style: string='grid';
   @Output() view_style=new EventEmitter<string> ()
   isSeller = false;
   isCategories = false;
@@ -266,7 +266,7 @@ export class ProductListPageComponent implements OnInit {
   }
 
   getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {
-    this.style = 'grid';
+    // this.style = 'grid';
     this.router.navigate(['/products/category/', ChildCatId]);
   }
 
