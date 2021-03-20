@@ -22,7 +22,7 @@
         </tr>
       </tbody>
     </table> -->
-    <table mat-table [dataSource]="orderData">
+    <table mat-table [dataSource]="orderData | slice: lowValue:highValue">
       <!-- quotation id Column -->
       <ng-container matColumnDef="Order ID">
         <th mat-header-cell *matHeaderCellDef>Order ID</th>
@@ -32,35 +32,56 @@
       <!-- date Column -->
       <ng-container matColumnDef="Payment Date">
         <th mat-header-cell *matHeaderCellDef>Payment Date</th>
-        <td mat-cell *matCellDef="let element">{{
-          element.order_payment[0]!==undefined?element.order_payment[0].created_at:"" | date }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.order_payment[0] !== undefined
+              ? element.order_payment[0].created_at
+              : ("" | date)
+          }}
+        </td>
       </ng-container>
 
       <!--rfq id Column -->
       <ng-container matColumnDef="Delivery Date">
         <th mat-header-cell *matHeaderCellDef>Delivery Date</th>
-        <td mat-cell *matCellDef="let element">{{
-          element.tracking_order[0]!==undefined?element.tracking_order[0].delivery_date:"" | date }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.tracking_order[0] !== undefined
+              ? element.tracking_order[0].delivery_date
+              : ("" | date)
+          }}
+        </td>
       </ng-container>
       <!-- buyer name Column -->
       <ng-container matColumnDef="Amount">
         <th mat-header-cell *matHeaderCellDef>Amount</th>
-        <td mat-cell *matCellDef="let element">{{element.total_amount}} </td>
+        <td mat-cell *matCellDef="let element">{{ element.total_amount }}</td>
       </ng-container>
       <!--view coloumn-->
       <ng-container matColumnDef="view">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button class="edit-product-btn" mat-button [routerLink]="['/order/details/',element.id]"
-            align="right">View</button>
+          <button
+            class="edit-product-btn"
+            mat-button
+            [routerLink]="['/order/details/', element.id]"
+            align="right"
+          >
+            View
+          </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="orderData.length" showFirstLastButtons
-      *ngIf="orderData != undefined || orderData != null"></mat-paginator>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="5"
+      [length]="orderData.length"
+      showFirstLastButtons
+      (page)="getPaginatorData($event)"
+      *ngIf="orderData != undefined || orderData != null"
+    ></mat-paginator>
     <div class="no-data" *ngIf="orderData == undefined || orderData == null">
       No data available
     </div>
