@@ -80,9 +80,11 @@ export class ProductDetailsPageComponent implements OnInit {
         });
     });
   }
+
   scroll_to_reviews(element_id: string) {
     this.viewportScroller.scrollToAnchor(element_id);
   }
+  
   nextImg() {
     if (this.currentImg <= this.sliderImgArray.length - 1) {
       this.currentImg++;

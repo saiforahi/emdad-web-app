@@ -5,31 +5,46 @@
     <h4 class="container store-name-header mb-0">CEVENNESFE OFFICIAL STORE</h4>
 </section>
 <section *ngIf="isSeller" class="seller-cat-menu">
-    <nav style="background: #F49814 !important;" class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
+    <div class="small-menu">
+        <nav style="background: #F49814 !important;"
+            class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
+            <div class="container">
+                <span class="navbar-brand"><img class="rounded" src="../../../assets/Group.svg"
+                        alt="seller logo" /></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                    <div>
+                        <ul class="navbar-nav ml-auto">
+                            <li *ngFor="let child of filteredCatArray" class="nav-item active"
+                                style="margin-right: 17px">
+                                <a *ngIf="child" class="nav-link" [routerLink]="['/products/category/', child.id]">
+                                    {{ child.name | titlecase }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="large-menu">
         <div class="container">
-            <span class="navbar-brand"><img class="rounded" src="../../../assets/Group.svg" alt="seller logo" /></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
-                aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <div>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active" style="margin-right: 17px">
-                            <a class="nav-link" [routerLink]="['/']">
-                                CEVENNESFE OFFICIAL STORE
-                            </a>
-                        </li>
-                        <li class="nav-item active" style="margin-right: 17px" *ngFor="let cat of categories">
-                            <a class="nav-link" [routerLink]="['/']">
-                                {{ cat.name | titlecase }}
-                            </a>
-                        </li>
-                    </ul>
+            <div class="media">
+                <img class="mr-3" src="../../../assets/Group.svg" alt="Generic placeholder image">
+                <div class="media-body">
+                    <span *ngFor="let child of filteredCatArray" style="margin-right: 17px">
+                        <a *ngIf="child" class="" [routerLink]="['/products/category/', child.id]">
+                            {{ child.name | titlecase }}
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
 </section>
 <app-breadcrumbs *ngIf="products[0]" [directoryString]="'Categories / ' + products[0].category.name"
     [searchLength]="products.length" [style]="style" (view_style)="set_style($event)"></app-breadcrumbs>
@@ -207,7 +222,8 @@
                             <div class="cat-head">Price</div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-slider (input)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1" thumbLabel>
+                    <mat-slider (input)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1"
+                        thumbLabel>
                     </mat-slider>
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let range of prices">

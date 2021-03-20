@@ -1,5 +1,6 @@
 import { SimpleChanges } from '@angular/core';
 import { Component, Input, OnInit, Output,EventEmitter,OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
@@ -10,10 +11,16 @@ export class BreadcrumbsComponent implements OnInit {
   @Input() searchLength?;
   @Input() style='';
   @Output() view_style=new EventEmitter<string> ()
-  constructor() { }
+  sellerWiseProduct = false
+
+  constructor(
+    private router: Router) { }
 
   ngOnInit(): void {
     //this.view_style.emit('grid')
+    if (this.router.url.split('/')[2] == "seller") {
+      this.sellerWiseProduct = true;
+    }
     console.log('breadcrumb style',this.style)
     document.getElementById('grid_btn').style.backgroundColor="#1F4F9E"
     document.getElementById('grid_btn').style.color="#FFFFFF"
