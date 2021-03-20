@@ -1,137 +1,110 @@
-<div>
+<!--20 th march 2021-->
+<section class="rfq">
   <app-breadcrumbs [directoryString]="'RFQ'"></app-breadcrumbs>
-
   <div class="container">
-    <div class="card mb-4">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="{{ base_url + image }}" alt="..." class="img-fluid p-3" />
+    <div class="card">
+
+      <div class="row">
+        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 col-12">
+          <img src="{{ base_url + image }}" alt="..." class="img-fluid p-3 w-100" />
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12 col-12">
           <div class="card-body">
             <h4 class="card-title">{{ productData.name }}</h4>
-            <h5 class="sub-title">${{ productData.unit_price }}</h5>
+            <h5 class="sub-title">${{ productData.unit_price }} Unit Price</h5>
             <p class="card-text">
               {{ productData.description }}
             </p>
-            <p class="card-text">
-              <strong class="mr-1">Seller Name:</strong>
-              <span class="text-muted">{{ productData.seller.full_name }}</span>
+            <p class="card-point">
+              <span class="mr-1 left-point">Seller Name:</span>
+              <span class="store-value">{{ productData.seller.full_name }}</span>
             </p>
-            <p class="card-text">
-              <strong class="mr-1">Stock:</strong>
-              <span class="text-muted">{{ productData.stock_quantity }}</span>
+            <p class="card-point">
+              <span class="mr-1 left-point">Stock:</span>
+              <span class="stock-value">{{ productData.stock_quantity }}</span>
             </p>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="card">
+    <!--form for rfq-->
+    <div class="card form-card">
       <div class="card-body">
         <form [formGroup]="rfqForm" (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col">
+            <!--Email-->
+            <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label for="email">Email</label>
-                <label
-                  for="emailError"
-                  *ngIf="rfqForm.get('email').errors && submitted"
-                  class="errors ml-1"
-                  >required</label
-                >
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="guyhawkings007@example.com"
-                  formControlName="email"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="email">Mobile Number</label>
-                <label
-                  for="phoneError"
-                  *ngIf="rfqForm.get('phone').errors && submitted"
-                  class="errors ml-1"
-                  >required</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="(704) 555-0127"
-                  required
-                  formControlName="phone"
-                />
-              </div>
-            </div>
-          </div>
+                <div class="input-group">
+                  <input type="email" class="form-control" placeholder="guyhawkings007@example.com"
+                    formControlName="email" required />
 
-          <div class="row">
-            <div class="col">
+                  <div *ngIf="rfqForm.get('email').errors && submitted">
+                    <app-form-input-alert [alertMsg]="'Email is required'"></app-form-input-alert>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!--Mobile Number-->
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label for="phone">Mobile Number</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="(704) 555-0127" required
+                    formControlName="phone" />
+                  <div *ngIf="rfqForm.get('phone').errors && submitted">
+                    <app-form-input-alert [alertMsg]="'Phone number is required'"></app-form-input-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--address-->
+            <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label for="address">Address</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="2118 Thornridge Cir. Syracuse, Connecticut 35624"
-                  formControlName="address"
-                />
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="2118 Thornridge Cir. Syracuse, Connecticut 35624"
+                    formControlName="address" />
+                </div>
               </div>
             </div>
-            <div class="col">
+            <!--quantity-->
+            <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label for="quantity"
-                  >Quantity (Must be the upper amount from stock)</label
-                >
-                <label
-                  for="quantityError"
-                  *ngIf="rfqForm.get('quantity').errors && submitted"
-                  class="errors ml-1"
-                  >required</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  placeholder="1290"
-                  required
-                  formControlName="quantity"
-                />
+                <label for="quantity">Quantity (Must be the upper amount from stock)</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="1290" required formControlName="quantity" />
+                  <div *ngIf="rfqForm.get('quantity').errors && submitted">
+                    <app-form-input-alert [alertMsg]="'Quantity is required'"></app-form-input-alert>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="form-group" formArrayName="quotation">
-            <div formGroupName="0">
-              <label for="subject">Message</label>
-              <textarea
-                type="text"
-                class="form-control"
-                placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur.eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur."
-                rows="7"
-                formControlName="message"
-              ></textarea>
+            <!-- message -->
+            <div class="col-md-12">
+              <div class="form-group" formArrayName="quotation" formGroupName="0">
+                <label for="message">Message</label>
+                <div class="input-group">
+                  <textarea type="text" class="form-control"
+                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur.eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur."
+                    rows="10" cols="auto" formControlName="message"></textarea>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <input
-              type="submit"
-              value="Submit"
-              class="btn col-3 submit"
-              [disabled]="clicked === true"
-              style="
-                background: #1f4f9e;
-                color: white;
-                width: 420px;
-                height: 80px;
-              "
-            />
+            <!--submit button-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <button type="submit" value="Submit" mat-raised-button class="btn btn-primary btn-md login_btn"
+                  [disabled]="clicked === true">
+                  Submit
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>
-<ngx-spinner></ngx-spinner>
+</section>

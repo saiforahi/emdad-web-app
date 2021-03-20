@@ -63,7 +63,7 @@ select:focus {
 }
 a {
   color: #454f63;
-  text-decoration: underline;
+  text-decoration: none !important;
 }
 @media only screen and (min-width: 1200px) {
   .container {

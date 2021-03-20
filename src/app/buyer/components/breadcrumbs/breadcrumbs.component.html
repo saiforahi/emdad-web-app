@@ -1,11 +1,11 @@
 <div class="breadcrumbs" [ngClass]="{'breadcrumbs-for-seller':sellerWiseProduct, 'breadcrumbs':!sellerWiseProduct}">
     <div class="container">
-        <div class="url d-inline-block"><a [routerLink]="['/home']">Home</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span></div>
+        <div class="url d-inline-block"><a [routerLink]="['/home']">Home</a><span style="color: #2b2b2b;"> / </span><span style="color: rgba(43, 43, 43, 0.3);">{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span></div>
         <div class="d-inline-block float-right">
             <span class="serach-result" *ngIf="directoryString == 'Search Result'">Search Result - {{searchLength}} items</span>
             <!-- <a class="clear-btn" *ngIf="directoryString == 'Search Result'">Clear All</a> -->
-            <button [ngClass]="style=='grid'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="list_btn" mat-raised-button (click)="emit_style_change('list')" ><i class="fas fa-bars"></i></button>
-            <button [ngClass]="style=='list'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="grid_btn" mat-raised-button (click)="emit_style_change('grid')"><i class="fas fa-th-large"></i></button>
+            <!-- <button [ngClass]="style=='grid'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="list_btn" mat-raised-button (click)="emit_style_change('list')" ><i class="fas fa-bars"></i></button>
+            <button [ngClass]="style=='list'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="grid_btn" mat-raised-button (click)="emit_style_change('grid')"><i class="fas fa-th-large"></i></button> -->
             <!-- <div class="d-inline-block">
                 <select class="form-control form-control-lg">
                     <option>Sort by Relevance</option>

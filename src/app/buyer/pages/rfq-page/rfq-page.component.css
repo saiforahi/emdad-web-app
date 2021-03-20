@@ -1,9 +1,157 @@
 .sub-title {
   color: #1F4F9E;
 }
-
+.rfq{
+  background: #E5E5E5;
+  padding-bottom: 50px;
+}
 .errors {
   color: red;
+}
+app-breadcrumbs{
+  text-transform: uppercase;
+  background-color: #E5E5E5 !important;
+}
+.card img{
+  height: 300px;
+}
+.card-title{
+font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 69px;
+color: #2B2B2B;
+text-transform: capitalize;
+}
+.sub-title{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 36px;
+line-height: 52px;
+color: #2B2B2B;
+}
+.card-text{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 34px;
+color: #2B2B2B;
+
+}
+.left-point{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+
+}
+.store-value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #1F4F9E;
+}
+.stock-value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.form-card{
+  margin-top:50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  
+}
+/* FORM STYLES */
+label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2B2B2B;
+}
+
+.btn {
+  border: none;
+}
+
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  border: none;
+  height: 80px;
+}
+
+.form-label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
+}
+
+.bottom-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: 7px;
+}
+
+.input-group-text {
+  border: 0 !important;
+  background: #efefef;
+  padding: 0 22px;
+  font-size: 17px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.image-wrapper {
+  margin-top: 60px;
+  background: #eaeaea;
+  border-radius: 20px;
+}
+
+.alert-danger {
+  background: transparent;
+  border: none;
+  color: #ff5f92;
+}
+textarea.form-control{
+  height: 180px !important;
+}
+.login_btn {
+  background: #1F4F9E;
+  border-radius: 5px;
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+text-align: center;
+float: left;
+padding: 20px 150px;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -11,14 +159,71 @@
     max-width: 1600px !important;
   }
 }
-.submit{
+@media all and (min-width:290px) and (max-width:600px){
+  .login_btn{
+    padding: 20px 40px;
+  }
+  .card-img{
+    height: 150px;
+  }
+  .card-title{
+    font-size: 35px;
+    line-height: 45px;
+  }
+  .sub-title{
+    font-size:25px ;
+    line-height: 35px;
+  }
+  .card-text{
+    font-size: 15px;
+    line-height: 28px;
+  }
+  .store-value,.stock-value,.left-point{
+    font-size: 15px;
+    line-height: 24px;
+  }
+  label{
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+}
+@media all and (min-width:600px) and (max-width:992px){
+  .login_btn{
+    padding: 20px 90px;
+  }
+  .card-img{
+    height: 200px;
+  }
+  .card-title{
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .sub-title{
+    font-size:30px;
+    line-height: 46px;
+  }
+  .card-text{
+    font-size: 16px;
+    line-height: 32px;
+  }
+  .store-value,.stock-value,.left-point{
+    font-size: 16px;
+    line-height: 26px;
+  }
+  label{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+}
+/* .submit{
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
 
   text-align: center;
 
   color: #FFFFFF;
-}
+} */
