@@ -173,7 +173,9 @@ export class CartPageComponent implements OnInit {
         this.productInCart.splice(index, 1);
       }
     });
-    this.cart.existingCartLength.next(this.productInCart.length - 1 > 0 ? this.productInCart.length - 1 : null);
+    this.cart.existingCartLength.next(
+      this.productInCart.length > 0 ? this.productInCart.length : null
+    );
     this.generateOrderData(this.productInCart);
     // console.log(this.productInCart);
     this.calcSubTotalPrice(this.orders_details);
