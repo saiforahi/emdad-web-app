@@ -35,9 +35,8 @@ export class WishlistService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.post(
-      config.base_url + 'api/product/wishlist/add/',
-      { product: product_id, buyer: this.uid, status: 1 },
+    return this.http.get(
+      config.base_url + 'api/product/wishlist/remove/' + product_id + '/',
       httpOptions
     );
   }
