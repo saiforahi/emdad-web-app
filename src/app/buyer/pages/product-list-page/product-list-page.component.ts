@@ -36,6 +36,7 @@ export class ProductListPageComponent implements OnInit {
   catMenuToggle = false;
   selected_child_category: any;
   selected_child_category_name: any;
+  filteredCatArray: any = [];
 
   constructor(
     private getProduct: GetProductService,
@@ -77,34 +78,34 @@ export class ProductListPageComponent implements OnInit {
           this.nextBatchProdLink = item.data.links.next;
         }
       });
-    } else if(this.selected_child_category!==undefined) {
-      // get product by category
-      this.getProduct
-        .getProductByCategory(this.selected_child_category)
-        .subscribe((item) => {
-          this.products = item.data.results;
-          this.getCategories.category().subscribe((item) => {
-            item.forEach((element) => {
-              element.children.forEach((element1) => {
-                element1.children.forEach((element2) => {
-                  if (element2.id == this.selected_child_category) {
-                    this.selected_child_category_name = element2.name;
-                    this.expandedSubCat = element1.id;
-                    this.category = element;
-                  }
-                });
-              });
-            });
-            this.get_menus();
-            this.prices = this.get_price_ranges();
-            if(item.data.links!=null){
-              this.nextBatchProdLink = item.data.links.next;
-            }
-
-          });
+    } 
+    // else if(this.selected_child_category!==undefined) {
+    //   // get product by category
+    //   this.getProduct
+    //     .getProductByCategory(this.selected_child_category)
+    //     .subscribe((item) => {
+    //       this.products = item.data.results;
+    //       this.getCategories.category().subscribe((item) => {
+    //         item.forEach((element) => {
+    //           element.children.forEach((element1) => {
+    //             element1.children.forEach((element2) => {
+    //               if (element2.id == this.selected_child_category) {
+    //                 this.selected_child_category_name = element2.name;
+    //                 this.expandedSubCat = element1.id;
+    //                 this.category = element;
+    //               }
+    //             });
+    //           });
+    //         });
+    //         this.get_menus();
+    //         this.prices = this.get_price_ranges();
+    //         if(item.data.links!=null){
+    //           this.nextBatchProdLink = item.data.links.next;
+    //         }
+    //       });
           
-        });
-    }
+    //     });
+    // }
     else if(this.router.url.substr(10,10)=='categories'){
       this.isCategories=true
       this.set_all_categories()
@@ -125,11 +126,23 @@ export class ProductListPageComponent implements OnInit {
   set_all_categories(){ //setting categories for products/categories route
     this.categories=[]
     this.getCategories.category().subscribe((item) => {
-      this.categories=item
+      this.categories=item;
       // item.forEach((element) => {
       //   this.categories.push(element)
       // });
     });
+  }
+
+  filterChildCat(categoryArray){
+    this.filteredCatArray = [];
+    categoryArray.forEach(element => {
+      element.children.forEach(element => {
+        element.children.forEach(element => {
+          this.filteredCatArray.push(element);
+        });
+      });
+    });
+    console.log("filtered array", this.filteredCatArray)
   }
 
   set_seller_categories(products:Array<any>){ //setting categories for seller wise products view
@@ -165,6 +178,7 @@ export class ProductListPageComponent implements OnInit {
           });
         });
       });
+      this.filterChildCat(this.categories);
     });
     // console.log('categories from products after filter',this.categories)
   }
@@ -196,7 +210,6 @@ export class ProductListPageComponent implements OnInit {
     else{
       query=''
     }
-    
     if (
       this._brand !== null &&
       this._brand !== undefined &&
