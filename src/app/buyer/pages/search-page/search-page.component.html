@@ -52,9 +52,9 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <mat-slider (input)="onSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value"
+                        <mat-slider *ngIf="prices?.length>0" (input)="onPriceSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value"
                             [max]="max_price" [min]="min_price"></mat-slider>
-                        <div class="expanded-div mt-2">
+                        <div *ngIf="prices?.length>0" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let range of prices">
                                 <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')"
                                     class="example-margin">{{range.name}}</mat-checkbox>

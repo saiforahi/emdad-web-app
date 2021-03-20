@@ -21,26 +21,29 @@ export class BreadcrumbsComponent implements OnInit {
     if (this.router.url.split('/')[2] == "seller") {
       this.sellerWiseProduct = true;
     }
+    //setting default style
     console.log('breadcrumb style',this.style)
     document.getElementById('grid_btn').style.backgroundColor="#1F4F9E"
     document.getElementById('grid_btn').style.color="#FFFFFF"
     document.getElementById('list_btn').style.backgroundColor="#fff"
     document.getElementById('list_btn').style.color="#000000"
-    //this.emit_style_change(this.style)
+    this.view_style.emit('grid')
   }
-  ngOnChanges(changes: SimpleChanges):void {
+  ngOnChanges(changes: SimpleChanges):void { //catching change of style
     console.log(changes.style.currentValue)  
     if(changes.style.currentValue==='grid'){
       document.getElementById('grid_btn').style.backgroundColor="#1F4F9E"
       document.getElementById('grid_btn').style.color="#FFFFFF"
       document.getElementById('list_btn').style.backgroundColor="#fff"
       document.getElementById('list_btn').style.color="#000000"
+      this.view_style.emit('grid')
     }
     else if(changes.style.currentValue==='list'){
       document.getElementById('list_btn').style.backgroundColor="#1F4F9E"
       document.getElementById('list_btn').style.color="#FFFFFF"
       document.getElementById('grid_btn').style.backgroundColor="#fff"
       document.getElementById('grid_btn').style.color="#000000"
+      this.view_style.emit('list')
     }
     
 }
