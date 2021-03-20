@@ -46,7 +46,7 @@
             <div class="p-3 cat-header w-100">Categories</div>
         </div>
         <div class="side-nav-bar">
-            <div *ngIf="isSeller">
+            <div *ngIf="isSeller || isCategories">
                 <mat-accordion *ngFor="let category of categories;let i=index">
                     <mat-expansion-panel [expanded]="false">
                         <mat-expansion-panel-header>
@@ -109,7 +109,7 @@
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
-            <mat-accordion *ngIf="!isSeller">
+            <mat-accordion *ngIf="!isSeller && !isCategories">
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -207,7 +207,7 @@
                             <div class="cat-head">Price</div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-slider (input)="onSliderChange($event)" [max]="max_price" [min]="min_price + 1" thumbLabel>
+                    <mat-slider (input)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1" thumbLabel>
                     </mat-slider>
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let range of prices">

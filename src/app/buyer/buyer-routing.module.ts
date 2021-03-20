@@ -76,6 +76,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'products/categories',
+        loadChildren: () =>
+          import('./pages/product-list-page/product-list-page.module').then(
+            (m) => m.ProductListPageModule
+          ),
+      },
+      {
         path: 'forget-password',
         loadChildren: () =>
           import(
