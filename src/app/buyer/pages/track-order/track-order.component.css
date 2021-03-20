@@ -1,65 +1,171 @@
-.table {
-    border-collapse: separate;
-    border-spacing:0 15px;
+*:focus {
+  box-shadow: none;
 }
-.table thead th{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
-    /* identical to box height */
-
-    border-top: none;
-    /* #2B2B2B */
-
-    color: #2B2B2B;
+.header-text {
+  font-size: 48px;
+  margin: 60px 0 40px;
 }
-.table tbody tr{
-    background: #EFEFEF;
-    border-radius: 5px;
+.mat-table {
+  background-color: transparent !important;
+  padding: 0;
+}
+
+.card-body {
+  padding: 40px;
+  background: #fff;
+  margin-bottom: 120px;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+  height: 60px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+tr.mat-row:hover,
+tr.mat-footer-row:hover {
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  transition: 0.3s;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px !important;
+}
+
+table tr:last-child td {
+  border-bottom: 0 solid;
+}
+
+th {
+  font-weight: 500;
+  font-size: 18px;
+  color: #2b2b2b;
+}
+
+td {
+  font-weight: normal;
+  font-size: 18px;
+  color: #2b2b2b;
 }
 .btn-primary {
-    color: rgb(0, 0, 0);
-    background-color: inherit;
-    border-style: none !important;
+  color: rgb(0, 0, 0);
+  background-color: inherit;
+  border-style: none !important;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
-    color: #fff;
-    background-color: #1F4F9E;
-    border-color: #1F4F9E; /*set the color you want here*/
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #1f4f9e;
+  border-color: #1f4f9e;
 }
-.table td, .table th{
-    vertical-align: middle !important;
+
+.filter-btn-div {
+  margin-top: 60px;
 }
-.table tbody tr:hover {
-    outline-style: solid;
-    outline-color: #1F4F9E;
-    background: #FFFFFF;
-    border: 2px solid #1F4F9E;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
-    border-radius: 5px;
+
+.filter-btn-div select {
+  cursor: pointer;
+  height: 80px;
+  padding: 0 45px;
+  font-size: 24px;
+  border: 2px solid #2b2b2b !important;
+  color: #2b2b2b;
 }
-.a-filter{
-    border: 2px solid #2B2B2B;
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 239px;
-    height: 80px;
-    text-align: center;
-    background: none !important;
-    color: black !important;
-    font-family: Jost;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 35px;
-    /* identical to box height */
-    text-align: center;
+
+.a-filter {
+  border: 2px solid #2b2b2b;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 239px;
+  height: 80px;
+  text-align: center;
+  background: none !important;
+  color: black !important;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 35px;
+  /* identical to box height */
+  text-align: center;
+  background: inherit;
+  height: 80px;
+  padding: 0 45px;
+  font-size: 24px;
+  border: 2px solid #2b2b2b !important;
+  color: #2b2b2b;
 }
+
 @media only screen and (min-width: 1200px) {
-    .container {
-      max-width: 1600px !important;
-    }
+  .container {
+    max-width: 1600px !important;
   }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0 0px 0 0px;
+  }
+  ::ng-deep .mat-paginator-container {
+    padding: 0 !important;
+  }
+  .mat-table {
+    padding: 15px;
+  }
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0 !important;
+  }
+  ::ng-deep th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    padding-left: 15px !important;
+  }
+  th {
+    font-size: 16px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+  .col-xs-none {
+    display: none;
+  }
+  .header-text {
+    margin: 20px 0 20px;
+    font-size: 20px;
+  }
+  .profile-page-content {
+    margin-bottom: 20px;
+  }
+  .card-body {
+    padding: 0;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  .filter-btn-div {
+    margin-top: 7px;
+  }
+  .filter-btn-div select {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 575px) {
+  .filter-btn-div {
+    margin-top: 13px;
+  }
+  .filter-btn-div select {
+    height: 35px;
+    padding: 0 0px;
+  }
+}
