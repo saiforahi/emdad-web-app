@@ -1,64 +1,235 @@
+.header-text {
+  font-size: 48px;
+  margin: 60px 0 40px;
+  color: #2b2b2b;
+}
 
-.header{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 69px;
+.sub-text1 {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: rgba(43, 43, 43, 0.5);
+}
 
-    /* #2B2B2B */
+.sub-text2 {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: rgba(43, 43, 43, 0.5);
+  padding-top: 25px;
+}
 
-    color: #2B2B2B;
+.sub-text3 {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: #2b2b2b;
+  text-align: right;
+  padding-top: 25px;
 }
-.sub-text{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 26px;
-    color: rgba(43, 43, 43, 0.5);
+
+.order-num {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
 }
-.order-num{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 29px;
-    color: #2B2B2B;
+
+.order-num span {
+  font-weight: 500;
 }
-h5{
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 32px;
-    color: #2B2B2B;
+
+h5 {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 32px;
+  color: #2b2b2b;
 }
-.download-btn{
-    background: #1F4F9E;
-    border-radius: 5px;
-    border: none;
-    font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 35px;
-    /* identical to box height */
-    text-align: center;
-    color: #FFFFFF;
+
+.download-btn {
+  background: #1f4f9e;
+  border-radius: 5px;
+  border: none;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  /* identical to box height */
+  text-align: center;
+  color: #ffffff;
+  height: 80px;
 }
-.status-btn{
-    background: rgba(73, 185, 127, 0.2);
-    border-radius: 24px;
-    height: 48px;
-    margin: auto;
-    color: #49B97F;
-    cursor:default;
+
+.status-btn {
+  background: rgba(73, 185, 127, 0.2);
+  border-radius: 24px;
+  height: 48px;
+  margin: auto;
+  color: #49b97f;
+  cursor: default;
+  margin-right: 15px;
+  font-size: 18px;
+  font-weight: 500;
 }
-img{
-    width: 120px;
-    height: 120px;
+
+img {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
 }
+
+.card-body {
+  background: #fff;
+  padding: 60px 40px;
+}
+
+.cart-summery p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.cart-summery p span {
+  font-weight: 500;
+}
+
+.payment-summery {
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
+.payment-summery h4 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.payment-summery p {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.payment-summery p span {
+  font-weight: 500;
+}
+
+.media {
+  border-bottom: 1px solid #cfcfcf;
+  margin-bottom: 30px;
+}
+
+.media:last-child {
+  margin-bottom: 0;
+}
+
+.media-body {
+  padding: 25px 0 40px 40px;
+}
+
+.order-num-div {
+  background: #ffffff;
+  padding: 25px 20px;
+}
+
 @media only screen and (min-width: 1200px) {
-    .container {
-      max-width: 1600px !important;
-    }
+  .container {
+    max-width: 1600px !important;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+  .header-text {
+    margin: 20px 0 20px;
+    font-size: 20px;
+  }
+  .sub-text1 {
+    font-size: 16px;
+  }
+
+  .sub-text2 {
+    font-size: 16px;
+    padding-top: 0;
+  }
+
+  .sub-text3 {
+    font-size: 16px;
+    text-align: left;
+    padding-top: 0;
+  }
+  .status-btn {
+    height: 40px;
+    font-size: 16px;
+  }
+  .order-num-div {
+    padding: 15px;
+  }
+  .card-body {
+    padding: 20px 15px;
+  }
+  .media-body {
+    padding: 0px 0 0px 15px;
+  }
+  .cart-summery p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .order-items {
+    margin-bottom: 15px;
+  }
+  img {
+    margin-bottom: 15px;
+  }
+  .payment-summery {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .payment-summery h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .payment-summery p {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .download-btn {
+    font-size: 18px;
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .prod-name {
+    padding-top: 25px;
+  }
+  .sub-text2 {
+    padding-top: 45px;
+  }
+
+  .sub-text3 {
+    text-align: right;
+    padding-top: 45px;
+  }
+  .download-btn {
+    font-size: 20px;
+    height: 60px;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 575px) {
+  img {
+    width: 70px;
+    height: 70px;
+  }
 }
