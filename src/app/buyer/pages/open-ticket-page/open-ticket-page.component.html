@@ -1,133 +1,110 @@
-<app-breadcrumbs [directoryString]="'Open a New Ticket'"></app-breadcrumbs>
-<div class="container">
-  <!-- <div class="nav-section mt-5 mb-5">
-      <span> <a href="#"> Home </a> / Open a New Ticket</span>
-    </div> -->
+<!--20th march 2021-->
+<div class="open-ticket">
+  <app-breadcrumbs [directoryString]="'Open a New Ticket'"></app-breadcrumbs>
 
-  <div class="card mb-4 mt-4 text-center">
-    <div class="mt-5 mb-3">
-      <img
-        src="../../../assets/open_ticket_image.svg"
-        alt="..."
-        class="img-fluid"
-        style="width: 90%"
-      />
-    </div>
+  <div class="container">
+    <h1 class="head">Open a New Ticket</h1>
+    <!--show loader-->
+    <div class="card step-card">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 
-    <div class="card-body">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book. It has survived not only five centuries, but
-      also the leap into electronic typesetting, remaining essentially
-      unchanged. It was popularised in the 1960s with the release of Letraset
-      sheets containing Lorem Ipsum passages, and more recently with desktop
-      publishing software like Aldus PageMaker including versions of Lorem
-      Ipsum.
-    </div>
-  </div>
-
-  <div class="card mb-4">
-    <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
-      <div class="card-body">
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <label
-            for="subjectError"
-            *ngIf="ticketForm.get('title').errors && submitted"
-            class="errors ml-1"
-            >* required</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Write your subject here"
-            formControlName="title"
-          />
-        </div>
-        <div class="form-group">
-          <label for="description">Tell Us More</label>
-          <label
-            for="descriptionError"
-            *ngIf="ticketForm.get('description').errors && submitted"
-            class="errors ml-1"
-            >* required</label
-          >
-          <textarea
-            type="text"
-            class="form-control"
-            placeholder="Write down the issue in details..."
-            rows="7"
-            formControlName="description"
-          ></textarea>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-3">
-              <label for="orderNumber">Order Number(Optional)</label>
-            </div>
-            <div class="col-3">
-              <label for="uploadImage">Upload Image</label>
-            </div>
+          <div class="img-div mt-2">
+            <!-- Horizontal Steppers -->
+            <img src="../../../../assets/open-ticket.png" alt="img-fluid">
+            <!-- /.Horizontal Steppers -->
           </div>
 
-          <div class="row">
-            <div class="col-3">
-              <div class="form-group">
-                <input
-                  type="number"
-                  class="form-control"
-                  placeholder="Order Number"
-                  formControlName="order_code"
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="row">
-                <div class="col-4" *ngIf="selectedImage">
-                  <div class="form-group">
-                    <img
-                      class="previewImageSection form-group"
-                      alt=""
-                      id="preview"
-                    />
-                    <img
-                      (click)="removeImage()"
-                      class="removeImageButton form-group"
-                      src="../../../../assets/cancel-item.svg"
-                    />
-                  </div>
-                </div>
-                <div class="col-2">
-                  <div class="form-group">
-                    <div class="form-group imageUploadButton">
-                      <i class="fa fa-upload"></i>
-                      <input
-                        type="file"
-                        name="images"
-                        id="images"
-                        accept="image/*"
-                        (change)="handleFileSelect($event)"
-                        formControlName="image"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="form-group">
-          <input
-            type="submit"
-            value="Submit"
-            class="btn col-2"
-            style="background: #1f4f9e; color: white"
-          />
+        <!--paragraph content-->
+        <div class="col-md-12">
+          <br>
+          <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+            software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
-
+<!--ticket form-->
+<div class="ticket-form">
+  <div class="container">
+    <div class="card form-card">
+      <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!--subject-->
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="ticket">Subject</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Write your subject here" formControlName="title" />
+                <div *ngIf="ticketForm.get('title').errors && submitted">
+                  <app-form-input-alert [alertMsg]="'Subject is required'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--description-->
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Tell Us More</label>
+              <div class="input-group">
+                <textarea type="text" class="form-control" placeholder="Write down the issue in details..." rows="7"
+                  formControlName="description"></textarea>
+                <div *ngIf="ticketForm.get('description').errors && submitted">
+                  <app-form-input-alert [alertMsg]="'Description is required'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--order number-->
+          <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
+            <label for="order_code">Order Number(Optional)</label>
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Order Number" formControlName="order_code" />
+            </div>
+          </div>
+          <!--attachments-->
+          <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12 col-12 add-m">
+            <label for="uploadImage">Upload Image</label>
+            <div class="row">
+              <div class="col-6 col-md-5 image-show" *ngIf="selectedImage">
+                <div class="form-group attached-file">
+                  <img class="previewImageSection form-group" alt="" id="preview" />
+                  <button mat-mini-fab (click)="removeImage();" class="removeImageButton form-group">
+                    <mat-icon>close</mat-icon>
+                </button>
+                 <!--  <img (click)="removeImage()" class="removeImageButton form-group"
+                    src="../../../../assets/cancel-item.svg" /> -->
+                </div>
+              </div>
+              <div class="col-6 col-md-5">
+                <div class="form-group">
+                  <div class="form-group imageUploadButton">
+                   
+                    <input type="file" name="images" id="images" accept="image/*" (change)="handleFileSelect($event)"
+                      formControlName="image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--submit button-->
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="Submit" mat-raised-button class="btn btn-primary btn-md login_btn"
+                />
+              
+             
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <ngx-spinner></ngx-spinner>
