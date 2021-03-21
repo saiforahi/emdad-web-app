@@ -37,18 +37,32 @@ export class ProductCardHorizonalComponent implements OnInit {
   }
 
   addToCart(prod) {
-    prod.cart_qty = this.prod_qty > 0 ? this.prod_qty : 1;
-    this.prodCartArray = [];
-    var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    if (existingCart != null) {
-      this.cart.existingCartLength.next(existingCart.length + 1);
-      existingCart.forEach((element) => {
-        this.prodCartArray.push(element);
-      });
+    if(this.prod_qty>0){
+      prod.cart_qty = this.prod_qty > 0 ? this.prod_qty : 1;
+      this.prodCartArray = [];
+      var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
+      if (existingCart != null) {
+        //this.cart.existingCartLength.next(existingCart.length + 1);
+        existingCart.forEach((element) => {
+          if(prod.id!=element.id){
+            this.prodCartArray.push(element);
+          }
+          else{
+            console.log('cart matched product',prod)
+            //console.log('qty',parseInt(element.cart_qty)+parseInt(prod.cart_qty))
+            prod.cart_qty=parseInt(element.cart_qty)+parseInt(prod.cart_qty)
+          }
+        });
+      }
+      this.prodCartArray.push(prod);
+      localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+      this.prod_qty=0
+      this.openSnackBar('Added to Cart', 'OK');
     }
-    this.prodCartArray.push(prod);
-    localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
-    this.openSnackBar('Added to Cart', 'OK');
+    else{
+      this.prod_qty=0
+      this.openSnackBar('Invalid Quantity', 'OK');
+    }
   }
 
   addToWishlist(prod_id) {
