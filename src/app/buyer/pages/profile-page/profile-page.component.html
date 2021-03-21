@@ -11,7 +11,7 @@
                 : 'list-group-item'
             " (click)="
               show_change_pass_form = false;
-              show_profile_form = !show_profile_form;
+              show_profile_form = true;
               show_order_history = false;
               show_manage_quotations = false
             ">
@@ -23,7 +23,7 @@
                 : 'list-group-item'
             " (click)="
               show_profile_form = false;
-              show_change_pass_form = !show_change_pass_form;
+              show_change_pass_form = true;
               show_order_history = false;
               show_manage_quotations = false
             ">
@@ -36,7 +36,7 @@
             " (click)="
               show_profile_form = false;
               show_change_pass_form = false;
-              show_order_history = !show_order_history;
+              show_order_history = true;
               show_manage_quotations = false
             " class="list-group-item">
               Order History
@@ -46,7 +46,7 @@
                 ? 'list-group-item active'
                 : 'list-group-item'
             " (click)="
-              show_manage_quotations = !show_manage_quotations;
+              show_manage_quotations = true;
               show_change_pass_form = false;
               show_order_history = false;
               show_profile_form = false
