@@ -88,7 +88,7 @@ export class ProductDetailsPageComponent implements OnInit {
   scroll_to_reviews(element_id: string) {
     this.viewportScroller.scrollToAnchor(element_id);
   }
-  
+
   nextImg() {
     if (this.currentImg <= this.sliderImgArray.length - 1) {
       this.currentImg++;
@@ -112,21 +112,25 @@ export class ProductDetailsPageComponent implements OnInit {
   addToCart() {
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
+    var existingCartLength = 0;
+    var foundSameProduct = false;
+
     if (existingCart != null) {
-      this.cart.existingCartLength.next(existingCart.length + 1);
+      existingCartLength = existingCart.length;
       existingCart.forEach((element) => {
-        if (element.id !== this.prodcutDetails.id)
+        if (element.id != this.prodcutDetails.id) {
           this.prodCartArray.push(element);
+        } else foundSameProduct = true;
       });
     }
     // if product details available only then add to it in the cart array
-    if (this.prodcutDetails) {
+    if (this.prodcutDetails && !foundSameProduct) {
       this.prodCartArray.push(this.prodcutDetails);
-      // console.log('#####');
-      // console.log(this.prodCartArray);
-      // console.log('#####');
+      this.cart.existingCartLength.next(existingCartLength + 1);
       localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
       this.openSnackBar('Product added to cart!', 'ok');
+    } else {
+      this.openSnackBar('Product alreay in cart!', 'ok');
     }
   }
 
@@ -187,12 +191,11 @@ export class ProductDetailsPageComponent implements OnInit {
     });
   }
 
-  get_quantity(value){
-    if(parseInt(value)>0){
-      return parseInt(value)
-    }
-    else{
-      return 0
+  get_quantity(value) {
+    if (parseInt(value) > 0) {
+      return parseInt(value);
+    } else {
+      return 0;
     }
   }
 }
