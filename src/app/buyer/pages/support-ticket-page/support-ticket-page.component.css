@@ -146,17 +146,22 @@ line-height: 29px;
 color: #2b2b2b;
 text-align: center !important;
 }
-
+/**responsive**/
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
 }
+@media all and (min-width:290px) and (max-width:335px){
+.filterBtn{
+  margin-top: 10px;
+}
+}
 @media all and (min-width:400px) and (max-width:600px){
   .filterBtn,.ticket-btn{
-    padding-left: 15px;
-    padding-right: 15px;
-    height: 60px;
+    padding-left: 12px;
+    padding-right: 12px;
+   max-height: 60px;
     font-size: 18px;
     line-height: 22px;
   }
@@ -173,7 +178,9 @@ text-align: center !important;
 }
 @media all and (min-width:290px) and (max-width:400px){
   .filterBtn,.ticket-btn{
-    padding: 15px 20px !important;
+    padding-left: 12px;
+    padding-right: 12px;
+   max-height: 60px;
     font-size: 15px;
     line-height: 22px;
   }
