@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { FileService } from '../../../shared/services/file.service';
 import * as fileSaver from 'file-saver';
 import { TicketService } from '../../../shared/services/ticket.service';
-
+import{PageEvent} from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import{ViewTicketDetailsComponent} from './view-ticket-details/view-ticket-details.component';
 @Component({
   selector: 'app-support-ticket-page',
   templateUrl: './support-ticket-page.component.html',
@@ -23,11 +25,22 @@ export class SupportTicketPageComponent implements OnInit {
     status: 2,
   };
   toggleSort = true;
+  //pagination stuff
+  lowValue: number = 0;
+  highValue: number = 10;
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
   status = ['Initiative', 'Undergoing', 'Resolved'];
+  displayedColumns: string[] = ['id', 'subject', 'status','view'];
 
   constructor(
     private ticketService: TicketService,
-    private fileService: FileService
+    private fileService: FileService,
+    public dialog: MatDialog,
+
   ) {}
 
   ngOnInit(): void {
@@ -35,15 +48,18 @@ export class SupportTicketPageComponent implements OnInit {
     this.ticketService.getTickets(uid).subscribe((data) => {
       //console.log(data.data[0].image.split('/')[]);
       this.supportTicketData = data.data;
+      console.log("data",this.supportTicketData);
     });
   }
-
-  hideModal() {
-    document.getElementById('supportTicketModal').style.display = 'none';
-  }
-  showModal(id): void {
-    document.getElementById('supportTicketModal').style.display = 'block';
-    this.selectedSupportTicket = this.supportTicketData[id];
+  //OPEN THE DIALOG FOR VIEWING ticket DETAILS
+  openDialog(item) {
+    const dialogRef = this.dialog.open(ViewTicketDetailsComponent,{
+      autoFocus: false,
+      data:{
+        supportData:item,
+      }
+    });
+    
   }
 
   sortTable(): void {
@@ -55,20 +71,7 @@ export class SupportTicketPageComponent implements OnInit {
       this.toggleSort = !this.toggleSort;
     }
   }
-  download(ticket_image_url: string) {
-    this.fileService.downloadFile(ticket_image_url).subscribe((response) => {
-      // console.log(response);
-      let blob: any = new Blob([response], {
-        type: 'text/plain;charset=utf-8',
-      });
-      const url = window.URL.createObjectURL(blob);
-      //window.open(url);
-      //window.location.href = response.url;
-      fileSaver.saveAs(blob, 'employees.jpg');
-    }),
-      (error) => console.log('Error downloading the file'),
-      () => console.info('File downloaded successfully');
-  }
+
   get_image_name(image_url: string) {
     let param_array = image_url.split('/');
     return param_array[param_array.length - 1];
