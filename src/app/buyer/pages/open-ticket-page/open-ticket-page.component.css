@@ -276,6 +276,9 @@ label{
  .add-m{
 margin-top:10px;
  }
+ .no-show{
+   display:none ;
+ }
 }
 @media all and (min-width:600px) and (max-width:992px){
   .para{
@@ -299,6 +302,10 @@ margin-top:10px;
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .open-ticket{
+    background: #E5E5E5;
+    padding-bottom: 30px;
+  }
 }
 @media all and (min-width:768px) and (max-width:992px){
 .add-m{
@@ -311,5 +318,8 @@ margin-top:10px;
  }
   .removeImageButton{
     margin-left:-2px;
+  }
+  .no-show{
+    display:none ;
   }
 }
