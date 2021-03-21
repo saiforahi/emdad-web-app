@@ -12,7 +12,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ManageQuotations implements OnInit {
   quotation_to_show: Quotation;
-  quotationData;
+  quotationData:Array<any>=[];
   quotationDetails;
   quotation: any;
   status = ['Initiated', 'Sent', 'Completed'];
