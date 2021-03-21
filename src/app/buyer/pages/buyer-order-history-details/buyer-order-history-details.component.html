@@ -1,82 +1,102 @@
 <div class="container">
-    <div class="row justify-content-between">
-        <h3 class="col header-text">Order Details</h3>
-        <button class="btn status-btn">Order Confirmed</button>
+  <div class="row justify-content-between">
+    <h3 class="col header-text">Order Details</h3>
+    <button class="btn status-btn">Order Confirmed</button>
+  </div>
+  <div class="row mt-30">
+    <div class="col">
+      <div class="order-num-div">
+        <p class="order-num mb-0">
+          <span>Order ID:</span> #{{ orders[0].order.order_code }}
+        </p>
+      </div>
     </div>
-    <div class="row mt-30">
-        <div class="col">
-            <div class="order-num-div">
-                <p class="order-num mb-0"><span>Order ID:</span> #{{orders[0].order.order_code}}</p>
+  </div>
+  <div class="row justify-content-between items" style="margin-top: 30px">
+    <div class="col-12 col-md-12 col-lg-8 order-items">
+      <div class="card-body" style="background: #ffffff">
+        <ul class="list-unstyled">
+          <li class="media" *ngFor="let product of orders; let i = index">
+            <img
+              class="mr-3"
+              src="{{ img_base_url + product.product.image1 }}"
+              alt="Generic placeholder image"
+            />
+            <div class="media-body row">
+              <div class="col-md-8 col-lg-6">
+                <h5 class="prod-name mt-0 mb-1">
+                  {{ product.product.name | titlecase }}
+                </h5>
+                <p class="sub-text1">#1009271 (Ex-works)</p>
+              </div>
+              <div class="col-md-2 col-lg-3 ml-45">
+                <p class="sub-text2">{{ product.quantity }}</p>
+              </div>
+              <div class="col-md-2 col-lg-3 ml-30">
+                <p style="color: #2b2b2b" class="sub-text3">
+                  ${{ cal_individual_total(i) }}
+                </p>
+              </div>
             </div>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="row justify-content-between items" style="margin-top: 30px;">
-        <div class="col-12 col-md-12 col-lg-8 order-items">
-            <div class="card-body" style="background: #FFFFFF;">
-                <ul class="list-unstyled">
-                    <li class="media" *ngFor="let product of orders;let i=index">
-                        <img class="mr-3" src="{{img_base_url+product.product.image1}}"
-                            alt="Generic placeholder image">
-                        <div class="media-body row">
-                            <div class="col-md-8 col-lg-6">
-                                <h5 class="prod-name mt-0 mb-1">{{product.product.name | titlecase}}</h5>
-                                <p class="sub-text1">#1009271 (Ex-works)</p>
-                            </div>
-                            <div class="col-md-2 col-lg-3 ml-45">
-                                <p class="sub-text2">{{product.quantity}}</p>
-                            </div>
-                            <div class="col-md-2 col-lg-3 ml-30">
-                                <p style="color:#2B2B2B;" class="sub-text3">${{cal_individual_total(i)}}</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <div class="col-12 col-md-12 col-lg-4">
+      <div class="card-body cart-summery" style="background: #ffffff">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p>Sub Total ({{ orders.length }} items)</p>
+          </div>
+          <p>${{ calcTotalPrice() }}</p>
         </div>
-        <div class="col-12 col-md-12 col-lg-4">
-            <div class="card-body cart-summery" style="background: #FFFFFF;">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <p>Sub Total ({{orders.length}} items)</p>
-                    </div>
-                    <p>${{calcTotalPrice()}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <p>Discount</p>
-                    </div>
-                    <p>- ${{calcDiscount()}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <p>Vat</p>
-                    </div>
-                    <p>+ ${{calVat()}}</p>
-                </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <p class="mb-0"><span>Total</span></p>
-                    </div>
-                    <p class="mb-0"><span>${{calTotal()}}</span></p>
-                </div>
-            </div>
+        <div class="d-flex justify-content-between">
+          <div>
+            <p>Discount</p>
+          </div>
+          <p>- ${{ calcDiscount() }}</p>
         </div>
+        <div class="d-flex justify-content-between">
+          <div>
+            <p>Vat</p>
+          </div>
+          <p>+ ${{ calVat() }}</p>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="mb-0"><span>Total</span></p>
+          </div>
+          <p class="mb-0">
+            <span>${{ calTotal() }}</span>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="row d-flex flex-column">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-            <div class="card-body payment-summery">
-                <h4>Payment Details</h4>
-                <p><span>Payment Method:</span> card</p>
-                <p><span>Payment Date: </span>{{formatDate(orders[0].order.order_datetime)}}</p>
-                <div class="row">
-                    <div class="col-lg-5">
-                        <button type="button" (click)="createPdf()" class="btn btn-primary btn-lg download-btn">Download
-                            Invoice</button>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="row d-flex flex-column">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+      <div class="card-body payment-summery">
+        <h4>Payment Details</h4>
+        <p><span>Payment Method:</span> card</p>
+        <p>
+          <span>Payment Date: </span
+          >{{ formatDate(orders[0].order.order_datetime) }}
+        </p>
+        <div class="row">
+          <div class="col-lg-5">
+            <button
+              type="button"
+              *ngIf="dataLoaded"
+              (click)="createPdf()"
+              class="btn btn-primary btn-lg download-btn"
+            >
+              Download Invoice
+            </button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <ngx-spinner></ngx-spinner>
