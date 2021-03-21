@@ -10,6 +10,6 @@ export class VatService {
   constructor(private http: HttpClient) {}
 
   getVat(): Observable<any> {
-    return this.http.get(config.base_url+'api/vat/amount/');
+    return this.http.get(config.base_url + 'api/vat/amount');
   }
 }
