@@ -25,12 +25,13 @@ export class HomePageComponent implements OnInit {
   durationInSeconds: number = 5;
   prodInRow6;
   imgBaseUrl;
+  popularCategories: any;
 
   constructor(
     private categoryServices: GetCategoryService,
     private getProduct: GetProductService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
   ) {
     this.imgBaseUrl = config.img_base_url;
   }
@@ -44,7 +45,10 @@ export class HomePageComponent implements OnInit {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
-      console.log(this.categories);
+    });
+    this.categoryServices.PopularCategory().subscribe((item) => {
+      this.popularCategories = item.data[0];
+      console.log(this.popularCategories);
     });
     // recent products list
     this.getProduct.product().subscribe((item) => {

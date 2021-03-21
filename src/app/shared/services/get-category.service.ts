@@ -14,6 +14,10 @@ export class GetCategoryService {
   ) { }
 
   category(): Observable<any> {
-    return this.http.get(this.URL);
+    return this.http.get(config.base_url+'category/');
+  }
+
+  PopularCategory(): Observable<any> {
+    return this.http.get(config.base_url+'api/product/popular/category/');
   }
 }
