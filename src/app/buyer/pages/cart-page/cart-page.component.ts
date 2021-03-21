@@ -110,7 +110,8 @@ export class CartPageComponent implements OnInit {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    if (this.productInCart !== null) this.emptyCart = false;
+    if (this.productInCart !== null && this.productInCart.length > 0)
+      this.emptyCart = false;
     // console.log('#####');
     // console.log(this.productInCart);
     // console.log('#####');
@@ -180,6 +181,7 @@ export class CartPageComponent implements OnInit {
     this.calcSubTotalPrice(this.orders_details);
     this.calcTotalPrice();
     localStorage.setItem('prodCartArray', JSON.stringify(this.productInCart));
+    if (this.productInCart.length === 0) this.emptyCart = true;
     // console.log(this.orders_details, this.tracking_order);
   }
 
@@ -286,7 +288,7 @@ export class CartPageComponent implements OnInit {
     let cart_json = {
       total_amount: this.total_amount,
       buyer: localStorage.getItem('uid'),
-      payment_type: "",
+      payment_type: '',
       discount_coupon_amount: this.discount_coupon_amount,
       discount_coupon: this.discount_coupon,
       orders_details: this.orders_details,
