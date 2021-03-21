@@ -70,8 +70,8 @@
                 <p><span>Payment Method:</span> card</p>
                 <p><span>Payment Date: </span>{{formatDate(orders[0].order.order_datetime)}}</p>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <button (click)="createPdf()" class="btn btn-primary btn-lg download-btn">Download
+                    <div class="col-lg-5">
+                        <button type="button" (click)="createPdf()" class="btn btn-primary btn-lg download-btn">Download
                             Invoice</button>
                     </div>
                 </div>

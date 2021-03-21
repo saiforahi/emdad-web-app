@@ -167,8 +167,8 @@ padding: 20px 150px;
     height: 150px;
   }
   .card-title{
-    font-size: 35px;
-    line-height: 45px;
+    font-size: 30px;
+    line-height: 35px;
   }
   .sub-title{
     font-size:25px ;
@@ -176,7 +176,7 @@ padding: 20px 150px;
   }
   .card-text{
     font-size: 15px;
-    line-height: 28px;
+    line-height: 24px;
   }
   .store-value,.stock-value,.left-point{
     font-size: 15px;
@@ -184,7 +184,7 @@ padding: 20px 150px;
   }
   label{
     font-size: 15px;
-    line-height: 22px;
+    line-height: 24px;
   }
 
 }
@@ -193,27 +193,28 @@ padding: 20px 150px;
     padding: 20px 90px;
   }
   .card-img{
-    height: 200px;
+    height: 180px;
+    width: 100%;
   }
   .card-title{
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 32px;
+    line-height: 48px;
   }
   .sub-title{
-    font-size:30px;
+    font-size:28px;
     line-height: 46px;
   }
   .card-text{
-    font-size: 16px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 28px;
   }
   .store-value,.stock-value,.left-point{
-    font-size: 16px;
+    font-size: 18px;
     line-height: 26px;
   }
   label{
     font-size: 18px;
-    line-height: 25px;
+    line-height: 28px;
   }
 
 }

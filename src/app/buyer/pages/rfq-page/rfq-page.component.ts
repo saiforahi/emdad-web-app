@@ -78,14 +78,19 @@ export class RfqPageComponent implements OnInit {
           console.log(res);
           this.spinner.hide();
           swal('Succeed!', 'Request for quotation Successfull', 'success');
+          this.clicked = false;
           this.router.navigate(['/']);
         },
         (err) => {
           console.error(err);
+          this.spinner.hide();
           swal('Failed!', err.message, 'error');
           this.clicked = false;
         }
       );
+    } else {
+      this.spinner.hide();
+      this.clicked = false;
     }
   }
 }

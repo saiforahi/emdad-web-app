@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   ) {
     router.events.subscribe((val: any) => {
       if (val.url) {
-        this.activeRoute = val.url.split("/");
+        this.activeRoute = val.url.split('/');
       }
     });
   }
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
     this.UserAuthService.uImg.subscribe((data) => {
       if (data != null) {
         this.loggedInUserImg = config.img_base_url + data;
-        console.log(this.loggedInUserImg)
+        console.log(this.loggedInUserImg);
       }
     });
     this.UserAuthService.uId.subscribe((data) => {
@@ -87,10 +87,12 @@ export class HeaderComponent implements OnInit {
       this.categories = tempCategories;
       // console.log(this.categories)
     });
-    this.cart.existingCartLength.subscribe(item => {
-      this.cartLength = item;
-      console.log(item)
-    })
+    this.cart.existingCartLength.subscribe((item) => {
+      if (item == 0) this.cartLength = null;
+      else this.cartLength = item;
+      // alert('cart alert');
+      // console.log(item);
+    });
   }
 
   openSnackBar(message, action) {
@@ -148,7 +150,7 @@ export class HeaderComponent implements OnInit {
 
   showMenu() {
     this.showSideMenu = true;
-    console.log(this.showSideMenu)
+    console.log(this.showSideMenu);
   }
 
   closeMenu() {

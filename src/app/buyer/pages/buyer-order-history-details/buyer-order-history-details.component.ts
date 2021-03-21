@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
-import { AngularCreatePdfService } from 'angular-create-pdf';
-import { jsPDF } from "jspdf";
 import {NgxSpinnerService} from 'ngx-spinner'
+import {jsPDF} from 'jspdf'
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
@@ -19,7 +18,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   vat:any;
   total:any;
   img_base_url;
-  constructor(private route:ActivatedRoute,private orderService:OrderService,private pdfService: AngularCreatePdfService,private spinner:NgxSpinnerService) { }
+  constructor(private route:ActivatedRoute,private orderService:OrderService,private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.base_url=config.base_url;

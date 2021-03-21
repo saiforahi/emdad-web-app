@@ -54,7 +54,6 @@ export class CartPageComponent implements OnInit {
   userId: any;
   subTotal: number = 0;
   total_amount = 0;
-  payment_type;
   discount_coupon_amount;
   discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
@@ -287,7 +286,7 @@ export class CartPageComponent implements OnInit {
     let cart_json = {
       total_amount: this.total_amount,
       buyer: localStorage.getItem('uid'),
-      payment_type: this.payment_type,
+      payment_type: "",
       discount_coupon_amount: this.discount_coupon_amount,
       discount_coupon: this.discount_coupon,
       orders_details: this.orders_details,
