@@ -8,7 +8,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
   styleUrls: ['./track-order.component.css'],
 })
 export class TrackOrderComponent implements OnInit {
-  orderData;
+  orderData:Array<any>=[];
   filtered_orders: any[] = [];
   statuses: string[];
   status = ['Created', 'Confirmed', 'Processing', 'Delivered', 'Completed'];
