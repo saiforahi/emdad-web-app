@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
 import { NgxSpinnerService } from 'ngx-spinner';
-import * as jsPDF from 'jspdf';
+import jsPDF from 'jspdf';
+
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
@@ -78,8 +79,6 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   }
 
   createPdf() {
-    this.dataLoaded = false;
-
     var doc = new jsPDF();
     doc.setFontSize(20);
     doc.text('Order Invoice', 20, 20);
