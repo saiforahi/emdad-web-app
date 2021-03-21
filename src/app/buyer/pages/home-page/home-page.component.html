@@ -67,21 +67,21 @@
         Popular Categories
     </div>
     <div class="row">
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2 text-center"
-            *ngFor="let category of categories | slice:0:6; let i = index">
-            <span *ngIf="category.children">
-                <span *ngIf="category.children[0].children">
-                    <a [routerLink]="['/products/category/', category.children[0].children[0].id]">
+        <div class="col-md text-center"
+            *ngFor="let category of popularCategories | slice:0:6; let i = index">
+            <!-- <span *ngIf="category.children">
+                <span *ngIf="category.children[0].children"> -->
+                    <a [routerLink]="['/products/category/', category.id]">
                         <div class="cat-round-bg">
                             <img src="../../../assets/popular-cat.svg" alt="">
                             <img src="../../../assets/popular-cat-dark.svg" alt="">
                             <span
-                                class="d-sx-none d-sm-none d-md-none d-lg-block">{{category.children[0].children[0].name}}</span>
+                                class="d-sx-none d-sm-none d-md-none d-lg-block">{{category.name}}</span>
                         </div>
-                        <p class="popular-cat-sm d-md-block d-lg-none">{{category.children[0].children[0].name}}</p>
+                        <p class="popular-cat-sm d-md-block d-lg-none">{{category.name}}</p>
                     </a>
-                </span>
-            </span>
+                <!-- </span>
+            </span> -->
         </div>
     </div>
 </section>
