@@ -1,0 +1,46 @@
+.mat-dialog-actions>button{
+    background-color: white !important;
+    background: white !important;
+    color: #2b2b2b;
+ float: right;
+   margin-top: -35px;
+   padding: 0;
+   font-size: 16px;
+   font-weight: normal !important;
+   outline: none !important;
+   border: 0px transparent !important;
+  
+}
+.name,.deets{
+font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.name{
+    text-transform: capitalize !important;
+}
+.deet-light{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2B2B2B; 
+}
+a.file-name{
+    
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+  color: #F49814 !important;
+}
+@media all and (min-width:992px){
+    mat-dialog-content{
+        max-width: 800px;
+    }
+}
