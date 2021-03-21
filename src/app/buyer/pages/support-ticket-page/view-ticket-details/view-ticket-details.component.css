@@ -30,13 +30,13 @@ color: #2B2B2B;
     line-height: 26px;
     color: #2B2B2B; 
 }
-a.file-name{
+a,a.active{
     
     font-family: Jost;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 26px !important;
   color: #F49814 !important;
 }
 @media all and (min-width:992px){
