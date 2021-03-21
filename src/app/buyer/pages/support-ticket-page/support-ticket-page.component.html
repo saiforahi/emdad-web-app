@@ -4,10 +4,10 @@
  <div class="table-view">
    <div class="container">
     <div class="row">
-      <div class="col-md-5 col-sm-12 col-12">
+      <div class="col-md-12 col-lg-5 col-sm-12 col-12">
         <h4 class="head">Raise A Support Ticket</h4>
       </div>
-      <div class="col-md-7 col-sm-12 col-12 d-flex justify-content-end sort-btn">
+      <div class="col-md-12 col-lg-7 col-sm-12 col-12 d-flex justify-content-end sort-btn">
         <button mat-raised-button class="ticket-btn" [routerLink]="['/open-ticket/']" >
           Open a new ticket
         </button>
@@ -26,7 +26,7 @@
         <!-- Subject Column -->
         <ng-container matColumnDef="subject">
           <th mat-header-cell *matHeaderCellDef>Subject</th>
-          <td mat-cell *matCellDef="let element">{{element.title| slice:0:10}}{{element.title.length>10?'...':''}}</td>
+          <td mat-cell *matCellDef="let element"><span class="mobile-row">{{element.title| slice:0:10}}{{element.title.length>10?'...':''}}</span> <span class="normal">{{element.title}}</span></td>
         </ng-container>
     
         <!-- status Column -->

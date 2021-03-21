@@ -62,6 +62,9 @@ td {
   display: inline-block !important;
   width: fit-content !important;
 }
+.mobile-row{
+  display: none;
+}
 
 /* .sort-btn {
   position: absolute;
@@ -105,6 +108,8 @@ font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 29px;
+text-align: center !important;
+box-sizing: border-box;
 }
 
 .mat-button{
@@ -139,6 +144,7 @@ font-weight: normal;
 font-size: 20px;
 line-height: 29px;
 color: #2b2b2b;
+text-align: center !important;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -148,57 +154,112 @@ color: #2b2b2b;
 }
 @media all and (min-width:400px) and (max-width:600px){
   .filterBtn,.ticket-btn{
-    padding: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 60px;
     font-size: 18px;
     line-height: 22px;
   }
   .head{
     font-size: 30px;
     line-height: 38px;
+  }
+  .mobile-row{
+    display: block;
+  }
+  .normal{
+    display: none !important;
   }
 }
 @media all and (min-width:290px) and (max-width:400px){
   .filterBtn,.ticket-btn{
-    padding: 40px 10px;
-    font-size: 18px;
+    padding: 15px 20px !important;
+    font-size: 15px;
     line-height: 22px;
   }
   .head{
     font-size: 30px;
     line-height: 38px;
   }
+  .mobile-row{
+    display: block;
+  }
+  .normal{
+    display: none !important;
+  }
+  mat-table .mat-row {
+    border-bottom: 5px solid #ddd;
+    display: block;
+  }
 }
 @media all and (min-width:600px) and (max-width:992px){
-  .filterBtn{
+ /*  .filterBtn{
     padding: 30px;
   }
   .ticket-btn{
     padding: 30px;
+  } */
+  .filterBtn,.ticket-btn{
+    /* padding: 20px; */
+    font-size: 18px;
+    line-height: 22px;
+    height: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .head{
+    font-size: 32px;
+    line-height:42px;
+  }
+  .mobile-row{
+    display: block;
+  }
+  .normal{
+    display: none !important;
+  }
+}
+@media all and (min-width:993px) and (max-width:1199px){
+  .filterBtn,.ticket-btn{
+    padding-left:20px !important;
+    padding-right: 20px !important;
+    height: 70px !important;
   }
   .filterBtn,.ticket-btn{
     /* padding: 20px; */
     font-size: 18px;
     line-height: 22px;
   }
-  .head{
-    font-size: 32px;
-    line-height:42px;
-  }
-}
-@media all and (min-width:992px) and (max-width:1199px){
-  .filterBtn,.ticket-btn{
-    padding-top: 10px !important;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
 }
 @media all and (min-width:290px) and (max-width:768px){
 .justify-content-end{
-  float:left !important;
+  display:block !important;
+  clear:both !important;
 
 }
 .sort-btn{
   text-align: left !important;
+  float: left;
 }
+
+.ticket-btn,.filterBtn{
+  word-wrap: break-word;
+}
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .justify-content-end{
+    display:block !important;
+    clear:both !important;
+  
+  }
+  .sort-btn{
+    text-align: left !important;
+    float: left;
+  }
+}
+@media all and (min-width:1200px) and (max-width:1299px){
+  .filterBtn,.ticket-btn{
+    padding-left:20px !important;
+    padding-right: 20px !important;
+    height: 90px !important;
+  }
 }
