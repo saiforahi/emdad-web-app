@@ -1,21 +1,14 @@
 <!--17th and 20th march 2021-->
-<section class="about-us">
+<section class="about-us" *ngIf="aboutusData">
     <!-- First row content -->
     <div class="first-row mt-0 ml-0">
         <div class="img-div-top m-0 p-0 h-100">
 
-            <img src="../../../../assets/about-us-top.png" alt="about-us" class="img-fluid m-0 p-0">
+            <img src="{{ base_url + aboutusData.sec1_image }}" alt="about-us" class="img-fluid m-0 p-0">
         </div>
         <div class="text-div">
-            <h1 class="pb-2">Who We Are</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged.
-                <br><br>
-                It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-                of letters, as opposed to using 'Content here, content here', making it look like readable.
+            <h1 class="pb-2">{{aboutusData.sec1_title | titlecase}}</h1>
+            <p>{{aboutusData.sec1_description | htmltoPlain}}
             </p>
         </div>
     </div>
@@ -26,18 +19,16 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12">
                     <!--text row -->
                     <div class="vision-text">
-                        <h1 class="head pb-2">Vision</h1>
-                        <ul class="vision-list">
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum
-                                has been the industry's standard dummy text.</li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <h1 class="head pb-2">{{aboutusData.sec2_title | titlecase}}</h1>
+                        <ul class="vision-list" *ngFor="let vision of aboutusData.sec2_description|pushIntoArray">
+                            <li class="mb-2">{{vision}}</li>
+                            <!-- <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             </li>
                             <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             </li>
                             <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             </li>
-                            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li> -->
 
                         </ul>
 
@@ -47,7 +38,7 @@
                     <!--image row-->
                     <div class="image-div">
 
-                        <img src="../../../../assets/vision.png" alt="vision" class="img-fluid w-100">
+                        <img src="{{ base_url + aboutusData.sec2_image }}" alt="vision" class="img-fluid w-100">
                     </div>
                 </div>
             </div>
@@ -61,13 +52,13 @@
                     <!--image row-->
                     <div class="mission-div">
 
-                        <img src="../../../../assets/mission.png" alt="mission" class="img-fluid">
+                        <img src="{{ base_url + aboutusData.sec3_image }}" alt="mission" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12 col-12">
                     <!--text row -->
                     <div class="mission-text">
-                        <h1 class="head pb-2">Mission</h1>
+                        <h1 class="head pb-2">{{aboutusData.sec3_title | titlecase}}</h1>
                         <ul class="vision-list">
                             <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum
@@ -94,19 +85,11 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-12">
                     <div class="values-text">
-                        <h1 class="head pb-2">Values</h1>
-                        <p class="value-para">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum
-                            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley
-                            of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also
-                            the leap into electronic typesetting, remaining essentially unchanged. It is a long
-                            established fact
-                            that a reader will be distracted.</p>
+                        <h1 class="head pb-2">{{aboutusData.sec4_title | titlecase}}</h1>
+                        <p class="value-para">{{aboutusData.sec4_description | htmltoPlain }}</p>
                     </div>
                     <div class="values-img">
-                        <img src="../../../../assets/values.png" alt="values" class="img-fluid mt-2">
+                        <img src="{{ base_url + aboutusData.sec4_image }}" alt="values" class="img-fluid mt-2 center">
                     </div>
                 </div>
             </div>
