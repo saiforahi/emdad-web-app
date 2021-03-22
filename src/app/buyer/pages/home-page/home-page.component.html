@@ -10,14 +10,23 @@
         <div class="row">
             <div class="col-md-2" *ngFor="let category of categories | slice:0:5; let i = index">
                 <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
-                    <div class="cat-icon-holder">
+                    <span class="cat-icon-holder">
                         <img *ngIf="category.icon == null" src="../../../assets/Category.svg" alt="">
                         <img *ngIf="category.icon != null" src="{{imgBaseUrl}}{{category.icon}}" alt="">
-                    </div>
-                    <div class="cat-title">
+                    </span>
+                    <span class="cat-title">
                         {{category.name}}
-                    </div>
+                    </span>
                 </div>
+                <!-- <div class="media">
+                    <img class="mr-3" *ngIf="category.icon == null" src="../../../assets/Category.svg" alt="">
+                    <img class="mr-3" *ngIf="category.icon != null" src="{{imgBaseUrl}}{{category.icon}}" alt="">
+                    <div class="media-body">
+                        <div class="cat-title">
+                            {{category.name}}
+                        </div>
+                    </div>
+                  </div> -->
             </div>
             <div class="subCategory" *ngIf="isDisplay == 'true'">
                 <div class="container">
@@ -48,7 +57,7 @@
                         <img src="../../../assets/Category.svg" alt="">
                     </div>
                     <div class="cat-title">
-                        All Categories
+                        View All Categories
                     </div>
                 </div>
             </div>
@@ -67,7 +76,7 @@
         Popular Categories
     </div>
     <div class="row">
-        <div class="col-md text-center"
+        <div class="col-6 col-sm-4 col-md-4 col-lg-2 text-center"
             *ngFor="let category of popularCategories | slice:0:6; let i = index">
             <!-- <span *ngIf="category.children">
                 <span *ngIf="category.children[0].children"> -->

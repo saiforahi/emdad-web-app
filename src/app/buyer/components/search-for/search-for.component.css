@@ -8,7 +8,6 @@
   border-bottom-left-radius: 50px;
   border: none;
   background: #eaeaea;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 40%);
   font-style: normal;
   font-weight: normal;
   padding: 5px 25px;
@@ -33,6 +32,7 @@ button {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   padding: 0 25px;
+  box-shadow: none !important;
 }
 
 .suggestion-box {
