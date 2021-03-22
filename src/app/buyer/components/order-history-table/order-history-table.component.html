@@ -80,7 +80,7 @@
       [length]="orderData.length"
       showFirstLastButtons
       (page)="getPaginatorData($event)"
-      *ngIf="orderData != undefined || orderData != null"
+      *ngIf="orderData?.length>5"
     ></mat-paginator>
     <div class="no-data" *ngIf="orderData == undefined || orderData == null">
       No data available

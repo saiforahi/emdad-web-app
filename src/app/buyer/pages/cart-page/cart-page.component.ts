@@ -72,6 +72,7 @@ export class CartPageComponent implements OnInit {
     {
       id: '',
       name: '',
+      cart_qty:'',
       unit_price: '',
       stock_quantity: '',
       image1: '',
@@ -109,7 +110,8 @@ export class CartPageComponent implements OnInit {
       this.userId = item;
     });
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    if (this.productInCart !== null) this.emptyCart = false;
+    if (this.productInCart !== null && this.productInCart.length > 0)
+      this.emptyCart = false;
     // console.log('#####');
     // console.log(this.productInCart);
     // console.log('#####');
@@ -142,8 +144,7 @@ export class CartPageComponent implements OnInit {
       console.log(element);
       this.orders_details.push({
         product: element.id,
-        quantity:
-          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
@@ -178,6 +179,7 @@ export class CartPageComponent implements OnInit {
     this.calcSubTotalPrice(this.orders_details);
     this.calcTotalPrice();
     localStorage.setItem('prodCartArray', JSON.stringify(this.productInCart));
+    if (this.productInCart.length === 0) this.emptyCart = true;
     // console.log(this.orders_details, this.tracking_order);
   }
 
@@ -198,7 +200,7 @@ export class CartPageComponent implements OnInit {
       this.subTotal +=
         parseFloat(element.unit_price) * parseFloat(element.quantity) +
         parseFloat(element.commission);
-      this.totalItems += element.quantity;
+      this.totalItems ++;
     });
   }
 

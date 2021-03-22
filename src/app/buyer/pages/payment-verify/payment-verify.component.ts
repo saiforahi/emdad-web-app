@@ -21,10 +21,11 @@ export class PaymentVerifyComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
     let data = JSON.parse(localStorage.getItem('payment_add_response'));
+    //console.log(data)
     //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
     let check_api_json = { //json data for verifying payment
       tran_ref: data.tran_ref,
-      Order: localStorage.getItem('temp_order_id'),
+      order: localStorage.getItem('temp_order_id'),
       cart_currency: data.cart_currency,
       cart_amount: data.cart_amount,
       cart_id: data.cart_id,

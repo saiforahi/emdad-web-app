@@ -8,7 +8,7 @@
 <section id="cat_menu" class="categories d-sx-none d-sm-none d-md-none d-lg-block">
     <div class="container">
         <div class="row">
-            <div class="col-md-2" *ngFor="let category of categories | slice:0:6; let i = index">
+            <div class="col-md-2" *ngFor="let category of categories | slice:0:5; let i = index">
                 <div class="single-category" [ngClass]="getCatActiveClass(i)" (click)="catClicked(category, i)">
                     <div class="cat-icon-holder">
                         <img *ngIf="category.icon == null" src="../../../assets/Category.svg" alt="">
@@ -42,8 +42,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-2">
-                <div class="single-category" [routerLink]="['/']">
+            <div class="col-md-2">
+                <div class="single-category" [routerLink]="['/products/categories']">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/Category.svg" alt="">
                     </div>
@@ -51,7 +51,7 @@
                         All Categories
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>

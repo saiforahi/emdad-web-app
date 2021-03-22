@@ -38,6 +38,7 @@ table {
   border-spacing: 0 20px !important;
 }
 
+
 table tr:last-child td {
   border-bottom: 0 solid;
 }
@@ -156,6 +157,14 @@ text-align: center !important;
 .filterBtn{
   margin-top: 10px;
 }
+.mat-button{
+
+font-size: 15px;
+line-height: 22px;
+color: #2B2B2B;
+align-self: right;
+padding: 4px;
+}
 }
 @media all and (min-width:400px) and (max-width:600px){
   .filterBtn,.ticket-btn{
@@ -175,6 +184,14 @@ text-align: center !important;
   .normal{
     display: none !important;
   }
+  .mat-button{
+
+    font-size: 16px;
+    line-height: 24px;
+    color: #2B2B2B;
+    align-self: right;
+    padding: 4px;
+    }
 }
 @media all and (min-width:290px) and (max-width:400px){
   .filterBtn,.ticket-btn{
@@ -224,6 +241,14 @@ text-align: center !important;
   .normal{
     display: none !important;
   }
+  .mat-button{
+
+    font-size: 16px;
+    line-height: 26px;
+    color: #2B2B2B;
+    align-self: right;
+    padding: 4px;
+    }
 }
 @media all and (min-width:993px) and (max-width:1199px){
   .filterBtn,.ticket-btn{
@@ -269,4 +294,70 @@ text-align: center !important;
     padding-right: 20px !important;
     height: 90px !important;
   }
+}
+@media all and (min-width:290px) and (max-width:500px){
+  .card{
+    padding: 5px !important;
+  }
+  th {
+    font-weight: 500;
+    font-size: 15px;
+    color: #2b2b2b;
+  }
+  
+  td {
+    font-weight: normal;
+    font-size: 15px;
+    color: #2b2b2b;
+  }
+}
+/*table responsive code*/
+@media only screen and (min-width: 300px) and (max-width: 991px) {
+/*   ::ng-deep .mat-paginator-range-label {
+    margin: 0 0px 0 0px;
+  }
+  ::ng-deep .mat-paginator-container {
+    padding: 0 !important;
+  }
+  .mat-table {
+    padding: 15px;
+  }
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0 !important;
+  } */
+  ::ng-deep th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    padding-left: 15px !important;
+  }
+  th {
+    font-size: 16px;
+  }
+
+  td {
+    font-size: 16px;
+  }
+ /*  .col-xs-none {
+    display: none;
+  } */
+/*   .header-text {
+    margin: 20px 0 20px;
+    font-size: 20px;
+  }
+  .profile-page-content {
+    margin-bottom: 20px;
+  } */
+  .card{
+    padding: 0;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+/*   .filter-btn-div {
+    margin-top: 7px;
+  }
+  .filter-btn-div select {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+  } */
 }

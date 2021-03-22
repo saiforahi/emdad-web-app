@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -125,6 +125,7 @@ export class ProductDetailsPageComponent implements OnInit {
     }
     // if product details available only then add to it in the cart array
     if (this.prodcutDetails && !foundSameProduct) {
+      this.prodcutDetails.cart_qty = 1;
       this.prodCartArray.push(this.prodcutDetails);
       this.cart.existingCartLength.next(existingCartLength + 1);
       localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));

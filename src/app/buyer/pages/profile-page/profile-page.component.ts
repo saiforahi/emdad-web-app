@@ -63,7 +63,7 @@ export class ProfilePageComponent implements OnInit {
         this.show_manage_quotations = true;
       }
     });
-    this.userId = this.route.snapshot.params['id'];
+    this.userId = localStorage.getItem('uid');
     this.authService.uName.subscribe((data) => {
       this.userMail = data;
     });
