@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { AddressService } from '../../../shared/services/address.service';
@@ -41,7 +41,8 @@ export class CheckoutComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: UserAuthService,
     private orderService: OrderService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     window.scrollTo({
@@ -56,7 +57,7 @@ export class CheckoutComponent implements OnInit {
     this.isCard = true;
     this.payment_type="1"
     this.isWired = false;
-    this.cash_details = JSON.parse(localStorage.getItem('finalCart'));
+    this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
       this.user = data.data;
       console.log(this.user);
@@ -80,7 +81,7 @@ export class CheckoutComponent implements OnInit {
     document.getElementById('a_card').classList.remove('pay-option-selected');
     this.isCard = false;
     this.isWired = true;
-    this.payment_type="2"
+    this.payment_type="0"
   }
   show_address_form() {
     //new address add form show action
@@ -111,7 +112,6 @@ export class CheckoutComponent implements OnInit {
     this.orderService
       .add_payment({
         //adding order payment
-        Order: localStorage.getItem('temp_order_id'),
         tran_type: 'sale',
         cart_description: 'sale',
         cart_id: '400000000000001',
@@ -144,7 +144,7 @@ export class CheckoutComponent implements OnInit {
       swal('Warning', 'Please select an address', 'warning');
     } else {
       this.spinner.show();
-      let data=JSON.parse(localStorage.getItem('cart_json'))
+      let data=JSON.parse(localStorage.getItem('cart_items')) //setting cart data from localstorage
       data.payment_type=this.payment_type;
       console.log('cart_data',data)
       this.orderService
@@ -156,7 +156,16 @@ export class CheckoutComponent implements OnInit {
             'temp_order_id',
             this.add_order_response.data[0].id
           );
-          this.add_payment();
+          if(this.isWired){
+            localStorage.removeItem('finalCart')
+            localStorage.removeItem('prodCartArray')
+            localStorage.removeItem('cart_json')
+            this.spinner.hide()
+            this.router.navigate(['order/details/',this.add_order_response.data[0].id])
+          }
+          else{
+            this.add_payment();
+          }
         });
     }
   }

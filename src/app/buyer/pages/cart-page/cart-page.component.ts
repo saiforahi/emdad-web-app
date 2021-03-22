@@ -5,7 +5,7 @@ import { VatService } from '../../../shared/services/vat.service';
 import { CommissionService } from '../../../shared/services/commission.services';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
-
+import { Router} from '@angular/router'
 // interface Orders {
 //   total_amount?: number;
 //   payment_type?: number;
@@ -99,7 +99,8 @@ export class CartPageComponent implements OnInit {
     private coupon: CouponService,
     private vat: VatService,
     private commission: CommissionService,
-    private cart: CartServiceService
+    private cart: CartServiceService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -280,14 +281,14 @@ export class CartPageComponent implements OnInit {
       element.vat_amount = this.vatAmount;
       element.commission = this.commissionAmount;
     });
-    var finalCart = {
+    var cart_cash = {
       subtotal: this.subTotal,
       discount: this.discount_coupon,
       discount_type: this.couponType,
       vat: this.vatAmount,
       total: this.total_amount,
     };
-    let cart_json = {
+    let cart_items = {
       total_amount: this.total_amount,
       buyer: localStorage.getItem('uid'),
       payment_type: '',
@@ -296,8 +297,9 @@ export class CartPageComponent implements OnInit {
       orders_details: this.orders_details,
       tracking_order: this.tracking_order,
     };
-    localStorage.setItem('cart_json', JSON.stringify(cart_json));
-    localStorage.setItem('finalCart', JSON.stringify(finalCart));
+    localStorage.setItem('cart_items', JSON.stringify(cart_items));
+    localStorage.setItem('cart_cash', JSON.stringify(cart_cash));
     console.log(localStorage.getItem('cart_json'));
+    //this.router.navigate(['checkout',cart_items])
   }
 }

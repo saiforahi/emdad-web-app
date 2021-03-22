@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row justify-content-between">
     <h3 class="col header-text">Order Details</h3>
-    <button class="btn status-btn">Order Confirmed</button>
+    <button *ngIf="status==='placed'" type="button" class="btn status-btn placed" >Order placed</button>
+    <button *ngIf="status==='confirmed'" type="button" class="btn status-btn confirmed" >Order Confirmed</button>
+    <button *ngIf="status==='processing'" type="button" class="btn status-btn processing" >Order Processing</button>
+    <button *ngIf="status==='completed'" type="button" class="btn status-btn completed" >Order Completed</button>
   </div>
   <div class="row mt-30">
     <div class="col">
