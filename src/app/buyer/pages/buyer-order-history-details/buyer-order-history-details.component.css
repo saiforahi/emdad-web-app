@@ -99,17 +99,30 @@ h5 {
 }
 
 .status-btn {
-  background: rgba(73, 185, 127, 0.2);
   border-radius: 24px;
   height: 48px;
   margin: auto;
-  color: #49b97f;
   cursor: default;
   margin-right: 15px;
   font-size: 18px;
   font-weight: 500;
 }
-
+.processing{
+  background: rgba(244, 152, 20, 0.2);
+  color: #F49814;
+}
+.completed{
+  background: rgba(31, 79, 158, 0.2);
+  color: #1F4F9E;
+}
+.placed{
+  background: rgba(97, 191, 255, 0.2);
+  color: #61BFFF;
+}
+.confirmed{
+  background: rgba(73, 185, 127, 0.2);
+  color: #49B97F;
+}
 img {
   width: 120px;
   height: 120px;

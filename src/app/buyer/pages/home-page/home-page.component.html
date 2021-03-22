@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" *ngIf="categories?.length>0">
                 <div class="single-category" [routerLink]="['/products/categories']">
                     <div class="cat-icon-holder">
                         <img src="../../../assets/Category.svg" alt="">

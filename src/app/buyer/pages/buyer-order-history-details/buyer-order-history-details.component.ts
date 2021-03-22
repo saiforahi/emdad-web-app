@@ -19,6 +19,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   vat: any;
   total: any;
   dataLoaded: boolean = false;
+  status:string;
   img_base_url;
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
         console.log(success.data);
         this.orders = success.data;
         this.dataLoaded = true;
+        this.status=this.get_order_status()
+        //this.get_order_status()
       },
       (error) => console.log(error)
     );
@@ -44,6 +47,36 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     console.log('changes', changes);
   }
 
+  get_order_status(){
+    let status:string;
+    this.orders.forEach(element => {
+      console.log('status',element.order.tracking_order[0].status)
+      switch(element.order.tracking_order[0].status){
+        case 1:
+          status="created"
+          break
+        case 2:
+          status="confirmed"
+          break
+        case 3:
+          status="processing"
+          break
+        case 5:
+          status="completed"
+          break
+        default:
+          status=undefined
+      }
+    });
+    if(status==="created" && this.orders[0].order.payment_type===0){
+      status="placed"
+    }
+    else if(status==="created" && this.orders[0].order.payment_type===1){
+      status="confirmed"
+    }
+    console.log("order status",status)
+    return status;
+  }
   calcTotalPrice() {
     let subTotal = 0;
     this.orders.forEach((element) => {
