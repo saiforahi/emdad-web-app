@@ -34,8 +34,8 @@
         <th mat-header-cell *matHeaderCellDef>Payment Date</th>
         <td mat-cell *matCellDef="let element">
           {{
-            element.order_payment[0] !== undefined
-              ? element.order_payment[0].created_at
+            element.order_payment?.length > 0
+              ? (element.order_payment[0].created_at | date)
               : ("" | date)
           }}
         </td>
@@ -46,8 +46,8 @@
         <th mat-header-cell *matHeaderCellDef>Delivery Date</th>
         <td mat-cell *matCellDef="let element">
           {{
-            element.tracking_order[0] !== undefined
-              ? element.tracking_order[0].delivery_date
+            element.tracking_order?.length>0
+              ? (element.tracking_order[0].delivery_date | date)
               : ("" | date)
           }}
         </td>

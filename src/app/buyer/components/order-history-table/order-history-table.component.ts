@@ -35,7 +35,11 @@ export class OrderHistoryComponent implements OnInit {
   get_orders() {
     this.orderService.get_buyer_order_list().subscribe((res) => {
       this.orderData = res.data;
-      // console.log(this.orderData);
+      console.log(this.orderData);
     });
+  }
+  
+  formateDate(date:string){
+    return new Date(date).toDateString()
   }
 }
