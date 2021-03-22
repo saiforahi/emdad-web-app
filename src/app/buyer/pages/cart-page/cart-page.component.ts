@@ -136,7 +136,6 @@ export class CartPageComponent implements OnInit {
     this.generateOrderData(this.productInCart);
     this.calcSubTotalPrice(this.orders_details);
     this.calcTotalPrice();
-
     // console.log(this.orders_details, this.tracking_order);
   }
 
@@ -210,10 +209,8 @@ export class CartPageComponent implements OnInit {
 
   calcTotalPrice() {
     this.total_amount = 0;
-
     let vatAmount =
       (this.subTotal - this.couponDiscount) * (this.vatAmount / 100);
-
     let discountAmount = 0;
     // flat type discount
     if (this.couponType === 1) {
@@ -224,7 +221,6 @@ export class CartPageComponent implements OnInit {
     if (this.couponType === 2) {
       discountAmount = this.subTotal * (this.couponDiscount / 100);
     }
-
     if (this.subTotal > 0)
       this.total_amount = this.subTotal - discountAmount + vatAmount;
   }
