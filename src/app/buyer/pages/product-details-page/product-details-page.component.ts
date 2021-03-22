@@ -148,10 +148,7 @@ export class ProductDetailsPageComponent implements OnInit {
   loadComments() {
     this.commentlist = [];
     this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
-      this.commentlist = [...this.commentlist, ...item.data.results];
-      // console.log('*****');
-      // console.log(this.commentlist);
-      // console.log('*****');
+      this.commentlist = [...item.data.results, ...this.commentlist];
       // alert(JSON.stringify(this.commentlist));
       this.nextCommentsLink = item.data.links.next;
       this.loadTotalCommentsCount();
@@ -170,6 +167,11 @@ export class ProductDetailsPageComponent implements OnInit {
           this.spinner.hide();
         });
     }
+  }
+
+  onNewCommentAdd(event) {
+    if (event == '1') this.loadComments();
+    else console.log('$$$$$');
   }
 
   addToWishlist(prod_id) {
