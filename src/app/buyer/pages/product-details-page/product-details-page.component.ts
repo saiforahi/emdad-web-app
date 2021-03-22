@@ -129,9 +129,9 @@ export class ProductDetailsPageComponent implements OnInit {
       this.prodCartArray.push(this.prodcutDetails);
       this.cart.existingCartLength.next(existingCartLength + 1);
       localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
-      this.openSnackBar('Product added to cart!', 'ok');
+      this.openSnackBar('Product added to cart!', 'OK');
     } else {
-      this.openSnackBar('Product alreay in cart!', 'ok');
+      this.openSnackBar('Product alreay in cart!', 'OK');
     }
   }
 
