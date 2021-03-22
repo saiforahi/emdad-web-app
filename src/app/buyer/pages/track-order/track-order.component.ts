@@ -26,12 +26,11 @@ export class TrackOrderComponent implements OnInit {
     // console.log(localStorage.getItem('token'));
     this.get_orders();
     this.get_statuses();
-    // console.log(this.orderData);
   }
 
   get_orders() {
     this.orderService.get_buyer_order_list().subscribe((result) => {
-      // console.log(result.data);
+      console.log(result.data);
       this.orderData = result.data;
       this.filtered_orders = result.data;
     });

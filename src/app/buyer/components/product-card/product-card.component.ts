@@ -27,6 +27,7 @@ export class ProductCardComponent implements OnInit {
     this.user.uId.subscribe(item =>{
       this.userId = item;
     })
+    console.log(this.product)
   }
 
   addToCart(prod) {
