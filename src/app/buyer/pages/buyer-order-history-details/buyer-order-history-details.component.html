@@ -14,7 +14,7 @@
   </div>
   <div class="row justify-content-between items" style="margin-top: 30px">
     <div class="col-12 col-md-12 col-lg-8 order-items">
-      <div class="card-body" style="background: #ffffff">
+      <div class="card-body">
         <ul class="list-unstyled">
           <li class="media" *ngFor="let product of orders; let i = index">
             <img
@@ -27,7 +27,10 @@
                 <h5 class="prod-name mt-0 mb-1">
                   {{ product.product.name | titlecase }}
                 </h5>
-                <p class="sub-text1">#1009271 (Ex-works)</p>
+                <p class="sub-text1" *ngIf="product.product.delivery_method === 1">(DDP)</p>
+                <p class="sub-text1" *ngIf="product.product.delivery_method === 2">
+                  (Ex-works)
+                </p>
               </div>
               <div class="col-md-2 col-lg-3 ml-45">
                 <p class="sub-text2">{{ product.quantity }}</p>
@@ -43,7 +46,7 @@
       </div>
     </div>
     <div class="col-12 col-md-12 col-lg-4">
-      <div class="card-body cart-summery" style="background: #ffffff">
+      <div class="card-body cart-summery">
         <div class="d-flex justify-content-between">
           <div>
             <p>Sub Total ({{ orders.length }} items)</p>

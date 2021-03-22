@@ -1,54 +1,93 @@
-<div class="container mb-4">
+<div class="container">
   <div class="row">
     <div class="col">
-      <h3 style="margin-top: 60px" class="header">My Cart</h3>
+      <h3 class="header-text">My Cart</h3>
     </div>
   </div>
-  <div class="row right-col-div" style="margin-top: 40px; margin-bottom: 120px">
-    <div class="col-md-8" style="background: #ffffff">
-      <div class="row mb-4 card-body" *ngFor="let product of productInCart; let i = index">
-        <div class="col-md-2">
-          <img class="product-img" [src]="this.img_base_url + product.image1" />
-        </div>
-        <div class="col-md-4" style="margin-left: 40px">
-          <div class="d-flex flex-column">
-            <h5 class="mt-3 mb-1">{{ product.name }}</h5>
-            <p class="sub-text" *ngIf="product.delivery_method === 1">(DDP)</p>
-            <p class="sub-text" *ngIf="product.delivery_method === 2">
-              (Ex-works)
-            </p>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-8">
+      <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="media" *ngFor="let product of productInCart; let i = index">
+              <img
+                class="prod-img mr-3"
+                src="{{ img_base_url + product.image1 }}"
+                alt="Generic placeholder image"
+              />
+              <div class="media-body row">
+                <div class="col-12 col-sm-12 col-md-5">
+                  <h5 class="prod-name mt-0 mb-1">
+                    {{ product.name | titlecase }}
+                  </h5>
+                  <p class="sub-text1" *ngIf="product.delivery_method === 1">(DDP)</p>
+                  <p class="sub-text1" *ngIf="product.delivery_method === 2">
+                    (Ex-works)
+                  </p>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 d-flex align-items-center" style="margin: -5px;">
+                  <span (click)="delQuantity(i)" class="custom-btn"><img src="../../../assets/minus.svg" /></span>
+                  <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
+                    <p *ngIf="orders_details[i]" class="">
+                      {{ orders_details[i].quantity }}
+                    </p>
+                  </div>
+                  <span (click)="addQuantity(i)" class="custom-btn"><img src="../../../assets/plus.svg" /></span>
+                </div>
+                <div class="col-3 col-sm-4 col-md-2 text-center">
+                  <p style="color: #2b2b2b" class="sub-text3">
+                    ${{ calcPrice(i) }}
+                  </p>
+                </div>
+                <div class="col-3 col-sm-4 col-md-2 text-right pt-2">
+                  <button (click)="removeFromCart(product.id)" class="cancel-btn">
+                    <img src="../../../../assets/cancel-item.svg" />
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="col-md-2">
+            <img class="product-img" [src]="this.img_base_url + product.image1" />
           </div>
-        </div>
-        <div class="col-md-2 d-flex align-items-center" style="margin-top: -18px">
-          <span (click)="delQuantity(i)" class="custom-btn"><img src="../../../assets/minus.svg" /></span>
-          <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
-            <p *ngIf="orders_details[i]">
-              {{ orders_details[i].quantity }}
-            </p>
+          <div class="col-md-4">
+            <div class="d-flex flex-column">
+              <h5 class="mt-3 mb-1">{{ product.name }}</h5>
+              <p class="sub-text" *ngIf="product.delivery_method === 1">(DDP)</p>
+              <p class="sub-text" *ngIf="product.delivery_method === 2">
+                (Ex-works)
+              </p>
+            </div>
           </div>
-          <span (click)="addQuantity(i)" class="custom-btn"><img src="../../../assets/plus.svg" /></span>
-        </div>
-        <div class="col-md-2 d-flex align-items-center">
-          <p style="color: #2b2b2b">${{ calcPrice(i) }}</p>
-        </div>
-        <div class="col-md-1 d-flex align-items-center" style="margin-top: -18px">
-          <span (click)="removeFromCart(product.id)" class="custom-btn">
-            <img src="../../../../assets/cancel-item.svg" />
-            <!-- <i class="fa fa-trash" aria-hidden="true"></i -->
-          </span>
-        </div>
-        <mat-divider *ngIf="i != productInCart.length - 1"></mat-divider>
+          <div class="col-md-2 d-flex align-items-center" style="margin-top: -18px">
+            <span (click)="delQuantity(i)" class="custom-btn"><img src="../../../assets/minus.svg" /></span>
+            <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
+              <p *ngIf="orders_details[i]">
+                {{ orders_details[i].quantity }}
+              </p>
+            </div>
+            <span (click)="addQuantity(i)" class="custom-btn"><img src="../../../assets/plus.svg" /></span>
+          </div>
+          <div class="col-md-2 d-flex align-items-center">
+            <p style="color: #2b2b2b">${{ calcPrice(i) }}</p>
+          </div>
+          <div class="col-md-1 d-flex align-items-center" style="margin-top: -18px">
+            <span (click)="removeFromCart(product.id)" class="custom-btn">
+              <img src="../../../../assets/cancel-item.svg" />
+            </span>
+          </div>
+        </div> -->
+        <!-- <mat-divider *ngIf="i != productInCart.length - 1"></mat-divider> -->
       </div>
     </div>
-    <div class="col-md-4 right-col-div">
-      <div class="card-body" style="background: #ffffff">
+    <div class="col-md-12 col-lg-12 col-xl-4">
+      <div class="card-body cart-summery">
         <div class="d-flex justify-content-between">
           <div>
             <p>Sub Total ({{ totalItems }} items)</p>
           </div>
-          <div>${{ subTotal }}</div>
+          <p>${{ subTotal }}</p>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mb-3">
           <div style="width: 100%; margin-right: 5px">
             <input [(ngModel)]="discount_coupon" type="text" class="form-control w-100 col coupon-input"
               placeholder="Apply discount coupon" />
@@ -62,27 +101,27 @@
         <div *ngIf="msg">
           <span>{{ msg }}</span>
         </div>
-        <hr />
         <div class="d-flex justify-content-between" *ngIf="couponDiscount > 0">
           <div>
             <p>Discount</p>
           </div>
-          <div *ngIf="couponType === 1">${{ couponDiscount }}</div>
-          <div *ngIf="couponType === 2">{{ couponDiscount }}%</div>
+          <p *ngIf="couponType === 1">-${{ couponDiscount }}</p>
+          <p *ngIf="couponType === 2">-{{ couponDiscount }}%</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
             <p class="vat-text">VAT</p>
           </div>
-          <div>{{ vatAmount }}%</div>
+          <p>+{{ vatAmount }}%</p>
         </div>
+        <hr />
         <div class="d-flex justify-content-between">
           <div>
-            <p><strong>Total</strong></p>
+            <p>Total</p>
           </div>
-          <div>
-            <strong>${{ total_amount }}</strong>
-          </div>
+          <p>
+            <span>${{ total_amount }}</span>
+          </p>
         </div>
         <div class="d-flex justify-content-center">
           <div class="w-100">

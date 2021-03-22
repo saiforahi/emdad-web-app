@@ -67,7 +67,6 @@ export class CartPageComponent implements OnInit {
   totalItems = 0;
   img_base_url = config.img_base_url;
   emptyCart: boolean = true;
-
   // providing default value to prevnet error
   productInCart = [
     {
@@ -133,7 +132,6 @@ export class CartPageComponent implements OnInit {
     this.generateOrderData(this.productInCart);
     this.calcSubTotalPrice(this.orders_details);
     this.calcTotalPrice();
-
     // console.log(this.orders_details, this.tracking_order);
   }
 
@@ -206,10 +204,8 @@ export class CartPageComponent implements OnInit {
 
   calcTotalPrice() {
     this.total_amount = 0;
-
     let vatAmount =
       (this.subTotal - this.couponDiscount) * (this.vatAmount / 100);
-
     let discountAmount = 0;
     // flat type discount
     if (this.couponType === 1) {
@@ -220,7 +216,6 @@ export class CartPageComponent implements OnInit {
     if (this.couponType === 2) {
       discountAmount = this.subTotal * (this.couponDiscount / 100);
     }
-
     if (this.subTotal > 0)
       this.total_amount = this.subTotal - discountAmount + vatAmount;
   }
@@ -286,7 +281,7 @@ export class CartPageComponent implements OnInit {
     let cart_json = {
       total_amount: this.total_amount,
       buyer: localStorage.getItem('uid'),
-      payment_type: "",
+      payment_type: '',
       discount_coupon_amount: this.discount_coupon_amount,
       discount_coupon: this.discount_coupon,
       orders_details: this.orders_details,
