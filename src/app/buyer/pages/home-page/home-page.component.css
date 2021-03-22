@@ -48,6 +48,7 @@ button:focus {
   background: unset;
   transition: 0.3s;
   background: #fff;
+  height: 120px;
 }
 
 .single-category.active {
@@ -65,21 +66,27 @@ button:focus {
   height: 80px;
   border-radius: 50%;
   background-color: #1f4f9e;
-  padding: 20px;
-  display: inline-block;
+  /* padding: 20px; */
+  display: -webkit-box;
   margin-right: 10px;
+  vertical-align: top;
+  position: relative;
+  float: left;
 }
 
 .cat-title {
-  display: inline-block;
+  display: -webkit-box;
   width: calc(100% - 100px);
   text-transform: capitalize;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  float: left;
+  margin-top: 12px;
+  -webkit-box-orient: vertical;
 }
 
 .subCategory {
@@ -219,6 +226,10 @@ button:focus {
 
 .cat-icon-holder img {
   height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media only screen and (min-width: 1200px) {
@@ -297,6 +308,9 @@ button:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .single-category {
+    height: 75px;
+  }
   .banner {
     height: 300px !important;
   }
@@ -313,16 +327,16 @@ button:focus {
     font-size: 24px;
   }
   .cat-round-bg {
-    width: 150px;
-    height: 150px;
-    padding: 30px;
-  }
+    width: 120px;
+    height: 120px;
+    padding: 15px;
+}
   .cat-round-bg img {
     height: 40px;
   }
   .cat-icon-holder {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     padding: 4px 0;
     text-align: center;
   }
@@ -347,8 +361,9 @@ button:focus {
     height: 20px;
   }
   .cat-title {
-    width: calc(100% - 45px);
+    width: calc(100% - 50px);
     font-size: 14px;
+    margin-top: 0px;
   }
   .product-list-header {
     padding-bottom: 0 !important;
@@ -364,9 +379,17 @@ button:focus {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .cat-round-bg {
+    width: 150px;
+    height: 150px;
+    padding: 30px;
+  }
+  .single-category {
+    height: 75px;
+  }
   .cat-icon-holder {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     padding: 4px 0;
     text-align: center;
   }
@@ -391,7 +414,8 @@ button:focus {
     height: 20px;
   }
   .cat-title {
-    width: calc(100% - 45px);
+    width: calc(100% - 50px);
     font-size: 14px;
+    margin-top: 0px;
   }
 }

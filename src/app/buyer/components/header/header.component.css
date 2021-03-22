@@ -12,6 +12,7 @@ a {
 nav {
   height: 120px;
   background: #f4f4f4 !important;
+  padding: 0;
 }
 
 .navbar-brand img {
