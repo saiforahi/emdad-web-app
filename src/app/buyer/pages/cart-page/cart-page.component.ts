@@ -67,13 +67,14 @@ export class CartPageComponent implements OnInit {
   totalItems = 0;
   img_base_url = config.img_base_url;
   emptyCart: boolean = true;
+  couponButtonClicked: boolean = false;
 
   // providing default value to prevnet error
   productInCart = [
     {
       id: '',
       name: '',
-      cart_qty:'',
+      cart_qty: '',
       unit_price: '',
       stock_quantity: '',
       image1: '',
@@ -146,7 +147,8 @@ export class CartPageComponent implements OnInit {
       console.log(element);
       this.orders_details.push({
         product: element.id,
-        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity:
+          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
@@ -202,7 +204,7 @@ export class CartPageComponent implements OnInit {
       this.subTotal +=
         parseFloat(element.unit_price) * parseFloat(element.quantity) +
         parseFloat(element.commission);
-      this.totalItems ++;
+      this.totalItems++;
     });
   }
 
@@ -251,6 +253,7 @@ export class CartPageComponent implements OnInit {
   }
 
   applyCoupon() {
+    this.couponButtonClicked = true;
     let coupon_code = this.discount_coupon;
     const coupon_section = 2; // 1 for subscription, 2 for order
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
@@ -258,17 +261,20 @@ export class CartPageComponent implements OnInit {
         // console.log(success);
         if (success.data == undefined) {
           this.msg = success.message;
+          this.couponButtonClicked = false;
         } else {
           this.msg = `${success.data[0].coupon_title} applied!`;
           this.couponDiscount = parseInt(success.data[0].discount_amount);
           this.couponId = success.data[0].id;
           this.couponType = success.data[0].coupon_type;
           this.calcTotalPrice();
+          this.couponButtonClicked = false;
         }
       },
       (error) => {
         this.error = error;
         console.log(error);
+        this.couponButtonClicked = false;
       }
     );
   }
