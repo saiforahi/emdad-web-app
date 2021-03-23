@@ -7,46 +7,58 @@
   <div class="row">
     <div class="col-md-12 col-lg-12 col-xl-8">
       <div class="card-body">
-          <ul class="list-unstyled mb-0">
-            <li class="media" *ngFor="let product of productInCart; let i = index">
-              <img
-                class="prod-img mr-3"
-                src="{{ img_base_url + product.image1 }}"
-                alt="Generic placeholder image"
-              />
-              <div class="media-body row">
-                <div class="col-12 col-sm-12 col-md-5">
-                  <h5 class="prod-name mt-0 mb-1">
-                    {{ product.name | titlecase }}
-                  </h5>
-                  <p class="sub-text1" *ngIf="product.delivery_method === 1">(DDP)</p>
-                  <p class="sub-text1" *ngIf="product.delivery_method === 2">
-                    (Ex-works)
-                  </p>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 d-flex align-items-center" style="margin: -5px;">
-                  <span (click)="delQuantity(i)" class="custom-btn"><img src="../../../assets/minus.svg" /></span>
-                  <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
-                    <p *ngIf="orders_details[i]" class="">
-                      {{ orders_details[i].quantity }}
-                    </p>
-                  </div>
-                  <span (click)="addQuantity(i)" class="custom-btn"><img src="../../../assets/plus.svg" /></span>
-                </div>
-                <div class="col-3 col-sm-4 col-md-2 text-center">
-                  <p style="color: #2b2b2b" class="sub-text3">
-                    ${{ calcPrice(i) }}
-                  </p>
-                </div>
-                <div class="col-3 col-sm-4 col-md-2 text-right pt-2">
-                  <button (click)="removeFromCart(product.id)" class="cancel-btn">
-                    <img src="../../../../assets/cancel-item.svg" />
-                  </button>
-                </div>
+        <ul class="list-unstyled mb-0">
+          <li
+            class="media"
+            *ngFor="let product of productInCart; let i = index"
+          >
+            <img
+              class="prod-img mr-3"
+              src="{{ img_base_url + product.image1 }}"
+              alt="Generic placeholder image"
+            />
+            <div class="media-body row">
+              <div class="col-12 col-sm-12 col-md-5">
+                <h5 class="prod-name mt-0 mb-1">
+                  {{ product.name | titlecase }}
+                </h5>
+                <p class="sub-text1" *ngIf="product.delivery_method === 1">
+                  (DDP)
+                </p>
+                <p class="sub-text1" *ngIf="product.delivery_method === 2">
+                  (Ex-works)
+                </p>
               </div>
-            </li>
-          </ul>
-          <!-- <div class="col-md-2">
+              <div
+                class="col-6 col-sm-4 col-md-3 d-flex align-items-center"
+                style="margin: -5px"
+              >
+                <span (click)="delQuantity(i)" class="custom-btn"
+                  ><img src="../../../assets/minus.svg"
+                /></span>
+                <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
+                  <p *ngIf="orders_details[i]" class="">
+                    {{ orders_details[i].quantity }}
+                  </p>
+                </div>
+                <span (click)="addQuantity(i)" class="custom-btn"
+                  ><img src="../../../assets/plus.svg"
+                /></span>
+              </div>
+              <div class="col-3 col-sm-4 col-md-2 text-center">
+                <p style="color: #2b2b2b" class="sub-text3">
+                  ${{ calcPrice(i) }}
+                </p>
+              </div>
+              <div class="col-3 col-sm-4 col-md-2 text-right pt-2">
+                <button (click)="removeFromCart(product.id)" class="cancel-btn">
+                  <img src="../../../../assets/cancel-item.svg" />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- <div class="col-md-2">
             <img class="product-img" [src]="this.img_base_url + product.image1" />
           </div>
           <div class="col-md-4">
@@ -89,11 +101,18 @@
         </div>
         <div class="d-flex justify-content-between mb-3">
           <div style="width: 100%; margin-right: 5px">
-            <input [(ngModel)]="discount_coupon" type="text" class="form-control w-100 col coupon-input"
-              placeholder="Apply discount coupon" />
+            <input
+              [(ngModel)]="couponInput"
+              type="text"
+              class="form-control w-100 col coupon-input"
+              placeholder="Apply discount coupon"
+            />
           </div>
           <div>
-            <button class="btn btn-primary btn-block apply-btn" (click)="applyCoupon()">
+            <button
+              class="btn btn-primary btn-block apply-btn"
+              (click)="applyCoupon()"
+            >
               Apply
             </button>
           </div>
@@ -125,8 +144,13 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="w-100">
-            <button class="btn btn-primary btn-block proceed-btn w-100" style="outline: none"
-              [routerLink]="['/checkout']" [disabled]="emptyCart" (click)="proceedToCheckout()">
+            <button
+              class="btn btn-primary btn-block proceed-btn w-100"
+              style="outline: none"
+              [routerLink]="['/checkout']"
+              [disabled]="emptyCart"
+              (click)="proceedToCheckout()"
+            >
               Proceed
             </button>
           </div>

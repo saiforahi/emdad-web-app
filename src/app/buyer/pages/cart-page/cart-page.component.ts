@@ -55,6 +55,7 @@ export class CartPageComponent implements OnInit {
   userId: any;
   subTotal: number = 0;
   total_amount = 0;
+  couponInput: string = '';
   discount_coupon_amount;
   discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
@@ -260,7 +261,7 @@ export class CartPageComponent implements OnInit {
 
   applyCoupon() {
     this.couponButtonClicked = true;
-    let coupon_code = this.discount_coupon;
+    let coupon_code = this.couponInput;
     const coupon_section = 2; // 1 for subscription, 2 for order
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
