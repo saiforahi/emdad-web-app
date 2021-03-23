@@ -223,7 +223,7 @@
                             <div class="cat-head">Price</div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-slider (input)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1"
+                    <mat-slider (change)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1"
                         thumbLabel>
                     </mat-slider>
                     <div class="expanded-div">

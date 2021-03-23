@@ -112,6 +112,16 @@ export class SearchPageComponent implements OnInit {
     this.prices = this.get_price_ranges();
   }
   get_price_ranges() {
+    this.min_price = parseInt(this.products[0].unit_price);
+    this.max_price = parseInt(this.products[0].unit_price);
+    Array.from(this.products).forEach((product: any) => {
+      if (this.min_price > parseInt(product.unit_price)) {
+        this.min_price = parseInt(product.unit_price);
+      }
+      if ( parseInt(product.unit_price) >= this.max_price ) {
+        this.max_price = parseInt(product.unit_price);
+      }
+    });
     if(this.max_price>this.min_price){
       let range = Math.trunc((this.max_price - this.min_price) / 3);
       let ranges = new Array();
