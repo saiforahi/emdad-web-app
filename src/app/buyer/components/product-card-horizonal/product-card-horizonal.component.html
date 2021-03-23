@@ -11,7 +11,7 @@
                             {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
                         </p>
                         <p class="store-name">{{product.seller.full_name | titlecase}}</p>
-                        <p class="stock"><span>Stock :</span> {{product.stock_quantity}}</p>
+                        <p class="stock"><span>Stock :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
                         <p class="product-price">${{ product.unit_price }}</p>
                         <p class="pickup"><span>Shop Pickup Location :</span> {{product.pickup_address[0]?.address}}</p>
                     </div>
