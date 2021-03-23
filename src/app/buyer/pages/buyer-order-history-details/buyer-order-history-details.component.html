@@ -82,9 +82,9 @@
     </div>
   </div>
   
-  <div class="row d-flex flex-column">
+  <div class="row d-flex flex-column" *ngIf="orders?.length>0">
     <!--wire transfer card-->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+    <div *ngIf="orders[0].order.payment_type==0" class="col-12 col-sm-12 col-md-12 col-lg-8">
       
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>
@@ -110,7 +110,7 @@
       
     </div>
     <!--card payment card-->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+    <div *ngIf="orders[0].order.payment_type==1" class="col-12 col-sm-12 col-md-12 col-lg-8">
       
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>

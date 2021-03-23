@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges,SimpleChanges, OnInit, Output } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
@@ -239,6 +239,7 @@ export class ProductListPageComponent implements OnInit {
         this.products = item.data.results;
         console.log(this.products);
         this.get_menus();
+        window.scrollTo(0, 0);
       });
   }
 
