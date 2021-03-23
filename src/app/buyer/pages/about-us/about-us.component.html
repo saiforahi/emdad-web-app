@@ -20,18 +20,10 @@
                     <!--text row -->
                     <div class="vision-text">
                         <h1 class="head pb-2">{{aboutusData.sec2_title | titlecase}}</h1>
-                        <ul class="vision-list" *ngFor="let vision of aboutusData.sec2_description|pushIntoArray">
+                        <div class="ul-list" [innerHTML]="section2Description"></div>
+                        <!-- <ul class="vision-list" *ngFor="let vision of aboutusData.sec2_description|pushIntoArray">
                             <li class="mb-2">{{vision}}</li>
-                            <!-- <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li> -->
-
-                        </ul>
-
+                        </ul> -->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12">
