@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import { AboutUsService } from '../../../shared/services/about-us.service';
 import { config } from '../../../../config';
 import { DomSanitizer } from '@angular/platform-browser';
