@@ -40,6 +40,7 @@ interface Orders_Details {
 
 interface Tracking_Order {
   seller: number;
+  product: number;
   order_created_by: number;
   order_creation_date: string;
   status: number;
@@ -147,25 +148,32 @@ export class CartPageComponent implements OnInit {
       console.log(element);
       this.orders_details.push({
         product: element.id,
-        quantity:
-          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
         pickup_address: element.pickup_address.id,
         commission: parseFloat(element.commission),
       });
-      var sellerFind = this.tracking_order.find(
-        (x) => x.seller === element.seller.id
-      );
-      if (sellerFind == undefined) {
-        this.tracking_order.push({
-          seller: element.seller.id,
-          status: 1,
-          order_created_by: this.userId,
-          order_creation_date: '',
-        });
-      }
+      this.tracking_order.push({
+        seller: element.seller.id,
+        product: element.id,
+        status: 1,
+        order_created_by: this.userId,
+        order_creation_date: '',
+      });
+      // var sellerFind = this.tracking_order.find(
+      //   (x) => x.seller === element.seller.id
+      // );
+      // if (sellerFind == undefined) {
+      //   this.tracking_order.push({
+      //     seller: element.seller.id,
+      //     product: element.id,
+      //     status: 1,
+      //     order_created_by: this.userId,
+      //     order_creation_date: '',
+      //   });
+      // }
     });
   }
 
