@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   userName;
   uId;
   // uGroup;
+  uProfilePic;
   items;
   showOnScroll = false;
   showAllProdDiv: boolean = false;
@@ -58,8 +59,7 @@ export class HeaderComponent implements OnInit {
     });
     this.UserAuthService.uImg.subscribe((data) => {
       if (data != null) {
-        this.loggedInUserImg = config.img_base_url + data;
-        console.log(this.loggedInUserImg);
+        this.loggedInUserImg = data;
       }
     });
     this.UserAuthService.uId.subscribe((data) => {
@@ -103,6 +103,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.UserAuthService.logout();
+    this.loggedInUserImg = '';
     this.openSnackBar('You have been logged out.', 'ok');
   }
 

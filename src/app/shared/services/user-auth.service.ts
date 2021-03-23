@@ -55,7 +55,7 @@ export class UserAuthService {
       const expiresAt = moment.unix(payload.exp);
       localStorage.setItem('token', authResult.token);
       localStorage.setItem('username', payload.username);
-      localStorage.setItem('userimage', payload.profile_pic);
+      localStorage.setItem('uimg', authResult.profile_pic);
       localStorage.setItem('uid', JSON.stringify(payload.user_id));
       // localStorage.setItem('group', authResult.group);
       localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -143,6 +143,7 @@ export class UserAuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
+    localStorage.removeItem('uimg');
     // localStorage.removeItem('uGroup');
     localStorage.removeItem('expires_at');
     this.uName.next(null);

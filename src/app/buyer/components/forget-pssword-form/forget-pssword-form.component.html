@@ -7,10 +7,20 @@
         You will recieve a link to create a new password via email.
       </p>
       <div class="email-box text-center">
-            <input #email type="email" class="form-control" placeholder="Enter your email here" />
-          <button (click)="sendMail(email.value)" class="btn btn-outline-secondary frgt-btn" type="button">
-            Reset Password
-          </button>
+        <input
+          #email
+          type="email"
+          class="form-control"
+          placeholder="Enter your email here"
+        />
+        <button
+          (click)="sendMail(email.value)"
+          (keydown.enter)="sendMail(email.value)"
+          class="btn btn-outline-secondary frgt-btn"
+          type="button"
+        >
+          Reset Password
+        </button>
       </div>
       <p *ngIf="error">{{ error }}</p>
     </div>
