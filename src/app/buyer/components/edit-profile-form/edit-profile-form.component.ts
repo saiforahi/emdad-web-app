@@ -147,7 +147,9 @@ export class EditProfileFormComponent implements OnInit {
       (success: any) => {
         this.spinner.hide();
         this.openSnackBar('Profile Picture Updated!', 'OK');
-        this.profile_pic = config.base_url + success.data.profile_pic.slice(1);
+        this.profile_pic = config.img_base_url + success.data.profile_pic;
+        this.authService.uImg.next(this.profile_pic);
+        localStorage.setItem('uimg', this.profile_pic);
       },
       (error) => console.error(error)
     );
