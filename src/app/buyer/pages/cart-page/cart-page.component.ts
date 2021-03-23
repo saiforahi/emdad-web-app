@@ -5,7 +5,7 @@ import { VatService } from '../../../shared/services/vat.service';
 import { CommissionService } from '../../../shared/services/commission.services';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
-import { Router} from '@angular/router'
+import { Router } from '@angular/router';
 // interface Orders {
 //   total_amount?: number;
 //   payment_type?: number;
@@ -55,6 +55,7 @@ export class CartPageComponent implements OnInit {
   userId: any;
   subTotal: number = 0;
   total_amount = 0;
+  couponInput: string = '';
   discount_coupon_amount;
   discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
@@ -101,7 +102,7 @@ export class CartPageComponent implements OnInit {
     private vat: VatService,
     private commission: CommissionService,
     private cart: CartServiceService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -148,7 +149,8 @@ export class CartPageComponent implements OnInit {
       console.log(element);
       this.orders_details.push({
         product: element.id,
-        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity:
+          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
@@ -259,7 +261,7 @@ export class CartPageComponent implements OnInit {
 
   applyCoupon() {
     this.couponButtonClicked = true;
-    let coupon_code = this.discount_coupon;
+    let coupon_code = this.couponInput;
     const coupon_section = 2; // 1 for subscription, 2 for order
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
@@ -267,10 +269,11 @@ export class CartPageComponent implements OnInit {
         if (success.data == undefined) {
           this.msg = success.message;
           this.couponButtonClicked = false;
+          this.discount_coupon = '';
         } else {
           this.msg = `${success.data[0].coupon_title} applied!`;
           this.couponDiscount = parseInt(success.data[0].discount_amount);
-          this.couponId = success.data[0].id;
+          this.discount_coupon = success.data[0].id;
           this.couponType = success.data[0].coupon_type;
           this.calcTotalPrice();
           this.couponButtonClicked = false;
