@@ -9,6 +9,7 @@
 .first-row{
 display: flex;
   flex-wrap: nowrap;
+  font-family: Jost !important;
   
 }
 .img-div-top{
@@ -16,7 +17,8 @@ display: flex;
  
 }
 .text-div{
- width: 50%;
+font-family: Jost !important;
+width: 50%;
 text-align: left;
 background: #E5E5E5;
 padding-top: 45px;
@@ -34,7 +36,8 @@ line-height: 52px;
 text-transform: capitalize;
 color: #2B2B2B;
 }
-.text-div p{
+.about-para{
+font-family: Jost;
 vertical-align: middle;
 font-family: Jost;
 font-style: normal;
@@ -68,24 +71,25 @@ color: #2B2B2B;
 text-align: left !important;
 
 }
-.vision-list{
+::ng-deep.vision-list ol,::ng-deep.vision-list ul{
 font-family: Jost;
 font-style: normal;
 font-weight: normal;
 font-size: 18px;
 line-height: 30px;
 color: #2B2B2B;
+
 /* display: block; */
 
 
 }
 
-li{
+::ng-deep.vision-list ol li,::ng-deep.vision-list ul li{
     position:relative;
     list-style-type: none;
     text-align: left;
 }
-ul li:before{
+::ng-deep.vision-list ol li:before,::ng-deep.vision-list ul li:before{
     content:url('../../../../assets/done-all.png');
     padding:6px 10px 0 20px;
     position:absolute;
@@ -113,7 +117,7 @@ ul li:before{
     text-align: center !important;
 }
 .values-text{
-    font-family: Jost;
+font-family: Jost;
 font-style: normal;
 font-weight: normal;
 font-size: 18px;
@@ -126,9 +130,9 @@ color: #2B2B2B;
     padding-right: 25px;
 }
 
-::ng-deep .ul-list ol li {
+/* ::ng-deep .ul-list ol li {
     color: red;
-}
+} */
 
 /* .ul-li ol li{
     color: red;
@@ -167,7 +171,7 @@ color: #2B2B2B;
          padding-left: 5px;
          padding-right: 5px;
      }
-     .text-div p{
+    .about-para{
          padding-left: 8px;
          padding-right: 8px;
      }
@@ -190,13 +194,13 @@ line-height: 40px;
 }
 
 
-.text-div > p{
+.about-para{
     text-align: center;
     font-size: 16px;
 line-height: 20px;
 }
 
-.vision-list,.values-text > p{
+::ng-deep.vision-list ol,::ng-deep.vision-list ul ,.values-text > p{
     font-size: 16px;
     line-height: 20px;  
 }

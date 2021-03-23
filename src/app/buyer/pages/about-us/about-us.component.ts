@@ -16,11 +16,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AboutUsComponent implements OnInit {
   aboutusData: any;
-  htmlData: any;
-  base_url = config.base_url.slice(0, config.base_url.length - 1); // / is with base_url so remove that
+ base_url = config.base_url.slice(0, config.base_url.length - 1); // / is with base_url so remove that
   section2Description: any;
   viewInitiated: boolean;
-
+visionDesc:any;
+ missionDesc:any;
+ valuesDesc:any;
   constructor(
     private aboutus: AboutUsService,
     private sanitizer: DomSanitizer
@@ -29,9 +30,18 @@ export class AboutUsComponent implements OnInit {
   ngOnInit(): void {
     this.aboutus.getAboutUsData().subscribe((data) => {
       this.aboutusData = data.data[0];
-      // console.log('data', this.aboutusData);
+      console.log('data', this.aboutusData);
       this.section2Description = this.sanitizer.bypassSecurityTrustHtml(
         data.data[0].sec2_description
+      );
+      this.visionDesc = this.sanitizer.bypassSecurityTrustHtml(
+        data.data[0].sec1_description
+      );
+      this.missionDesc = this.sanitizer.bypassSecurityTrustHtml(
+        data.data[0].sec3_description
+      );
+      this.valuesDesc = this.sanitizer.bypassSecurityTrustHtml(
+        data.data[0].sec4_description
       );
     });
   }

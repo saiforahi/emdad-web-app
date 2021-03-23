@@ -8,8 +8,7 @@
         </div>
         <div class="text-div">
             <h1 class="pb-2">{{aboutusData.sec1_title | titlecase}}</h1>
-            <p>{{aboutusData.sec1_description | htmltoPlain}}
-            </p>
+            <p class="about-para" [innerHTML]="visionDesc"></p>
         </div>
     </div>
     <!-- 2nd row vision row -->
@@ -20,7 +19,7 @@
                     <!--text row -->
                     <div class="vision-text">
                         <h1 class="head pb-2">{{aboutusData.sec2_title | titlecase}}</h1>
-                        <div class="ul-list" [innerHTML]="section2Description"></div>
+                        <div class="vision-list" [innerHTML]="section2Description"></div>
                         <!-- <ul class="vision-list" *ngFor="let vision of aboutusData.sec2_description|pushIntoArray">
                             <li class="mb-2">{{vision}}</li>
                         </ul> -->
@@ -51,19 +50,7 @@
                     <!--text row -->
                     <div class="mission-text">
                         <h1 class="head pb-2">{{aboutusData.sec3_title | titlecase}}</h1>
-                        <ul class="vision-list">
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum
-                                has been the industry's standard dummy text.</li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li class="mb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </li>
-                            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-
-                        </ul>
+                        <div class="vision-list" [innerHTML]="missionDesc"></div>
 
                     </div>
                 </div>
@@ -78,7 +65,7 @@
                 <div class="col-md-12 col-lg-12 col-12">
                     <div class="values-text">
                         <h1 class="head pb-2">{{aboutusData.sec4_title | titlecase}}</h1>
-                        <p class="value-para">{{aboutusData.sec4_description | htmltoPlain }}</p>
+                        <p class="value-para" [innerHTML]="valuesDesc"></p>
                     </div>
                     <div class="values-img">
                         <img src="{{ base_url + aboutusData.sec4_image }}" alt="values" class="img-fluid mt-2 center">
