@@ -57,27 +57,20 @@ export class SearchPageComponent implements OnInit {
       query += 'brand=' + this._brand;
     }
     if (this._color !== null &&this._color !== undefined &&this._color !== '') {
-      if (query.includes('brand')) {
-        query += '&color=' + this._color;
-      } else {
-        query += 'color=' + this._color;
-      }
+      query += '&color=' + this._color;
     }
     if (
       this._price !== null &&
       this._price !== undefined &&
       this._price !== ''
     ) {
-      if (query.includes('color') || query.includes('brand')) {
-        query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-      } else {
-        query +='min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-      }
+      query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
     }
     console.log(query);
     this.route.queryParams.subscribe((params) => {
       this.searchService.filter_products('search=' + params.query + '&' + query).subscribe((item) => {
           this.products = item.data.results;
+          window.scrollTo(0, 0);
         });
     });
   }
@@ -158,18 +151,10 @@ export class SearchPageComponent implements OnInit {
       query += 'brand=' + this._brand;
     }
     if (this._color !== null &&this._color !== undefined &&this._color !== '') {
-      if (query.includes('brand')) {
-        query += '&color=' + this._color;
-      } else {
-        query += 'color=' + this._color;
-      }
+      query += '&color=' + this._color;
     }
     if (this._price !== null &&this._price !== undefined &&this._price !== '') {
-      if (query.includes('color') || query.includes('brand')) {
-        query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-      } else {
-        query +='min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-      }
+      query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
     }
     console.log(query);
     this.route.queryParams.subscribe((params) => {
@@ -177,6 +162,7 @@ export class SearchPageComponent implements OnInit {
         .filter_products('search=' + params.query + '&' + query)
         .subscribe((item) => {
           this.products = item.data.results;
+          window.scrollTo(0, 0);
         });
     });
   }

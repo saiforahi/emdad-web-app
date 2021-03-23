@@ -76,7 +76,7 @@
                             </mat-panel-description> -->
                         </mat-expansion-panel-header>
                         <div class="expanded-div">
-                            <div *ngIf="category.children.length == 0">No item to show</div>
+                            <div *ngIf="category.children?.length == 0">No item to show</div>
                             <!-- level two -->
                             <mat-accordion *ngFor="let subcategory of category.children">
                                 <mat-expansion-panel [expanded]="expandedSubCat == subcategory.id" #childCat>
@@ -223,7 +223,7 @@
                             <div class="cat-head">Price</div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-slider (change)="onPriceSliderChange($event)" [max]="max_price" [min]="min_price + 1"
+                    <mat-slider (change)="onPriceSliderChange($event)" [max]="max_price+1" [min]="min_price - 1"
                         thumbLabel>
                     </mat-slider>
                     <div class="expanded-div">
