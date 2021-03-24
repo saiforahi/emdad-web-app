@@ -4,6 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '../../../shared/services/search.service';
+
+interface PriceRange{
+  min:number;
+  max:number
+}
+
 @Component({
   selector: 'app-product-list-page',
   templateUrl: './product-list-page.component.html',
@@ -25,11 +31,14 @@ export class ProductListPageComponent implements OnInit {
   categories: Array<any>=[];
   expandedCat;
   expandedSubCat;
-  min_price: any;
-  max_price: any;
+  min_price: number;
+  max_price: number;
   _brand: any;
   _color: any;
-  _price: any;
+  _price: PriceRange={
+    min:0,
+    max:0
+  };
   brands: any = [];
   colors: any = [];
   prices: any = [];
@@ -37,7 +46,7 @@ export class ProductListPageComponent implements OnInit {
   selected_child_category: any;
   selected_child_category_name: any;
   filteredCatArray: any = [];
-
+  selected_price_ranges:Array<any>=[]
   constructor(
     private getProduct: GetProductService,
     private router: Router,
@@ -186,61 +195,52 @@ export class ProductListPageComponent implements OnInit {
     this.style = value;
   }
 
-  setBrand(brand_name) {
-    this._brand = brand_name;
-    this._filter();
-  }
-
-  setColor(color_name) {
-    this._color = color_name;
-    this._filter();
-  }
-
-  setPrice(price) {
-    this._price = price;
-    this._filter();
-  }
-
-  onPriceSliderChange(event) {
-    console.log(event.value) //on price slider change event
-    let query: string
-    if(!this.isCategories && !this.isSeller){
-      query = 'category=' + this.selected_child_category_name;
+  setBrand(brand_name:string) {
+    if(brand_name?.length>0){
+      this._brand = brand_name;
+      this._filter();
     }
     else{
-      query=''
+      this._brand=""
+      this._filter();
     }
-    if (
-      this._brand !== null &&
-      this._brand !== undefined &&
-      this._brand !== '' &&
-      !this.isCategories &&
-      !this.isCategories
-    ) {
-      query += '&brand=' + this._brand;
+  }
+
+  setColor(color_name:string) {
+    if(color_name?.length>0){
+      this._color = color_name;
+      this._filter();
     }
-    if (
-      this._color !== null &&
-      this._color !== undefined &&
-      this._color !== '' &&
-      !this.isCategories &&
-      !this.isCategories
-    ) {
-      query += '&color=' + this._color;
+    else{
+      this._color=""
+      this._filter();
     }
-    console.log(
-      query + '&min_price=' + this.min_price + '&max_price=' + event.value
-    );
-    this.searchService
-      .filter_products(
-        query + '&min_price=' + this.min_price + '&max_price=' + event.value
-      )
-      .subscribe((item) => {
-        this.products = item.data.results;
-        console.log(this.products);
-        this.get_menus();
-        window.scrollTo(0, 0);
-      });
+  }
+
+  setPrice(price:string,checked:boolean) {
+    if(checked){
+      this._price.min = parseInt(price.split(' ')[0]);
+      this._price.max = parseInt(price.split(' ')[1]);
+      this.selected_price_ranges.push(price)
+      console.log(this.selected_price_ranges)
+      this._filter();
+    }
+    else{
+      this._price.min = this.min_price-1;
+      this._price.max = this.max_price+1;
+      for(let index=0;index<this.selected_price_ranges.length;index++){
+        if(this.selected_price_ranges[index]===price){
+          delete this.selected_price_ranges[index]
+        }
+      }
+      let temp = [];
+      for(let i of this.selected_price_ranges){
+          i && temp.push(i); // copy each non-empty value to the 'temp' array
+      }
+      this.selected_price_ranges = temp;
+      console.log(this.selected_price_ranges)
+      this._filter();
+    }
   }
 
   get_menus() { //setting menus from product list
@@ -343,40 +343,49 @@ export class ProductListPageComponent implements OnInit {
     });
   }
 
+  onPriceSliderChange(event) {
+    this._price.min=this.min_price-1
+    this._price.max=event.value
+    this._filter()
+  }
+
   _filter() {
     let query: string = '';
-    if (
-      this._brand !== null &&
-      this._brand !== undefined &&
-      this._brand !== ''
-    ) {
+    
+    if(!this.isCategories && !this.isSeller){
+      query = 'category=' + this.selected_child_category_name;
+    }
+    // else if(this.isSeller){
+    //   query= 'seller='+this.sellerId
+    // }
+    else{
+      query=''
+    }
+    if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
       query += '&brand=' + this._brand;
     }
-    if (
-      this._color !== null &&
-      this._color !== undefined &&
-      this._color !== ''
-    ) {
+    if (this._color !== null && this._color !== undefined && this._color !== '') {
       query += '&color=' + this._color;
     }
-    if (
-      this._price !== null &&
-      this._price !== undefined &&
-      this._price !== ''
-    ) {
-      query +=
-        '&min_price=' +
-        this._price.split(' ')[0] +
-        '&max_price=' +
-        this._price.split(' ')[1];
+    if (this._price.min<this._price.max) {
+      query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
     }
-    // console.log('category=' + this.selected_child_category_name + query);
-    this.searchService
-      .filter_products('category=' + this.selected_child_category_name + query)
-      .subscribe((item) => {
+    console.log('query: ',query);
+    if(this.isSeller){
+      this.searchService.sellerwise_filter_products(query,this.sellerId).subscribe((item) => {
         this.products = item.data.results;
+        window.scrollTo(0, 0);
         //this.get_menus();
       });
+    }
+    else{
+      this.searchService.filter_products(query).subscribe((item) => {
+        this.products = item.data.results;
+        window.scrollTo(0, 0);
+        //this.get_menus();
+      });
+    }
+    
   }
 
   showCatMenu() {

@@ -150,8 +150,8 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.spinner.show();
       let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
-      data.payment_type = this.payment_type;
-      console.log('cart_data (checkout_component)', data);
+      data.payment_type = parseInt(this.payment_type);
+      console.log('cart_data', data);
       this.orderService.putOrder(data).subscribe((success) => {
         this.add_order_response = success;
         console.log(this.add_order_response);
@@ -162,7 +162,7 @@ export class CheckoutComponent implements OnInit {
         if (this.isWired) {
           localStorage.removeItem('finalCart');
           localStorage.removeItem('prodCartArray');
-          localStorage.removeItem('cart_json');
+          localStorage.removeItem('cart_items');
           this.spinner.hide();
           this.router.navigate([
             'order/details/',

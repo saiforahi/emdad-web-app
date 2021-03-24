@@ -52,7 +52,7 @@
                                 </div>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <mat-slider *ngIf="prices?.length>0" (input)="onPriceSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value"
+                        <mat-slider *ngIf="prices?.length>0" (change)="onPriceSliderChange($event)" thumbLabel [(ngModel)]="price_slider_value"
                             [max]="max_price" [min]="min_price"></mat-slider>
                         <div *ngIf="prices?.length>0" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let range of prices">

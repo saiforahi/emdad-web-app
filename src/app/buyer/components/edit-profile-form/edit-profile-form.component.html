@@ -1,17 +1,13 @@
 <div class="card-body">
   <form>
     <div class="container-custom d-flex">
-      <div class="rounded-circle">
-        <img
-          class="pro-img"
-          *ngIf="profile_pic === undefined"
-          src="../../../assets/images/avatar.svg"
-        />
-        <img
-          class="pro-img align-self-center"
-          *ngIf="profile_pic"
-          src="{{ profile_pic }}"
-        />
+      <div class="user-img-div">
+        <!-- <img class="pro-img" *ngIf="profile_pic === undefined" src="../../../assets/images/avatar.svg" />
+        <img class="pro-img align-self-center" *ngIf="profile_pic" src="{{ profile_pic }}" /> -->
+        <div class="d-inline-block user-img-holder">
+          <img class="img-fluid img-thumbnail" *ngIf="profile_pic === undefined" src="../../../assets/images/avatar.svg" alt="" />
+          <img *ngIf="profile_pic" src="{{profile_pic}}" alt="" />
+        </div>
         <div class="plus-icon">
           <i class="fas fa-plus-circle"></i>
           <input
