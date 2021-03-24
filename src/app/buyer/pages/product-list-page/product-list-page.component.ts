@@ -46,7 +46,7 @@ export class ProductListPageComponent implements OnInit {
   selected_child_category: any;
   selected_child_category_name: any;
   filteredCatArray: any = [];
-
+  selected_price_ranges:Array<any>=[]
   constructor(
     private getProduct: GetProductService,
     private router: Router,
@@ -201,6 +201,7 @@ export class ProductListPageComponent implements OnInit {
       this._filter();
     }
     else{
+      this._brand=""
       this._filter();
     }
   }
@@ -211,19 +212,33 @@ export class ProductListPageComponent implements OnInit {
       this._filter();
     }
     else{
+      this._color=""
       this._filter();
     }
   }
 
-  setPrice(price:string) {
-    if(price?.length>0){
+  setPrice(price:string,checked:boolean) {
+    if(checked){
       this._price.min = parseInt(price.split(' ')[0]);
       this._price.max = parseInt(price.split(' ')[1]);
+      this.selected_price_ranges.push(price)
+      console.log(this.selected_price_ranges)
       this._filter();
     }
     else{
       this._price.min = this.min_price-1;
       this._price.max = this.max_price+1;
+      for(let index=0;index<this.selected_price_ranges.length;index++){
+        if(this.selected_price_ranges[index]===price){
+          delete this.selected_price_ranges[index]
+        }
+      }
+      let temp = [];
+      for(let i of this.selected_price_ranges){
+          i && temp.push(i); // copy each non-empty value to the 'temp' array
+      }
+      this.selected_price_ranges = temp;
+      console.log(this.selected_price_ranges)
       this._filter();
     }
   }
@@ -356,11 +371,14 @@ export class ProductListPageComponent implements OnInit {
       query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
     }
     console.log('query: ',query);
-    this.searchService.filter_products(query).subscribe((item) => {
-      this.products = item.data.results;
-      window.scrollTo(0, 0);
-      //this.get_menus();
-    });
+    if(this.isSeller){
+      this.searchService.sellerwise_filter_products(query,this.sellerId).subscribe((item) => {
+        this.products = item.data.results;
+        window.scrollTo(0, 0);
+        //this.get_menus();
+      });
+    }
+    
   }
 
   showCatMenu() {
