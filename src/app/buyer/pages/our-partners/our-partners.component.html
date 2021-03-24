@@ -1,23 +1,13 @@
-<section class="our-partners">
+<section class="our-partners" *ngIf="partnersData">
     <!-- First row content -->
     <div class="first-row mt-0 ml-0">
         <div class="img-div-top">
 
-            <img src="../../../../assets/our-partners-top.png" alt="about-us" class="img-fluid m-0 p-0">
+            <img src="{{base_url + partnersData.sec1_image}}" alt="about-us" class="img-fluid m-0 p-0">
         </div>
         <div class="text-div">
-            <h1 class="pb-2">Lorem Ipsum</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s.
-                <br> <br>
-                When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-                unchanged.
-                <br> <br>
-                It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-                of letters, as opposed to using 'Content here, content here', making it look like readable.
-            </p>
+            <h1 class="pb-2">{{partnersData.sec1_title | titlecase}}</h1>
+            <p class="about-para">{{partnersData.sec1_description | htmltoPlain}}</p>
         </div>
     </div>
     <!-- next content -->
@@ -25,90 +15,38 @@
         <div class="container">
             <!--heading show-->
             <div class="heading-text">
-                <h1 class="pb-2 head">Our Partners</h1>
-                <p class="subheading">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley
-                    of type and scrambled it to make a type specimen book.</p>
+                <h1 class="pb-2 head">{{partnersData.sec2_title | titlecase}}</h1>
+                <p class="subheading">{{partnersData.sec2_description |htmltoPlain}}</p>
             </div>
-            <div class="row ">
+
+            <div class="row">
                 <!--first line-->
-                <!--  <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 custom-row"></div> -->
-                <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
+                 <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 mobile-row"></div>
+                
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row " *ngFor="let partner of partnersData.our_partner | slice:0:5; let i =index;">
                     <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/HI8.png" alt="hi8 logo"
+                        <div class="card-img text-center"> <img src="{{base_url + partner.logo}}" alt="hi8 logo"
                                 class="img-fluid"></div>
-                        <span class="card-text">Fli8</span>
+                        <span class="card-text">{{partner.name}}</span>
                     </div>
+
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
+
+            </div>
+            <!-- 2nd Line  -_- -->
+            <div class="row">
+                <!--first line-->
+                 <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 mobile-row"></div>
+                
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row " *ngFor="let partner of partnersData.our_partner | slice:5:10; let i =index;">
                     <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/gr8.png" alt="gr8 logo"
+                        <div class="card-img text-center"> <img src="{{base_url + partner.logo}}" alt="hi8 logo"
                                 class="img-fluid"></div>
-                        <span class="card-text">gr.8</span>
+                        <span class="card-text">{{partner.name}}</span>
                     </div>
+
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/96Points.png"
-                                alt="96points logo" class="img-fluid"></div>
-                        <span class="card-text">96 Points</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/oem.png" alt="oemlogo"
-                                class="img-fluid"></div>
-                        <span class="card-text">oem</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/sansui.png" alt="sansui"
-                                class="img-fluid"></div>
-                        <span class="card-text">Sansui</span>
-                    </div>
-                </div>
-                <!--   <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 custom-row"></div> -->
-                <!-- 2nd line,remove this one if dynamic data found -->
-                <!--  <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0"></div> -->
-                <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/HI8.png" alt="hi8 logo"
-                                class="img-fluid"></div>
-                        <span class="card-text">Fli8</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/gr8.png" alt="gr8 logo"
-                                class="img-fluid"></div>
-                        <span class="card-text">gr.8</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/96Points.png"
-                                alt="96points logo" class="img-fluid"></div>
-                        <span class="card-text">96 Points</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6  col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/oem.png" alt="oemlogo"
-                                class="img-fluid"></div>
-                        <span class="card-text">oem</span>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-6 custom-row">
-                    <div class="card h-100">
-                        <div class="card-img text-center"> <img src="../../../../assets/sansui.png" alt="sansui"
-                                class="img-fluid"></div>
-                        <span class="card-text">Sansui</span>
-                    </div>
-                </div>
-                <!--  <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 custom-row"></div> -->
+
             </div>
         </div>
     </div>

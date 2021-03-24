@@ -332,3 +332,12 @@ font-weight: 500;
     height: 60px;
   }
  }
+
+ .status-txt{
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #F49814;
+ }

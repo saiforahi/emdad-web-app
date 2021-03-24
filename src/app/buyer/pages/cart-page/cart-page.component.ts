@@ -5,7 +5,7 @@ import { VatService } from '../../../shared/services/vat.service';
 import { CommissionService } from '../../../shared/services/commission.services';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
-import { Router} from '@angular/router'
+import { Router } from '@angular/router';
 // interface Orders {
 //   total_amount?: number;
 //   payment_type?: number;
@@ -40,6 +40,7 @@ interface Orders_Details {
 
 interface Tracking_Order {
   seller: number;
+  product: number;
   order_created_by: number;
   order_creation_date: string;
   status: number;
@@ -54,6 +55,7 @@ export class CartPageComponent implements OnInit {
   userId: any;
   subTotal: number = 0;
   total_amount = 0;
+  couponInput: string = '';
   discount_coupon_amount;
   discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
@@ -100,7 +102,7 @@ export class CartPageComponent implements OnInit {
     private vat: VatService,
     private commission: CommissionService,
     private cart: CartServiceService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -155,17 +157,25 @@ export class CartPageComponent implements OnInit {
         pickup_address: element.pickup_address.id,
         commission: parseFloat(element.commission),
       });
-      var sellerFind = this.tracking_order.find(
-        (x) => x.seller === element.seller.id
-      );
-      if (sellerFind == undefined) {
-        this.tracking_order.push({
-          seller: element.seller.id,
-          status: 1,
-          order_created_by: this.userId,
-          order_creation_date: '',
-        });
-      }
+      this.tracking_order.push({
+        seller: element.seller.id,
+        product: element.id,
+        status: 1,
+        order_created_by: this.userId,
+        order_creation_date: '',
+      });
+      // var sellerFind = this.tracking_order.find(
+      //   (x) => x.seller === element.seller.id
+      // );
+      // if (sellerFind == undefined) {
+      //   this.tracking_order.push({
+      //     seller: element.seller.id,
+      //     product: element.id,
+      //     status: 1,
+      //     order_created_by: this.userId,
+      //     order_creation_date: '',
+      //   });
+      // }
     });
   }
 
@@ -251,7 +261,7 @@ export class CartPageComponent implements OnInit {
 
   applyCoupon() {
     this.couponButtonClicked = true;
-    let coupon_code = this.discount_coupon;
+    let coupon_code = this.couponInput;
     const coupon_section = 2; // 1 for subscription, 2 for order
     this.coupon.validateCoupon(coupon_section, coupon_code).subscribe(
       (success) => {
@@ -259,10 +269,11 @@ export class CartPageComponent implements OnInit {
         if (success.data == undefined) {
           this.msg = success.message;
           this.couponButtonClicked = false;
+          this.discount_coupon = '';
         } else {
           this.msg = `${success.data[0].coupon_title} applied!`;
           this.couponDiscount = parseInt(success.data[0].discount_amount);
-          this.couponId = success.data[0].id;
+          this.discount_coupon = success.data[0].id;
           this.couponType = success.data[0].coupon_type;
           this.calcTotalPrice();
           this.couponButtonClicked = false;

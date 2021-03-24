@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
 .our-partners{
-    
+  font-family: Jost !important;
     overflow-x: hidden !important;  
 }
 /*first row styles*/
@@ -9,6 +9,7 @@
       flex-wrap: nowrap;
       background: #E5E5E5;
       padding-bottom: 60px;
+      font-family: Jost !important;
       
     }
     .img-div-top{
@@ -21,6 +22,7 @@
    padding-top: 60px;
     padding-left: 40px;
     padding-right: 40px;
+    font-family: Jost !important;
     
     }
 .text-div h1,.head{
@@ -32,15 +34,15 @@
         text-transform: capitalize;
         color: #2B2B2B;
         }
-.text-div p{
+.about-para{
         vertical-align: middle;
-        font-family: Jost;
+        font-family: Jost !important;
         font-style: normal;
         font-weight: normal;
         font-size: 18px;
         line-height: 28px;
         color: #2B2B2B;
-        }
+}
   /* 2nd row and next row styles*/    
   .second-row{
     background: #FFFFFF;
@@ -66,6 +68,7 @@
      
     
   }
+  
   .heading-text{
       padding-left: 70px;
       padding-right:70px;
@@ -231,7 +234,11 @@ margin-top: 5px; */
     max-width: 1600px !important;
   }
 }
-
+@media all and (min-width:290px) and (max-width:992px){
+  .mobile-row{
+    display:none !important; 
+}
+}
 @media all and (min-width:290px) and (max-width:430px){
 .carousel-indicators li,.carousel-indicators .active{
   height: 13px !important;
@@ -271,7 +278,7 @@ height: 88px;
     text-transform: capitalize;
     color: #2B2B2B;
     }
-    .text-div p{
+    .about-para{
       vertical-align: middle;
     
       font-size: 14px;
@@ -318,7 +325,7 @@ height: 88px;
       .text-div h1{
         text-align: center !important;
       }
-      .text-div p{
+    .about-para{
         text-align: center;
       }
 }
@@ -330,7 +337,7 @@ height: 88px;
     text-transform: capitalize;
     color: #2B2B2B;
     }
-    .text-div p{
+   .about-para{
       vertical-align: middle;
     
       font-size: 16px;
@@ -404,7 +411,7 @@ height: 88px;
 .text-div h1{
   text-align: center !important;
 }
-.text-div p{
+.about-para{
   text-align: center;
 }
 }
@@ -436,7 +443,7 @@ height: 88px;
     font-size: 36px;
 line-height: 52px;
   }
-  .text-div p{
+ .about-para{
     font-size: 18px;
 line-height: 26px;
   }
