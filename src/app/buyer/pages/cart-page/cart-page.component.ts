@@ -146,11 +146,10 @@ export class CartPageComponent implements OnInit {
     this.orders_details = [];
     this.tracking_order = [];
     productInCart.forEach((element) => {
-      console.log(element);
+      console.log('product in cart',element);
       this.orders_details.push({
         product: element.id,
-        quantity:
-          element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
         vat_amount: this.vatAmount,
