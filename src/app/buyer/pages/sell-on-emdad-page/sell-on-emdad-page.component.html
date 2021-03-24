@@ -1,3 +1,4 @@
+<!-- 24 MARCH DYNAMIC-->
 <section class="login">
     <div class="container">
         <div class="login-holder">
@@ -42,26 +43,16 @@
     </div>
 </section>
 <!--Why us section-->
-<section class="why-us">
+<section class="why-us" *ngIf="sellData">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-6 col-xs-12 col-sm-12 col-12">
-                <img src="../../../../assets/why-us.png" alt="group" class="img-fluid w-100 h-100">
+                <img src="{{base_url + sellData.image}}" alt="group" class="img-fluid w-100 h-100">
             </div>
             <div class="col-md-12 col-lg-6 col-xs-12 col-sm-12 col-12">
                 <div class="text-div">
-                    <h1 class="heading pb-2">Why Us</h1>
-                    <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry's standard dummy text ever since the 1500s.
-                        <br><br>
-                        When an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries, but also the leap into electronic typesetting, remaining
-                        essentially unchanged.
-                        <br><br>
-                        It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look like
-                        readable.
+                    <h1 class="heading pb-2">{{sellData.title | titlecase}}</h1>
+                    <p class="para" [innerHTML]="whyUs">
                     </p>
                 </div>
             </div>
@@ -69,24 +60,24 @@
     </div>
 </section>
 <!--products portfolio section-->
-<section class="portfolio">
+<section class="portfolio" *ngIf="sellData">
     <div class="container">
         <div class="heading-text">
             <h1 class="pb-2 heading s-head-p">Products Portfolio</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-2 offset-lg-1 offset-md-0 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+        <div class="row justify-content-center">
+            <div class="col-lg-2 offset-md-0 col-md-6 col-sm-6 col-xs-6 col-12  custom-row" *ngFor="let item of sellData.sale_on_emdad_portfolio; let i=index">
                 <mat-card class="example-card h-100">
-                    <img mat-card-image src="../../../../assets/construction-material.png"
+                    <img mat-card-image src="{{base_url + item.logo}}"
                         alt="Photo of a Shiba Inu">
                     <mat-card-content>
                         <p class="prod-card-text">
-                           Construction Material
+                           {{item.name | titlecase}}
                         </p>
                         </mat-card-content>
                 </mat-card>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+          <!--   <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
                 <mat-card class="example-card h-100">
                     <img mat-card-image src="../../../../assets/mro-spares.png"
                         alt="Photo of a Shiba Inu">
@@ -96,8 +87,8 @@
                         </p>
                         </mat-card-content>
                 </mat-card>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+            </div> -->
+<!--             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
                 <mat-card class="example-card h-100">
                     <img mat-card-image src="../../../../assets/piping.png"
                         alt="Photo of a Shiba Inu">
@@ -107,8 +98,8 @@
                         </p>
                         </mat-card-content>
                 </mat-card>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
+            </div> -->
+           <!--  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12  custom-row">
                 <mat-card class="example-card h-100">
                     <img mat-card-image src="../../../../assets/valves.png"
                         alt="Photo of a Shiba Inu" class="img-fluid">
@@ -118,8 +109,8 @@
                         </p>
                         </mat-card-content>
                 </mat-card>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+            </div> -->
+           <!--  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
                 <mat-card class="example-card h-100">
                     <img mat-card-image src="../../../../assets/construction-materia2.png"
                         alt="Photo of a Shiba Inu">
@@ -130,7 +121,7 @@
                         </mat-card-content>
                 </mat-card>
 
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -150,7 +141,7 @@
     </div>
 </section>
 <!--our-partners section-->
-<div class="second-row">
+<div class="second-row" *ngIf="partnerArray">
     <div class="container">
 
         <div class="heading-text">
@@ -161,45 +152,45 @@
                 galley
                 of type and scrambled it to make a type specimen book.</p>
         </div>
-        <div class="row ">
+        <div class="row justify-content-around">
             <!--first line-->
             <!--  <div class="col-lg-1 col-md-0 col-sm-0 col-xs-0 col-0 custom-row"></div> -->
 
-            <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row" *ngFor="let partner of partnerArray | slice:0:5 ">
                 <div class="card h-100">
-                    <div class="card-img text-center"> <img src="../../../../assets/HI8.png" alt="hi8 logo"
+                    <div class="card-img text-center"> <img src="{{base_url + partner.logo}}" alt="hi8 logo"
                             class="img-fluid"></div>
-                    <span class="card-text">Fli8</span>
+                    <span class="card-text">{{partner.name}}</span>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+           <!--  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
                 <div class="card h-100">
                     <div class="card-img text-center"> <img src="../../../../assets/gr8.png" alt="gr8 logo"
                             class="img-fluid"></div>
                     <span class="card-text">gr.8</span>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+            </div> -->
+         <!--    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
                 <div class="card h-100">
                     <div class="card-img text-center"> <img src="../../../../assets/96Points.png"
                             alt="96points logo" class="img-fluid"></div>
                     <span class="card-text">96 Points</span>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+            </div> -->
+           <!--  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
                 <div class="card h-100">
                     <div class="card-img text-center"> <img src="../../../../assets/oem.png" alt="oemlogo"
                             class="img-fluid"></div>
                     <span class="card-text">oem</span>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
+            </div> -->
+         <!--    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-12 custom-row">
                 <div class="card h-100">
                     <div class="card-img text-center"> <img src="../../../../assets/sansui.png" alt="sansui"
                             class="img-fluid"></div>
                     <span class="card-text">Sansui</span>
                 </div>
-            </div>
+            </div> -->
        
         </div>
 
