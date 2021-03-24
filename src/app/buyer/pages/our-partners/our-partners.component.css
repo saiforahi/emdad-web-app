@@ -190,42 +190,58 @@ color: #2B2B2B;
   padding-bottom: 60px;
 
 }
-.carousel-indicators li {
+
+::ng-deep ngb-carousel .carousel-indicators .active  ::after{
+content: '';
+background-color: #FFFFFF !important;
+
+  
+}
+::ng-deep ngb-carousel .carousel-indicators li {
   display: inline-block;
   width: 20px;
   height: 20px;
-  
   text-indent: 0;
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: white;
+  background-color: white !important;
   text-align: center !important;
   font-size: 15px;
   color: white !important;
   justify-content: center !important;
   align-items: center !important;
   
+  
   /* box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5); */    
 }
-.carousel-indicators{
+::ng-deep ngb-carousel .carousel-indicators{
   z-index: 1 !important;
+  
 }
-.carousel-indicators>li> i{
+/* ngb-carousel /deep/.carousel-indicators>li> i{
  align-self: center !important;
 
  display: inline;
-/* margin-left: 5px;
+margin-left: 5px;
 margin-top: 5px; */
-/*   padding-bottom: 10px !important; */
+/*   padding-bottom: 10px !important;
   vertical-align: middle !important;
-}
-.carousel-indicators .active {
+} */
+::ng-deep ngb-carousel .carousel-indicators .active {
   width: 20px;
   height: 20px;
+  background-color: white  !important;
+  background-image:url('../../../../assets/carousel-fill.png');
+  background-size: 14px;
+  background-repeat: no-repeat;
+background-position-y: center;
+background-position-x: center;
   
-  background-color: white;
-  color: #1F4F9E !important;
+ 
+}
+::ng-deep ngb-carousel .carousel-inner  img{
+  height: 100% !important;
 }
 
 /*RESPONSIVE -_- */
@@ -240,10 +256,10 @@ margin-top: 5px; */
 }
 }
 @media all and (min-width:290px) and (max-width:430px){
-.carousel-indicators li,.carousel-indicators .active{
+  ::ng-deep ngb-carousel .carousel-indicators li,::ng-deep ngb-carousel .carousel-indicators .active{
   height: 13px !important;
   width: 13px !important;
-  font-size: 10px !important;
+  background-size: 8px !important;
   
 }
 .success-carousel{
@@ -252,10 +268,10 @@ margin-top: 5px; */
 
 }
 @media all and (min-width:430px) and (max-width:992px){
-  .carousel-indicators li,.carousel-indicators .active{
+  ::ng-deep ngb-carousel .carousel-indicators li,::ng-deep ngb-carousel .carousel-indicators .active{
     height: 13px !important;
     width: 13px !important;
-    font-size: 10px !important;
+    background-size: 10px !important;
     
   }
 }
@@ -406,7 +422,7 @@ height: 88px;
   padding-bottom: -10px !important;
 }
 .success-carousel{
-  padding-top: 30px;
+  padding-top: 20px;
 }
 .text-div h1{
   text-align: center !important;
@@ -435,7 +451,7 @@ height: 88px;
   padding-bottom: -10px !important;
 }
 .success-carousel{
-  padding-top: 30px;
+  padding-top: 20px;
 }
 }
 @media all and (min-width:1399px){
