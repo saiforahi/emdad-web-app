@@ -228,7 +228,7 @@
                     </mat-slider>
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let range of prices">
-                            <mat-checkbox (change)="$event.checked ? setPrice(range.value) : setPrice('')"
+                            <mat-checkbox (change)="setPrice(range.value,$event.checked)"
                                 class="example-margin">{{ range.name }}</mat-checkbox>
                         </mat-panel-title>
                     </div>

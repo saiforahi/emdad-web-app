@@ -16,6 +16,9 @@ export class SearchService {
   filter_products(query): Observable<any> {
     return this.http.get(config.base_url + 'api/product/filter/list?' + query)
   }
+  sellerwise_filter_products(query:string,sellerId:any): Observable<any> {
+    return this.http.get(config.base_url + 'api/product/seller/filter/list/'+sellerId+'/?' + query)
+  }
   // getSearchProducts(): Observable<any>{
   //   return this.searchProducts;
   // }
