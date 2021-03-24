@@ -200,17 +200,30 @@ export class ProductListPageComponent implements OnInit {
       this._brand = brand_name;
       this._filter();
     }
+    else{
+      this._filter();
+    }
   }
 
-  setColor(color_name) {
-    this._color = color_name;
-    this._filter();
+  setColor(color_name:string) {
+    if(color_name?.length>0){
+      this._color = color_name;
+      this._filter();
+    }
+    else{
+      this._filter();
+    }
   }
 
   setPrice(price:string) {
     if(price?.length>0){
       this._price.min = parseInt(price.split(' ')[0]);
       this._price.max = parseInt(price.split(' ')[1]);
+      this._filter();
+    }
+    else{
+      this._price.min = this.min_price-1;
+      this._price.max = this.max_price+1;
       this._filter();
     }
   }
