@@ -1,10 +1,34 @@
 <div class="container">
   <div class="row justify-content-between">
     <h3 class="col header-text">Order Details</h3>
-    <button *ngIf="order_status==='placed'" type="button" class="btn status-btn placed" >Order placed</button>
-    <button *ngIf="order_status==='confirmed'" type="button" class="btn status-btn confirmed" >Order Confirmed</button>
-    <button *ngIf="order_status==='processing'" type="button" class="btn status-btn processing" >Order Processing</button>
-    <button *ngIf="order_status==='completed'" type="button" class="btn status-btn completed" >Order Completed</button>
+    <button
+      *ngIf="order_status === 'placed'"
+      type="button"
+      class="btn status-btn placed"
+    >
+      Order placed
+    </button>
+    <button
+      *ngIf="order_status === 'confirmed'"
+      type="button"
+      class="btn status-btn confirmed"
+    >
+      Order Confirmed
+    </button>
+    <button
+      *ngIf="order_status === 'processing'"
+      type="button"
+      class="btn status-btn processing"
+    >
+      Order Processing
+    </button>
+    <button
+      *ngIf="order_status === 'completed'"
+      type="button"
+      class="btn status-btn completed"
+    >
+      Order Completed
+    </button>
   </div>
   <div class="row mt-30">
     <div class="col">
@@ -30,18 +54,28 @@
                 <h5 class="prod-name mt-0 mb-1">
                   {{ product.product.name | titlecase }}
                 </h5>
-                <p class="sub-text1" *ngIf="product.product.delivery_method === 1">(DDP)</p>
-                <p class="sub-text1" *ngIf="product.product.delivery_method === 2">
+                <p
+                  class="sub-text1"
+                  *ngIf="product.product.delivery_method === 1"
+                >
+                  (DDP)
+                </p>
+                <p
+                  class="sub-text1"
+                  *ngIf="product.product.delivery_method === 2"
+                >
                   (Ex-works)
                 </p>
-                <p class="status-txt">{{get_product_status(product.product.id)}}</p>
+                <p class="status-txt">
+                  {{ get_product_status(product.product.id) }}
+                </p>
               </div>
               <div class="col-md-2 col-lg-3 ml-45">
                 <p class="sub-text2">{{ product.quantity }}</p>
               </div>
               <div class="col-md-2 col-lg-3 ml-30">
                 <p style="color: #2b2b2b" class="sub-text3">
-                  ${{ cal_individual_total(i) }}
+                  ${{ cal_individual_total(i) | number: "2.2-2" }}
                 </p>
               </div>
             </div>
@@ -55,19 +89,19 @@
           <div>
             <p>Sub Total ({{ orders.length }} items)</p>
           </div>
-          <p>${{ calcTotalPrice() }}</p>
+          <p>${{ calcTotalPrice() | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
             <p>Discount</p>
           </div>
-          <p>- ${{ calcDiscount() }}</p>
+          <p>- ${{ discount | number: "1.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
             <p>Vat</p>
           </div>
-          <p>+ ${{ calVat() }}</p>
+          <p>+ {{ vat | number: "2.2-2" }}</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
@@ -75,21 +109,31 @@
             <p class="mb-0"><span>Total</span></p>
           </div>
           <p class="mb-0">
-            <span>${{ calTotal() }}</span>
+            <span>${{ orders[0]?.order.total_amount }}</span>
           </p>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="row d-flex flex-column" *ngIf="orders?.length>0">
+
+  <div class="row d-flex flex-column" *ngIf="orders?.length > 0">
     <!--wire transfer card-->
-    <div *ngIf="orders[0].order.payment_type==0" class="col-12 col-sm-12 col-md-12 col-lg-8">
-      
+    <div
+      *ngIf="orders[0].order.payment_type == 0"
+      class="col-12 col-sm-12 col-md-12 col-lg-8"
+    >
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>
-        <p><span class="name">Payment Method:</span><span class="deets"> Wire-Transfer</span></p>
-        <p class="deets">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at assumenda eaque laborum beatae ipsum earum similique hic eveniet, reiciendis omnis nemo consectetur veritatis fuga quae maiores cupiditate ea iste.</p>
+        <p>
+          <span class="name">Payment Method:</span
+          ><span class="deets"> Wire-Transfer</span>
+        </p>
+        <p class="deets">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at
+          assumenda eaque laborum beatae ipsum earum similique hic eveniet,
+          reiciendis omnis nemo consectetur veritatis fuga quae maiores
+          cupiditate ea iste.
+        </p>
         <p>
           <span class="name">Account Number : </span
           ><span class="deets">702 555-0122</span>
@@ -97,7 +141,10 @@
         <!--upload button-->
         <div class="row">
           <div class="col-md-12">
-            <button class="download-payment-history w-100"><img src="../../../../assets/upload.svg" alt=""> Payment History.pdf</button>
+            <button class="download-payment-history w-100">
+              <img src="../../../../assets/upload.svg" alt="" /> Payment
+              History.pdf
+            </button>
           </div>
         </div>
         <!--proceed button-->
@@ -107,32 +154,41 @@
           </div>
         </div>
       </div>
-      
     </div>
     <!--card payment card-->
-    <div *ngIf="orders[0].order.payment_type==1" class="col-12 col-sm-12 col-md-12 col-lg-8">
-      
+    <div
+      *ngIf="orders[0].order.payment_type == 1"
+      class="col-12 col-sm-12 col-md-12 col-lg-8"
+    >
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>
-        <p><span class="name">Payment Method:</span><span class="deets"> Card </span></p>
-        <br>
+        <p>
+          <span class="name">Payment Method:</span
+          ><span class="deets"> Card </span>
+        </p>
+        <br />
         <!--field for card number as ui,comment out if not needed-->
-        <p class="name"> **** **** **** 1234</p>
+        <p class="name">**** **** **** 1234</p>
         <p>
           <span class="name">Payment Date: </span
-          ><span class="deets">{{ formatDate(orders[0].order.order_datetime) }}</span>
+          ><span class="deets">{{
+            formatDate(orders[0].order.order_datetime)
+          }}</span>
         </p>
         <!--download button-->
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12 col-12 mobile-center">
-            <button mat-raised-button class="download-btn" 
-            *ngIf="dataLoaded"
-            (click)="createPdf()">Download Invoice</button>
+            <button
+              mat-raised-button
+              class="download-btn"
+              *ngIf="dataLoaded"
+              (click)="createPdf()"
+            >
+              Download Invoice
+            </button>
           </div>
         </div>
-        
       </div>
-      
     </div>
   </div>
 </div>

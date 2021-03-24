@@ -61,7 +61,8 @@ export class CartPageComponent implements OnInit {
   tracking_order: Tracking_Order[] = [];
   msg: any;
   error: any;
-  vatAmount = 0;
+  vatPercentage = 0;
+  vatAmount: number = 0;
   couponDiscount: any = 0;
   couponType: any;
   couponId: any = '';
@@ -70,6 +71,7 @@ export class CartPageComponent implements OnInit {
   img_base_url = config.img_base_url;
   emptyCart: boolean = true;
   couponButtonClicked: boolean = false;
+  commissionList: any = [];
 
   // providing default value to prevnet error
   productInCart = [
@@ -117,45 +119,70 @@ export class CartPageComponent implements OnInit {
     this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
     if (this.productInCart !== null && this.productInCart.length > 0)
       this.emptyCart = false;
-    // console.log('#####');
-    // console.log(this.productInCart);
-    // console.log('#####');
 
     // too much repetead work
     // need to update
-    this.vat.getVat().subscribe((item) => {
-      this.vatAmount = parseInt(item.data[0].percentage);
-      this.generateOrderData(this.productInCart);
-      this.calcSubTotalPrice(this.orders_details);
-      this.calcTotalPrice();
-    });
-    this.commission.getCommission().subscribe((item) => {
-      this.commissionAmount = item.data[0].percentage.toString();
-      this.generateOrderData(this.productInCart);
-      this.calcSubTotalPrice(this.orders_details);
-      this.calcTotalPrice();
-    });
+    if (!this.emptyCart) {
+      this.commission.getCommission().subscribe(
+        (item) => {
+          this.commissionAmount = parseFloat(
+            item.data[0].percentage.toString()
+          );
+          this.generateOrderData(this.productInCart);
+          this.calcSubTotalPrice(this.orders_details);
+          this.calcTotalPrice();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
 
-    this.generateOrderData(this.productInCart);
-    this.calcSubTotalPrice(this.orders_details);
-    this.calcTotalPrice();
-    // console.log(this.orders_details, this.tracking_order);
+      this.vat.getVat().subscribe((item) => {
+        this.vatPercentage = parseFloat(item.data[0].percentage);
+        this.generateOrderData(this.productInCart);
+        this.calcSubTotalPrice(this.orders_details);
+        this.calcTotalPrice();
+      });
+
+      this.generateOrderData(this.productInCart);
+      this.calcSubTotalPrice(this.orders_details);
+      this.calcTotalPrice();
+      // console.log(this.orders_details, this.tracking_order);
+    }
   }
 
   generateOrderData(productInCart) {
     this.orders_details = [];
     this.tracking_order = [];
+    this.commissionList = [];
+
     productInCart.forEach((element) => {
-      console.log('product in cart',element);
+      // console.log(element);
+      var quantity = 1;
+      if (element.cart_qty !== undefined) parseInt(element.cart_qty);
+
+      var commission = 0;
+      if (
+        element.commission !== undefined &&
+        parseFloat(element.commission) > 0
+      )
+        commission = parseFloat(element.commission);
+      else commission = this.commissionAmount;
+      commission = parseFloat(element.unit_price) * (commission / 100);
+      this.commissionList.push(commission);
+
       this.orders_details.push({
         product: element.id,
-        quantity: element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        // quantity:
+        //   element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+        quantity: quantity,
         seller: element.seller.id,
         unit_price: parseFloat(element.unit_price),
-        vat_amount: this.vatAmount,
+        vat_amount: 0,
         pickup_address: element.pickup_address.id,
-        commission: parseFloat(element.commission),
+        commission: 0,
       });
+
       this.tracking_order.push({
         seller: element.seller.id,
         product: element.id,
@@ -197,42 +224,68 @@ export class CartPageComponent implements OnInit {
   }
 
   calcPrice(index): number {
-    if (this.orders_details[index])
-      return (
-        (this.orders_details[index].unit_price +
-          this.orders_details[index].commission) *
-        this.orders_details[index].quantity
+    if (this.orders_details[index]) {
+      var price =
+        this.orders_details[index].unit_price *
+        this.orders_details[index].quantity;
+      var commission =
+        this.commissionList[index] * this.orders_details[index].quantity;
+      var totalPrice = price + commission;
+
+      this.orders_details[index].vat_amount = Number(
+        (totalPrice * (this.vatPercentage / 100)).toFixed(2)
       );
+      this.orders_details[index].commission = Number(commission.toFixed(2));
+
+      return price + commission;
+    }
     return 0;
   }
 
   calcSubTotalPrice(orders_details) {
     this.subTotal = 0;
     this.totalItems = 0;
-    orders_details.forEach((element) => {
-      this.subTotal +=
-        parseFloat(element.unit_price) * parseFloat(element.quantity) +
-        parseFloat(element.commission);
+    orders_details.forEach((element, index) => {
+      // this.subTotal +=
+      //   parseFloat(element.unit_price) * parseFloat(element.quantity) +
+      //   parseFloat(element.commission);
+      this.subTotal += this.calcPrice(index);
       this.totalItems++;
     });
   }
 
   calcTotalPrice() {
     this.total_amount = 0;
-    let vatAmount =
-      (this.subTotal - this.couponDiscount) * (this.vatAmount / 100);
     let discountAmount = 0;
+
     // flat type discount
     if (this.couponType === 1) {
       discountAmount = this.couponDiscount;
-      if (discountAmount > this.subTotal) discountAmount = this.subTotal;
     }
     // percentage type discount
     if (this.couponType === 2) {
       discountAmount = this.subTotal * (this.couponDiscount / 100);
     }
+
+    if (discountAmount > this.subTotal) discountAmount = this.subTotal;
+    this.discount_coupon_amount = discountAmount;
+
+    // discount is applied before applying vat
+    // this.vatAmount =
+    //   (this.subTotal - this.discount_coupon_amount) *
+    //   (this.vatPercentage / 100);
+
+    this.calcVat();
+
     if (this.subTotal > 0)
-      this.total_amount = this.subTotal - discountAmount + vatAmount;
+      this.total_amount = this.subTotal - discountAmount + this.vatAmount;
+  }
+
+  calcVat() {
+    this.vatAmount = 0;
+    this.orders_details.forEach((element) => {
+      this.vatAmount += element.vat_amount;
+    });
   }
 
   addQuantity(index) {
@@ -287,19 +340,21 @@ export class CartPageComponent implements OnInit {
   }
 
   proceedToCheckout() {
-    this.orders_details.forEach((element) => {
-      element.vat_amount = this.vatAmount;
-      element.commission = this.commissionAmount;
-    });
+    // this.orders_details.forEach((element) => {
+    //   element.vat_amount = this.vatAmount;
+    //   element.commission = this.commissionAmount;
+    // });
+
     var cart_cash = {
       subtotal: this.subTotal,
-      discount: this.discount_coupon,
+      discount: this.discount_coupon_amount,
       discount_type: this.couponType,
       vat: this.vatAmount,
-      total: this.total_amount,
+      total: Number(this.total_amount.toFixed(2)),
     };
+
     let cart_items = {
-      total_amount: this.total_amount,
+      total_amount: Number(this.total_amount.toFixed(2)),
       buyer: localStorage.getItem('uid'),
       payment_type: '',
       discount_coupon_amount: this.discount_coupon_amount,
@@ -307,6 +362,7 @@ export class CartPageComponent implements OnInit {
       orders_details: this.orders_details,
       tracking_order: this.tracking_order,
     };
+
     localStorage.setItem('cart_items', JSON.stringify(cart_items));
     localStorage.setItem('cart_cash', JSON.stringify(cart_cash));
     console.log(localStorage.getItem('cart_json'));

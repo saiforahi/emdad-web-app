@@ -15,12 +15,12 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   orders: any;
   base_url: string;
   subTotal: any;
-  discount: any;
-  vat: any;
+  discount: any = 0;
+  vat: any = 0;
   total: any;
   dataLoaded: boolean = false;
-  order_status:string;
-  product_statuses:Array<any>=[]
+  order_status: string;
+  product_statuses: Array<any> = [];
   img_base_url;
   constructor(
     private route: ActivatedRoute,
@@ -37,8 +37,10 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
         console.log(success.data);
         this.orders = success.data;
         this.dataLoaded = true;
-        this.get_order_status()
+        this.get_order_status();
         //this.get_order_status()
+        this.calVat();
+        this.calcDiscount();
       },
       (error) => console.log(error)
     );
@@ -48,28 +50,27 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     console.log('changes', changes);
   }
 
-  get_product_status(prod_id){
-    let status:string
-    this.product_statuses.forEach(product_status=>{
-      if(product_status.product==prod_id){
-        status=product_status.status
+  get_product_status(prod_id) {
+    let status: string;
+    this.product_statuses.forEach((product_status) => {
+      if (product_status.product == prod_id) {
+        status = product_status.status;
       }
-    })
-    return status
+    });
+    return status;
   }
 
-  get_order_status(){
-    if(this.orders?.length>0){
-      if(this.orders[0].order.payment_type===1){
-        this.order_status="confirmed"
-      }
-      else{
-        this.order_status="placed"
+  get_order_status() {
+    if (this.orders?.length > 0) {
+      if (this.orders[0].order.payment_type === 1) {
+        this.order_status = 'confirmed';
+      } else {
+        this.order_status = 'placed';
       }
     }
-    this.orders[0].order.tracking_order.forEach(element => {
-      console.log('status',element.status)
-      switch(element.status){
+    this.orders[0].order.tracking_order.forEach((element) => {
+      console.log('status', element.status);
+      switch (element.status) {
         // case 1:
         //   this.product_statuses.push({product:element.product,status:''})
         //   break
@@ -77,24 +78,33 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
         //   this.product_statuses.push({product:element.product,status:'confirmed'})
         //   break
         case 3:
-          this.product_statuses.push({product:element.product,status:'processing'})
-          break
+          this.product_statuses.push({
+            product: element.product,
+            status: 'processing',
+          });
+          break;
         case 4:
-          this.product_statuses.push({product:element.product,status:'delivered'})
-          break
+          this.product_statuses.push({
+            product: element.product,
+            status: 'delivered',
+          });
+          break;
         // case 5:
         //   this.product_statuses.push({product:element.product,status:'completed'})
         //   break
       }
     });
-    
-    console.log("product statuses",this.product_statuses)
+
+    console.log('product statuses', this.product_statuses);
     return this.order_status;
   }
+
   calcTotalPrice() {
     let subTotal = 0;
     this.orders.forEach((element) => {
-      subTotal += parseFloat(element.unit_price) * parseFloat(element.quantity);
+      subTotal +=
+        parseFloat(element.unit_price) * parseFloat(element.quantity) +
+        parseFloat(element.commission);
     });
     this.subTotal = subTotal;
     return subTotal;
@@ -102,9 +112,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
 
   calcDiscount() {
     let total = 0;
-    this.orders.forEach((element) => {
-      total += parseInt(element.order.discount_coupon_amount);
-    });
+    total = parseFloat(this.orders[0].order.discount_coupon_amount);
     this.discount = total;
     return total;
   }
@@ -112,17 +120,21 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   calVat() {
     let total = 0;
     this.orders.forEach((element) => {
-      total += parseInt(element.vat_amount);
+      total += parseFloat(element.vat_amount);
     });
     this.vat = total;
     return total;
   }
+
   calTotal() {
-    return this.vat + this.discount + this.subTotal;
+    return this.vat - this.discount + this.subTotal;
   }
 
   cal_individual_total(index) {
-    return this.orders[index].unit_price * this.orders[index].quantity;
+    return (
+      this.orders[index].unit_price * this.orders[index].quantity +
+      parseFloat(this.orders[index].commission)
+    );
   }
 
   createPdf() {
