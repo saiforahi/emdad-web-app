@@ -378,6 +378,13 @@ export class ProductListPageComponent implements OnInit {
         //this.get_menus();
       });
     }
+    else{
+      this.searchService.filter_products(query).subscribe((item) => {
+        this.products = item.data.results;
+        window.scrollTo(0, 0);
+        //this.get_menus();
+      });
+    }
     
   }
 
