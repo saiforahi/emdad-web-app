@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   // uGroup;
   uProfilePic;
   items;
-  showOnScroll = false;
+  showOnScroll;
   showAllProdDiv: boolean = false;
   categories: Observable<any>;
   currentUrl;
@@ -38,12 +38,22 @@ export class HeaderComponent implements OnInit {
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
+        if(this.activeRoute[1] == 'home'){
+          this.showOnScroll = false;
+        }else {
+          this.showOnScroll = true;
+        }
       }
     });
   }
 
   ngOnInit(): void {
     this.activeRoute = this.router.url.split('/');
+    if(this.activeRoute[1] == 'home'){
+      this.showOnScroll = false;
+    }else {
+      this.showOnScroll = true;
+    }
     window.scrollTo({
       top: 0,
       left: 0,
@@ -165,13 +175,15 @@ export class HeaderComponent implements OnInit {
       document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos >= 1100) {
-      //Do your action here
-      this.showOnScroll = true;
-      // console.log(pos, this.showOnScroll);
-    } else {
-      this.showOnScroll = false;
-      // console.log(pos, this.showOnScroll);
+    if (this.activeRoute[1] == 'home') {
+      if (pos >= 1100) {
+        //Do your action here
+        this.showOnScroll = true;
+        // console.log(pos, this.showOnScroll);
+      } else {
+        this.showOnScroll = false;
+        // console.log(pos, this.showOnScroll);
+      }
     }
   }
 }

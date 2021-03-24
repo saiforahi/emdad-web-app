@@ -60,7 +60,13 @@ export class ProductCardHorizonalComponent implements OnInit {
 
       // if same product not in cart previously, then show the notification
       if (foundSameProduct === false) {
-        this.cart.existingCartLength.next(existingCart.length + 1);
+        //this.cart.existingCartLength.next(existingCart.length + 1);
+        if(existingCart!=null){
+          this.cart.existingCartLength.next(existingCart.length + 1);
+        }
+        else{
+          this.cart.existingCartLength.next(1);
+        }
         this.openSnackBar('Added to Cart', 'OK');
       }
 

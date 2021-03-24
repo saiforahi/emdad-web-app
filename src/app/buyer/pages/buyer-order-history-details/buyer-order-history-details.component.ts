@@ -19,7 +19,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   vat: any;
   total: any;
   dataLoaded: boolean = false;
-  status:string;
+  order_status:string;
+  product_statuses:Array<any>=[]
   img_base_url;
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +37,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
         console.log(success.data);
         this.orders = success.data;
         this.dataLoaded = true;
-        this.status=this.get_order_status()
+        this.get_order_status()
         //this.get_order_status()
       },
       (error) => console.log(error)
@@ -47,35 +48,48 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     console.log('changes', changes);
   }
 
+  get_product_status(prod_id){
+    let status:string
+    this.product_statuses.forEach(product_status=>{
+      if(product_status.product==prod_id){
+        status=product_status.status
+      }
+    })
+    return status
+  }
+
   get_order_status(){
-    let status:string;
-    this.orders.forEach(element => {
-      console.log('status',element.order.tracking_order[0].status)
-      switch(element.order.tracking_order[0].status){
-        case 1:
-          status="created"
-          break
-        case 2:
-          status="confirmed"
-          break
+    if(this.orders?.length>0){
+      if(this.orders[0].order.payment_type===1){
+        this.order_status="confirmed"
+      }
+      else{
+        this.order_status="placed"
+      }
+    }
+    this.orders[0].order.tracking_order.forEach(element => {
+      console.log('status',element.status)
+      switch(element.status){
+        // case 1:
+        //   this.product_statuses.push({product:element.product,status:''})
+        //   break
+        // case 2:
+        //   this.product_statuses.push({product:element.product,status:'confirmed'})
+        //   break
         case 3:
-          status="processing"
+          this.product_statuses.push({product:element.product,status:'processing'})
           break
-        case 5:
-          status="completed"
+        case 4:
+          this.product_statuses.push({product:element.product,status:'delivered'})
           break
-        default:
-          status=undefined
+        // case 5:
+        //   this.product_statuses.push({product:element.product,status:'completed'})
+        //   break
       }
     });
-    if(status==="created" && this.orders[0].order.payment_type===0){
-      status="placed"
-    }
-    else if(status==="created" && this.orders[0].order.payment_type===1){
-      status="confirmed"
-    }
-    console.log("order status",status)
-    return status;
+    
+    console.log("product statuses",this.product_statuses)
+    return this.order_status;
   }
   calcTotalPrice() {
     let subTotal = 0;
