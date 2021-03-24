@@ -55,7 +55,12 @@ export class UserAuthService {
       const expiresAt = moment.unix(payload.exp);
       localStorage.setItem('token', authResult.token);
       localStorage.setItem('username', payload.username);
-      localStorage.setItem('uimg', authResult.profile_pic);
+      if (authResult.profile_pic.length > 0)
+        localStorage.setItem(
+          'uimg',
+          config.img_base_url + authResult.profile_pic
+        );
+      else localStorage.setItem('uimg', authResult.profile_pic);
       localStorage.setItem('uid', JSON.stringify(payload.user_id));
       // localStorage.setItem('group', authResult.group);
       localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));

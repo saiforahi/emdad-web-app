@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row justify-content-between">
     <h3 class="col header-text">Order Details</h3>
-    <button *ngIf="status==='placed'" type="button" class="btn status-btn placed" >Order placed</button>
-    <button *ngIf="status==='confirmed'" type="button" class="btn status-btn confirmed" >Order Confirmed</button>
-    <button *ngIf="status==='processing'" type="button" class="btn status-btn processing" >Order Processing</button>
-    <button *ngIf="status==='completed'" type="button" class="btn status-btn completed" >Order Completed</button>
+    <button *ngIf="order_status==='placed'" type="button" class="btn status-btn placed" >Order placed</button>
+    <button *ngIf="order_status==='confirmed'" type="button" class="btn status-btn confirmed" >Order Confirmed</button>
+    <button *ngIf="order_status==='processing'" type="button" class="btn status-btn processing" >Order Processing</button>
+    <button *ngIf="order_status==='completed'" type="button" class="btn status-btn completed" >Order Completed</button>
   </div>
   <div class="row mt-30">
     <div class="col">
@@ -34,6 +34,7 @@
                 <p class="sub-text1" *ngIf="product.product.delivery_method === 2">
                   (Ex-works)
                 </p>
+                <p class="status-txt">{{get_product_status(product.product.id)}}</p>
               </div>
               <div class="col-md-2 col-lg-3 ml-45">
                 <p class="sub-text2">{{ product.quantity }}</p>
@@ -81,9 +82,9 @@
     </div>
   </div>
   
-  <div class="row d-flex flex-column">
+  <div class="row d-flex flex-column" *ngIf="orders?.length>0">
     <!--wire transfer card-->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+    <div *ngIf="orders[0].order.payment_type==0" class="col-12 col-sm-12 col-md-12 col-lg-8">
       
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>
@@ -109,7 +110,7 @@
       
     </div>
     <!--card payment card-->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+    <div *ngIf="orders[0].order.payment_type==1" class="col-12 col-sm-12 col-md-12 col-lg-8">
       
       <div class="card-body payment-summery">
         <h4>Payment Details</h4>

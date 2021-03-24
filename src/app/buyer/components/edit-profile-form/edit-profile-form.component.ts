@@ -84,11 +84,13 @@ export class EditProfileFormComponent implements OnInit {
       this.addressError = true;
       this.spinner.hide();
     }
-    if (this.editUserInfo.country === null) {
+
+    if (this.editUserInfo.country === null || this.editUserInfo.country < 1) {
       this.countryError = true;
       this.spinner.hide();
     }
-    if (this.editUserInfo.city === null) {
+
+    if (this.editUserInfo.city === null || this.editUserInfo.city < 1) {
       this.cityError = true;
       this.spinner.hide();
     }
