@@ -15,7 +15,8 @@
                 <span>Home</span></a></li>
             <li><a [routerLink]="['about-us']" (click)="closeMenu();"><img src="../../../../assets/Paper.svg" alt="">
                 <span>About Us </span></a></li>
-            <li><a [routerLink]="['products/categories']" (click)="closeMenu();"><img src="../../../../assets/Category-small.svg" alt="">
+            <li><a [routerLink]="['products/categories']" (click)="closeMenu();"><img
+                  src="../../../../assets/Category-small.svg" alt="">
                 <span>Categories</span></a></li>
             <li><a [routerLink]="['our-partners']" (click)="closeMenu();"><img src="../../../../assets/2-User.svg"
                   alt="">
@@ -39,24 +40,28 @@
                 </a> -->
                 <mat-accordion>
                   <mat-expansion-panel [expanded]="false">
-                      <mat-expansion-panel-header>
-                          <mat-panel-title>
-                              <div class="cat-head">
-                                <img src="../../../../assets/Profile-small.svg" alt="">
-                                <span>My Profile</span>
-                              </div>
-                          </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      <div class="expanded-div">
-                          <ul class="" style="list-style: none; padding: 0 0 0 11px;">
-                            <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">Profile Settings</li>
-                            <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">Change Password</li>
-                            <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">Order History</li>
-                            <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">Manage Quotation</li>
-                          </ul>
-                      </div>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div class="cat-head">
+                          <img src="../../../../assets/Profile-small.svg" alt="">
+                          <span>My Profile</span>
+                        </div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="expanded-div">
+                      <ul class="" style="list-style: none; padding: 0 0 0 11px;">
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">Profile
+                          Settings</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">Change
+                          Password</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">Order
+                          History</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();"
+                          class="mb-0">Manage Quotation</li>
+                      </ul>
+                    </div>
                   </mat-expansion-panel>
-              </mat-accordion>
+                </mat-accordion>
               </li>
               <li [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''"><a [routerLink]="['track-orders']"
                   (click)="closeMenu();"><img src="../../../../assets/Location-small.svg" alt=""> <span>Track Order
@@ -96,18 +101,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <div class="">
           <ul class="navbar-nav">
-            <li *ngIf="showOnScroll" class="nav-item active" style="margin-right: 17px">
-              <a class="nav-link" (click)="showAllProdlist()">
-                <span>All Products </span>
-                <img src="../assets/down-carrot.svg" alt="" />
-              </a>
-              <div *ngIf="showAllProdDiv" class="all-products-list">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-2" *ngFor="let category of categories">
-                      <a [routerLink]="['/products/category/', category.id]">{{
-                        category.name
-                        }}</a>
+            <li *ngIf="showOnScroll" class="nav-item" style="margin-right: 17px">
+              <div class="d-inline-block" ngbDropdown>
+                <a class="nav-link" ngbDropdownToggle>
+                  <!-- (click)="showAllProdlist()" -->
+                  <span>All Products </span>
+                  <img src="../assets/down-carrot.svg" alt="" />
+                </a>
+                <!-- *ngIf="showAllProdDiv" -->
+                <div class="all-products-list" ngbDropdownMenu>
+                  <!-- all-products-list -->
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-3 col-xl-2" *ngFor="let category of categories">
+                        <a [routerLink]="['/products/category/', category.id]" ngbDropdownItem>{{
+                          category.name | titlecase
+                          }}</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -123,9 +133,12 @@
               </a>
               <div class="user-name">
                 <a [routerLink]="['profile']">
-                  <img *ngIf="loggedInUser && loggedInUserImg == ''" src="../../../../assets/Profile.svg" alt="" />
-                  <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
-                  <span *ngIf="loggedInUser">{{ userName }}</span>
+                  <div class="d-inline-block user-img-holder">
+                    <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
+                      src="../../../../assets/Profile.svg" alt="" />
+                    <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
+                  </div>
+                  <span *ngIf="loggedInUser" style="margin-left: 15px;">{{ userName }}</span>
                 </a>
               </div>
             </li>
