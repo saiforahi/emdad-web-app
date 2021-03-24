@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { AddressService } from '../../../shared/services/address.service';
@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   add_payment_response: any;
   isCard: boolean;
   isWired: boolean;
-  payment_type:any;
+  payment_type: any;
   new_address: boolean;
   cash_details: any;
   addresses: any[] = [];
@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit {
   cities: any = [];
   selected_address: any;
   new_address_add_form_submitted: boolean;
+
   constructor(
     private countryListService: CountryListService,
     private addressService: AddressService,
@@ -44,6 +45,7 @@ export class CheckoutComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
     window.scrollTo({
       top: 0,
@@ -55,7 +57,7 @@ export class CheckoutComponent implements OnInit {
       console.log(this.countries);
     });
     this.isCard = true;
-    this.payment_type="1"
+    this.payment_type = '1';
     this.isWired = false;
     this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
@@ -68,20 +70,22 @@ export class CheckoutComponent implements OnInit {
       this.addresses = response.data;
     });
   }
+
   show_card_inputs() {
     //
     document.getElementById('a_card').classList.add('pay-option-selected');
     document.getElementById('a_wire').classList.remove('pay-option-selected');
     this.isWired = false;
     this.isCard = true;
-    this.payment_type="1"
+    this.payment_type = '1';
   }
+
   show_wired_inputs() {
     document.getElementById('a_wire').classList.add('pay-option-selected');
     document.getElementById('a_card').classList.remove('pay-option-selected');
     this.isCard = false;
     this.isWired = true;
-    this.payment_type="0"
+    this.payment_type = '0';
   }
   show_address_form() {
     //new address add form show action
@@ -138,37 +142,39 @@ export class CheckoutComponent implements OnInit {
         window.location.href = success.redirect_url;
       });
   }
+
   make_order() {
     //making order
     if (this.selected_address === undefined) {
       swal('Warning', 'Please select an address', 'warning');
     } else {
       this.spinner.show();
-      let data=JSON.parse(localStorage.getItem('cart_items')) //setting cart data from localstorage
-      data.payment_type=this.payment_type;
-      console.log('cart_data',data)
-      this.orderService
-        .putOrder(data)
-        .subscribe((success) => {
-          this.add_order_response = success;
-          console.log(this.add_order_response);
-          localStorage.setItem(
-            'temp_order_id',
-            this.add_order_response.data[0].id
-          );
-          if(this.isWired){
-            localStorage.removeItem('finalCart')
-            localStorage.removeItem('prodCartArray')
-            localStorage.removeItem('cart_json')
-            this.spinner.hide()
-            this.router.navigate(['order/details/',this.add_order_response.data[0].id])
-          }
-          else{
-            this.add_payment();
-          }
-        });
+      let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
+      data.payment_type = this.payment_type;
+      console.log('cart_data (checkout_component)', data);
+      this.orderService.putOrder(data).subscribe((success) => {
+        this.add_order_response = success;
+        console.log(this.add_order_response);
+        localStorage.setItem(
+          'temp_order_id',
+          this.add_order_response.data[0].id
+        );
+        if (this.isWired) {
+          localStorage.removeItem('finalCart');
+          localStorage.removeItem('prodCartArray');
+          localStorage.removeItem('cart_json');
+          this.spinner.hide();
+          this.router.navigate([
+            'order/details/',
+            this.add_order_response.data[0].id,
+          ]);
+        } else {
+          this.add_payment();
+        }
+      });
     }
   }
+
   onNewAddressFormSubmit() {
     this.new_address_add_form_submitted = true;
     this.addressService
@@ -197,6 +203,7 @@ export class CheckoutComponent implements OnInit {
         }
       );
   }
+
   onCountryChange(countryId) {
     // reset city if countryId changed
     console.log(countryId);
