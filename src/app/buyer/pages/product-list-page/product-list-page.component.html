@@ -195,7 +195,7 @@
                     </mat-expansion-panel-header>
                     <div *ngIf="brands" class="expanded-div">
                         <mat-panel-title *ngFor="let brand of brands">
-                            <mat-checkbox (change)="$event.checked ? setBrand(brand.name) : setBrand('')"
+                            <mat-checkbox (change)="setBrand(brand.name,$event.checked)"
                                 class="color-check-box">{{ brand.name | titlecase }}</mat-checkbox>
                         </mat-panel-title>
                     </div>
@@ -210,7 +210,7 @@
                     </mat-expansion-panel-header>
                     <div class="expanded-div">
                         <mat-panel-title *ngFor="let color of colors">
-                            <mat-checkbox (change)="$event.checked ? setColor(color.name) : setColor('')"
+                            <mat-checkbox (change)="setColor(color.name,$event.checked)"
                                 class="color-check-box">{{ color.name | titlecase }}</mat-checkbox>
                         </mat-panel-title>
                     </div>

@@ -25,7 +25,6 @@ export class TrackOrderComponent implements OnInit {
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
     this.get_orders();
-    this.get_statuses();
   }
 
   get_orders() {
@@ -33,6 +32,7 @@ export class TrackOrderComponent implements OnInit {
       console.log(result.data);
       this.orderData = result.data;
       this.filtered_orders = result.data;
+      this.get_statuses()
     });
   }
 
@@ -49,8 +49,10 @@ export class TrackOrderComponent implements OnInit {
   get_statuses() {
     this.statuses = [];
     this.orderData.forEach((order) => {
-      this.statuses.push(order.status);
+      //console.log('order',order.tracking_order[0].status)
+      this.statuses.push(order.tracking_order[0].status?order.tracking_order[0].status:'-');
     });
+    console.log(this.statuses)
   }
 
   change_filter_value(value) {
