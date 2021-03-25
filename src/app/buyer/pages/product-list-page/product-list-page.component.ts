@@ -40,6 +40,8 @@ export class ProductListPageComponent implements OnInit {
     max:0
   };
   brands: any = [];
+  selected_brands: Array<string>=[]
+  selected_colors: Array<string>=[]
   colors: any = [];
   prices: any = [];
   catMenuToggle = false;
@@ -195,26 +197,47 @@ export class ProductListPageComponent implements OnInit {
     this.style = value;
   }
 
-  setBrand(brand_name:string) {
-    if(brand_name?.length>0){
-      this._brand = brand_name;
+  setBrand(brand_name:string,checked:boolean) {
+    if(checked){
+      this.selected_brands.push(brand_name)
+      console.log('selected brands',this.selected_brands)
       this._filter();
     }
     else{
-      this._brand=""
+      this.selected_brands=this.array_item_remover(brand_name,this.selected_brands)
+      console.log('selected brands',this.selected_brands)
       this._filter();
     }
+    // if(brand_name?.length>0){
+    //   this._brand = brand_name;
+    //   this.selected_brands.push(brand_name)
+    //   this._filter();
+    // }
+    // else{
+    //   this._brand=""
+    //   this._filter();
+    // }
   }
 
-  setColor(color_name:string) {
-    if(color_name?.length>0){
-      this._color = color_name;
-      this._filter();
+  setColor(color_name:string,checked:boolean) {
+    if(checked){
+      this.selected_colors.push(color_name)
+      console.log('selected colors',this.selected_colors)
+      this._filter()
     }
     else{
-      this._color=""
-      this._filter();
+      this.selected_colors=this.array_item_remover(color_name,this.selected_colors)
+      console.log('selected colors',this.selected_colors)
+      this._filter()
     }
+    // if(color_name?.length>0){
+    //   this._color = color_name;
+    //   this._filter();
+    // }
+    // else{
+    //   this._color=""
+    //   this._filter();
+    // }
   }
 
   setPrice(price:string,checked:boolean) {
@@ -228,21 +251,24 @@ export class ProductListPageComponent implements OnInit {
     else{
       this._price.min = this.min_price-1;
       this._price.max = this.max_price+1;
-      for(let index=0;index<this.selected_price_ranges.length;index++){
-        if(this.selected_price_ranges[index]===price){
-          delete this.selected_price_ranges[index]
-        }
-      }
-      let temp = [];
-      for(let i of this.selected_price_ranges){
-          i && temp.push(i); // copy each non-empty value to the 'temp' array
-      }
-      this.selected_price_ranges = temp;
+      this.selected_price_ranges = this.array_item_remover(price,this.selected_price_ranges)
       console.log(this.selected_price_ranges)
       this._filter();
     }
   }
-
+  array_item_remover(item:string,array:Array<string>):Array<string>{
+    for(let index=0;index<array.length;index++){
+      if(array[index]===item){
+        delete array[index]
+      }
+    }
+    let temp = [];
+    for(let i of array){
+        i && temp.push(i); // copy each non-empty value to the 'temp' array
+    }
+    array = temp;
+    return array
+  }
   get_menus() { //setting menus from product list
     this.brands=[]
     this.colors=[]
@@ -361,12 +387,18 @@ export class ProductListPageComponent implements OnInit {
     else{
       query=''
     }
-    if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
-      query += '&brand=' + this._brand;
+    // if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
+    //   query += '&brand=' + this._brand;
+    // }
+    if(this.selected_brands.length>0){
+      query += '&brand='+this.selected_brands.toString()
     }
-    if (this._color !== null && this._color !== undefined && this._color !== '') {
-      query += '&color=' + this._color;
+    if(this.selected_colors.length>0){
+      query += '&color=' + this.selected_colors.toString()
     }
+    // if (this._color !== null && this._color !== undefined && this._color !== '') {
+    //   query += '&color=' + this._color;
+    // }
     if (this._price.min<this._price.max) {
       query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
     }
