@@ -129,20 +129,20 @@ pinch-zoom /deep/ .pinch-zoom-content {
 .prod-details-header {
   font-family: Jost;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 18px;
 }
 
 .seller-name span,
 .brand-name span,
 .prod-details-header span {
-  font-style: bold;
+  font-weight: 500;
 }
 
 .prod-details-header {
   font-family: Jost;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 24px;
   position: relative;
   display: inline-block;
@@ -334,6 +334,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     width: 30px;
     min-width: 30px;
     height: 30px;
+    padding: 0;
   }
   .similar-prod-header button img {
     height: 15px;
@@ -422,25 +423,19 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 22px;
     margin: 15px 0 15px;
   }
-  ngb-carousel /deep/ .carousel-control-prev {
-    border-radius: 5px;
-    right: 45px;
-    top: -47px;
+  .similar-prod-header h4 {
+    font-size: 20px;
+    margin: 15px 0 15px;
+  }
+  .similar-prod-header button {
+    margin-top: 10px;
     width: 30px;
+    min-width: 30px;
     height: 30px;
   }
-  ngb-carousel /deep/ .carousel-control-next {
-    border-radius: 5px;
-    right: 0;
-    top: -47px;
-    width: 30px;
-    height: 30px;
-  }
-  ngb-carousel /deep/ .carousel-control-prev-icon {
+  .similar-prod-header button img {
     height: 15px;
-  }
-  ngb-carousel /deep/ .carousel-control-next-icon {
-    height: 15px;
+    vertical-align: text-top;
   }
   .reviews-holder {
     padding: 15px 0;

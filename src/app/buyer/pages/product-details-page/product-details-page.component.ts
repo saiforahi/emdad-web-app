@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -41,6 +41,7 @@ export class ProductDetailsPageComponent implements OnInit {
   itemToshow;
   sliceMinValue: number;
   sliceMaxValue: number;
+  activeRoute: string[];
 
   constructor(
     private getProduct: GetProductService,
@@ -50,13 +51,23 @@ export class ProductDetailsPageComponent implements OnInit {
     private comments: CustomerReviewService,
     private viewportScroller: ViewportScroller,
     private cart: CartServiceService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router,
   ) {
     this.getScreenSize();
+    router.events.subscribe((val: any) => {
+      if (val.url) {
+        this.activeRoute = val.url.split('/');
+        if(this.activeRoute[2] == 'details'){
+          this.ngOnInit();
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.activeRoute = this.router.url.split('/');
     this.productId = this.route.snapshot.params['id'];
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
@@ -66,7 +77,7 @@ export class ProductDetailsPageComponent implements OnInit {
         config.base_url.substring(0, config.base_url.length - 1) +
           item.data[0].image2,
       ];
-      // console.log(this.prodcutDetails);
+      console.log(this.prodcutDetails);
       this.getProduct
         .getProductByCategory(this.prodcutDetails.category.id)
         .subscribe((item) => {

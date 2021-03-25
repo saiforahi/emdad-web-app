@@ -93,22 +93,15 @@
             <span>Seller Name: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
               style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.full_name | titlecase }}</a>
           </p>
-          <p class="brand-name">
+          <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
             <span>Brand Name: </span>
-            <ng-template *ngIf="prodcutDetails.brand; else brandNa">
-              {{ prodcutDetails.brand }}
-            </ng-template>
-            <ng-template #brandNa> Not Specified </ng-template>
+            {{prodcutDetails.brand.name | titlecase}}
           </p>
-          <p class="prod-details-header">
-            <span>Product Details</span><span class="border-bottom-75"></span>
+          <p class="prod-details-header" *ngIf="prodcutDetails?.description">
+            <span>Product Details: </span>
+            <span class="border-bottom-75"></span>
           </p>
-          <p class="prod-details">
-            <ng-template *ngIf="prodcutDetails.description; else descriptionNa">
-              {{ prodcutDetails.description }}
-            </ng-template>
-            <ng-template #descriptionNa>Not Specified</ng-template>
-          </p>
+          <p *ngIf="prodcutDetails?.description">{{ prodcutDetails.description }}</p>
         </div>
       </div>
     </div>
@@ -116,26 +109,16 @@
   <div class="similar-product-holder">
     <div class="container">
       <div class="similar-prod-header">
-      <h4 class="d-inline-block">Similar Products</h4>
-      <!-- <ngb-carousel #carousel [showNavigationArrows]="showNavigationArrows"
-        [showNavigationIndicators]="showNavigationIndicators">
-        <p *ngFor="let product of relatedProducts">{{ product.name }}</p>
-        <ng-template ngbSlide *ngFor="let image of sliderImgArray">
-          
-            <div id="reviews" class="col-md-2" *ngFor="let product of relatedProducts | slice: 0:6">
-              <app-product-card [product]="product"></app-product-card>
-            </div>
-          </div>
-        </ng-template>
-      </ngb-carousel> -->
-      <button mat-raised-button class="d-inline-block float-right" (click)="nextSlide();"><img src="../../../../assets/right-arrow.svg" alt=""></button>
-      <button mat-raised-button class="d-inline-block float-right" (click)="prevSlide();"><img src="../../../../assets/left-arrow.svg" alt=""></button>
-    </div>
+        <h4 class="d-inline-block">Similar Products</h4>
+        <button mat-raised-button class="d-inline-block float-right" (click)="nextSlide();"><img
+            src="../../../../assets/right-arrow.svg" alt=""></button>
+        <button mat-raised-button class="d-inline-block float-right" (click)="prevSlide();"><img
+            src="../../../../assets/left-arrow.svg" alt=""></button>
+      </div>
       <div class="row">
         <div [ngClass]="sliderClassName" *ngFor="let product of relatedProducts | slice:sliceMinValue:sliceMaxValue">
           <div class="prod-card-holder">
             <app-product-card [product]="product"></app-product-card>
-            <!-- <img width="100%" src="http://103.123.8.52:8002/media/uploads/product/images/pexels-garrett-morrow-1649771.jpg" alt=""> -->
           </div>
         </div>
       </div>
@@ -202,11 +185,10 @@
         </p> -->
       </div>
       <div class="comment-div">
-        <p class="commenter-name mb-0"><b>Address</b></p>
-        <p *ngIf="prodcutDetails">
-          <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else pickAddressNa">{{
-            prodcutDetails.pickup_address[0].address }}</ng-template>
-          <ng-template #pickAddressNa>Not Specified</ng-template>
+        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>Address</b></p>
+        <p>
+          <span *ngIf="prodcutDetails.seller.store_address">{{
+            prodcutDetails.seller.store_address }}</span>
         </p>
       </div>
     </div>
