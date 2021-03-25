@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { CartServiceService } from 'src/app/shared/services/cart-service.service
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  
   loggedInUser = false;
   userName;
   uId;
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
     private getCategory: GetCategoryService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private cart: CartServiceService
+    private cart: CartServiceService,
+    private myElement: ElementRef
   ) {
     router.events.subscribe((val: any) => {
       if (val.url) {
@@ -104,7 +106,7 @@ export class HeaderComponent implements OnInit {
       // console.log(item);
     });
   }
-
+ 
   openSnackBar(message, action) {
     this.snackBar.open(message, action, {
       duration: 5000,
@@ -116,7 +118,7 @@ export class HeaderComponent implements OnInit {
     this.loggedInUserImg = '';
     this.openSnackBar('You have been logged out.', 'ok');
   }
-
+ 
   show_lang_drop() {
     if (document.getElementById('lang-drop-down').classList.contains('show')) {
       document.getElementById('lang-drop-down').classList.remove('show');
@@ -166,6 +168,9 @@ export class HeaderComponent implements OnInit {
 
   closeMenu() {
     this.showSideMenu = false;
+  }
+  gotoView(){
+    this.myElement.nativeElement.ownerDocument.getElementById('footer').scrollIntoView({behavior: 'smooth'});
   }
 
   @HostListener('window:scroll')

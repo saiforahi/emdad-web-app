@@ -21,7 +21,7 @@
             <li><a [routerLink]="['our-partners']" (click)="closeMenu();"><img src="../../../../assets/2-User.svg"
                   alt="">
                 <span>Our Partners</span></a></li>
-            <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Call-small.svg" alt="">
+            <li><a  (click)="closeMenu();gotoView();"><img src="../../../../assets/Call-small.svg" alt="">
                 <span>Contact Us</span></a></li>
             <li class="sell-emdad">
               <a class="sell-emdad-link" [routerLink]="['sell-on-emdad']" (click)="closeMenu();">
@@ -315,7 +315,7 @@
               </a>
             </li>
             <li class="nav-item" style="margin-right: 17px">
-              <a class="nav-link">
+              <a class="nav-link" (click)="gotoView();">
                 Contact Us
                 <span class="menu-underline"></span>
               </a>
