@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -9,6 +9,7 @@ import { ViewportScroller } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
+
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -30,12 +31,16 @@ export class ProductDetailsPageComponent implements OnInit {
     '../../../assets/review-icon.svg',
     '../../../assets/review-icon.svg',
   ];
-  carousel: any;
   relatedProducts: any;
   totalComments = 0;
   commentlist = [];
   nextCommentsLink = null;
   addToWishlistStatus: string = '0';
+  screenWidth: number;
+  sliderClassName: string;
+  itemToshow;
+  sliceMinValue: number;
+  sliceMaxValue: number;
 
   constructor(
     private getProduct: GetProductService,
@@ -46,7 +51,9 @@ export class ProductDetailsPageComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private cart: CartServiceService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.getScreenSize();
+  }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -59,7 +66,7 @@ export class ProductDetailsPageComponent implements OnInit {
         config.base_url.substring(0, config.base_url.length - 1) +
           item.data[0].image2,
       ];
-      console.log(this.prodcutDetails);
+      // console.log(this.prodcutDetails);
       this.getProduct
         .getProductByCategory(this.prodcutDetails.category.id)
         .subscribe((item) => {
@@ -171,7 +178,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
   onNewCommentAdd(event) {
     if (event == '1') this.loadComments();
-    else console.log('$$$$$');
+    // else console.log('$$$$$');
   }
 
   addToWishlist(prod_id) {
@@ -199,6 +206,55 @@ export class ProductDetailsPageComponent implements OnInit {
       return parseInt(value);
     } else {
       return 0;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    // console.log(this.screenWidth);
+    if(this.screenWidth >= 300 && this.screenWidth <= 575){
+      this.sliderClassName = 'col-6';
+      this.itemToshow = 2;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 2;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 576 && this.screenWidth <= 767){
+      this.sliderClassName = 'col-sm-4';
+      this.itemToshow = 3;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 3;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 768 && this.screenWidth <= 991){
+      this.sliderClassName = 'col-md-3';
+      this.itemToshow = 4;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 4;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 992){
+      this.sliderClassName = 'col-lg-2';
+      this.itemToshow = 6;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 6;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }
+  }
+
+  nextSlide(){
+    // console.log(this.sliceMinValue, this.sliceMaxValue, this.relatedProducts.length);
+    if(this.sliceMaxValue < this.relatedProducts.length){
+      this.sliceMinValue = this.sliceMinValue + this.itemToshow;
+      this.sliceMaxValue = this.sliceMaxValue + this.itemToshow;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }
+  }
+
+  prevSlide(){
+    // console.log(this.sliceMinValue, this.sliceMaxValue, this.relatedProducts.length);
+    if(this.sliceMinValue > 0){
+      this.sliceMinValue = this.sliceMinValue - this.itemToshow;
+      this.sliceMaxValue = this.sliceMaxValue - this.itemToshow;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
     }
   }
 }

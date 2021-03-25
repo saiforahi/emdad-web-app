@@ -167,7 +167,7 @@ pinch-zoom /deep/ .pinch-zoom-content {
   background: #6c757d;
 }
 
-.similar-prod-header {
+.similar-prod-header h4 {
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
@@ -175,7 +175,41 @@ pinch-zoom /deep/ .pinch-zoom-content {
   margin: 40px 0 60px;
 }
 
-ngb-carousel /deep/ .carousel-control-prev {
+.similar-prod-header button {
+  background: #eaeaea;
+  border-radius: 10px;
+  margin-top: 30px;
+  background: #ccc;
+  width: 80px;
+  height: 80px;
+}
+
+.similar-prod-header button:last-child {
+  margin-right: 15px;
+}
+
+@keyframes example {
+  0% {
+    /* opacity: 1; */
+    transform: scale(0);
+  }
+  /* 50% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  } */
+  100% {
+    /* opacity: 0; */
+    transform: scale(1);
+  }
+}
+
+.prod-card-holder {
+  animation-name: example;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+}
+
+/* ngb-carousel /deep/ .carousel-control-prev {
   background: #eaeaea;
   border-radius: 10px;
   right: 100px;
@@ -202,7 +236,7 @@ ngb-carousel /deep/ .carousel-control-prev-icon {
 
 ngb-carousel /deep/ .carousel-control-next-icon {
   background-image: url("../../../../assets/right-arrow.svg") !important;
-}
+} */
 
 .reviews-holder {
   background: #fff;
@@ -291,29 +325,19 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .similar-prod-header {
+  .similar-prod-header h4 {
     font-size: 20px;
     margin: 15px 0 15px;
   }
-  ngb-carousel /deep/ .carousel-control-prev {
-    border-radius: 5px;
-    right: 45px;
-    top: -47px;
+  .similar-prod-header button {
+    margin-top: 10px;
     width: 30px;
+    min-width: 30px;
     height: 30px;
   }
-  ngb-carousel /deep/ .carousel-control-next {
-    border-radius: 5px;
-    right: 0;
-    top: -47px;
-    width: 30px;
-    height: 30px;
-  }
-  ngb-carousel /deep/ .carousel-control-prev-icon {
+  .similar-prod-header button img {
     height: 15px;
-  }
-  ngb-carousel /deep/ .carousel-control-next-icon {
-    height: 15px;
+    vertical-align: text-top;
   }
   .reviews-holder {
     padding: 15px 0;
@@ -326,6 +350,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     color: #fff;
     height: 50px;
     font-size: 16px;
+    padding: 0;
   }
   .modal-title {
     font-size: 20px;
@@ -393,7 +418,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .similar-prod-header {
+  .similar-prod-header h4 {
     font-size: 22px;
     margin: 15px 0 15px;
   }

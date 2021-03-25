@@ -10,6 +10,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ProductReviewModalComponent } from './product-review-modal/product-review-modal.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const routes: Routes = [
   { path: '', component: ProductDetailsPageComponent, pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
     LazyLoadImageModule,
     NgxSpinnerModule,
     FormsModule,
+    CarouselModule 
   ],
 })
 export class ProductDetailsPageModule {}

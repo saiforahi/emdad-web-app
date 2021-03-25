@@ -22,7 +22,7 @@
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
           <label class="form-label">Full Name</label>
-          <input
+          <input *ngIf="editUserInfo"
             name="full_name"
             [(ngModel)]="editUserInfo.full_name"
             class="form-control"
@@ -58,7 +58,7 @@
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
           <label class="form-label">Mobile Number</label>
-          <input
+          <input *ngIf="editUserInfo"
             name="phone"
             [(ngModel)]="editUserInfo.phone"
             class="form-control"
@@ -73,7 +73,7 @@
           <label for="addressError" *ngIf="addressError" class="errors ml-1">
             * required</label
           >
-          <input
+          <input *ngIf="editUserInfo"
             name="address"
             [(ngModel)]="editUserInfo.address"
             class="form-control"
@@ -88,7 +88,7 @@
           <label for="countryError" *ngIf="countryError" class="errors ml-1">
             * required</label
           >
-          <select
+          <select *ngIf="editUserInfo"
             class="form-control"
             name="country"
             [(ngModel)]="editUserInfo.country"
@@ -107,7 +107,7 @@
           <label for="cityError" *ngIf="cityError" class="errors ml-1">
             * required</label
           >
-          <select
+          <select *ngIf="editUserInfo"
             class="form-control"
             name="city"
             [(ngModel)]="editUserInfo.city"
@@ -121,7 +121,7 @@
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
           <label class="form-label">Area</label>
-          <input
+          <input *ngIf="editUserInfo"
             name="area"
             class="form-control"
             [(ngModel)]="editUserInfo.area"
@@ -133,7 +133,7 @@
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
           <label class="form-label">Zip Code</label>
-          <input
+          <input *ngIf="editUserInfo"
             name="zip"
             class="form-control"
             [(ngModel)]="editUserInfo.zip_code"
