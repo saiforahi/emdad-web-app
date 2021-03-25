@@ -1,10 +1,7 @@
 <section>
-  <app-breadcrumbs
-    *ngIf="prodcutDetails"
-    [directoryString]="
+  <app-breadcrumbs *ngIf="prodcutDetails" [directoryString]="
       prodcutDetails.category.name + ' / ' + prodcutDetails.name
-    "
-  >
+    " [style]="'grid'">
   </app-breadcrumbs>
   <div style="background: #fff">
     <div class="container">
@@ -12,77 +9,48 @@
         <div class="col-md-6">
           <div class="img-slider-div">
             <pinch-zoom>
-              <img
-                class="prod-img img-fluid"
-                [src]="sliderImgArray[currentImg]"
-                alt="prod img"
-              />
+              <img class="prod-img img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img" />
             </pinch-zoom>
             <div class="slider-btn-div">
-              <button
-                mat-raised-button
-                (click)="prevImg()"
-                [disabled]="prevBtnDisabled"
-              >
+              <button mat-raised-button (click)="prevImg()" [disabled]="prevBtnDisabled">
                 <img src="../../../assets/left-arrow.svg" alt="" />
               </button>
-              <button
-                mat-raised-button
-                (click)="nextImg()"
-                [disabled]="nextBtnDisabled"
-              >
+              <button mat-raised-button (click)="nextImg()" [disabled]="nextBtnDisabled">
                 <img src="../../../assets/right-arrow.svg" alt="" />
               </button>
             </div>
           </div>
           <div class="wishlist-review-div">
-            <button
-              class="mb-3"
-              mat-button
-              *ngIf="addToWishlistStatus == '1'"
-              (click)="addToWishlist(prodcutDetails.id)"
-            >
+            <button class="mb-3" mat-button *ngIf="addToWishlistStatus == '1'"
+              (click)="addToWishlist(prodcutDetails.id)">
               <img src="../../../assets/wish.svg" alt="" />Add to Wishlist
             </button>
-            <button
-              class="mb-3"
-              mat-button
-              *ngIf="addToWishlistStatus == '0'"
-              (click)="removeFromWishlist(prodcutDetails.id)"
-            >
+            <button class="mb-3" mat-button *ngIf="addToWishlistStatus == '0'"
+              (click)="removeFromWishlist(prodcutDetails.id)">
               <img src="../../../assets/wish_filledup.svg" alt="" />Remove from
               Wishlist
             </button>
-            <button
-              class="mb-3"
-              mat-button
-              (click)="scroll_to_reviews('reviews')"
-            >
+            <button class="mb-3" mat-button (click)="scroll_to_reviews('reviews')">
               <img src="../../../assets/review-icon.svg" alt="" />Customer
               Review
               <span>{{ totalComments }}</span>
             </button>
           </div>
           <div class="prod-delivery-info">
-            <p>
+            <p *ngIf="prodcutDetails">
               <i class="fas fa-info-circle"></i> ({{
-                prodcutDetails.ex_works_lead_time
+              prodcutDetails.ex_works_lead_time
               }}) days Ex-works
-              <ng-template
-                *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa"
-                >{{ prodcutDetails.pickup_address[0].city }}</ng-template
-              >
+              <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa">{{
+                prodcutDetails.pickup_address[0].city }}</ng-template>
               <ng-template #cityNa>(Not Specified)</ng-template>
             </p>
-            <p>
+            <p *ngIf="prodcutDetails">
               <b>Shop Pickup Location: </b>
-              <ng-template
-                *ngIf="
+              <ng-template *ngIf="
                   prodcutDetails.pickup_address.length > 0;
                   else pickAddressNa
-                "
-                >{{ prodcutDetails.pickup_address[0].address }}</ng-template
-              >
+                ">{{ prodcutDetails.pickup_address[0].address }}</ng-template>
               <ng-template #pickAddressNa>Not Specified</ng-template>
             </p>
           </div>
@@ -101,28 +69,17 @@
             <b>Stock: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}
           </h5>
           <div class="cart-quote-btn-div">
-            <button
-              type="button"
-              [disabled]="
+            <button type="button" [disabled]="
                 get_quantity(prodcutDetails.stock_quantity) > 0 ? false : true
-              "
-              [ngClass]="
+              " [ngClass]="
                 get_quantity(prodcutDetails.stock_quantity) > 0
                   ? 'add-to-cart-btn'
                   : ''
-              "
-              class="add-to-cart-btn"
-              mat-button
-              (click)="addToCart()"
-            >
+              " class="add-to-cart-btn" mat-button (click)="addToCart()">
               Add to Cart
             </button>
             &nbsp;
-            <button
-              class="req-for-quote-btn"
-              mat-button
-              [routerLink]="['/rfq/']"
-            >
+            <button class="req-for-quote-btn" mat-button [routerLink]="['/rfq/']">
               <i class="far fa-file-excel"></i> Request for Quotation
             </button>
           </div>
@@ -132,56 +89,42 @@
             {{ prodcutDetails.name | titlecase }}
           </p>
           <p class="prod-price">Unit Price: {{ prodcutDetails.unit_price }}</p>
-          <p class="seller-name">
-            <span>Seller Name: </span
-            ><a
-              [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
-              style="text-decoration: underline; color: #2b2b2b"
-              >{{ prodcutDetails.seller.full_name | titlecase }}</a
-            >
+          <p class="seller-name" *ngIf="prodcutDetails">
+            <span>Seller Name: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+              style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.full_name | titlecase }}</a>
           </p>
-          <p class="brand-name">
+          <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
             <span>Brand Name: </span>
-            <ng-template *ngIf="prodcutDetails.brand; else brandNa">
-              {{ prodcutDetails.brand }}
-            </ng-template>
-            <ng-template #brandNa> Not Specified </ng-template>
+            {{prodcutDetails.brand.name | titlecase}}
           </p>
-          <p class="prod-details-header">
-            <span>Product Details</span><span class="border-bottom-75"></span>
+          <p class="prod-details-header" *ngIf="prodcutDetails?.description">
+            <span>Product Details: </span>
+            <span class="border-bottom-75"></span>
           </p>
-          <p class="prod-details">
-            <ng-template *ngIf="prodcutDetails.description; else descriptionNa">
-              {{ prodcutDetails.description }}
-            </ng-template>
-            <ng-template #descriptionNa>Not Specified</ng-template>
-          </p>
+          <p *ngIf="prodcutDetails?.description">{{ prodcutDetails.description }}</p>
         </div>
       </div>
     </div>
   </div>
   <div class="similar-product-holder">
     <div class="container">
-      <h4 class="similar-prod-header">Similar Products</h4>
-      <ngb-carousel
-        #carousel
-        [showNavigationArrows]="showNavigationArrows"
-        [showNavigationIndicators]="showNavigationIndicators"
-      >
-        <p *ngFor="let product of relatedProducts">{{ product.name }}</p>
-        <ng-template ngbSlide *ngFor="let image of sliderImgArray">
-          <div class="row">
-            <div
-              id="reviews"
-              class="col-md-2"
-              *ngFor="let product of relatedProducts | slice: 0:6"
-            >
-              <app-product-card [product]="product"></app-product-card>
-            </div>
+      <div class="similar-prod-header">
+        <h4 class="d-inline-block">Similar Products</h4>
+        <button mat-raised-button class="d-inline-block float-right" (click)="nextSlide();"><img
+            src="../../../../assets/right-arrow.svg" alt=""></button>
+        <button mat-raised-button class="d-inline-block float-right" (click)="prevSlide();"><img
+            src="../../../../assets/left-arrow.svg" alt=""></button>
+      </div>
+      <div class="row">
+        <div [ngClass]="sliderClassName" *ngFor="let product of relatedProducts | slice:sliceMinValue:sliceMaxValue">
+          <div class="prod-card-holder">
+            <app-product-card [product]="product"></app-product-card>
           </div>
-        </ng-template>
-      </ngb-carousel>
-      <h4 class="similar-prod-header">Reviews</h4>
+        </div>
+      </div>
+      <div class="similar-prod-header">
+        <h4>Reviews</h4>
+      </div>
     </div>
   </div>
   <div class="reviews-holder">
@@ -191,9 +134,7 @@
           <p class="commenter-name mb-0">
             <b>{{ comment.buyer.full_name }}</b>
           </p>
-          <span
-            ><i class="far fa-clock"></i> {{ comment.created_at | date }}</span
-          >
+          <span><i class="far fa-clock"></i> {{ comment.created_at | date }}</span>
           <p>
             {{ comment.comment }}
           </p>
@@ -210,17 +151,11 @@
         <b>No Comments Posted Yet</b>
       </h4>
       <div class="text-center mt-5">
-        <button
-          mat-raised-button
-          (click)="show_review_modal()"
-          class="submit-review-btn"
-        >
+        <button mat-raised-button (click)="show_review_modal()" class="submit-review-btn">
           Submit yor review
         </button>
-        <app-product-review-modal
-          [prodcutDetails]="prodcutDetails"
-          (newCommentAdded)="onNewCommentAdd($event)"
-        ></app-product-review-modal>
+        <app-product-review-modal [prodcutDetails]="prodcutDetails" (newCommentAdded)="onNewCommentAdd($event)">
+        </app-product-review-modal>
       </div>
     </div>
   </div>
@@ -228,7 +163,7 @@
     <div class="container">
       <h4 class="similar-prod-header">Seller Description</h4>
       <div class="comment-div">
-        <p class="commenter-name mb-0">
+        <p class="commenter-name mb-0" *ngIf="prodcutDetails">
           <b>{{ prodcutDetails.seller.full_name | titlecase }}</b>
         </p>
         <!-- <p>
@@ -250,13 +185,10 @@
         </p> -->
       </div>
       <div class="comment-div">
-        <p class="commenter-name mb-0"><b>Address</b></p>
+        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>Address</b></p>
         <p>
-          <ng-template
-            *ngIf="prodcutDetails.pickup_address.length > 0; else pickAddressNa"
-            >{{ prodcutDetails.pickup_address[0].address }}</ng-template
-          >
-          <ng-template #pickAddressNa>Not Specified</ng-template>
+          <span *ngIf="prodcutDetails.seller.store_address">{{
+            prodcutDetails.seller.store_address }}</span>
         </p>
       </div>
     </div>

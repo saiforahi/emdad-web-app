@@ -66,7 +66,7 @@ export class EditProfileFormComponent implements OnInit {
       (error) => (this.error = error);
     });
     this.getCountries();
-    this.editCities = [...this.cities];
+    // this.editCities = [...this.cities];
     // if (this.editUserInfo.country) {
     // 	this.onCountryChange(this.userInfo.country);
     // }

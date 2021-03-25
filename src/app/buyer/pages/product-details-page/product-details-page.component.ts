@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,6 +9,7 @@ import { ViewportScroller } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
+
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -30,12 +31,17 @@ export class ProductDetailsPageComponent implements OnInit {
     '../../../assets/review-icon.svg',
     '../../../assets/review-icon.svg',
   ];
-  carousel: any;
   relatedProducts: any;
   totalComments = 0;
   commentlist = [];
   nextCommentsLink = null;
   addToWishlistStatus: string = '0';
+  screenWidth: number;
+  sliderClassName: string;
+  itemToshow;
+  sliceMinValue: number;
+  sliceMaxValue: number;
+  activeRoute: string[];
 
   constructor(
     private getProduct: GetProductService,
@@ -45,11 +51,23 @@ export class ProductDetailsPageComponent implements OnInit {
     private comments: CustomerReviewService,
     private viewportScroller: ViewportScroller,
     private cart: CartServiceService,
-    private spinner: NgxSpinnerService
-  ) {}
+    private spinner: NgxSpinnerService,
+    private router: Router,
+  ) {
+    this.getScreenSize();
+    router.events.subscribe((val: any) => {
+      if (val.url) {
+        this.activeRoute = val.url.split('/');
+        if(this.activeRoute[2] == 'details'){
+          this.ngOnInit();
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.activeRoute = this.router.url.split('/');
     this.productId = this.route.snapshot.params['id'];
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
@@ -171,7 +189,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
   onNewCommentAdd(event) {
     if (event == '1') this.loadComments();
-    else console.log('$$$$$');
+    // else console.log('$$$$$');
   }
 
   addToWishlist(prod_id) {
@@ -199,6 +217,55 @@ export class ProductDetailsPageComponent implements OnInit {
       return parseInt(value);
     } else {
       return 0;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    // console.log(this.screenWidth);
+    if(this.screenWidth >= 300 && this.screenWidth <= 575){
+      this.sliderClassName = 'col-6';
+      this.itemToshow = 2;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 2;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 576 && this.screenWidth <= 767){
+      this.sliderClassName = 'col-sm-4';
+      this.itemToshow = 3;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 3;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 768 && this.screenWidth <= 991){
+      this.sliderClassName = 'col-md-3';
+      this.itemToshow = 4;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 4;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }else if(this.screenWidth >= 992){
+      this.sliderClassName = 'col-lg-2';
+      this.itemToshow = 6;
+      this.sliceMinValue = 0;
+      this.sliceMaxValue = 6;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }
+  }
+
+  nextSlide(){
+    // console.log(this.sliceMinValue, this.sliceMaxValue, this.relatedProducts.length);
+    if(this.sliceMaxValue < this.relatedProducts.length){
+      this.sliceMinValue = this.sliceMinValue + this.itemToshow;
+      this.sliceMaxValue = this.sliceMaxValue + this.itemToshow;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }
+  }
+
+  prevSlide(){
+    // console.log(this.sliceMinValue, this.sliceMaxValue, this.relatedProducts.length);
+    if(this.sliceMinValue > 0){
+      this.sliceMinValue = this.sliceMinValue - this.itemToshow;
+      this.sliceMaxValue = this.sliceMaxValue - this.itemToshow;
+      // console.log(this.sliceMinValue, this.sliceMaxValue);
     }
   }
 }

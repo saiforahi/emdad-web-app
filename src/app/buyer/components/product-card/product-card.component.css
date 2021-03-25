@@ -94,7 +94,8 @@ mat-card:hover button {
 }
 
 .mat-card-image {
-  margin: 0 -16px -1px -16px;
+  margin: 0;
+  width: 100%;
 }
 
 .mat-card-actions,
