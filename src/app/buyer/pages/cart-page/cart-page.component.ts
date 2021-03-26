@@ -6,6 +6,8 @@ import { CommissionService } from '../../../shared/services/commission.services'
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 import { Router } from '@angular/router';
+import { Cart } from 'src/app/shared/models/Cart.model';
+import { Product } from 'src/app/shared/models/Product.model';
 // interface Orders {
 //   total_amount?: number;
 //   payment_type?: number;
@@ -86,24 +88,25 @@ export class CartPageComponent implements OnInit {
     },
   ];
   // providing default value to prevnet error
-  orders_details: Orders_Details[] = [
-    {
-      quantity: 0,
-      unit_price: 0,
-      seller: 0,
-      pickup_address: 0,
-      vat_amount: 0,
-      commission: 0,
-      product: 0,
-    },
-  ];
+  // orders_details: Orders_Details[] = [
+  //   {
+  //     quantity: 0,
+  //     unit_price: 0,
+  //     seller: 0,
+  //     pickup_address: 0,
+  //     vat_amount: 0,
+  //     commission: 0,
+  //     product: 0,
+  //   },
+  // ];
+  cart:Cart; //declaring cart object
 
   constructor(
     private authService: UserAuthService,
     private coupon: CouponService,
     private vat: VatService,
     private commission: CommissionService,
-    private cart: CartServiceService,
+    private cartService: CartServiceService,
     private router: Router
   ) {}
 
@@ -116,9 +119,16 @@ export class CartPageComponent implements OnInit {
     this.authService.uId.subscribe((item) => {
       this.userId = item;
     });
-    this.productInCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    if (this.productInCart !== null && this.productInCart.length > 0)
-      this.emptyCart = false;
+    if(JSON.parse(localStorage.getItem('cart'))){
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+      if (this.cart !== null && this.cart.products?.length > 0){
+        this.emptyCart = false;
+      }
+    }
+    // this.cart = JSON.parse(localStorage.getItem('cart'));
+    // console.log('products in cart',this.productInCart)
+    // if (this.cart !== null && this.cart.products?.length > 0)
+    //   this.emptyCart = false;
 
     // too much repetead work
     // need to update
@@ -128,8 +138,8 @@ export class CartPageComponent implements OnInit {
           this.commissionAmount = parseFloat(
             item.data[0].percentage.toString()
           );
-          this.generateOrderData(this.productInCart);
-          this.calcSubTotalPrice(this.orders_details);
+          this.generateOrderData(this.cart.products);
+          this.calcSubTotalPrice();
           this.calcTotalPrice();
         },
         (err) => {
@@ -139,57 +149,56 @@ export class CartPageComponent implements OnInit {
 
       this.vat.getVat().subscribe((item) => {
         this.vatPercentage = parseFloat(item.data[0].percentage);
-        this.generateOrderData(this.productInCart);
-        this.calcSubTotalPrice(this.orders_details);
+        this.generateOrderData(this.cart.products);
+        this.calcSubTotalPrice();
         this.calcTotalPrice();
       });
 
-      this.generateOrderData(this.productInCart);
-      this.calcSubTotalPrice(this.orders_details);
+      this.generateOrderData(this.cart.products);
+      this.calcSubTotalPrice();
       this.calcTotalPrice();
       // console.log(this.orders_details, this.tracking_order);
     }
   }
 
-  generateOrderData(productInCart) {
-    this.orders_details = [];
+  generateOrderData(productInCart:Array<Product>) {
+    let orders_details = [];
     this.tracking_order = [];
     this.commissionList = [];
-
+    console.log('products',productInCart)
     productInCart.forEach((element) => {
       // console.log(element);
       var quantity = 1;
-      if (element.cart_qty !== undefined) parseInt(element.cart_qty);
-
       var commission = 0;
-      if (
-        element.commission !== undefined &&
-        parseFloat(element.commission) > 0
-      )
+      if (!isNaN(Number(element.commission)) ){
         commission = parseFloat(element.commission);
-      else commission = this.commissionAmount;
+      }
+      else{ 
+        commission = this.commissionAmount;
+      }
       commission = parseFloat(element.unit_price) * (commission / 100);
       this.commissionList.push(commission);
 
-      this.orders_details.push({
-        product: element.id,
-        // quantity:
-        //   element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
-        quantity: quantity,
-        seller: element.seller.id,
-        unit_price: parseFloat(element.unit_price),
-        vat_amount: 0,
-        pickup_address: element.pickup_address.id,
-        commission: 0,
-      });
+      // orders_details.push({
+      //   product: element.id,
+      //   // quantity:
+      //   //   element.cart_qty !== undefined ? parseInt(element.cart_qty) : 1,
+      //   quantity: quantity,
+      //   seller: element.seller.id,
+      //   unit_price: parseFloat(element.unit_price),
+      //   vat_amount: 0,
+      //   pickup_address: element.pickup_address[0].id,
+      //   commission: 0,
+      // });
 
-      this.tracking_order.push({
-        seller: element.seller.id,
-        product: element.id,
-        status: 1,
-        order_created_by: this.userId,
-        order_creation_date: '',
-      });
+      // this.tracking_order.push({
+      //   seller: element.seller.id,
+      //   product: element.id,
+      //   status: 1,
+      //   order_created_by: this.userId,
+      //   order_creation_date: '',
+      // });
+
       // var sellerFind = this.tracking_order.find(
       //   (x) => x.seller === element.seller.id
       // );
@@ -205,53 +214,45 @@ export class CartPageComponent implements OnInit {
     });
   }
 
-  removeFromCart(prodId) {
-    this.productInCart.forEach((value, index) => {
+  removeFromCart(prodId: number) {
+    this.cart.products.forEach((value, index) => {
       if (value.id == prodId) {
-        this.productInCart.splice(index, 1);
+        this.cart.products.splice(index, 1);
       }
     });
-    this.cart.existingCartLength.next(
-      this.productInCart.length > 0 ? this.productInCart.length : null
+    this.cartService.existingCartLength.next(
+      this.cart.products.length > 0 ? this.cart.products.length : null
     );
-    this.generateOrderData(this.productInCart);
-    // console.log(this.productInCart);
-    this.calcSubTotalPrice(this.orders_details);
+    this.generateOrderData(this.cart.products);
+    this.calcSubTotalPrice();
     this.calcTotalPrice();
-    localStorage.setItem('prodCartArray', JSON.stringify(this.productInCart));
-    if (this.productInCart.length === 0) this.emptyCart = true;
-    // console.log(this.orders_details, this.tracking_order);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    if (this.cart.products.length === 0) this.emptyCart = true;
   }
 
-  calcPrice(index): number {
-    if (this.orders_details[index]) {
-      var price =
-        this.orders_details[index].unit_price *
-        this.orders_details[index].quantity;
-      var commission =
-        this.commissionList[index] * this.orders_details[index].quantity;
+  calcPrice(index:number): number {
+    if (this.cart.products[index]) {
+      var price = parseInt(this.cart.products[index].unit_price) * this.cart.products[index].cart_qty;
+      var commission = this.commissionList[index] * this.cart.products[index].cart_qty;
       var totalPrice = price + commission;
-
-      this.orders_details[index].vat_amount = Number(
-        (totalPrice * (this.vatPercentage / 100)).toFixed(2)
-      );
-      this.orders_details[index].commission = Number(commission.toFixed(2));
-
+      this.cart.products[index].vat_amount = (totalPrice * (this.vatPercentage / 100)).toFixed(2)
+      this.cart.products[index].commission = commission.toFixed(2);
       return price + commission;
     }
     return 0;
   }
 
-  calcSubTotalPrice(orders_details) {
+  calcSubTotalPrice() {
     this.subTotal = 0;
     this.totalItems = 0;
-    orders_details.forEach((element, index) => {
+    this.cart.products.forEach((product, index) => {
       // this.subTotal +=
       //   parseFloat(element.unit_price) * parseFloat(element.quantity) +
       //   parseFloat(element.commission);
       this.subTotal += this.calcPrice(index);
       this.totalItems++;
     });
+    console.log('sub total',this.subTotal)
   }
 
   calcTotalPrice() {
@@ -283,30 +284,27 @@ export class CartPageComponent implements OnInit {
 
   calcVat() {
     this.vatAmount = 0;
-    this.orders_details.forEach((element) => {
-      this.vatAmount += element.vat_amount;
+    this.cart.products.forEach((element) => {
+      this.vatAmount += parseFloat(element.vat_amount);
     });
   }
 
-  addQuantity(index) {
+  addQuantity(index: number) {
     // increment only if quantity is <= stock_quantity
-    if (
-      this.orders_details[index].quantity + 1 <=
-      parseFloat(this.productInCart[index].stock_quantity)
-    ) {
-      this.orders_details[index].quantity += 1;
+    if (this.cart.products[index].cart_qty + 1 <= this.cart.products[index].stock_quantity) {
+      this.cart.products[index].cart_qty += 1;
       // console.log(this.orders_details);
-      this.calcSubTotalPrice(this.orders_details);
+      this.calcSubTotalPrice();
       this.calcTotalPrice();
     }
   }
 
   delQuantity(index) {
     // decrement only if quantity is >= 1
-    if (this.orders_details[index].quantity - 1 >= 1) {
-      this.orders_details[index].quantity -= 1;
+    if (this.cart.products[index].cart_qty - 1 >= 1) {
+      this.cart.products[index].cart_qty -= 1;
       // console.log(this.orders_details);
-      this.calcSubTotalPrice(this.orders_details);
+      this.calcSubTotalPrice();
       this.calcTotalPrice();
     }
   }
@@ -359,7 +357,7 @@ export class CartPageComponent implements OnInit {
       payment_type: '',
       discount_coupon_amount: this.discount_coupon_amount,
       discount_coupon: this.discount_coupon,
-      orders_details: this.orders_details,
+      orders_details: this.cart.products,
       tracking_order: this.tracking_order,
     };
 

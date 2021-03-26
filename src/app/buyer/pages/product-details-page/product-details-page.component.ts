@@ -8,7 +8,8 @@ import { ViewportScroller } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
-
+import {Product} from '../../../shared/models/Product.model'
+import { Cart } from 'src/app/shared/models/Cart.model';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -18,7 +19,6 @@ export class ProductDetailsPageComponent implements OnInit {
   productId;
   prodcutDetails;
   sliderImgArray;
-  prodCartArray: any[];
   currentImg = 0;
   nextBtnDisabled: boolean = false;
   prevBtnDisabled: boolean = true;
@@ -42,7 +42,7 @@ export class ProductDetailsPageComponent implements OnInit {
     private snackBar: MatSnackBar,
     private comments: CustomerReviewService,
     private viewportScroller: ViewportScroller,
-    private cart: CartServiceService,
+    private cartService: CartServiceService,
     private spinner: NgxSpinnerService,
     private router: Router,
   ) {
@@ -117,31 +117,59 @@ export class ProductDetailsPageComponent implements OnInit {
       this.prevBtnDisabled = true;
     }
   }
-
-  addToCart() {
-    this.prodCartArray = [];
-    var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
-    var existingCartLength = 0;
-    var foundSameProduct = false;
-    if (existingCart != null) {
-      existingCartLength = existingCart.length;
-      existingCart.forEach((element) => {
-        if (element.id != this.prodcutDetails.id) {
-          this.prodCartArray.push(element);
-        } else foundSameProduct = true;
+  add_to_cart(){
+    let existingCart:Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
+    let existingCartLength:number=0; //initializing number of products in 
+    var foundSameProduct:boolean = false;
+    if(existingCart===null){
+      existingCart=new Cart() //initializing cart object if it's the first attempt to add to cart
+    }
+    console.log('cart',existingCart)
+    if(existingCart?.products?.length>0){
+      existingCartLength=existingCart.products.length
+      existingCart.products.forEach((element) => {
+        if (element.id == this.prodcutDetails.id) {
+          foundSameProduct = true;
+        }
       });
     }
-    // if product details available only then add to it in the cart array
     if (this.prodcutDetails && !foundSameProduct) {
       this.prodcutDetails.cart_qty = 1;
-      this.prodCartArray.push(this.prodcutDetails);
-      this.cart.existingCartLength.next(existingCartLength + 1);
-      localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+      existingCart.products.push(this.prodcutDetails);
+      this.cartService.existingCartLength.next(existingCartLength + 1);
+      console.log('cart',existingCart)
+      localStorage.setItem('cart', JSON.stringify(existingCart));
       this.openSnackBar('Product added to cart!', 'OK');
     } else {
       this.openSnackBar('Product alreay in cart!', 'OK');
     }
   }
+  // addToCart() {
+  //   this.prodCartArray = [];
+  //   var existingCart:Cart = JSON.parse(localStorage.getItem('cart'));
+  //   var existingCartLength = 0;
+  //   var foundSameProduct = false;
+
+  //   if (existingCart != null) {
+  //     existingCartLength = existingCart.products.length;
+  //     existingCart.products.forEach((element) => {
+  //       if (element.id != this.prodcutDetails.id) {
+  //         this.prodCartArray.push(element);
+  //       } else foundSameProduct = true;
+  //     });
+  //   }
+  //   // if product details available only then add to it in the cartService array
+  //   if (this.prodcutDetails && !foundSameProduct) {
+  //     this.prodcutDetails.cart_qty = 1;
+  //     this.prodCartArray.push(this.prodcutDetails);
+  //     this.cartService.existingCartLength.next(existingCartLength + 1);
+  //     console.log('cartService')
+  //     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+  //     this.openSnackBar('Product added to cart!', 'OK');
+  //   } else {
+  //     this.openSnackBar('Product alreay in cart!', 'OK');
+  //   }
+  // }
 
   show_review_modal() {
     document.getElementById('prodReviewModal').style.display = 'block';

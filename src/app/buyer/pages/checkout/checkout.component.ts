@@ -144,6 +144,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   make_order() {
+    console.log(localStorage.getItem('token'))
     //making order
     if (this.selected_address === undefined) {
       swal('Warning', 'Please select an address', 'warning');
@@ -151,7 +152,7 @@ export class CheckoutComponent implements OnInit {
       this.spinner.show();
       let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
       data.payment_type = parseInt(this.payment_type);
-      console.log('cart_data', data);
+      console.log('cart_data', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
         this.add_order_response = success;
         console.log(this.add_order_response);
