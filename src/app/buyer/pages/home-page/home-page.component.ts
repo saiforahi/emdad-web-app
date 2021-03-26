@@ -163,7 +163,7 @@ export class HomePageComponent implements OnInit {
   getNextBatchproduct() {
     if (this.nextBatchProdLink != null) {
       //Do your action here
-      console.log('reached bootm');
+      // console.log('reached bootm');
       this.getProduct
         .getNextBatchProduct(this.nextBatchProdLink)
         .subscribe((item) => {
