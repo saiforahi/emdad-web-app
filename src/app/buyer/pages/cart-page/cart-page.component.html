@@ -10,7 +10,7 @@
         <ul class="list-unstyled mb-0">
           <li
             class="media"
-            *ngFor="let product of productInCart; let i = index"
+            *ngFor="let product of cart.products; let i = index"
           >
             <img
               class="prod-img mr-3"
@@ -37,8 +37,8 @@
                   ><img src="../../../assets/minus.svg"
                 /></span>
                 <div class="quan-box pt-1 pb-1 pr-3 pl-3 text-center">
-                  <p *ngIf="orders_details[i]" class="">
-                    {{ orders_details[i].quantity }}
+                  <p *ngIf="cart.products[i]" class="">
+                    {{ product.cart_qty }}
                   </p>
                 </div>
                 <span (click)="addQuantity(i)" class="custom-btn"
