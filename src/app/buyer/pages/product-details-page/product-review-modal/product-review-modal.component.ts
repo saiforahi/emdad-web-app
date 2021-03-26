@@ -4,6 +4,7 @@ import { CustomerReviewService } from 'src/app/shared/services/customer-review.s
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-product-review-modal',
   templateUrl: './product-review-modal.component.html',
@@ -11,8 +12,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ProductReviewModalComponent implements OnInit {
   @Input() prodcutDetails;
-  @Output() newCommentAdded = new EventEmitter();
-
   userId: any;
   reviewText: string = '';
 
@@ -37,7 +36,6 @@ export class ProductReviewModalComponent implements OnInit {
   addComments() {
     // const data = {"product": this.prodcutDetails.id, "buyer": this.userId, "comment": review}
     this.spinner.show();
-
     if (this.reviewText.length > 0) {
       this.comments
         .addComments({
@@ -52,8 +50,8 @@ export class ProductReviewModalComponent implements OnInit {
             document.getElementById('prodReviewModal').style.display = 'none';
             this.openSnackBar(item.message, 'ok');
             this.spinner.hide();
-            this.newCommentAdded.emit('1');
             this.reviewText = '';
+            this.router.navigate(['/product/details/', this.prodcutDetails.id])
           },
           (error) => {
             document.getElementById('prodReviewModal').style.display = 'none';

@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
@@ -13,8 +12,7 @@ import { CartServiceService } from 'src/app/shared/services/cart-service.service
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
-  styleUrls: ['./product-details-page.component.css'],
-  providers: [NgbCarouselConfig],
+  styleUrls: ['./product-details-page.component.css']
 })
 export class ProductDetailsPageComponent implements OnInit {
   productId;
@@ -24,13 +22,6 @@ export class ProductDetailsPageComponent implements OnInit {
   currentImg = 0;
   nextBtnDisabled: boolean = false;
   prevBtnDisabled: boolean = true;
-  showNavigationArrows = true;
-  showNavigationIndicators = false;
-  images = [
-    '../../../assets/review-icon.svg',
-    '../../../assets/review-icon.svg',
-    '../../../assets/review-icon.svg',
-  ];
   relatedProducts: any;
   totalComments = 0;
   commentlist = [];
@@ -42,6 +33,7 @@ export class ProductDetailsPageComponent implements OnInit {
   sliceMinValue: number;
   sliceMaxValue: number;
   activeRoute: string[];
+  commnetsEnd: boolean;
 
   constructor(
     private getProduct: GetProductService,
@@ -84,21 +76,20 @@ export class ProductDetailsPageComponent implements OnInit {
           this.relatedProducts = item.data.results;
           // console.log('prod list:' ,this.relatedProducts)
         });
-      // this.comments
-      //   .getComments(this.prodcutDetails.id)
-      //   .subscribe((item: any) => {
-      //     this.commentlist = [...this.commentlist, ...item.data.results];
-      //     // alert(JSON.stringify(this.commentlist));
-      //     if (item.data.links.next === null) this.commnetsEnd = true;
-      //     // console.log(this.commentlist);
-      //   });
-      this.loadTotalCommentsCount();
-      this.loadComments();
+      this.comments
+        .getComments(this.prodcutDetails.id)
+        .subscribe((item: any) => {
+          this.commentlist = item.data.results;
+          this.nextCommentsLink = item.data.links.next;
+          // alert(JSON.stringify(this.commentlist));
+          if (this.nextCommentsLink == null) {
+            this.commnetsEnd = true;
+          }
+        });
       this.wishlist
         .wishlistStatusCheck(this.productId)
         .subscribe((data: any) => {
           this.addToWishlistStatus = data.status;
-          // alert(this.addToWishlistStatus);
         });
     });
   }
@@ -132,7 +123,6 @@ export class ProductDetailsPageComponent implements OnInit {
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
     var existingCartLength = 0;
     var foundSameProduct = false;
-
     if (existingCart != null) {
       existingCartLength = existingCart.length;
       existingCart.forEach((element) => {
@@ -157,39 +147,17 @@ export class ProductDetailsPageComponent implements OnInit {
     document.getElementById('prodReviewModal').style.display = 'block';
   }
 
-  loadTotalCommentsCount() {
-    this.comments.getAllComments(this.productId).subscribe((item) => {
-      this.totalComments = item.total;
-    });
-  }
-
-  loadComments() {
-    this.commentlist = [];
-    this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
-      this.commentlist = [...item.data.results, ...this.commentlist];
-      // alert(JSON.stringify(this.commentlist));
-      this.nextCommentsLink = item.data.links.next;
-      this.loadTotalCommentsCount();
-      // console.log(this.commentlist);
-    });
-  }
-
   getNextComments() {
-    this.spinner.show();
+    // this.spinner.show();
     if (this.nextCommentsLink !== null) {
       this.comments
         .getNextComments(this.nextCommentsLink)
         .subscribe((comments) => {
           this.commentlist = [...this.commentlist, ...comments.data.results];
           this.nextCommentsLink = comments.data.links.next;
-          this.spinner.hide();
+          // this.spinner.hide();
         });
     }
-  }
-
-  onNewCommentAdd(event) {
-    if (event == '1') this.loadComments();
-    // else console.log('$$$$$');
   }
 
   addToWishlist(prod_id) {
