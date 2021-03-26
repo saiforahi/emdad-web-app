@@ -132,7 +132,7 @@
       <div *ngIf="commentlist.length">
         <div class="comment-div" *ngFor="let comment of commentlist">
           <p class="commenter-name mb-0">
-            <b>{{ comment.buyer.full_name }}</b>
+            <b>{{ comment.buyer.full_name | titlecase}}</b>
           </p>
           <span><i class="far fa-clock"></i> {{ comment.created_at | date }}</span>
           <p>
@@ -141,20 +141,17 @@
           <hr />
         </div>
       </div>
-      <div class="text-center mt-5" *ngIf="nextCommentsLink !== null">
-        <button (click)="getNextComments()" class="submit-review-btn">
-          More Comments
-        </button>
-      </div>
-
       <h4 *ngIf="commentlist.length === 0" class="text-center">
         <b>No Comments Posted Yet</b>
       </h4>
       <div class="text-center mt-5">
+        <button mat-raised-button *ngIf="nextCommentsLink !== null" (click)="getNextComments()" class="submit-review-btn mr-3">
+          More Comments
+        </button>
         <button mat-raised-button (click)="show_review_modal()" class="submit-review-btn">
           Submit yor review
         </button>
-        <app-product-review-modal [prodcutDetails]="prodcutDetails" (newCommentAdded)="onNewCommentAdd($event)">
+        <app-product-review-modal [prodcutDetails]="prodcutDetails">
         </app-product-review-modal>
       </div>
     </div>

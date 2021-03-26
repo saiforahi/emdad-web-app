@@ -347,11 +347,10 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px;
   }
   .reviews-holder button {
-    padding: 0px 15px;
+    padding: 0px 3px;
     color: #fff;
     height: 50px;
     font-size: 16px;
-    padding: 0;
   }
   .modal-title {
     font-size: 20px;

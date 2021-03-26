@@ -1,7 +1,7 @@
 <div class="modal animated fadeIn" id="prodReviewModal" role="dialog" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-0">
-      <div style="border: none" class="modal-header">
+      <div style="border: none" class="modal-header pb-0">
         <h5 class="modal-title w-100" id="staticBackdropLabel">Your Review</h5>
         <button (click)="hide_review_modal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -10,7 +10,7 @@
       <div class="modal-body row">
         <div class="col-md-12">
           <div class="card" style="border: none">
-            <div class="card-body">
+            <div class="">
               <div class="form-group">
                 <textarea [(ngModel)]="reviewText" class="form-control" id="review"
                   placeholder="Type your comments here.." rows="7"></textarea>
