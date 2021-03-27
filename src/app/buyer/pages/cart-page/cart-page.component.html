@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-12 col-lg-12 col-xl-8">
       <div class="card-body">
-        <ul class="list-unstyled mb-0">
+        <ul class="list-unstyled mb-0" *ngIf="cart?.products?.length>0">
           <li
             class="media"
             *ngFor="let product of cart.products; let i = index"

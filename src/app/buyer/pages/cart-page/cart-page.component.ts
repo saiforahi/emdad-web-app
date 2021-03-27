@@ -191,13 +191,13 @@ export class CartPageComponent implements OnInit {
       //   commission: 0,
       // });
 
-      // this.tracking_order.push({
-      //   seller: element.seller.id,
-      //   product: element.id,
-      //   status: 1,
-      //   order_created_by: this.userId,
-      //   order_creation_date: '',
-      // });
+      this.tracking_order.push({
+        seller: element.seller.id,
+        product: element.id,
+        status: 1,
+        order_created_by: this.userId,
+        order_creation_date: '',
+      });
 
       // var sellerFind = this.tracking_order.find(
       //   (x) => x.seller === element.seller.id
@@ -338,11 +338,18 @@ export class CartPageComponent implements OnInit {
   }
 
   proceedToCheckout() {
-    // this.orders_details.forEach((element) => {
-    //   element.vat_amount = this.vatAmount;
-    //   element.commission = this.commissionAmount;
-    // });
-
+    let orders_details=[]
+    this.cart.products.forEach((product:Product) => {
+      orders_details.push({
+        quantity:product.cart_qty,
+        unit_price:product.unit_price,
+        seller:product.seller.id,
+        pickup_address:product.pickup_address[0].id,
+        vat_amount:product.vat_amount,
+        commission:product.commission,
+        product:product.id
+      })
+    });
     var cart_cash = {
       subtotal: this.subTotal,
       discount: this.discount_coupon_amount,
@@ -357,13 +364,14 @@ export class CartPageComponent implements OnInit {
       payment_type: '',
       discount_coupon_amount: this.discount_coupon_amount,
       discount_coupon: this.discount_coupon,
-      orders_details: this.cart.products,
+      orders_details: orders_details,
       tracking_order: this.tracking_order,
     };
 
     localStorage.setItem('cart_items', JSON.stringify(cart_items));
     localStorage.setItem('cart_cash', JSON.stringify(cart_cash));
-    console.log(localStorage.getItem('cart_json'));
+    console.log(localStorage.getItem('token'));
+    console.log('cart items',localStorage.getItem('cart_items'));
     //this.router.navigate(['checkout',cart_items])
   }
 }
