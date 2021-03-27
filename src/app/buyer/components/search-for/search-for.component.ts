@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../../shared/services/search.service';
 
@@ -8,12 +14,13 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./search-for.component.css'],
 })
 export class SearchForComponent implements OnInit {
-  @ViewChildren('searchInputDiv')
-  searchInputDiv: QueryList<ElementRef>;
-  products:any = [];
-  show_suggestion:boolean;
-  searchInput:string = '';
-
+  // @ViewChildren('searchInputDiv')
+  // searchInputDiv: QueryList<ElementRef>;
+  products: any = [];
+  show_suggestion: boolean;
+  searchInput: string = '';
+  keyword = 'name';
+  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -22,44 +29,36 @@ export class SearchForComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.searchInput.length)
+  }
+
+  onSelectItem(val){
+    this.searchInput = val.slug;
   }
 
   search() {
+    console.log(this.searchInput)
     this.router.navigate(['/search'], {
       queryParams: { query: this.searchInput },
     });
   }
-  focusOutFunction(){
-    if(document.getElementById('cat_menu')){
-      document.getElementById('cat_menu').style.zIndex=""
-    }
-    this.show_suggestion=false;
-  }
-  setItem(prod_name:string){
-    console.log(prod_name)
-    this.searchInput=prod_name
-  }
-  update_suggestions(){
-    console.log(this.searchInputDiv);
-    if(this.searchInput!==undefined){
-      this.searchService.search(this.searchInput).subscribe(result=>{
-        this.products=result.data.results
-        this.show_suggestion=true;
-        if(document.getElementById('cat_menu')){
-          document.getElementById('cat_menu').style.zIndex="-1"
-        }
-      })
-    }
-    else{
-      this.products=[]
-    }
-  }
 
-  get_matched_part(name:string,query:string){
-    return name.slice(0,query.length)
-  }
-  get_suggested_part(name:string,query:string){
-    return name.slice(query.length,name.length)
+  update_suggestions(val?) {
+    this.isLoading = true;
+    this.searchInput = val;
+    console.log(val);
+    if (val !== undefined) {
+      this.searchService.search(val).subscribe((result) => {
+        this.products = result.data.results;
+        this.isLoading = false;
+      });
+    } else if (val == undefined) {
+      val = '';
+      this.searchService.search(val).subscribe((result) => {
+        this.products = result.data.results;
+        this.isLoading = false;
+      });
+    }else {
+      this.products = [];
+    }
   }
 }

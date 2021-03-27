@@ -20,6 +20,8 @@ import { ProductCardHorizonalComponent } from '../../buyer/components/product-ca
 import { RfqModalProductDescriptionComponent } from '../../seller/components/rfq-modal-product-description/rfq-modal-product-description.component';
 import { HtmltoPlainPipe } from 'src/app/shared/pipes/htmlto-plain.pipe';
 import { PushIntoArrayPipe } from 'src/app/shared/pipes/push-into-array.pipe';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 const UI = [
   ProductListComponent,
   SearchForComponent,
@@ -49,6 +51,7 @@ const UI = [
     LazyLoadImageModule,
     NgbModule,
     NgxSpinnerModule,
+    AutocompleteLibModule,
   ],
   exports: [UI],
 })
