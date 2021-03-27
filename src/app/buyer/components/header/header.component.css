@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
 
 a:hover {
@@ -20,7 +27,10 @@ nav {
 }
 
 .navbar-expand-lg .navbar-collapse {
-  flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
 }
 
 .navbar-light #navbarSupportedContent1 .navbar-nav .nav-link {
@@ -32,7 +42,7 @@ nav {
   letter-spacing: 0px;
   text-align: left;
   color: #2b2b2b;
-  margin-top: 13px;
+  margin-top: 9px;
 }
 
 .navbar-light #navbarSupportedContent2 .navbar-nav .nav-link {
@@ -52,12 +62,13 @@ nav {
 }
 
 nav .dropdown-menu {
-  top: 90px;
+  top: 88px;
   left: unset;
   right: 0;
   border: none;
   border-radius: 0;
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+          box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
 }
 
 nav .dropdown-item {
@@ -90,9 +101,9 @@ nav .all-products-list .dropdown-item:focus,
 
 /* all products dropdown styling end ===================================== */
 
-.user-name {
+/* .user-name {
   margin: 5px 0 0;
-}
+} */
 
 .user-img-holder {
   position: relative;
@@ -111,7 +122,9 @@ nav .all-products-list .dropdown-item:focus,
   background: #eee;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 /* hide default bootstrap down carrot */
@@ -174,12 +187,12 @@ nav .profile-list img {
 }
 
 app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
-  height: 65px;
+  height: 55px;
   width: 288px;
 }
 
 app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
-  height: 65px;
+  height: 55px;
   width: 288px;
 }
 
@@ -189,16 +202,18 @@ app-search-for ::ng-deep .ng-autocomplete {
 
 app-search-for ::ng-deep button {
   padding: 0 25px;
-  height: 65px;
+  height: 55px;
 }
 
 .secondary-menu {
   height: 80px;
   background: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
   z-index: 99;
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
 }
 
 .secondary-menu .nav-link {
@@ -214,16 +229,22 @@ app-search-for ::ng-deep button {
 
 .secondary-menu .nav-link:hover {
   color: #1f4f9e !important;
+  -webkit-transition: ease-in 0.3s;
+  -o-transition: ease-in 0.3s;
   transition: ease-in 0.3s;
 }
 
 .secondary-menu .nav-link:hover .menu-underline {
   width: 60%;
+  -webkit-transition: ease-in 0.3s;
+  -o-transition: ease-in 0.3s;
   transition: ease-in 0.3s;
 }
 
 .secondary-menu .nav-link .menu-underline.active {
   width: 60%;
+  -webkit-transition: ease-in 0.3s;
+  -o-transition: ease-in 0.3s;
   transition: ease-in 0.3s;
 }
 
@@ -233,6 +254,8 @@ app-search-for ::ng-deep button {
   left: 8px;
   width: 0%;
   border-bottom: 2px solid #1f4f9e;
+  -webkit-transition: ease-in 0.3s;
+  -o-transition: ease-in 0.3s;
   transition: ease-in 0.3s;
 }
 
@@ -269,7 +292,8 @@ button:focus {
   font-size: 20px;
   line-height: 29px;
   text-align: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-decoration: none;
   background-color: transparent;
   cursor: pointer;
@@ -303,7 +327,8 @@ button:focus {
   font-size: 20px;
   line-height: 29px;
   text-align: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-decoration: none;
   background-color: transparent;
   cursor: pointer;
@@ -343,7 +368,8 @@ button:focus {
   color: #fff;
   font-size: 12px;
   line-height: 1.8;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (min-width: 1200px) {
@@ -383,6 +409,8 @@ button:focus {
     left: -100%;
     top: 0;
     opacity: 0;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
   }
   .side-menu-div {
@@ -390,19 +418,26 @@ button:focus {
     width: 300px;
     height: 100vh;
     background: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
     overflow-y: auto;
     left: -300px;
     top: 0;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
   }
   .side-menu-holder-active {
     left: 0;
     opacity: 1;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
   }
   .side-menu-div-active {
     left: 0;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
   }
   .side-menu {
@@ -444,7 +479,8 @@ button:focus {
     height: 24px;
   }
   .my-profile-menu ::ng-deep .mat-expansion-panel {
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .my-profile-menu ::ng-deep .mat-expansion-panel-body {
     padding: 15px 24px 0px;

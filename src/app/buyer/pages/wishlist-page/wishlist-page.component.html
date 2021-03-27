@@ -1,9 +1,9 @@
 <app-breadcrumbs [directoryString]="'Wishlist'" (view_style)="set_style($event)"></app-breadcrumbs>
-<section class="">
-    <div class="" *ngIf="products">
+<section class="container">
+    <div class="row" *ngIf="products">
         <!-- <div class="col-md-2" *ngFor="let product of products"> -->
           <!-- <app-product-card [product]="product"></app-product-card> -->
-          <app-product-list [products]="products" [view_style]="style">
+          <app-product-list [products]="products" [view_style]="style" [prodInRow6]='true'>
           </app-product-list>
         <!-- </div> -->
         <p *ngIf="prodEnd || products.length == 0" class="text-center mt-5"><b>No more products to show</b></p>

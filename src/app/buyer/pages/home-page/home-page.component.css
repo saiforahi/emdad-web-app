@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 a {
   text-decoration: none;
   color: inherit;
@@ -25,7 +32,9 @@ button:focus {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 9;
 }
 
@@ -47,6 +56,8 @@ button:focus {
 .single-category {
   padding: 20px 15px;
   background: unset;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   background: #fff;
   height: 120px;
@@ -59,6 +70,8 @@ button:focus {
 .single-category:hover {
   background: #fafafa;
   cursor: pointer;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -80,7 +93,8 @@ button:focus {
   width: calc(100% - 100px);
   text-transform: capitalize;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   font-style: normal;
   font-weight: normal;
@@ -100,7 +114,8 @@ button:focus {
   background: #fafafa;
   z-index: 9;
   padding: 40px 0;
-  box-shadow: 0 30px 30px rgb(0 0 0 / 10%);
+  -webkit-box-shadow: 0 30px 30px rgb(0 0 0 / 10%);
+          box-shadow: 0 30px 30px rgb(0 0 0 / 10%);
 }
 
 .subCatItem,
@@ -115,6 +130,8 @@ button:focus {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   padding-bottom: 10px;
 }
@@ -127,6 +144,8 @@ button:focus {
   /* color: #f49814; */
   color: #1f4f9e;
   font-weight: 500;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -158,12 +177,16 @@ button:focus {
   padding: 50px;
   margin: auto;
   color: #2b2b2b;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
 .cat-round-bg:hover {
   background: #1f4f9e;
   color: #fff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -230,7 +253,9 @@ button:focus {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 @media only screen and (min-width: 1200px) {
@@ -278,6 +303,23 @@ button:focus {
     height: 40px;
     font-size: 16px;
     padding: 4px 35px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
+    width: 200px;
+    height: 60px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
+    width: 200px;
+    height: 60px;
+    font-size: 16px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete {
+    width: 200px;
+    height: 60px;
+  }
+  app-search-for ::ng-deep button {
+    height: 60px;
+    padding: 0 20px;
   }
 }
 
@@ -430,5 +472,32 @@ button:focus {
     width: calc(100% - 50px);
     font-size: 14px;
     margin-top: 0px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
+    width: 380px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
+    width: 380px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete {
+    width: 380px;
+  }
+  app-search-for ::ng-deep button {
+    height: 90px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
+    width: 380px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
+    width: 380px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete {
+    width: 380px;
+  }
+  app-search-for ::ng-deep button {
+    height: 90px;
   }
 }

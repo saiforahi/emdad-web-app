@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 a:hover {
   cursor: pointer;
 }
@@ -24,6 +31,8 @@ footer {
 }
 
 footer .list-group-horizontal {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -43,12 +52,19 @@ footer .list-group-item {
   /* height: 60px;
 width:60px; */
  /* border-radius: 50%; */
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   text-align: center;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   list-style-type:none !important;
- text-decoration-style: none !important;
+ -webkit-text-decoration-style: none !important;
+         text-decoration-style: none !important;
  
 }
 .icon-holder button{
@@ -56,7 +72,8 @@ width:60px; */
   color: #454F63;
   height: 60px;
   width: 60px;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   font-size: 20px;
   margin-right: 8px;
   margin-top: 10px;
@@ -77,6 +94,8 @@ width:60px; */
 .social-links .icon-holder > button:hover,.social-links .icon-holder > button:active {
   color: #fff !important;
   background-color: #1f4f9e !important;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
  
 }

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .modal-title {
   font-style: normal;
   font-weight: 500;
@@ -11,7 +18,6 @@
   max-height: 765px;
   background: #ffffff;
   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
   -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
 }

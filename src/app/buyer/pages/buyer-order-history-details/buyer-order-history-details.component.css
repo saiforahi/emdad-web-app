@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .header-text {
   font-size: 48px;
   line-height: 69px;
@@ -65,10 +72,12 @@ h5 {
   padding-top: 35px;
   padding-bottom: 35px;
   border: 2px dashed #CFCFCF;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
  text-indent: 10px;
- text-decoration: underline 1px #2b2b2b;
+ -webkit-text-decoration: underline 1px #2b2b2b;
+         text-decoration: underline 1px #2b2b2b;
  text-underline-offset: 2px;
  text-align: center !important;
   background-color: transparent !important;
