@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .card {
   padding: 20px;
   border: none;
@@ -54,7 +61,8 @@
 }
 .request-btn {
   border: 1px solid #1f4f9e;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   font-weight: 500;
   height: 48px;

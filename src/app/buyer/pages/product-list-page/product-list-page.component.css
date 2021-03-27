@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .banner {
   position: relative;
   height: auto;
@@ -70,7 +77,8 @@
 .mat-expansion-panel {
   background: none;
   border-radius: 0px !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .mat-expansion-panel-header {
@@ -133,8 +141,12 @@
 }
 
 .expanded-div .mat-expansion-panel-header-description {
-  justify-content: flex-end;
-  align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .mat-expansion-panel-header-title,
@@ -231,6 +243,8 @@ nav {
 
 @media only screen and (min-width: 300px) and (max-width: 991px) {
   .seller-menu.navbar-expand-lg .navbar-collapse {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
   }
 
@@ -257,6 +271,8 @@ nav {
     z-index: 9;
     overflow-y: auto;
     opacity: 0;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
   }
   .side-cat-menu.active {
@@ -264,8 +280,11 @@ nav {
     top: 0;
     height: 100vh;
     z-index: 99999;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
     opacity: 1;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
   }
   .product-list-content {
@@ -284,7 +303,8 @@ nav {
     border-top-left-radius: 0;
     min-width: 55px;
     padding: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   }
   .cat-menu-toggle-btn img {
     height: 25px;
@@ -298,6 +318,8 @@ nav {
     left: -100px;
     z-index: 999999999999;
     opacity: 0;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
   }
   .cat-menu-close-btn.active {
@@ -310,8 +332,11 @@ nav {
     border-top-left-radius: 0;
     min-width: 55px;
     padding: 5px;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
     opacity: 1;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
     z-index: 999999999999;
   }

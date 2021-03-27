@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 a {
   text-decoration: none;
 }
@@ -188,10 +195,11 @@ pinch-zoom /deep/ .pinch-zoom-content {
   margin-right: 15px;
 }
 
-@keyframes example {
+@-webkit-keyframes example {
   0% {
     /* opacity: 1; */
-    transform: scale(0);
+    -webkit-transform: scale(0);
+            transform: scale(0);
   }
   /* 50% {
     opacity: 0.5;
@@ -199,14 +207,35 @@ pinch-zoom /deep/ .pinch-zoom-content {
   } */
   100% {
     /* opacity: 0; */
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes example {
+  0% {
+    /* opacity: 1; */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  /* 50% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  } */
+  100% {
+    /* opacity: 0; */
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
 .prod-card-holder {
-  animation-name: example;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in;
+  -webkit-animation-name: example;
+          animation-name: example;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
 }
 
 /* ngb-carousel /deep/ .carousel-control-prev {

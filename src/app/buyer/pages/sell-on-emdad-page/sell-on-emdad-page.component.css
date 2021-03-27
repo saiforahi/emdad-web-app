@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 *:focus {
   outline: none;
 }
@@ -91,7 +98,8 @@ font-size: 24px;
 line-height: 35px;
 text-align: center;
 color: #FFFFFF;
-box-shadow: none !important;
+-webkit-box-shadow: none !important;
+        box-shadow: none !important;
 }
 /*register holder mobile design*/
 .register-holder-mobile{
@@ -134,7 +142,8 @@ color: #2B2B2B;
   line-height: 35px;
   text-align: center;
   color: #FFFFFF;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   }
  /*why us section*/
  .why-us{
@@ -196,8 +205,10 @@ color: #2B2B2B;
 .example{
   border-radius: 10px !important;
   background: #FFFFFF;
-  box-shadow: none !important;
-  box-shadow: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  -webkit-box-shadow: 0 !important;
+          box-shadow: 0 !important;
 }
 .heading-text{
   margin-bottom: 50px;
@@ -226,8 +237,11 @@ color: #2B2B2B;
   width: 150px;
   border-radius: 50%; */
   text-align: center;
-  align-content: center;
-  align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   
 /*   -moz-border-radius: 50%;
   -webkit-border-radius: 50%; */
@@ -280,11 +294,16 @@ text-align: center;
   padding-top: 15px;
   padding-bottom: 15px;
   background: #FFFFFF;
-box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
+-webkit-box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
+        box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
 border-radius: 10px !important;
 border-color: transparent !important;
-justify-content: center;
-align-items: center;
+-webkit-box-pack: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+-webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
 }
 .card-img >img{
   height: 100px;
@@ -428,6 +447,8 @@ height: 150px;
   }
   .register-holder-mobile{
     display: block !important;
+    background: -webkit-gradient(linear, right top, left top, color-stop(12.5%, rgba(255, 255, 255, 0.12)), color-stop(46.88%, #F7F7F7), color-stop(60.53%, rgba(249, 251, 251, 0.05)));
+    background: -o-linear-gradient(right, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
     background: linear-gradient(270deg, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
 
   }

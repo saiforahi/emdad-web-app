@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 *:focus {
   outline: none;
 }
@@ -22,7 +29,8 @@
 } */
 
 ::ng-deep .ng-autocomplete .autocomplete-container {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   height: 90px;
 }
 
@@ -39,7 +47,8 @@
 }
 
 input:focus {
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 button {
@@ -49,7 +58,8 @@ button {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   padding: 0 45px;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   height: 90px;
   vertical-align: bottom;
 }
@@ -124,6 +134,10 @@ button {
   } */
   button img {
     height: 18px;
+  }
+  ::ng-deep .ng-autocomplete .autocomplete-container .suggestions-container ul li a {
+    padding: 15px !important;
+    font-size: 16px !important;
   }
 }
 

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
 .our-partners{
   font-family: Jost !important;
@@ -5,8 +12,11 @@
 }
 /*first row styles*/
 .first-row{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-      flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
       background: #E5E5E5;
       padding-bottom: 60px;
       font-family: Jost !important;
@@ -93,11 +103,16 @@
       padding-top: 15px;
       padding-bottom: 15px;
       background: #FFFFFF;
-box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
+-webkit-box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
+        box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.07);
 border-radius: 10px !important;
 border-color: transparent !important;
-justify-content: center;
-align-items: center;
+-webkit-box-pack: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+-webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
   }
   .card-img >img{
       height: 60px;
@@ -150,8 +165,12 @@ color: #2B2B2B;
   background-color: white !important;
   border-radius: 5px !important ;
   text-align: center !important;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 14px;
   padding-right: 14px;
   border:0 !important;
@@ -163,7 +182,8 @@ color: #2B2B2B;
 .btn:focus,.btn.focus{
   border:0 !important;
   outline: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 .buttons-nav .btn:active{
   background-color: #1F4F9E !important;
@@ -209,8 +229,12 @@ background-color: #FFFFFF !important;
   text-align: center !important;
   font-size: 15px;
   color: white !important;
-  justify-content: center !important;
-  align-items: center !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
   
   
   /* box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5); */    
@@ -402,7 +426,8 @@ height: 88px;
 @media all and (min-width:600px) and (max-width:992px){
   .first-row{
     display: block !important;
-    flex-wrap: initial;
+    -ms-flex-wrap: initial;
+        flex-wrap: initial;
     padding-bottom: 30px;
 }
 .text-div,.img-div-top{
@@ -434,7 +459,8 @@ height: 88px;
 @media all and (min-width:290px) and (max-width:600px){
   .first-row{
     display: block !important;
-    flex-wrap: initial;
+    -ms-flex-wrap: initial;
+        flex-wrap: initial;
     padding-bottom: 30px;
 }
 .text-div,.img-div-top{

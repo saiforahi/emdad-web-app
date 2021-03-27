@@ -29,8 +29,8 @@
               </a>
             </li>
             <hr>
-            <li *ngIf="!loggedInUser"><span class="pl-0" (click)="closeMenu();" (click)="show_buyer_login()"><img
-                  src="../../../../assets/Login.svg" alt="">
+            <li *ngIf="!loggedInUser"><span class="pl-0" (click)="closeMenu();" (click)="show_buyer_login()">
+              <img src="../../../../assets/Login.svg" alt="">
                 <span>Sign In / Sign Up</span></span></li>
             <div *ngIf="loggedInUser">
               <li [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''" class="my-profile-menu">
@@ -131,7 +131,7 @@
                 <span class="sign-text">Sign in / Sign up</span>
                 <img class="sign-icon" src="../../../../assets/Login.svg" alt="">
               </a>
-              <div class="user-name">
+              <div class="user-name" *ngIf="loggedInUser">
                 <a [routerLink]="['profile']">
                   <div class="d-inline-block user-img-holder">
                     <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"

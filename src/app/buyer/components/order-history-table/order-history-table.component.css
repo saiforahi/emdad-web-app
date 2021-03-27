@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* .table {
   border-collapse: separate;
   border-spacing: 0 15px;
@@ -43,14 +50,20 @@
 tr.mat-row,
 tr.mat-footer-row {
   height: 60px;
-  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+          box-shadow: 0 0 10px rgb(0 0 0 / 20%);
   border-radius: 5px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
 tr.mat-row:hover,
 tr.mat-footer-row:hover {
-  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+          box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 

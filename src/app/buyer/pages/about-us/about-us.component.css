@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
 .about-us{
     background: #E5E5E5;
@@ -7,8 +14,11 @@
     overflow-x: hidden !important;
 }
 .first-row{
+display: -webkit-box;
+display: -ms-flexbox;
 display: flex;
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   font-family: Jost !important;
   
 }
@@ -180,7 +190,8 @@ color: #2B2B2B;
     /* first row*/
 .first-row{
     display: block !important;
-    flex-wrap: initial;
+    -ms-flex-wrap: initial;
+        flex-wrap: initial;
 }
 .img-div-top,.text-div{
     width: 100%;
@@ -214,7 +225,8 @@ line-height: 20px;
 @media all and (min-width:599px) and (max-width:768px){
     .first-row{
         display: block !important;
-        flex-wrap: none;
+        -ms-flex-wrap: none;
+            flex-wrap: none;
     }
     .img-div-top,.text-div{
         width: 100% !important;
@@ -231,7 +243,8 @@ line-height: 20px;
 @media all and (min-width:768px) and (max-width:991px){
     .first-row{
         display: block !important;
-        flex-wrap: none;
+        -ms-flex-wrap: none;
+            flex-wrap: none;
     }
     .img-div-top,.text-div{
         width: 100% !important;
@@ -248,7 +261,8 @@ line-height: 20px;
 @media all and (min-width:991px) and (max-width:1099px){
     .first-row{
         display: block !important;
-        flex-wrap: initial;
+        -ms-flex-wrap: initial;
+            flex-wrap: initial;
     }
     .img-div-top,.text-div{
         width: 100% !important;

@@ -1,5 +1,13 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 *:focus {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .login_btn {
@@ -62,7 +70,9 @@
   background: #eee;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .plus-icon {
@@ -76,7 +86,9 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -151,10 +163,10 @@
     width: 70px;
     height: 70px;
   }
-  .plus-icon {
+  /* .plus-icon {
     margin-top: 50px;
     margin-left: 50px;
-  }
+  } */
   .form-label {
     font-size: 16px;
   }
@@ -179,10 +191,10 @@
     width: 70px;
     height: 70px;
   }
-  .plus-icon {
+  /* .plus-icon {
     margin-top: 50px;
     margin-left: 50px;
-  }
+  } */
   .form-label {
     font-size: 18px;
   }
