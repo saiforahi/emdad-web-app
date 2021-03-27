@@ -1,4 +1,4 @@
-<div class="input-group search-input">
+<!-- <div class="input-group search-input">
     <input #searchInputDiv (focus)="update_suggestions()" (focusout)="focusOutFunction()"  (input)="update_suggestions()" type="text" class="form-control" placeholder="Search by products..." [(ngModel)]="searchInput" (keydown.enter)="search()">
     <div class="input-group-append">
         <button (click)="search()" mat-raised-button>
@@ -13,4 +13,21 @@
             <mat-divider *ngIf="i!=products.length-1"></mat-divider>
         </div>
     </div>
+    (keydown.enter)="search($event)"
+</div> -->
+
+<div class="d-inline-block ng-autocomplete m-auto">
+    <ng-autocomplete [data]="products" [searchKeyword]="keyword" (selected)='onSelectItem($event)'
+        (inputChanged)='update_suggestions($event)' (inputFocused)='update_suggestions();' [itemTemplate]="itemTemplate"
+         [placeholder]="'Search by products'" [isLoading]="isLoading">
+    </ng-autocomplete>
+
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+    </ng-template>
+
+    <!-- <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+    </ng-template> -->
 </div>
+<button mat-raised-button (click)="search()"><img src="../assets/search.svg" alt=""></button>

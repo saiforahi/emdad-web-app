@@ -173,12 +173,31 @@ nav .profile-list img {
   margin-right: 10px;
 }
 
+app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
+  height: 65px;
+  width: 288px;
+}
+
+app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
+  height: 65px;
+  width: 288px;
+}
+
+app-search-for ::ng-deep .ng-autocomplete {
+  width: 288px;
+}
+
+app-search-for ::ng-deep button {
+  padding: 0 25px;
+  height: 65px;
+}
+
 .secondary-menu {
   height: 80px;
   background: rgba(255, 255, 255, 0.85) !important;
   box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
-  z-index: 9;
+  z-index: 99;
   backdrop-filter: blur(20px);
 }
 
@@ -452,6 +471,26 @@ button:focus {
   .all-products-list .row .col-lg-3:nth-child(4n) {
     border-right: none;
   }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
+    width: 200px;
+    height: 50px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .input-container input {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete {
+    width: 200px;
+    height: 50px;
+  }
+  app-search-for ::ng-deep button {
+    height: 50px;
+  }
+  app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .suggestions-container ul li a {
+    font-size: 16px;
+    padding: 15px;
+}
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
