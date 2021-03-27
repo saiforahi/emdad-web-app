@@ -43,6 +43,8 @@ export class PaymentVerifyComponent implements OnInit {
             let order_id = localStorage.getItem('temp_order_id');
             localStorage.removeItem('temp_order_id');
             localStorage.removeItem('prodCartArray');
+            localStorage.removeItem('finalCart');
+            localStorage.removeItem('cart_items');
             this.cart.existingCartLength.next(null);
             this.router.navigate(['/order/details/', order_id]);
           });
@@ -51,6 +53,7 @@ export class PaymentVerifyComponent implements OnInit {
       (error) => {
         this.spinner.hide();
         swal('Failed', 'Failed to verify payment', 'error');
+        this.router.navigate(['/cart']);
       }
     );
   }

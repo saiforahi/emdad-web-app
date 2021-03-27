@@ -68,6 +68,9 @@ export class CheckoutComponent implements OnInit {
     this.addressService.get_addresses().subscribe((response) => {
       console.log(response.data);
       this.addresses = response.data;
+      if(this.addresses.length==1){
+        this.selected_address=0
+      }
     });
   }
 
@@ -161,9 +164,6 @@ export class CheckoutComponent implements OnInit {
           this.add_order_response.data[0].id
         );
         if (this.isWired) {
-          localStorage.removeItem('finalCart');
-          localStorage.removeItem('prodCartArray');
-          localStorage.removeItem('cart_items');
           this.spinner.hide();
           this.router.navigate([
             'order/details/',
