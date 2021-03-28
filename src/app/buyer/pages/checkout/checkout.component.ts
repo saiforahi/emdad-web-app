@@ -93,10 +93,16 @@ export class CheckoutComponent implements OnInit {
     this.isWired = true;
     this.payment_type = '0';
   }
+
   show_address_form() {
     //new address add form show action
     this.new_address = !this.new_address;
   }
+
+  scrollToAddressForm(el: HTMLElement){
+    el.scrollIntoView({behavior:"smooth", block: "center"});
+  }
+
   add_payment() {
     //this.orderService.get_active_shipping_address_of_buyer().subscribe((success) => { //getting active shipping address of buyer
     // console.log(JSON.stringify({
@@ -117,7 +123,6 @@ export class CheckoutComponent implements OnInit {
     //     "ip": "127.0.0.1"
     //   }
     // }))
-
     //});
     this.orderService
       .add_payment({
