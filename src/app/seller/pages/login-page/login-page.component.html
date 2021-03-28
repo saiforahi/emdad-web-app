@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 login-form-holder">
-      <div class="float-right">
+    <div class="col-md-12 col-sm-12 login-form-holder col-12 col-lg-6">
+      <div class="float-right lang-float">
         <button mat-raised-button class="lang-btn">
           <i class="fas fa-language"></i>
           Arabic
@@ -15,7 +15,7 @@
         <div class="card-body">
           <form [formGroup]="sellerLoginForm" (ngSubmit)="onSubmit(sellerLoginForm.value)">
             <div class="form-group">
-              <label for="email">Company email</label>
+              <label for="email" class="form-label">Company email</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-envelope"></i></div>
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
+              <label for="password" class="form-label">Password</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
@@ -69,33 +69,33 @@
                 </div>
               </div>
               <div class="col-6 text-right">
-                <a [routerLink]="['/forget-password']"><label>Forgot your password?</label></a>
+                <a [routerLink]="['/forget-password']"><label class="form-label">Forgot your password?</label></a>
               </div>
             </div>
             <div class="form-group">
               <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn">
-                Sign In
+                Sign in
               </button>
             </div>
             <div class="form-group">
               <div class="text-center">
-                <label>Not a seller, yet? <a [routerLink]="['/dashboard/signup']" class="ml-1">Join Us</a></label>
+                <label class="join-text">Not a seller, yet? <a [routerLink]="['/dashboard/signup']" class="ml-1 join">Join Us</a></label>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12 col-sm-12 col-12 col-lg-6">
       <div class="card text-white login-page-social">
         <div class="card-img-overlay">
           <div class="row justify-content-center">
-            <img src="../../../assets/logo-white.svg" alt="align-self-center" />
+            <img src="../../../assets/logo-white.svg" alt="align-self-center" class="img-fluid logo-img" />
           </div>
-          <div class="row justify-content-center mb-4">
-            <h3 class="slogan">YOUR SLOGAN HERE</h3>
+          <div class="row justify-content-center">
+            <h3 class="slogan text-center">YOUR SLOGAN HERE</h3>
           </div>
-          <div class="row justify-content-center ">
+          <div class="row justify-content-center">
             <h5 class="slogan-description text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -103,14 +103,15 @@
             </h5>
           </div>
           <div class="row justify-content-center">
-            <div class="social-media">
-              <a target="blank" href="www.facebook.com"><button mat-raised-button>
-                  <i class="fab fa-facebook-f"></i></button></a>
-              <button mat-raised-button>
-                <i class="fab fa-twitter"></i></button>
-              <button mat-raised-button>
+            <div class="social-media text-center">
+            
+              <button mat-raised-button class="mt-1">
+                  <i class="fab fa-twitter"></i></button>
+              <button mat-raised-button class="mt-1">
+                <i class="fab fa-instagram"></i></button>
+              <button mat-raised-button class="mt-1">
                 <i class="fab fa-youtube"></i></button>
-              <button mat-raised-button>
+              <button mat-raised-button class="mt-1">
                 <i class="fab fa-pinterest-p"></i></button>
             </div>
           </div>
@@ -123,4 +124,4 @@
     </div>
   </div>
 </div>
-<ngx-spinner></ngx-spinner>
+<!-- <ngx-spinner></ngx-spinner> -->
