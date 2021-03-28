@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from 'src/app/shared/models/Order.model';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
@@ -56,19 +55,26 @@ export class TrackOrderComponent implements OnInit {
 
   change_filter_value(value:number) {
     this.filtered_orders = [];
-    this.orderData.forEach((order) => {
-      // console.log('selected value:',value)
-      // console.log('order',order.tracking_order[0].status)
-      if (order.tracking_order[0].status == value) {
-        // console.log('if block');
-        this.filtered_orders.push(order);
-      }
-    });
-    // console.log(this.filtered_orders);
+    console.log('selected value:',value)
+    if(value.toString()==="-1"){
+      this.filtered_orders=this.orderData
+    }
+    else{
+      this.orderData.forEach((order) => {
+        // console.log('selected value:',value)
+        // console.log('order',order.tracking_order[0].status)
+        if (this.status_master(order) == value) {
+          // console.log('if block');
+          console.log('matched value',value)
+          this.filtered_orders.push(order);
+        }
+      });
+    }
+    
   }
 
-  get_status(value) {
-    let status;
+  get_status(value:number) {
+    let status:string;
     switch (value) {
       case 1:
         status = 'Created';
@@ -90,5 +96,16 @@ export class TrackOrderComponent implements OnInit {
         break;
     }
     return status;
+  }
+
+  status_master(order:any){
+    let min_status:number=order.tracking_order[0].status
+    order.tracking_order.forEach(element => {
+      if(element.status<min_status){
+        min_status=element.status
+      }
+    });
+    console.log('min_status',min_status)
+    return min_status
   }
 }
