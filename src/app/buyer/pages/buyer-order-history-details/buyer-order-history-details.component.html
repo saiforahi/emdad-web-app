@@ -142,15 +142,16 @@
         <div class="row">
           <div class="col-md-12">
             <button class="download-payment-history w-100">
-              <img src="../../../../assets/upload.svg" alt="" /> Payment
-              History.pdf
+              <input type="file" (change)="set_invoice($event)"/>
+              <!-- <img src="../../../../assets/upload.svg" alt="" />  -->
+              
             </button>
           </div>
         </div>
         <!--proceed button-->
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12 col-12 mobile-center">
-            <button mat-raised-button class="download-btn">Proceed</button>
+            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">Upload Invoice</button>
           </div>
         </div>
       </div>

@@ -104,4 +104,8 @@ export class OrderService {
       this.httpOptions
     );
   }
+
+  upload_invoice(order_id:any,data:any):Observable<any> {
+    return this.http.post(config.base_url + 'api/order/wired/transfer/invoice/'+order_id+'/',data,this.httpOptions)
+  }
 }
