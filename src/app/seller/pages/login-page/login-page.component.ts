@@ -53,8 +53,8 @@ export class LoginPageComponent implements OnInit {
       (success) => {
         console.log(success);
         this.spinner.hide();
-        this.router.navigate(['dashboard']);
         swal('Succeed', 'You have logged in successfully', 'success');
+        this.router.navigate(['dashboard']);
       },
       (error) => {
         this.error = error;
