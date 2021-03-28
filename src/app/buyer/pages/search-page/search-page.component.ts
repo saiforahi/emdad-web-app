@@ -22,8 +22,11 @@ export class SearchPageComponent implements OnInit {
   min_price: number;
   max_price: number;
   _brand: any;
+  selected_brands:Array<any>=[]
   _color: any;
+  selected_colors:Array<any>=[]
   _price: any;
+  selected_price_ranges:Array<any>=[]
   price_slider_value;
   constructor(
     private searchService: SearchService,
@@ -52,27 +55,9 @@ export class SearchPageComponent implements OnInit {
     //
   }
   onPriceSliderChange(event) {
-    let query: string = '';
-    if (this._brand !== null && this._brand !== undefined && this._brand !== '') {
-      query += 'brand=' + this._brand;
-    }
-    if (this._color !== null &&this._color !== undefined &&this._color !== '') {
-      query += '&color=' + this._color;
-    }
-    if (
-      this._price !== null &&
-      this._price !== undefined &&
-      this._price !== ''
-    ) {
-      query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-    }
-    console.log(query);
-    this.route.queryParams.subscribe((params) => {
-      this.searchService.filter_products('search=' + params.query + '&' + query).subscribe((item) => {
-          this.products = item.data.results;
-          window.scrollTo(0, 0);
-        });
-    });
+    this.selected_price_ranges=[]
+    this.selected_price_ranges.push((this.min_price-1)+' '+event.value)
+    this._filter()
   }
   getProdOnFilter(ChildCatId, subCatId, catId) {
     this.router.navigate(['/products/category/', ChildCatId]);
@@ -133,37 +118,92 @@ export class SearchPageComponent implements OnInit {
       return ranges;
     }
   }
-  setBrand(brand_name) {
-    this._brand = brand_name;
-    this._filter();
+  setBrand(brand_name:string,checked:boolean) {
+    if(checked){
+      this.selected_brands.push(brand_name)
+      console.log('selected brands',this.selected_brands)
+      this._filter();
+    }
+    else{
+      this.selected_brands=this.array_item_remover(brand_name,this.selected_brands)
+      console.log('selected brands',this.selected_brands)
+      this._filter();
+    }
   }
-  setColor(color_name) {
-    this._color = color_name;
-    this._filter();
+  setColor(color_name:string,checked:boolean) {
+    if(checked){
+      this.selected_colors.push(color_name)
+      console.log('selected colors',this.selected_colors)
+      this._filter()
+    }
+    else{
+      this.selected_colors=this.array_item_remover(color_name,this.selected_colors)
+      console.log('selected colors',this.selected_colors)
+      this._filter()
+    }
   }
-  setPrice(price) {
-    this._price = price;
-    this._filter();
+  setPrice(price:string,checked:boolean) {
+    if(checked){
+      this.selected_price_ranges.push(price)
+      // console.log(this.selected_price_ranges)
+      this._filter();
+    }
+    else{
+      this.selected_price_ranges = this.array_item_remover(price,this.selected_price_ranges)
+      //console.log(this.selected_price_ranges)
+      this._filter();
+    }
+  }
+  array_item_remover(item:string,array:Array<string>):Array<string>{
+    for(let index=0;index<array.length;index++){
+      if(array[index]===item){
+        delete array[index]
+      }
+    }
+    let temp = [];
+    for(let i of array){
+        i && temp.push(i); // copy each non-empty value to the 'temp' array
+    }
+    array = temp;
+    return array
   }
   _filter() {
     let query: string = '';
-    if (this._brand !== null &&this._brand !== undefined &&this._brand !== '') {
-      query += 'brand=' + this._brand;
+    if(this.selected_brands.length>0){
+      query += '&brand='+this.selected_brands.toString()
     }
-    if (this._color !== null &&this._color !== undefined &&this._color !== '') {
-      query += '&color=' + this._color;
+    if(this.selected_colors.length>0){
+      query += '&color=' + this.selected_colors.toString()
     }
-    if (this._price !== null &&this._price !== undefined &&this._price !== '') {
-      query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
-    }
-    console.log(query);
+    // if (this._price !== null &&this._price !== undefined &&this._price !== '') {
+    //   query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];
+    // }
     this.route.queryParams.subscribe((params) => {
-      this.searchService
-        .filter_products('search=' + params.query + '&' + query)
+      if(this.selected_price_ranges?.length>0){
+        this.products=[]
+        this.selected_price_ranges.forEach(range=>{
+          let temp_query= query+'&min_price=' + range.split(' ')[0]+'&max_price='+ range.split(' ')[1]
+          console.log('temp_query','search=' + params.query + temp_query)
+          this.searchService
+          .filter_products('search=' + params.query + temp_query)
+          .subscribe((item) => {
+            this.products = [...this.products,...item.data.results];
+            console.log('products',this.products)
+          });
+        })
+        window.scrollTo(0, 0);
+      }
+      else{
+        console.log('query','search=' + params.query + query);
+        this.searchService
+        .filter_products('search=' + params.query + query)
         .subscribe((item) => {
-          this.products = item.data.results;
+          this.products = item.data.results
+          console.log('products',this.products)
           window.scrollTo(0, 0);
         });
+      }
+      
     });
   }
   set_style(value: string) {

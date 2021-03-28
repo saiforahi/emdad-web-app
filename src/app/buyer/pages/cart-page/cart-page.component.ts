@@ -111,14 +111,14 @@ export class CartPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    var values = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
+    // var values = [],
+    //     keys = Object.keys(localStorage),
+    //     i = keys.length;
 
-    while ( i-- ) {
-        values.push( localStorage.getItem(keys[i]) );
-    }
-    console.log('localstorage values',values)
+    // while ( i-- ) {
+    //     values.push( localStorage.getItem(keys[i]) );
+    // }
+    // console.log('localstorage values',values)
     window.scrollTo({
       top: 0,
       left: 0,

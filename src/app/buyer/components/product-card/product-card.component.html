@@ -6,7 +6,7 @@
             </div>
             <mat-card-content>
                 <p class="product-name">
-                    {{product.name | slice:0:20}}{{product.name.length>20?'...':''}}
+                    {{product.name | slice:0:20}}{{product.name?.length>20?'...':''}}
                 </p>
                 <p class="product-price">SAR {{ product.unit_price |  number:'1.0-0' }} <span class="price-ext-text">/ each</span></p>
                 <p class="store-name">{{product.seller.full_name | titlecase}} {{product.delivery_method==1?'(DDP)':'(Ex-Works)'}}</p>

@@ -20,7 +20,7 @@
                         </mat-expansion-panel-header>
                         <div *ngIf="brands" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let brand of brands">
-                                <mat-checkbox (change)="$event.checked?setBrand(brand.name):setBrand('')"
+                                <mat-checkbox (change)="setBrand(brand.name,$event.checked)"
                                     class="example-margin">{{brand.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
@@ -37,7 +37,7 @@
                         </mat-expansion-panel-header>
                         <div class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let color of colors">
-                                <mat-checkbox (change)="$event.checked?setColor(color.name):setColor('')"
+                                <mat-checkbox (change)="setColor(color.name,$event.checked)"
                                     class="example-margin">{{color.name | titlecase}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
@@ -56,7 +56,7 @@
                             [max]="max_price" [min]="min_price"></mat-slider>
                         <div *ngIf="prices?.length>0" class="expanded-div mt-2">
                             <mat-panel-title *ngFor="let range of prices">
-                                <mat-checkbox (change)="$event.checked?setPrice(range.value):setPrice('')"
+                                <mat-checkbox (change)="setPrice(range.value,$event.checked)"
                                     class="example-margin">{{range.name}}</mat-checkbox>
                             </mat-panel-title>
                         </div>
