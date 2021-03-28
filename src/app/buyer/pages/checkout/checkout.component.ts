@@ -6,6 +6,7 @@ import { AddressService } from '../../../shared/services/address.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CountryListService } from '../../../shared/services/country-list.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CartServiceService } from '../../../shared/services/cart-service.service';
 import swal from 'sweetalert';
 @Component({
   selector: 'app-checkout',
@@ -43,7 +44,8 @@ export class CheckoutComponent implements OnInit {
     private authService: UserAuthService,
     private orderService: OrderService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private cartService:CartServiceService
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class CheckoutComponent implements OnInit {
     this.payment_type = '1';
     this.isWired = false;
     this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
+    console.log('cash details',this.cash_details)
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
       this.user = data.data;
       console.log(this.user);
@@ -138,10 +141,7 @@ export class CheckoutComponent implements OnInit {
       })
       .subscribe((success) => {
         localStorage.setItem('payment_add_response', JSON.stringify(success));
-        console.log(
-          'payment_add_response',
-          JSON.parse(localStorage.getItem('payment_add_response'))
-        );
+        console.log('payment_add_response',JSON.parse(localStorage.getItem('payment_add_response')));
         window.location.href = success.redirect_url;
       });
   }
@@ -157,19 +157,21 @@ export class CheckoutComponent implements OnInit {
       data.payment_type = parseInt(this.payment_type);
       console.log('cart_data', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
-        this.add_order_response = success;
         console.log(this.add_order_response);
-        localStorage.setItem(
-          'temp_order_id',
-          this.add_order_response.data[0].id
-        );
+        this.add_order_response = success;
         if (this.isWired) {
           this.spinner.hide();
-          this.router.navigate([
-            'order/details/',
-            this.add_order_response.data[0].id,
+          localStorage.removeItem('temp_order_id');
+          localStorage.removeItem('prodCartArray');
+          localStorage.removeItem('finalCart');
+          localStorage.removeItem('cart_items');
+          localStorage.removeItem('cart_cash');
+          localStorage.removeItem('cart')
+          this.cartService.existingCartLength.next(null);
+          this.router.navigate(['order/details/',this.add_order_response.data[0].id,
           ]);
         } else {
+          localStorage.setItem('temp_order_id',this.add_order_response.data[0].id);
           this.add_payment();
         }
       });
