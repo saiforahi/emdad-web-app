@@ -37,6 +37,7 @@
             <button
               mat-button
               (click)="show_address_form()"
+              (click)="scrollToAddressForm(newAddressForm)"
               class="btn btn-default btn-block add-address"
               type="button"
             >
@@ -79,7 +80,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" #newAddressForm>
       <div *ngIf="new_address" class="add-address-div">
         <form [formGroup]="addressForm" (ngSubmit)="onNewAddressFormSubmit()">
           <div class="card-body">
