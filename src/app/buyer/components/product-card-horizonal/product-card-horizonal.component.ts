@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { config } from 'src/config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
+import { Cart } from 'src/app/shared/models/Cart.model';
+import { Product } from 'src/app/shared/models/Product.model';
 @Component({
   selector: 'app-product-card-horizonal',
   templateUrl: './product-card-horizonal.component.html',
@@ -25,7 +27,7 @@ export class ProductCardHorizonalComponent implements OnInit {
     private user: UserAuthService,
     private ProductService: GetProductService,
     private router: Router,
-    private cart: CartServiceService
+    private cartService: CartServiceService
   ) {}
 
   ngOnInit(): void {
@@ -35,49 +37,78 @@ export class ProductCardHorizonalComponent implements OnInit {
     });
     console.log(this.product);
   }
-
-  addToCart(prod) {
-    var foundSameProduct = false;
-
-    if (this.prod_qty > 0) {
-      prod.cart_qty = this.prod_qty > 0 ? this.prod_qty : 1;
-      this.prodCartArray = [];
-      var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
-
-      if (existingCart != null) {
-        existingCart.forEach((element) => {
-          if (prod.id != element.id) {
-            this.prodCartArray.push(element);
-          } else {
-            // console.log('cart matched product', prod);
-            this.openSnackBar('Product cart quantity updated', 'OK');
-            foundSameProduct = true;
-            prod.cart_qty =
-              parseInt(element.cart_qty) + parseInt(prod.cart_qty);
-          }
-        });
-      }
-
-      // if same product not in cart previously, then show the notification
-      if (foundSameProduct === false) {
-        //this.cart.existingCartLength.next(existingCart.length + 1);
-        if(existingCart!=null){
-          this.cart.existingCartLength.next(existingCart.length + 1);
-        }
-        else{
-          this.cart.existingCartLength.next(1);
-        }
-        this.openSnackBar('Added to Cart', 'OK');
-      }
-
-      this.prodCartArray.push(prod);
-      localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
-      this.prod_qty = 0;
-    } else {
-      this.prod_qty = 0;
-      this.openSnackBar('Invalid Quantity', 'OK');
+  add_to_cart(prod:Product){
+    let existingCart:Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
+    let existingCartLength:number=0; //initializing number of products in 
+    var foundSameProduct:boolean = false;
+    if(existingCart===null){
+      existingCart=new Cart() //initializing cart object if it's the first attempt to add to cart
     }
+    if(existingCart?.products?.length>0){
+      existingCartLength=existingCart.products.length
+      existingCart.products.forEach((element) => {
+        if (element.id == prod.id) {
+          console.log('element qty:',element.cart_qty)
+          console.log('selected qty:',this.prod_qty)
+          element.cart_qty= Number(element.cart_qty) + Number(this.prod_qty)
+          foundSameProduct = true;
+        }
+      });
+    }
+    if (prod && !foundSameProduct) {
+      prod.cart_qty = this.prod_qty;
+      existingCart.products.push(prod);
+      this.cartService.existingCartLength.next(existingCartLength + 1);
+      console.log('cart',existingCart)
+      this.openSnackBar('Product added to cart!', 'OK');
+    } else {
+      this.openSnackBar('Product quantity updated!', 'OK');
+    }
+    this.prod_qty=0
+    localStorage.setItem('cart', JSON.stringify(existingCart));
   }
+  // addToCart(prod:Product) {
+  //   var foundSameProduct = false;
+  //   console.log('selected prod: ',prod)
+  //   if (this.prod_qty > 0) {
+  //     prod.cart_qty = this.prod_qty > 0 ? this.prod_qty : 1;
+  //     this.prodCartArray = [];
+  //     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
+
+  //     if (existingCart != null) {
+  //       existingCart.forEach((element) => {
+  //         if (prod.id != element.id) {
+  //           this.prodCartArray.push(element);
+  //         } else {
+  //           // console.log('cart matched product', prod);
+  //           this.openSnackBar('Product cart quantity updated', 'OK');
+  //           foundSameProduct = true;
+  //           prod.cart_qty =
+  //             parseInt(element.cart_qty) +prod.cart_qty;
+  //         }
+  //       });
+  //     }
+
+  //     // if same product not in cart previously, then show the notification
+  //     if (foundSameProduct === false) {
+  //       //this.cart.existingCartLength.next(existingCart.length + 1);
+  //       if(existingCart!=null){
+  //         this.cartService.existingCartLength.next(existingCart.length + 1);
+  //       }
+  //       else{
+  //         this.cartService.existingCartLength.next(1);
+  //       }
+  //       this.openSnackBar('Added to Cart', 'OK');
+  //     }
+
+  //     this.prodCartArray.push(prod);
+  //     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+  //     this.prod_qty = 0;
+  //   } else {
+  //     this.prod_qty = 0;
+  //     this.openSnackBar('Invalid Quantity', 'OK');
+  //   }
+  // }
 
   addToWishlist(prod_id) {
     if (this.userId) {

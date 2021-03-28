@@ -111,6 +111,14 @@ export class CartPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        values.push( localStorage.getItem(keys[i]) );
+    }
+    console.log('localstorage values',values)
     window.scrollTo({
       top: 0,
       left: 0,
@@ -338,13 +346,14 @@ export class CartPageComponent implements OnInit {
   }
 
   proceedToCheckout() {
+    console.log('checking out...')
     let orders_details=[]
     this.cart.products.forEach((product:Product) => {
       orders_details.push({
         quantity:product.cart_qty,
         unit_price:product.unit_price,
         seller:product.seller.id,
-        pickup_address:product.pickup_address[0].id,
+        pickup_address:product.pickup_address[0]?.id,
         vat_amount:product.vat_amount,
         commission:product.commission,
         product:product.id
@@ -370,8 +379,9 @@ export class CartPageComponent implements OnInit {
 
     localStorage.setItem('cart_items', JSON.stringify(cart_items));
     localStorage.setItem('cart_cash', JSON.stringify(cart_cash));
-    console.log(localStorage.getItem('token'));
+    console.log('cart cash',localStorage.getItem('cart_cash'));
     console.log('cart items',localStorage.getItem('cart_items'));
+    this.router.navigate(['/checkout'])
     //this.router.navigate(['checkout',cart_items])
   }
 }

@@ -45,6 +45,9 @@ export class PaymentVerifyComponent implements OnInit {
             localStorage.removeItem('prodCartArray');
             localStorage.removeItem('finalCart');
             localStorage.removeItem('cart_items');
+            localStorage.removeItem('cart_cash');
+            localStorage.removeItem('payment_add_response')
+            localStorage.removeItem('cart')
             this.cart.existingCartLength.next(null);
             this.router.navigate(['/order/details/', order_id]);
           });
