@@ -52,12 +52,14 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(value.email, value.password, 'seller').subscribe(
       (success) => {
         console.log(success);
+        this.spinner.hide();
         this.router.navigate(['dashboard']);
         swal('Succeed', 'You have logged in successfully', 'success');
       },
       (error) => {
         this.error = error;
         console.log(error);
+        this.spinner.hide();
         swal('Failed!', error.message, 'error');
       }
     );
