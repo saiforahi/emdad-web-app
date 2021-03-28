@@ -4,13 +4,14 @@ import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
 import { NgxSpinnerService } from 'ngx-spinner';
 import jsPDF from 'jspdf';
-
+import swal from 'sweetalert'
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
   styleUrls: ['./buyer-order-history-details.component.css'],
 })
 export class BuyerOrderHistoryDetailsComponent implements OnInit {
+  invoice = new FormData();
   order_id: any;
   orders: any;
   base_url: string;
@@ -186,5 +187,25 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   formatDate(date) {
     let d = new Date(date);
     return d.toDateString();
+  }
+  set_invoice(event:any){
+    let file = event.target.files[0];
+    this.invoice.append('image', file, file.name);
+  }
+  uploadInvoice() {
+    this.spinner.show();
+
+    // upload the picture immidiately
+    this.orderService.upload_invoice(this.order_id, this.invoice).subscribe(
+      (success: any) => {
+        this.spinner.hide();
+        swal("Success","Invoice Uploaded","success");
+        // this.openSnackBar('Profile Picture Updated!', 'OK');
+        // this.profile_pic = config.img_base_url + success.data.profile_pic;
+        // this.authService.uImg.next(this.profile_pic);
+        // localStorage.setItem('uimg', this.profile_pic);
+      },
+      (error) => console.error(error)
+    );
   }
 }
