@@ -155,6 +155,9 @@ export class CheckoutComponent implements OnInit {
       this.spinner.show();
       let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
       data.payment_type = parseInt(this.payment_type);
+      data.tracking_order.forEach(element => {
+        element.status=this.payment_type=="1"?2:1
+      });
       console.log('cart_data', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
         console.log(this.add_order_response);

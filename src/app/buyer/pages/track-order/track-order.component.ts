@@ -25,6 +25,7 @@ export class TrackOrderComponent implements OnInit {
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
     this.get_orders();
+    console.log('orders',this.orderData)
   }
 
   get_orders() {
@@ -37,9 +38,7 @@ export class TrackOrderComponent implements OnInit {
   }
 
   handle_dropdown() {
-    if (
-      document.getElementById('filterByStatusDiv').classList.contains('show')
-    ) {
+    if (document.getElementById('filterByStatusDiv').classList.contains('show')) {
       document.getElementById('filterByStatusDiv').classList.remove('show');
     } else {
       document.getElementById('filterByStatusDiv').classList.add('show');
@@ -55,7 +54,7 @@ export class TrackOrderComponent implements OnInit {
     console.log(this.statuses)
   }
 
-  change_filter_value(value) {
+  change_filter_value(value:number) {
     this.filtered_orders = [];
     this.orderData.forEach((order) => {
       // console.log('selected value:',value)

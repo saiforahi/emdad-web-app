@@ -5,10 +5,6 @@ import { GetCategoryService } from '../../../shared/services/get-category.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '../../../shared/services/search.service';
 
-interface PriceRange{
-  min:number;
-  max:number
-}
 
 @Component({
   selector: 'app-product-list-page',
@@ -35,10 +31,6 @@ export class ProductListPageComponent implements OnInit {
   max_price: number;
   _brand: any;
   _color: any;
-  _price: PriceRange={
-    min:0,
-    max:0
-  };
   brands: any = [];
   selected_brands: Array<string>=[]
   selected_colors: Array<string>=[]
@@ -242,17 +234,13 @@ export class ProductListPageComponent implements OnInit {
 
   setPrice(price:string,checked:boolean) {
     if(checked){
-      this._price.min = parseInt(price.split(' ')[0]);
-      this._price.max = parseInt(price.split(' ')[1]);
       this.selected_price_ranges.push(price)
-      console.log(this.selected_price_ranges)
+      // console.log(this.selected_price_ranges)
       this._filter();
     }
     else{
-      this._price.min = this.min_price-1;
-      this._price.max = this.max_price+1;
       this.selected_price_ranges = this.array_item_remover(price,this.selected_price_ranges)
-      console.log(this.selected_price_ranges)
+      //console.log(this.selected_price_ranges)
       this._filter();
     }
   }
@@ -370,8 +358,8 @@ export class ProductListPageComponent implements OnInit {
   }
 
   onPriceSliderChange(event) {
-    this._price.min=this.min_price-1
-    this._price.max=event.value
+    this.selected_price_ranges=[]
+    this.selected_price_ranges.push((this.min_price-1)+' '+event.value)
     this._filter()
   }
 
@@ -399,24 +387,48 @@ export class ProductListPageComponent implements OnInit {
     // if (this._color !== null && this._color !== undefined && this._color !== '') {
     //   query += '&color=' + this._color;
     // }
-    if (this._price.min<this._price.max) {
-      query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
+    // if (this._price.min<this._price.max) {
+    //   query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
+    // }
+    if(this.selected_price_ranges?.length>0){
+      this.products=[]
+      this.selected_price_ranges.forEach((range)=>{
+        let temp_query= query+'&min_price=' + range.split(' ')[0]+'&max_price='+ range.split(' ')[1]
+        console.log(temp_query)
+        if(this.isSeller){
+          this.searchService.sellerwise_filter_products(temp_query,this.sellerId).subscribe((item) => {
+            this.products = [...this.products,...item.data.results]
+            window.scrollTo(0, 0);
+            //this.get_menus();
+          });
+        }
+        else{
+          this.searchService.filter_products(temp_query).subscribe((item) => {
+            console.log('products from res',item.data.results)
+            this.products = [...this.products,...item.data.results]
+            console.log('products',this.products)
+            window.scrollTo(0, 0);
+            //this.get_menus();
+          });
+        }
+        return
+      })
     }
-    console.log('query: ',query);
-    if(this.isSeller){
-      this.searchService.sellerwise_filter_products(query,this.sellerId).subscribe((item) => {
-        this.products = item.data.results;
-        window.scrollTo(0, 0);
-        //this.get_menus();
-      });
-    }
-    else{
-      this.searchService.filter_products(query).subscribe((item) => {
-        this.products = item.data.results;
-        window.scrollTo(0, 0);
-        //this.get_menus();
-      });
-    }
+    // console.log('query: ',query);
+    // if(this.isSeller){
+    //   this.searchService.sellerwise_filter_products(query,this.sellerId).subscribe((item) => {
+    //     this.products = item.data.results;
+    //     window.scrollTo(0, 0);
+    //     //this.get_menus();
+    //   });
+    // }
+    // else{
+    //   this.searchService.filter_products(query).subscribe((item) => {
+    //     this.products = item.data.results;
+    //     window.scrollTo(0, 0);
+    //     //this.get_menus();
+    //   });
+    // }
     
   }
 
