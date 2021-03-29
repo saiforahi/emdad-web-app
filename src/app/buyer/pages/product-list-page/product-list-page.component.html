@@ -96,7 +96,7 @@
                                             No item to show
                                         </div>
                                         <!-- level three -->
-                                        <div *ngFor="let child of subcategory.children">
+                                        <div *ngFor="let child of subcategory.children" style="padding-left: 15px;">
                                             <!-- [routerLink]="['/products/category/', child.id]" -->
                                             <!-- <a style="margin-left: 10px;"
                                                 (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
@@ -158,7 +158,7 @@
                                         No item to show
                                     </div>
                                     <!-- level three -->
-                                    <div *ngFor="let child of subcategory.children">
+                                    <div *ngFor="let child of subcategory.children" style="padding-left: 15px;">
                                         <!-- [routerLink]="['/products/category/', child.id]" -->
                                         <!-- <a style="margin-left: 10px;"
                                             (click)="getProdOnFilter(child.id, subcategory.id, category.id,child.name);">
@@ -185,7 +185,7 @@
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
-            <mat-divider inset></mat-divider>
+            <!-- <mat-divider inset></mat-divider> -->
             <mat-accordion>
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
