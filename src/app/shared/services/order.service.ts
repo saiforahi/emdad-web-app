@@ -65,6 +65,16 @@ export class OrderService {
     );
   }
 
+  get_seller_order_list(): Observable<any> {
+    return this.http.get(
+      config.base_url +
+        'api/order/list/' +
+        localStorage.getItem('s_uid') +
+        '/',
+      this.httpOptions
+    );
+  }
+
   get_buyer_order_details(order_id: string): Observable<any> {
     return this.http.get(
       config.base_url + 'api/buyer/order/details/' + order_id + '/',

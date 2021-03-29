@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderHistoryModalComponent } from './order-history-modal/order-history-modal.component';
-
+import {OrderService} from '../../../shared/services/order.service'
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -24,9 +24,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./seller-order-history-page.component.css'],
 })
 export class SellerOrderHistoryPageComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  orders:Array<any>=[]
+  constructor(public dialog: MatDialog, private orderService:OrderService) {
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    console.log('hi')
+    this.orderService.get_seller_order_list().subscribe(
+      (success)=>{
+        console.log('orders',success.data)
+        this.orders=success.data
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+  }
 
   displayedColumns: string[] = [
     'position',
