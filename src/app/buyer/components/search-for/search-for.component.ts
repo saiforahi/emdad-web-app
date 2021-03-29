@@ -33,6 +33,7 @@ export class SearchForComponent implements OnInit {
 
   onSelectItem(val){
     this.searchInput = val.slug;
+    this.search()
   }
 
   search() {
