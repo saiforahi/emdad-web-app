@@ -3,12 +3,26 @@
 </section>
 <section class="card mb-5">
   <div class="profile-banner-holder">
-    <img src="../../../../assets/images/profile-banner.png" alt="">
-    <button mat-raised-button class="banner-img-up-btn"><img src="../../../../assets/banner-img-up-icon.svg"
-        alt=""></button>
+    <img src="{{banner_pic}}" alt="">
+    <!-- <img src="../../../../assets/images/profile-banner.png" alt=""> -->
+    <label for="banner" class="banner-img-up-btn mb-0">
+      <!-- banner -->
+      <input id="banner" class="form-control form-control-md" type="file"
+        (change)="uploadBannerPic($event);"/>
+    </label>
+    <!-- <button mat-raised-button class="banner-img-up-btn"><img src="../../../../assets/banner-img-up-icon.svg"
+        alt=""></button> -->
     <div class="seller-pro-pic-holder">
-      <img src="../../../../assets/images/seller-pro-pic.png" alt="">
-      <button mat-raised-button class="pro-img-up-btn"><img src="../../../../assets/Plus-light.svg" alt=""></button>
+      <div class="seller-profile-pic-div">
+        <img src="{{profile_pic}}" alt="">
+        <!-- <img src="../../../../assets/images/seller-pro-pic.png" alt=""> -->
+      </div>
+      <label for="propic" class="pro-img-up-btn mb-0">
+        <!-- propic -->
+        <input id="propic" class="form-control form-control-md" type="file"
+          (change)="uploadProPic($event);"/>
+      </label>
+      <!-- <button mat-raised-button class="pro-img-up-btn" type="file"><img src="../../../../assets/Plus-light.svg" alt=""></button> -->
     </div>
   </div>
   <div class="profile-form-holder">

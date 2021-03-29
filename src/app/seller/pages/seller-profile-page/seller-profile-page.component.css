@@ -37,11 +37,28 @@
   min-width: 48px;
   height: 48px !important;
   padding: 0;
+  cursor: pointer;
+}
+
+.banner-img-up-btn::after {
+  position: absolute;
+  content: "";
+  background-image: url("../../../../assets/banner-img-up-icon.svg");
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  transform: translate(-50%, -50%);
 }
 
 .banner-img-up-btn img {
-  width: 24px;
-  height: 22px;
+  width: 150px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .seller-pro-pic-holder {
@@ -54,9 +71,21 @@
   background: #fff;
 }
 
-.seller-pro-pic-holder img {
-  width: 150px;
+.seller-profile-pic-div {
+  position: relative;
+  border-radius: 50%;
   height: 150px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.seller-profile-pic-div img {
+  width: 150px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pro-img-up-btn {
@@ -70,6 +99,19 @@
   height: 45px;
   min-width: 45px;
   padding: 0;
+  cursor: pointer;
+}
+
+.pro-img-up-btn::after {
+  position: absolute;
+  content: "";
+  background-image: url("../../../../assets/Plus-light.svg");
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  background-size: cover;
+  transform: translate(-50%, -50%);
 }
 
 .pro-img-up-btn img {
@@ -78,7 +120,7 @@
 }
 
 .profile-form-holder {
-    margin-top: 110px;
+  margin-top: 110px;
 }
 
 a {
@@ -319,11 +361,11 @@ input[type="file"] {
   padding-left: 0;
 }
 
-.already-added-file li span:hover{
+.already-added-file li span:hover {
   cursor: pointer;
 }
 
-.already-added-file button{
+.already-added-file button {
   box-shadow: none;
   color: #ff4b55;
 }
