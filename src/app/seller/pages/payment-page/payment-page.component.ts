@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AbstractControl,FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
@@ -8,19 +7,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PaymentPageComponent implements OnInit {
   paymentForm: FormGroup;
-  email: any;
-  password: any;
+  cardNo: AbstractControl;
+  cardHolder: AbstractControl;
+  expiry:AbstractControl;
+  cvv:AbstractControl;
 
   constructor(
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.paymentForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      cardNo: ['', [Validators.required]] ,
+     cardHolder: [''],
+     expiry:[''],
+     cvv:['']
     });
-    this.email = this.paymentForm.controls['email'];
-    this.password = this.paymentForm.controls['password'];
+    this.cardNo = this.paymentForm.controls['cardNo'];
+    this.cardHolder=this.paymentForm.controls['cardHolder'];
+    this.cvv=this.paymentForm.controls['cvv'];
+    this.expiry=this.paymentForm.controls['expiry']
+    
+  }
+
+  onSubmit(){
+
   }
 
 }
