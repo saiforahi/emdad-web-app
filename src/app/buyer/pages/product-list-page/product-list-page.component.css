@@ -82,8 +82,13 @@
 }
 
 .mat-expansion-panel-header {
-  padding: 0 10px;
+  padding: 10px 10px;
   border-bottom: 1px solid #aaa;
+  height: auto;
+}
+
+mat-expansion-panel-header.mat-expanded {
+  height: auto;
 }
 
 .expanded-div .mat-expansion-panel-header {
