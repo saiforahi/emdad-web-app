@@ -150,19 +150,19 @@ mat-card:hover button {
 
 @media only screen and (min-width: 300px) and (max-width: 450px) {
   img {
-    height: 120px;
+    height: 100px;
   }
 }
 
 @media only screen and (min-width: 451px) and (max-width: 575px) {
   img {
-    height: 170px;
+    height: 150px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 991px) {
   img {
-    height: 120px;
+    height: 110px;
   }
   mat-card-content {
     padding: 0 16px 16px;
@@ -199,6 +199,12 @@ mat-card:hover button {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   img {
-    height: 150px;
+    height: 120px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  img {
+    height: 170px;
   }
 }
