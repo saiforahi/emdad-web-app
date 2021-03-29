@@ -238,17 +238,17 @@
 <br>
 <br>
 <a [routerLink]="['/seller/login']">Seller Login</a> -->
-
+<section class="signup-page">
 <div class="container">
   <div class="row">
-    <div class="col-md-6 login-form-holder">
+    <div class="col-md-12 col-lg-6 login-form-holder">
       <div class="float-right">
         <button mat-raised-button class="lang-btn">
           <i class="fas fa-language"></i>
           Arabic
         </button>
       </div>
-      <div class="card">
+      <div class="card sell-card">
         <div class="card-header">
           <h1 class="login-header">Join Us</h1>
           <h4 class="login-sub-header text-center">Let’s begin the journey !</h4>
@@ -297,7 +297,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="comPhone">Company Phone</label>
+                  <label for="comPhone">Company Phone Number</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-phone"></i></div>
@@ -325,7 +325,8 @@
                     </div>
                     <!-- password -->
                     <input id="password" [type]="showPassState ? 'text' : 'password'"
-                      class="form-control form-control-md" formControlName="password" required (keyup)="matchBothPassord(password.value, confPassword.value)"/>
+                      class="form-control form-control-md" formControlName="password" required
+                      (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!showPassState" (click)="showPass();">
                       <div class="input-group-text">
                         <i class="fas fa-eye"></i>
@@ -360,7 +361,8 @@
                     </div>
                     <!-- confirm password -->
                     <input id="confPassword" [type]="confShowPassState ? 'text' : 'password'"
-                      class="form-control form-control-md" formControlName="confPassword" required (keyup)="matchBothPassord(password.value, confPassword.value)"/>
+                      class="form-control form-control-md" formControlName="confPassword" required
+                      (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!confShowPassState" (click)="confShowPass();">
                       <div class="input-group-text">
                         <i class="fas fa-eye"></i>
@@ -383,6 +385,7 @@
                   </div>
                 </div>
               </div>
+              <!--company address-->
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="comAddress">Company Address</label>
@@ -401,6 +404,7 @@
                   </div>
                 </div>
               </div>
+              <!--commercial registration-->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="comRegistration">Commercial Registration</label>
@@ -422,7 +426,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="expDate">Expiary Date</label>
+                  <label for="expDate">Expiry Date</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
@@ -438,26 +442,7 @@
                   </div> -->
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="country">Country</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-                    </div>
-                    <!-- company country -->
-                    <select id="country" class="form-control form-control-md" type="text" formControlName="country" (change)="getciTyList($event.target.value)">
-                      <option value="" disabled>Select Country</option>
-                      <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
-                    </select>
-                  </div>
-                  <div *ngIf="country.invalid && (country.dirty || country.touched)">
-                    <div *ngIf="country.errors?.required">
-                      <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
-                    </div>
-                  </div>
-                </div>
-              </div>
+               <!-- company city -->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="city">City</label>
@@ -465,7 +450,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
                     </div>
-                    <!-- company city -->
+                   
                     <select id="city" class="form-control form-control-md" type="text" formControlName="city">
                       <option value="" disabled>Select City</option>
                       <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
@@ -478,6 +463,29 @@
                   </div>
                 </div>
               </div>
+              <!--country-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <!-- company country -->
+                    <select id="country" class="form-control form-control-md" type="text" formControlName="country"
+                      (change)="getciTyList($event.target.value)">
+                      <option value="" disabled>Select Country</option>
+                      <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                    <div *ngIf="country.errors?.required">
+                      <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           <!--area-->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="area">Area</label>
@@ -495,6 +503,7 @@
                   </div> -->
                 </div>
               </div>
+              <!--zip code-->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="zipCode">Zip code</label>
@@ -512,13 +521,15 @@
                   </div> -->
                 </div>
               </div>
-              <div class="col-md-12">
+              <!--commercial registration-->
+              <div class="col-md-6 col-sm-12 col-12 col-lg-6">
                 <div class="form-group">
-                  <label class="d-block">Attachments</label>
-                  <label for="attachments" class="custom-file-upload">
-                    <!-- Attachments -->
-                    <input id="attachments" class="form-control form-control-md" type="file"
-                      formControlName="attachments" (change)="handleFileSelect($event);" />
+                  <label class="d-block">Commercial Registration</label>
+                  <label for="commercialRegistrationUpload" class="custom-file-upload">
+                    <!-- commercialRegistrationUpload -->
+                    <input id="commercialRegistrationUpload" class="form-control form-control-md" type="file"
+                      formControlName="commercialRegistrationUpload" (change)="handleFileSelect($event);" />
+                     
                   </label>
                   <ul class="attached-file">
                     <li *ngFor="let file of selectedImage; let i = index;">
@@ -528,10 +539,28 @@
                   </ul>
                 </div>
               </div>
+              <!--vat certificate-->
+              <div class="col-md-6 col-lg-6 col-12 file-up">
+                <div class="form-group">
+                  <label class="d-block">VAT Certificate </label>
+                  <label for="vatCertificate" class="custom-file-upload">
+                    <!-- vatCertificate -->
+                    <input id="vatCertificate" class="form-control form-control-md" type="file"
+                      formControlName="vatCertificate" (change)="upVatcert($event);" />
+                  </label>
+                  <ul class="attached-file">
+                    <li *ngFor="let file of selectedCert; let i = index;">
+                      {{file.name}}
+                      <button mat-raised-button (click)="removeVatCert(i);">X</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               <div class="col-12">
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="agrreToPolicy" formControlName="agrreToPolicy"/>
+                    <input class="form-check-input" type="checkbox" id="agrreToPolicy"
+                      formControlName="agrreToPolicy" />
                     <label class="form-check-label" for="agrreToPolicy">I agree to EMDAD Terms and Condtions,
                       Privacy
                       Policy & Provided Correctness of information</label>
@@ -540,7 +569,8 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn" [disabled]="sellerRegForm.invalid || passMatched">
+                  <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+                    [disabled]="sellerRegForm.invalid || passMatched">
                     Register
                   </button>
                 </div>
@@ -548,8 +578,8 @@
               <div class="col-12">
                 <div class="form-group">
                   <div class="text-center">
-                    <label>Already have an account? <a [routerLink]="['/dashboard/login']"
-                        class="ml-1">Login</a></label>
+                    <label class="join-text">Already have an account? <a [routerLink]="['/dashboard/login']"
+                        class="ml-1 join">Sign in</a></label>
                   </div>
                 </div>
               </div>
@@ -558,11 +588,11 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12 col-lg-6">
       <div class="card text-white login-page-social">
         <div class="card-img-overlay">
           <div class="row justify-content-center">
-            <img src="../../../assets/logo-white.svg" alt="align-self-center" />
+            <img src="../../../assets/logo-white.svg" alt="align-self-center" class="img-fluid logo-img" />
           </div>
           <div class="row justify-content-center mb-4">
             <h3 class="slogan">YOUR SLOGAN HERE</h3>
@@ -575,14 +605,14 @@
             </h5>
           </div>
           <div class="row justify-content-center">
-            <div class="social-media">
-              <a target="blank" href="www.facebook.com"><button mat-raised-button>
-                  <i class="fab fa-facebook-f"></i></button></a>
-              <button mat-raised-button>
+            <div class="social-media text-center">
+              <button mat-raised-button class="mt-1">
                 <i class="fab fa-twitter"></i></button>
-              <button mat-raised-button>
+              <button mat-raised-button class="mt-1">
+                <i class="fab fa-instagram"></i></button>
+              <button mat-raised-button class="mt-1">
                 <i class="fab fa-youtube"></i></button>
-              <button mat-raised-button>
+              <button mat-raised-button class="mt-1">
                 <i class="fab fa-pinterest-p"></i></button>
             </div>
           </div>
@@ -595,4 +625,5 @@
     </div>
   </div>
 </div>
+</section>
 <ngx-spinner></ngx-spinner>

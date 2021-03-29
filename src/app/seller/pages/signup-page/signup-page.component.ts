@@ -37,10 +37,12 @@ export class SignupPageComponent implements OnInit {
   city: AbstractControl;
   area: AbstractControl;
   zipCode: AbstractControl;
-  attachments: AbstractControl;
+  vatCertificate:AbstractControl;
+  commercialRegistrationUpload: AbstractControl;
   showPassState: boolean = false;
   confShowPassState: boolean = false;
   selectedImage: any = [];
+  selectedCert:any=[];
   regBtnDisabled = true;
   passMatched: boolean = false;
   countryList: any;
@@ -78,7 +80,8 @@ export class SignupPageComponent implements OnInit {
       area: [''],
       zipCode: [''],
       agrreToPolicy: ['', [Validators.required]],
-      attachments: [''],
+      commercialRegistrationUpload: [''],
+     vatCertificate:[''],
     });
     this.comName = this.sellerRegForm.controls['comName'];
     this.comPhone = this.sellerRegForm.controls['comPhone'];
@@ -93,11 +96,12 @@ export class SignupPageComponent implements OnInit {
     this.area = this.sellerRegForm.controls['area'];
     this.zipCode = this.sellerRegForm.controls['zipCode'];
     this.agrreToPolicy = this.sellerRegForm.controls['agrreToPolicy'];
-    this.attachments = this.sellerRegForm.controls['attachments'];
+    this.commercialRegistrationUpload = this.sellerRegForm.controls['commercialRegistrationUpload'];
+    this.vatCertificate = this.sellerRegForm.controls['vatCertificate'];
   }
 
   // area: "dhaka"
-  // attachments: ""
+  // commercialRegistrationUpload: ""
   // city: "2"
   // comAddress: "south banasree, Block# G, R# 9/6, H# 43-45, Flat# 2B"
   // comName: "pial store"
@@ -186,7 +190,11 @@ export class SignupPageComponent implements OnInit {
   confHidePass() {
     this.confShowPassState = false;
   }
-
+  upVatcert(event){
+    var reader = new FileReader();
+    this.selectedCert.push(event.target.files[0]);
+    console.log(this.selectedCert);
+  }
   handleFileSelect(event) {
     var reader = new FileReader();
     this.selectedImage.push(event.target.files[0]);
@@ -195,5 +203,8 @@ export class SignupPageComponent implements OnInit {
 
   removeFile(id){
     this.selectedImage.splice(id, 1);
+  }
+  removeVatCert(id){
+    this.selectedCert.splice(id,1);
   }
 }

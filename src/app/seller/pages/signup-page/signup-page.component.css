@@ -97,7 +97,11 @@ a {
 }
 
 .container {
-  padding: 60px;
+  padding: 20px;
+  
+}
+.signup-page{
+  background: #e5e5e5;
 }
 
 *:focus {
@@ -137,11 +141,17 @@ label {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  line-height: 29px;
+  color: #2b2b2b;
+  text-transform: capitalize;
 }
 
 .card {
   border: none;
   width: 100%;
+}
+.sell-card{
+  background-color: transparent !important;
 }
 
 .btn {
@@ -188,6 +198,7 @@ input[type="radio"] {
   background: #efefef;
   padding: 0 22px;
   font-size: 17px;
+  font-family: Jost;
 }
 
 .form-control:focus {
@@ -226,6 +237,12 @@ input[type="radio"] {
 }
 
 .slogan-description {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
   color: #ffffff;
 }
 
@@ -235,6 +252,13 @@ input[type="radio"] {
 
 .footer-text {
   color: #ffffff;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .social-icon {
@@ -246,7 +270,7 @@ input[type="radio"] {
   background: url("../../../../assets/images/login-page-bg.png") center 100%
     no-repeat;
   width: 100%;
-  height: 760px;
+  min-height: 800px;
   border-radius: 20px;
 }
 
@@ -265,6 +289,9 @@ input[type="radio"] {
   border-radius: 50%;
   background: #fff;
   border: none;
+  
+}
+.social-media button:not(:last-child){
   margin-right: 15px;
 }
 
@@ -283,11 +310,11 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-  width: 80px;
-  height: 80px;
+ width: 100%;
+ height: 80px;
   background-image: url("../../../../assets/upload.svg");
   background-repeat: no-repeat;
-  background-size: 40%;
+  background-size: 10%;
   background-position: center center;
   border-radius: 5px;
   border: 3px dashed #ccc;
@@ -315,9 +342,314 @@ input[type="file"] {
   color: #fff;
   font-size: 16px;
 }
-
+.join-text{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 29px;
+}
+.join{
+  color: #1F4F9E;
+  text-decoration-line: underline;
+text-decoration-color: #1f4f9e; 
+font-weight: 500;
+}
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
+}
+
+@media only screen and (min-width:290px) and (max-width:575px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 80px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png");
+     background-size: cover;
+     background-repeat: no-repeat;
+     min-height: 600px;
+  }
+  
+  .login-form-holder{
+    padding: 5px;
+  }
+  .logo-img{
+    height:80px;
+  }
+  .slogan-description{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .card-img-overlay {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+ }
+ .card-img-overlay .mb-4{
+  margin-bottom: 0;
+ }
+.card-footer{
+  margin-bottom: 50px;
+}
+.login-header{
+  font-size: 30px;
+  line-height: 40px;
+}
+.login-sub-header{
+  font-size: 18px;
+  line-height: 25px;
+}
+label,.form-check-label,.join-text{
+  font-size: 16px;
+  line-height: 22px;
+}
+.login_btn{
+  height: 45px;
+  font-size: 18px;
+  line-height: 25px;
+}
+.lang-btn{
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+}
+.container{
+padding-bottom: 10px;
+
+}
+
+.slogan{
+  font-size: 22px;
+ 
+}
+.slogan-description{
+  font-size:16px;
+  line-height: 25px;
+}
+.footer-text{
+  font-size: 14px;
+  line-height: 20px;
+}
+/* .input-group-text{
+  font-size: 14px;
+  padding: 0 15px;
+} */
+.custom-file-upload{
+  background-size: 5%;
+}
+}
+@media only screen and (min-width:576px) and (max-width:768px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 80px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png");
+     background-size: cover;
+     background-repeat: no-repeat;
+     min-height: 650px;
+  }
+  
+  .login-form-holder{
+    padding: 5px;
+  }
+  .logo-img{
+    height: 100px;
+  }
+  .card-img-overlay {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+ }
+ .card-img-overlay .mb-4{
+  margin-bottom: 0;
+ }
+.card-footer{
+  margin-bottom: 50px;
+}
+.login-header{
+  font-size: 40px;
+  line-height: 50px;
+}
+.login-sub-header{
+  font-size: 20px;
+  line-height: 30px;
+}
+label,.form-check-label,.join-text{
+  font-size: 18px;
+  line-height: 25px;
+}
+.login_btn{
+  height: 60px;
+  font-size: 22px;
+  line-height: 30px;
+}
+.lang-btn{
+  height: 50px;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.container{
+padding: 20px;
+
+}
+
+.slogan{
+  font-size: 22px;
+ 
+}
+.slogan-description{
+  font-size:16px;
+  line-height: 25px;
+}
+.footer-text{
+  font-size: 14px;
+  line-height: 20px;
+}
+/* .input-group-text{
+  font-size: 15px;
+  padding: 0 18px;
+} */
+.custom-file-upload{
+  background-size: 5%;
+}
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png") center 100%
+     no-repeat;
+     min-height: 500px;
+  }
+  .container{
+    padding: 30px;
+  }
+  .login-form-holder{
+    padding: 5px;
+  }
+  .logo-img{
+    height: 100px;
+  }
+  .card-img-overlay {
+   padding: 30px 20px;
+ }
+ .card-img-overlay >.mb-4{
+  margin-bottom: 0;
+ }
+ .login-header{
+   font-size: 30px;
+   line-height: 40px;
+ }
+ .login-sub-header{
+   font-size: 18px;
+   line-height: 25px;
+ }
+ label,.form-check-label,.join-text{
+   font-size: 16px;
+   line-height: 22px;
+ }
+ .login_btn{
+   height: 45px;
+   font-size: 18px;
+   line-height: 25px;
+ }
+ .lang-btn{
+   height: 40px;
+   padding: 0 20px;
+   font-size: 16px;
+ }
+ 
+ 
+ .slogan{
+   font-size: 25px;
+  
+ }
+ .slogan-description{
+   font-size:20px;
+   line-height: 30px;
+   padding-left: 10px;
+   padding-right: 10px;
+ }
+ .footer-text{
+   font-size: 16px;
+   line-height: 24px;
+ }
+ .input-group-text{
+  font-size: 15px;
+  padding: 0 18px;
+}
+}
+@media all and (min-width:992px) and (max-width:1199px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png") center 100%
+     no-repeat;
+    min-height: 650px;
+  }
+  .container{
+    padding: 30px;
+  }
+  .login-form-holder{
+    padding: 5px;
+  }
+  .logo-img{
+    height: 100px;
+  }
+  .card-img-overlay {
+   padding: 30px 20px;
+ }
+ .card-img-overlay >.mb-4{
+  margin-bottom: 0;
+ }
+ .login-header{
+   font-size: 30px;
+   line-height: 40px;
+ }
+ .login-sub-header{
+   font-size: 18px;
+   line-height: 25px;
+ }
+ label,.form-check-label,.join-text{
+   font-size: 16px;
+   line-height: 22px;
+ }
+ .login_btn{
+   height: 45px;
+   font-size: 18px;
+   line-height: 25px;
+ }
+ .lang-btn{
+   height: 40px;
+   padding: 0 20px;
+   font-size: 16px;
+ }
+ 
+ 
+ .slogan{
+   font-size: 25px;
+  
+ }
+ .slogan-description{
+   font-size:20px;
+   line-height: 30px;
+   padding-left: 10px;
+   padding-right: 10px;
+ }
+ .footer-text{
+   font-size: 16px;
+   line-height: 24px;
+ }
+ .input-group-text{
+  font-size: 16px;
+  padding: 0 18px;
+}
 }
