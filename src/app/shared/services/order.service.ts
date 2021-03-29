@@ -12,6 +12,11 @@ export class OrderService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };
+  sellerHttpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+    }),
+  };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
   constructor(private http: HttpClient) {}
@@ -71,7 +76,7 @@ export class OrderService {
         'api/order/list/' +
         localStorage.getItem('s_uid') +
         '/',
-      this.httpOptions
+      this.sellerHttpOptions
     );
   }
 
@@ -79,6 +84,13 @@ export class OrderService {
     return this.http.get(
       config.base_url + 'api/buyer/order/details/' + order_id + '/',
       this.httpOptions
+    );
+  }
+
+  get_seller_order_details(order_id: string): Observable<any> { //fetching single order details for seller
+    return this.http.get(
+      config.base_url + 'api/order/details/'+localStorage.getItem('s_uid')+'/' + order_id + '/',
+      this.sellerHttpOptions
     );
   }
 

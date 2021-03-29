@@ -97,13 +97,15 @@ mat-chip.order-created-chips {
 }
 
 mat-chip.order-confirmed-chips {
-    background-color: rgba(73, 121, 185, 0.2);
-    color: #4979b9;
+  background: rgba(73, 185, 127, 0.2);
+  border-radius: 24px;
+  color: #49B97F;
+
 }
 
 mat-chip.order-processing-chips {
-    background-color: rgba(123, 185, 73, 0.2);
-    color: #7bb949;
+    background: rgba(244, 152, 20, 0.2);
+    color: #F49814;
 }
 
 mat-chip.order-delivered-chips {
