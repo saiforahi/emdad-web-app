@@ -244,7 +244,7 @@
     <div class="col-md-12 col-lg-6 login-form-holder">
       <div class="float-right">
         <button mat-raised-button class="lang-btn">
-          <i class="fas fa-language"></i>
+          <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
           Arabic
         </button>
       </div>
@@ -261,11 +261,12 @@
                   <label for="comName">Company Name</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-home"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Home.svg" alt="">
+                      </div>
                     </div>
                     <!-- comName -->
                     <input id="comName" class="form-control form-control-md" type="text" formControlName="comName"
-                      required />
+                      required placeholder="Raihan Zilani Ltd." />
                   </div>
                   <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
                     <div *ngIf="comName.errors?.required">
@@ -279,11 +280,11 @@
                   <label for="email">Company email</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Message.svg" alt=""></div>
                     </div>
                     <!-- email -->
                     <input id="email" class="form-control form-control-md" type="email" formControlName="email"
-                      required />
+                      required placeholder="raihan009@example.com" />
                   </div>
                   <div *ngIf="email.invalid && (email.dirty || email.touched)">
                     <div *ngIf="email.errors?.required">
@@ -300,11 +301,11 @@
                   <label for="comPhone">Company Phone Number</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Call.svg" alt=""></div>
                     </div>
                     <!-- phone -->
                     <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
-                      required />
+                      required placeholder="(480) 555-0103"/>
                   </div>
                   <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
                     <div *ngIf="comPhone.errors?.required">
@@ -321,7 +322,7 @@
                   <label for="password">Password</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
                     </div>
                     <!-- password -->
                     <input id="password" [type]="showPassState ? 'text' : 'password'"
@@ -329,7 +330,7 @@
                       (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!showPassState" (click)="showPass();">
                       <div class="input-group-text">
-                        <i class="fas fa-eye"></i>
+                        <img src="../../../../assets/icons/Show.svg" alt="">
                       </div>
                     </div>
                     <div class="input-group-prepend" *ngIf="showPassState" (click)="hidePass();">
@@ -357,7 +358,7 @@
                   <label for="password">Confirm Password</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
                     </div>
                     <!-- confirm password -->
                     <input id="confPassword" [type]="confShowPassState ? 'text' : 'password'"
@@ -365,7 +366,7 @@
                       (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!confShowPassState" (click)="confShowPass();">
                       <div class="input-group-text">
-                        <i class="fas fa-eye"></i>
+                        <img src="../../../../assets/icons/Show.svg" alt="">
                       </div>
                     </div>
                     <div class="input-group-prepend" *ngIf="confShowPassState" (click)="confHidePass();">
@@ -391,11 +392,11 @@
                   <label for="comAddress">Company Address</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
                     </div>
                     <!-- company Address -->
                     <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
-                      required />
+                      required placeholder="3517 W. Gray St. Utica, Pennsylvania 57867"/>
                   </div>
                   <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
                     <div *ngIf="comAddress.errors?.required">
@@ -410,11 +411,11 @@
                   <label for="comRegistration">Commercial Registration</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-file-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Paper.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
                     <input id="comRegistration" class="form-control form-control-md" type="text"
-                      formControlName="comRegistration" />
+                      formControlName="comRegistration" placeholder="Commercial Registration" />
                   </div>
                   <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
                     <div *ngIf="comRegistration.errors?.required">
@@ -429,7 +430,7 @@
                   <label for="expDate">Expiry Date</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
                     <input id="expDate" class="form-control form-control-md" type="date" formControlName="expDate" />
@@ -448,11 +449,11 @@
                   <label for="city">City</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
                     </div>
                    
                     <select id="city" class="form-control form-control-md" type="text" formControlName="city">
-                      <option value="" disabled>Select City</option>
+                      <option value="" disabled>Gray St. Utica</option>
                       <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
                     </select>
                   </div>
@@ -469,12 +470,12 @@
                   <label for="country">Country</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
                     </div>
                     <!-- company country -->
                     <select id="country" class="form-control form-control-md" type="text" formControlName="country"
                       (change)="getciTyList($event.target.value)">
-                      <option value="" disabled>Select Country</option>
+                      <option value="" disabled>USA</option>
                       <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
                     </select>
                   </div>
@@ -491,10 +492,10 @@
                   <label for="area">Area</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
                     </div>
                     <!-- area -->
-                    <input id="area" class="form-control form-control-md" type="text" formControlName="area" />
+                    <input id="area" class="form-control form-control-md" type="text" formControlName="area" placeholder="Pennsylvania" />
                   </div>
                   <!-- <div *ngIf="area.invalid && (area.dirty || area.touched)">
                     <div *ngIf="area.errors?.required">
@@ -509,10 +510,10 @@
                   <label for="zipCode">Zip code</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-ellipsis-h"></i></div>
+                      <div class="input-group-text"><img src="../../../../assets/icons/More Square.svg" alt=""></div>
                     </div>
                     <!-- zipCode -->
-                    <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" />
+                    <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" placeholder="57867" />
                   </div>
                   <!-- <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
                     <div *ngIf="zipCode.errors?.required">
