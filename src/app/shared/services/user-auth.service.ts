@@ -338,6 +338,34 @@ export class UserAuthService {
       '/';
     return this.http.get(updateURL, httpOptions);
   }
+
+  uploadSellerProfilePic(userId, pro_pic) {
+    var httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+      }),
+    };
+    const updateURL =
+      config.base_url +
+      'api/change/profile/image/' +
+      userId +
+      '/';
+    return this.http.post(updateURL, pro_pic, httpOptions);
+  }
+
+  uploadSellerBannerPic(userId, store_pic) {
+    var httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+      }),
+    };
+    const updateURL =
+      config.base_url +
+      'api/change/store/image/' +
+      userId +
+      '/';
+    return this.http.post(updateURL, store_pic, httpOptions);
+  }
 }
 
 @Injectable()

@@ -12,6 +12,7 @@ import { FileService } from 'src/app/shared/services/file.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import * as fileSaver from 'file-saver';
+import { config } from 'src/config';
 
 @Component({
   selector: 'app-seller-profile-page',
@@ -41,10 +42,14 @@ export class SellerProfilePageComponent implements OnInit {
   passMatched: boolean = false;
   countryList: any;
   cityList: any;
-  sellerProfileFormData;
+  sellerProfileFormData = new FormData();
   error: any;
   userData: any;
   existingFiles: number;
+  sellerProfilePicData = new FormData();
+  profile_pic: any;
+  sellerBannerPicData = new FormData();
+  banner_pic: any;
 
   constructor(
     private authService: UserAuthService,
@@ -57,7 +62,6 @@ export class SellerProfilePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sellerProfileFormData = new FormData();
     this.contry.allCountries().subscribe((item) => {
       this.countryList = item.data;
     });
@@ -99,8 +103,10 @@ export class SellerProfilePageComponent implements OnInit {
     this.authService
       .getSeller(localStorage.getItem('s_uid'))
       .subscribe((item) => {
-        // console.log(item);
+        console.log(item);
         this.userData = item.data;
+        this.profile_pic = config.base_url + this.userData.profile_pic.slice(1);
+        this.banner_pic = config.base_url + this.userData.store_pic.slice(1);
         if (
           this.userData.seller_attachment1 != null &&
           this.userData.seller_attachment2 != null
@@ -255,6 +261,34 @@ export class SellerProfilePageComponent implements OnInit {
       console.log(item);
       this.ngOnInit();
       swal('Succeed', 'Attachments deleted successfully', 'success');
+    })
+  }
+
+  uploadProPic(event){
+    console.log(event);
+    this.sellerProfilePicData.append('profile_pic', event.target.files[0]);
+    var uId = localStorage.getItem('s_uid');
+    this.authService.uploadSellerProfilePic(uId, this.sellerProfilePicData).subscribe(
+      (success) => {
+        console.log(success);
+        this.ngOnInit()
+    },
+    (error) => {
+      console.log(error);
+    })
+  }
+
+  uploadBannerPic(event){
+    console.log(event);
+    this.sellerBannerPicData.append('store_pic', event.target.files[0]);
+    var uId = localStorage.getItem('s_uid');
+    this.authService.uploadSellerBannerPic(uId, this.sellerBannerPicData).subscribe(
+      (success) => {
+        console.log(success);
+        this.ngOnInit()
+    },
+    (error) => {
+      console.log(error);
     })
   }
 }

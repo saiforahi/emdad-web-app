@@ -26,13 +26,13 @@
                     <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt=""> Company Profile
                   </li>
                 </a>
-                <a [routerLink]="['/dashboard/bank-info']">
+                <!-- <a [routerLink]="['/dashboard/bank-info']">
                   <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
                     <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
                     <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
                     Information
                   </li>
-                </a>
+                </a> -->
                 <a [routerLink]="['/dashboard/change-password']">
                   <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
                     <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/dot.svg" alt="">
