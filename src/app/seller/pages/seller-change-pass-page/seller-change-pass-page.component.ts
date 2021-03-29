@@ -16,12 +16,10 @@ export class SellerChangePassPageComponent implements OnInit {
   msg;
   group: string;
   changePassForm: FormGroup;
-  password: AbstractControl;
-  confPassword: AbstractControl;
+  crntPassword: AbstractControl;
   newPassword: AbstractControl;
+  confPassword: AbstractControl;
   changePassFormData = new FormData();
-  countryList: any;
-  cityList: any;
   passMatched: boolean;
   showPassState: boolean;
   confShowPassState: boolean;
@@ -29,56 +27,42 @@ export class SellerChangePassPageComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private router: Router,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
-    private contry: CountryListService,
     private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
-    this.contry.allCountries().subscribe(item => {
-      this.countryList = item.data;
-    })
     this.changePassForm = this.fb.group({
-      password: ['', [Validators.required]],
-      confPassword: ['', [Validators.required]],
+      crntPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required]],
+      confPassword: ['', [Validators.required]],
     });
-    this.password = this.changePassForm.controls['password'];
-    this.confPassword = this.changePassForm.controls['confPassword'];
+    this.crntPassword = this.changePassForm.controls['crntPassword'];
     this.newPassword = this.changePassForm.controls['newPassword'];
+    this.confPassword = this.changePassForm.controls['confPassword'];
   }
 
   onSubmit(value) {
     // console.log(value);
     this.spinner.show();
-    this.authService.sellerSignup(this.changePassForm).subscribe(
+    this.authService.sellerChangePassword(value.crntPassword, value.newPassword).subscribe(
       (success) => {
-        console.log(success);
-        this.router.navigate(['dashboard']);
-        swal('Succeed', 'You have registered successfully', 'success');
+        // console.log(success);
+        this.spinner.hide();
+        swal('Succeed', 'You have changed password successfully', 'success');
       },
       (error: any) => {
-        this.error = error.error.email.toString();
         console.log(error);
-        // if(error.email){
-        //   swal('Failed!', error.email, 'error');
-        // }
         swal('Failed!', this.error, 'error');
       }
     );
-  }
-
-  getciTyList(id){
-    this.contry.allCities(id).subscribe(item => {
-      this.cityList = item.data;
-    })
+    this.changePassForm.reset();
   }
 
   matchBothPassord(pass1, pass2){
-    console.log(pass1, pass2);
+    // console.log(pass1, pass2);
     if(pass1 != pass2){
-      console.log(pass1, pass2);
+      // console.log(pass1, pass2);
       this.passMatched = true;
     }else {
       this.passMatched = false;
