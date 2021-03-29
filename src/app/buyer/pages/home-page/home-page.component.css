@@ -352,7 +352,7 @@ button:focus {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .single-category {
-    height: 75px;
+    height: 85px;
   }
   .banner {
     height: 300px !important;
@@ -378,17 +378,17 @@ button:focus {
     height: 40px;
   }
   .cat-icon-holder {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     padding: 4px 0;
     text-align: center;
   }
   .categories {
-    min-height: 75px;
+    min-height: 85px;
   }
   .subCategory {
     height: 220px;
-    top: 75px;
+    top: 85px;
     padding: 15px 0;
     overflow-y: auto;
   }
@@ -404,8 +404,8 @@ button:focus {
     height: 20px;
   }
   .cat-title {
-    width: calc(100% - 50px);
-    font-size: 14px;
+    width: calc(100% - 55px);
+    font-size: 16px;
     margin-top: 0px;
   }
   .product-list-header {
@@ -440,20 +440,20 @@ button:focus {
     padding: 30px;
   }
   .single-category {
-    height: 75px;
+    height: 85px;
   }
   .cat-icon-holder {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     padding: 4px 0;
     text-align: center;
   }
   .categories {
-    min-height: 75px;
+    min-height: 85px;
   }
   .subCategory {
     height: 220px;
-    top: 75px;
+    top: 85px;
     padding: 15px 0;
     overflow-y: auto;
   }
@@ -469,8 +469,8 @@ button:focus {
     height: 20px;
   }
   .cat-title {
-    width: calc(100% - 50px);
-    font-size: 14px;
+    width: calc(100% - 55px);
+    font-size: 16px;
     margin-top: 0px;
   }
   app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {

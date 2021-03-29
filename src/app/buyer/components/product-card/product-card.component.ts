@@ -12,22 +12,31 @@ import { config } from 'src/config';
 export class ProductCardComponent implements OnInit {
   @Input() product;
   defaultImage = '../assets/images/default-image-620x600.jpg';
-  base_url=config.base_url;
+  base_url = config.base_url;
   prodCartArray = [];
   userId;
 
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
-    private user:UserAuthService
+    private user: UserAuthService
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.product)
-    this.user.uId.subscribe(item =>{
+    // console.log(this.product);
+    this.user.uId.subscribe((item) => {
       this.userId = item;
-    })
-    // console.log(this.product)
+    });
+    this.wishlist
+      .wishlistStatusCheck(this.product.id)
+      .subscribe((data: any) => {
+        console.log(data)
+        if (data.status == 1) {
+          this.product.wishListStatus = 0;
+        } else {
+          this.product.wishListStatus = 1;
+        }
+      });
   }
 
   addToCart(prod) {
@@ -44,13 +53,21 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToWishlist(prod_id) {
-    if(this.userId){
+    if (this.userId) {
       this.wishlist.addTowishlist(prod_id).subscribe((item: any) => {
         this.openSnackBar(item.message, 'OK');
+        this.ngOnInit();
       });
-    }else {
+    } else {
       document.getElementById('buyerLogin').style.display = 'block';
     }
+  }
+
+  removeFromWishlist(prod_id) {
+    this.wishlist.removeFromWishllist(prod_id).subscribe((item) => {
+      this.openSnackBar('Successfully removed from wishlist!', 'OK');
+      this.ngOnInit();
+    });
   }
 
   openSnackBar(message, action) {
@@ -58,7 +75,7 @@ export class ProductCardComponent implements OnInit {
       duration: 5000,
     });
   }
-  
+
   slice_image_url(url: string) {
     if (url.includes('http://127.0.0.1:8000')) {
       // console.log(url.slice(21));
