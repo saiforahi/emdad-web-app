@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {OrderService} from '../../../../shared/services/order.service'
-import {config} from '../../../../../config'
+import {config} from '../../../../../config';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-order-view-modal',
   templateUrl: './order-view-modal.component.html',
@@ -9,8 +10,14 @@ import {config} from '../../../../../config'
 })
 export class OrderViewModalComponent implements OnInit {
   details:any
-  img_base_url=config.img_base_url
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private orderService:OrderService) { }
+  img_base_url=config.img_base_url;
+  proofDoc:any;
+  show:boolean=false;
+  attachForm:FormGroup;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any, 
+    private orderService:OrderService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     console.log('dialog data',this.data)
@@ -22,7 +29,18 @@ export class OrderViewModalComponent implements OnInit {
       (error)=>{}
     )
   }
+upload(event){
+  var reader = new FileReader();
+  this.proofDoc = event.target.files[0];
 
+  reader.readAsDataURL(this.proofDoc);
+}
+removeFile(){
+
+}
+onSubmit(){
+  
+}
   //date format helper
   formatDate(date:string){
     if(date!=null){
