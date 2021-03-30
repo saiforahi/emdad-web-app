@@ -143,4 +143,23 @@ export class ProductCardHorizonalComponent implements OnInit {
       }
     );
   }
+
+  get_unit_price(product_commission:any,price:any){ //generating unit price with commission
+    let total=0
+    if(parseFloat(product_commission)>0){
+      let unit_price=parseFloat(price)* (parseFloat(product_commission) / 100)
+      total = unit_price + parseFloat(price)
+      console.log('if total',total)
+      //console.log('unit price',(parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price))
+      //return (parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price)
+    }
+    else{
+      
+      let unit_price=parseFloat(price)* (parseFloat(localStorage.getItem('commission')) / 100)
+      total = unit_price + parseFloat(price)
+      console.log('else total',total)
+    }
+    return total
+  }
+
 }

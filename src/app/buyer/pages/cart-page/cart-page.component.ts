@@ -147,6 +147,7 @@ export class CartPageComponent implements OnInit {
           this.commissionAmount = parseFloat(
             item.data[0].percentage.toString()
           );
+          localStorage.setItem('commission',item.data[0].percentage.toString())
           this.vat.getVat().subscribe((item) => {
             this.vatPercentage = parseFloat(item.data[0].percentage);
             this.generateOrderData(this.cart.products);

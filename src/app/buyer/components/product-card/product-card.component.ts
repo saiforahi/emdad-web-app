@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WishlistService } from '../../../shared/services/wishlist.service';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { config } from 'src/config';
-
+import {CommissionService} from '../../../shared/services/commission.services'
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -19,7 +19,8 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
-    private user: UserAuthService
+    private user: UserAuthService,
+    private commission:CommissionService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class ProductCardComponent implements OnInit {
     this.wishlist
       .wishlistStatusCheck(this.product.id)
       .subscribe((data: any) => {
-        console.log(data)
+        // console.log(data)
         if (data.status == 1) {
           this.product.wishListStatus = 0;
         } else {
@@ -84,5 +85,23 @@ export class ProductCardComponent implements OnInit {
       // console.log(url);
       return url;
     }
+  }
+
+  get_unit_price(product_commission:any,price:any){ //generating unit price with commission
+    let total=0
+    if(parseFloat(product_commission)>0){
+      let unit_price=parseFloat(price)* (parseFloat(product_commission) / 100)
+      total = unit_price + parseFloat(price)
+      console.log('if total',total)
+      //console.log('unit price',(parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price))
+      //return (parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price)
+    }
+    else{
+      
+      let unit_price=parseFloat(price)* (parseFloat(localStorage.getItem('commission')) / 100)
+      total = unit_price + parseFloat(price)
+      console.log('else total',total)
+    }
+    return total
   }
 }
