@@ -433,14 +433,18 @@ padding-bottom: 10px;
 }
 .footer-text{
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
 }
-/* .input-group-text{
+.input-group-text{
   font-size: 14px;
-  padding: 0 15px;
-} */
+  padding: 0 10px;
+}
 .custom-file-upload{
   background-size: 5%;
+}
+.social-media button{
+  height: 30px;
+  width: 30px;
 }
 }
 @media only screen and (min-width:576px) and (max-width:768px){
@@ -544,27 +548,27 @@ padding: 20px;
   margin-bottom: 0;
  }
  .login-header{
-   font-size: 30px;
-   line-height: 40px;
+   font-size: 40px;
+   line-height: 62px;
  }
  .login-sub-header{
-   font-size: 18px;
-   line-height: 25px;
+   font-size: 20px;
+   line-height: 30px;
  }
  label,.form-check-label,.join-text{
-   font-size: 16px;
-   line-height: 22px;
- }
- .login_btn{
-   height: 45px;
    font-size: 18px;
    line-height: 25px;
  }
- .lang-btn{
-   height: 40px;
-   padding: 0 20px;
-   font-size: 16px;
+ .login_btn{
+   height: 60px;
+   font-size: 22px;
+   line-height: 30px;
  }
+ .lang-btn{
+  height: 50px;
+  padding: 0 20px;
+  font-size: 18px;
+}
  
  
  .slogan{
@@ -583,7 +587,7 @@ padding: 20px;
  }
  .input-group-text{
   font-size: 15px;
-  padding: 0 18px;
+  padding: 0 15px;
 }
 }
 @media all and (min-width:992px) and (max-width:1199px){
@@ -611,28 +615,27 @@ padding: 20px;
   margin-bottom: 0;
  }
  .login-header{
-   font-size: 30px;
-   line-height: 40px;
+   font-size: 40px;
+   line-height: 62px;
  }
  .login-sub-header{
-   font-size: 18px;
-   line-height: 25px;
+   font-size: 20px;
+   line-height: 30px;
  }
  label,.form-check-label,.join-text{
-   font-size: 16px;
-   line-height: 22px;
- }
- .login_btn{
-   height: 45px;
    font-size: 18px;
    line-height: 25px;
  }
- .lang-btn{
-   height: 40px;
-   padding: 0 20px;
-   font-size: 16px;
+ .login_btn{
+   height: 60px;
+   font-size: 22px;
+   line-height: 30px;
  }
- 
+ .lang-btn{
+  height: 50px;
+  padding: 0 20px;
+  font-size: 18px;
+}
  
  .slogan{
    font-size: 25px;
@@ -650,6 +653,6 @@ padding: 20px;
  }
  .input-group-text{
   font-size: 16px;
-  padding: 0 18px;
+  padding: 0 14px;
 }
 }

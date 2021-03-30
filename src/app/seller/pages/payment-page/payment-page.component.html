@@ -1,13 +1,116 @@
-<section>
-    <h2 class="page-heading">Payment for Subscription</h2>
-</section>
-<section class="subs-plan-holder">
-    <div class="apply-coupon-holder">
-        <p>Annually <span class="float-right">$48.95</span></p>
-        <p>Discount (Coupon Added) <span class="float-right">$48.95</span></p>
-        <p>VAT <span class="float-right">$48.95</span></p>
-        <hr>
-        <p>Total <span class="float-right">$48.95</span></p>
-        <button [routerLink]="['/dashboard/payment']" class="d-block mt-5" mat-raised-button>Proceed to pay</button>
+<section class="payment">
+  <h2 class="page-heading">Payment for Subscription</h2>
+  <div class="bill-show row">
+    <!--form for payment-->
+    <div class="col-lg-12 col-xl-8 col-md-12 col-12 bill-pay mt-3">
+      <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="h-100">
+        <div class="row">
+          <!--card number-->
+          <div class="col-md-12 col-lg-12 col-xl-12 col-12">
+            <div class="form-group">
+              <label for="cardNo">Card Number</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><img src="../../../../assets/Wallet.svg" alt="" class="img-fluid"></div>
+                </div>
+                <!-- cardNo -->
+                <input id="cardNo" class="form-control form-control-md" type="text" formControlName="cardNo"
+                  placeholder="33658 6987 7874 2154" required />
+              </div>
+              <div *ngIf="cardNo.invalid && (cardNo.dirty || cardNo.touched)">
+                <div *ngIf="cardNo.errors?.required">
+                  <app-form-input-alert [alertMsg]="'Card number is required.'"></app-form-input-alert>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--card holder-->
+          <div class="col-md-12 col-lg-6 col-xl-6 col-12">
+            <div class="form-group">
+              <label for="cardHolder">Card Holder</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><img src="../../../../assets/Profile.svg" alt="" class="img-fluid"></div>
+                </div>
+                <input id="cardHolder" class="form-control form-control-md" type="text" formControlName="cardHolder"
+                  placeholder="Darlene Robertson" />
+              </div>
+            </div>
+          </div>
+          <!--expiry-->
+          <div class="col-md-6 col-lg-3 col-xl-3 col-12">
+            <div class="form-group">
+              <label for="expiry">Expires</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><img src="../../../../assets/Calendar.svg" alt="" class="img-fluid"></div>
+                </div>
+                <input id="expiry" class="form-control form-control-md" type="month" formControlName="expiry"
+                  value="03/22" />
+              </div>
+            </div>
+          </div>
+          <!--cvv-->
+          <div class="col-md-6 col-lg-3 col-xl-3 col-12">
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><img src="../../../../assets/cvv.svg" alt="" class="img-fluid"></div>
+                </div>
+                <input id="cvv" class="form-control form-control-md" type="text" formControlName="cvv"
+                  placeholder="007" />
+              </div>
+            </div>
+          </div>
+          <!--proceer-->
+          <div class="col-12">
+            <div class="form-group">
+              <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
+                [disabled]="paymentForm.invalid">
+                Proceed
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </form>
     </div>
+    <div class="col-lg-12 col-xl-4 col-md-12 col-12 bill-show mt-3">
+      <div class="card-body cart-summery h-100">
+        <!--annual amount show-->
+        <div class="d-flex justify-content-between">
+          <div class="show-value">
+            <p>Annually</p>
+          </div>
+          <p class="amount">$48.95</p>
+        </div>
+        <!--Coupon discount show-->
+        <div class="d-flex justify-content-between">
+          <div class="show-value">
+            <p>Discount (Coupon Added)</p>
+          </div>
+          <p class="amount">$5.00</p>
+        </div>
+        <!--vat-->
+        <div class="d-flex justify-content-between">
+          <div class="show-value">
+            <p>VAT</p>
+          </div>
+          <p class="amount">$35.00</p>
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        <!--total amount-->
+        <div class="d-flex justify-content-between">
+          <div class="total show-value">
+            <p>Total</p>
+          </div>
+          <p class="amount ta">
+           $78.95
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,7 +1,5 @@
-<section>
-    <h2 class="page-heading">Choose Subscription Plan</h2>
-</section>
 <section class="subs-plan-holder">
+    <h2 class="page-heading">Choose Subscription Plan</h2>
     <div class="row">
         <div class="col-md-6 mb-3" *ngFor="let plan of planList; let i = index;">
             <div class="plan-card" (click)="selectedPlan(i);" [ngClass]="selectedPlanId == i ? 'active': ''">
@@ -11,8 +9,8 @@
             </div>
         </div>
     </div>
-    <div class="apply-coupon-holder">
-        <div class="form-group d-inline-block">
+    <div class="apply-coupon-holder row">
+        <div class="form-group d-inline-block col-md-12 col-lg-7 col-sm-12 col-12">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><img src="../../../../assets/coupon.svg" alt=""></div>
@@ -29,3 +27,4 @@
         <button (click)="proceedToPay()" class="d-block mt-5" mat-raised-button>Proceed to pay</button>
     </div>
 </section>
+

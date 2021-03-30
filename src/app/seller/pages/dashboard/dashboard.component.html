@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <a [routerLink]="['/dashboard/manage-rfqs']">
                 <h3>Manage RFQs</h3>
-                <div *ngIf="rfqTableData.length != 0">
+                <div *ngIf="rfqTableData?.length != 0">
                     <table mat-table [dataSource]="rfqTableData | slice:0:5" class="mat-elevation-z8 mb-5">
                         <!-- RFQ ID Column -->
                         <ng-container matColumnDef="RFQ ID">

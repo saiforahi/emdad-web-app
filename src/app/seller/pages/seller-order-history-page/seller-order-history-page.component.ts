@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderHistoryModalComponent } from './order-history-modal/order-history-modal.component';
 import {OrderService} from '../../../shared/services/order.service'
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Order {
+  id: string;
+  payment_date:string;
+  delivery_date:string;
   status: number;
+  amount: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', status: 1 },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', status: 2 },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', status: 1 },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', status: 1 },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B', status: 2 },
-];
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', status: 1 },
+//   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', status: 2 },
+//   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', status: 1 },
+//   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', status: 1 },
+//   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B', status: 2 },
+// ];
 
 @Component({
   selector: 'app-seller-order-history-page',
@@ -25,6 +25,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SellerOrderHistoryPageComponent implements OnInit {
   orders:Array<any>=[]
+  filtered_orders:Array<any>=[]
   constructor(public dialog: MatDialog, private orderService:OrderService) {
 
   }
@@ -34,7 +35,11 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     this.orderService.get_seller_order_list().subscribe(
       (success)=>{
         console.log('orders',success.data)
+        success.data.forEach(element => {
+          this.orders.push({})
+        });
         this.orders=success.data
+        this.filtered_orders=this.orders
       },
       (error)=>{
         console.log(error)
@@ -43,14 +48,13 @@ export class SellerOrderHistoryPageComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
+    'id',
+    'payment_date',
+    'delivery_date',
     'status',
-    'edit',
+    'amount'
   ];
-  dataSource = ELEMENT_DATA;
+  //dataSource = ELEMENT_DATA;
 
   openDialog() {
     const dialogRef = this.dialog.open(OrderHistoryModalComponent, {
@@ -60,5 +64,47 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+  filter_data(orders:Array<any>){
+    let temp:Array<any>=[]
+    orders.forEach((order)=>{
+      let completed:boolean=true
+      order.order.tracking_order.forEach((item:any) => {
+        if(item.status!=5){
+
+        }
+      });
+    })
+  }
+  //date format helper
+  formatDate(date:string){
+    if(date!=null){
+      return new Date(date).toDateString()
+    }
+    return '-'
+  }
+
+  //filtering orders
+  filter_orders(value:any){
+    this.filtered_orders=[]
+    if(value==1){
+      this.orders.forEach((order:any)=>{
+        if(order.order.payment_type===1 && order.order.order_payment.length>0){
+          console.log('type',order.order.payment_type)
+          this.filtered_orders.push(order)
+        }
+      })
+    }
+    else if(value==0){
+      this.orders.forEach((order:any)=>{
+        if(order.order.payment_type===0){
+          console.log('type',order.order.payment_type)
+          this.filtered_orders.push(order)
+        }
+      })
+    }
+    else{
+      this.filtered_orders=this.orders
+    }
   }
 }

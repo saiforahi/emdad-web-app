@@ -9,12 +9,15 @@
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
-
-.subs-plan-holder {
-  padding: 40px;
+.subs-plan-holder{
+  padding: 30px;
+}
+.subs-card{
   background: #fff;
-  margin-bottom: 35px;
+  padding: 40px;
+ margin-bottom: 35px;
 }
 
 .plan-card {
@@ -45,6 +48,7 @@
   font-size: 24px;
   text-align: center;
   color: #2b2b2b;
+  line-height: 35px;
 }
 
 .plan-price {
@@ -102,13 +106,178 @@
   padding: 20px;
 }
 
-.apply-coupon-holder button {
+.login-btn {
   height: 66px;
   vertical-align: top;
-  padding: 0 50px;
+  
   font-size: 24px;
   background: #1f4f9e;
   color: #fff;
   font-style: normal;
   font-weight: normal;
+  line-height: 35px;
+  font-family: Jost;
 }
+.apply-btn{
+  padding: 0 50px;
+}
+.proceed-btn{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 35px;
+text-align: center;
+color: #FFFFFF;
+padding: 15px 100px;
+}
+
+/*responsive -_- :/ */
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+}
+@media only screen and (min-width:290px) and (max-width:992px){
+  .second-row{
+    margin-top: 12px !important;
+  }
+}
+@media all and (min-width:290px) and (max-width:575px){
+  .login-btn{
+    height: 45px;
+    font-size: 18px;
+    line-height: 25px;
+ 
+  }
+  .apply-btn{
+    padding: 0 20px;
+    margin-top: 2px !important;
+  }
+  .proceed-btn{
+    padding: 10px 40px;
+    margin-top: 20px !important;
+  }
+  .page-heading {
+    font-size: 30px;
+    line-height: 40px;
+    padding: 20px 0;
+  }
+  .plan-title{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .plan-price{
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .plan-price>span{
+    font-size: 14px;
+    line-height: 22px;
+  }
+.apply-coupon-holder{
+  margin: 40px 0;
+}
+.input-group-prepend .input-group-text {
+  background: #fff;
+  padding: 8px;
+}
+.apply-coupon-holder input{
+margin-right: 0px;
+}
+.subs-plan-holder{
+  padding: 10px;
+}
+}
+ @media all and (min-width:575px) and (max-width:768px){
+  .login-btn{
+    height: 45px;
+    font-size: 18px;
+    line-height: 25px;
+ 
+  }
+  .apply-btn{
+    padding: 0 20px;
+    margin-top: 2px !important;
+  }
+  .proceed-btn{
+    padding: 10px 40px;
+    margin-top: 20px !important;
+  }
+  .page-heading {
+    font-size: 30px;
+    line-height: 40px;
+    padding: 20px 0;
+  }
+  .plan-title{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .plan-price{
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .plan-price>span{
+    font-size: 14px;
+    line-height: 22px;
+  }
+.apply-coupon-holder{
+  margin: 40px 0;
+}
+.input-group-prepend .input-group-text {
+  background: #fff;
+  padding: 8px;
+}
+.apply-coupon-holder input{
+margin-right: 0px;
+}
+.subs-plan-holder{
+  padding: 10px;
+}
+ }
+ @media all and (min-width:768px) and (max-width:992px){
+  .login-btn{
+    height: 60px;
+    font-size: 22px;
+    line-height: 30px;
+ 
+  }
+  .apply-btn{
+    padding: 0 35px;
+    margin-top: 2px !important;
+  }
+  .proceed-btn{
+    padding: 12px 50px;
+    margin-top: 20px !important;
+  }
+  .page-heading {
+    font-size: 40px;
+    line-height: 50px;
+    padding: 30px 0;
+  }
+  .plan-title{
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .plan-price{
+    font-size: 30px;
+    line-height: 43px;
+  }
+  .plan-price>span{
+    font-size: 16px;
+    line-height: 25px;
+  }
+.apply-coupon-holder{
+  margin: 50px 0;
+}
+.input-group-prepend .input-group-text {
+  background: #fff;
+  padding: 10px;
+}
+.apply-coupon-holder input{
+margin-right: 0px;
+}
+.subs-plan-holder{
+  padding: 20px;
+}
+ }

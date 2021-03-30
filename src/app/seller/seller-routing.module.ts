@@ -77,6 +77,14 @@ const routes: Routes = [
           canActivate: [SellerAuthGuard],
       },
       {
+        path: 'subscription-payment',
+        loadChildren: () =>
+          import(
+            './pages/payment-page/payment-page.module'
+          ).then((m) => m.PaymentPageModule),
+          canActivate: [SellerAuthGuard],
+      },
+      {
         path: 'upload-products',
         loadChildren: () =>
           import(

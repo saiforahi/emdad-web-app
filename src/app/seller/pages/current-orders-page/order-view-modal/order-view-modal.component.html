@@ -1,25 +1,26 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
         <div class="order-data">
-            <p><b>Order ID: </b><span>#12589</span></p>
-            <p><b>Order Date:</b><span> Nov 25, 2020</span></p>
-            <p><b>Total Price: $25,800</b></p>
+            <p><b>Order ID: </b><span>#{{data.order.order.order_code}}</span></p>
+            <p><b>Order Date:</b><span> {{formatDate(data.order.order_creation_date)}}</span></p>
+            <p><b>Total Price: ${{data.order.order.total_amount}}</b></p>
         </div>
-        <div class="card">
+        <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="media">
-                            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
+                            <img class="mr-3" [src]="img_base_url+detail.product.image1"
                                 alt="Generic placeholder image">
                             <div class="media-body">
-                                <p><b>Mordern white chair</b></p>
-                                <p><span>DDP Manchester (28 days)</span></p>
+                                <p><b>{{detail.product.name}}</b></p>
+                                <p *ngIf="detail.product.delivery_method===1"><span>DDP Manchester (28 days)</span></p>
+                                <p *ngIf="detail.product.delivery_method===2"><span>EX-Works</span></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 order-data">
-                        Quantity: 5
+                        Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-2 order-data">
                         <select class="form-control">
@@ -29,36 +30,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 order-data">
-                        $499
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="media">
-                            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
-                                alt="Generic placeholder image">
-                            <div class="media-body">
-                                <p><b>Mordern white chair</b></p>
-                                <p><span>DDP Manchester (28 days)</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 order-data">
-                        Quantity: 5
-                    </div>
-                    <div class="col-md-2 order-data">
-                        <select class="form-control">
-                            <option>-</option>
-                            <option>In Progress</option>
-                            <option>Delivered</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 order-data">
-                        $499
+                        {{detail.order.total_amount}}
                     </div>
                 </div>
             </div>
