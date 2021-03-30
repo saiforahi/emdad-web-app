@@ -1,20 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import{PageEvent} from '@angular/material/paginator';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-// ];
 
 @Component({
   selector: 'app-seller-payment-history-page',
@@ -23,17 +10,26 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 })
 export class SellerPaymentHistoryPageComponent implements OnInit {
   subscriptionHistory: any;
-
+  //code for pagination
+  lowValue: number = 0;
+  highValue: number = 10;
+  toggleSort = true;
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
   constructor(private subscription: SubscriptionService, ) { }
 
   ngOnInit(): void {
     this.subscription.subscriptionHistory().subscribe(items => {
       console.log(items);
       this.subscriptionHistory = items.data[0];
+      console.log(this.subscriptionHistory);
     })
   }
 
-  displayedColumns: string[] = ['Payment Date', 'Subscription Plan Name', 'Expired Date'];
+ 
   // dataSource = ELEMENT_DATA;
 
 }
