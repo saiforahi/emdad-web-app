@@ -1,18 +1,11 @@
 <section class="subs-plan-holder">
     <h2 class="page-heading">Choose Subscription Plan</h2>
     <div class="row">
-        <div class="col-md-12 col-lg-6 mt-2">
-            <div class="plan-card plan-card-active h-100">
-                <p class="plan-title">Semi - Annually</p>
-                <p class="plan-price">$4.80 <span>VAT Inclusive</span></p>
-                <mat-checkbox class="plan-check" [checked]="true"></mat-checkbox>
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-6 mt-2 second-row">
-            <div class="plan-card h-100">
-                <p class="plan-title">Annually</p>
-                <p class="plan-price">$3.50/yr <span>VAT Inclusive</span></p>
-                <!-- <mat-checkbox class="plan-check"></mat-checkbox> -->
+        <div class="col-md-6 mb-3" *ngFor="let plan of planList; let i = index;">
+            <div class="plan-card" (click)="selectedPlan(i);" [ngClass]="selectedPlanId == i ? 'active': ''">
+                <p class="plan-title">{{plan.title | titlecase}} - <span *ngIf="plan.subscription_plan == 'y'">Yearly</span><span *ngIf="plan.subscription_plan == 'h'">Half yearly</span></p>
+                <p class="plan-price">${{plan.fees}} <span>VAT Inclusive</span></p>
+                <mat-checkbox class="plan-check" [checked]="selectedPlanId == i"></mat-checkbox>
             </div>
         </div>
     </div>
@@ -22,18 +15,16 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><img src="../../../../assets/coupon.svg" alt=""></div>
                 </div>
-                <input id="email" class="form-control form-control-md" type="text" formControlName="email" required
-                    placeholder="Enter discount coupon" />
+                <input [(ngModel)]="couponInput" class="form-control form-control-md" type="text" required placeholder="Enter discount coupon"/>
             </div>
         </div>
-        <div class="col-md-12 col-lg-3 col-12">
-            <button mat-raised-button class="login-btn apply-btn">Apply</button>
+        <button mat-raised-button (click)="applyCoupon()">Apply</button>
+        <div *ngIf="msg">
+          <span>{{ msg }}.</span>
+          <span *ngIf="couponDiscount != null"> Discount is SAR{{couponDiscount}}.</span>
         </div>
-        <div class="col-md-12 col-lg-12 col-12">
-            <button [routerLink]="['/dashboard/subscription-payment']" class="d-block mt-5 login-btn proceed-btn"
-                mat-raised-button>Proceed to pay</button>
-        </div>
+        <!-- [routerLink]="['/dashboard/payment']" -->
+        <button (click)="proceedToPay()" class="d-block mt-5" mat-raised-button>Proceed to pay</button>
     </div>
-
 </section>
 
