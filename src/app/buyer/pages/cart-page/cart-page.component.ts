@@ -143,28 +143,21 @@ export class CartPageComponent implements OnInit {
     if (!this.emptyCart) {
       this.commission.getCommission().subscribe(
         (item) => {
+          console.log('commision',item.data[0].percentage.toString())
           this.commissionAmount = parseFloat(
             item.data[0].percentage.toString()
           );
-          this.generateOrderData(this.cart.products);
-          this.calcSubTotalPrice();
-          this.calcTotalPrice();
+          this.vat.getVat().subscribe((item) => {
+            this.vatPercentage = parseFloat(item.data[0].percentage);
+            this.generateOrderData(this.cart.products);
+            this.calcSubTotalPrice();
+            this.calcTotalPrice();
+          });
         },
         (err) => {
           console.log(err);
         }
       );
-
-      this.vat.getVat().subscribe((item) => {
-        this.vatPercentage = parseFloat(item.data[0].percentage);
-        this.generateOrderData(this.cart.products);
-        this.calcSubTotalPrice();
-        this.calcTotalPrice();
-      });
-
-      this.generateOrderData(this.cart.products);
-      this.calcSubTotalPrice();
-      this.calcTotalPrice();
       // console.log(this.orders_details, this.tracking_order);
     }
   }
@@ -186,7 +179,7 @@ export class CartPageComponent implements OnInit {
       }
       commission = parseFloat(element.unit_price) * (commission / 100);
       this.commissionList.push(commission);
-
+      console.log('asus commission',commission)
       // orders_details.push({
       //   product: element.id,
       //   // quantity:
@@ -231,7 +224,7 @@ export class CartPageComponent implements OnInit {
     this.cartService.existingCartLength.next(
       this.cart.products.length > 0 ? this.cart.products.length : null
     );
-    this.generateOrderData(this.cart.products);
+    //this.generateOrderData(this.cart.products);
     this.calcSubTotalPrice();
     this.calcTotalPrice();
     localStorage.setItem('cart', JSON.stringify(this.cart));
