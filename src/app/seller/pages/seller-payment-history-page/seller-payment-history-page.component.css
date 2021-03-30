@@ -11,51 +11,108 @@
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
 
 .card {
-  padding: 40px;
+  padding: 30px;
   border: none;
   border-radius: 0;
 }
 
-.mat-table {
+.name{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+
+
+}
+.value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+/* word-wrap: break-word; */
+white-space: pre-line;
+
+}
+.card-header{
+  background-color: #ffff;
+}
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+border-radius: 5px;
+padding: 20px;
+margin-top: 15px;
+}
+.end-date{
+  color: #FF4B55 !important;
+}
+.mobile-name{
+  display: none;
+}
+.pagination-show,::ng-deep .mat-paginator{
   background-color: transparent !important;
-  padding: 0 20px;
 }
-
-tr.mat-row,
-tr.mat-footer-row {
-  height: 60px;
-  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  transition: 0.3s;
+/*responsive -_- :/ */
+@media only screen and (min-width:1200px){
+  .container {
+    max-width: 1600px !important;
+  }
 }
-
-tr.mat-row:hover,
-tr.mat-footer-row:hover {
-  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-  transition: 0.3s;
+@media all and (min-width:290px) and (max-width:992px){
+.card-header{
+  display: none !important;
 }
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 20px !important;
+.mobile-name{
+  display: inline-block;
 }
-
-table tr:last-child td {
-  border-bottom: 0 solid;
+.card{
+  background-color: transparent !important;
+  
 }
-
-th {
-  font-weight: 500;
-  font-size: 18px;
-  color: #2b2b2b;
+.value{
+font-size: 16px;
+line-height: 23px;
 }
-
-td {
-  font-weight: normal;
-  font-size: 18px;
-  color: #2b2b2b;
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.04);
+border-radius: 10px;
+margin-top: 10px;
+}
+}
+@media all and (min-width:290px) and (max-width:576px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 25px;
+  line-height: 40px;
+  }
+  .card{
+    padding: 8px;
+  }
+ 
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 30px;
+  line-height: 40px;
+  }
+  .card{
+    padding: 8px;
+  }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 35px;
+  line-height: 55px;
+  }
 }
