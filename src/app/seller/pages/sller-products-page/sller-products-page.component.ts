@@ -57,9 +57,9 @@ export class SllerProductsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCategories.category().subscribe((item: any) => {
-      // console.log(item);
-      this.categories = item;
+    this.getCategories.categoriesOfSeller(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item);
+      this.categories = item.data[0].category_info;
     });
     this.expandedCat = parseInt(localStorage.getItem('expandedCat'));
     this.expandedSubCat = parseInt(localStorage.getItem('expandedSubCat'));
@@ -87,7 +87,7 @@ export class SllerProductsPageComponent implements OnInit {
   }
 
   getProdOnFilter(ChildCatId, subCatId, catId) {
-    this.router.navigate(['/products/category/', ChildCatId]);
+    // this.router.navigate(['/products/category/', ChildCatId]);
     localStorage.setItem('expandedSubCat', subCatId);
     localStorage.setItem('expandedCat', catId);
   }

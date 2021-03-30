@@ -20,4 +20,8 @@ export class GetCategoryService {
   PopularCategory(): Observable<any> {
     return this.http.get(config.base_url+'api/product/popular/category/');
   }
+
+  categoriesOfSeller(uid): Observable<any> {
+    return this.http.get(config.base_url+'api/seller/category/store/info/'+uid+'/');
+  }
 }

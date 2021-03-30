@@ -1,5 +1,8 @@
 <div class="breadcrumbs">
     <div class="container">
-        <div class="url d-inline-block"><a [routerLink]="['/']">Dashboard</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span><a [routerLink]="['/']">Dashboard</a> / <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span><a [routerLink]="['/']">Dashboard</a>  <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span></div>
+        <div class="url d-inline-block">
+            <a [routerLink]="['/']">Dashboard</a> /
+            <span>{{directoryString | titlecase | slice:0:30}}{{directoryString.length>30?'...':''}}</span>
+        </div>
     </div>
 </div>
