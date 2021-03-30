@@ -1,43 +1,83 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
+
+        <mat-dialog-actions align="end" class="p-0 m-0">
+            <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
+        </mat-dialog-actions>
+
         <div class="order-data">
-            <p><b>Order ID: </b><span>#{{data.order.order.order_code}}</span></p>
-            <p><b>Order Date:</b><span> {{formatDate(data.order.order_creation_date)}}</span></p>
-            <p><b>Total Price: ${{data.order.order.total_amount}}</b></p>
+
+            <p class="top-details">Order ID: <span class="prod">#{{data.order.order.order_code}}</span></p>
+            <p class="top-details">Order Date:<span class="prod"> {{data.order.order_creation_date | date:'longDate'}}</span>
+            </p>
+            <p class="top-details">Total Price: <span class="prod">${{data.order.order.total_amount}}</span></p>
         </div>
         <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-5 col-md-12 col-12 col-12 col-sm-12">
                         <div class="media">
-                            <img class="mr-3" [src]="img_base_url+detail.product.image1"
-                                alt="Generic placeholder image">
+                            <img [src]="img_base_url+detail.product.image1" alt="Generic placeholder image" class="img-fluid">
                             <div class="media-body">
-                                <p><b>{{detail.product.name}}</b></p>
-                                <p *ngIf="detail.product.delivery_method===1"><span>DDP Manchester (28 days)</span></p>
-                                <p *ngIf="detail.product.delivery_method===2"><span>EX-Works</span></p>
+                                <p class="name">{{detail.product.name}}</p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP Manchester (28
+                                        days)</span></p>
+                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 order-data">
+                    <div class="col-md-4 col-lg-2 col-sm-3 col-12 order-data quantity">
                         Quantity: {{detail.quantity}}
                     </div>
-                    <div class="col-md-2 order-data">
-                        <select class="form-control">
-                            <option>-</option>
+                    <div class="col-md-4 col-lg-3 col-sm-6 col-8 order-data">
+                        <select class="form-control dropdown">
+                            <option>Update Status</option>
                             <option>In Progress</option>
                             <option>Delivered</option>
                         </select>
+                        <!--show this if status is delivered-->
+                        <label class="deliverd" *ngIf="show">Delivered</label>
                     </div>
-                    <div class="col-md-2 order-data">
-                        {{detail.order.total_amount}}
+                    <div class="col-lg-2 col-md-4 col-sm-3 col-4 order-data value">
+                        ${{detail.order.total_amount}}
                     </div>
                 </div>
             </div>
         </div>
+        <!--show if select delivered-->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 col-12 show-text">
+                        <p class="del-proof">Please upload a proof of delivery</p>
+                        <p class="file-ex del-proof"> "Delivery Note"</p>
+                       
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-12 ">
+                        <form [formGroup]="attachForm" (ngSubmit)="onSubmit()">
+                            <div class="row do-middle">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex show-form">
+                                    <label for="note" class="custom-file-upload mr-2">
+                                        <!-- file-up -->
+                                        <input id="note" class="form-control form-control-md" type="file"
+                                            formControlName="note" (change)="upload($event);" />
+                                    </label>
+                                    <label class="attached-file"><label class="mr-1 show-file">filename</label> <button
+                                            mat-mini-fab (click)="removeFile();">
+                                            <mat-icon class="small-icon">close</mat-icon>
+                                        </button></label>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex btn-view">
+                                    <button mat-mini-fab type="submit" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
+                                    <button mat-mini-fab class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </mat-dialog-content>
-    <!-- <mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="true" class="del-btn">Delete</button>
-        <button mat-button mat-dialog-close class="cancel-btn">Cancel</button>
-    </mat-dialog-actions> -->
+
 </section>
