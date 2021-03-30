@@ -26,10 +26,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-2 col-sm-3 col-12 order-data quantity">
+                    <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity desktop">
                         Quantity: {{detail.quantity}}
                     </div>
-                    <div class="col-md-4 col-lg-3 col-sm-6 col-8 order-data">
+                    <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
                         <select class="form-control dropdown">
                             <option>Update Status</option>
                             <option>In Progress</option>
@@ -38,7 +38,10 @@
                         <!--show this if status is delivered-->
                         <label class="deliverd" *ngIf="show">Delivered</label>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-3 col-4 order-data value">
+                    <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">
+                        Quantity: {{detail.quantity}}
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-3 col-6 order-data value">
                         ${{detail.order.total_amount}}
                     </div>
                 </div>
