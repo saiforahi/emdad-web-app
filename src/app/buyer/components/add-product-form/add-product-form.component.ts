@@ -12,6 +12,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { AddProductService } from 'src/app/shared/services/add-product.service';
 
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 
@@ -32,10 +33,12 @@ export class AddProductFormComponent implements OnInit {
   image1: any;
   image2: any;
   attachment: any;
+  unitList: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private categoryService: GetCategoryService
+    private categoryService: GetCategoryService,
+    private addProductService: AddProductService
   ) {
     this.formProductData = this.formBuilder.group({
       name: new FormControl('', Validators.required),

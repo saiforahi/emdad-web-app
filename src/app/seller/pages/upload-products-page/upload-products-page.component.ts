@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddProductService } from 'src/app/shared/services/add-product.service';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -22,12 +23,16 @@ export class UploadProductsPageComponent implements OnInit {
   msg;
   group: string;
   productUploadForm: FormGroup;
+  category: AbstractControl;
+  subCategory: AbstractControl;
+  childCategory: AbstractControl;
   prodName: AbstractControl;
   prodDetails: AbstractControl;
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
   prodSize: AbstractControl;
   unitOfMeasure: AbstractControl;
+  prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
   ddp: AbstractControl;
@@ -50,7 +55,11 @@ export class UploadProductsPageComponent implements OnInit {
   categories: any;
   subCategories: any;
   childCategories: any;
-  selectedImage: any;
+  selectedImage: any = [];
+  unitList: any;
+  brandList: any;
+  imgPreviewList = [];
+  selectedFiles: any = [];
 
   constructor(
     private authService: UserAuthService,
@@ -60,34 +69,51 @@ export class UploadProductsPageComponent implements OnInit {
     private contry: CountryListService,
     private spinner: NgxSpinnerService,
     private categoryServices: GetCategoryService,
+    private addProductService: AddProductService
   ) {}
 
   ngOnInit(): void {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
-      console.log(this.categories[0].name);
+      // console.log(this.categories[0].name);
+    });
+    this.addProductService.getUnitOfProduct().subscribe((item) => {
+      this.unitList = item.data[0];
+      // console.log(item.data[0]);
+    });
+    this.addProductService.getBrandList().subscribe((item) => {
+      this.brandList = item.data[0];
+      console.log(item.data[0]);
     });
     this.productUploadForm = this.fb.group({
+      category: ['', [Validators.required]],
+      subCategory: ['', [Validators.required]],
+      childCategory: ['', [Validators.required]],
       prodName: ['', [Validators.required]],
       prodDetails: [''],
       manufactererName: [''],
       prodSize: [''],
-      prodStock: [''],
-      unitOfMeasure: [''],
-      prodDeliMethod: [''],
-      leadTime: [''],
-      ddp: [''],
-      prodPrice: [''],
+      prodStock: ['', [Validators.required]],
+      unitOfMeasure: ['', [Validators.required]],
+      prodUnit: ['', [Validators.required]],
+      prodDeliMethod: ['', [Validators.required]],
+      leadTime: ['', [Validators.required]],
+      ddp: ['', [Validators.required]],
+      prodPrice: ['', [Validators.required]],
       prodImage: [''],
       attachments: [''],
     });
+    this.category = this.productUploadForm.controls['category'];
+    this.subCategory = this.productUploadForm.controls['subCategory'];
+    this.childCategory = this.productUploadForm.controls['childCategory'];
     this.prodName = this.productUploadForm.controls['prodName'];
     this.prodDetails = this.productUploadForm.controls['prodDetails'];
     this.manufactererName = this.productUploadForm.controls['manufactererName'];
     this.prodStock = this.productUploadForm.controls['prodStock'];
     this.prodSize = this.productUploadForm.controls['prodSize'];
     this.unitOfMeasure = this.productUploadForm.controls['unitOfMeasure'];
+    this.prodUnit = this.productUploadForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
     this.ddp = this.productUploadForm.controls['ddp'];
@@ -125,47 +151,98 @@ export class UploadProductsPageComponent implements OnInit {
     });
   }
 
-  setSubCAt(catId){
-    this.subCategories = this.categories.find(item => item.id == catId).children;
+  setSubCAt(catId) {
+    this.subCategories = this.categories.find(
+      (item) => item.id == catId
+    ).children;
   }
 
-  setChildCAt(subCatId){
-    this.childCategories = this.subCategories.find(item => item.id == subCatId).children;
+  setChildCAt(subCatId) {
+    this.childCategories = this.subCategories.find(
+      (item) => item.id == subCatId
+    ).children;
   }
 
   onSubmit(value) {
-    // console.log(value);
     this.spinner.show();
-    this.productUploadFormData.append('email', value.email);
-    this.productUploadFormData.append('password', value.password);
-    this.productUploadFormData.append('store_name', value.prodName);
-    this.productUploadFormData.append('phone', value.prodDetails);
-    this.productUploadFormData.append('store_address', value.comAddress);
-    this.productUploadFormData.append('zip_code', value.zipCode);
-    this.authService.sellerSignup(this.productUploadFormData).subscribe(
+    this.productUploadFormData.append('category', value.childCategory);
+    // this.productUploadFormData.append('attachment', this.selectedFiles[0], this.selectedFiles[0].name);
+    for (var i = 0; i < this.selectedFiles.length; i++) {
+      this.productUploadFormData.append(
+        `attachment[${i}]path`,
+        this.selectedFiles[i],
+        this.selectedFiles[i].name
+      );
+    }
+    this.productUploadFormData.append('pickup_address.address', value.ddp);
+    this.productUploadFormData.append('brand', value.manufactererName);
+    this.productUploadFormData.append('unit', value.prodUnit);
+    this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
+    this.productUploadFormData.append('name', value.prodName);
+    this.productUploadFormData.append(
+      'slug',
+      value.prodName.replace(/\s+/g, '-').toLowerCase()
+    );
+    this.productUploadFormData.append('description', value.prodDetails);
+    this.productUploadFormData.append('unit_price', value.prodPrice);
+    this.productUploadFormData.append('delivery_method', value.prodDeliMethod);
+    if (value.prodDeliMethod == 1) {
+      this.productUploadFormData.append('ddp_lead_time', value.leadTime);
+      this.productUploadFormData.append('ex_works_lead_time', null);
+    } else if (value.prodDeliMethod == 2) {
+      this.productUploadFormData.append('ddp_lead_time', null);
+      this.productUploadFormData.append('ex_works_lead_time', value.leadTime);
+    }
+    this.productUploadFormData.append('stock_quantity', value.prodStock);
+    this.productUploadFormData.append('status', '1');
+    if (this.selectedImage.length > 0)
+      this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
+    if (this.selectedImage.length > 1)
+      this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
+    this.addProductService.addProduct(this.productUploadFormData).subscribe(
       (success) => {
         console.log(success);
-        this.router.navigate(['dashboard']);
-        swal('Succeed', 'You have registered successfully', 'success');
+        this.spinner.hide();
+        swal('Succeed', success.message, 'success');
       },
       (error: any) => {
-        this.error = error.error.email.toString();
         console.log(error);
-        // if(error.email){
-        //   swal('Failed!', error.email, 'error');
-        // }
         swal('Failed!', this.error, 'error');
       }
     );
   }
 
-  handleFileSelect(event) {
-    var reader = new FileReader();
+  handleImgSelect(event) {
     this.selectedImage.push(event.target.files[0]);
-    console.log(this.selectedImage);
+    let files = event.target.files;
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imgPreviewList.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+      event.srcElement.value = null;
+    }
+  }
+
+  removeImg(id) {
+    this.selectedImage.splice(id, 1);
+    this.imgPreviewList.splice(id, 1);
+  }
+
+  handleFileSelect(event) {
+    this.selectedFiles.push(event.target.files[0]);
+    // console.log(this.selectedFiles);
+    event.srcElement.value = null;
+    // this.selectedFiles.forEach(element => {
+    //   var id = 0;
+    //   this.finalFilseList.push({"id": id, })
+    // });
   }
 
   removeFile(id) {
-    this.selectedImage.splice(id, 1);
+    this.selectedFiles.splice(id, 1);
   }
 }
