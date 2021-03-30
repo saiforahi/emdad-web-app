@@ -25,6 +25,8 @@
   border: 2px solid #fff;
   transition: 0.3s;
   position: relative;
+  border: 2px solid #fff !important;
+  cursor: pointer;
 }
 
 .plan-card:hover {
@@ -32,7 +34,7 @@
   transition: 0.3s;
 }
 
-.plan-card-active {
+.plan-card.active {
   border: 2px solid #1f4f9e !important;
 }
 
@@ -82,7 +84,7 @@
 }
 
 .apply-coupon-holder {
-  margin: 100px 0 0;
+  margin: 85px 0 0;
 }
 
 .apply-coupon-holder input {
