@@ -12,7 +12,7 @@
                         </p>
                         <p class="store-name">{{product.seller.full_name | titlecase}}</p>
                         <p class="stock"><span>Stock :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
-                        <p class="product-price">${{ product.unit_price }}</p>
+                        <p class="product-price">${{ get_unit_price(product.commission,product.unit_price) }}</p>
                         <p class="pickup"><span>Shop Pickup Location :</span> {{product.pickup_address[0]?.address}}</p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
             <!-- <mat-divider vertical class="float-right"></mat-divider> -->
             <div class="col-md-5 justify-content-center mt-3 float-right">
                 <div class="justify-content-center">
-                    <p><strong class="sar-text">SAR {{product.unit_price|number:'1.0-0'}}</strong> / each</p>
+                    <p><strong class="sar-text">SAR {{get_unit_price(product.commission,product.unit_price)|number:'1.0-0'}}</strong> / each</p>
                 </div>
                 <div class="row justify-content-between p-3 mt-3">
                     <div class="col-sm-4" style="width: 100%;">
