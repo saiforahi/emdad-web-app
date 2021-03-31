@@ -40,7 +40,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     this.order_id = this.route.snapshot.params['order_id'];
     this.orderService.get_buyer_order_details(this.order_id).subscribe(
       (success) => {
-        //console.log(success.data);
+        console.log(success.data);
         this.orders = success.data;
         this.dataLoaded = true;
         this.get_order_status();
@@ -112,9 +112,13 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   calcTotalPrice() {
     let subTotal = 0;
     this.orders.forEach((element) => {
-      subTotal +=
-        parseFloat(element.unit_price) * parseFloat(element.quantity) +
-        parseFloat(element.commission);
+      if(parseFloat(element.commission)>0){
+        subTotal += (parseFloat(element.unit_price)  + parseFloat(element.commission))* parseFloat(element.quantity);
+      }
+      else{
+        subTotal += (parseFloat(element.unit_price)  + parseFloat(localStorage.getItem('commission')))* parseFloat(element.quantity);
+      }
+      
     });
     this.subTotal = subTotal;
     return subTotal;
@@ -140,11 +144,14 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     return this.vat - this.discount + this.subTotal;
   }
 
-  cal_individual_total(index) {
-    return (
-      this.orders[index].unit_price * this.orders[index].quantity +
-      parseFloat(this.orders[index].commission)
-    );
+  cal_individual_total(index:number) {
+    if(parseFloat(this.orders[index].commission)>0){
+      //let price=parseFloat(this.orders[index].unit_price) + 
+      return (parseFloat(this.orders[index].unit_price) + parseFloat(this.orders[index].commission))* parseFloat(this.orders[index].quantity)
+    }
+    else{
+      return (parseFloat(this.orders[index].unit_price) + parseFloat(localStorage.getItem('commission')))* parseFloat(this.orders[index].quantity)
+    }
   }
 
   createPdf() {

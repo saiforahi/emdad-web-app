@@ -52,14 +52,15 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     'payment_date',
     'delivery_date',
     'status',
-    'amount'
+    'amount',
+    'view'
   ];
   //dataSource = ELEMENT_DATA;
 
-  openDialog() {
+  openDialog(order:any) {
     const dialogRef = this.dialog.open(OrderHistoryModalComponent, {
       autoFocus: false,
-      data: {},
+      data: {order:order},
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -106,5 +107,20 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     else{
       this.filtered_orders=this.orders
     }
+  }
+  get_price(id:any){
+    // this.orderService.get_seller_order_details(id).subscribe(
+    //   (success)=>{
+    //     return (parseFloat(success.data[0].unit_price)*parseFloat(success.data[0].quantity))+parseFloat(success.data[0].commission)+parseFloat(success.data[0].vat_amount)
+    //   }
+    // )
+    //return (parseFloat(unit_price)*parseFloat(quantity))+parseFloat(commission)+parseFloat(vat_amount)
+  }
+  get_total(){
+    let total:number=0
+    this.orders.forEach((order:any)=>{
+      total+= parseFloat(order.order.total_amount)
+    })
+    return total
   }
 }

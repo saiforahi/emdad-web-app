@@ -1,7 +1,7 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
         <div class="order-data">
-            <p><b>Order ID: </b><span>#12589</span></p>
+            <p><b>Order ID: </b><span>#{{details.order.order_code}}</span></p>
             <p><b>Order Date:</b><span> Nov 25, 2020</span></p>
             <p><b>Total Price: $25,800</b></p>
         </div>
@@ -10,11 +10,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="media">
-                            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
+                            <img class="mr-3" [src]="img_base_url+details.product.image1"
                                 alt="Generic placeholder image">
                             <div class="media-body">
-                                <p><b>Mordern white chair</b></p>
-                                <p><span>DDP Manchester (28 days)</span></p>
+                                <p><b>{{details.product.name}}</b></p>
+                                <p><span>{{details.product.delivery_method===1?"DDP":"Ex-Works"}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -22,35 +22,10 @@
                         <a href="">proof.pdf</a>
                     </div>
                     <div class="col-md-2 order-data">
-                        Quantity: 5
+                        Quantity: {{details.quantity}}
                     </div>
                     <div class="col-md-2 order-data">
-                        $499
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="media">
-                            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
-                                alt="Generic placeholder image">
-                            <div class="media-body">
-                                <p><b>Mordern white chair</b></p>
-                                <p><span>DDP Manchester (28 days)</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 order-data">
-                        <a href="">proof.pdf</a>
-                    </div>
-                    <div class="col-md-2 order-data">
-                        Quantity: 5
-                    </div>
-                    <div class="col-md-2 order-data">
-                        $499
+                        {{get_price(details.unit_price,details.quantity,details.commission,details.vat_amount)}}
                     </div>
                 </div>
             </div>
