@@ -60,6 +60,16 @@ margin-top: 15px;
 .pagination-show,::ng-deep .mat-paginator{
   background-color: transparent !important;
 }
+.no-data {
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 30px;
+  color: #2b2b2b;
+}
+
 /*responsive -_- :/ */
 @media only screen and (min-width:1200px){
   .container {
@@ -114,5 +124,11 @@ margin-top: 10px;
     padding:15px 0;
     font-size: 35px;
   line-height: 55px;
+  }
+}
+@media all and (min-width:992px){
+  .show-values:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
   }
 }
