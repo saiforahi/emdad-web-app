@@ -1,10 +1,11 @@
 import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , NavigationEnd, Router} from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { config } from 'src/config';
 import { NgxSpinnerService } from 'ngx-spinner';
 import jsPDF from 'jspdf';
 import swal from 'sweetalert'
+import { UrlService } from '../../../shared/services/url.service';
 @Component({
   selector: 'app-buyer-order-history-details',
   templateUrl: './buyer-order-history-details.component.html',
@@ -13,7 +14,7 @@ import swal from 'sweetalert'
 export class BuyerOrderHistoryDetailsComponent implements OnInit {
   invoice = new FormData();
   order_id: any;
-  orders: any;
+  orders: Array<any>=[];
   base_url: string;
   subTotal: any;
   discount: any = 0;
@@ -23,11 +24,15 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   order_status: string;
   product_statuses: Array<any> = [];
   img_base_url;
+  previousUrl: any;
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private spinner: NgxSpinnerService
-  ) {}
+    private spinner: NgxSpinnerService,
+    private urlService:UrlService,
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.base_url = config.base_url;
@@ -35,13 +40,17 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     this.order_id = this.route.snapshot.params['order_id'];
     this.orderService.get_buyer_order_details(this.order_id).subscribe(
       (success) => {
-        console.log(success.data);
+        //console.log(success.data);
         this.orders = success.data;
         this.dataLoaded = true;
         this.get_order_status();
         //this.get_order_status()
         this.calVat();
         this.calcDiscount();
+        console.log('prev url',this.urlService.getCurrentUrl())
+        if(this.urlService.getCurrentUrl()==='/checkout'){
+          swal("Placed!",'Upload invoice to get your order confirmed','success')
+        }
       },
       (error) => console.log(error)
     );

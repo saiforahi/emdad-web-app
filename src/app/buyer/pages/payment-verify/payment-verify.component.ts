@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartServiceService } from '../../../shared/services/cart-service.service';
-
 @Component({
   selector: 'app-payment-verify',
   templateUrl: './payment-verify.component.html',
