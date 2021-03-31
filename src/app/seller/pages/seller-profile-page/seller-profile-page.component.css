@@ -11,6 +11,7 @@
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
 
 .card {
@@ -152,6 +153,7 @@ a {
   color: #2b2b2b;
   margin-top: 70px;
   margin-bottom: 10px;
+  line-height: 69px;
 }
 
 .login-sub-header {
@@ -165,6 +167,8 @@ label {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  text-transform: capitalize;
+  line-height: 29px;
 }
 
 .card {
@@ -322,12 +326,12 @@ input[type="file"] {
 .custom-file-upload {
   width: 80px;
   height: 80px;
-  background-image: url("../../../../assets/upload.svg");
+  background-image: url("../../../../assets/icons/Uploadupload-grey.png");
   background-repeat: no-repeat;
   background-size: 40%;
   background-position: center center;
   border-radius: 5px;
-  border: 3px dashed #ccc;
+  border: 2px dashed #CFCFCF;
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
@@ -336,12 +340,13 @@ input[type="file"] {
 .attached-file {
   display: inline-block;
   vertical-align: top;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 .attached-file {
   list-style: none !important;
   font-size: 20px;
+  line-height: 29px;
 }
 
 .attached-file button {
@@ -354,11 +359,12 @@ input[type="file"] {
   color: #fff;
   font-size: 16px;
   padding: 0;
+   vertical-align: middle !important;
 }
 
 .already-added-file {
   list-style: none;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 .already-added-file li span:hover {
@@ -368,6 +374,7 @@ input[type="file"] {
 .already-added-file button {
   box-shadow: none;
   color: #ff4b55;
+  vertical-align: middle !important;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -375,3 +382,186 @@ input[type="file"] {
     max-width: 1600px !important;
   }
 }
+@media only screen and (min-width:290px) and (max-width:575px){
+  .container{
+    padding: 20px;
+  }
+  .seller-profile-pic-div{
+    height: 80px;
+    width: 80px;
+  }
+.seller-profile-pic-div img{
+  width: 80px;
+}
+.pro-img-up-btn{
+  height: 25px;
+  width:25px;
+  min-width: 25px;
+}
+.page-heading{
+  font-size: 32px;
+  line-height: 46px;
+}
+label,.form-check-label,.join-text,input,textarea{
+  font-size: 16px;
+  line-height: 23px;
+}
+.login_btn{
+  height: 50px;
+  font-size: 18px;
+  line-height: 25px;
+  width: 180px;
+
+}
+.submit-btn{
+  text-align: center !important;
+}
+.input-group-text{
+  font-size: 14px;
+  padding: 0 8px;
+}
+.input-group-text img{
+  height: 20px;
+  width: 20px;
+}
+.custom-file-upload{
+  /* background-size: 5%; */
+  height: 60px;
+  width: 60px;
+}
+.card {
+  padding: 14px;
+}
+.banner-img-up-btn{
+height: 30px !important;
+width: 30px !important;
+min-width: 30px !important;
+top: 10px;
+}
+.banner-img-up-btn::after{
+  width: 14px;
+  height: 14px;
+}
+.form-control{
+  height: 60px;
+}
+}
+ @media all and (min-width:575px) and (max-width:768px){
+  .container{
+    padding: 10px !important;
+  }
+  .seller-profile-pic-div{
+    height: 80px;
+    width: 80px;
+  }
+.seller-profile-pic-div img{
+  width: 80px;
+}
+.pro-img-up-btn{
+  height: 25px;
+  width:25px;
+  min-width: 25px;
+}
+.page-heading{
+  font-size: 32px;
+  line-height: 46px;
+}
+label,.form-check-label,.join-text,input,textarea{
+  font-size: 16px;
+  line-height: 23px;
+}
+.login_btn{
+  height: 50px;
+  font-size: 18px;
+  line-height: 25px;
+  width: 230px;
+
+}
+.submit-btn{
+  text-align: center !important;
+}
+.input-group-text{
+  font-size: 14px;
+  padding: 0 8px;
+}
+.input-group-text img{
+  height: 20px;
+  width: 20px;
+}
+.custom-file-upload{
+  /* background-size: 5%; */
+  height: 60px;
+  width: 60px;
+}
+.card {
+  padding: 14px;
+}
+.banner-img-up-btn{
+height: 30px !important;
+width: 30px !important;
+min-width: 30px !important;
+top: 10px;
+}
+.banner-img-up-btn::after{
+  width: 14px;
+  height: 14px;
+}
+.form-control{
+  height: 60px;
+}
+ }
+ @media only screen and (min-width:768px) and (max-width:992px){
+  label,.form-check-label,.join-text,input,textarea{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .container{
+    padding: 10px !important;
+  }
+  .seller-profile-pic-div{
+    height: 100px;
+    width: 100px;
+  }
+.seller-profile-pic-div img{
+  width: 100px;
+}
+.pro-img-up-btn{
+  height: 25px;
+  width:25px;
+  min-width: 25px;
+}
+.page-heading{
+  font-size: 40px;
+  line-height: 62px;
+}
+.input-group-text{
+  font-size: 16px;
+  padding: 0 10px;
+}
+.input-group-text img{
+  height: 24px;
+  width: 24px;
+}
+.custom-file-upload{
+  /* background-size: 5%; */
+  height: 60px;
+  width: 60px;
+}
+.login_btn{
+  height: 60px;
+  font-size: 18px;
+  line-height: 25px;
+ 
+
+}
+.submit-btn{
+  text-align: center !important;
+}
+.card {
+  padding: 16px;
+}
+
+.form-control{
+  height: 60px;
+}
+ }

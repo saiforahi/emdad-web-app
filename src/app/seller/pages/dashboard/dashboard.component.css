@@ -101,7 +101,7 @@ margin-top: 15px;
 
 /*responsive :/ -_- */
 
-@media all and (min-width:1200px){
+@media all and (min-width:992px){
 
   .show-values:hover{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -123,7 +123,7 @@ margin-top: 15px;
   .page-heading{
     padding:15px 0;
     font-size: 25px;
-  line-height: 40px;
+    line-height: 40px;
   }
 
   .value{
@@ -134,8 +134,8 @@ margin-top: 15px;
 @media all and (min-width:576px) and (max-width:768px){
   .page-heading{
     padding:15px 0;
-    font-size: 30px;
-  line-height: 40px;
+    font-size: 32px;
+    line-height: 46px;
   } 
   
   .value{
