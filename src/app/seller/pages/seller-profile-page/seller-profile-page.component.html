@@ -4,7 +4,7 @@
 <section class="card mb-5">
   <div class="profile-banner-holder">
     <img src="{{banner_pic}}" alt="">
-    <!-- <img src="../../../../assets/images/profile-banner.png" alt=""> -->
+   <!--  <img src="../../../../assets/images/profile-banner.png" alt=""> -->
     <label for="banner" class="banner-img-up-btn mb-0">
       <!-- banner -->
       <input id="banner" class="form-control form-control-md" type="file"
@@ -33,10 +33,10 @@
             <label for="comName">Company Name</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Home.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Home.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- comName -->
-              <input id="comName" class="form-control form-control-md" type="text" formControlName="comName" required />
+              <input id="comName" class="form-control form-control-md" type="text" formControlName="comName" placeholder="Guy Hawkins" required />
             </div>
             <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
               <div *ngIf="comName.errors?.required">
@@ -50,22 +50,22 @@
             <label for="email">Company email</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Message.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Message.svg"  class="img-fluid" alt=""></div>
               </div>
               <!-- email -->
-              <input id="email" class="form-control form-control-md" type="email" formControlName="email" disabled/>
+              <input id="email" placeholder="guyhawkins257@example.com" class="form-control form-control-md" type="email" formControlName="email" disabled/>
             </div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="comPhone">Company Phone</label>
+            <label for="comPhone">Company Mobile Number</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Call.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Call.svg"  class="img-fluid" alt=""></div>
               </div>
               <!-- phone -->
-              <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
+              <input id="comPhone" class="form-control form-control-md" placeholder="(704) 555-0127" type="phone" formControlName="comPhone"
                 required />
             </div>
             <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
@@ -83,10 +83,10 @@
             <label for="comAddress">Company Address</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- company Address -->
-              <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
+              <input id="comAddress" placeholder="3517 W. Gray St. Utica, Pennsylvania 57867" class="form-control form-control-md" type="text" formControlName="comAddress"
                 required />
             </div>
             <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
@@ -124,10 +124,10 @@
             <label for="country">Country</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- company country -->
-              <select id="country" class="form-control form-control-md" type="text" formControlName="country"
+              <select id="country" class="form-control form-control-md" type="text" formControlName="country" 
                 (change)="getciTyList($event.target.value)">
                 <option value="" disabled>Select Country</option>
                 <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
@@ -144,8 +144,8 @@
           <div class="form-group">
             <label for="city">City</label>
             <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+              <div class="input-group-prepend"> 
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- company city -->
               <select id="city" class="form-control form-control-md" type="text" formControlName="city">
@@ -165,10 +165,10 @@
             <label for="area">Area</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- area -->
-              <input id="area" class="form-control form-control-md" type="text" formControlName="area" />
+              <input id="area" class="form-control form-control-md" type="text" placeholder="Pennsylvania" formControlName="area" />
             </div>
             <!-- <div *ngIf="area.invalid && (area.dirty || area.touched)">
                     <div *ngIf="area.errors?.required">
@@ -182,10 +182,10 @@
             <label for="zipCode">Zip code</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""class="img-fluid"></div>
               </div>
               <!-- zipCode -->
-              <input id="zipCode" class="form-control form-control-md" type="text" formControlName="zipCode" />
+              <input id="zipCode" class="form-control form-control-md" placeholder="57867" type="text" formControlName="zipCode" />
             </div>
             <!-- <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
                     <div *ngIf="zipCode.errors?.required">
@@ -199,10 +199,10 @@
             <label for="sellerDescription">Seller Description</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- sellerDescription -->
-              <textarea id="sellerDescription" class="form-control form-control-md" type="text" formControlName="sellerDescription" rows="10"></textarea>
+              <textarea id="sellerDescription" placeholder="Seller Description" class="form-control form-control-md" type="text" formControlName="sellerDescription" rows="10"></textarea>
             </div>
             <!-- <div *ngIf="sellerDescription.invalid && (sellerDescription.dirty || sellerDescription.touched)">
                     <div *ngIf="sellerDescription.errors?.required">
@@ -239,8 +239,8 @@
           </div>
         </div>
         <div class="col-12">
-          <div class="form-group">
-            <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+          <div class="form-group submit-btn">
+            <button type="submit" mat-raised-button class="btn btn-primary btn-block btn-md login_btn"
               [disabled]="sellerProfileForm.invalid || passMatched">
               Save
             </button>
