@@ -238,7 +238,7 @@ export class CartPageComponent implements OnInit {
       var commission = this.commissionList[index] * this.cart.products[index].cart_qty;
       var totalPrice = price + commission;
       this.cart.products[index].vat_amount = (totalPrice * (this.vatPercentage / 100)).toFixed(2)
-      this.cart.products[index].commission = commission.toFixed(2);
+      //this.cart.products[index].commission = commission.toFixed(2);
       return price + commission;
     }
     return 0;
@@ -254,7 +254,7 @@ export class CartPageComponent implements OnInit {
       this.subTotal += this.calcPrice(index);
       this.totalItems++;
     });
-    console.log('sub total',this.subTotal)
+    //console.log('sub total',this.subTotal)
   }
 
   calcTotalPrice() {
@@ -343,13 +343,20 @@ export class CartPageComponent implements OnInit {
     console.log('checking out...')
     let orders_details=[]
     this.cart.products.forEach((product:Product) => {
+      let commission:number=0
+      if(Number(product.commission)>0){
+        commission= parseFloat(product.unit_price) * (parseFloat(product.commission)/100)
+      }
+      else{
+        commission= parseFloat(localStorage.getItem('commission')) * (parseFloat(product.commission)/100)
+      }
       orders_details.push({
         quantity:product.cart_qty,
         unit_price:product.unit_price,
         seller:product.seller.id,
         pickup_address:product.pickup_address[0]?.id,
         vat_amount:product.vat_amount,
-        commission:product.commission,
+        commission:commission,
         product:product.id
       })
     });
