@@ -172,7 +172,7 @@ export class CartPageComponent implements OnInit {
       // console.log(element);
       var quantity = 1;
       var commission = 0;
-      if (!isNaN(Number(element.commission)) ){
+      if (!isNaN(Number(element.commission)) && Number(element.commission)>0){
         commission = parseFloat(element.commission);
       }
       else{ 
@@ -180,7 +180,6 @@ export class CartPageComponent implements OnInit {
       }
       commission = parseFloat(element.unit_price) * (commission / 100);
       this.commissionList.push(commission);
-      console.log('asus commission',commission)
       // orders_details.push({
       //   product: element.id,
       //   // quantity:
@@ -214,6 +213,7 @@ export class CartPageComponent implements OnInit {
       //   });
       // }
     });
+    console.log('commission list',this.commissionList)
   }
 
   removeFromCart(prodId: number) {
@@ -234,7 +234,7 @@ export class CartPageComponent implements OnInit {
 
   calcPrice(index:number): number {
     if (this.cart.products[index]) {
-      var price = parseInt(this.cart.products[index].unit_price) * this.cart.products[index].cart_qty;
+      var price = parseFloat(this.cart.products[index].unit_price) * this.cart.products[index].cart_qty;
       var commission = this.commissionList[index] * this.cart.products[index].cart_qty;
       var totalPrice = price + commission;
       this.cart.products[index].vat_amount = (totalPrice * (this.vatPercentage / 100)).toFixed(2)
@@ -348,7 +348,7 @@ export class CartPageComponent implements OnInit {
         commission= parseFloat(product.unit_price) * (parseFloat(product.commission)/100)
       }
       else{
-        commission= parseFloat(localStorage.getItem('commission')) * (parseFloat(product.commission)/100)
+        commission= parseFloat(product.unit_price) * (parseFloat(localStorage.getItem('commission'))/100)
       }
       orders_details.push({
         quantity:product.cart_qty,

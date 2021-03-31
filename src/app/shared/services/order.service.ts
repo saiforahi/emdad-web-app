@@ -130,4 +130,12 @@ export class OrderService {
   upload_invoice(order_id:any,data:any):Observable<any> {
     return this.http.post(config.base_url + 'api/order/wired/transfer/invoice/'+order_id+'/',data,this.httpOptions)
   }
+
+  get_invoices_for_seller():Observable<any>{
+    return this.http.get(config.base_url + 'api/order/invoice/list/'+localStorage.getItem('s_uid')+'/',this.httpOptions)
+  }
+
+  get_invoice_details_for_seller(order_id:string):Observable<any> {
+    return this.http.get(config.base_url + 'api/order/invoice/details/' + order_id+'/',this.httpOptions)
+  }
 }

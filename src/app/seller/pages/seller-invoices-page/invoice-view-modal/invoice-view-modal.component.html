@@ -1,39 +1,28 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
         <div class="order-data">
-            <p><b>Order ID: </b><span>#12589</span></p>
-            <p><b>Order Date:</b><span> Nov 25, 2020</span></p>
-            <p><b>Total Price: $25,800</b></p>
+            <p><b>Invoice ID: </b><span>#{{details?.invoice_code}}</span></p>
+            <p><b>Payment Date:</b><span> {{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
+            <!-- <p><b>Total Price: $25,800</b></p> -->
         </div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mb-4">
+        <table mat-table [dataSource]="details?.ordered_product" class="mat-elevation-z8 mb-4">
             <!-- Position Column -->
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef>No.</th>
-                <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+            <ng-container matColumnDef="Order ID">
+                <th mat-header-cell *matHeaderCellDef>Order ID</th>
+                <td mat-cell *matCellDef="let element">#{{ element.order }}</td>
             </ng-container>
     
             <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Name</th>
-                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            <ng-container matColumnDef="Amount">
+                <th mat-header-cell *matHeaderCellDef>Amount</th>
+                <td mat-cell *matCellDef="let element">SR{{ get_price(element.unit_price,element.quantity,element.commission,element.vat_amount) }}</td>
             </ng-container>
     
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef>Weight</th>
-                <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-            </ng-container>
-    
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef>Symbol</th>
-                <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-            </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
         <div class="total-order-price">
-            Total: SR85,679
+            Total: SR{{get_total_price()}}
         </div>
     </mat-dialog-content>
 </section>

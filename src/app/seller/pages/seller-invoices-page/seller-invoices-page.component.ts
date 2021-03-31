@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InvoiceViewModalComponent } from './invoice-view-modal/invoice-view-modal.component';
-
+import { OrderService } from '../../../shared/services/order.service'
+import { PageEvent } from '@angular/material/paginator';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -24,30 +25,42 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./seller-invoices-page.component.css']
 })
 export class SellerInvoicesPageComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+  invoices:Array<any>=[]
+  lowValue: number = 0;
+  highValue: number = 5;
+  constructor(public dialog: MatDialog, private orderService:OrderService) { }
 
   ngOnInit(): void {
+    this.orderService.get_invoices_for_seller().subscribe(
+      (success)=>{this.invoices=success.data; console.log(success.data)},
+      (error) => {console.log(error)}
+    )
   }
 
   displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
-    'status',
-    'edit',
+    'Invoice ID',
+    'Payment Date',
+    'Amount',
+    'view'
   ];
-  dataSource = ELEMENT_DATA;
 
-  openDialog() {
+  openDialog(invoice:any) {
     const dialogRef = this.dialog.open(InvoiceViewModalComponent, {
       autoFocus: false,
-      data: {},
+      data: {invoice:invoice},
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
+  formatDate(date:string):string{
+    return new Date(date).toDateString()
+  }
+
+  getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
 }

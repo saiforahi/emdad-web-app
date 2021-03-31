@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./product-review-modal.component.css'],
 })
 export class ProductReviewModalComponent implements OnInit {
-  @Input() prodcutDetails;
+  @Input() prodcutDetails:any;
   userId: any;
   reviewText: string = '';
 
