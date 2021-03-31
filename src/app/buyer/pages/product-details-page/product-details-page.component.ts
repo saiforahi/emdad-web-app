@@ -118,6 +118,7 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
   add_to_cart(){
+    console.log('product details',this.prodcutDetails)
     let existingCart:Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
     let existingCartLength:number=0; //initializing number of products in 
     var foundSameProduct:boolean = false;
