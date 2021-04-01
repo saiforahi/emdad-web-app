@@ -354,7 +354,8 @@ export class CartPageComponent implements OnInit {
         quantity:product.cart_qty,
         unit_price:product.unit_price,
         seller:product.seller.id,
-        pickup_address:product.pickup_address[0]?.id,
+        //pickup_address:product.pickup_address[0]?.id,
+        pickup_address:'',
         vat_amount:product.vat_amount,
         commission:commission,
         product:product.id

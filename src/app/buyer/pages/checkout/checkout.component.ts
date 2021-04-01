@@ -164,6 +164,9 @@ export class CheckoutComponent implements OnInit {
       data.tracking_order.forEach(element => {
         element.status=this.payment_type=="1"?2:1
       });
+      data.orders_details.forEach((element) => {
+        element.pickup_address=this.selected_address.id
+      });
       console.log('cart_data', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
         console.log(this.add_order_response);
