@@ -20,8 +20,7 @@
                             <img [src]="img_base_url+detail.product.image1" alt="Generic placeholder image" class="img-fluid">
                             <div class="media-body">
                                 <p class="name">{{detail.product.name}}</p>
-                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP Manchester (28
-                                        days)</span></p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span></p>
                                 <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span></p>
                             </div>
                         </div>
@@ -30,13 +29,15 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
-                        <select *ngIf="detail.order.tracking_order[i].status!==4" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
+                        <select [(ngModel)]="detail.order.tracking_order[i].status" *ngIf="detail.order.tracking_order[i].status!==4 && detail.order.tracking_order[i].status!==5" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
                             <option value="-1">Update Status</option>
-                            <option value="1">In Progress</option>
-                            <option value="2">Delivered</option>
+                            <option value="3">In Progress</option>
+                            <option value="4">Delivered</option>
+                            <option value="5">Completed</option>
                         </select>
                         <!--show this if status is delivered-->
                         <label *ngIf="detail.order.tracking_order[i].status===4" class="deliverd" >Delivered</label>
+                        <label *ngIf="detail.order.tracking_order[i].status===5" class="deliverd" >Completed</label>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">
                         Quantity: {{detail.quantity}}
@@ -67,7 +68,7 @@
                                         </button></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex btn-view">
-                                    <button mat-mini-fab type="button" (click)="upload_challan()" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
+                                    <button mat-mini-fab type="button" (click)="upload_challan(detail.product.id,i)" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
                                     <button mat-mini-fab class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
                                 </div>
                             </div>

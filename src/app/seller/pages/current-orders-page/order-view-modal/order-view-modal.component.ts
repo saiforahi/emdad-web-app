@@ -25,6 +25,9 @@ export class OrderViewModalComponent implements OnInit {
   ngOnInit(): void {
     console.log('dialog data',this.data)
     this.challan=new FormData()
+    this.initialize()
+  }
+  initialize(): void {
     this.orderService.get_seller_order_details(this.data.order.order.id).subscribe(
       (success)=>{
         console.log('details',success)
@@ -60,22 +63,24 @@ onSubmit(){
     this.challan.append('image', file, file.name);
   }
 
-  upload_challan(){ //challan uploading and updating status
+  upload_challan(prod_id,index:number){ //challan uploading and updating status
     if(this.proofDoc!==null && this.proofDoc!==undefined){
       this.spinner.show()
-      this.challan.append('image', this.proofDoc);
-      this.orderService.upload_delivery_challan(this.challan).subscribe( //uploading challan
+      this.challan.append('Delivery_challan', this.proofDoc);
+      this.challan.append('status','4')
+      this.orderService.upload_delivery_challan(this.details[0].order.tracking_order[index].id,this.challan).subscribe( //uploading challan
         (success) => {                                                    //if success then call update track status API
           this.orderService.update_tracking_status({                      //passing data with http call
-            order: this.details[0].order.id,
-            "order_confirmed_by":localStorage.getItem("s_uid"),
-            "order_confirmed_date":new Date(),
+            "order": this.details[0].order.id,
+            "product":prod_id,
+            "order_confirmed_by":Number(localStorage.getItem('s_uid')),
+            "order_confirmed_date":new Date().toISOString().slice(0, 10),
             "delivery_by_courier_name":"hasan",
             "delivery_date": new Date(),
             "status":"4"
           }).subscribe(
             (success)=>{
-              console.log(success.data);this.spinner.hide();swal('Uploaded','Note Uploaded!','success')
+              console.log(success.data);this.spinner.hide();swal('Uploaded','Note Uploaded!','success');this.initialize(); 
             }
           )
         }
@@ -84,33 +89,54 @@ onSubmit(){
   }
 
   change_status(value,prod_id){
-    if(value=="1"){
-      console.log(localStorage.getItem('s_token'))
-      console.log(JSON.stringify({
-        order: this.details[0].order.id,
-        "order_confirmed_by":localStorage.getItem("s_uid"),
-        "order_confirmed_date":new Date().toLocaleDateString(),
-        "delivery_by_courier_name":"hasan",
-        "delivery_date": new Date(),
-        "status":"3"
-      }))
+    if(value=="3"){
+      this.spinner.show()
       document.getElementById(prod_id+'card').style.display='none'
       this.orderService.update_tracking_status({
-        order: this.details[0].order.id,
-        "order_confirmed_by":localStorage.getItem("s_uid"),
-        "order_confirmed_date":new Date(),
+        "order": this.details[0].order.id,
+        "product":prod_id,
+        "order_confirmed_by":Number(localStorage.getItem('s_uid')),
+        "order_confirmed_date":new Date().toISOString().slice(0, 10),
         "delivery_by_courier_name":"hasan",
         "delivery_date": new Date(),
         "status":"3"
       }).subscribe(
         (success)=>{
           console.log(success)
+          this.spinner.hide()
           swal('Updated','Product Status updated','success')
+          this.initialize()
+        },
+        (error)=>{
+          this.spinner.hide()
+          console.log(error)
         }
       )
     }
-    else if(value == "2"){
+    else if(value == "4"){
       document.getElementById(prod_id+'card').style.display='block'
+    }
+    else if(value == "5"){
+      this.orderService.update_tracking_status({
+        "order": this.details[0].order.id,
+        "product":prod_id,
+        "order_confirmed_by":Number(localStorage.getItem('s_uid')),
+        "order_confirmed_date":new Date().toISOString().slice(0, 10),
+        "delivery_by_courier_name":"hasan",
+        "delivery_date": new Date(),
+        "status":"5"
+      }).subscribe(
+        (success)=>{
+          console.log(success)
+          this.spinner.hide()
+          swal('Updated','Product Status updated','success')
+          this.initialize()
+        },
+        (error)=>{
+          this.spinner.hide()
+          console.log(error)
+        }
+      )
     }
     else{
       document.getElementById(prod_id+'card').style.display='none'
