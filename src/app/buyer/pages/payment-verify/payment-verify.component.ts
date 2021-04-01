@@ -22,16 +22,32 @@ export class PaymentVerifyComponent implements OnInit {
     let data = JSON.parse(localStorage.getItem('payment_add_response'));
     //console.log(data)
     //this.router.navigate(['/order/details/',localStorage.getItem('temp_order_id')]);
-    let check_api_json = {
-      //json data for verifying payment
-      tran_ref: data.tran_ref,
-      order: localStorage.getItem('temp_order_id'),
-      cart_currency: data.cart_currency,
-      cart_amount: data.cart_amount,
-      cart_id: data.cart_id,
-      cart_description: data.cart_description,
-      tran_type: data.tran_type,
-    };
+    let check_api_json;
+    if (localStorage.getItem('temp_order_id')) {
+      // for order payment verification
+      check_api_json = {
+        //json data for verifying payment
+        tran_ref: data.tran_ref,
+        order: localStorage.getItem('temp_order_id'),
+        cart_currency: data.cart_currency,
+        cart_amount: data.cart_amount,
+        cart_id: data.cart_id,
+        cart_description: data.cart_description,
+        tran_type: data.tran_type,
+      };
+    } else {
+      // for subscription payment verification
+      check_api_json = {
+        //json data for verifying payment
+        tran_ref: data.tran_ref,
+        subscription: localStorage.getItem('temp_subscription_id'),
+        cart_currency: data.cart_currency,
+        cart_amount: data.cart_amount,
+        cart_id: data.cart_id,
+        cart_description: data.cart_description,
+        tran_type: data.tran_type,
+      };
+    }
     console.log(JSON.stringify(check_api_json));
     this.orderService.verify_payment(check_api_json).subscribe(
       (success) => {
@@ -45,17 +61,27 @@ export class PaymentVerifyComponent implements OnInit {
             localStorage.removeItem('finalCart');
             localStorage.removeItem('cart_items');
             localStorage.removeItem('cart_cash');
-            localStorage.removeItem('payment_add_response')
-            localStorage.removeItem('cart')
+            localStorage.removeItem('payment_add_response');
+            localStorage.removeItem('cart');
             this.cart.existingCartLength.next(null);
-            this.router.navigate(['/order/details/', order_id]);
+            if (order_id) {
+              this.router.navigate(['/order/details/', order_id]);
+            } else {
+              this.router.navigate(['/dashboard']);
+            }
           });
         }
       },
       (error) => {
         this.spinner.hide();
         swal('Failed', 'Failed to verify payment', 'error');
-        this.router.navigate(['/cart']);
+        var seller = localStorage.getItem('s_uid');
+        if (seller) {
+          this.router.navigate(['/dashboard']);
+          console.log(error);
+        } else {
+          this.router.navigate(['/cart']);
+        }
       }
     );
   }
