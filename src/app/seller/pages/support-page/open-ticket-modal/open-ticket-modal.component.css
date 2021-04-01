@@ -12,6 +12,7 @@
   font-size: 30px;
   color: #2b2b2b;
   margin-bottom: 40px;
+  font-family: Jost;
 }
 
 *:focus {
@@ -51,6 +52,7 @@ label {
   border-radius: 5px;
   border: none;
   height: 80px;
+  font-family: Jost;
 }
 
 .form-label {
@@ -106,12 +108,12 @@ input[type="file"] {
 .custom-file-upload {
   width: 80px;
   height: 80px;
-  background-image: url("../../../../../assets/upload.svg");
+  background-image: url("../../../../../assets/icons/Uploadupload-grey.png");
   background-repeat: no-repeat;
   background-size: 40%;
   background-position: center center;
   border-radius: 5px;
-  border: 3px dashed #ccc;
+  border: 2px dashed #CFCFCF;
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
@@ -136,22 +138,23 @@ input[type="file"] {
   background: #ff4b55;
   border: none;
   color: #fff;
-  font-size: 16px;
+  /* font-size: 16px; */
  position: absolute;
  top:10px;
-margin-left: -5px;
+margin-left: 60px;
 }
 .mat-mini-fab{
-  width:30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 }
 .mat-icon{
-  font-size: 14px;
+  font-size: 8px;
 }
 
 textarea {
   height: 150px !important;
   padding: 15px;
+  font-family: Jost;
 }
 .attached-file img{
   height: 80px;
@@ -173,5 +176,114 @@ button.close-btn{
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
+  }
+}
+@media all and (min-width:290px) and (max-width:576px){
+ 
+  .attached-file img{
+    height: 50px;
+    width: 50px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 50px;
+    width: 50px;
+  }
+  .attached-file button {
+    margin-left: 33px;
+  }
+  .open-ticket-modal-header{
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .submit-button{
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .login_btn{
+    font-size: 14px;
+    line-height: 20px;
+    height:45px;
+    width:120px;
+    float:none !important;
+  }
+  label,.form-control,textarea{
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .form-control{
+    height: 60px !important;
+  }
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .attached-file img{
+    height: 65px;
+    width: 65px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 65px;
+    width: 65px;
+  }
+  .attached-file button {
+    margin-left: 44px;
+  }
+  .open-ticket-modal-header{
+    font-size: 26px;
+    line-height: 40px;
+  }
+  .submit-button{
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .login_btn{
+    font-size: 16px;
+    line-height: 23px;
+    height:50px;
+    width:220px;
+    float:none !important;
+  }
+  label,.form-control,textarea{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-control{
+    height: 60px !important;
+  }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .attached-file img{
+    height: 70px;
+    width: 70px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 70px;
+    width: 70px;
+  }
+  .attached-file button {
+    margin-left: 50px;
+  }
+  .open-ticket-modal-header{
+    font-size: 26px;
+    line-height: 40px;
+  }
+  .submit-button{
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .login_btn{
+    font-size: 16px;
+    line-height: 23px;
+    height:65px;
+    width:280px;
+    float:none !important;
+  }
+  label,.form-control,textarea{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-control{
+    height: 60px !important;
   }
 }

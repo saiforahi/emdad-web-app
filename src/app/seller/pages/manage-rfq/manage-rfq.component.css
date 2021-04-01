@@ -261,6 +261,7 @@ margin-top: 14px;
     font-size: 35px;
   line-height: 55px;
   }
+ 
 }
 @media all and (min-width:992px){
   .show-values:hover{
@@ -268,4 +269,16 @@ margin-top: 14px;
     transition: 0.3s;
   }
 
+}
+@media all and (min-width:992px) and (max-width:1200px){
+.page-heading{
+  font-size:38px;
+  line-height: 55px;
+}
+.page-heading-holder>.sort-btn>.mat-stroked-button{
+ height: 60px;
+ width:150px;
+ font-size: 18px;
+ line-height: 26px;
+}
 }

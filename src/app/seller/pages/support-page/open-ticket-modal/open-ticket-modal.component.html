@@ -56,17 +56,18 @@
                                 
                                 id="preview"
                               />
-                                <button mat-mini-fab (click)="removeFile();" class="mt-2">
-                                    <mat-icon>close</mat-icon>
-                                  </button>
+                                
                             </li>
+                            <button mat-mini-fab (click)="removeFile();" class="mt-2">
+                                <mat-icon>close</mat-icon>
+                              </button>
                         </ul>
                     </div>
                 </div>
                 <!--Submit-->
                 <div class="col-12">
-                    <div class="form-group">
-                        <button type="submit" mat-raised-button class="btn btn-primary btn-md  login_btn"
+                    <div class="form-group submit-button">
+                        <button type="submit" [mat-dialog-close]="true" mat-raised-button class="btn btn-primary btn-md  login_btn"
                             [disabled]="ticketForm.invalid">
                             Submit
                         </button>

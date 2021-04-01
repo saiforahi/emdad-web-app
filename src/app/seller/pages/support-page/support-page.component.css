@@ -1,65 +1,110 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+.page-heading-holder .sort-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  font-weight: normal;
+  font-size: 20px;
+}
 
+.big-view select ,.mobile-button select{
+  height: 60px !important;
+  border: 2px solid #1f4f9e;
+  color: #1f4f9e;
+  border-radius: 5px;
+  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+}
+
+.big-view select:focus,.mobile-button select {
+  border: 2px solid #454f63;
+  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+}
 *:focus {
   outline: none;
   box-shadow: none;
 }
-
+.container{
+  padding:60px;
+}
 .page-heading {
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
 
 .card {
-  padding: 40px;
+  padding: 30px;
   border: none;
   border-radius: 0;
 }
 
-.mat-table {
+.name{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+
+
+}
+.value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+/* word-wrap: break-word; */
+white-space: pre-line;
+
+}
+.card-header{
+  background-color: #ffff;
+}
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+border-radius: 5px;
+padding: 20px;
+margin-top: 15px;
+cursor: pointer;
+}
+.end-date{
+  color: #FF4B55 !important;
+}
+.mobile-name,.mobile-button{
+  display: none !important;
+}
+.pagination-show,::ng-deep .mat-paginator{
   background-color: transparent !important;
-  padding: 0 20px;
 }
-
-tr.mat-row,
-tr.mat-footer-row {
-  height: 60px;
-  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-tr.mat-row:hover,
-tr.mat-footer-row:hover {
-  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-  transition: 0.3s;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 20px !important;
-}
-
-table tr:last-child td {
-  border-bottom: 0 solid;
-}
-
-th {
-  font-weight: 500;
-  font-size: 18px;
+.no-data {
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  border-radius: 10px;
+  margin-bottom: 30px;
   color: #2b2b2b;
-}
-
-td {
-  font-weight: normal;
   font-size: 18px;
-  color: #2b2b2b;
+  line-height: 32px;
 }
-
+.edit-product-btn{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+text-align: right;
+color: #2B2B2B;
+}
+.edit-product-btn:focus,.edit-product-btn:active{
+  background-color: transparent;
+}
 .page-heading-holder {
   position: relative;
 }
@@ -78,73 +123,231 @@ td {
   font-size: 20px;
 }
 
-.page-heading-holder select {
-  height: 70px !important;
-  border: 2px solid #1f4f9e;
-  color: #1f4f9e;
-  border-radius: 5px;
-  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
-}
 
-.page-heading-holder select:focus {
-  border: 2px solid #454f63;
-  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+.mobile-name>.mat-stroked-button{
+  display: none !important;
 }
-
-.total-order-price {
-  text-align: right;
-  color: #1f4f9e;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-}
-
 .ticket-btn {
-height: 70px;
-background: #1f4f9e;
-color: #fff;
-border-radius: 5px;
-margin-right: 20px;
-width: 230px;
-height: 70px;
-font-family: Jost;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 29px;
-}
-
-.mat-button{
+  
+  background: #1f4f9e;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 20px;
+  width: 230px;
+  height: 60px;
   font-family: Jost;
   font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 26px;
-color: #2B2B2B;
-align-self: right;
-padding: 4px;
-}
-.no-data {
-  padding: 15px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  margin-bottom: 30px;
-  color: #2b2b2b;
-}
-.filterBtn{
-  width: 230px;
-  height: 70px;
-  border: 2px solid #1F4F9E;
-  box-sizing: border-box;
-  border-radius: 5px;
   font-weight: normal;
   font-size: 20px;
-font-family: Jost;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 29px;
-color: #1F4F9E;
+  line-height: 29px;
+  }
+  /*responsive -_- :/ */
+@media only screen and (min-width:1200px){
+  .container {
+    max-width: 1600px !important;
+  }
+}
+@media all and (min-width:290px) and (max-width:992px){
+.card-header{
+  display: none !important;
+}
+.mobile-name{
+  display: inline-block !important;
+}
+.card{
+  background-color: transparent !important;
+  
+}
+.container{
+  padding: 15px;
+}
+.value{
+font-size: 16px;
+line-height: 23px;
+}
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.04);
+border-radius: 10px;
+margin-top: 10px;
+}
+.edit-product-btn{
+  font-size: 14px;
+  line-height: 20px;
+ 
+  color: #1F4F9E;
+}
+::ng-deep.mat-button{
+background: #FFFFFF !important;
+}
+
+.page-heading-holder>.sort-btn>.mat-stroked-button>.mat-icon{
+  font-size: 10px !important;
+}
+.big-view{
+  display: none;
+}
+
+.mob{
+padding: 8px 12px;
+text-align: center !important;
+/* margin-top: 14px; */
+vertical-align: center !important;
+}
+}
+@media all and (min-width:290px) and (max-width:576px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 20px;
+    line-height: 29px;
+  }
+  .card{
+    padding: 8px;
+  }
+
+}
+@media all and (min-width:290px) and (max-width:360px){
+  .big-view{
+    display: none !important;
+  }
+  .mobile-button{
+    display: flex !important;
+  
+  }
+ .mobile-button select{
+    width: 145px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    height: 40px !important;
+    border: 2px solid #1f4f9e !important;
+  }
+  .mobile-button>.mat-raised-button{
+    width: 105px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    height: 40px !important;
+    margin-right: 3px !important;
+    text-align: center !important;
+  }
+  .mob{
+    margin-top: 14px;
+  }
+}
+
+@media all and (min-width:360px) and (max-width:576px){
+  .big-view >.ticket-btn,.big-view select{
+    width: 120px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    height: 40px !important;
+  }
+  .page-heading-holder .sort-btn{
+    position: static;
+    display: block;
+    justify-content: right;
+    align-items: flex-end;
+    text-align: right !important;
+    margin-top: 17px;
+  }
+  .big-view>.ticket-btn{
+    margin-right: 8px;
+  }
+  .mob{
+    margin-top: 14px;
+  }
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 30px;
+  line-height: 40px;
+  }
+  .card{
+    padding: 8px;
+  }
+
+  .big-view >.ticket-btn,.big-view select{
+    width: 120px !important;
+    font-size: 16px !important;
+    line-height: 23px !important;
+    height: 45px !important;
+  }
+  .page-heading-holder .sort-btn{
+    position: static;
+    display: block;
+    justify-content: right;
+    align-items: flex-end;
+    text-align: right !important;
+    margin-top: 17px;
+  }
+  .big-view>.ticket-btn{
+    margin-right: 8px;
+  }
+  .mob{
+    margin-top: 14px;
+  }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 35px;
+  line-height: 55px;
+  }
+  .big-view >.ticket-btn,.big-view select{
+    width: 130px !important;
+    font-size: 18px !important;
+    line-height: 26px !important;
+    height: 45px !important;
+  }
+  .page-heading-holder .sort-btn{
+    position: static;
+    display: block;
+    justify-content: right;
+    align-items: flex-end;
+    text-align: right !important;
+    margin-top: 17px;
+  }
+  .big-view>.ticket-btn{
+    margin-right: 8px;
+  }
+  .card{
+    padding: 10px !important;
+  }
+  
+}
+@media all and (min-width:992px){
+  .show-values:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+  }
+
+}
+@media all and (min-width:992px) and (max-width:1200px){
+  .big-view >.ticket-btn,.big-view select{
+    width: 130px !important;
+    font-size: 18px !important;
+    line-height: 26px !important;
+    height: 45px !important;
+  }
+  .page-heading-holder .sort-btn{
+    position: static;
+    display: block;
+    justify-content: right;
+    align-items: flex-end;
+    text-align: right !important;
+    margin-top: 14px;
+  }
+  .big-view>.ticket-btn{
+    margin-right: 8px;
+  }
+  .page-heading{
+    font-size:38px;
+    line-height: 55px;
+  }
+  .name,.value{
+    font-size: 18px;
+    line-height: 26px;
+  }.container{
+    padding: 20px !important;
+  }
 }

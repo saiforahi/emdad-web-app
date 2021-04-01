@@ -5,7 +5,7 @@ import { OpenTicketModalComponent } from './open-ticket-modal/open-ticket-modal.
 import { TicketViewModalComponent } from './ticket-view-modal/ticket-view-modal.component';
 import { TicketService } from '../../../shared/services/ticket.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
-
+import{PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-support-page',
@@ -19,8 +19,14 @@ export class SupportPageComponent implements OnInit {
   supportIssues: any;
   status = ['Initiative', 'Undergoing', 'Resolved'];
   filterArray:any=[];
+  lowValue: number = 0;
+  highValue: number = 10;
   /** Initializing table coloumns */
-  displayedColoumns: string[] = ['Report ID', 'Subject', 'Status', 'View'];
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
  
   constructor(
     public dialog: MatDialog,

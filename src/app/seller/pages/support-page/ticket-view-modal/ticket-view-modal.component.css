@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
-
+.dialogue-holder{
+  font-family: Jost !important;
+}
 .order-data {
   margin-bottom: 30px;
   font-style: normal;
@@ -24,11 +26,9 @@
 
 .admin-response {
   border-top: 1px solid #eaeaea;
-  padding: 30px 0;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+  padding: 20px 0;
+  font-family: Jost !important;
+
 }
 
 .admin-response:last-child {
@@ -45,4 +45,56 @@ button.close-btn{
    font-weight: normal !important;
    outline: none !important;
    border: 0px transparent !important;
+}
+.time{
+  font-size: 14px !important;
+line-height: 20px !important; 
+}
+.admin-header{
+  font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+}
+.message{
+  font-size: 18px;
+line-height: 34px;
+color: #2B2B2B;
+
+}
+.short-head{
+  font-family: Jost;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.large-head{
+  font-family: Jost;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 34px;
+color: #2B2B2B;
+}
+.short-head .name,.large-head .name{
+  font-weight: 500;
+}
+
+@media all and (min-width:290px) and (max-width:992px){
+  button.close-btn{
+    font-size: 14px;
+  }
+  .short-head,.admin-header{
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .large-head,.message{
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .time{
+    font-size: 13px;
+    line-height: 18px;
+  }
 }
