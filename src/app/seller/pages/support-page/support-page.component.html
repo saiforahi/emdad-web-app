@@ -1,45 +1,84 @@
-<section class="page-heading-holder">
-    <h2 class="page-heading d-inline-block">Ticket List</h2>
-    <div class="sort-btn d-inline-block">
-        <button mat-raised-button class="ticket-btn" (click)="openTicket();">New Ticket</button>
-    <!--     <select class="form-control form-control-lg">
-            <option>Filter by Status</option> </select> -->
-            <!--filter button-->
-            <button mat-stroked-button class="filterBtn" (click)="sortTable(supportIssues);">Filter by Status <mat-icon>expand_more</mat-icon></button>
+<!--01st april 2021-->
+<section class="payment-history container">
+    <div class="page-heading-holder">
+    <h2 class="page-heading">Ticket List</h2>
+    <div class="sort-btn d-inline-block big-view">
+        <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
+         <select class="form-control form-control-lg">
+                <option>Filter by Status</option> 
+                <option value="0">Running</option>
+                <option value="1">Solved</option>
+            </select>
+               
     </div>
-</section>
-<section class="card mb-5">
-    <table mat-table [dataSource]="supportIssues " class="mat-elevation-z8" matSort>
-        <!-- REPORT ID Column -->
-        <ng-container matColumnDef="Report ID">
-            <th mat-header-cell *matHeaderCellDef>Report ID</th>
-            <td mat-cell *matCellDef="let element">#{{element.issue_code }}</td>
-        </ng-container>
-        <!-- Subject Column -->
-        <ng-container matColumnDef="Subject">
-            <th mat-header-cell *matHeaderCellDef> Subject</th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-        </ng-container>
-        <!-- Status Column -->
-     <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef >Status</th>
-            <td mat-cell *matCellDef="let element">
+  </div>
+  <div class="mobile-button">
+    <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
+         <select class="form-control form-control-lg">
+                <option>Filter by Status</option> 
+                <option value="0">Running</option>
+                <option value="1">Solved</option>
+            </select>
+  </div>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12 card-header">
+          <div class="row">
+            <div class="col-md-3 name">
+                Report ID
+            </div>
+            <div class="col-md-4 name">
+                Subject
+            </div>
+            <div class="col-md-3 name">
+              Status
+            </div>
+           
+            <div class="col-md-2 name">
+              
+            </div>
+          </div>
+        </div>
   
-               {{status[element.status]}}
-            </td>
-        </ng-container>
-
-        <!-- VIEW Column -->
-        <ng-container matColumnDef="View">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-                <button class="edit-product-btn" mat-button (click)="ticketView(element);">View</button>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColoumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColoumns"></tr>
-    </table>
-    <div class="no-data" *ngIf="supportIssues == undefined">
-        No data available
+        <mat-divider></mat-divider>
+  
+        <!--cards if valid data-->
+        <div class="col-md-12 cards" *ngIf="supportIssues">
+          <div class="show-values" *ngFor="let item of supportIssues;">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-12 value">
+               <span> #{{item.issue_code}}</span>
+              </div>
+              <div class="col-lg-4 col-md-3 col-sm-9 col-12 value">
+                <span><span class="mobile-name">Subject:</span> {{item.title}}</span>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-4 col-12 value">
+                <span *ngIf="item.status == 0">Running</span>
+                <span *ngIf="item.status == 2">Solved</span>
+                <span *ngIf="item.status == null"> - </span>
+              </div>
+   
+              <div class="col-lg-2 col-md-3 col-sm-4 col-12 value mobile-btn">
+                <span class="big-view"><button class="edit-product-btn" mat-button (click)="ticketView(item);">View</button></span>
+                <span class="mobile-name"><button class="edit-product-btn mob"  mat-raised-button (click)="ticketView(item);" >View</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+            <!--cards if no data-->
+            <div class="col-md-12" *ngIf="supportIssues" >
+              <div class="no-data mt-2" *ngIf="supportIssues == 0 || supportIssues == undefined || supportIssues?.length == 0">
+                No data available
+              </div>
+            </div>
+        <!--pagination-->
+        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="supportIssues" >
+          <mat-paginator *ngIf="supportIssues != 0" 
+            [length]="supportIssues.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
+            (page)="getPaginatorData($event)">
+          </mat-paginator>
+        </div>
+    
+      </div>
     </div>
-</section>
+  </section>

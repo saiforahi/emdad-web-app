@@ -57,19 +57,20 @@
           </div>
         </div>
       </div>
+          <!--cards if no data-->
+          <div class="col-md-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
+            <div class="no-data mt-2">
+              No data available
+            </div>
+          </div>
       <!--pagination-->
-      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="rfqTableData">
-        <mat-paginator *ngIf="rfqTableData != undefined || rfqTableData != null"
+      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="rfqTableData != 0">
+        <mat-paginator 
           [length]="rfqTableData.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
           (page)="getPaginatorData($event)">
         </mat-paginator>
       </div>
-      <!--cards if no data-->
-      <div class="col-md-12" *ngIf="rfqTableData == null || rfqTableData==undefined">
-        <div class="no-data mt-2">
-          No data available
-        </div>
-      </div>
+  
     </div>
   </div>
 </section>

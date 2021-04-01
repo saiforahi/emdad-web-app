@@ -6,17 +6,17 @@
        
         <!-- ORIGINAL ISSUE POST DISPLAY-->
         <div class="order-data" *ngIf="issueData">
-            <p><b>Report ID: </b><span>#{{issueData.issue_code}}</span></p>
-            <p><b>Date:</b><span> {{issueData.issue_date | date}}</span></p>
-            <p><b>Subject: </b><span>{{issueData.title}}</span></p>
-            <p><b>Details: </b><span> {{issueData.description}}</span></p>
-            <p><b>Status: {{status[issueData.status]}}</b></p>
+            <p class="short-head"><span class="name">Report ID: </span><span class="name">#{{issueData.issue_code}}</span></p>
+            <p class="short-head"><span class="name">Date:</span><span> {{issueData.issue_date | date}}</span></p>
+            <p class="large-head"><span class="name">Subject: </span><span>{{issueData.title}}</span></p>
+            <p class="large-head"><span class="name">Details: </span><span> {{issueData.description}}</span></p>
+            <p class="short-head"><span class="name">Status: {{status[issueData.status]}}</span></p>
         </div>
         <!-- FOLLOW UP RESPONSES BY ADMIN DISPLAY-->
        <div *ngIf="adminResponse != 0">
         <div class="admin-response" *ngFor="let response of adminResponse;">
-            <p><b>Admin Response</b> <span class="ml-3">{{response.created_at | date}}</span></p>
-            <p>{{response.message}}</p>
+            <p><span class="admin-header">Admin Response</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
+            <p class="message">{{response.message}}</p>
         </div>
     </div>
     </mat-dialog-content>

@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined">
+                    <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
                         <div class="no-data">
                             No data available
                         </div>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined">
+                    <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
                         <div class="no-data">
                             No data available
                         </div>
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined">
+                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
                         <div class="no-data">
                             No data available
                         </div>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined">
+                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
                         <div class="no-data">
                             No data available
                         </div>

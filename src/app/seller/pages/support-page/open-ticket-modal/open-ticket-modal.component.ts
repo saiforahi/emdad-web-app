@@ -71,7 +71,8 @@ isEnabled:boolean = true;
    this.ticketService.openTicket(this.ticketFormData).subscribe((response) =>{
      console.log(response);
      this.router.navigate(['/dashboard/support']);
-     swal("Created!","Support ticket created successfully","success")
+     swal("Created!","Support ticket created successfully","success");
+     
    })
 
 
