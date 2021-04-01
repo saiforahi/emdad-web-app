@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body" style="display: none;" id="{{detail.product.id+'card'}}">
+            <div *ngIf="detail" class="card-body" style="display: none;" id="{{detail.product.id+'card'}}">
                 <div class="row">
                     <div class="col-lg-5 col-md-12 col-12 show-text">
                         <p class="del-proof">Please upload a proof of delivery</p>
@@ -59,9 +59,9 @@
                                     <label for="note" class="custom-file-upload mr-2">
                                         <!-- file-up -->
                                         <input id="note" class="form-control form-control-md" type="file"
-                                             (change)="upload($event);" />
+                                             (change)="set_challan($event);" />
                                     </label>
-                                    <label class="attached-file"><label class="mr-1 show-file">filename</label> <button
+                                    <label *ngIf="challan.has('image')" class="attached-file"><label class="mr-1 show-file">{{proofDoc.name}}</label> <button
                                             mat-mini-fab (click)="removeFile();">
                                             <mat-icon class="small-icon">close</mat-icon>
                                         </button></label>
