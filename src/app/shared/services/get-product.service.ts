@@ -36,6 +36,8 @@ export class GetProductService {
     );
   }
 
+  // sller wise product list
+
   productByCategory(id) {
     return this.http.get(config.base_url+'api/product/details/'+id+'/');
   }

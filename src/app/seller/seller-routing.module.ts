@@ -93,6 +93,14 @@ const routes: Routes = [
           canActivate: [SellerAuthGuard],
       },
       {
+        path: 'edit-products/:id',
+        loadChildren: () =>
+          import(
+            './pages/edit-products-page/edit-products-page.module'
+          ).then((m) => m.EditProductsPageModule),
+          canActivate: [SellerAuthGuard],
+      },
+      {
         path: 'manage-rfqs',
         loadChildren: () =>
           import('./pages/manage-rfq/manage-rfq.module').then(
@@ -102,6 +110,14 @@ const routes: Routes = [
       },
       {
         path: 'products',
+        loadChildren: () =>
+          import('./pages/sller-products-page/sller-products-page.module').then(
+            (m) => m.SllerProductsPageModule
+          ),
+        canActivate: [SellerAuthGuard],
+      },
+      {
+        path: 'products/category/:id',
         loadChildren: () =>
           import('./pages/sller-products-page/sller-products-page.module').then(
             (m) => m.SllerProductsPageModule

@@ -75,7 +75,8 @@
           <div class="slider-form slider-two">
 
 
-            <form class="file-form" [formGroup]="prodDirectoryUpform" (ngSubmit)="onSubmitProd(prodDirectoryUpform.value)">
+            <form class="file-form" [formGroup]="prodDirectoryUpform"
+              (ngSubmit)="onSubmitProd(prodDirectoryUpform.value)">
               <label for="directories" class="custom-directory-upload">
                 <!-- Attachments -->
                 <input id="directories" class="form-control form-control-md" type="file" formControlName="attachments"

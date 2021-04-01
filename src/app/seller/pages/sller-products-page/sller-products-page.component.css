@@ -53,8 +53,11 @@ mat-sidenav-container {
 }
 
 .mat-expansion-panel-header {
-  padding: 0 10px;
-  /* border-bottom: 1px solid #aaa; */
+  padding: 10px 2px 10px 0;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: auto;
 }
 
 .expanded-div .mat-expansion-panel-header {
@@ -120,7 +123,7 @@ mat-sidenav-container {
 }
 
 .mat-table {
-  background-color: transparent !important;
+  background-color: #fff;
   padding: 0 20px;
 }
 

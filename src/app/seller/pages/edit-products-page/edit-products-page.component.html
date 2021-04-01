@@ -1,1 +1,242 @@
-<p>edit-products-page works!</p>
+<section>
+    <h2 class="page-heading">Edit Product Details</h2>
+</section>
+<section class="card mb-5">
+    <form [formGroup]="productUploadForm" (ngSubmit)="onSubmit(productUploadForm.value)">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)" formControlName="category">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
+                    </select>
+                    <div *ngIf="category.invalid && (category.dirty || category.touched)">
+                        <div *ngIf="category.errors?.required">
+                            <app-form-input-alert [alertMsg]="'category is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" #subCatId (change)="setChildCAt(subCatId.value)" formControlName="subCategory">
+                        <option value="" disabled selected>Select Sub-Category</option>
+                        <option value="{{subCat.id}}" *ngFor="let subCat of subCategories">{{subCat.name}}</option>
+                    </select>
+                    <div *ngIf="subCategory.invalid && (subCategory.dirty || subCategory.touched)">
+                        <div *ngIf="subCategory.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Sub-category is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" formControlName="childCategory">
+                        <option value="" disabled selected>Select Child Category</option>
+                        <option value="{{child.id}}" *ngFor="let child of childCategories">{{child.name}}</option>
+                    </select>
+                    <div *ngIf="childCategory.invalid && (childCategory.dirty || childCategory.touched)">
+                        <div *ngIf="childCategory.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Child category is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="prodName">Product Name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodName -->
+                        <input id="prodName" class="form-control form-control-md" type="text" formControlName="prodName" placeholder="Product Name"
+                             />
+                    </div>
+                    <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
+                        <div *ngIf="prodName.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Product name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="prodDetails">Product Details</label>
+                    <div class="input-group">
+                        <!-- prodDetails -->
+                        <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text" formControlName="prodDetails" placeholder="Product Details"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="manufactererName">Manufacturer Name</label>
+                        <!-- manufactererName -->
+                    <select class="form-control form-control-lg" formControlName="manufactererName">
+                        <option value="" disabled selected>Manufacturer Name</option>
+                        <option value="{{brand.id}}" *ngFor="let brand of brandList">{{brand.name | titlecase}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodStock">Product Stock</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodStock -->
+                        <input id="prodStock" class="form-control form-control-md" type="text" formControlName="prodStock"
+                             />
+                    </div>
+                    <div *ngIf="prodStock.invalid && (prodStock.dirty || prodStock.touched)">
+                        <div *ngIf="prodStock.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Product stock name is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodSize">Size</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodSize -->
+                        <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize"
+                             />
+                    </div>
+                    <!-- <div *ngIf="prodSize.invalid && (prodSize.dirty || prodSize.touched)">
+                        <div *ngIf="prodSize.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Size is required.'"></app-form-input-alert>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="unitOfMeasure">Unit of Measurement</label>
+                    <select class="form-control form-control-lg" formControlName="prodUnit">
+                        <option value="" disabled selected>Unit of Measurement</option>
+                        <option value="{{unit.id}}" *ngFor="let unit of unitList">{{unit.name | titlecase}}</option>
+                    </select>
+                    <div *ngIf="prodUnit.invalid && (prodUnit.dirty || prodUnit.touched)">
+                        <div *ngIf="prodUnit.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Product unit is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodDeliMethod">Product Delivery Method</label>
+                    <select class="form-control form-control-lg" formControlName="prodDeliMethod"> 
+                        <option value="" disabled selected>Product Delivery Method</option>
+                        <option value="1">DDP</option>
+                        <option value="2">Ex-Works</option>
+                    </select>
+                    <div *ngIf="prodDeliMethod.invalid && (prodDeliMethod.dirty || prodDeliMethod.touched)">
+                        <div *ngIf="prodDeliMethod.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Product unit is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="leadTime">Set Lead Time</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- leadTime -->
+                        <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime"
+                             />
+                    </div>
+                    <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
+                        <div *ngIf="leadTime.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Lead time is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ddp">DDP Destination</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- ddp -->
+                        <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp"
+                             />
+                    </div>
+                    <div *ngIf="ddp.invalid && (ddp.dirty || ddp.touched)">
+                        <div *ngIf="ddp.errors?.required">
+                            <app-form-input-alert [alertMsg]="'DDP Destination is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="prodPrice">Product Unit Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-home"></i></div>
+                        </div>
+                        <!-- prodPrice -->
+                        <input id="prodPrice" class="form-control form-control-md" type="text" formControlName="prodPrice"
+                             />
+                    </div>
+                    <div *ngIf="prodPrice.invalid && (prodPrice.dirty || prodPrice.touched)">
+                        <div *ngIf="prodPrice.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Product Unit Price is required.'"></app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
+                    <!-- <ul class="attached-file"> -->
+                        <div *ngFor="let img of imgPreviewList; let i = index;" class="d-inline-block img-preview-div">
+                            <img [src]="img" alt="" width="80" height="80">
+                            <button mat-raised-button (click)="removeImg(i);"><img src="../../../../assets/close.svg" alt=""></button>
+                        </div>
+                    <!-- </ul> -->
+                    <label for="prodImage" class="custom-file-upload" *ngIf="imgPreviewList.length < 2">
+                        <input id="prodImage" class="form-control form-control-md" type="file"
+                            formControlName="prodImage" (change)="handleImgSelect($event);" />
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="d-block">Product Attachments</label>
+                    <label for="attachments" class="custom-file-upload mr-3" *ngIf="selectedFiles.length < 3">
+                        <input id="attachments" class="form-control form-control-md" type="file"
+                            formControlName="attachments" (change)="handleFileSelect($event);" />
+                    </label>
+                    <ul class="attached-file pl-0">
+                        <li *ngFor="let file of selectedFiles; let i = index;">
+                            {{file.name}}
+                            <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+                        [disabled]="productUploadForm.invalid">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

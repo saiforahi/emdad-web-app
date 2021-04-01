@@ -1,23 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import {AbstractControl,FormBuilder,FormControl,FormGroup,Validators} from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+
 @Component({
   selector: 'app-bulk-upload-products',
   templateUrl: './bulk-upload-products.component.html',
   styleUrls: ['./bulk-upload-products.component.css'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
-  }],
-  
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class BulkUploadProductsComponent implements OnInit {
   prodXlUpData = new FormData();
   prodUpDirectoryDate = new FormData();
-  prodDirectoryUpform:FormGroup;
-  prodXlUpform:FormGroup;
-  selectedImage:any=[];
-  constructor(private fb: FormBuilder,) { }
+  prodDirectoryUpform: FormGroup;
+  prodXlUpform: FormGroup;
+  selectedImage: any = [];
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     /*CODE FOR ACTIVATING THE STEPPER */
@@ -48,26 +57,40 @@ export class BulkUploadProductsComponent implements OnInit {
     });
     e.preventDefault();
   }); */
-  
-  // copy
-  /* balapaCop("Step by Step Form", "#999"); */
+    // copy
+    /* balapaCop("Step by Step Form", "#999"); */
   }
+
+  files: File[] = [];
+
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
   handleFileSelect(event) {
     var reader = new FileReader();
     this.selectedImage.push(event.target.files[0]);
     console.log(this.selectedImage);
   }
-  onSubmitProd(value){
+  onSubmitProd(value) {
 
   }
-  removeFile(){
+
+  removeFile() {
     /* this.selectedImage.splice(id, 1); */
   }
-  
-  removeDirectory(){
 
-  }  
-  onSubmit(value){
+  removeDirectory() {
+
+  }
+
+  onSubmit(value) {
 
   }
 }
