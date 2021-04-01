@@ -68,13 +68,14 @@ export class CheckoutComponent implements OnInit {
       console.log(this.user);
       // if country is already set then load the cities of the country
     });
-    this.addressService.get_addresses().subscribe((response) => {
-      console.log(response.data);
-      this.addresses = response.data;
-      if(this.addresses.length==1){
-        this.selected_address=0
+    this.addressService.get_addresses().subscribe(
+      (success)=>{
+        this.addresses = success.data;
+        if(this.addresses.length==1){
+          this.selected_address=0
+        }
       }
-    });
+    );
   }
 
   show_card_inputs() {

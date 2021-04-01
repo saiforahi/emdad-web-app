@@ -44,7 +44,7 @@ export class InvoiceViewModalComponent implements OnInit {
   }
 
   get_price(price:string,quantity:string,commission:string,vat_amount:string){
-    return ((parseFloat(price) + parseFloat(commission))*Number(quantity)) + parseFloat(vat_amount)
+    return (((parseFloat(price) + parseFloat(commission))*Number(quantity)) + parseFloat(vat_amount)).toFixed(2)
   }
 
   get_total_price(){
