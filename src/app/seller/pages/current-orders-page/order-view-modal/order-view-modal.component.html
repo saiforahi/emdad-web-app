@@ -30,13 +30,13 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
-                        <select class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
+                        <select *ngIf="detail.order.tracking_order[i].status!==4" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
                             <option value="-1">Update Status</option>
                             <option value="1">In Progress</option>
                             <option value="2">Delivered</option>
                         </select>
                         <!--show this if status is delivered-->
-                        <!-- <label class="deliverd" *ngIf="show">Delivered</label> -->
+                        <label *ngIf="detail.order.tracking_order[i].status===4" class="deliverd" >Delivered</label>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">
                         Quantity: {{detail.quantity}}
