@@ -24,6 +24,7 @@ export class OrderViewModalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('dialog data',this.data)
+    this.challan=new FormData()
     this.orderService.get_seller_order_details(this.data.order.order.id).subscribe(
       (success)=>{
         console.log('details',success)
@@ -39,7 +40,8 @@ upload(event){
   reader.readAsDataURL(this.proofDoc);
 }
 removeFile(){
-
+  this.proofDoc=""
+  this.challan=new FormData()
 }
 onSubmit(){
   
@@ -54,28 +56,58 @@ onSubmit(){
   
   set_challan(event:any){
     let file = event.target.files[0];
+    this.proofDoc = file;
     this.challan.append('image', file, file.name);
   }
 
-  upload_challan(){
-    this.spinner.show()
-    this.challan.append('image', this.proofDoc);
-    this.orderService.upload_delivery_challan(this.challan).subscribe(
-      (success) => {console.log(success.data);this.spinner.hide();swal('Uploaded','Note Uploaded!','success')}
-    )
+  upload_challan(){ //challan uploading and updating status
+    if(this.proofDoc!==null && this.proofDoc!==undefined){
+      this.spinner.show()
+      this.challan.append('image', this.proofDoc);
+      this.orderService.upload_delivery_challan(this.challan).subscribe( //uploading challan
+        (success) => {                                                    //if success then call update track status API
+          this.orderService.update_tracking_status({                      //passing data with http call
+            order: this.details[0].order.id,
+            "order_confirmed_by":localStorage.getItem("s_uid"),
+            "order_confirmed_date":new Date(),
+            "delivery_by_courier_name":"hasan",
+            "delivery_date": new Date(),
+            "status":"4"
+          }).subscribe(
+            (success)=>{
+              console.log(success.data);this.spinner.hide();swal('Uploaded','Note Uploaded!','success')
+            }
+          )
+        }
+      )
+    }
   }
 
   change_status(value,prod_id){
-    this.orderService.update_tracking_status({
-      order: this.details.order.id,
-      "order_confirmed_by":1
-    }).subscribe(
-      (success)=>{
-
-      }
-    )
     if(value=="1"){
+      console.log(localStorage.getItem('s_token'))
+      console.log(JSON.stringify({
+        order: this.details[0].order.id,
+        "order_confirmed_by":localStorage.getItem("s_uid"),
+        "order_confirmed_date":new Date().toLocaleDateString(),
+        "delivery_by_courier_name":"hasan",
+        "delivery_date": new Date(),
+        "status":"3"
+      }))
       document.getElementById(prod_id+'card').style.display='none'
+      this.orderService.update_tracking_status({
+        order: this.details[0].order.id,
+        "order_confirmed_by":localStorage.getItem("s_uid"),
+        "order_confirmed_date":new Date(),
+        "delivery_by_courier_name":"hasan",
+        "delivery_date": new Date(),
+        "status":"3"
+      }).subscribe(
+        (success)=>{
+          console.log(success)
+          swal('Updated','Product Status updated','success')
+        }
+      )
     }
     else if(value == "2"){
       document.getElementById(prod_id+'card').style.display='block'
