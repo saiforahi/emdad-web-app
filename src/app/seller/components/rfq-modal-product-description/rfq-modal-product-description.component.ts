@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-
+import {config} from '../../../../config';
 
 @Component({
   selector: 'app-rfq-modal-product-description',
@@ -8,6 +8,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class RfqModalProductDescriptionComponent implements OnInit {
 @Input() rfqDetailData;
+img_base_url=config.img_base_url;
   constructor() { }
 
   ngOnInit(): void {

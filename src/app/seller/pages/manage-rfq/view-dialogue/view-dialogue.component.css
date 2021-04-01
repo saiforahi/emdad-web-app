@@ -3,14 +3,14 @@
     border:transparent;
   }
   ::ng-deep .mat-dialog-container {
-    
-    
-    
-    border-radius: 5px;
+    padding: 30px 30px 0;
+    width: 900px;
+    border-radius: 0;
   }
  .mat-dialog-content{
     font-family: Jost;
-    min-height: 550px;
+    padding: 20px;
+   /*  min-height: 550px; */
     /* min-width: 900px; */
   
    
@@ -67,13 +67,17 @@ margin-top: 40px;
   color: #ff5f92;
   float: left !important;
   font-family: Jost;
+  
  
 }  
+app-form-input-alert{
+  padding: 0 !important;
+}
 .form-control {
   background: #efefef;
   border-radius: 5px;
   border: none;
-  height: 60px;
+  height: 80px;
 }
 .input-group-text{
   background-color: #EFEFEF;
@@ -117,12 +121,12 @@ input[type="file"] {
   .custom-file-upload {
     width: 80px;
     height: 80px;
-    background-image: url("../../../../../assets/upload.svg");
+    background-image: url("../../../../../assets/icons/Uploadupload-grey.png");
     background-repeat: no-repeat;
     background-size: 40%;
     background-position: center center;
     border-radius: 5px;
-    border: 3px dashed #ccc;
+    border: 2px dashed #CFCFCF;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
@@ -137,21 +141,31 @@ input[type="file"] {
   
   .attached-file{
     display: inline-block !important;
+    margin-left: -20px;
   }
   .attached-file li{
     margin-top: 5px;
+    margin-left: -20px;
   }
    
   .attached-file button {
   /*   border-radius: 50%;
   */
-    width: 30px;
-    height: 30px; 
+  width: 24px;
+  height: 24px;
     background: #ff4b55;
     border: none;
     color: #fff;
     font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    justify-self: center;
+    vertical-align: middle;
+    align-self: center;
     
+  }
+  .mat-icon{
+    font-size: 8px;
   }
   .login_btn{
     background: #1F4F9E;
@@ -169,10 +183,141 @@ height: 60px;
 
 /* white */
 }
-  .mat-icon{
+/*   .mat-icon{
     font-size: 14px;
-  }
+  } */
   .file-warn{
     text-align: left !important;
   }
+  /*responsove -_- :/ */
+
+@media all and (min-width:290px) and (max-width:576px){
+  .quote-button{
+    width:180px;
+    margin-top:20px;
+    font-size: 14px;
+    line-height: 20px; 
+    height: 40px;
+  }
+  .login_btn{
+    clear: left;
+    height: 45px;
   
+    width: 180px;
+   
+  }
+  .mobile-show{
+    text-align: center !important;
+    justify-content: center;
+  }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mat-icon{
+    font-size: 10px;
+
+  }
+ .form-label,.file-label,input{
+    font-size: 14px;
+line-height: 20px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 40px;
+    width: 40px;
+  }
+  .form-control{
+    height: 60px;
+  }
+  .attachments{
+display: block !important;
+  }
+
+  .attached-file,.attached-file li{
+    display: block !important;
+    margin-left: -12px;
+  }
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .quote-button{
+    width:240px;
+    margin-top:20px;
+    font-size: 16px;
+    line-height: 23px; 
+    height: 40px;
+  }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-label,.file-label{
+    font-size: 16px;
+line-height: 23px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .attachments{
+    display: block !important;
+      }
+    
+      .attached-file,.attached-file li{
+        display: block !important;
+        margin-left: -12px;
+      }
+      .login_btn{
+        height: 50px;
+        width: 220px;
+      }
+      .custom-file-upload{
+        /* background-size: 5%; */
+        height: 60px;
+        width: 60px;
+      }
+      .form-control{
+        height: 60px;
+      }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .quote-button{
+    width:320px;
+    margin-top:20px;
+    font-size: 16px;
+    line-height: 23px; 
+   
+  }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-label,.file-label{
+    font-size: 16px;
+line-height: 23px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .attachments{
+    display: block !important;
+      }
+    
+      .attached-file,.attached-file li{
+        display: block !important;
+        margin-left: -15px;
+      }
+      .login_btn{
+        height: 50px;
+        width: 280px;
+      }
+}

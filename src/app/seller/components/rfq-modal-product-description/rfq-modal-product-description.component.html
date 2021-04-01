@@ -1,11 +1,16 @@
 <section class="content-desc container" *ngIf="rfqDetailData">
 
+    <div class="close-btns">
+        <mat-dialog-actions align="end" class="p-0 m-0">
+            <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
+        </mat-dialog-actions>
+    </div>
     <div class="row mt-2">
-        <div class="col-md-2 img-div">
-            <img src='http://localhost:8000{{rfqDetailData.product.image1}}' alt="no image">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-4 img-div">
+            <img src='{{img_base_url+rfqDetailData.product.image1}}' alt="no image" class="img-fluid m-0">
         </div>
 
-        <div class="col-md-9 product-upper-desc mt-2">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-8 product-upper-desc mt-2">
             <p><span class="prod-head">Product Name: </span> <span
                     class="prod-desc">{{rfqDetailData.product.name}}</span></p>
             <p><span class="prod-head">Product Description:</span> <span class="prod-desc">
@@ -13,14 +18,10 @@
             <p><span class="prod-head">Unit Price: </span> <span
                     class="prod-head">{{rfqDetailData.product.unit_price}}</span></p>
         </div>
-        <div class="col-md-1 close-btns">
-            <mat-dialog-actions align="end" class="p-0 m-0">
-                <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
-            </mat-dialog-actions>
-        </div>
+        
     </div>
     <div class="row">
-        <div class="col-md-12 mt-3">
+        <div class="col-lg-12 col-md-12 mt-3">
             <p><span class="prod-head">RFQ ID: </span><span class="prod-desc"> # {{rfqDetailData.quotation_code}}</span>
             </p>
             <p><span class="prod-head">Date: </span><span class="prod-desc">{{rfqDetailData.created_at | date :

@@ -22,7 +22,7 @@ export class ManageRfqComponent implements OnInit {
     this.highValue = this.lowValue + event.pageSize;
     return event;
   }
-  displayedColumns: string[] = ['id', 'date', 'status', 'buyer','view'];
+  
   constructor(
     public dialog: MatDialog,
     private router: Router,

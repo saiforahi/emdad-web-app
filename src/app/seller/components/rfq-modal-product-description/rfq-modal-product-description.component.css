@@ -55,9 +55,30 @@ color: #2B2B2B;
    border: 0px transparent !important;
   
 }
-
-@media all and (min-width:1200px) and (max-width:1299px){
-.product-upper-desc p{
-    padding-left:20px;
+/*responsive -_- :/ */
+@media all and (min-width:290px) and (max-width:992px){
+ 
+    .prod-desc,.prod-head{
+    font-size: 14px;
+    line-height: 20px; 
+    }
 }
+@media all and (min-width:290px) and (max-width:576px){
+    .img-div img{
+        width: 50px;
+        height: 50px;  
+    }
+}
+
+@media all and (min-width:576px) and (max-width:768px){
+    .img-div img{
+        width: 60px;
+        height: 60px;
+    }
+}
+@media all and (min-width:768px) and (max-width:992px){
+    .img-div img{
+        width: 80px;
+        height: 80px;
+    }
 }
