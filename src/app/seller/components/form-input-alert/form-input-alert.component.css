@@ -2,4 +2,11 @@
     background: transparent;
     border: none;
     color: #ff5f92;
+    text-align: left !important;
+}
+@media all and (min-width:290px) and (max-width:992px){
+    .alert-danger{
+        font-size: 14px;
+        line-height: 20px;
+    }
 }

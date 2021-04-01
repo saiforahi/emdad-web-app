@@ -9,7 +9,7 @@
         <form [formGroup]="prodRfqForm" (ngSubmit)="onSubmit(prodRfqForm.value)" class="mt-5">
             <div class="row">
                 <!--INPUT FOR PRODUCT QUANTITY-->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="form-group">
                         <label class="form-label" for="quantity">Product Quantity</label>
                         <input id="quantity" class="form-control form-control-md" type="number"
@@ -25,7 +25,7 @@
 
                 </div>
                 <!--INPUT FOR UNIT PRICE-->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="form-group">
                         <label class="form-label" for="unitPrice">Unit Price (VAT Exclusive) </label>
                         <div class="input-group">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <!--INPUT FOR TOTAL PRICE-->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="form-group">
                         <label class="form-label" for="totalPrice">Total Price (VAT Exclusive) </label>
                         <div class="input-group">
@@ -71,12 +71,14 @@
                     <div class="form-group">
                         <div class="file-warn">
                             <label class="file-label d-block">Quotation Attachments:</label>
-                            <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
+                           
+                           <div> <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
                             </app-form-input-alert>
                         </div>
+                        </div>
                         <!--FILE UPLOAD-->
-                        <label for="attachments" class="custom-file-upload float-left" *ngIf="isEnabled">
-                            <input id="attachments" class="form-control form-control-md" type="file"
+                        <label for="attachments" class="custom-file-upload float-left mr-2" *ngIf="isEnabled">
+                            <input id="attachments" class="form-control" type="file"
                                 formControlName="attachments" (change)="handleFileSelect($event);" *ngIf="isEnabled" />
                         </label>
                         <!--Attached file show-->
@@ -95,7 +97,7 @@
                 <!-- SUBMIT BUTTON-->
 
                 <div class="col-md-12">
-                    <div class="form-group mt-3">
+                    <div class="form-group mobile-show mt-3">
                         <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                             mat-dialog-close [disabled]="prodRfqForm.invalid">
                             Submit
