@@ -1,20 +1,20 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
         <div class="order-data">
-            <p><b>Order ID: </b><span>#{{details.order.order_code}}</span></p>
-            <p><b>Order Date:</b><span> Nov 25, 2020</span></p>
-            <p><b>Total Price: $25,800</b></p>
+            <p><b>Order ID: </b><span>#{{data.order.order.order_code}}</span></p>
+            <p><b>Order Date:</b><span> {{formatDate(data.order.order.order_datetime)}}</span></p>
+            <p><b>Total Price: ${{data.order.order.total_amount}}</b></p>
         </div>
-        <div class="card">
+        <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="media">
-                            <img class="mr-3" [src]="img_base_url+details.product.image1"
+                            <img class="mr-3" [src]="img_base_url+detail.product.image1"
                                 alt="Generic placeholder image">
                             <div class="media-body">
-                                <p><b>{{details.product.name}}</b></p>
-                                <p><span>{{details.product.delivery_method===1?"DDP":"Ex-Works"}}</span></p>
+                                <p><b>{{detail.product.name}}</b></p>
+                                <p><span>{{detail.product.delivery_method===1?"DDP":"Ex-Works"}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -22,10 +22,10 @@
                         <a href="">proof.pdf</a>
                     </div>
                     <div class="col-md-2 order-data">
-                        Quantity: {{details.quantity}}
+                        Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-2 order-data">
-                        {{get_price(details.unit_price,details.quantity,details.commission,details.vat_amount)}}
+                        {{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}
                     </div>
                 </div>
             </div>

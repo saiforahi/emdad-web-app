@@ -195,8 +195,8 @@ export class UserAuthService {
       )
     ) {
       return this.http
-        .post(this.apiRoot.concat('refresh-token/'), {
-          token: localStorage.getItem('token'),
+        .post(config.base_url + 'auth/refresh-token/', {
+          access: localStorage.getItem('token'),
         })
         .pipe(
           tap((response) => this.setSession(response)),

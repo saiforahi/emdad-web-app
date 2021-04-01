@@ -132,10 +132,18 @@ export class OrderService {
   }
 
   get_invoices_for_seller():Observable<any>{
-    return this.http.get(config.base_url + 'api/order/invoice/list/'+localStorage.getItem('s_uid')+'/',this.httpOptions)
+    return this.http.get(config.base_url + 'api/order/invoice/list/'+localStorage.getItem('s_uid')+'/',this.sellerHttpOptions)
   }
 
   get_invoice_details_for_seller(order_id:string):Observable<any> {
-    return this.http.get(config.base_url + 'api/order/invoice/details/' + order_id+'/',this.httpOptions)
+    return this.http.get(config.base_url + 'api/order/invoice/details/' + order_id+'/',this.sellerHttpOptions)
+  }
+
+  upload_delivery_challan(order_tracking_id:any):Observable<any> {
+    return this.http.post(config.base_url + 'api/order/delivery/challan/upload/'+order_tracking_id+'/',this.sellerHttpOptions)
+  }
+
+  update_tracking_status(data:any):Observable<any> {
+    return this.http.post( config.base_url + 'api/order/update/tracking/status/'+localStorage.getItem('s_uid')+'/',data,this.sellerHttpOptions)
   }
 }

@@ -13,13 +13,13 @@
         <!-- Order ID Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>Order ID</th>
-            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+            <td mat-cell *matCellDef="let element">#{{ element.order.order_code }}</td>
         </ng-container>
 
         <!-- Payment Date Column -->
         <ng-container matColumnDef="payment_date">
             <th mat-header-cell *matHeaderCellDef>Payment Date</th>
-            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.order.order_payment?.length>0 ? formatDate(element.order.order_payment[0].created_at) : '-' }}</td>
         </ng-container>
 
         <!-- Delivery Date Column -->
@@ -32,8 +32,8 @@
         <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef>Status</th>
             <td mat-cell *matCellDef="let element">
-                <span *ngIf="element.status == 2">Paid</span>
-                <span *ngIf="element.status == 1">Unpaid</span>
+                <span *ngIf="element.order.payment_type == 1">Paid</span>
+                <span *ngIf="element.order.payment_type == 0">Unpaid</span>
             </td>
         </ng-container>
 
