@@ -117,7 +117,7 @@ const routes: Routes = [
         canActivate: [SellerAuthGuard],
       },
       {
-        path: 'products/category/:id',
+        path: 'products/category/:s_uid/:id',
         loadChildren: () =>
           import('./pages/sller-products-page/sller-products-page.module').then(
             (m) => m.SllerProductsPageModule

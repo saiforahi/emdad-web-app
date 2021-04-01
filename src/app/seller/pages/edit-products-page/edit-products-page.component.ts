@@ -63,6 +63,8 @@ export class EditProductsPageComponent implements OnInit {
   selectedFiles: any = [];
   categoryId: any;
   productDetails: any;
+  parentCatId: any;
+  subCatId: any;
 
   constructor(
     private authService: UserAuthService,
@@ -81,6 +83,7 @@ export class EditProductsPageComponent implements OnInit {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
+      // this.getParentCat();
       // console.log(this.categories[0].name);
     });
     this.addProductService.getUnitOfProduct().subscribe((item) => {
@@ -91,7 +94,7 @@ export class EditProductsPageComponent implements OnInit {
       this.brandList = item.data[0];
       // console.log(item.data[0]);
     });
-    this.populateFormData();
+    // this.populateFormData();
     this.productUploadForm = this.fb.group({
       category: ['', [Validators.required]],
       subCategory: ['', [Validators.required]],
@@ -131,35 +134,45 @@ export class EditProductsPageComponent implements OnInit {
   populateFormData() {
     this.getProducts.productDetails(this.categoryId).subscribe(item => {
       console.log(item);
+      console.log(this.parentCatId)
       this.productDetails = item.data[0];
       this.productUploadForm.setValue({
-        comName: this.productDetails.prodName,
+        category: this.parentCatId,
+        subCategory: this.subCatId,
+        childCategory: this.categoryId,
+        prodName: this.productDetails.name,
+        prodDetails: "hello",
+        manufactererName: "nike",
+        prodStock: 2,
+        prodSize: 10,
+        unitOfMeasure: 1,
+        prodUnit: 10,
+        prodDeliMethod: 2,
+        leadTime: 12,
+        ddp: "dhaka",
+        prodPrice: 150,
+        prodImage: null,
+        attachments: null
       })
     })
-  }
-
-  getParentCat(childCatId){
-    this.categories.forEach(element => {
-      element.children.forEach(element2 => {
-        element2.children.forEach(element3 => {
-          if()
-          
-        });
-      });
-    });
   }
 
   // remove empty children form the array
   removeEmptyChildren(data) {
     data.forEach((key) => {
+      // console.log(key.id)
       key.children.forEach((key2) => {
+        // console.log(key2.id)
         key2.children.forEach((key3) => {
+          // console.log(key3.id, this.categoryId)
+          // get parent and subcat Id
+          if(key3.id == this.categoryId){
+            this.parentCatId = key2.id;
+            this.subCatId = key.id;
+            // console.log(this.parentCatId, this.subCatId)
+          }
           key3.children.forEach((key4) => {
-            key3.children.forEach((key5) => {
-              if (key5.children.length == 0) {
-                delete key5.children;
-              }
-            });
+            console.log(key4.id)
             if (key4.children.length == 0) {
               delete key4.children;
             }
@@ -176,6 +189,7 @@ export class EditProductsPageComponent implements OnInit {
         delete key.children;
       }
     });
+    this.populateFormData();
   }
 
   setSubCAt(catId) {

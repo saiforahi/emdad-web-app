@@ -7,8 +7,8 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)" formControlName="category">
-                        <option value="" disabled selected>Select Category</option>
-                        <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
+                        <option [ngValue]="" disabled selected>Select Category</option>
+                        <option [ngValue]="cat.id" [selected]="cat.id == parentCatId" *ngFor="let cat of categories">{{cat.name}}</option>
                     </select>
                     <div *ngIf="category.invalid && (category.dirty || category.touched)">
                         <div *ngIf="category.errors?.required">

@@ -37,6 +37,9 @@ export class GetProductService {
   }
 
   // sller wise product list
+  sellersProductByCategory(sellerId, catId){
+    return this.http.get(config.base_url+'api/product/seller/category/products/'+sellerId+'/'+catId+'/');
+  }
 
   productByCategory(id) {
     return this.http.get(config.base_url+'api/product/details/'+id+'/');

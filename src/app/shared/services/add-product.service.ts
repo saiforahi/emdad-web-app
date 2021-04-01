@@ -35,4 +35,13 @@ export class AddProductService {
     };
     return this.http.post(config.base_url+'api/product/update/'+ id +'/', productData, httpOptions );
   }
+
+  deleteProduct(id){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.delete(config.base_url+'api/product/delete/'+ id +'/', httpOptions );
+  }
 }
