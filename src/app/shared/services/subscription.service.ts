@@ -6,13 +6,12 @@ import { config } from 'src/config';
 @Injectable({
   providedIn: 'root',
 })
-
 export class SubscriptionService {
   selectedPlan;
   couponApplied;
   userId: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -27,8 +26,8 @@ export class SubscriptionService {
     fees,
     payment_type,
     payment_status,
+    total_paid_amount,
     discount_amount,
-    vat_amount,
     seller,
     subscription_plan,
     discount_coupon,
@@ -38,8 +37,8 @@ export class SubscriptionService {
       fees,
       payment_type,
       payment_status,
+      total_paid_amount,
       discount_amount,
-      vat_amount,
       seller,
       subscription_plan,
       discount_coupon,
@@ -49,7 +48,10 @@ export class SubscriptionService {
 
   subscriptionHistory(): Observable<any> {
     return this.http.get(
-      config.base_url + 'api/subscription/history/' + localStorage.getItem('s_uid') + '/'
+      config.base_url +
+        'api/subscription/history/' +
+        localStorage.getItem('s_uid') +
+        '/'
     );
   }
 }
