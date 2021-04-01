@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
 import {OrderService} from '../../../shared/services/order.service'
+
 export interface Order {
   code: string;
   payment_date:string;
@@ -26,6 +27,7 @@ export interface Order {
 export class CurrentOrdersPageComponent implements OnInit {
   orders:Array<any>=[]
   selectedOrder:any
+  challan = new FormData();
   constructor(
     public dialog: MatDialog,
     private orderService:OrderService
@@ -88,4 +90,15 @@ export class CurrentOrdersPageComponent implements OnInit {
     })
   }
 
+  decide_status(order:any){
+    let min_status=5
+    order.order.tracking_order.forEach(element => {
+      if(element.status<min_status){
+        min_status=element.status
+      }
+    });
+    return min_status    
+  }
+
+  
 }

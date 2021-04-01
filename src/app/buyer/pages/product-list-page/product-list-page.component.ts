@@ -55,8 +55,8 @@ export class ProductListPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
     this.style = 'grid';
+    window.scrollTo(0, 0);
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }

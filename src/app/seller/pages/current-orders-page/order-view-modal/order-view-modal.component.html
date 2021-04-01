@@ -8,7 +8,7 @@
         <div class="order-data">
 
             <p class="top-details">Order ID: <span class="prod">#{{data.order.order.order_code}}</span></p>
-            <p class="top-details">Order Date:<span class="prod"> {{data.order.order_creation_date | date:'longDate'}}</span>
+            <p class="top-details">Order Date:<span class="prod"> {{data.order.order.order_datetime | date:'longDate'}}</span>
             </p>
             <p class="top-details">Total Price: <span class="prod">${{data.order.order.total_amount}}</span></p>
         </div>
@@ -30,13 +30,13 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
-                        <select class="form-control dropdown">
-                            <option>Update Status</option>
-                            <option>In Progress</option>
-                            <option>Delivered</option>
+                        <select class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
+                            <option value="-1">Update Status</option>
+                            <option value="1">In Progress</option>
+                            <option value="2">Delivered</option>
                         </select>
                         <!--show this if status is delivered-->
-                        <label class="deliverd" *ngIf="show">Delivered</label>
+                        <!-- <label class="deliverd" *ngIf="show">Delivered</label> -->
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">
                         Quantity: {{detail.quantity}}
@@ -46,24 +46,20 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--show if select delivered-->
-        <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="display: none;" id="{{detail.product.id+'card'}}">
                 <div class="row">
                     <div class="col-lg-5 col-md-12 col-12 show-text">
                         <p class="del-proof">Please upload a proof of delivery</p>
                         <p class="file-ex del-proof"> "Delivery Note"</p>
-                       
                     </div>
                     <div class="col-lg-7 col-md-12 col-12 ">
-                        <form [formGroup]="attachForm" (ngSubmit)="onSubmit()">
+                        <form>
                             <div class="row do-middle">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex show-form">
                                     <label for="note" class="custom-file-upload mr-2">
                                         <!-- file-up -->
                                         <input id="note" class="form-control form-control-md" type="file"
-                                            formControlName="note" (change)="upload($event);" />
+                                             (change)="upload($event);" />
                                     </label>
                                     <label class="attached-file"><label class="mr-1 show-file">filename</label> <button
                                             mat-mini-fab (click)="removeFile();">
@@ -71,7 +67,7 @@
                                         </button></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex btn-view">
-                                    <button mat-mini-fab type="submit" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
+                                    <button mat-mini-fab type="button" (click)="upload_challan()" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
                                     <button mat-mini-fab class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
                                 </div>
                             </div>
@@ -81,6 +77,7 @@
                 </div>
             </div>
         </div>
+        <!--show if select delivered-->
     </mat-dialog-content>
 
 </section>

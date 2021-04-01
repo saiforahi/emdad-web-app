@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
 import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 const routes: Routes = [
   {path:'', component: CurrentOrdersPageComponent, pathMatch:'full'}
 ]
@@ -21,7 +21,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonuiModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    NgxSpinnerModule
   ],
   entryComponents: [OrderViewModalComponent],
 })

@@ -16,11 +16,18 @@ export class OrderHistoryModalComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.order)
     this.orderService.get_seller_order_details(this.data.order.order.id).subscribe(
-      (success)=> {this.details=success.data[0];console.log('details',this.details)}
+      (success)=> {this.details=success.data;console.log('details',success.data)}
     )
   }
 
   get_price(unit_price:string,quantity:string,commission:string,vat_amount:string){
     return (parseFloat(unit_price)*parseFloat(quantity))+parseFloat(commission)+parseFloat(vat_amount)
+  }
+
+  formatDate(date:string){
+    if(date!=null){
+      return new Date(date).toDateString()
+    }
+    return '-'
   }
 }
