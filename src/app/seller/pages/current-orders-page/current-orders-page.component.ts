@@ -91,13 +91,26 @@ export class CurrentOrdersPageComponent implements OnInit {
   }
 
   decide_status(order:any){
-    let min_status=5
+    
+    let temp=[]
     order.order.tracking_order.forEach(element => {
-      if(element.status<min_status){
-        min_status=element.status
+      // console.log("****")
+      // console.log("element status",element.status)
+      // console.log("min",min_status)
+      // console.log("****")
+      if(element.order == order.order.id){
+        //min_status=element.status
+        temp.push(element)
       }
     });
-    return min_status    
+    console.log("temp",temp)
+    let min_status=temp[0].status
+    temp.forEach((item)=>{
+      if(item.status<min_status){
+        min_status=item.status
+      }
+    })
+    return min_status
   }
 
   
