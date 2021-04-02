@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
 import {OrderService} from '../../../shared/services/order.service'
+import { PageEvent } from '@angular/material/paginator';
 
 export interface Order {
   code: string;
@@ -28,6 +29,9 @@ export class CurrentOrdersPageComponent implements OnInit {
   orders:Array<any>=[]
   selectedOrder:any
   challan = new FormData();
+  toggleSort:boolean = true;
+  lowValue: number = 0;
+  highValue: number = 5;
   constructor(
     public dialog: MatDialog,
     private orderService:OrderService
@@ -41,7 +45,7 @@ export class CurrentOrdersPageComponent implements OnInit {
         console.log('response',success.data)
         let temp:Array<any>=[]
         success.data.forEach((element:any) => {
-          if(element.status != 5){
+          if(this.decide_status(element) != 5){
             temp.push(element)
           }
         });
@@ -99,11 +103,29 @@ export class CurrentOrdersPageComponent implements OnInit {
     });
     let min_status=temp[0].status
     temp.forEach((item)=>{
-      if(item.status<min_status){
+      if(item.status<min_status && item.seller == localStorage.getItem('s_uid')){
         min_status=item.status
       }
     })
     return min_status
+  }
+
+  sortTable() {
+    if (this.toggleSort) {
+      this.orders.sort((a, b) => new Date(b.order.order_datetime).getTime() - new Date(a.order.order_datetime).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.orders;
+    } else {
+      this.orders.sort((b, a) => new Date(b.order.order_datetime).getTime() - new Date(a.order.order_datetime).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.orders;
+    }
+  }
+
+  getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
   }
   
 }

@@ -9,7 +9,7 @@
     </div>
 </section>
 <section class="card mb-5">
-    <table mat-table [dataSource]="filtered_orders" class="mat-elevation-z8">
+    <table mat-table [dataSource]="filtered_orders | slice: lowValue:highValue" class="mat-elevation-z8">
         <!-- Order ID Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>Order ID</th>
@@ -53,6 +53,17 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="5"
+      [length]="filtered_orders.length"
+      showFirstLastButtons
+      (page)="getPaginatorData($event)"
+      *ngIf="filtered_orders?.length>5"
+    ></mat-paginator>
+    <div class="no-data" *ngIf="filtered_orders.length===0">
+        No data available
+    </div>
 </section>
 <div class="total-order-price mb-3">
     Total: SAR{{get_total()}}

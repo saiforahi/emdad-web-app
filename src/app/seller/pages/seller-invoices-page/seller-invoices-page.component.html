@@ -45,4 +45,7 @@
       (page)="getPaginatorData($event)"
       *ngIf="invoices?.length>5"
     ></mat-paginator>
+    <div class="no-data" *ngIf="invoices.length===0">
+        No data available
+    </div>
 </section>

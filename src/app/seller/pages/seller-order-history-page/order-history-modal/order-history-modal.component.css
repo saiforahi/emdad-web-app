@@ -73,3 +73,17 @@ input[type="file"] {
   color: #fff;
   font-size: 16px;
 }
+
+.mat-dialog-actions>button{
+  background-color: white !important;
+  background: white !important;
+  color: #FF4B55;
+float: right;
+ margin-top: -35px;
+ padding: 0;
+ font-size: 16px;
+ font-weight: normal !important;
+ outline: none !important;
+ border: 0px transparent !important;
+
+}

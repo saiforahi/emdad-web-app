@@ -1,5 +1,8 @@
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
+        <mat-dialog-actions align="end" class="p-0 m-0">
+            <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
+        </mat-dialog-actions>
         <div class="order-data">
             <p><b>Invoice ID: </b><span>#{{details?.invoice_code}}</span></p>
             <p><b>Payment Date:</b><span> {{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
