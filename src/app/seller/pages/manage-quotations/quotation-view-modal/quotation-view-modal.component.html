@@ -1,39 +1,35 @@
-<section class="dialogue-holder">
+<section class="dialogue-holder" *ngIf="details!=null">
    
     <mat-dialog-content class="mat-typography">
         <mat-dialog-actions align="end" class="p-0 m-0">
             <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
         </mat-dialog-actions>
         <div class="media">
-            <img class="mr-3" src="../../../../../assets/images/default-image-620x600.jpg"
+            <img class="mr-3" [src]="img_base_url+details.product.image1"
                 alt="Generic placeholder image">
             <div class="media-body">
-                <p><b>Product Name:</b><span> Minimal Flower Vase</span></p>
-                <p><b>Product Description:</b><span> Lorem ipsum dolor sit amet, consectetur adipiscing elit.In ut
-                        ullamcorper leo, eget euismod orci.</span></p>
-                <p><b>Unite Price: $19</b></p>
+                <p><b>Product Name:</b><span> {{details.product.name}}</span></p>
+                <p><b>Product Description:</b><span> {{details.product.description}}</span></p>
+                <p><b>Unite Price: ${{details.product.unit_price}}</b></p>
             </div>
         </div>
         <div class="quotation-details">
-            <p><b>Quotation ID: </b><span>#100589</span></p>
-            <p><b>RFQ ID: </b><span>#12589</span></p>
-            <p><b>Date: </b><span>Dec 2, 2020 | Time: 9:42PM</span></p>
-            <p><b>Buyer Name: </b><span>Abu Raihan Zilani</span></p>
-            <p><b>Quantity: </b><span>1290</span></p>
-            <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
-                    eget euismod orci.
-                    Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum sociis
-                    natoque penatibus et magnis dis parturient montes nascetur.</span></p>
+            <p><b>Quotation ID: </b><span>#{{details.quotation_code}}</span></p>
+            <p><b>RFQ ID: </b><span>#{{details.rfq[0].id}}</span></p>
+            <p><b>Date: </b><span>{{formatDate(details.created_at)}} | Time: {{formatTime(details.created_at)}}</span></p>
+            <p><b>Buyer Name: </b><span>{{details.buyer.full_name}}</span></p>
+            <p><b>Quantity: </b><span>{{details.quantity}}</span></p>
+            <p><b>Message: </b><span>{{details.quotation[0].Message}}</span></p>
 
         </div>
         <mat-accordion>
-            <mat-expansion-panel expanded="true">
+            <mat-expansion-panel expanded="false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <b>Date:</b> Dec 5, 2020 | Time: 9:42PM
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p><b>Quantity: </b><span>1290</span></p>
+                <p><b>Quantity: </b><span>{{1290}}</span></p>
                 <p><b>Message: </b><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo,
                         eget euismod orci.
                         Cum sociis natoque penatibus et magnis dis parturient montes nascetur. eget euismod orci. Cum

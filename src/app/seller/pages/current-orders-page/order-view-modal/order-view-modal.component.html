@@ -20,8 +20,8 @@
                             <img [src]="img_base_url+detail.product.image1" alt="Generic placeholder image" class="img-fluid">
                             <div class="media-body">
                                 <p class="name">{{detail.product.name}}</p>
-                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span></p>
-                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span></p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span>({{detail.product.ddp_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span>({{detail.product.ex_works_lead_time}}) days</p>
                             </div>
                         </div>
                     </div>
@@ -29,14 +29,15 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
-                        <select [(ngModel)]="detail.order.tracking_order[i].status" *ngIf="detail.order.tracking_order[i].status!==4 && detail.order.tracking_order[i].status!==5" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
-                            <option value="-1">Update Status</option>
+                        <select [id]="detail.order.tracking_order[i].id+'status'" [(ngModel)]="detail.order.tracking_order[i].status" *ngIf="detail.order.tracking_order[i].status!==5" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
+                            <option *ngIf="detail.order.tracking_order[i].status==1" value="1">Update Status</option>
+                            <option *ngIf="detail.order.tracking_order[i].status==2" value="2">Update Status</option>
                             <option value="3">In Progress</option>
                             <option value="4">Delivered</option>
                             <option value="5">Completed</option>
                         </select>
                         <!--show this if status is delivered-->
-                        <label *ngIf="detail.order.tracking_order[i].status===4" class="deliverd" >Delivered</label>
+                        <!-- <label *ngIf="detail.order.tracking_order[i].status===4" class="deliverd" >Delivered</label> -->
                         <label *ngIf="detail.order.tracking_order[i].status===5" class="deliverd" >Completed</label>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">

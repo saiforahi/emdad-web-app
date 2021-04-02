@@ -41,6 +41,13 @@ export class QuotationService {
       this.sellerHttpOptions
     );
   }
+  
+  get_seller_quotation_details(id): Observable<any> {
+    return this.http.get(
+      config.base_url + 'api/quote/details/' + id + '/',
+      this.sellerHttpOptions
+    );
+  }
 
   get_quotation_details(id): Observable<any> {
     return this.http.get(
@@ -71,4 +78,6 @@ export class QuotationService {
     const updateURL = `http://127.0.0.1:8000/api/quote/update/${id}/`;
     return this.http.put(updateURL, formData, httpOptions).pipe(shareReplay());
   }
+
+
 }

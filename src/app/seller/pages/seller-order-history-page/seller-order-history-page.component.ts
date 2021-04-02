@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderHistoryModalComponent } from './order-history-modal/order-history-modal.component';
 import {OrderService} from '../../../shared/services/order.service'
+import { PageEvent } from '@angular/material/paginator';
 export interface Order {
   id: string;
   payment_date:string;
@@ -26,6 +27,8 @@ export interface Order {
 export class SellerOrderHistoryPageComponent implements OnInit {
   orders:Array<any>=[]
   filtered_orders:Array<any>=[]
+  lowValue: number = 0;
+  highValue: number = 5;
   constructor(public dialog: MatDialog, private orderService:OrderService) {
 
   }
@@ -122,5 +125,11 @@ export class SellerOrderHistoryPageComponent implements OnInit {
       total+= parseFloat(order.order.total_amount)
     })
     return total.toFixed(2)
+  }
+
+  getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
   }
 }

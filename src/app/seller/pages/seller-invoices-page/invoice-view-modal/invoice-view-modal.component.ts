@@ -52,6 +52,6 @@ export class InvoiceViewModalComponent implements OnInit {
     this.details.ordered_product.forEach((product:any) => {
       total+= ((parseFloat(product.unit_price) + parseFloat(product.commission))*Number(product.quantity)) + parseFloat(product.vat_amount)
     });
-    return total
+    return total.toFixed(2)
   }
 }

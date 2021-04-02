@@ -58,7 +58,7 @@ export class CartPageComponent implements OnInit {
   subTotal: number = 0;
   total_amount = 0;
   couponInput: string = '';
-  discount_coupon_amount;
+  discount_coupon_amount:any;
   discount_coupon = '';
   tracking_order: Tracking_Order[] = [];
   msg: any;

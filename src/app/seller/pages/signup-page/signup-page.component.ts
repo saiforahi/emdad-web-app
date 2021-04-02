@@ -145,12 +145,14 @@ export class SignupPageComponent implements OnInit {
     this.authService.sellerSignup(this.sellerRegFormData).subscribe(
       (success) => {
         console.log(success);
+        this.spinner.hide()
         this.router.navigate(['dashboard']);
         swal('Succeed', 'You have registered successfully', 'success');
       },
       (error: any) => {
         this.error = error.error.email.toString();
         console.log(error);
+        this.spinner.hide()
         // if(error.email){
         //   swal('Failed!', error.email, 'error');
         // }

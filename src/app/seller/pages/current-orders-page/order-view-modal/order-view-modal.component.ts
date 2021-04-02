@@ -32,23 +32,25 @@ export class OrderViewModalComponent implements OnInit {
       (success)=>{
         console.log('details',success)
         this.details=success.data
+        this.details[0].order.tracking_order.forEach((element:any) => {
+          if(Number(element.status)<3){
+            //element.status="-1"
+          }
+        });
       },
       (error)=>{}
     )
   }
-upload(event){
-  var reader = new FileReader();
-  this.proofDoc = event.target.files[0];
+  upload(event){
+    var reader = new FileReader();
+    this.proofDoc = event.target.files[0];
 
-  reader.readAsDataURL(this.proofDoc);
-}
-removeFile(){
-  this.proofDoc=""
-  this.challan=new FormData()
-}
-onSubmit(){
-  
-}
+    reader.readAsDataURL(this.proofDoc);
+  }
+  removeFile(){
+    this.proofDoc=""
+    this.challan=new FormData()
+  }
   //date format helper
   formatDate(date:string){
     if(date!=null){
@@ -117,6 +119,7 @@ onSubmit(){
       document.getElementById(prod_id+'card').style.display='block'
     }
     else if(value == "5"){
+      this.spinner.show()
       this.orderService.update_tracking_status({
         "order": this.details[0].order.id,
         "product":prod_id,
