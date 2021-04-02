@@ -38,9 +38,7 @@
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails">
-              <i class="fas fa-info-circle"></i> ({{
-              prodcutDetails.ex_works_lead_time
-              }}) days Ex-works
+              <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa">{{
                 prodcutDetails.pickup_address[0].city }}</ng-template>
               <ng-template #cityNa>(Not Specified)</ng-template>

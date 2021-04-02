@@ -153,21 +153,25 @@ export class CheckoutComponent implements OnInit {
   }
 
   make_order() {
-    console.log(localStorage.getItem('token'))
+    //console.log(localStorage.getItem('token'))
     //making order
     if (this.selected_address === undefined) {
       swal('Warning', 'Please select an address', 'warning');
     } else {
+      console.log('selected address',this.addresses[this.selected_address])
       this.spinner.show();
       let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
+      console.log('cart_data before', JSON.stringify(data));
       data.payment_type = parseInt(this.payment_type);
       data.tracking_order.forEach(element => {
         element.status=this.payment_type=="1"?2:1
       });
       data.orders_details.forEach((element) => {
-        element.pickup_address=this.selected_address.id
+        if(element.pickup_address.length===0){
+          element.pickup_address=this.addresses[this.selected_address].id
+        }
       });
-      console.log('cart_data', JSON.stringify(data));
+      console.log('cart_data after', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
         console.log(this.add_order_response);
         this.add_order_response = success;
