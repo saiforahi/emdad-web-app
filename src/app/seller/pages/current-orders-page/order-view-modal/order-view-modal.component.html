@@ -43,7 +43,7 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-3 col-6 order-data value">
-                        ${{detail.order.total_amount}}
+                        ${{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}
                     </div>
                 </div>
             </div>

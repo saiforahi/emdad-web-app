@@ -142,4 +142,8 @@ onSubmit(){
       document.getElementById(prod_id+'card').style.display='none'
     }
   }
+
+  get_price(unit_price:string,quantity:string,commission:string,vat_amount:string){
+    return ((parseFloat(unit_price)*parseFloat(quantity))+parseFloat(commission)+parseFloat(vat_amount)).toFixed(2)
+  }
 }
