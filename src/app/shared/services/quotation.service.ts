@@ -13,6 +13,11 @@ export class QuotationService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };
+  sellerHttpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+    }),
+  };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
   constructor(private http: HttpClient) {}
@@ -33,7 +38,7 @@ export class QuotationService {
         'api/quote/user/wise/' +
         localStorage.getItem('s_uid') +
         '/',
-      this.httpOptions
+      this.sellerHttpOptions
     );
   }
 
