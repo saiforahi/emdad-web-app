@@ -121,6 +121,6 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     this.orders.forEach((order:any)=>{
       total+= parseFloat(order.order.total_amount)
     })
-    return total
+    return total.toFixed(2)
   }
 }
