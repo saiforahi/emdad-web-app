@@ -13,6 +13,7 @@ import { GetCategoryService } from 'src/app/shared/services/get-category.service
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
+import { config } from '../../../../config';
 
 @Component({
   selector: 'app-edit-products-page',
@@ -23,7 +24,7 @@ export class EditProductsPageComponent implements OnInit {
   error: any;
   msg;
   group: string;
-  productUploadForm: FormGroup;
+  productUpdateForm: FormGroup;
   category: AbstractControl;
   subCategory: AbstractControl;
   childCategory: AbstractControl;
@@ -54,17 +55,22 @@ export class EditProductsPageComponent implements OnInit {
   attachments: AbstractControl;
   productUploadFormData = new FormData();
   categories: any;
-  subCategories: any;
-  childCategories: any;
+  subCategories: any = [];
+  childCategories: any = [];
   selectedImage: any = [];
   unitList: any;
   brandList: any;
   imgPreviewList = [];
   selectedFiles: any = [];
-  categoryId: any;
+  productId: any;
   productDetails: any;
   parentCatId: any;
   subCatId: any;
+  childCatId: any;
+  brandId: any;
+  unitId: any;
+  existingImgList = [];
+  existingFiles: any;
 
   constructor(
     private authService: UserAuthService,
@@ -79,12 +85,11 @@ export class EditProductsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categoryId = this.route.snapshot.params['id'];
+    console.log(localStorage.getItem('s_token'))
+    this.productId = this.route.snapshot.params['id'];
     this.categoryServices.category().subscribe((item) => {
-      this.removeEmptyChildren(item);
       this.categories = item;
-      // this.getParentCat();
-      // console.log(this.categories[0].name);
+      this.populateFormData();
     });
     this.addProductService.getUnitOfProduct().subscribe((item) => {
       this.unitList = item.data[0];
@@ -95,7 +100,7 @@ export class EditProductsPageComponent implements OnInit {
       // console.log(item.data[0]);
     });
     // this.populateFormData();
-    this.productUploadForm = this.fb.group({
+    this.productUpdateForm = this.fb.group({
       category: ['', [Validators.required]],
       subCategory: ['', [Validators.required]],
       childCategory: ['', [Validators.required]],
@@ -113,66 +118,90 @@ export class EditProductsPageComponent implements OnInit {
       prodImage: [''],
       attachments: [''],
     });
-    this.category = this.productUploadForm.controls['category'];
-    this.subCategory = this.productUploadForm.controls['subCategory'];
-    this.childCategory = this.productUploadForm.controls['childCategory'];
-    this.prodName = this.productUploadForm.controls['prodName'];
-    this.prodDetails = this.productUploadForm.controls['prodDetails'];
-    this.manufactererName = this.productUploadForm.controls['manufactererName'];
-    this.prodStock = this.productUploadForm.controls['prodStock'];
-    this.prodSize = this.productUploadForm.controls['prodSize'];
-    this.unitOfMeasure = this.productUploadForm.controls['unitOfMeasure'];
-    this.prodUnit = this.productUploadForm.controls['prodUnit'];
-    this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
-    this.leadTime = this.productUploadForm.controls['leadTime'];
-    this.ddp = this.productUploadForm.controls['ddp'];
-    this.prodPrice = this.productUploadForm.controls['prodPrice'];
-    this.prodImage = this.productUploadForm.controls['prodImage'];
-    this.attachments = this.productUploadForm.controls['attachments'];
+    this.category = this.productUpdateForm.controls['category'];
+    this.subCategory = this.productUpdateForm.controls['subCategory'];
+    this.childCategory = this.productUpdateForm.controls['childCategory'];
+    this.prodName = this.productUpdateForm.controls['prodName'];
+    this.prodDetails = this.productUpdateForm.controls['prodDetails'];
+    this.manufactererName = this.productUpdateForm.controls['manufactererName'];
+    this.prodStock = this.productUpdateForm.controls['prodStock'];
+    this.prodSize = this.productUpdateForm.controls['prodSize'];
+    this.unitOfMeasure = this.productUpdateForm.controls['unitOfMeasure'];
+    this.prodUnit = this.productUpdateForm.controls['prodUnit'];
+    this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
+    this.leadTime = this.productUpdateForm.controls['leadTime'];
+    this.ddp = this.productUpdateForm.controls['ddp'];
+    this.prodPrice = this.productUpdateForm.controls['prodPrice'];
+    this.prodImage = this.productUpdateForm.controls['prodImage'];
+    this.attachments = this.productUpdateForm.controls['attachments'];
   }
 
   populateFormData() {
-    this.getProducts.productDetails(this.categoryId).subscribe(item => {
+    this.getProducts.productDetails(this.productId).subscribe(item => {
       console.log(item);
-      console.log(this.parentCatId)
       this.productDetails = item.data[0];
-      this.productUploadForm.setValue({
+      this.childCatId = item.data[0].category.id;
+      this.brandId = this.productDetails.brand.id;
+      this.unitId = this.productDetails.unit.id;
+      var setLeadTime;
+      if(this.productDetails.delivery_method == 1){
+        setLeadTime = this.productDetails.ddp_lead_time;
+      }else {
+        setLeadTime = this.productDetails.ex_works_lead_time;
+      }
+      this.removeEmptyChildren(this.categories);
+      // console.log(this.childCatId);
+      this.productUpdateForm.setValue({
         category: this.parentCatId,
         subCategory: this.subCatId,
-        childCategory: this.categoryId,
+        childCategory: this.childCatId,
         prodName: this.productDetails.name,
-        prodDetails: "hello",
-        manufactererName: "nike",
-        prodStock: 2,
-        prodSize: 10,
-        unitOfMeasure: 1,
-        prodUnit: 10,
-        prodDeliMethod: 2,
-        leadTime: 12,
-        ddp: "dhaka",
-        prodPrice: 150,
+        prodDetails: this.productDetails.description,
+        manufactererName: this.productDetails.brand.id,
+        prodStock: this.productDetails.stock_quantity,
+        prodSize: null,
+        unitOfMeasure: this.productDetails.unit.id,
+        prodUnit: this.productDetails,
+        prodDeliMethod: this.productDetails.delivery_method,
+        leadTime: setLeadTime,
+        ddp: this.productDetails.pickup_address.length != 0 ? this.productDetails.pickup_address.address : '',
+        prodPrice: this.productDetails.unit_price,
         prodImage: null,
         attachments: null
       })
+      if(this.productDetails.image1 != null){
+        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image1});
+      }
+      if(this.productDetails.image2 != null){
+        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image2});
+      }
+      this.existingFiles = this.productDetails.attachment.length != 0 ? this.productDetails.attachment : [];
+      console.log(this.existingImgList)
     })
+  }
+
+  fileNameExtarc(path){
+    var initialPathArray = path.split('/');
+    return initialPathArray[initialPathArray.length - 1];
   }
 
   // remove empty children form the array
   removeEmptyChildren(data) {
     data.forEach((key) => {
-      // console.log(key.id)
+      // console.log(key)
       key.children.forEach((key2) => {
-        // console.log(key2.id)
+        // console.log(key2)
+        this.subCategories.push(key2);
         key2.children.forEach((key3) => {
-          // console.log(key3.id, this.categoryId)
+          // console.log(key3.id, this.childCatId)
+          this.childCategories.push(key3);
           // get parent and subcat Id
-          if(key3.id == this.categoryId){
-            this.parentCatId = key2.id;
-            this.subCatId = key.id;
-            // console.log(this.parentCatId, this.subCatId)
+          if(key3.id == this.childCatId){
+            this.parentCatId = key.id;
+            this.subCatId = key2.id;
+            console.log(this.parentCatId, this.subCatId)
           }
           key3.children.forEach((key4) => {
-            console.log(key4.id)
             if (key4.children.length == 0) {
               delete key4.children;
             }
@@ -189,7 +218,7 @@ export class EditProductsPageComponent implements OnInit {
         delete key.children;
       }
     });
-    this.populateFormData();
+    console.log(this.childCategories)
   }
 
   setSubCAt(catId) {
@@ -240,7 +269,7 @@ export class EditProductsPageComponent implements OnInit {
       this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
     if (this.selectedImage.length > 1)
       this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
-    this.addProductService.addProduct(this.productUploadFormData).subscribe(
+    this.addProductService.updateProduct(this.productUploadFormData, localStorage.getItem("s_uid")).subscribe(
       (success) => {
         console.log(success);
         this.spinner.hide();

@@ -118,7 +118,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="unitOfMeasure">Unit of Measurement</label>
+                    <label for="prodUnit">Unit of Measurement</label>
                     <select class="form-control form-control-lg" formControlName="prodUnit">
                         <option value="" disabled selected>Unit of Measurement</option>
                         <option value="{{unit.id}}" *ngFor="let unit of unitList">{{unit.name | titlecase}}</option>

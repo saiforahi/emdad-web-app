@@ -31,7 +31,6 @@ export class UploadProductsPageComponent implements OnInit {
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
   prodSize: AbstractControl;
-  unitOfMeasure: AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -95,7 +94,6 @@ export class UploadProductsPageComponent implements OnInit {
       manufactererName: [''],
       prodSize: [''],
       prodStock: ['', [Validators.required]],
-      unitOfMeasure: ['', [Validators.required]],
       prodUnit: ['', [Validators.required]],
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
@@ -112,7 +110,6 @@ export class UploadProductsPageComponent implements OnInit {
     this.manufactererName = this.productUploadForm.controls['manufactererName'];
     this.prodStock = this.productUploadForm.controls['prodStock'];
     this.prodSize = this.productUploadForm.controls['prodSize'];
-    this.unitOfMeasure = this.productUploadForm.controls['unitOfMeasure'];
     this.prodUnit = this.productUploadForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
@@ -188,9 +185,9 @@ export class UploadProductsPageComponent implements OnInit {
     this.productUploadFormData.append('delivery_method', value.prodDeliMethod);
     if (value.prodDeliMethod == 1) {
       this.productUploadFormData.append('ddp_lead_time', value.leadTime);
-      this.productUploadFormData.append('ex_works_lead_time', null);
+      this.productUploadFormData.append('ex_works_lead_time', '0');
     } else if (value.prodDeliMethod == 2) {
-      this.productUploadFormData.append('ddp_lead_time', null);
+      this.productUploadFormData.append('ddp_lead_time', '0');
       this.productUploadFormData.append('ex_works_lead_time', value.leadTime);
     }
     this.productUploadFormData.append('stock_quantity', value.prodStock);

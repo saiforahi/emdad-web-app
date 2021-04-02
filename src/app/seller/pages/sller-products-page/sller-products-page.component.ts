@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
+import swal from 'sweetalert';
 
 // export interface PeriodicElement {
 //   name: string;
@@ -150,6 +151,13 @@ export class SllerProductsPageComponent implements OnInit {
           console.log(item.id)
           this.deleteProductService.deleteProduct(item.id).subscribe((success: any) => {
             console.log(success.message);
+            this.selection.clear();
+            swal('Success!', 'Product deleted succssfully', 'success');
+            if (this.categoryId != undefined) {
+              this.getSellerProductByCategory(this.categoryId);
+            } else {
+              this.getSellerAllProduct();
+            }
           },
           (error: any) => {
             console.log(error);

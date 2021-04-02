@@ -33,7 +33,7 @@ export class AddProductService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.post(config.base_url+'api/product/update/'+ id +'/', productData, httpOptions );
+    return this.http.put(config.base_url+'api/product/update/'+ id +'/', productData, httpOptions );
   }
 
   deleteProduct(id){
@@ -42,6 +42,6 @@ export class AddProductService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.delete(config.base_url+'api/product/delete/'+ id +'/', httpOptions );
+    return this.http.get(config.base_url+'api/product/delete/'+ id +'/', httpOptions );
   }
 }
