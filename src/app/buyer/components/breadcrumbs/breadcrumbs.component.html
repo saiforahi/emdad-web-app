@@ -4,8 +4,8 @@
         <div class="d-inline-block float-right">
             <span class="serach-result" *ngIf="directoryString == 'Search Result'">Search Result - {{searchLength}} items</span>
             <!-- <a class="clear-btn" *ngIf="directoryString == 'Search Result'">Clear All</a> -->
-            <button [ngClass]="style=='grid'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="list_btn" mat-raised-button (click)="emit_style_change('list')" ><i class="fas fa-bars"></i></button>
-            <button [ngClass]="style=='list'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="grid_btn" mat-raised-button (click)="emit_style_change('grid')"><i class="fas fa-th-large"></i></button>
+            <button type="button" [ngClass]="style=='grid'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="list_btn" mat-raised-button (click)="emit_style_change('list')" ><i class="fas fa-bars"></i></button>
+            <button type="button" [ngClass]="style=='list'? 'active col-sx-none col-sm-none col-md-none col-lg-block':'col-sx-none col-sm-none col-md-none col-lg-block'" id="grid_btn" mat-raised-button (click)="emit_style_change('grid')"><i class="fas fa-th-large"></i></button>
             <!-- <div class="d-inline-block">
                 <select class="form-control form-control-lg">
                     <option>Sort by Relevance</option>

@@ -64,9 +64,9 @@ export class ProductDetailsPageComponent implements OnInit {
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
       this.sliderImgArray = [
-        config.base_url.substring(0, config.base_url.length - 1) +
+        config.img_base_url +
           item.data[0].image1,
-        config.base_url.substring(0, config.base_url.length - 1) +
+        config.img_base_url +
           item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
@@ -92,7 +92,6 @@ export class ProductDetailsPageComponent implements OnInit {
           this.addToWishlistStatus = data.status;
         });
     });
-    
   }
 
   scroll_to_reviews(element_id: string) {
@@ -282,6 +281,6 @@ export class ProductDetailsPageComponent implements OnInit {
       total = unit_price + parseFloat(price)
       //console.log('else total',total)
     }
-    return total
+    return total.toFixed(2)
   }
 }

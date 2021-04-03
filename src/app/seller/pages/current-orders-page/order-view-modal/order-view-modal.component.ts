@@ -147,6 +147,6 @@ export class OrderViewModalComponent implements OnInit {
   }
 
   get_price(unit_price:string,quantity:string,commission:string,vat_amount:string){
-    return ((parseFloat(unit_price)*parseFloat(quantity))+parseFloat(commission)+parseFloat(vat_amount)).toFixed(2)
+    return (parseFloat(unit_price)*parseFloat(quantity)).toFixed(2)
   }
 }
