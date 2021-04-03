@@ -34,9 +34,9 @@
                                         No item to show
                                     </div>
                                     <!-- level three -->
-                                    <div *ngFor="let child of subcategory.children">
+                                    <div *ngFor="let child of subcategory.children" style="padding: 5px 0;">
                                         <!-- [routerLink]="['/products/category/', child.id]" -->
-                                        <a (click)="getProdOnFilter(child.id, subcategory.id, cat.id);"
+                                        <a (click)="getProdOnFilter(child.id, child.name, subcategory.id, subcategory.name, cat.id, cat.name);"
                                             style="font-size: 18px;">
                                             {{child.name | titlecase}}
                                         </a>
@@ -61,48 +61,54 @@
             </button>
             <section class="page-heading-holder">
                 <h2 class="page-heading d-inline-block">Product Categories</h2>
-                <button mat-raised-button class="float-right d-inline-block" (click)="openDialog()"><img src="../../../../assets/Delete.svg"
+                <button mat-raised-button class="float-right d-inline-block" (click)="openDialog()" (click)="dleteProduct();"><img src="../../../../assets/Delete.svg"
                         alt=""> Bulk Delete</button>
             </section>
             <section>
-                <app-seller-breadcrumbs [directoryString]="'Products / All'"></app-seller-breadcrumbs>
+                <app-seller-breadcrumbs [directoryString]="'Products / '+directoryString"></app-seller-breadcrumbs>
             </section>
-            <section class="mt-5">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <th mat-header-cell *matHeaderCellDef>No.</th>
-                        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-                    </ng-container>
-
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef>Name</th>
+            <section class="mt-5 mb-5 mat-elevation-z8">
+                <table mat-table [dataSource]="products" class="">
+                    <!-- Product Name Column -->
+                    <ng-container matColumnDef="Product Name">
+                        <th mat-header-cell *matHeaderCellDef>Product Name</th>
                         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
                     </ng-container>
 
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <th mat-header-cell *matHeaderCellDef>Weight</th>
-                        <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+                    <!-- Stock Column -->
+                    <ng-container matColumnDef="Stock">
+                        <th mat-header-cell *matHeaderCellDef>Stock</th>
+                        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
                     </ng-container>
 
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <th mat-header-cell *matHeaderCellDef>Symbol</th>
-                        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+                    <!-- Unit of Measurement Column -->
+                    <ng-container matColumnDef="Unit of Measurement">
+                        <th mat-header-cell *matHeaderCellDef>Unit of Measurement</th>
+                        <td mat-cell *matCellDef="let element"><span *ngIf="element.unit != null">{{ element.unit.name }}</span></td>
+                    </ng-container>
+
+                    <!-- Unite Price Column -->
+                    <ng-container matColumnDef="Unite Price">
+                        <th mat-header-cell *matHeaderCellDef>Unite Price</th>
+                        <td mat-cell *matCellDef="let element">{{ element.unit_price }}</td>
+                    </ng-container>
+
+                    <!-- Delivery Method Column -->
+                    <ng-container matColumnDef="Delivery Method">
+                        <th mat-header-cell *matHeaderCellDef>Delivery Method</th>
+                        <td mat-cell *matCellDef="let element"><span *ngIf="element.delivery_method == 1">DDP</span><span *ngIf="element.delivery_method == 2">Ex-Works</span></td>
                     </ng-container>
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
-                        <th mat-header-cell *matHeaderCellDef>
+                        <th mat-header-cell *matHeaderCellDef class="text-right">
                             <mat-checkbox (change)="$event ? masterToggle() : null"
                                 [checked]="selection.hasValue() && isAllSelected()"
                                 [indeterminate]="selection.hasValue() && !isAllSelected()"
                                 [aria-label]="checkboxLabel()">
                             </mat-checkbox>
                         </th>
-                        <td mat-cell *matCellDef="let row">
+                        <td mat-cell *matCellDef="let row" class="text-right">
                             <mat-checkbox (click)="$event.stopPropagation()"
                                 (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                                 [aria-label]="checkboxLabel(row)">
@@ -111,16 +117,16 @@
                     </ng-container>
                     <ng-container matColumnDef="edit">
                         <th mat-header-cell *matHeaderCellDef></th>
-                        <td mat-cell *matCellDef="let element">
-                            <button class="edit-product-btn" mat-raised-button><img src="../../../../assets/Edit.svg"
+                        <td mat-cell *matCellDef="let element" class="text-right">
+                            <button [routerLink]="['/dashboard/edit-products', element.id]" class="edit-product-btn" mat-raised-button><img src="../../../../assets/Edit.svg"
                                     alt=""></button>
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
+                <!-- <mat-paginator [length]="100" [pageSize]="30"></mat-paginator> -->
             </section>
-            <mat-paginator [length]="100" [pageSize]="30"></mat-paginator>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
