@@ -4,11 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BulkUploadProductsComponent} from './bulk-upload-products.component';
-const routes: Routes = [
-  {path:'', component: BulkUploadProductsComponent, pathMatch:'full'}
-]
+import { BulkUploadProductsComponent } from './bulk-upload-products.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
+const routes: Routes = [
+  { path: '', component: BulkUploadProductsComponent, pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [BulkUploadProductsComponent],
@@ -19,6 +20,7 @@ const routes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+    NgxDropzoneModule,
+  ],
 })
-export class BulkUploadProductsModule { }
+export class BulkUploadProductsModule {}

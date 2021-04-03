@@ -36,6 +36,7 @@
     "moment": "^2.29.1",
     "ng-auto-complete": "^4.1.15",
     "ng-lazyload-image": "^9.1.0",
+    "ngx-dropzone": "^3.0.0",
     "ngx-loading": "^8.0.0",
     "ngx-owl-carousel-o": "^5.0.0",
     "ngx-pinch-zoom": "^2.5.4",
