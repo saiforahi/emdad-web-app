@@ -98,7 +98,8 @@ export class QuotationViewModalComponent implements OnInit {
           unit_price:'',
           total_price:'',
           attachments:[],
-          quotation:[]
+          quotation:[],
+          status:''
         })
         this.spinner.hide()
         swal('Updated','Quotation updated successfully','success')
