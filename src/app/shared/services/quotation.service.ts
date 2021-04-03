@@ -75,8 +75,16 @@ export class QuotationService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    const updateURL = `http://127.0.0.1:8000/api/quote/update/${id}/`;
-    return this.http.put(updateURL, formData, httpOptions).pipe(shareReplay());
+    // const updateURL = `http://127.0.0.1:8000/api/quote/update/${id}/`;
+    return this.http.put(config.base_url+'api/quote/update/'+id+'/', formData, httpOptions).pipe(shareReplay());
   }
 
+  updateQuotationSeller(id, formData: any): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+      }),
+    };
+    return this.http.put(config.base_url+'api/quote/update/'+id+'/', formData, httpOptions).pipe(shareReplay());
+  }
 }

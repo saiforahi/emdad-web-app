@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { config } from 'src/config';
 import {QuotationService} from '../../../../shared/services/quotation.service'
+import swal from 'sweetalert'
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-quotation-view-modal',
   templateUrl: './quotation-view-modal.component.html',
@@ -10,11 +12,11 @@ import {QuotationService} from '../../../../shared/services/quotation.service'
 })
 export class QuotationViewModalComponent implements OnInit {
   selectedImage:Array<any>;
-  quoteData:FormGroup
+  quoteData
   quoteFormData=new FormData()
   details:any
   img_base_url=config.img_base_url
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private quoteService:QuotationService, private fb: FormBuilder) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -27,8 +29,8 @@ export class QuotationViewModalComponent implements OnInit {
     )
     this.quoteData = this.fb.group({
       quantity: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]],
-      totalPrice: ['', [Validators.required]],
+      unit_price: ['', [Validators.required]],
+      total_price: ['', [Validators.required]],
       attachments: [''],
       status: 3,
 
@@ -36,13 +38,17 @@ export class QuotationViewModalComponent implements OnInit {
         this.fb.group({
           message: '',
           user: localStorage.getItem('s_uid'),
-          quantity: '',
-          unit_price: '',
-          total_price: ''
+          // quantity: '',
+          // unit_price: '',
+          // total_price: ''
         }),
       ]),
 
     });
+    // this.quoteData = new FormGroup({
+    //   quantity: new FormControl("angular@gmail.com"),
+    //   unitPrice: new FormControl("abcd1234")
+    // });
   }
 
   removeFile(i:number){
@@ -67,5 +73,39 @@ export class QuotationViewModalComponent implements OnInit {
     return '-'
   }
 
+  onClickSubmit(data:any){
+    this.spinner.show()
+    console.log('form data',data)
+    this.quoteService.updateQuotationSeller(this.details.id,{
+      quotation:[{
+        message:"",
+        user:localStorage.getItem('s_uid')
+      }],
+      quantity:data.quantity,
+      unit_price:data.unit_price,
+      total_price:data.total_price
+    }).subscribe(
+      (success)=>{
+        this.details.quotation.push({
+          message:"",
+          message_date:new Date(),
+          quantity:data.quantity,
+          unit_price:data.unit_price,
+          total_price:data.total_price
+        })
+        this.quoteData.setValue({
+          quantity:'',
+          unit_price:'',
+          total_price:''
+        })
+        this.spinner.hide()
+        swal('Updated','Quotation updated successfully','success')
+      },
+      (error)=>{
+        this.spinner.hide()
+        swal('Failed',error.error.message,'error')
+      }
+    )
+  }
   
 }
