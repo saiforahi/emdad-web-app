@@ -21,7 +21,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   loggedInUser;
   userName: string;
   uId: any;
-
+  screenWidth: number;
+  loggedInUserImg: string = '';
   @ViewChild('sidenav') sidenav: any;
   activeRoute: string[];
   showSpinner: any;
@@ -42,6 +43,11 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.activeRoute = val.url.split("/");
       }
     });
+    this.screenWidth = window.innerWidth;
+    window.onresize = () => {
+      // set screenWidth on screen size change
+      this.screenWidth = window.innerWidth;
+    };
   }
 
   ngOnInit(): void {
@@ -57,6 +63,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
       } else {
         this.loggedInUser = true;
         this.userName = data;
+        
       }
     });
     this.UserAuthService.s_uId.subscribe((data) => {
@@ -64,6 +71,12 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.uId = data;
       }
     });
+    this.UserAuthService.s_uImg.subscribe((data)=>{
+      if (data != null) {
+        this.loggedInUserImg = data;
+       
+      }
+    })
     this.spinner.showSpinner.subscribe(item =>{
       if(item == true){
         this.ngxSpinner.show();

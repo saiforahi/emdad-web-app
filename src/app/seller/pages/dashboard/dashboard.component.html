@@ -178,10 +178,10 @@
                             <div class="col-md-2 col-lg-2 name">
                                 Delivery Date
                             </div>
-                            <div class="col-md-4 col-lg-4 name">
+                            <div class="col-md-3 col-lg-3 name">
                                 Status
                             </div>
-                            <div class="col-md-2 col-lg-2 name">
+                            <div class="col-md-3 col-lg-3 name">
                                 Amount
                             </div>
                         </div>
@@ -199,14 +199,14 @@
                                 <div class="col-xl-2 col-lg-2 col-6 value">
                                     {{item.delivery_date | date :'mediumDate'}} 
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-6 value">
-                                    <p *ngIf="item.status == 1">Created</p>
-                                <p *ngIf="item.status == 2">Confirmed</p>
+                                <div class="col-xl-3 col-lg-3 col-6 value">
+                                    <p *ngIf="item.status == 1">Recieved</p>
+                                <p *ngIf="item.status == 2">Recived</p>
                                 <p *ngIf="item.status == 3">Processing</p>
-                                <p *ngIf="item.status == 3">Delivered</p>
-                                <p *ngIf="item.status == 3">Completed</p>
+                                <p *ngIf="item.status == 4">Delivered</p>
+
                                 </div>
-                                <div class="col-xl-2 col-lg-2 col-6 value">
+                                <div class="col-xl-3 col-lg-3 col-6 value">
                                    $ {{item.order.total_amount}}
                                 </div>
                             </div>
