@@ -96,7 +96,9 @@ export class QuotationViewModalComponent implements OnInit {
         this.quoteData.setValue({
           quantity:'',
           unit_price:'',
-          total_price:''
+          total_price:'',
+          attachments:[],
+          quotation:[]
         })
         this.spinner.hide()
         swal('Updated','Quotation updated successfully','success')
