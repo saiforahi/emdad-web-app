@@ -40,7 +40,7 @@ export class ProductCardComponent implements OnInit {
       });
   }
 
-  addToCart(prod) {
+  addToCart(prod) { //backdated approach
     this.prodCartArray = [];
     var existingCart = JSON.parse(localStorage.getItem('prodCartArray'));
     if (existingCart != null) {

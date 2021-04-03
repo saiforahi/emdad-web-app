@@ -27,26 +27,29 @@ export class BreadcrumbsComponent implements OnInit {
     document.getElementById('grid_btn').style.color="#FFFFFF"
     document.getElementById('list_btn').style.backgroundColor="#fff"
     document.getElementById('list_btn').style.color="#000000"
+    if(this.style==='NA'){
+      document.getElementById('grid_btn').style.display="none"
+      document.getElementById('list_btn').style.display="none"
+    }
     this.view_style.emit('grid')
   }
-  ngOnChanges(changes: SimpleChanges):void { //catching change of style
-    console.log(changes.style.currentValue)  
-    if(changes.style.currentValue==='grid'){
-      document.getElementById('grid_btn').style.backgroundColor="#1F4F9E"
-      document.getElementById('grid_btn').style.color="#FFFFFF"
-      document.getElementById('list_btn').style.backgroundColor="#fff"
-      document.getElementById('list_btn').style.color="#000000"
-      this.view_style.emit('grid')
-    }
-    else if(changes.style.currentValue==='list'){
-      document.getElementById('list_btn').style.backgroundColor="#1F4F9E"
-      document.getElementById('list_btn').style.color="#FFFFFF"
-      document.getElementById('grid_btn').style.backgroundColor="#fff"
-      document.getElementById('grid_btn').style.color="#000000"
-      this.view_style.emit('list')
-    }
-    
-}
+  // ngOnChanges(changes: SimpleChanges):void { //catching change of style
+  //   console.log(changes.style.currentValue)  
+  //   if(changes.style.currentValue==='grid'){
+  //     document.getElementById('grid_btn').style.backgroundColor="#1F4F9E"
+  //     document.getElementById('grid_btn').style.color="#FFFFFF"
+  //     document.getElementById('list_btn').style.backgroundColor="#fff"
+  //     document.getElementById('list_btn').style.color="#000000"
+  //     this.view_style.emit('grid')
+  //   }
+  //   else if(changes.style.currentValue==='list'){
+  //     document.getElementById('list_btn').style.backgroundColor="#1F4F9E"
+  //     document.getElementById('list_btn').style.color="#FFFFFF"
+  //     document.getElementById('grid_btn').style.backgroundColor="#fff"
+  //     document.getElementById('grid_btn').style.color="#000000"
+  //     this.view_style.emit('list')
+  //   }  
+  // }
   emit_style_change(value:string){
     this.view_style.emit(value)
     if(value==='grid'){
