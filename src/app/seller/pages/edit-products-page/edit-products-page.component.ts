@@ -33,7 +33,6 @@ export class EditProductsPageComponent implements OnInit {
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
   prodSize: AbstractControl;
-  unitOfMeasure: AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -106,10 +105,9 @@ export class EditProductsPageComponent implements OnInit {
       childCategory: ['', [Validators.required]],
       prodName: ['', [Validators.required]],
       prodDetails: [''],
-      manufactererName: [''],
+      manufactererName: ['', [Validators.required]],
       prodSize: [''],
       prodStock: ['', [Validators.required]],
-      unitOfMeasure: ['', [Validators.required]],
       prodUnit: ['', [Validators.required]],
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
@@ -126,7 +124,6 @@ export class EditProductsPageComponent implements OnInit {
     this.manufactererName = this.productUpdateForm.controls['manufactererName'];
     this.prodStock = this.productUpdateForm.controls['prodStock'];
     this.prodSize = this.productUpdateForm.controls['prodSize'];
-    this.unitOfMeasure = this.productUpdateForm.controls['unitOfMeasure'];
     this.prodUnit = this.productUpdateForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
     this.leadTime = this.productUpdateForm.controls['leadTime'];
@@ -138,11 +135,11 @@ export class EditProductsPageComponent implements OnInit {
 
   populateFormData() {
     this.getProducts.productDetails(this.productId).subscribe(item => {
-      console.log(item);
+      console.log(item.data[0].pickup_address[0].address);
       this.productDetails = item.data[0];
       this.childCatId = item.data[0].category.id;
-      this.brandId = this.productDetails.brand.id;
-      this.unitId = this.productDetails.unit.id;
+      this.brandId = this.productDetails.brand != null ? this.productDetails.brand.id : null;
+      this.unitId = this.productDetails.unit != null ? this.productDetails.unit.id : null;
       var setLeadTime;
       if(this.productDetails.delivery_method == 1){
         setLeadTime = this.productDetails.ddp_lead_time;
@@ -157,14 +154,13 @@ export class EditProductsPageComponent implements OnInit {
         childCategory: this.childCatId,
         prodName: this.productDetails.name,
         prodDetails: this.productDetails.description,
-        manufactererName: this.productDetails.brand.id,
+        manufactererName: this.brandId,
         prodStock: this.productDetails.stock_quantity,
         prodSize: null,
-        unitOfMeasure: this.productDetails.unit.id,
-        prodUnit: this.productDetails,
+        prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         leadTime: setLeadTime,
-        ddp: this.productDetails.pickup_address.length != 0 ? this.productDetails.pickup_address.address : '',
+        ddp: this.productDetails.pickup_address.length != 0 ? this.productDetails.pickup_address[0].address : '',
         prodPrice: this.productDetails.unit_price,
         prodImage: null,
         attachments: null
@@ -234,17 +230,19 @@ export class EditProductsPageComponent implements OnInit {
   }
 
   onSubmit(value) {
-    this.spinner.show();
+    console.log(value);
+    // this.spinner.show();
     this.productUploadFormData.append('category', value.childCategory);
     // this.productUploadFormData.append('attachment', this.selectedFiles[0], this.selectedFiles[0].name);
-    for (var i = 0; i < this.selectedFiles.length; i++) {
-      this.productUploadFormData.append(
-        `attachment[${i}]path`,
-        this.selectedFiles[i],
-        this.selectedFiles[i].name
-      );
-    }
-    this.productUploadFormData.append('pickup_address.address', value.ddp);
+    // for (var i = 0; i < this.selectedFiles.length; i++) {
+    //   this.productUploadFormData.append(
+    //     `attachment[${i}]path`,
+    //     this.selectedFiles[i],
+    //     this.selectedFiles[i].name
+    //   );
+    // }
+    var pickupAddress = {"city": null, "address": value.ddp};
+    this.productUploadFormData.append('pickup_address', pickupAddress.toString());
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
@@ -258,18 +256,18 @@ export class EditProductsPageComponent implements OnInit {
     this.productUploadFormData.append('delivery_method', value.prodDeliMethod);
     if (value.prodDeliMethod == 1) {
       this.productUploadFormData.append('ddp_lead_time', value.leadTime);
-      this.productUploadFormData.append('ex_works_lead_time', null);
+      this.productUploadFormData.append('ex_works_lead_time', '0');
     } else if (value.prodDeliMethod == 2) {
-      this.productUploadFormData.append('ddp_lead_time', null);
+      this.productUploadFormData.append('ddp_lead_time', '0');
       this.productUploadFormData.append('ex_works_lead_time', value.leadTime);
     }
     this.productUploadFormData.append('stock_quantity', value.prodStock);
-    this.productUploadFormData.append('status', '1');
-    if (this.selectedImage.length > 0)
-      this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
-    if (this.selectedImage.length > 1)
-      this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
-    this.addProductService.updateProduct(this.productUploadFormData, localStorage.getItem("s_uid")).subscribe(
+    // this.productUploadFormData.append('status', '1');
+    // if (this.selectedImage.length > 0)
+    //   this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
+    // if (this.selectedImage.length > 1)
+    //   this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
+    this.addProductService.updateProduct(this.productUploadFormData, this.productDetails.id).subscribe(
       (success) => {
         console.log(success);
         this.spinner.hide();

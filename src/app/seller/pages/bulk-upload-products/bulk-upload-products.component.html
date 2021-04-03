@@ -1,130 +1,147 @@
-<section class="upload-area">
-  <div class="container">
-    <h2 class="page-heading">Bulk Upload Product</h2>
-    <app-seller-breadcrumbs></app-seller-breadcrumbs>
-    <!--stepper-->
-    <div class="stepper-container slider-one-active">
-      <div class="steps">
-        <div class="step step-one">
-          <div class="liner"></div>
-
-        </div>
-        <div class="step step-two">
-          <div class="liner"></div>
-
-        </div>
-
-      </div>
-      <div class="line">
-        <div class="dot-move"></div>
-        <div class="dot zero"></div>
-        <!-- <div class="dot center"></div> -->
-        <div class="dot full"></div>
-      </div>
-      <div class="slider-ctr">
-        <div class="slider">
-          <div class="slider-form slider-one">
-            <form class="file-form" [formGroup]="prodXlUpform" (ngSubmit)="onSubmit(prodXlUpform.value)">
-              <label for="attachments" class="custom-file-upload ">
-                <!-- Attachments -->
-                <input id="attachments" class="form-control form-control-md" type="file"
-                  accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-                  formControlName="attachments" (change)="handleFileSelect($event);" />
-              </label>
-              <div>
-                <div class="form-subtitle">Drop to attach file or choose from finder
-                  Must be in (xls) format.</div>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="120" [fixedBottomGap]="0">
+    <!-- side menu -->
+    <section class="side-menu-holder">
+      <mat-accordion *ngFor="let cat of categories">
+        <!-- [expanded]="expandedCat === cat.id" -->
+        <mat-expansion-panel #subCat>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="cat-head" style="font-size: 20px;">
+                {{cat.name | titlecase}}
               </div>
-              <!--div after the files has been attached and waiting to get uploaded-->
-              <div class="custom-file-upload border-none"></div>
-              <div class="form-subtitle size-color">Please be patient until the product
-                uploaded successfully.</div>
-              <!--div after file has been uploaded successfully,progress bar will be 100 %-->
-              <div class="attached-file">
-                <div class="show-file">
-                  <img src="../../../../assets/xls-icon.png" class="img-fluid mx-auto" height="120" width="120"
-                    alt="file">
-                  <button mat-mini-fab (click)="removeFile();">
-                    <mat-icon>close</mat-icon>
-                  </button>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="expanded-div" [ngClass]="sideMenuCollapsed? 'd-none' : 'd-block'">
+            <div *ngIf="cat.children.length == 0" style="font-size: 18px;">
+              No item to show
+            </div>
+            <!-- level two -->
+            <mat-accordion *ngFor="let subcategory of cat.children">
+              <!-- [expanded]="expandedSubCat == subcategory.id" -->
+              <mat-expansion-panel #childCat>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div class="cat-head" style="font-size: 18px;">
+                      {{subcategory.name | titlecase}}
+                    </div>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <span class="plus" *ngIf="!childCat.expanded">+</span>
+                    <span class="minus" *ngIf="childCat.expanded">-</span>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="expanded-div">
+                  <div *ngIf="subcategory.children.length == 0" style="font-size: 18px;">
+                    No item to show
+                  </div>
+                  <!-- level three -->
+                  <div *ngFor="let child of subcategory.children" style="padding: 5px 0;">
+                    <!-- (click)="getProdOnFilter(child.id, child.name, subcategory.id, subcategory.name, cat.id, cat.name);" -->
+                    <a style="font-size: 18px;">
+                      {{child.name | titlecase}}
+                    </a>
+                  </div>
                 </div>
-                <div class="form-subtitle">File uploaded successfully.</div>
-              </div>
-              <!--progress bar-->
-              <div class="progress-bar mx-auto mt-5 ">
-                <mat-progress-bar mode="determinate" value="70"></mat-progress-bar>
-                <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> 70% </div>
-              </div>
-
-            </form>
-            <div class="disclaimer">
-              <p>(You must select a child category before uploading products in bulk. Here's a sample file that shows
-                how
-                to upload in bulk!)</p>
-              <p class="file-warn"><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank"
-                  download><img src="../../../../assets/Documentdoc-icon.png" alt="icon"><span>Download Sample
-                    File</span></a></p>
-
-            </div>
-            <!--button to go to the next step after file upload completes-->
-            <div class="next-button">
-              <button mat-stroked-button>Next</button>
-            </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
-          <!--directory upload form-->
-          <div class="slider-form slider-two">
-
-
-            <form class="file-form" [formGroup]="prodDirectoryUpform"
-              (ngSubmit)="onSubmitProd(prodDirectoryUpform.value)">
-              <label for="directories" class="custom-directory-upload">
-                <!-- Attachments -->
-                <input id="directories" class="form-control form-control-md" type="file" formControlName="attachments"
-                  (change)="handleFileSelect($event);" />
-              </label>
-              <div>
-                <div class="form-subtitle">Please upload a file directory for all of your products</div>
-              </div>
-              <!--div after the files has been attached and waiting to get uploaded-->
-              <div class="custom-directory-upload border-none"></div>
-              <div class="form-subtitle size-color">Please be patient until the directory
-                uploaded successfully.</div>
-              <!--div after file has been uploaded successfully,progress bar will be 100 %-->
-              <div class="attached-file">
-                <div class="show-file">
-                  <img src="../../../../assets/directory-icon.png" class="img-fluid mx-auto" height="120" width="120"
-                    alt="file">
-                  <button mat-mini-fab (click)="removeDirectory();">
-                    <mat-icon>close</mat-icon>
-                  </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container" style="background: #f9f9f9; min-height: calc(100vh - 120px);">
+      <button *ngIf="sideMenuCollapsed" class="toggle-slide-menu-btn" mat-button (click)="toggleSidenav()"
+        (click)="setSideMenuCollapseVar()">
+        <i class="fas fa-arrow-circle-right"></i>
+      </button>
+      <button *ngIf="!sideMenuCollapsed" class="toggle-slide-menu-btn" mat-button (click)="toggleSidenav()"
+        (click)="setSideMenuCollapseVar()">
+        <i class="fas fa-arrow-circle-left"></i>
+      </button>
+      <section class="page-heading-holder">
+        <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
+      </section>
+      <section>
+        <app-seller-breadcrumbs [directoryString]="'Products'"></app-seller-breadcrumbs>
+      </section>
+      <section class="state-holder mt-3">
+        <img *ngIf="false" src="../../../../assets/first-state.svg" alt="">
+        <img *ngIf="true" src="../../../../assets/second-state.svg" alt="">
+      </section>
+      <section *ngIf="uploadStep1">
+        <div class="card">
+          <ngx-dropzone (change)="onSelect($event)" style="height: auto;">
+            <ngx-dropzone-label>
+              <img src="../../../../assets/xls-icon.png" alt="">
+              <p *ngIf="files.length == 0 && successMsg == undefined" style="color: #2b2b2b; font-size: 20px;">Drop to
+                attach file or choose from finder <br>
+                Must be in (xls) format.
+              </p>
+              <p *ngIf="files.length != 0 && successMsg == undefined" style="color: #2b2b2b; font-size: 20px;">Please be
+                patient until the product <br>
+                uploaded successfully.
+              </p>
+              <p *ngIf="files.length == 0 && successMsg != undefined" style="color: #2b2b2b; font-size: 20px;">
+                {{successMsg}}!
+              </p>
+              <div *ngIf="successMsg != undefined" class="progress-bar mx-auto mt-3 mb-3">
+                <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
+                <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> {{progress}}%
                 </div>
-                <div class="form-subtitle">Directory uploaded successfully.</div>
               </div>
-              <!--progress bar-->
-              <div class="progress-bar mx-auto mt-5 ">
-                <mat-progress-bar mode="determinate" value="70"></mat-progress-bar>
-                <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> 70% </div>
-              </div>
-              <!--success text-->
-              <div class="success">
-                <img src="../../../../assets/happy-face.png" alt="happy" class="mx-auto img-fluid" height="120"
-                  width="120">
-                <p class="form-subtitle">100 Products uploaded successfully!</p>
-              </div>
-
-            </form>
-
-            <!--button to go to the next step after file upload completes-->
-            <div class="next-button mt-3">
-              <button mat-stroked-button>Submit</button>
-            </div>
-
-
-          </div>
+            </ngx-dropzone-label>
+            <!-- <div *ngIf="false">
+              <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </div> -->
+          </ngx-dropzone>
         </div>
-
-
-      </div>
+        <div class="disclaimer" *ngIf="files.length == 0 && progress != 100">
+          <p>(You must select a child category before uploading products in bulk. Here's a sample file that shows
+            how
+            to upload in bulk!)</p>
+          <p class="file-warn"><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank"
+              download><img src="../../../../assets/Documentdoc-icon.png" alt="icon"><span>Download Sample
+                File</span></a></p>
+        </div>
+        <div *ngIf="progress == 100" class="next-button mt-3 text-center">
+          <button mat-stroked-button (click)="uploadNextStep()">Next</button>
+        </div>
+      </section>
+      <section *ngIf="uploadStep2">
+        <div class="card">
+          <ngx-dropzone (change)="onSelectDirectory($event)" style="height: auto;">
+            <ngx-dropzone-label>
+              <img src="../../../../assets/directory-icon.png" alt="">
+              <p *ngIf="filesDirectory.length == 0 && successMsgDirectory == undefined" style="color: #2b2b2b; font-size: 20px;">Please upload a file directory <br> for all of your products
+              </p>
+              <p *ngIf="filesDirectory.length != 0 && successMsgDirectory == undefined" style="color: #2b2b2b; font-size: 20px;">Please be
+                patient until the Directory <br>
+                uploaded successfully.
+              </p>
+              <p *ngIf="filesDirectory.length == 0 && successMsgDirectory != undefined" style="color: #2b2b2b; font-size: 20px;">
+                {{successMsgDirectory}}!
+              </p>
+              <div *ngIf="progressDirectory != undefined" class="progress-bar mx-auto mt-3 mb-3">
+                <mat-progress-bar mode="determinate" value="progressDirectory"></mat-progress-bar>
+                <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> {{progressDirectory}}%
+                </div>
+              </div>
+            </ngx-dropzone-label>
+            <!-- <div *ngIf="false">
+              <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </div> -->
+          </ngx-dropzone>
+        </div>
+        <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
+          <button mat-stroked-button (click)="finishUpload()">Submit</button>
+        </div>
+      </section>
     </div>
-  </div>
-</section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

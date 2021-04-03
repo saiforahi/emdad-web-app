@@ -11,29 +11,14 @@ import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import swal from 'sweetalert';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-//   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-//   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-//   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-//   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-// ];
-
 @Component({
   selector: 'app-sller-products-page',
   templateUrl: './sller-products-page.component.html',
   styleUrls: ['./sller-products-page.component.css'],
 })
 export class SllerProductsPageComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatSort) sort: MatSort;
   @ViewChild('sidenav') sidenav: any;
   sideMenuCollapsed = false;
   loggedInUser = true;
@@ -97,7 +82,7 @@ export class SllerProductsPageComponent implements OnInit {
     this.getCategories
       .categoriesOfSeller(localStorage.getItem('s_uid'))
       .subscribe((item: any) => {
-        // console.log(item);
+        console.log(item);
         this.categories = item.data[0].category_info;
       });
     // filter products for given cat id in route

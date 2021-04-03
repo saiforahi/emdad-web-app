@@ -91,7 +91,7 @@ export class UploadProductsPageComponent implements OnInit {
       childCategory: ['', [Validators.required]],
       prodName: ['', [Validators.required]],
       prodDetails: [''],
-      manufactererName: [''],
+      manufactererName: ['', [Validators.required]],
       prodSize: [''],
       prodStock: ['', [Validators.required]],
       prodUnit: ['', [Validators.required]],
@@ -171,7 +171,8 @@ export class UploadProductsPageComponent implements OnInit {
         this.selectedFiles[i].name
       );
     }
-    this.productUploadFormData.append('pickup_address.address', value.ddp);
+    var pickupAddress = {"city": null, "address": value.ddp};
+    this.productUploadFormData.append('pickup_address', pickupAddress.toString());
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
