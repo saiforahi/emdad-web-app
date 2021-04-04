@@ -32,7 +32,7 @@ export class SllerProductsPageComponent implements OnInit {
     'edit',
   ];
   resultsLength = [];
-  expandedSubCat: number;
+  expandedSubCat: number = null;
   expandedCat: number;
   categories: any;
   categoryId: any;
@@ -41,6 +41,8 @@ export class SllerProductsPageComponent implements OnInit {
   selection = new SelectionModel<any>(true, []);
   activeRoute: string[];
   directoryString = 'All';
+  nextBatchProdLink: any;
+  prodEnd: boolean = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -101,8 +103,29 @@ export class SllerProductsPageComponent implements OnInit {
       .getProductBySeller(localStorage.getItem('s_uid'))
       .subscribe((item: any) => {
         this.products = item.data.results;
+        this.nextBatchProdLink = item.data.links.next;
+        if (this.nextBatchProdLink == null) {
+          this.prodEnd = true;
+        }
         console.log(item);
       });
+  }
+
+  getNextBatchproduct() {
+    if (this.nextBatchProdLink != null) {
+      //Do your action here
+      // console.log('reached bootm');
+      this.productService
+        .getNextBatchProduct(this.nextBatchProdLink)
+        .subscribe((item) => {
+          this.products = [...this.products, ...item.data.results];
+          this.nextBatchProdLink = item.data.links.next;
+        });
+    }
+    if (this.nextBatchProdLink == null) {
+      this.prodEnd = true;
+      // this.openSnackBar('No more product to show!', 'OK');
+    }
   }
 
   getSellerProductByCategory(catId) {
