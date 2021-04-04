@@ -417,7 +417,7 @@ mat-panel-title img {
     height: 80px;
     background: #f4f4f4 !important;
     padding: 0;
-
+z-index: 99999;
     justify-content: center !important;
   }
 
@@ -668,7 +668,7 @@ mat-panel-title img {
     padding: 0;
     position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 99999;
     width: calc(100% - 350px);
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
   }

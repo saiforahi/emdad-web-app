@@ -21,6 +21,8 @@ export class SupportPageComponent implements OnInit {
   filterArray:any=[];
   lowValue: number = 0;
   highValue: number = 10;
+  prodEnd: boolean =false;
+  nextBatchProdLink: any;
   /** Initializing table coloumns */
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
@@ -41,10 +43,13 @@ export class SupportPageComponent implements OnInit {
     this.ticketService.getTickets(localStorage.getItem("s_uid")).subscribe((data: any) => {
       //console.log(data.data[0].image.split('/')[]);
       this.supportIssues = data.data;
+    if(this.supportIssues == null){
+      this.prodEnd=true;
+    }
       console.log("issues from seller:", this.supportIssues);
     });
   }
-
+  
   /** SORT TABLE ASC DESC */
   sortTable(value){
    

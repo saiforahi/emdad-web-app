@@ -7,7 +7,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
 import { TicketViewModalComponent } from './ticket-view-modal/ticket-view-modal.component';
 import { OpenTicketModalComponent } from './open-ticket-modal/open-ticket-modal.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   {path:'', component: SupportPageComponent, pathMatch:'full'}
 ]
@@ -20,7 +20,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     CommonuiModule,
-    MaterialModule
+    MaterialModule,
+    NgbModule
   ],
   entryComponents: [TicketViewModalComponent, OpenTicketModalComponent],
 })

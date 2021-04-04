@@ -1,84 +1,108 @@
 <!--01st april 2021-->
 <section class="payment-history container">
-    <div class="page-heading-holder">
+  <div class="page-heading-holder">
     <h2 class="page-heading">Ticket List</h2>
     <div class="sort-btn d-inline-block big-view">
-        <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
-         <select class="form-control form-control-lg">
-                <option>Filter by Status</option> 
-                <option value="0">Running</option>
-                <option value="1">Solved</option>
-            </select>
-               
+      <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
+      <span ngbDropdown class="dropping">
+        <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>
+            expand_more</mat-icon></button>
+          
+      <!--dropdown-->
+      <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
+        <div ngbDropdownItem>
+          <span class="lan-title">Running</span>
+        </div>
+        <div style="padding: 0 15px">
+          <mat-divider></mat-divider>
+        </div>
+        <div ngbDropdownItem>
+          <span class="lan-title">Solved</span>
+        </div>
+      </div>
+    </span>
     </div>
   </div>
   <div class="mobile-button">
     <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
-         <select class="form-control form-control-lg">
-                <option>Filter by Status</option> 
-                <option value="0">Running</option>
-                <option value="1">Solved</option>
-            </select>
-  </div>
-    <div class="card">
-      <div class="row">
-        <div class="col-md-12 card-header">
-          <div class="row">
-            <div class="col-md-3 name">
-                Report ID
-            </div>
-            <div class="col-md-4 name">
-                Subject
-            </div>
-            <div class="col-md-3 name">
-              Status
-            </div>
-           
-            <div class="col-md-2 name">
-              
-            </div>
-          </div>
-        </div>
-  
+    <span ngbDropdown>
+      <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>expand_more
+        </mat-icon></button>
+    <!--dropdown-->
+    <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
+      <div ngbDropdownItem>
+        <span class="lan-title">Running</span>
+      </div>
+      <div style="padding: 0 15px">
         <mat-divider></mat-divider>
-  
-        <!--cards if valid data-->
-        <div class="col-md-12 cards" *ngIf="supportIssues">
-          <div class="show-values" *ngFor="let item of supportIssues | slice: lowValue:highValue;">
-            <div class="row">
-              <div class="col-lg-3 col-md-3 col-sm-3 col-12 value">
-               <span> #{{item.issue_code}}</span>
-              </div>
-              <div class="col-lg-4 col-md-3 col-sm-9 col-12 value">
-                <span><span class="mobile-name">Subject:</span> {{item.title}}</span>
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-4 col-12 value">
-                <span *ngIf="item.status == 0">Running</span>
-                <span *ngIf="item.status == 2">Solved</span>
-                <span *ngIf="item.status == null"> - </span>
-              </div>
-   
-              <div class="col-lg-2 col-md-3 col-sm-4 col-12 value mobile-btn">
-                <span class="big-view"><button class="edit-product-btn" mat-button (click)="ticketView(item);">View</button></span>
-                <span class="mobile-name"><button class="edit-product-btn mob"  mat-raised-button (click)="ticketView(item);" >View</button></span>
-              </div>
-            </div>
-          </div>
-        </div>
-            <!--cards if no data-->
-            <div class="col-md-12" *ngIf="supportIssues" >
-              <div class="no-data mt-2" *ngIf="supportIssues == 0 || supportIssues == undefined || supportIssues?.length == 0">
-                No data available
-              </div>
-            </div>
-        <!--pagination-->
-        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="supportIssues" >
-          <mat-paginator *ngIf="supportIssues != 0" 
-            [length]="supportIssues.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
-            (page)="getPaginatorData($event)">
-          </mat-paginator>
-        </div>
-    
+      </div>
+      <div ngbDropdownItem>
+        <span class="lan-title">Solved</span>
       </div>
     </div>
-  </section>
+  </span>
+  </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12 card-header">
+        <div class="row">
+          <div class="col-md-3 name">
+            Report ID
+          </div>
+          <div class="col-md-4 name">
+            Subject
+          </div>
+          <div class="col-md-3 name">
+            Status
+          </div>
+
+          <div class="col-md-2 name">
+
+          </div>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!--cards if valid data-->
+      <div class="col-md-12 cards" *ngIf="supportIssues">
+        <div class="show-values" *ngFor="let item of supportIssues | slice: lowValue:highValue;">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-12 value">
+              <span> #{{item.issue_code}}</span>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-9 col-12 value">
+              <span><span class="mobile-name">Subject:</span> {{item.title}}</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-12 value">
+              <span *ngIf="item.status == 0">Running</span>
+              <span *ngIf="item.status == 2">Solved</span>
+              <span *ngIf="item.status == null"> - </span>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-12 value mobile-btn">
+              <span class="big-view"><button class="edit-product-btn" mat-button
+                  (click)="ticketView(item);">View</button></span>
+              <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button
+                  (click)="ticketView(item);">View</button></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--cards if no data-->
+      <div class="col-md-12" *ngIf="supportIssues">
+        <div class="no-data mt-2"
+          *ngIf="supportIssues == 0 || supportIssues == undefined || supportIssues?.length == 0">
+          No data available
+        </div>
+      </div>
+      <!--pagination-->
+      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="supportIssues">
+        <mat-paginator *ngIf="supportIssues != 0" [length]="supportIssues.length" [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 15,20]" (page)="getPaginatorData($event)">
+        </mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</section>
