@@ -30,6 +30,7 @@
   position: relative;
   border: 2px solid #fff !important;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .plan-card:hover {
