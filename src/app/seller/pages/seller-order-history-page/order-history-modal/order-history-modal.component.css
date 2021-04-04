@@ -1,20 +1,81 @@
-.dialogue-holder img {
+.media img {
   width: 70px;
   height: 70px;
+  border-radius: 5px;
+  margin-right: 16px;
+}
+*:focus{
+  outline: 0 !important;
+  border: 0 !important;
+}
+.proof a{
+  font-size: 18px !important;
+line-height: 26px !important;
+text-decoration-line: underline;
+color: #1F4F9E !important;
+vertical-align: middle !important;
+
+font-weight: normal;
+}
+.proof{
+  margin-top:10px;
+}
+.top-details{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.prod{
+  font-weight: 400 !important;
+}
+.method,.del-proof{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: rgba(43, 43, 43, 0.5);
 }
 
-.media-body,
-.quotation-details,
-.order-data {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+.card-body{
+  vertical-align: middle;
+}
+.value{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 32px;
+text-align: right;
+color: #2B2B2B;
+margin-top: 6px;
+}
+.quantity{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+/* text-align: center; */
+color: #2B2B2B;
+margin-top: 10px;
+}
+.name{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 32px;
+color: #2B2B2B;
 }
 
 .order-data {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
+
 
 ::ng-deep .mat-dialog-container {
   padding: 30px 30px 0;
@@ -24,8 +85,7 @@
 
 .card {
   border: none;
-  box-shadow: 0px 4px 15px rgb(0 0 0 / 7%);
-  margin-bottom: 10px;
+ 
 }
 
 .card:last-child {
@@ -34,45 +94,10 @@
 
 .card-body {
   padding: 15px;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 7%);
+  margin-bottom: 10px;
 }
 
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  width: 80px;
-  height: 80px;
-  background-image: url("../../../../../assets/upload.svg");
-  background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: center center;
-  border-radius: 5px;
-  border: 3px dashed #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.attached-file {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.attached-file {
-  list-style: none !important;
-  font-size: 20px;
-}
-
-.attached-file button {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  background: #ff4b55;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-}
 
 .mat-dialog-actions>button{
   background-color: white !important;
@@ -86,4 +111,96 @@ float: right;
  outline: none !important;
  border: 0px transparent !important;
 
+
 }
+
+.mobile{
+  display: none;
+}
+
+/*responsive -_- :/ */
+@media all and (min-width:290px) and (max-width:499px){
+  .btn-view{
+    margin-top: 12px;
+    justify-content: center;
+  }
+  .media img{
+    width: 40px;
+    height: 40px;
+    }
+.media-body{
+  display: block !important;
+}
+.show-form{
+  justify-content: center;
+}
+
+.quantity,.value{
+  text-align: left;
+}
+.card-body{
+  padding: 10px;
+}
+
+
+.mobile{
+  display: block;
+}
+
+/* .quantity{
+  margin-top: 10px;
+}
+.value{
+  margin-top: 10px;
+} */
+
+
+::ng-deep.mat-dialog-container{
+  padding: 15px 15px 0;
+}
+}
+@media all and (min-width:290px) and (max-width:992px){
+  .show-text{
+    text-align: center;
+  }
+  .top-details,.quantity,.value,.dropdown,.method,.proof a{
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+.name,.del-proof{
+  font-size: 16px;
+  line-height: 23px;
+}
+.show-file{
+  font-size: 12px;
+  line-height: 28px;
+}
+
+}
+@media all and (min-width:499px) and (max-width:575px){
+  .show-form,.btn-view{
+    justify-content: center !important;
+  }
+  .btn-view{
+    margin-top: 12px;
+  }
+  .media img{
+    width: 40px;
+    height: 40px;
+    }
+    .value{
+      text-align: left !important;
+    }
+
+}
+@media all and (min-width:576px) and (max-width:992px){
+.show-form,.btn-view{
+  justify-content: center;
+}
+.value{
+  margin-top: 10px;
+  font-size: 14px;
+    line-height: 20px;
+}
+
+} 
