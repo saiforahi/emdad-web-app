@@ -32,7 +32,7 @@
                   <label class="form-label" for="password">Password</label>
                   <small for="passwordError" *ngIf="signUpForm.get('password').errors && submitted"
                     class="errors ml-1">*required</small>
-                  <input class="form-control" type="password" id="password" name="password"
+                  <input class="form-control" type="password" id="password" name="password" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
                     formControlName="password" />
                   <small for="passwordError" *ngIf="passwordValidationMessage" class="errors ml-1">*{{
                     passwordValidationMessage }}</small>
@@ -41,7 +41,7 @@
                   <label class="form-label" for="confirm_pass">Confirm Password</label>
                   <small for="passwordError" *ngIf="passwordNotMatch && submitted" class="errors ml-1">didn't
                     match</small>
-                  <input class="form-control" type="password" id="confirm_pass" name="confirm_pass"
+                  <input class="form-control" type="password" id="confirm_pass" name="confirm_pass" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
                     formControlName="confirm_pass" />
                 </div>
               </div>

@@ -28,6 +28,7 @@ export class SellerInvoicesPageComponent implements OnInit {
   invoices:Array<any>=[]
   lowValue: number = 0;
   highValue: number = 5;
+  toggleSort = true;
   constructor(public dialog: MatDialog, private orderService:OrderService) { }
 
   ngOnInit(): void {
@@ -62,5 +63,17 @@ export class SellerInvoicesPageComponent implements OnInit {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     return event;
+  }
+
+  sortTable() {
+    if (this.toggleSort) {
+      this.invoices.sort((a, b) => new Date(b.payment_date).getTime() - new Date(a.payment_date).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.invoices;
+    } else {
+      this.invoices.sort((b, a) => new Date(b.payment_date).getTime() - new Date(a.payment_date).getTime());
+      this.toggleSort = !this.toggleSort;
+      return this.invoices;
+    }
   }
 }
