@@ -1,31 +1,46 @@
+<!--4th April @ 2021-->
 <section class="dialogue-holder">
     <mat-dialog-content class="mat-typography">
         <mat-dialog-actions align="end" class="p-0 m-0">
             <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
         </mat-dialog-actions>
+        <!--show header part-->
         <div class="order-data">
-            <p><b>Invoice ID: </b><span>#{{details?.invoice_code}}</span></p>
-            <p><b>Payment Date:</b><span> {{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
-            <!-- <p><b>Total Price: $25,800</b></p> -->
+            <p class="top-details">Invoice ID: <span class="prod">#{{details?.invoice_code}}</span></p>
+            <p class="top-details">Payment Date : <span class="prod">{{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
         </div>
-        <table mat-table [dataSource]="details?.ordered_product" class="mat-elevation-z8 mb-4">
-            <!-- Position Column -->
-            <ng-container matColumnDef="Order ID">
-                <th mat-header-cell *matHeaderCellDef>Order ID</th>
-                <td mat-cell *matCellDef="let element">#{{ element.order }}</td>
-            </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="Amount">
-                <th mat-header-cell *matHeaderCellDef>Amount</th>
-                <td mat-cell *matCellDef="let element">SR{{ get_price(element.unit_price,element.quantity,element.commission,element.vat_amount) }}</td>
-            </ng-container>
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-        <div class="total-order-price">
-            Total: SR{{get_total_price()}}
+        <div class="row">
+            <div class="col-md-12 card-header">
+                <div class="row">
+                    <div class="col-md-6 name">
+                        Order ID
+                    </div>
+                    <div class="col-md-6 name amount">
+                        Amount
+                    </div>
+                </div>  
+            </div>
+           <mat-divider></mat-divider>
+             <!--cards if valid data-->
+             <div class="col-md-12">
+                <div class="show-values" *ngFor="let item of details?.ordered_product">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 value">
+                            <span><span class="mobile-name">Order ID:</span>  # {{item.order}}</span>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 value amount">
+                            <span><span class="mobile-name">Amount :</span> SR {{ get_price(item.unit_price,item.quantity,item.commission,item.vat_amount) }}</span>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <!--total price-->
+             <div class="col-md-12">
+                <div class="total-order-price">
+                    Total: SR{{get_total_price()}}
+                </div>
+             </div>
         </div>
     </mat-dialog-content>
+
 </section>

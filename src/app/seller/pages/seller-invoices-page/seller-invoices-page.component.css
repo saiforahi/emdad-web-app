@@ -4,62 +4,86 @@
   outline: none;
   box-shadow: none;
 }
-
+/* .container{
+  padding:60px;
+} */
 .page-heading {
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
 
 .card {
-  padding: 40px;
+  padding: 30px;
   border: none;
   border-radius: 0;
 }
 
-.mat-table {
+.name{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+
+
+}
+.value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+/* word-wrap: break-word; */
+white-space: pre-line;
+
+}
+.card-header{
+  background-color: #ffff;
+}
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+border-radius: 5px;
+padding: 20px;
+margin-top: 15px;
+}
+.end-date{
+  color: #FF4B55 !important;
+}
+.mobile-name{
+  display: none;
+}
+.pagination-show,::ng-deep .mat-paginator{
   background-color: transparent !important;
-  padding: 0 20px;
 }
-
-tr.mat-row,
-tr.mat-footer-row {
-  height: 60px;
-  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-tr.mat-row:hover,
-tr.mat-footer-row:hover {
-  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-  transition: 0.3s;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 20px !important;
-}
-
-table tr:last-child td {
-  border-bottom: 0 solid;
-}
-
-th {
-  font-weight: 500;
-  font-size: 18px;
+.no-data {
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  border-radius: 10px;
+  margin-bottom: 30px;
   color: #2b2b2b;
-}
-
-td {
-  font-weight: normal;
   font-size: 18px;
-  color: #2b2b2b;
+  line-height: 32px;
 }
-
+.edit-product-btn{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+text-align: right;
+color: #2B2B2B;
+}
+.edit-product-btn:focus,.edit-product-btn:active{
+  background-color: transparent;
+}
 .page-heading-holder {
   position: relative;
 }
@@ -78,33 +102,183 @@ td {
   font-size: 20px;
 }
 
-.page-heading-holder select {
-  height: 70px !important;
-  border: 2px solid #1f4f9e;
-  color: #1f4f9e;
-  border-radius: 5px;
-  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+.page-heading-holder>.sort-btn>.mat-stroked-button{
+  width: 230px;
+height: 70px;
+border: 2px solid #1F4F9E;
+color: #1F4F9E;
+box-sizing: border-box;
+border-radius: 5px;
+font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 29px;
 }
-
-.page-heading-holder select:focus {
-  border: 2px solid #454f63;
-  box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
+.mobile-name>.mat-stroked-button{
+  display: none !important;
 }
-
-.total-order-price {
-  text-align: right;
-  color: #1f4f9e;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+/*responsive -_- :/ */
+@media only screen and (min-width:1200px){
+  .container {
+    max-width: 1600px !important;
+  }
 }
-
-.no-data {
+@media all and (min-width:290px) and (max-width:992px){
+.card-header{
+  display: none !important;
+}
+.mobile-name{
+  display: inline-block;
+}
+.card{
+  background-color: transparent !important;
+  
+}
+.container{
   padding: 15px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  margin-bottom: 30px;
-  color: #2b2b2b;
+}
+.value{
+font-size: 16px;
+line-height: 23px;
+}
+.show-values{
+background: #FFFFFF;
+box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.04);
+border-radius: 10px;
+margin-top: 10px;
+}
+.edit-product-btn{
+  font-size: 14px;
+  line-height: 20px;
+ 
+  color: #1F4F9E;
+}
+::ng-deep.mat-button{
+background: #FFFFFF !important;
+}
+
+.page-heading-holder>.sort-btn>.mat-stroked-button>.mat-icon{
+  font-size: 10px !important;
+}
+.big-view{
+  display: none;
+}
+.mobile-btn{
+  text-align: center;
+  justify-content: center;
+}
+.mob{
+padding: 8px 12px;
+text-align: center !important;
+margin-top: 14px;
+}
+}
+@media all and (min-width:290px) and (max-width:576px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 20px;
+    line-height: 29px;
+  }
+  .card{
+    padding: 8px;
+  }
+  .page-heading-holder>.sort-btn>.mat-stroked-button{
+    width:auto;
+  height: 45px;
+  border: 2px solid #1F4F9E;
+  color: #1F4F9E;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  }
+ 
+}
+@media all and (min-width:360px) and (max-width:992px){
+  .page-heading-holder>.sort-btn>.mat-stroked-button{
+    width:auto;
+  height: 45px;
+  border: 2px solid #1F4F9E;
+  color: #1F4F9E;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  }
+}
+@media all and (min-width:290px) and (max-width:360px){
+  .page-heading-holder>.sort-btn>.mat-stroked-button{
+    display: none;
+  }
+  .mobile-name>.mat-stroked-button{
+    width:auto;
+  height: 45px;
+  border: 2px solid #1F4F9E;
+  color: #1F4F9E;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  display: block !important;
+  }
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 30px;
+  line-height: 40px;
+  }
+  .card{
+    padding: 8px;
+  }
+  .page-heading-holder>.sort-btn>.mat-stroked-button{
+    width:auto;
+  height: 45px;
+  border: 2px solid #1F4F9E;
+  color: #1F4F9E;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .page-heading{
+    padding:15px 0;
+    font-size: 35px;
+  line-height: 55px;
+  }
+ 
+}
+@media all and (min-width:992px){
+  .show-values:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+  }
+
+}
+@media all and (min-width:992px) and (max-width:1200px){
+.page-heading{
+  font-size:38px;
+  line-height: 55px;
+}
+.page-heading-holder>.sort-btn>.mat-stroked-button{
+ height: 60px;
+ width:150px;
+ font-size: 18px;
+ line-height: 26px;
+}
 }

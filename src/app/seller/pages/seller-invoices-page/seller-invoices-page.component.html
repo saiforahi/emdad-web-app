@@ -1,51 +1,71 @@
-<section class="page-heading-holder">
-    <h2 class="page-heading d-inline-block">Invoices</h2>
-    <div class="sort-btn d-inline-block">
-        <select class="form-control form-control-lg">
-            <option>Filter by Date</option>
-            <!-- <option>Paid</option>
-            <option>Unpaid</option> -->
-        </select>
+<!--05th April @ 2021-->
+<section class="payment-history container">
+    <div class="page-heading-holder">
+    <h2 class="page-heading">Invoices</h2>
+    <div class="sort-btn d-inline-block big-view">
+      <button mat-stroked-button class="sort-btn" (click)="sortTable()">Sort by Date <mat-icon>expand_more</mat-icon></button>
     </div>
-</section>
-<section class="card mb-5">
-    <table mat-table [dataSource]="invoices | slice: lowValue:highValue" class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="Invoice ID">
-            <th mat-header-cell *matHeaderCellDef>Invoice ID</th>
-            <td mat-cell *matCellDef="let element"># {{ element.invoice_code }}</td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="Payment Date">
-            <th mat-header-cell *matHeaderCellDef>Payment Date</th>
-            <td mat-cell *matCellDef="let element">{{ element.payment_date==='Pending'?'Pending':formatDate(element.payment_date) }}</td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="Amount">
-            <th mat-header-cell *matHeaderCellDef>Amount</th>
-            <td mat-cell *matCellDef="let element">{{ element.total_amount }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="view">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-                <button class="edit-product-btn" mat-raised-button (click)="openDialog(element)">View</button>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      [pageSize]="5"
-      [length]="invoices.length"
-      showFirstLastButtons
-      (page)="getPaginatorData($event)"
-      *ngIf="invoices?.length>5"
-    ></mat-paginator>
-    <div class="no-data" *ngIf="invoices.length===0">
-        No data available
+  </div>
+  <div class="mobile-name">
+    <button mat-stroked-button (click)="sortTable()">Sort by Date <mat-icon>expand_more</mat-icon></button>
+  </div>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12 card-header">
+          <div class="row">
+            <div class="col-md-3 name">
+                Invoice ID
+            </div>
+            <div class="col-md-3 name">
+                Payment Date
+            </div>
+            <div class="col-md-3 name">
+                Amount
+            </div>
+           
+            <div class="col-md-3 name">
+              
+            </div>
+          </div>
+        </div>
+  
+        <mat-divider></mat-divider>
+  
+        <!--cards if valid data-->
+        <div class="col-md-12 cards" *ngIf="invoices">
+          <div class="show-values" *ngFor="let item of invoices | slice: lowValue:highValue;">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
+               <span> #{{item.invoice_code}}</span>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
+                <span><span class="mobile-name">Payment Date:</span> {{ item.payment_date==='Pending'?'Pending':formatDate(item.payment_date) }}</span>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
+                <span><span class="mobile-name">Amount:</span>SAR {{ item.total_amount }}</span>
+              </div>
+             
+              <div class="col-lg-3 col-md-12 col-sm-12 col-12 value mobile-btn">
+                <span class="big-view"><button class="edit-product-btn" mat-button (click)="openDialog(item);">View</button></span>
+                <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button (click)="openDialog(item);">View</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+            <!--cards if no data-->
+            <div class="col-md-12" *ngIf="invoices == null || invoices == undefined || invoices?.length == 0">
+              <div class="no-data mt-2">
+                No data available
+              </div>
+            </div>
+        <!--pagination-->
+        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="invoices != null">
+          <mat-paginator 
+            [length]="invoices.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 15,20]"
+            (page)="getPaginatorData($event)" *ngIf="invoices?.length>5">
+          </mat-paginator>
+        </div>
+    
+      </div>
     </div>
-</section>
+  </section>
