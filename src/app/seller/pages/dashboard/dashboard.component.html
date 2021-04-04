@@ -28,7 +28,7 @@
                         <div class="show-values no-shadow" *ngFor="let item of rfqTableData | slice:0:5;">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-4 value">
-                                    # {{item.quotation_code}}
+                                    # {{item.rfq[0].id}}
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-4 value">
                                     {{item.created_at | date:'mediumDate'}}
@@ -86,7 +86,7 @@
                                     {{item.created_at | date:'mediumDate'}}
                                 </div>
                                 <div class="col-lg-3 col-xl-3 col-6 value">
-                                    # {{item.quotation_code}}
+                                    # {{item.rfq[0].id}}
                                 </div>
                                 <div class="col-lg-3 col-xl-3 col-6 value">
                                     <span *ngIf="item.status == 1">Sent</span>

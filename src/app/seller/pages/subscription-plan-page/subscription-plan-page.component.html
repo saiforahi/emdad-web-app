@@ -2,7 +2,7 @@
     <h2 class="page-heading">Choose Subscription Plan</h2>
     <div class="row">
         <div class="col-lg-6 col-md-12 mt-3" *ngFor="let plan of planList; let i = index;">
-            <div class="plan-card" (click)="selectedPlan(i);" [ngClass]="selectedPlanId == i ? 'active': ''">
+            <div class="plan-card h-100" (click)="selectedPlan(i);" [ngClass]="selectedPlanId == i ? 'active': ''">
                 <p class="plan-title">{{plan.title | titlecase}} - <span *ngIf="plan.subscription_plan == 'y'">Yearly</span><span *ngIf="plan.subscription_plan == 'h'">Half yearly</span></p>
                 <p class="plan-price">${{plan.fees}} <span>VAT Inclusive</span></p>
                 <mat-checkbox class="plan-check" [checked]="selectedPlanId == i"></mat-checkbox>
