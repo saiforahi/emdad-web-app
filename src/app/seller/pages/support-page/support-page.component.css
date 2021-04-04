@@ -24,9 +24,9 @@
   outline: none;
   box-shadow: none;
 }
-.container{
+/* .container{
   padding:60px;
-}
+} */
 .page-heading {
   font-style: normal;
   font-weight: 500;
@@ -317,7 +317,7 @@ vertical-align: center !important;
 }
 @media all and (min-width:992px){
   .show-values:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: 0.3s;
   }
 
