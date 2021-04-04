@@ -1,20 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {OrderService} from '../../../../shared/services/order.service'
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-];
 
 @Component({
   selector: 'app-invoice-view-modal',
@@ -33,11 +20,8 @@ export class InvoiceViewModalComponent implements OnInit {
     console.log('dialog data',this.data)
   }
 
-  displayedColumns: string[] = [
-    'Order ID',
-    'Amount'
-  ];
-  dataSource = ELEMENT_DATA;
+ 
+
 
   formatDate(date:string):string{
     return new Date(date).toDateString()

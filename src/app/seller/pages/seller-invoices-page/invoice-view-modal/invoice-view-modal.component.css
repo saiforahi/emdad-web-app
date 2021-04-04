@@ -1,66 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
-
-*:focus {
-  outline: none;
-  box-shadow: none;
+.dialogue-holder{
+  font-family: Jost !important;
 }
-
-.mat-table {
-  background-color: transparent !important;
-  padding: 0 20px;
-}
-
-tr.mat-row,
-tr.mat-footer-row {
-  height: 60px;
-  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-tr.mat-row:hover,
-tr.mat-footer-row:hover {
-  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-  transition: 0.3s;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 20px !important;
-}
-
-table tr:last-child td {
-  border-bottom: 0 solid;
-}
-
-th {
-  font-weight: 500;
-  font-size: 18px;
-  color: #2b2b2b;
-}
-
-td {
-  font-weight: normal;
-  font-size: 18px;
-  color: #2b2b2b;
-}
-.dialogue-holder img {
-  width: 70px;
-  height: 70px;
-}
-
-.media-body,
-.quotation-details,
 .order-data {
+  margin-bottom: 30px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-}
-
-.order-data {
-  margin-bottom: 30px;
 }
 
 ::ng-deep .mat-dialog-container {
@@ -68,67 +15,6 @@ td {
   width: 900px;
   border-radius: 0;
 }
-
-.card {
-  border: none;
-  box-shadow: 0px 4px 15px rgb(0 0 0 / 7%);
-  margin-bottom: 10px;
-}
-
-.card:last-child {
-  margin-bottom: 30px;
-}
-
-.card-body {
-  padding: 15px;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  width: 80px;
-  height: 80px;
-  background-image: url("../../../../../assets/upload.svg");
-  background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: center center;
-  border-radius: 5px;
-  border: 3px dashed #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.attached-file {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.attached-file {
-  list-style: none !important;
-  font-size: 20px;
-}
-
-.attached-file button {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  background: #ff4b55;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-}
-
-.total-order-price {
-  text-align: right;
-  color: #2b2b2b;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-}
-
 .mat-dialog-actions>button{
   background-color: white !important;
   background: white !important;
@@ -141,4 +27,99 @@ float: right;
  outline: none !important;
  border: 0px transparent !important;
 
+
 }
+.top-details{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
+.prod{
+  font-weight: 400 !important;
+}
+.name{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+
+
+}
+.value{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+/* word-wrap: break-word; */
+white-space: pre-line;
+
+}
+
+.card-header{
+  background-color: #ffff;
+  background-color: none !important;
+  border-bottom: 1px solid #EAEAEA;
+ 
+  
+ /*  box-shadow: 0px 7px 35px rgba(31, 79, 158, 0.1); */
+}
+
+.show-values{
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 15px;
+  }
+  .total-order-price {
+    font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+margin-top: 15px;
+text-align: right;
+color: #2B2B2B;
+  }
+  /*responsive :/ -_- */
+  @media all and (min-width:992px){
+.amount{
+  text-align:right;
+}
+.show-values:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.mobile-name{
+  display:none;
+}
+  }
+  @media all and (min-width:290px) and (max-width:992px){
+.card-header{
+  display:none;
+}
+.mobile-name{
+  display: inline-block !important;
+}
+.value,.mobile-name,.total-order-price,.top-details,.prod{
+  font-size: 16px;
+  line-height: 23px;
+  }
+
+  }
+  @media all and (min-width:768px) and (max-width:992px){
+    .page-heading{
+      padding:15px 0;
+      font-size: 35px;
+    line-height: 55px;
+    }
+    
+  }
