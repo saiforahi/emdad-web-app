@@ -57,8 +57,8 @@
                     <div class="col-lg-7 col-md-12 col-12 ">
                         <form>
                             <div class="row do-middle">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex show-form">
-                                    <label for="note" class="custom-file-upload mr-2">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-12 d-flex show-form">
+                                    <label for="note" class="custom-file-upload ">
                                         <!-- file-up -->
                                         <input id="note" class="form-control form-control-md" type="file"
                                              (change)="set_challan($event);" />
@@ -68,7 +68,7 @@
                                             <mat-icon class="small-icon">close</mat-icon>
                                         </button></label>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 d-flex btn-view">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex btn-view">
                                     <button mat-mini-fab type="button" (click)="upload_challan(detail.product.id,i)" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
                                     <button mat-mini-fab class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
                                 </div>

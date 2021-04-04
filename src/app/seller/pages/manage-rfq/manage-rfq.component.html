@@ -34,10 +34,10 @@
 
       <!--cards if valid data-->
       <div class="col-md-12 cards" *ngIf="rfqTableData">
-        <div class="show-values" *ngFor="let item of rfqTableData;">
+        <div class="show-values" *ngFor="let item of rfqTableData | slice: lowValue:highValue;">
           <div class="row">
             <div class="col-lg-2 col-md-6 col-sm-6 col-12 value">
-             <span> #{{item.quotation_code}}</span>
+             <span> #{{item.rfq[0].id}}</span>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 col-12 value">
               <span><span class="mobile-name">Created:</span> {{ item.created_at | date :'mediumDate' }}</span>

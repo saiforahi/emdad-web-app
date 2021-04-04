@@ -44,7 +44,7 @@
   
         <!--cards if valid data-->
         <div class="col-md-12 cards" *ngIf="supportIssues">
-          <div class="show-values" *ngFor="let item of supportIssues;">
+          <div class="show-values" *ngFor="let item of supportIssues | slice: lowValue:highValue;">
             <div class="row">
               <div class="col-lg-3 col-md-3 col-sm-3 col-12 value">
                <span> #{{item.issue_code}}</span>
