@@ -325,7 +325,7 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
                     </div>
                     <!-- password -->
-                    <input id="password" [type]="showPassState ? 'text' : 'password'"
+                    <input id="password" [type]="showPassState ? 'text' : 'password'" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
                       class="form-control form-control-md" formControlName="password" required
                       (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!showPassState" (click)="showPass();">
@@ -361,7 +361,7 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
                     </div>
                     <!-- confirm password -->
-                    <input id="confPassword" [type]="confShowPassState ? 'text' : 'password'"
+                    <input id="confPassword" [type]="confShowPassState ? 'text' : 'password'" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
                       class="form-control form-control-md" formControlName="confPassword" required
                       (keyup)="matchBothPassord(password.value, confPassword.value)" />
                     <div class="input-group-prepend" *ngIf="!confShowPassState" (click)="confShowPass();">

@@ -60,6 +60,12 @@ export class SignupPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // document.getElementById('passowrd').addEventListener('paste',function(e){
+    //   e.preventDefault()
+    // })
+    // document.getElementById('confPassword').addEventListener('paste',function(e){
+    //   e.preventDefault()
+    // })
     this.spinner.hide();
     // this.group = this.router.url.split('/', 3)[1];
     // console.log(this.group);
