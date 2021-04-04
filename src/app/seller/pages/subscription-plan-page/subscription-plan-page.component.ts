@@ -118,7 +118,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
       }
     );
   }
-
+  
   proceedToPay() {
     this.fees = this.planList[this.selectedPlanId].fees;
     this.total_paid_amount = this.fees;
@@ -131,7 +131,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
     let response = {
       fees: this.fees,
       payment_type: this.payment_type,
-      payment_status: this.payment_status,
+      payment_status: 0,
       total_paid_amount: this.total_paid_amount,
       discount_amount: this.discount_amount,
       seller: this.seller,
@@ -161,15 +161,15 @@ export class SubscriptionPlanPageComponent implements OnInit {
               cart_description: 'sale',
               cart_id: '400000000000001',
               cart_currency: 'SAR',
-              cart_amount: response.total_paid_amount,
+              cart_amount: this.total_paid_amount,
               customer_details: {
                 name: this.user.full_name,
-                email: localStorage.getItem('username'),
+                email: this.user.email,
                 phone: this.user.phone,
                 street1: this.user.area,
-                city: this.userCity,
+                city: this.user.city.name,
                 state: 'DU',
-                country: this.userCountry,
+                country: this.user.country.iso2,
                 zip_code: this.user.zip_code,
                 ip: '127.0.0.1',
               },
@@ -180,21 +180,25 @@ export class SubscriptionPlanPageComponent implements OnInit {
                   'payment_add_response',
                   JSON.stringify(success)
                 );
+                localStorage.setItem(
+                  'subscription_data',
+                  JSON.stringify(response)
+                );
                 // console.log(
                 //   'payment_add_response',
                 //   JSON.parse(localStorage.getItem('payment_add_response'))
                 // );
                 window.location.href = success.redirect_url;
-                // console.log(success);
+                //console.log(this.user);
               },
               (gateWayErr) => {
                 console.log(gateWayErr);
               }
-            );
+          );
         },
         (err) => {
           console.log(err);
         }
-      );
+    );
   }
 }

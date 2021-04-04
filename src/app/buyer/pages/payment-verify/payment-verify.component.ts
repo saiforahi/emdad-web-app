@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartServiceService } from '../../../shared/services/cart-service.service';
+import {SubscriptionService} from '../../../shared/services/subscription.service';
 @Component({
   selector: 'app-payment-verify',
   templateUrl: './payment-verify.component.html',
@@ -14,7 +15,8 @@ export class PaymentVerifyComponent implements OnInit {
     private orderService: OrderService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private cart: CartServiceService
+    private cart: CartServiceService,
+    private subscriptionService: SubscriptionService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class PaymentVerifyComponent implements OnInit {
       check_api_json = {
         //json data for verifying payment
         tran_ref: data.tran_ref,
-        subscription: localStorage.getItem('temp_subscription_id'),
+        subscription: JSON.parse(localStorage.getItem('subscription_data')).id,
         cart_currency: data.cart_currency,
         cart_amount: data.cart_amount,
         cart_id: data.cart_id,
