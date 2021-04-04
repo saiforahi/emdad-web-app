@@ -3,6 +3,8 @@ import { CouponService } from 'src/app/shared/services/coupon.service';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { CountryListService } from 'src/app/shared/services/country-list.service';
+import { HighlightSpanKind } from 'typescript';
 
 @Component({
   selector: 'app-subscription-plan-page',
@@ -19,6 +21,10 @@ export class SubscriptionPlanPageComponent implements OnInit {
   couponType: any;
   couponDiscount: number = null;
   user: any;
+  countryList: any;
+  cityList: any;
+  userCountry: string = '';
+  userCity: string = '';
 
   fees: any;
   payment_type = 1;
@@ -34,7 +40,8 @@ export class SubscriptionPlanPageComponent implements OnInit {
     private subscription: SubscriptionService,
     private coupon: CouponService,
     private order: OrderService,
-    private authService: UserAuthService
+    private authService: UserAuthService,
+    private countryService: CountryListService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +55,33 @@ export class SubscriptionPlanPageComponent implements OnInit {
       .getUser(localStorage.getItem('s_uid'))
       .subscribe((data) => {
         this.user = data.data;
-        // console.log(this.user);
+
+        // retrieving country and city list
+        if (this.user.country) {
+          this.countryService.allCountries().subscribe((data) => {
+            this.countryList = data.data;
+            for (var i = 0; i < this.countryList.length; i++) {
+              if (this.countryList[i].id == this.user.country) {
+                this.userCountry = this.countryList[i].name;
+                break;
+              }
+            }
+
+            if (this.user.city) {
+              this.countryService
+                .allCities(this.user.country)
+                .subscribe((data) => {
+                  this.cityList = data.data;
+                  for (var i = 0; i < this.cityList.length; i++) {
+                    if (this.cityList[i].id == this.user.city) {
+                      this.cityList = this.cityList[i].name;
+                      break;
+                    }
+                  }
+                });
+            }
+          });
+        }
       });
   }
 
@@ -134,9 +167,9 @@ export class SubscriptionPlanPageComponent implements OnInit {
                 email: localStorage.getItem('username'),
                 phone: this.user.phone,
                 street1: this.user.area,
-                city: this.user.city,
+                city: this.userCity,
                 state: 'DU',
-                country: this.user.country,
+                country: this.userCountry,
                 zip_code: this.user.zip_code,
                 ip: '127.0.0.1',
               },
