@@ -61,8 +61,8 @@
             </button>
             <section class="page-heading-holder">
                 <h2 class="page-heading d-inline-block">Product Categories</h2>
-                <button mat-raised-button class="float-right d-inline-block" (click)="openDialog()" (click)="dleteProduct();"><img src="../../../../assets/Delete.svg"
-                        alt=""> Bulk Delete</button>
+                <button mat-raised-button class="float-right d-inline-block" (click)="openDialog()"
+                    (click)="dleteProduct();"><img src="../../../../assets/Delete.svg" alt=""> Bulk Delete</button>
             </section>
             <section>
                 <app-seller-breadcrumbs [directoryString]="'Products / '+directoryString"></app-seller-breadcrumbs>
@@ -84,7 +84,8 @@
                     <!-- Unit of Measurement Column -->
                     <ng-container matColumnDef="Unit of Measurement">
                         <th mat-header-cell *matHeaderCellDef>Unit of Measurement</th>
-                        <td mat-cell *matCellDef="let element"><span *ngIf="element.unit != null">{{ element.unit.name }}</span></td>
+                        <td mat-cell *matCellDef="let element"><span *ngIf="element.unit != null">{{ element.unit.name
+                                }}</span></td>
                     </ng-container>
 
                     <!-- Unite Price Column -->
@@ -96,7 +97,9 @@
                     <!-- Delivery Method Column -->
                     <ng-container matColumnDef="Delivery Method">
                         <th mat-header-cell *matHeaderCellDef>Delivery Method</th>
-                        <td mat-cell *matCellDef="let element"><span *ngIf="element.delivery_method == 1">DDP</span><span *ngIf="element.delivery_method == 2">Ex-Works</span></td>
+                        <td mat-cell *matCellDef="let element"><span
+                                *ngIf="element.delivery_method == 1">DDP</span><span
+                                *ngIf="element.delivery_method == 2">Ex-Works</span></td>
                     </ng-container>
 
                     <!-- Checkbox Column -->
@@ -118,15 +121,20 @@
                     <ng-container matColumnDef="edit">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let element" class="text-right">
-                            <button [routerLink]="['/dashboard/edit-products', element.id]" class="edit-product-btn" mat-raised-button><img src="../../../../assets/Edit.svg"
-                                    alt=""></button>
+                            <button [routerLink]="['/dashboard/edit-products', element.id]" class="edit-product-btn"
+                                mat-raised-button><img src="../../../../assets/Edit.svg" alt=""></button>
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
-                <!-- <mat-paginator [length]="100" [pageSize]="30"></mat-paginator> -->
             </section>
+
+            <p *ngIf="prodEnd" class="text-center mt-5"><b>No more products to show</b></p>
+            <div class="view-more-btn-div" *ngIf="expandedSubCat == null">
+                <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More
+                    <img src="../../../assets/down-carrot-light.svg" alt=""></button>
+            </div>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
