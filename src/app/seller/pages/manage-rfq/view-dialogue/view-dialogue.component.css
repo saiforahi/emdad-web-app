@@ -320,4 +320,7 @@ line-height: 23px;
         height: 50px;
         width: 280px;
       }
+      .form-control{
+        height: 60px;
+      }
 }

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { config } from 'src/config';
 import {QuotationService} from '../../../../shared/services/quotation.service'
@@ -11,10 +11,15 @@ import {NgxSpinnerService} from 'ngx-spinner'
   styleUrls: ['./quotation-view-modal.component.css'],
 })
 export class QuotationViewModalComponent implements OnInit {
-  selectedImage:Array<any>;
-  quoteData
-  quoteFormData=new FormData()
-  details:any
+  /* selectedImage:Array<any>; */
+  quoteData:FormGroup;
+  selectedImage:any=[];
+  quoteFormData=new FormData();
+  details:any;
+  quantity:AbstractControl;
+  unit_price:AbstractControl;
+  total_price:AbstractControl;
+  attachments: AbstractControl;
   img_base_url=config.img_base_url
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder) {}
 
@@ -56,7 +61,9 @@ export class QuotationViewModalComponent implements OnInit {
   }
 
   handleFileSelect(event) {
-    this.selectedImage=event.target.files
+    var reader = new FileReader();
+    this.selectedImage.push(event.target.files[0]);
+    console.log(this.selectedImage);
   }
 
   formatDate(date:string){
