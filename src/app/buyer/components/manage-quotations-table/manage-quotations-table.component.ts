@@ -5,6 +5,8 @@ import { Quotations } from '../../../shared/models/mocks/Quotations';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { PageEvent } from '@angular/material/paginator';
 
+import { MatDialog } from '@angular/material/dialog';
+import { BuyerQuotationViewComponent } from '../buyer-quotation-view/buyer-quotation-view.component';
 @Component({
   selector: 'app-manage-quotations-table',
   templateUrl: './manage-quotations-table.component.html',
@@ -30,7 +32,8 @@ export class ManageQuotations implements OnInit {
 
   constructor(
     private quotationService: QuotationService,
-    private productService: GetProductService
+    private productService: GetProductService,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -43,15 +46,24 @@ export class ManageQuotations implements OnInit {
     return event;
   }
 
-  show_quotation_details(i) {
+ /*  show_quotation_details(i) {
     this.quotation = this.quotationDetails[i];
-    // this.quotation.unit_price = this.quotation.product.unit_price;
-    // this.quotation.total_price =
-    //   parseFloat(this.quotation.unit_price) *
-    //   parseFloat(this.quotation.quantity);
+    this.quotation.unit_price = this.quotation.product.unit_price;
+  this.quotation.total_price =
+   parseFloat(this.quotation.unit_price) *
+    parseFloat(this.quotation.quantity);
     document.getElementById('quotationDetails').style.display = 'block';
   }
-
+ */
+//open the dialogue for viewing quotation details
+  show_quotation_details(item){
+const dialogRef = this.dialog.open(BuyerQuotationViewComponent,{
+autoFocus:false,
+data:{
+  quoteDetails:item,
+}
+})
+  }
   get_quotation_list() {
     this.quotationService.get_user_quotation_list().subscribe(
       (success) => {
@@ -72,10 +84,7 @@ export class ManageQuotations implements OnInit {
     );
   }
 
-  hideModal() {
-    document.getElementById('quotationDetails').style.display = 'none';
-  }
-
+ 
   formatDate(date) {
     let d = new Date(date);
     return d.toDateString();

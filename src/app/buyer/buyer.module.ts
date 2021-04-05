@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonuiModule } from '../ui/commonui/commonui.module';
 import { MaterialModule } from '../material.module';
 
+
 @NgModule({
   declarations: [BuyerComponent],
   imports: [

@@ -11,6 +11,7 @@ import { ManageQuotations } from '../../components/manage-quotations-table/manag
 import { ProfileLogoutModal } from '../../components/profile-logout-modal/profile-logout-modal.component';
 // import {QuotationDetailsModal} from '../../components/quotation-details-modal/quotation-details-modal.component';
 import { MaterialModule } from 'src/app/material.module';
+import { BuyerQuotationViewComponent } from '../../components/buyer-quotation-view/buyer-quotation-view.component';
 
 const routes: Routes = [
   { path: '', component: ProfilePageComponent, pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
     OrderHistoryComponent,
     ManageQuotations,
     ProfileLogoutModal,
+    BuyerQuotationViewComponent
     // QuotationDetailsModal
   ],
   imports: [
@@ -34,5 +36,6 @@ const routes: Routes = [
     NgxSpinnerModule,
     MaterialModule
   ],
+  entryComponents: [BuyerQuotationViewComponent],
 })
 export class ProfilePageModule {}
