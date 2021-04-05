@@ -166,7 +166,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'rfq',
+        path: 'rfq/:id',
         loadChildren: () =>
           import('./pages/rfq-page/rfq-page.module').then(
             (m) => m.RfqPageModule

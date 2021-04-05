@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 import { QuotationService } from '../../../shared/services/quotation.service';
 import swal from 'sweetalert';
 import { config } from '../../../../config';
@@ -14,83 +19,158 @@ import { config } from '../../../../config';
   styleUrls: ['./rfq-page.component.css'],
 })
 export class RfqPageComponent implements OnInit {
-  productData: any = { seller: {} }; // this weird initialization is for error handling :(
-  image: any = null;
-  submitted = false;
-  base_url = config.base_url.slice(0, config.base_url.length - 1); // / is with base_url so remove that
-  clicked = false;
-
-  rfqForm = this.formBuilder.group({
-    product: '',
-    buyer: '',
-    email: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
-    address: '',
-    seller: '',
-    quantity: new FormControl('', Validators.required),
-    quotation: this.formBuilder.array([
-      this.formBuilder.group({
-        message: '',
-        user: '',
-      }),
-    ]),
-    rfq: { status: 1 },
-  });
+  // productData: any = { seller: {} }; // this weird initialization is for error handling :(
+  // image: any = null;
+  // submitted = false;
+  // base_url = config.base_url.slice(0, config.base_url.length - 1); // / is with base_url so remove that
+  // clicked = false;
+  // rfqForm = this.formBuilder.group({
+  //   product: '',
+  //   buyer: '',
+  //   email: new FormControl('', Validators.required),
+  //   phone: new FormControl('', Validators.required),
+  //   address: '',
+  //   seller: '',
+  //   quantity: new FormControl('', Validators.required),
+  //   quotation: this.formBuilder.array([
+  //     this.formBuilder.group({
+  //       message: '',
+  //       user: '',
+  //     }),
+  //   ]),
+  //   rfq: { status: 1 },
+  // });
+  productData;
+  image = null;
+  rfqForm: FormGroup;
+  email: AbstractControl;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  phone: AbstractControl;
+  phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
+  address: AbstractControl;
+  quantity: AbstractControl;
+  message: AbstractControl;
+  prodId: any;
 
   constructor(
     private getProduct: GetProductService,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private quotationService: QuotationService,
     private router: Router,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    if (this.getProduct.productDetailsData === undefined)
-      this.router.navigate(['/']);
-
+    // if (this.getProduct.productDetailsData === undefined)
+    //   this.router.navigate(['/']);
     let uid = localStorage.getItem('uid');
-
-    this.getProduct.productDetailsData.subscribe((item) => {
+    this.prodId = this.route.snapshot.params['id'];
+    this.getProduct.productDetails(this.prodId).subscribe((item) => {
       this.productData = item.data[0];
-      if (this.productData.image1) this.image = this.productData.image1;
-      else this.image = this.productData.image2;
-
-      this.rfqForm.patchValue({ product: this.productData.id });
-      this.rfqForm.patchValue({ buyer: uid });
-      this.rfqForm.patchValue({ seller: this.productData.seller.id });
-      this.rfqForm.patchValue({ quotation: [{ message: '', user: uid }] });
+      console.log(this.productData);
+      if (this.productData.image1) {
+        this.image = config.img_base_url + this.productData.image1;
+      } else {
+        this.image = config.img_base_url + this.productData.image2;
+      }
+      // this.rfqForm.patchValue({ product: this.productData.id });
+      // this.rfqForm.patchValue({ buyer: uid });
+      // this.rfqForm.patchValue({ seller: this.productData.seller.id });
+      // this.rfqForm.patchValue({ quotation: [{ message: '', user: uid }] });
     });
+    this.rfqForm = this.fb.group({
+      email: [''],
+      phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
+      address: [''],
+      quantity: [''],
+      message: [''],
+    });
+    this.email = this.rfqForm.controls['email'];
+    this.phone = this.rfqForm.controls['phone'];
+    this.address = this.rfqForm.controls['address'];
+    this.quantity = this.rfqForm.controls['quantity'];
+    this.message = this.rfqForm.controls['message'];
   }
 
-  onSubmit() {
-    this.submitted = true;
-    this.clicked = true;
-    this.spinner.show();
+  // "product":1,
+  //   "buyer":2,
+  //   "email":"cse.hasans06@gmail.com",
+  //   "phone":"04843734",
+  //   "address":"dfdf",
+  //   "seller":2,
+  //   "quantity":4,
+  //   "quotation" :
+  //       [{
+  //           "message": "ridoy",
+  //       "user":3
+  //       }],
+  //   "rfq": {
+  //       "status":1
+  //   }
 
-    if (
-      this.rfqForm.get('email').errors == null &&
-      this.rfqForm.get('phone').errors == null &&
-      this.rfqForm.get('quantity').errors == null
-    ) {
-      this.quotationService.createQuotation(this.rfqForm.value).subscribe(
-        (res) => {
-          console.log(res);
-          this.spinner.hide();
-          swal('Succeed!', 'Request for quotation Successfull', 'success');
-          this.clicked = false;
-          this.router.navigate(['/']);
+  onSubmit(value) {
+    this.spinner.show();
+    var rfqData = {
+      product: this.productData.id,
+      buyer: localStorage.getItem('uid'),
+      email: value.email,
+      phone: value.phone,
+      address: value.address,
+      seller: this.productData.seller.id,
+      quantity: value.quantity,
+      quotation: [
+        {
+          message: value.message,
+          user: localStorage.getItem('uid'),
         },
-        (err) => {
-          console.error(err);
-          this.spinner.hide();
-          swal('Failed!', err.message, 'error');
-          this.clicked = false;
-        }
-      );
-    } else {
-      this.spinner.hide();
-      this.clicked = false;
-    }
+      ],
+      rfq: {
+        status: 1,
+      },
+    };
+    console.log(rfqData);
+    this.quotationService.createQuotation(rfqData).subscribe(
+      (res) => {
+        console.log(res);
+        this.spinner.hide();
+        swal('Succeed!', 'Request for quotation Successfull', 'success');
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        console.error(err);
+        this.spinner.hide();
+        swal('Failed!', err.message, 'error');
+      }
+    );
+    /////////////////////////////////
+    // this.spinner.hide();
+    // this.submitted = true;
+    // this.clicked = true;
+    // this.spinner.show();
+    // if (
+    //   this.rfqForm.get('email').errors == null &&
+    //   this.rfqForm.get('phone').errors == null &&
+    //   this.rfqForm.get('quantity').errors == null
+    // ) {
+    //   this.quotationService.createQuotation(this.rfqForm.value).subscribe(
+    //     (res) => {
+    //       console.log(res);
+    //       this.spinner.hide();
+    //       swal('Succeed!', 'Request for quotation Successfull', 'success');
+    //       this.clicked = false;
+    //       this.router.navigate(['/']);
+    //     },
+    //     (err) => {
+    //       console.error(err);
+    //       this.spinner.hide();
+    //       swal('Failed!', err.message, 'error');
+    //       this.clicked = false;
+    //     }
+    //   );
+    // } else {
+    //   this.spinner.hide();
+    //   this.clicked = false;
+    // }
   }
 }

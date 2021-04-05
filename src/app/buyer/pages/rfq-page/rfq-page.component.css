@@ -9,7 +9,7 @@
   color: #1F4F9E;
 }
 .rfq{
-  background: #E5E5E5;
+  background: #fafafa;
   padding-bottom: 50px;
 }
 .errors {
@@ -18,6 +18,9 @@
 app-breadcrumbs{
   text-transform: uppercase;
   background-color: #E5E5E5 !important;
+}
+.card {
+  border: none;
 }
 .card img{
   height: 300px;
@@ -98,6 +101,7 @@ label {
   border-radius: 5px;
   border: none;
   height: 80px;
+  border: none;
 }
 
 .form-label {
@@ -148,6 +152,7 @@ input[type="radio"] {
 }
 textarea.form-control{
   height: 180px !important;
+  border: none;
 }
 .login_btn {
   background: #1F4F9E;
