@@ -52,7 +52,7 @@ export class UserAuthService {
   private setSession(authResult) {
     const token = authResult.token;
     const payload = <JWTPayload>jwt_decode(token);
-    // console.log(payload);
+    console.log(payload);
     if (authResult.group == 'buyer') {
       const expiresAt = moment.unix(payload.exp);
       localStorage.setItem('token', authResult.token);
@@ -99,6 +99,7 @@ export class UserAuthService {
     var data = { email: email, password: password, group: group };
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
+        console.log(response)
         this.setSession(response);
       }),
       shareReplay()
