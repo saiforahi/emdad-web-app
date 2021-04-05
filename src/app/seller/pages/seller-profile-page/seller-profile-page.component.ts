@@ -124,15 +124,15 @@ export class SellerProfilePageComponent implements OnInit {
           // console.log(this.existingFiles);
         }
         if (this.userData.country != null) {
-          this.getciTyList(this.userData.country);
+          this.getciTyList(this.userData.country.id);
         }
         this.sellerProfileForm.setValue({
           comName: this.userData.store_name,
           comPhone: this.userData.phone,
           email: localStorage.getItem('s_username'),
           comAddress: this.userData.store_address,
-          country: this.userData.country,
-          city: this.userData.city,
+          country: this.userData.country?.id,
+          city: this.userData.city?.id,
           area: this.userData.area,
           zipCode: this.userData.zip_code,
           sellerDescription: this.userData.seller_description,
@@ -142,7 +142,7 @@ export class SellerProfilePageComponent implements OnInit {
   }
 
   onSubmit(value) {
-    // console.log(value);
+    console.log(value);
     this.spinner.showSpinner.next(true);
     this.sellerProfileFormData.append('store_name', value.comName);
     this.sellerProfileFormData.append('email', value.email);
@@ -201,6 +201,7 @@ export class SellerProfilePageComponent implements OnInit {
       );
     }
     var uId = localStorage.getItem('s_uid');
+    console.log('form data',this.sellerProfileFormData.get('city'))
     this.authService
       .updateSellerProfile(uId, this.sellerProfileFormData)
       .subscribe(
@@ -219,8 +220,9 @@ export class SellerProfilePageComponent implements OnInit {
       );
   }
 
-  getciTyList(id) {
+  getciTyList(id: number) {
     this.contry.allCities(id).subscribe((item) => {
+      console.log(item.data)
       this.cityList = item.data;
     });
   }
