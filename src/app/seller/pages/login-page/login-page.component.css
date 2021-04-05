@@ -253,6 +253,9 @@ font-weight: 500;
     no-repeat;
     min-height: 500px;
  }
+ .lang-float{
+   display: none !important;
+ }
  .container{
    padding: 10px;
  }
@@ -290,7 +293,9 @@ font-weight: 500;
   padding: 0 20px;
   font-size: 16px;
 }
-
+.socially{
+  display: none !important;
+}
 
 .slogan{
   font-size: 25px;
@@ -317,9 +322,14 @@ font-weight: 500;
      background-repeat: no-repeat;
      min-height: 650px;
   }
-  
+  .lang-float{
+    display: none !important;
+  }
   .login-form-holder{
     padding: 5px;
+  }
+  .socially{
+    display:none !important;
   }
   .logo-img{
     height: 100px;
@@ -386,12 +396,17 @@ padding-bottom: 10px;
      background-repeat: no-repeat;
      min-height: 600px;
   }
-  
+  .socially{
+    display: none !important;
+  }
   .login-form-holder{
     padding: 5px;
   }
   .logo-img{
     height:80px;
+  }
+  .lang-float{
+    display: none !important;
   }
   .slogan-description{
     padding-left: 8px;
