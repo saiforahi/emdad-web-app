@@ -9,6 +9,7 @@ import {Orders} from '../models/mocks/Orders';
 export class AddressService {
   httpOptions = {
     headers: new HttpHeaders({
+      'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };

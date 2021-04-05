@@ -1,5 +1,5 @@
 <!--5th April @ 2021-->
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography" *ngIf="details">
     <app-rfq-modal-product-description [rfqDetailData]="details"></app-rfq-modal-product-description>
     <!--message relay-->
     <mat-accordion *ngFor="let quote of details.quotation;let i=index">
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="form-label" for="prodQuantity">Product Quantity</label>
                         <input formControlName="quantity" id="prodQuantity" class="form-control form-control-md"
-                            type="prodQuantity" required />
+                            type="number" required />
                         <!--ERROR CHECK-->
                         <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="align-left">
                             <div *ngIf="quantity.errors?.required" class="align-left">
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="unitPrice" class="form-label">Unit Price</label>
                         <input id="unitPrice" formControlName="unit_price" class="form-control form-control-md"
-                            type="unitPrice" required />
+                            type="number" required />
                         <!--ERROR CHECK-->
                         <div *ngIf="unit_price.invalid && (unit_price.dirty || unit_price.touched)" class="align-left">
                             <div *ngIf="unit_price.errors?.required">
@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label for="totalPrice" class="form-label">Total Price</label>
                         <input formControlName="total_price" id="totalPrice" class="form-control form-control-md"
-                            type="totalPrice" required />
+                            type="number" required />
                         <!-- ERROR CHECK -->
                         <div *ngIf="total_price.invalid && (total_price.dirty || total_price.touched)"
                             class="align-left">

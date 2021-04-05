@@ -56,7 +56,7 @@ export class ManageQuotations implements OnInit {
     this.quotationService.get_user_quotation_list().subscribe(
       (success) => {
         this.quotationData = success.data;
-        // console.log(this.quotationData);
+        console.log('quotations',this.quotationData);
         this.quotationDetails = [];
         for (var i = 0; i < this.quotationData.length; i++) {
           this.quotationService

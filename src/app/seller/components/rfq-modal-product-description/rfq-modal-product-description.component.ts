@@ -12,6 +12,7 @@ img_base_url=config.img_base_url;
   constructor() { }
 
   ngOnInit(): void {
+    console.log('modal component detail',this.rfqDetailData)
   }
 
 }
