@@ -10,19 +10,19 @@
             
         <!--dropdown-->
         <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
-          <div ngbDropdownItem>
+          <div ngbDropdownItem (click)="filter_quotations(1)">
             <span class="lan-title">Initiated</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
-          <div ngbDropdownItem>
+          <div ngbDropdownItem (click)="filter_quotations(2)">
             <span class="lan-title">Sent</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
-          <div ngbDropdownItem>
+          <div ngbDropdownItem (click)="filter_quotations(3)">
             <span class="lan-title">Completed</span>
           </div>
         <!--   <div style="padding: 0 15px">

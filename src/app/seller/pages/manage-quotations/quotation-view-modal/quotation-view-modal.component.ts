@@ -20,6 +20,7 @@ export class QuotationViewModalComponent implements OnInit {
   unit_price:AbstractControl;
   total_price:AbstractControl;
   attachments: AbstractControl;
+  message: AbstractControl;
   img_base_url=config.img_base_url
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder) {}
 
@@ -38,7 +39,7 @@ export class QuotationViewModalComponent implements OnInit {
       total_price: ['', [Validators.required]],
       attachments: [''],
       status: 3,
-
+      message: '',
       quotation: this.fb.array([
         this.fb.group({
           message: '',
@@ -54,6 +55,7 @@ export class QuotationViewModalComponent implements OnInit {
     this.unit_price = this.quoteData.controls['unit_price'];
     this.total_price = this.quoteData.controls['total_price'];
     this.attachments = this.quoteData.controls['attachments'];
+    this.message = this.quoteData.controls['message'];
   }
 
   removeFile(i:number){
@@ -85,19 +87,20 @@ export class QuotationViewModalComponent implements OnInit {
     console.log('form data',data)
     this.quoteService.updateQuotationSeller(this.details.id,{
       quotation:[{
-        message:"",
+        message:data.message,
         user:localStorage.getItem('s_uid'),
-        quantity:data.quantity,
-        unit_price:data.unit_price,
-        total_price:data.total_price
+        // quantity:data.quantity,
+        // unit_price:data.unit_price,
+        // total_price:data.total_price
       }],
+      status:2,
       quantity:data.quantity,
       unit_price:data.unit_price,
-      total_price:data.total_price
+      total_price:data.total_price,
     }).subscribe(
       (success)=>{
         this.details.quotation.push({
-          message:"",
+          message:data.message,
           message_date:new Date(),
           quantity:data.quantity,
           unit_price:data.unit_price,
