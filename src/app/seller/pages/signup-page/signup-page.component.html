@@ -443,27 +443,6 @@
                   </div> -->
                 </div>
               </div>
-               <!-- company city -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="city">City</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
-                    </div>
-                   
-                    <select id="city" class="form-control form-control-md" type="text" formControlName="city">
-                      <option value="" disabled>Gray St. Utica</option>
-                      <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
-                    </select>
-                  </div>
-                  <div *ngIf="city.invalid && (city.dirty || city.touched)">
-                    <div *ngIf="city.errors?.required">
-                      <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <!--country-->
               <div class="col-md-6">
                 <div class="form-group">
@@ -482,6 +461,27 @@
                   <div *ngIf="country.invalid && (country.dirty || country.touched)">
                     <div *ngIf="country.errors?.required">
                       <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <!-- company city -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
+                    </div>
+                   
+                    <select id="city" class="form-control form-control-md" type="text" formControlName="city">
+                      <option value="" disabled>Gray St. Utica</option>
+                      <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="city.invalid && (city.dirty || city.touched)">
+                    <div *ngIf="city.errors?.required">
+                      <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
                     </div>
                   </div>
                 </div>
@@ -532,10 +532,10 @@
                       formControlName="commercialRegistrationUpload" (change)="handleFileSelect($event);" />
                      
                   </label>
-                  <ul class="attached-file">
+                  <ul class="attached-file pl-0">
                     <li *ngFor="let file of selectedImage; let i = index;">
                       {{file.name}}
-                      <button mat-raised-button (click)="removeFile(i);">X</button>
+                      <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
                     </li>
                   </ul>
                 </div>
@@ -549,10 +549,10 @@
                     <input id="vatCertificate" class="form-control form-control-md" type="file"
                       formControlName="vatCertificate" (change)="upVatcert($event);" />
                   </label>
-                  <ul class="attached-file">
+                  <ul class="attached-file pl-0">
                     <li *ngFor="let file of selectedCert; let i = index;">
                       {{file.name}}
-                      <button mat-raised-button (click)="removeVatCert(i);">X</button>
+                      <button mat-raised-button (click)="removeVatCert(i);"><img src="../../../../assets/close.svg" alt=""></button>
                     </li>
                   </ul>
                 </div>

@@ -211,7 +211,7 @@
                     <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
                     <div *ngFor="let img of existingImgList; let i = index;" class="d-inline-block img-preview-div">
                         <img *ngIf="img.link != null" [src]="img.link" alt="" width="80" height="80">
-                        <button mat-raised-button ><img src="../../../../assets/close.svg"
+                        <button mat-raised-button (click)="deleteExistingImage(existingImgList[i]);" type="button"><img src="../../../../assets/close.svg"
                                 alt="" type="button"></button>
                     </div>
                     <div *ngFor="let img of imgPreviewList; let i = index;" class="d-inline-block img-preview-div">

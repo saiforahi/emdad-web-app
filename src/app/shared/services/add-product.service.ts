@@ -57,6 +57,30 @@ export class AddProductService {
     );
   }
 
+  deleteProdImage(prod_id, imageColumn){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.get(
+      config.base_url + 'api/product/image/delete/' + prod_id + '/' + imageColumn + '/',
+      httpOptions
+    );
+  }
+
+  deleteProdAttachment(attachment_id){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.get(
+      config.base_url + 'api/product/file/delete/' + attachment_id + '/',
+      httpOptions
+    );
+  }
+
   uploadXl(data) {
     let uploadURL = `${config.base_url}api/product/bulk/add/`;
     return this.http

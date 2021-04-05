@@ -135,7 +135,7 @@ export class EditProductsPageComponent implements OnInit {
 
   populateFormData() {
     this.getProducts.productDetails(this.productId).subscribe(item => {
-      console.log(item.data[0].pickup_address[0].address);
+      // console.log(item.data[0].pickup_address[0].address);
       this.productDetails = item.data[0];
       this.childCatId = item.data[0].category.id;
       this.brandId = this.productDetails.brand != null ? this.productDetails.brand.id : null;
@@ -166,10 +166,10 @@ export class EditProductsPageComponent implements OnInit {
         attachments: null
       })
       if(this.productDetails.image1 != null){
-        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image1});
+        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image1, "column": "image1"});
       }
       if(this.productDetails.image2 != null){
-        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image2});
+        this.existingImgList.push({"link": config.img_base_url+this.productDetails.image2, "column": "image2"});
       }
       this.existingFiles = this.productDetails.attachment.length != 0 ? this.productDetails.attachment : [];
       console.log(this.existingImgList)
@@ -278,6 +278,13 @@ export class EditProductsPageComponent implements OnInit {
         swal('Failed!', this.error, 'error');
       }
     );
+  }
+
+  deleteExistingImage(value){
+    console.log(value)
+    this.addProductService.deleteProdImage(this.productId, value.column).subscribe(success => {
+      console.log(success)
+    })
   }
 
   handleImgSelect(event) {
