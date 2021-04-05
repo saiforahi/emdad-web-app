@@ -3,13 +3,15 @@
         <div class="row">
             <div class="col-md-7 border-right">
                 <div class="media">
-                    <img class="mr-3 prod-img" *ngIf="product.image1 != null"
+                    <a [routerLink]="['/product/details/', product.id]"><img class="mr-3 prod-img" *ngIf="product.image1 != null"
                         [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage"
                         alt="product image">
+                    </a>
+                    
                     <div class="media-body">
-                        <p class="product-name">
+                        <a style="cursor: pointer; text-decoration: none;" [routerLink]="['/product/details/', product.id]" class="product-name">
                             {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
-                        </p>
+                        </a>
                         <p class="store-name">{{product.seller.full_name | titlecase}}</p>
                         <p class="stock"><span>Stock :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
                         <p class="product-price">${{ get_unit_price(product.commission,product.unit_price) }}</p>
