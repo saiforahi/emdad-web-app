@@ -119,10 +119,15 @@ export class RfqPageComponent implements OnInit {
       address: value.address,
       seller: this.productData.seller.id,
       quantity: value.quantity,
+      unit_price: this.productData.unit_price,
+      total_price: parseFloat(value.quantity) * parseFloat(this.productData.unit_price),
       quotation: [
         {
           message: value.message,
           user: localStorage.getItem('uid'),
+          quantity: value.quantity,
+          unit_price: this.productData.unit_price,
+          total_price: parseFloat(value.quantity) * parseFloat(this.productData.unit_price)
         },
       ],
       rfq: {
