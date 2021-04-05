@@ -43,17 +43,17 @@ export class QuotationViewModalComponent implements OnInit {
         this.fb.group({
           message: '',
           user: localStorage.getItem('s_uid'),
-          // quantity: '',
-          // unit_price: '',
-          // total_price: ''
+          quantity: '',
+          unit_price: '',
+          total_price: ''
         }),
       ]),
 
     });
-    // this.quoteData = new FormGroup({
-    //   quantity: new FormControl("angular@gmail.com"),
-    //   unitPrice: new FormControl("abcd1234")
-    // });
+    this.quantity = this.quoteData.controls['quantity'];
+    this.unit_price = this.quoteData.controls['unit_price'];
+    this.total_price = this.quoteData.controls['total_price'];
+    this.attachments = this.quoteData.controls['attachments'];
   }
 
   removeFile(i:number){
@@ -86,7 +86,10 @@ export class QuotationViewModalComponent implements OnInit {
     this.quoteService.updateQuotationSeller(this.details.id,{
       quotation:[{
         message:"",
-        user:localStorage.getItem('s_uid')
+        user:localStorage.getItem('s_uid'),
+        quantity:data.quantity,
+        unit_price:data.unit_price,
+        total_price:data.total_price
       }],
       quantity:data.quantity,
       unit_price:data.unit_price,

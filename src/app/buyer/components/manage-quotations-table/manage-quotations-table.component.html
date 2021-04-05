@@ -39,7 +39,7 @@
       <!-- quotation id Column -->
       <ng-container matColumnDef="Quotation ID">
         <th mat-header-cell *matHeaderCellDef>Quotation ID</th>
-        <td mat-cell *matCellDef="let element">#{{ element.id }}</td>
+        <td mat-cell *matCellDef="let element"># {{ element.quotation_code }}</td>
       </ng-container>
 
       <!-- date Column -->
@@ -54,7 +54,7 @@
       <ng-container matColumnDef="RFQ ID">
         <th mat-header-cell *matHeaderCellDef>RFQ ID</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.rfq[0].id }}
+          # {{ element.rfq[0].id }}
         </td>
       </ng-container>
       <!-- buyer name Column -->
@@ -124,7 +124,7 @@
       <div class="modal-body row d-flex flex-column" *ngIf="quotation">
         <div class="justify-content-between">
           <p class="d-inline-block">
-            <span>Quotation ID:</span> {{ quotation.id }}
+            <span>Quotation ID:</span> # {{ quotation.quotation_code }}
           </p>
           <button
             (click)="hideModal()"

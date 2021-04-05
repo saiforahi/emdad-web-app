@@ -31,12 +31,13 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
       // console.log(item);
       this.quotationData = item.data;
       this.filtered_data=this.quotationData
-      console.log("RFQ table Data",this.quotationData);
+      console.log("Quotations",this.quotationData);
 
     })
   }
 
   openDialog(quotation) {
+    console.log('open dialog data',quotation)
     const dialogRef = this.dialog.open(QuotationViewModalComponent, {
       autoFocus: false,
       data: {quotation:quotation}

@@ -64,16 +64,17 @@ export class CheckoutComponent implements OnInit {
     this.isWired = false;
     this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
     console.log('cash details', this.cash_details);
+    this.addressService.get_addresses().subscribe((success) => {
+      this.addresses = success.data;
+      console.log('addresses',success)
+      if (this.addresses?.length == 1) {
+        this.selected_address = 0;
+      }
+    });
     this.authService.getUser(localStorage.getItem('uid')).subscribe((data) => {
       this.user = data.data;
       console.log(this.user);
       // if country is already set then load the cities of the country
-    });
-    this.addressService.get_addresses().subscribe((success) => {
-      this.addresses = success.data;
-      if (this.addresses.length == 1) {
-        this.selected_address = 0;
-      }
     });
   }
 

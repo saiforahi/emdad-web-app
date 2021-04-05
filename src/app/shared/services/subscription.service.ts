@@ -18,6 +18,12 @@ export class SubscriptionService {
     }),
   };
 
+  sellerHttpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+    }),
+  };
+
   plans(): Observable<any> {
     return this.http.get(config.base_url + 'api/subscription/plans/');
   }
@@ -51,7 +57,7 @@ export class SubscriptionService {
       config.base_url +
         'api/subscription/history/' +
         localStorage.getItem('s_uid') +
-        '/'
+        '/',this.sellerHttpOptions
     );
   }
 }

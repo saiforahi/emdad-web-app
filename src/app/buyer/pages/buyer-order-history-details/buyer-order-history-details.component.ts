@@ -128,7 +128,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     let total = 0;
     total = parseFloat(this.orders[0].order.discount_coupon_amount);
     this.discount = total;
-    return total;
+    return total.toFixed(2);
   }
 
   calVat() {
@@ -137,7 +137,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
       total += parseFloat(element.vat_amount);
     });
     this.vat = total;
-    return total;
+    return total.toFixed(2);
   }
 
   calTotal() {
@@ -147,10 +147,10 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   cal_individual_total(index:number) {
     if(parseFloat(this.orders[index].commission)>0){
       //let price=parseFloat(this.orders[index].unit_price) + 
-      return (parseFloat(this.orders[index].unit_price) + parseFloat(this.orders[index].commission))* parseFloat(this.orders[index].quantity)
+      return ((parseFloat(this.orders[index].unit_price) + parseFloat(this.orders[index].commission))* parseFloat(this.orders[index].quantity)).toFixed(2)
     }
     else{
-      return (parseFloat(this.orders[index].unit_price) + parseFloat(localStorage.getItem('commission')))* parseFloat(this.orders[index].quantity)
+      return ((parseFloat(this.orders[index].unit_price) + parseFloat(localStorage.getItem('commission')))* parseFloat(this.orders[index].quantity)).toFixed(2)
     }
   }
 

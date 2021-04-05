@@ -51,11 +51,8 @@ export class SubscriptionPlanPageComponent implements OnInit {
     });
     this.seller = localStorage.getItem('s_uid');
     this.created_by = localStorage.getItem('s_uid');
-    this.authService
-      .getUser(localStorage.getItem('s_uid'))
-      .subscribe((data) => {
+    this.authService.getUser(localStorage.getItem('s_uid')).subscribe((data) => {
         this.user = data.data;
-
         // retrieving country and city list
         if (this.user.country) {
           this.countryService.allCountries().subscribe((data) => {
@@ -163,7 +160,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
               cart_currency: 'SAR',
               cart_amount: this.total_paid_amount,
               customer_details: {
-                name: this.user.full_name,
+                name: this.user.store_name,
                 email: this.user.email,
                 phone: this.user.phone,
                 street1: this.user.area,
