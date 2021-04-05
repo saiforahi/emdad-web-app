@@ -331,7 +331,7 @@ mat-panel-title img {
     height: 30px !important;
   }
   .navbar-brand img {
-    height: 38px !important;
+    height: 50px !important;
   }
   .menu-btn img {
     height: 18px;
@@ -367,6 +367,12 @@ mat-panel-title img {
     height: 18px;
     width: 18px;
   }
+  .lang-btn{
+    height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 @media all and (min-width: 400px) and (max-width: 992px) {
   .mat-sidenav {
@@ -400,6 +406,12 @@ mat-panel-title img {
     height: 22px;
     width: 22px;
   }
+  .lang-btn{
+    height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 20px;
+  }
   nav .notification-list {
     max-height: 250px !important;
     min-width: 240px;
@@ -420,10 +432,26 @@ mat-panel-title img {
 z-index: 99999;
     justify-content: center !important;
   }
-
-  .navbar-brand img {
-    height: 45px;
-    text-align: center;
+  .lang-btn {
+    background: #f49814;
+    font-style: normal;
+    color: #ffffff;
+    border-radius: 30px;
+    margin-left: auto;
+    font-weight: normal;
+   
+    border: none;
+    box-shadow: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    font-family: Jost !important;
+  margin-top: 12px;
+   display: inline-block !important;
+  }
+img.logo {
+    height: 60px !important;
+ justify-self: center;
+ align-self: center;
   }
   .navbar-expand-lg .navbar-collapse {
     -webkit-box-orient: horizontal;
@@ -649,9 +677,15 @@ z-index: 99999;
     margin-top: 80px;
     min-height: calc(100vh - 90px);
   }
+ .navbar-brand{
+    text-align: center !important;
+    justify-content: center;
+    align-items: center;
+    
+  }
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 992px) {
   .container {
     max-width: 1600px !important;
   }

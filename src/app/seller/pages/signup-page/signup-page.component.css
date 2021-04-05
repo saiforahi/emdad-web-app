@@ -375,6 +375,9 @@ font-weight: 500;
   .login-form-holder{
     padding: 5px;
   }
+  .socially{
+    display: none !important;
+  }
   .logo-img{
     height:80px;
   }
@@ -407,6 +410,9 @@ font-weight: 500;
 label,.form-check-label,.join-text{
   font-size: 16px;
   line-height: 22px;
+}
+.lang-float{
+  display: none !important;
 }
 .login_btn{
   height: 45px;
@@ -457,12 +463,17 @@ padding-bottom: 10px;
      background-repeat: no-repeat;
      min-height: 650px;
   }
-  
+  .lang-float{
+    display: none !important;
+  }
   .login-form-holder{
     padding: 5px;
   }
   .logo-img{
     height: 100px;
+  }
+  .socially{
+    display: none !important;
   }
   .card-img-overlay {
   padding-top: 50px;
@@ -534,6 +545,12 @@ padding: 20px;
   }
   .container{
     padding: 30px;
+  }
+  .socially{
+    display: none !important;
+  }
+  .lang-float{
+    display: none !important;
   }
   .login-form-holder{
     padding: 5px;

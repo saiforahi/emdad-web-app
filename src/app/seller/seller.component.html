@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav *ngIf="loggedInUser" #sidenav [opened]="screenWidth > 992" [fixedInViewport]="true" [fixedTopGap]="0"
-    [fixedBottomGap]="0" [mode]="(screenWidth > 992) ? 'side' : 'over'">
+  <mat-sidenav *ngIf="loggedInUser" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
+    [fixedBottomGap]="0" [mode]="(screenWidth > 991) ? 'side' : 'over'">
     <section class="desktop-sidenav" >
       <img src="../../assets/logo.svg" alt="" class="img-fluid mx-auto">
       <section class="side-menu-holder">
@@ -424,16 +424,16 @@
     </div>
   </nav>
    
-  <div [ngStyle]="{'display' : (screenWidth > 992) ? 'none' : 'block'}">
+  <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}">
   
  <!--mobile nav-->
  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
-  <button class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg" alt="" /></button>
-  <div class="navbar-brand  text-center mx-auto">
-  <a  [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="mx-auto" /></a>
+  <button *ngIf="loggedInUser" class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg" alt="" /></button>
+  <div class="navbar-brand mx-auto">
+  <a  [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="logo" /></a>
 </div>
-  <ul class="mob-options">  
-    <li class="nav-item">
+  <ul class="mob-options" >  
+    <li class="nav-item" *ngIf="loggedInUser">
     <div ngbDropdown class="d-inline-block">
       <a class="nav-link" id="en-btn" ngbDropdownToggle>
         <img src="../assets/en-lan.svg" alt="" style="margin-right:2px" class="btn-icon" />
@@ -462,7 +462,7 @@
       </div>
     </div>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="loggedInUser">
     <div ngbDropdown class="d-inline-block">
       <a class="nav-link" id="notification-btn" ngbDropdownToggle>
         <img src="../assets/notification.svg" alt="" class="btn-icon"/>
@@ -497,6 +497,12 @@
         
       </div>
     </div>
+  </li>
+  <li class="nav-item" *ngIf="!loggedInUser">
+    <button mat-raised-button class="lang-btn">
+      <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
+       Arabic
+     </button>
   </li>
 </ul>
  </nav>
