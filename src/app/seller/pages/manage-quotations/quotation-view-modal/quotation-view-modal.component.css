@@ -1,36 +1,36 @@
-.dialogue-holder img {
-  width: 150px;
-  height: 150px;
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+*:focus {
+  outline: none !important;
+  border:transparent;
 }
-
-.media-body,
-.quotation-details {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 34px;
-}
-
 ::ng-deep .mat-dialog-container {
-  padding: 30px;
+  padding: 30px 30px 0;
   width: 900px;
   border-radius: 0;
 }
+.mat-dialog-content{
+  font-family: Jost;
+  padding: 20px;
+ /*  min-height: 550px; */
+  /* min-width: 900px; */
 
+ 
+}
+/*expansion panels*/
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
   border-bottom: 1px solid #eaeaea;
   border-radius: 0;
+  font-family: Jost;
 }
-
 ::ng-deep .mat-expansion-panel-header {
-  padding: 0 24px 0 0;
+  padding: 0 24px 0 15px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 34px;
+  line-height: 26px;
+  font-family: Jost;
 }
-
 ::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header {
   background: none !important;
 }
@@ -42,129 +42,323 @@
 }
 
 ::ng-deep .mat-expansion-panel-body {
-  padding: 0 24px 0 0;
+  padding: 0 24px 0 15px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 34px;
-}
-
-.rfq-form-holder {
-  padding: 30px 0 0;
-}
-
-*:focus {
-  outline: none;
-}
-
-.login_btn {
-  background: #1f4f9e;
-  border-radius: 5px;
-  height: 60px;
-  width: 300px;
-  font-weight: 500;
-  font-size: 18px;
-}
-
-label {
+  line-height: 26px;
   font-family: Jost;
+}
+.prod-head{
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 18px;
-}
+  line-height: 26px;
+ color: #2B2B2B;
+  }
+  .prod-desc{
+      font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2B2B2B;
+  }
+ 
+  .form-label{
+    font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    float: left !important;
+    color: #2b2b2b;
 
-.btn {
+  }
+.file-label{
+  font-family: Jost;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2b2b2b;
+}
+.alert-danger {
+  background: transparent;
   border: none;
+  color: #ff5f92;
+  float: left !important;
+  font-family: Jost;
+  
+ 
+}  
+app-form-input-alert{
+  padding: 0 !important;
 }
-
 .form-control {
   background: #efefef;
   border-radius: 5px;
   border: none;
-  height: 60px;
-}
-
-.form-label {
-  font-family: Jost;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 29px;
-  color: #2b2b2b;
-}
-
-.bottom-text {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 29px;
-  text-align: center;
-  color: #2b2b2b;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  margin-top: 7px;
-}
-
-.input-group-text {
-  border: 0 !important;
-  background: #efefef;
-  padding: 0 22px;
-  font-size: 17px;
-}
-
-.form-control:focus {
-  box-shadow: none;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  width: 80px;
   height: 80px;
-  background-image: url("../../../../../assets/upload.svg");
-  background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: center center;
-  border-radius: 5px;
-  border: 3px dashed #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
 }
+.input-group-text{
+  background-color: #EFEFEF;
+   border: 0px transparent;
+   height: 60px;
+   font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
 
-.attached-file {
-  display: inline-block;
-  vertical-align: top;
+
+color: #2B2B2B;
 }
-
-.attached-file {
-  list-style: none !important;
-  font-size: 20px;
+input[type=number]{
+  height: 60px !important;
 }
+input[type=number] {
+  -moz-appearance: textfield ;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  .stick{
+      font-size:18px;
+      line-height: 26px;
+  }
+  .align-left{
+    text-align: left !important;
+    font-family: Jost;
+  }
+/*attachments*/
+input[type="file"] {
+    display: none;
+  }
 
-.attached-file button {
-  border-radius: 50%;
+  
+  .custom-file-upload {
+    width: 80px;
+    height: 80px;
+    background-image: url("../../../../../assets/icons/Uploadupload-grey.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center center;
+    border-radius: 5px;
+    border: 2px dashed #CFCFCF;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+ .attached-file {
+    
+   /*  vertical-align: top; */
+    list-style: none !important;
+    font-size: 16px;
+  }
+  
+  .attached-file{
+    display: inline-block !important;
+    margin-left: -20px;
+  }
+  .attached-file li{
+    margin-top: 5px;
+    margin-left: -20px;
+  }
+   
+  .attached-file button {
+  /*   border-radius: 50%;
+  */
   width: 24px;
   height: 24px;
-  background: #ff4b55;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-}
-.mat-dialog-actions>button{
-  background-color: white !important;
-  background: white !important;
-  color: #FF4B55;
-float: right;
- margin-top: -35px;
- padding: 0;
- font-size: 16px;
- font-weight: normal !important;
- outline: none !important;
- border: 0px transparent !important;
+    background: #ff4b55;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    justify-self: center;
+    vertical-align: middle;
+    align-self: center;
+    
+  }
+  .mat-icon{
+    font-size: 8px;
+  }
+  .login_btn{
+    background: #1F4F9E;
+    border-radius: 5px;
+    font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+text-align: center;
+float: left;
+width: 230px;
+height: 60px;
 
+/* white */
+}
+/*   .mat-icon{
+    font-size: 14px;
+  } */
+  .file-warn{
+    text-align: left !important;
+  }
+
+
+
+
+
+
+
+@media all and (min-width:290px) and (max-width:576px){
+  .quote-button{
+    width:180px;
+    margin-top:20px;
+    font-size: 14px;
+    line-height: 20px; 
+    height: 40px;
+  }
+  .login_btn{
+    clear: left;
+    height: 45px;
+  
+    width: 180px;
+   
+  }
+  .mobile-show{
+    text-align: center !important;
+    justify-content: center;
+  }
+  .prod-desc,.prod-head,::ng-deep .mat-expansion-panel-header,::ng-deep .mat-expansion-panel-body{
+    font-size: 14px;
+    line-height: 20px; 
+    }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mat-icon{
+    font-size: 10px;
+
+  }
+ .form-label,.file-label,input{
+    font-size: 14px;
+line-height: 20px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 40px;
+    width: 40px;
+  }
+  .form-control{
+    height: 60px;
+  }
+  .attachments{
+display: block !important;
+  }
+
+  .attached-file,.attached-file li{
+    display: block !important;
+    margin-left: -12px;
+  }
+}
+@media all and (min-width:576px) and (max-width:768px){
+  .quote-button{
+    width:240px;
+    margin-top:20px;
+    font-size: 16px;
+    line-height: 23px; 
+    height: 40px;
+  }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-label,.file-label{
+    font-size: 16px;
+line-height: 23px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .attachments{
+    display: block !important;
+      }
+    
+      .attached-file,.attached-file li{
+        display: block !important;
+        margin-left: -12px;
+      }
+      .login_btn{
+        height: 50px;
+        width: 220px;
+      }
+      .custom-file-upload{
+        /* background-size: 5%; */
+        height: 60px;
+        width: 60px;
+      }
+      .form-control{
+        height: 60px;
+      }
+      .prod-desc,.prod-head,::ng-deep .mat-expansion-panel-header,::ng-deep .mat-expansion-panel-body{
+        font-size: 16px;
+        line-height: 23px; 
+        }
+}
+@media all and (min-width:768px) and (max-width:992px){
+  .quote-button{
+    width:320px;
+    margin-top:20px;
+    font-size: 16px;
+    line-height: 23px; 
+   
+  }
+  .attached-file,.login_btn,.attached-file button{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .form-label,.file-label{
+    font-size: 16px;
+line-height: 23px;
+
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .form-control{
+    height: 60px;
+  }
+  .attachments{
+    display: block !important;
+      }
+    
+      .attached-file,.attached-file li{
+        display: block !important;
+        margin-left: -15px;
+      }
+      .login_btn{
+        height: 50px;
+        width: 280px;
+      }
+      .prod-desc,.prod-head,::ng-deep .mat-expansion-panel-header,::ng-deep .mat-expansion-panel-body{
+        font-size: 16px;
+        line-height: 23px; 
+        }
 }
