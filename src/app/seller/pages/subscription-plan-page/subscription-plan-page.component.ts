@@ -53,6 +53,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
     this.created_by = localStorage.getItem('s_uid');
     this.authService.getUser(localStorage.getItem('s_uid')).subscribe((data) => {
         this.user = data.data;
+        console.log('user',this.user)
         // retrieving country and city list
         if (this.user.country) {
           this.countryService.allCountries().subscribe((data) => {
@@ -163,7 +164,7 @@ export class SubscriptionPlanPageComponent implements OnInit {
                 name: this.user.store_name,
                 email: this.user.email,
                 phone: this.user.phone,
-                street1: this.user.area,
+                street1: this.user.store_address,
                 city: this.user.city.name,
                 state: 'DU',
                 country: this.user.country.iso2,

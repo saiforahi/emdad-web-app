@@ -131,7 +131,7 @@ export class SignupPageComponent implements OnInit {
   // "zip_code": 1216
 
   onSubmit(value) {
-    // console.log(value);
+     console.log(value);
     this.spinner.show();
     // var data = {"email":"seller@user.com",
     // "password":"Abcd1234#",
@@ -146,6 +146,8 @@ export class SignupPageComponent implements OnInit {
     this.sellerRegFormData.append("password", value.password);
     this.sellerRegFormData.append("store_name", value.comName);
     this.sellerRegFormData.append("phone", value.comPhone);
+    this.sellerRegFormData.append("city", value.city);
+    this.sellerRegFormData.append("country", value.country);
     this.sellerRegFormData.append("store_address", value.comAddress);
     this.sellerRegFormData.append("zip_code", value.zipCode);
     this.authService.sellerSignup(this.sellerRegFormData).subscribe(
