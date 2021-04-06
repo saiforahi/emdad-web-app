@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SellerAuthGuard } from '../shared/services/user-auth.service';
+// import { SellerApproveGuard } from '../shared/services/user-auth.service';
+// import { SellerApproveGuard } from '../shared/services/user-auth.service';
 import { SellerComponent } from './seller.component';
 
 const routes: Routes = [
@@ -36,6 +38,13 @@ const routes: Routes = [
           import(
             './pages/forgot-password-page/forgot-password-page.module'
           ).then((m) => m.ForgotPasswordPageModule),
+      },
+      {
+        path: 'welcome',
+        loadChildren: () =>
+          import(
+            './pages/welcome-page/welcome-page.module'
+          ).then((m) => m.WelcomePageModule),
       },
       {
         path: 'profile',

@@ -34,7 +34,7 @@ export class UserAuthService {
   // uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   s_uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   s_uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  s_uImg:BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  s_uImg: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   emailVerificationStatus: BehaviorSubject<any> = new BehaviorSubject<any>(
     null
   );
@@ -50,44 +50,67 @@ export class UserAuthService {
   }
 
   private setSession(authResult) {
-    const token = authResult.token;
-    const payload = <JWTPayload>jwt_decode(token);
-    console.log(payload);
-    if (authResult.group == 'buyer') {
-      const expiresAt = moment.unix(payload.exp);
-      localStorage.setItem('token', authResult.token);
-      localStorage.setItem('username', payload.username);
-      if (authResult.profile_pic.length > 0)
+    if (authResult.token != undefined) {
+      const token = authResult.token;
+      const payload = <JWTPayload>jwt_decode(token);
+      if (authResult.group == 'buyer') {
+        const expiresAt = moment.unix(payload.exp);
+        localStorage.setItem('token', authResult.token);
+        localStorage.setItem('username', payload.username);
+        if (authResult.profile_pic.length > 0)
+          localStorage.setItem(
+            'uimg',
+            config.img_base_url + authResult.profile_pic
+          );
+        else localStorage.setItem('uimg', authResult.profile_pic);
+        localStorage.setItem('uid', JSON.stringify(payload.user_id));
+        // localStorage.setItem('group', authResult.group);
+        localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+        this.uName.next(localStorage.getItem('username'));
+        this.uImg.next(localStorage.getItem('uimg'));
+        this.uId.next(localStorage.getItem('uid'));
+        // this.uGroup.next(localStorage.getItem('group'));
+      }
+      if (authResult.group == 'seller') {
+        console.log(authResult);
+        // full_name: ""
+        // group: "seller"
+        // is_active: true
+        // is_approved: false
+        // is_subscribed: ""
+        // message: "User logged in  successfully"
+        // profile_pic: "/media/uploads/users/images/redmi10.jpg"
+        // status code: 200
+        // success: "True"
+        const expiresAt = moment.unix(payload.exp);
+        localStorage.setItem('s_token', authResult.token);
+        // localStorage.setItem('group', authResult.group);
+        localStorage.setItem('s_username', payload.username);
+        if (authResult.profile_pic.length > 0)
+          localStorage.setItem(
+            's_uimg',
+            config.img_base_url + authResult.profile_pic
+          );
+        else localStorage.setItem('s_uimg', authResult.profile_pic);
+        localStorage.setItem('s_uid', JSON.stringify(payload.user_id));
+        // localStorage.setItem('is_active', JSON.stringify(authResult.is_active));
         localStorage.setItem(
-          'uimg',
-          config.img_base_url + authResult.profile_pic
+          'is_approved',
+          JSON.stringify(authResult.is_approved)
         );
-      else localStorage.setItem('uimg', authResult.profile_pic);
-      localStorage.setItem('uid', JSON.stringify(payload.user_id));
-      // localStorage.setItem('group', authResult.group);
-      localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-      this.uName.next(localStorage.getItem('username'));
-      this.uImg.next(localStorage.getItem('uimg'));
-      this.uId.next(localStorage.getItem('uid'));
-      // this.uGroup.next(localStorage.getItem('group'));
-    }
-    if (authResult.group == 'seller') {
-      const expiresAt = moment.unix(payload.exp);
-      localStorage.setItem('s_token', authResult.token);
-      // localStorage.setItem('group', authResult.group);
-      localStorage.setItem('s_username', payload.username);
-      if (authResult.profile_pic.length > 0)
         localStorage.setItem(
-          's_uimg',
-          config.img_base_url + authResult.profile_pic
+          'is_subscribed',
+          JSON.stringify(authResult.is_subscribed)
         );
-      else localStorage.setItem('s_uimg', authResult.profile_pic);
-      localStorage.setItem('s_uid', JSON.stringify(payload.user_id));
-      localStorage.setItem('s_expires_at', JSON.stringify(expiresAt.valueOf()));
-      this.s_uName.next(localStorage.getItem('s_username'));
-      this.s_uId.next(localStorage.getItem('s_uid'));
-      this.s_uImg.next(localStorage.getItem('s_uimg'));
-      // this.uGroup.next(localStorage.getItem('group'));
+        localStorage.setItem(
+          's_expires_at',
+          JSON.stringify(expiresAt.valueOf())
+        );
+        this.s_uName.next(localStorage.getItem('s_username'));
+        this.s_uId.next(localStorage.getItem('s_uid'));
+        this.s_uImg.next(localStorage.getItem('s_uimg'));
+        // this.uGroup.next(localStorage.getItem('group'));
+      }
     }
   }
 
@@ -99,7 +122,7 @@ export class UserAuthService {
     var data = { email: email, password: password, group: group };
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
-        console.log(response)
+        console.log(response);
         this.setSession(response);
       }),
       shareReplay()
@@ -356,10 +379,7 @@ export class UserAuthService {
       }),
     };
     const updateURL =
-      config.base_url +
-      'api/change/profile/image/' +
-      userId +
-      '/';
+      config.base_url + 'api/change/profile/image/' + userId + '/';
     return this.http.post(updateURL, pro_pic, httpOptions);
   }
 
@@ -370,10 +390,7 @@ export class UserAuthService {
       }),
     };
     const updateURL =
-      config.base_url +
-      'api/change/store/image/' +
-      userId +
-      '/';
+      config.base_url + 'api/change/store/image/' + userId + '/';
     return this.http.post(updateURL, store_pic, httpOptions);
   }
 }
@@ -459,3 +476,50 @@ export class SellerAuthGuard implements CanActivate {
     }
   }
 }
+
+// @Injectable()
+// export class SellerApproveGuard implements CanActivate {
+//   constructor(
+//     private UserAuthService: UserAuthService,
+//     private router: Router,
+//     private subscription: SubscriptionService
+//   ) {}
+
+//   canActivate() {
+//     if (localStorage.getItem('is_approved') != 'true') {
+//       console.log('!is_approved');
+//       this.router.navigate(['/dashboard/welcome']);
+//       return true;
+//     }
+//     // else if (localStorage.getItem('is_approved') == 'true' && localStorage.getItem('is_subscribed') != 'true'){
+//     //   console.log(localStorage.getItem('is_subscribed'));
+//     //   this.router.navigate(['/dashboard/subscription-plan']);
+//     //   return false;
+//     // }
+//     // else {
+//     //   this.router.navigate(['/dashboard/subscription-plan']);
+//     //   return false;
+//     // }
+//   }
+// }
+
+// @Injectable()
+// export class SellerSubscribedGuard implements CanActivate {
+//   constructor(
+//     private UserAuthService: UserAuthService,
+//     private router: Router,
+//     private subscription: SubscriptionService
+//   ) {}
+
+//   canActivate() {
+//     if (localStorage.getItem('is_subscribed') != 'true') {
+//       console.log('!is_subscribed');
+//       this.router.navigate(['/dashboard/subscription-plan']);
+//       // return true;
+//     }else {
+//       console.log('is_subscribed');
+//       this.router.navigate(['/dashboard']);
+//       return false;
+//     }
+//   }
+// }

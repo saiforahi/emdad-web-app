@@ -26,6 +26,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   @ViewChild('sidenav') sidenav: any;
   activeRoute: string[];
   showSpinner: any;
+  showMenu: boolean = true;
+
   toggleSidenav() {
     this.sidenav.toggle();
     console.log(this.sidenav.toggle);
@@ -56,6 +58,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
       this.router.url.split('/')[2] == 'login' ||
       this.router.url.split('/')[2] == 'signup'
     ) {
+      this.showMenu = false;
     }
     this.UserAuthService.s_uName.subscribe((data) => {
       if (data == null) {

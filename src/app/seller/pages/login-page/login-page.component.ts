@@ -51,10 +51,14 @@ export class LoginPageComponent implements OnInit {
     // console.log(value);
     this.authService.login(value.email, value.password, 'seller').subscribe(
       (success) => {
-        console.log(success);
+        // console.log(success);
         this.spinner.hide();
-        swal('Succeed', 'You have logged in successfully', 'success');
-        this.router.navigate(['dashboard']);
+        if (success.success == 'True') {
+          swal('Succeed', success.message, 'success');
+          this.router.navigate(['dashboard']);
+        } else if (success.success != 'True'){
+          swal('Failed!', success.message, 'error');
+        }
       },
       (error) => {
         this.error = error;

@@ -1,522 +1,582 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav *ngIf="loggedInUser" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
-    [fixedBottomGap]="0" [mode]="(screenWidth > 991) ? 'side' : 'over'">
-    <section class="desktop-sidenav" >
-      <img src="../../assets/logo.svg" alt="" class="img-fluid mx-auto">
-      <section class="side-menu-holder">
-        <ul>
-          <!--dashboard item-->
-          <a mat-button [routerLink]="['/dashboard']"
-          [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
-          <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
-        </a>
-        <!--Manage Profile-->
-        <li class="accordion-menu-item">
-          <!-- Manage Profile -->
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="activeRoute[2] == 'profile' || activeRoute[2] == 'bank-info' || activeRoute[2] == 'change-password'">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <img src="../../assets/seller-Profile.svg" alt="">
-                  Manage Profile
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ul class="child-item">
-                <a [routerLink]="['/dashboard/profile']">
-                  <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt=""> Company Profile
-                  </li>
-                </a>
-                <a [routerLink]="['/dashboard/bank-info']">
-                  <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
-                    Information
-                  </li>
-                </a>
-                <a [routerLink]="['/dashboard/change-password']">
-                  <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/dot-light.svg" alt="">Change
-                    Password
-                  </li>
-                </a>
-              </ul>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </li>
-        <!-- Manage Profile Ends -->
-        <!--Manage Subscription Starts-->
-        <li class="accordion-menu-item">
-          <!-- Manage Subscription -->
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="activeRoute[2] == 'subscription-plan' || activeRoute[2] == 'payment-history'">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <img src="../../assets/Wallet.svg" alt="">
-                  Manage Subscription
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ul class="child-item">
-                <a [routerLink]="['/dashboard/subscription-plan']">
-                  <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt="">
-                    Subscription Plan
-                  </li>
-                </a>
-                <a [routerLink]="['/dashboard/payment-history']">
-                  <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">Payment
-                    History
-                  </li>
-                </a>
-              </ul>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </li>
-        <!--Manage Subscription Ends-->
-        <!-- Manage Products starts-->
-        <li class="accordion-menu-item">
-          <!-- Manage Products -->
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="activeRoute[2] == 'products' || activeRoute[2] == 'bulk-products-upload' || activeRoute[2] == 'upload-products'">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <img src="../../assets/Chart.svg" alt="">
-                  Manage Products
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ul class="child-item">
-                <a [routerLink]="['/dashboard/products']">
-                  <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt=""> Product Categories</li>
-                </a>
-                <a [routerLink]="['/dashboard/bulk-products-upload']">
-                  <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt=""> Bulk Products Import</li>
-                </a>
-                <a [routerLink]="['/dashboard/upload-products']">
-                  <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""> Upload Products</li>
-                </a>
-              </ul>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </li>
-        <!-- Manage Products ends-->
-        <!--Manage RFQ starts-->
-        <a mat-button [routerLink]="['/dashboard/manage-rfqs']" [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''">
-          <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
-        </a>
-         <!--Manage RFQ ends-->
-         <!--Manage quotation starts-->
-         <a mat-button [routerLink]="['/dashboard/manage-quotations']" [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''">
-          <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
-        </a>
-         <!--Manage quotation ends-->
-         <!--Manage order starts-->
-         <li class="accordion-menu-item">
-          <!-- Manage Order -->
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="activeRoute[2] == 'current-orders' || activeRoute[2] == 'order-history' || activeRoute[2] == 'invoices'">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <img src="../../assets/Buy.svg" alt="">
-                  Manage Order
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ul class="child-item">
-                <a [routerLink]="['/dashboard/current-orders']">
-                  <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""> Current Order</li>
-                </a>
-                <a [routerLink]="['/dashboard/order-history']">
-                  <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""> Order History</li>
-                </a>
-                <a [routerLink]="['/dashboard/invoices']">
-                  <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
-                    <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="">
-                    <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt=""> Invoices</li>
-                </a>
-              </ul>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </li>
-         <!--Manage order ends-->
-         <!--Support page starts-->
-         <a mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
-          <li><img src="../../assets/Chat.svg" alt=""> Support</li>
-        </a>
-         <!--Support page ends-->
-        </ul>
+  <div *ngIf="showMenu">
+    <mat-sidenav *ngIf="loggedInUser" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
+      [fixedBottomGap]="0" [mode]="(screenWidth > 991) ? 'side' : 'over'">
+      <section class="desktop-sidenav">
+        <img src="../../assets/logo.svg" alt="" class="img-fluid mx-auto">
+        <section class="side-menu-holder">
+          <ul>
+            <!--dashboard item-->
+            <a mat-button [routerLink]="['/dashboard']"
+              [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
+              <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
+            </a>
+            <!--Manage Profile-->
+            <li class="accordion-menu-item">
+              <!-- Manage Profile -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'profile' || activeRoute[2] == 'bank-info' || activeRoute[2] == 'change-password'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/seller-Profile.svg" alt="">
+                      Manage Profile
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/profile']">
+                      <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt=""> Company
+                        Profile
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/bank-info']">
+                      <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
+                        Information
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/change-password']">
+                      <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/dot-light.svg" alt="">Change
+                        Password
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!-- Manage Profile Ends -->
+            <!--Manage Subscription Starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Subscription -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'subscription-plan' || activeRoute[2] == 'payment-history'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/Wallet.svg" alt="">
+                      Manage Subscription
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/subscription-plan']">
+                      <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt="">
+                        Subscription Plan
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/payment-history']">
+                      <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">Payment
+                        History
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!--Manage Subscription Ends-->
+            <!-- Manage Products starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Products -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'products' || activeRoute[2] == 'bulk-products-upload' || activeRoute[2] == 'upload-products'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/Chart.svg" alt="">
+                      Manage Products
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/products']">
+                      <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt=""> Product
+                        Categories
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/bulk-products-upload']">
+                      <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt="">
+                        Bulk Products Import
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/upload-products']">
+                      <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""> Upload
+                        Products
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!-- Manage Products ends-->
+            <!--Manage RFQ starts-->
+            <a mat-button [routerLink]="['/dashboard/manage-rfqs']"
+              [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''">
+              <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
+            </a>
+            <!--Manage RFQ ends-->
+            <!--Manage quotation starts-->
+            <a mat-button [routerLink]="['/dashboard/manage-quotations']"
+              [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''">
+              <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
+            </a>
+            <!--Manage quotation ends-->
+            <!--Manage order starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Order -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'current-orders' || activeRoute[2] == 'order-history' || activeRoute[2] == 'invoices'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/Buy.svg" alt="">
+                      Manage Order
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/current-orders']">
+                      <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""> Current
+                        Order
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/order-history']">
+                      <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""> Order
+                        History
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/invoices']">
+                      <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt=""> Invoices
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!--Manage order ends-->
+            <!--Support page starts-->
+            <a mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
+              <li><img src="../../assets/Chat.svg" alt=""> Support</li>
+            </a>
+            <!--Support page ends-->
+          </ul>
+        </section>
       </section>
-    </section>
-    <section class="mobile-sidenav">
-      <div class="close-btn mb-2 mr-2">
-      <button class="close-nav" (click)="sidenav.close();"><i class="fas fa-times mt-0 p-0"></i></button>
-    </div>
-      <div class="mobile-username-holder mt-3">
-      <div class="mobile-user-name" *ngIf="loggedInUser">
-        <div class="mob-img-holder">
-        <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
-        src="../../../../assets/Profile.svg" alt="" />
-        <img *ngIf="loggedInUserImg != ''"  src="{{loggedInUserImg}}" alt=""  />
-      </div>
-        <span *ngIf="loggedInUser" class="name-show">{{userName}}</span>
-      </div>
-    </div>
-    <div class="mob-sidemenu-holder">
-      <ul>
-         <!--dashboard item-->
-         <a mat-button [routerLink]="['/dashboard']" (click)="sidenav.close();"
-         [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
-         <li><img src="../../assets/icons/Category-small.svg" alt="" class="img-fluid"> Dashboard</li>
-       </a>
-       <!--Manage Profile-->
-       <li class="accordion-menu-item">
-         <!-- Manage Profile -->
-         <mat-accordion>
-           <mat-expansion-panel [expanded]="activeRoute[2] == 'profile' || activeRoute[2] == 'bank-info' || activeRoute[2] == 'change-password'">
-             <mat-expansion-panel-header>
-               <mat-panel-title>
-                 <img src="../../assets/icons/profile-small.svg" alt="" class="img-fluid">
-                 Manage Profile
-               </mat-panel-title>
-             </mat-expansion-panel-header>
-             <ul class="child-item">
-               <a [routerLink]="['/dashboard/profile']"  (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/icons/blue-dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/icons/white-dot.svg" alt="" class="dot"> Company Profile
-                 </li>
-               </a>
-               <a [routerLink]="['/dashboard/bank-info']" (click)="sidenav.close();">
-                <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
-                  <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
-                  <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
-                  Information
-                </li>
-              </a>
-               <a [routerLink]="['/dashboard/change-password']"  (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/icons/blue-dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/icons/white-dot.svg" alt="" class="dot">Change
-                   Password
-                 </li>
-               </a>
-             </ul>
-           </mat-expansion-panel>
-         </mat-accordion>
-       </li>
-       <!-- Manage Profile Ends -->
-       <!--Manage Subscription Starts-->
-       <li class="accordion-menu-item">
-         <!-- Manage Subscription -->
-         <mat-accordion>
-           <mat-expansion-panel [expanded]="activeRoute[2] == 'subscription-plan' || activeRoute[2] == 'payment-history'">
-             <mat-expansion-panel-header>
-               <mat-panel-title>
-                 <img src="../../assets/icons/Wallet-small.svg" alt="" class="img-fluid">
-                 Manage Subscription
-               </mat-panel-title>
-             </mat-expansion-panel-header>
-             <ul class="child-item">
-               <a [routerLink]="['/dashboard/subscription-plan']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt="" class="dot">
-                   Subscription Plan
-                 </li>
-               </a>
-               <a [routerLink]="['/dashboard/payment-history']" (click)="sidenav.close();" >
-                 <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="" class="dot">Payment
-                   History
-                 </li>
-               </a>
-             </ul>
-           </mat-expansion-panel>
-         </mat-accordion>
-       </li>
-       <!--Manage Subscription Ends-->
-       <!-- Manage Products starts-->
-       <li class="accordion-menu-item">
-         <!-- Manage Products -->
-         <mat-accordion>
-           <mat-expansion-panel [expanded]="activeRoute[2] == 'products' || activeRoute[2] == 'bulk-products-upload' || activeRoute[2] == 'upload-products'">
-             <mat-expansion-panel-header>
-               <mat-panel-title>
-                 <img src="../../assets/icons/Chart-small.svg" alt="" class="img-fluid">
-                 Manage Products
-               </mat-panel-title>
-             </mat-expansion-panel-header>
-             <ul class="child-item">
-               <a [routerLink]="['/dashboard/products']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt="" class="dot"> Product Categories</li>
-               </a>
-               <a [routerLink]="['/dashboard/bulk-products-upload']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt="" class="dot"> Bulk Products Import</li>
-               </a>
-               <a [routerLink]="['/dashboard/upload-products']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt="" class="dot"> Upload Products</li>
-               </a>
-             </ul>
-           </mat-expansion-panel>
-         </mat-accordion>
-       </li>
-       <!-- Manage Products ends-->
-       <!--Manage RFQ starts-->
-       <a mat-button [routerLink]="['/dashboard/manage-rfqs']" [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''" (click)="sidenav.close();">
-         <li><img src="../../assets/icons/seller-document.svg" alt="" class="img-fluid"> Manage RFQs</li>
-       </a>
-        <!--Manage RFQ ends-->
-        <!--Manage quotation starts-->
-        <a mat-button [routerLink]="['/dashboard/manage-quotations']" [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''" (click)="sidenav.close();">
-         <li><img src="../../assets/icons/quotation-small.svg" alt="" class="img-fluid"> Manage Quotations</li>
-       </a>
-        <!--Manage quotation ends-->
-        <!--Manage order starts-->
-        <li class="accordion-menu-item">
-         <!-- Manage Order -->
-         <mat-accordion>
-           <mat-expansion-panel [expanded]="activeRoute[2] == 'current-orders' || activeRoute[2] == 'order-history' || activeRoute[2] == 'invoices'">
-             <mat-expansion-panel-header>
-               <mat-panel-title>
-                 <img src="../../assets/icons/Buycart-small.svg" alt="" class="img-fluid">
-                 Manage Order
-               </mat-panel-title>
-             </mat-expansion-panel-header>
-             <ul class="child-item">
-               <a [routerLink]="['/dashboard/current-orders']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt="" class="dot"> Current Order</li>
-               </a>
-               <a [routerLink]="['/dashboard/order-history']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt="" class="dot"> Order History</li>
-               </a>
-               <a [routerLink]="['/dashboard/invoices']" (click)="sidenav.close();">
-                 <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
-                   <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="" class="dot">
-                   <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt="" class="dot"> Invoices</li>
-               </a>
-             </ul>
-           </mat-expansion-panel>
-         </mat-accordion>
-       </li>
-        <!--Manage order ends-->
-        <!--Support page starts-->
-        <a mat-button [routerLink]="['/dashboard/support']" (click)="sidenav.close();" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
-         <li><img src="../../assets/icons/chat-small.svg" class="img-fluid" alt=""> Support</li>
-       </a>
-        <!--Support page ends-->
-        <!--logout button-->
-        <a mat-button (click)="logout();" class="logout">
-          <li><img src="../../assets/icons/logout-small.svg" class="img-fluid" alt="">Logout</li>
-        </a>
-      </ul>
-    </div>
-    </section>
-  </mat-sidenav>
-<mat-sidenav-content>  
+      <section class="mobile-sidenav">
+        <div class="close-btn mb-2 mr-2">
+          <button class="close-nav" (click)="sidenav.close();"><i class="fas fa-times mt-0 p-0"></i></button>
+        </div>
+        <div class="mobile-username-holder mt-3">
+          <div class="mobile-user-name" *ngIf="loggedInUser">
+            <div class="mob-img-holder">
+              <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
+                src="../../../../assets/Profile.svg" alt="" />
+              <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
+            </div>
+            <span *ngIf="loggedInUser" class="name-show">{{userName}}</span>
+          </div>
+        </div>
+        <div class="mob-sidemenu-holder">
+          <ul>
+            <!--dashboard item-->
+            <a mat-button [routerLink]="['/dashboard']" (click)="sidenav.close();"
+              [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
+              <li><img src="../../assets/icons/Category-small.svg" alt="" class="img-fluid"> Dashboard</li>
+            </a>
+            <!--Manage Profile-->
+            <li class="accordion-menu-item">
+              <!-- Manage Profile -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'profile' || activeRoute[2] == 'bank-info' || activeRoute[2] == 'change-password'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/icons/profile-small.svg" alt="" class="img-fluid">
+                      Manage Profile
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/profile']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/icons/blue-dot.svg" alt=""
+                          class="dot">
+                        <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/icons/white-dot.svg" alt=""
+                          class="dot"> Company Profile
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/bank-info']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
+                        <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
+                        Information
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/change-password']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/icons/blue-dot.svg" alt=""
+                          class="dot">
+                        <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/icons/white-dot.svg" alt=""
+                          class="dot">Change
+                        Password
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!-- Manage Profile Ends -->
+            <!--Manage Subscription Starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Subscription -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'subscription-plan' || activeRoute[2] == 'payment-history'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/icons/Wallet-small.svg" alt="" class="img-fluid">
+                      Manage Subscription
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/subscription-plan']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt=""
+                          class="dot">
+                        <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt=""
+                          class="dot">
+                        Subscription Plan
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/payment-history']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt=""
+                          class="dot">Payment
+                        History
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!--Manage Subscription Ends-->
+            <!-- Manage Products starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Products -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'products' || activeRoute[2] == 'bulk-products-upload' || activeRoute[2] == 'upload-products'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/icons/Chart-small.svg" alt="" class="img-fluid">
+                      Manage Products
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/products']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt="" class="dot">
+                        Product Categories
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/bulk-products-upload']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt=""
+                          class="dot">
+                        <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt=""
+                          class="dot"> Bulk Products Import
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/upload-products']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""
+                          class="dot"> Upload Products
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!-- Manage Products ends-->
+            <!--Manage RFQ starts-->
+            <a mat-button [routerLink]="['/dashboard/manage-rfqs']"
+              [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''" (click)="sidenav.close();">
+              <li><img src="../../assets/icons/seller-document.svg" alt="" class="img-fluid"> Manage RFQs</li>
+            </a>
+            <!--Manage RFQ ends-->
+            <!--Manage quotation starts-->
+            <a mat-button [routerLink]="['/dashboard/manage-quotations']"
+              [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''" (click)="sidenav.close();">
+              <li><img src="../../assets/icons/quotation-small.svg" alt="" class="img-fluid"> Manage Quotations</li>
+            </a>
+            <!--Manage quotation ends-->
+            <!--Manage order starts-->
+            <li class="accordion-menu-item">
+              <!-- Manage Order -->
+              <mat-accordion>
+                <mat-expansion-panel
+                  [expanded]="activeRoute[2] == 'current-orders' || activeRoute[2] == 'order-history' || activeRoute[2] == 'invoices'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <img src="../../assets/icons/Buycart-small.svg" alt="" class="img-fluid">
+                      Manage Order
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ul class="child-item">
+                    <a [routerLink]="['/dashboard/current-orders']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""
+                          class="dot"> Current Order
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/order-history']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""
+                          class="dot"> Order History
+                      </li>
+                    </a>
+                    <a [routerLink]="['/dashboard/invoices']" (click)="sidenav.close();">
+                      <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
+                        <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="" class="dot">
+                        <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt="" class="dot">
+                        Invoices
+                      </li>
+                    </a>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </li>
+            <!--Manage order ends-->
+            <!--Support page starts-->
+            <a mat-button [routerLink]="['/dashboard/support']" (click)="sidenav.close();"
+              [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
+              <li><img src="../../assets/icons/chat-small.svg" class="img-fluid" alt=""> Support</li>
+            </a>
+            <!--Support page ends-->
+            <!--logout button-->
+            <a mat-button (click)="logout();" class="logout">
+              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid" alt="">Logout</li>
+            </a>
+          </ul>
+        </div>
+      </section>
+    </mat-sidenav>
+  </div>
+  <mat-sidenav-content>
+    <div *ngIf="showMenu">
+      <nav *ngIf="loggedInUser" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav">
 
-  <nav *ngIf="loggedInUser" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav">
-    
-    <div class="container">
-      <!-- top navbar -->
-      <ul class="navbar-nav">
-        <li class="nav-item user-name-holder" style="margin-right: 30px" ngbDropdown>
-          <div class="user-name" *ngIf="loggedInUser" ngbDropdownToggle>
-            <div class="d-inline-block user-img-holder">
-            <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
-            src="../../../../assets/Profile.svg" alt="" />
-            <img *ngIf="loggedInUserImg != ''"  src="{{loggedInUserImg}}" alt=""  />
-          </div>
-            <span *ngIf="loggedInUser" style="margin-left: 15px;">{{userName}}</span>
-          </div>
-          <div ngbDropdownMenu>
-            <div ngbDropdownItem (click)="logout();">
-              <label class="">
-                <img src="../assets/seller-logout.svg" alt="" />
-                <span class="lan-title">Log out</span>
-              </label>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div ngbDropdown class="d-inline-block">
-            <a class="nav-link" id="en-btn" ngbDropdownToggle>
-              <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
-              <img src="../assets/down-carrot.svg" alt="" />
-            </a>
-            <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
-              <div ngbDropdownItem>
-                <label class="lan-radio-btn">
-                  <img src="../assets/en-lan.svg" alt="" />
-                  <span class="lan-title">English</span>
-                  <input type="radio" name="language" />
-                  <span class="checkmark"></span>
-                </label>
+        <div class="container">
+          <!-- top navbar -->
+          <ul class="navbar-nav">
+            <li class="nav-item user-name-holder" style="margin-right: 30px" ngbDropdown>
+              <div class="user-name" *ngIf="loggedInUser" ngbDropdownToggle>
+                <div class="d-inline-block user-img-holder">
+                  <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
+                    src="../../../../assets/Profile.svg" alt="" />
+                  <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
+                </div>
+                <span *ngIf="loggedInUser" style="margin-left: 15px;">{{userName}}</span>
               </div>
-              <div style="padding: 0 30px">
-                <mat-divider></mat-divider>
+              <div ngbDropdownMenu>
+                <div ngbDropdownItem (click)="logout();">
+                  <label class="">
+                    <img src="../assets/seller-logout.svg" alt="" />
+                    <span class="lan-title">Log out</span>
+                  </label>
+                </div>
               </div>
-              <div ngbDropdownItem>
-                <label class="lan-radio-btn">
-                  <img src="../assets/ar-lan.svg" alt="" />
-                  <span class="lan-title">Arabic</span>
-                  <input type="radio" name="language" />
-                  <span class="checkmark"></span>
-                </label>
+            </li>
+            <li class="nav-item">
+              <div ngbDropdown class="d-inline-block">
+                <a class="nav-link" id="en-btn" ngbDropdownToggle>
+                  <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
+                  <img src="../assets/down-carrot.svg" alt="" />
+                </a>
+                <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
+                  <div ngbDropdownItem>
+                    <label class="lan-radio-btn">
+                      <img src="../assets/en-lan.svg" alt="" />
+                      <span class="lan-title">English</span>
+                      <input type="radio" name="language" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <div ngbDropdownItem>
+                    <label class="lan-radio-btn">
+                      <img src="../assets/ar-lan.svg" alt="" />
+                      <span class="lan-title">Arabic</span>
+                      <input type="radio" name="language" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div ngbDropdown class="d-inline-block">
-            <a class="nav-link" id="notification-btn" ngbDropdownToggle>
-              <img src="../assets/notification.svg" alt=""/>
-            </a>
-            <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
-             <div class="notification-header">
-               Notifications
-             </div>
-              <button ngbDropdownItem class="drop-item">
-              <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  Abu Raihan Zilani send a new RFQ
-              </button>
-              <div style="padding: 0 30px">
-                <mat-divider></mat-divider>
+            </li>
+            <li class="nav-item">
+              <div ngbDropdown class="d-inline-block">
+                <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+                  <img src="../assets/notification.svg" alt="" />
+                </a>
+                <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+                  <div class="notification-header">
+                    Notifications
+                  </div>
+                  <button ngbDropdownItem class="drop-item">
+                    <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
+                    send a new RFQ
+                  </button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt=""
+                      class="img-fluid mr-1">You received a payment from #100089</button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button class="drop-item" ngbDropdownItem>
+                    <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new
+                    order #10785
+                  </button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt=""
+                      class="img-fluid mr-1">You received a payment from #100089</button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button ngbDropdownItem class="drop-item">
+                    <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new
+                    RFQ
+                  </button>
+
+                </div>
               </div>
-              <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt="" class="img-fluid mr-1">You received a payment from #100089</button>
-              <div style="padding: 0 30px">
-                <mat-divider></mat-divider>
-              </div>
-              <button class="drop-item" ngbDropdownItem>
-                <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new order #10785
-              </button>
-              <div style="padding: 0 30px">
-                <mat-divider></mat-divider>
-              </div>
-              <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt="" class="img-fluid mr-1">You received a payment from #100089</button>
-              <div style="padding: 0 30px">
-                <mat-divider></mat-divider>
-              </div>
-              <button ngbDropdownItem class="drop-item">
-                <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new RFQ
-              </button>
-              
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-   
-  <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}">
-  
- <!--mobile nav-->
- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
-  <button *ngIf="loggedInUser" class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg" alt="" /></button>
-  <div class="navbar-brand mx-auto">
-  <a  [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="logo" /></a>
-</div>
-  <ul class="mob-options" >  
-    <li class="nav-item" *ngIf="loggedInUser">
-    <div ngbDropdown class="d-inline-block">
-      <a class="nav-link" id="en-btn" ngbDropdownToggle>
-        <img src="../assets/en-lan.svg" alt="" style="margin-right:2px" class="btn-icon" />
-        <img src="../assets/down-carrot.svg" alt="" class="drop-icon" />
-      </a>
-      <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
-        <div ngbDropdownItem>
-          <label class="lan-radio-btn">
-            <img src="../assets/en-lan.svg" alt="" />
-            <span class="lan-title">English</span>
-            <input type="radio" name="language" />
-            <span class="checkmark"></span>
-          </label>
+            </li>
+          </ul>
         </div>
-        <div style="padding: 0 30px">
-          <mat-divider></mat-divider>
-        </div>
-        <div ngbDropdownItem>
-          <label class="lan-radio-btn">
-            <img src="../assets/ar-lan.svg" alt="" />
-            <span class="lan-title">Arabic</span>
-            <input type="radio" name="language" />
-            <span class="checkmark"></span>
-          </label>
-        </div>
+      </nav>
+
+      <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}">
+
+        <!--mobile nav-->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
+          <button *ngIf="loggedInUser" class="menu-btn mr-auto" (click)="sidenav.open();"><img
+              src="../assets/Filter.svg" alt="" /></button>
+          <div class="navbar-brand mx-auto">
+            <a [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="logo" /></a>
+          </div>
+          <ul class="mob-options">
+            <li class="nav-item" *ngIf="loggedInUser">
+              <div ngbDropdown class="d-inline-block">
+                <a class="nav-link" id="en-btn" ngbDropdownToggle>
+                  <img src="../assets/en-lan.svg" alt="" style="margin-right:2px" class="btn-icon" />
+                  <img src="../assets/down-carrot.svg" alt="" class="drop-icon" />
+                </a>
+                <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
+                  <div ngbDropdownItem>
+                    <label class="lan-radio-btn">
+                      <img src="../assets/en-lan.svg" alt="" />
+                      <span class="lan-title">English</span>
+                      <input type="radio" name="language" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <div ngbDropdownItem>
+                    <label class="lan-radio-btn">
+                      <img src="../assets/ar-lan.svg" alt="" />
+                      <span class="lan-title">Arabic</span>
+                      <input type="radio" name="language" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" *ngIf="loggedInUser">
+              <div ngbDropdown class="d-inline-block">
+                <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+                  <img src="../assets/notification.svg" alt="" class="btn-icon" />
+                </a>
+                <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+                  <div class="notification-header">
+                    Notifications
+                  </div>
+                  <button ngbDropdownItem class="drop-item">
+                    <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
+                    send a new RFQ
+                  </button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt=""
+                      class="img-fluid mr-1">You received a payment from #100089</button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button class="drop-item" ngbDropdownItem>
+                    <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new
+                    order #10785
+                  </button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt=""
+                      class="img-fluid mr-1">You received a payment from #100089</button>
+                  <div style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <button ngbDropdownItem class="drop-item">
+                    <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new
+                    RFQ
+                  </button>
+
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" *ngIf="!loggedInUser">
+              <button mat-raised-button class="lang-btn">
+                <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
+                Arabic
+              </button>
+            </li>
+          </ul>
+        </nav>
+
       </div>
     </div>
-  </li>
-  <li class="nav-item" *ngIf="loggedInUser">
-    <div ngbDropdown class="d-inline-block">
-      <a class="nav-link" id="notification-btn" ngbDropdownToggle>
-        <img src="../assets/notification.svg" alt="" class="btn-icon"/>
-      </a>
-      <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
-       <div class="notification-header">
-         Notifications
-       </div>
-        <button ngbDropdownItem class="drop-item">
-        <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  Abu Raihan Zilani send a new RFQ
-        </button>
-        <div style="padding: 0 30px">
-          <mat-divider></mat-divider>
-        </div>
-        <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt="" class="img-fluid mr-1">You received a payment from #100089</button>
-        <div style="padding: 0 30px">
-          <mat-divider></mat-divider>
-        </div>
-        <button class="drop-item" ngbDropdownItem>
-          <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new order #10785
-        </button>
-        <div style="padding: 0 30px">
-          <mat-divider></mat-divider>
-        </div>
-        <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt="" class="img-fluid mr-1">You received a payment from #100089</button>
-        <div style="padding: 0 30px">
-          <mat-divider></mat-divider>
-        </div>
-        <button ngbDropdownItem class="drop-item">
-          <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new RFQ
-        </button>
-        
-      </div>
+    <div class="container parent-container">
+      <router-outlet></router-outlet>
     </div>
-  </li>
-  <li class="nav-item" *ngIf="!loggedInUser">
-    <button mat-raised-button class="lang-btn">
-      <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
-       Arabic
-     </button>
-  </li>
-</ul>
- </nav>
-  </div>
-  <div class="container parent-container" >
-  <router-outlet></router-outlet>
-  </div>
-</mat-sidenav-content>
+  </mat-sidenav-content>
 
 </mat-sidenav-container>
 <ngx-spinner></ngx-spinner>
