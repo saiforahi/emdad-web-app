@@ -4,7 +4,7 @@
 <section class="card mb-5">
     <form [formGroup]="productUpdateForm" (ngSubmit)="onSubmit(productUpdateForm.value)">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-12">
                 <div class="form-group">
                     <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)"
                         formControlName="category">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-12">
                 <div class="form-group">
                     <select class="form-control form-control-lg" #subCatId (change)="setChildCAt(subCatId.value)"
                         formControlName="subCategory">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-12">
                 <div class="form-group">
                     <select class="form-control form-control-lg" formControlName="childCategory">
                         <option value="" disabled selected>Select Child Category</option>
@@ -48,17 +48,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12 col-12">
                 <div class="form-group">
                     <label for="prodName">Product Name</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                
+                        
                         <!-- prodName -->
-                        <input id="prodName" class="form-control form-control-md" type="text" formControlName="prodName"
+                        <input id="prodName" class="form-control form-controllg" type="text" formControlName="prodName"
                             placeholder="Product Name" />
-                    </div>
+                    
                     <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
                         <div *ngIf="prodName.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product name is required.'"></app-form-input-alert>
@@ -66,17 +64,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12 col-12">
                 <div class="form-group">
                     <label for="prodDetails">Product Details</label>
                     <div class="input-group">
                         <!-- prodDetails -->
-                        <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text"
+                        <textarea rows="15" id="prodDetails" class="form-control form-controllg" type="text"
                             formControlName="prodDetails" placeholder="Product Details"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                     <label for="manufactererName">Manufacturer Name</label>
                     <!-- manufactererName -->
@@ -87,17 +85,15 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodStock">Product Stock</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                   
+                        
                         <!-- prodStock -->
                         <input id="prodStock" class="form-control form-control-md" type="text"
                             formControlName="prodStock" />
-                    </div>
+                    
                     <div *ngIf="prodStock.invalid && (prodStock.dirty || prodStock.touched)">
                         <div *ngIf="prodStock.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product stock name is required.'"></app-form-input-alert>
@@ -105,17 +101,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodSize">Size</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                   
+                        
                         <!-- prodSize -->
                         <input id="prodSize" class="form-control form-control-md" type="text"
                             formControlName="prodSize" />
-                    </div>
+                    
                     <!-- <div *ngIf="prodSize.invalid && (prodSize.dirty || prodSize.touched)">
                         <div *ngIf="prodSize.errors?.required">
                             <app-form-input-alert [alertMsg]="'Size is required.'"></app-form-input-alert>
@@ -123,7 +117,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-lg-6 col-12">
                 <div class="form-group">
                     <label for="prodUnit">Unit of Measurement</label>
                     <select class="form-control form-control-lg" formControlName="prodUnit">
@@ -138,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodDeliMethod">Product Delivery Method</label>
                     <select class="form-control form-control-lg" formControlName="prodDeliMethod">
@@ -153,17 +147,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="leadTime">Set Lead Time</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                   
+                       
                         <!-- leadTime -->
                         <input id="leadTime" class="form-control form-control-md" type="text"
                             formControlName="leadTime" />
-                    </div>
+                    
                     <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
                         <div *ngIf="leadTime.errors?.required">
                             <app-form-input-alert [alertMsg]="'Lead time is required.'"></app-form-input-alert>
@@ -171,16 +163,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6  col-12">
                 <div class="form-group">
                     <label for="ddp">DDP Destination</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                   
+                       
                         <!-- ddp -->
                         <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp" />
-                    </div>
+                    
                     <div *ngIf="ddp.invalid && (ddp.dirty || ddp.touched)">
                         <div *ngIf="ddp.errors?.required">
                             <app-form-input-alert [alertMsg]="'DDP Destination is required.'"></app-form-input-alert>
@@ -188,17 +178,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodPrice">Product Unit Price</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-home"></i></div>
-                        </div>
+                
+                      
                         <!-- prodPrice -->
                         <input id="prodPrice" class="form-control form-control-md" type="text"
                             formControlName="prodPrice" />
-                    </div>
+                
                     <div *ngIf="prodPrice.invalid && (prodPrice.dirty || prodPrice.touched)">
                         <div *ngIf="prodPrice.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product Unit Price is required.'"></app-form-input-alert>
@@ -206,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
                     <div *ngFor="let img of existingImgList; let i = index;" class="d-inline-block img-preview-div">
@@ -225,7 +213,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label class="d-block">Product Attachments</label>
                     <label for="attachments" class="custom-file-upload mr-3" *ngIf="selectedFiles.length < 3">
@@ -250,9 +238,13 @@
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
+                    <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                         [disabled]="productUpdateForm.invalid">
                         Save
+                    </button>
+                    <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn delete-btn"
+                        >
+                        Delete Product
                     </button>
                 </div>
             </div>
