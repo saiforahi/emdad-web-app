@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
@@ -25,6 +25,10 @@ import { RfqPageComponent } from './buyer/pages/rfq-page/rfq-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SellerModule } from './seller/seller.module';
 import { BuyerModule } from './buyer/buyer.module';
+
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,12 +50,20 @@ import { BuyerModule } from './buyer/buyer.module';
     NgxSpinnerModule,
     SellerModule,
     BuyerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [MaterialModule, FormsModule, ReactiveFormsModule],
+  exports: [MaterialModule, FormsModule, ReactiveFormsModule,TranslateModule],
   providers: [
     UserAuthService,
     AuthGuard,
+    TranslateService,
     SellerAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
@@ -67,3 +79,6 @@ import { BuyerModule } from './buyer/buyer.module';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http,"./assets/i18n/", ".json");
+}

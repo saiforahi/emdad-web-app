@@ -12,6 +12,7 @@ import { ProfileLogoutModal } from '../../components/profile-logout-modal/profil
 // import {QuotationDetailsModal} from '../../components/quotation-details-modal/quotation-details-modal.component';
 import { MaterialModule } from 'src/app/material.module';
 import { BuyerQuotationViewComponent } from '../../components/buyer-quotation-view/buyer-quotation-view.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   { path: '', component: ProfilePageComponent, pathMatch: 'full' },
@@ -34,8 +35,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule
   ],
+  exports:[TranslateModule],
   entryComponents: [BuyerQuotationViewComponent],
 })
 export class ProfilePageModule {}

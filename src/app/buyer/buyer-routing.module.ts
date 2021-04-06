@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../shared/services/user-auth.service';
 import { BuyerComponent } from './buyer.component';
-
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { HttpLoaderFactory } from './buyer.module';
+import { HttpClient } from '@angular/common/http';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -222,7 +224,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes),TranslateModule],
+  exports: [RouterModule,TranslateModule],
 })
 export class BuyerRoutingModule {}

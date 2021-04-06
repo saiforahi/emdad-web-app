@@ -4,6 +4,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { CountryListService } from '../../../shared/services/country-list.service';
 import { Order } from 'src/app/shared/models/Order.model';
 import { Quotation } from '../../../shared/models/quotation.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-page',
@@ -30,12 +31,21 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private route: ActivatedRoute,
-    private countryList: CountryListService
+    private countryList: CountryListService,
+    public translate:TranslateService
   ) {
     this.show_change_pass_form = false;
     this.show_profile_form = true;
     this.show_order_history = false;
     this.show_manage_quotations = false;
+
+    if (localStorage.getItem('locale')) {
+      const browserLang = localStorage.getItem('locale');
+      translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    } else {
+      localStorage.setItem('locale', 'en');
+      translate.setDefaultLang('en');
+    }
   }
 
   ngOnInit(): void {

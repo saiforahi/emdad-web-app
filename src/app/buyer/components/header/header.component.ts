@@ -4,9 +4,8 @@ import { GetCategoryService } from '../../../shared/services/get-category.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { config } from '../../../../config';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -35,8 +34,18 @@ export class HeaderComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private cart: CartServiceService,
-    private myElement: ElementRef
+    private myElement: ElementRef,
+    public translate: TranslateService
   ) {
+    //translate.addLangs(['en', 'ar']);
+    if (localStorage.getItem('locale')) {
+      const browserLang = localStorage.getItem('locale');
+      translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    } else {
+      localStorage.setItem('locale', 'en');
+      translate.setDefaultLang('en');
+      translate.use('en')
+    }
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
@@ -50,6 +59,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.translate.currentLang)
     this.activeRoute = this.router.url.split('/');
     if(this.activeRoute[1] == 'home'){
       this.showOnScroll = false;
@@ -190,5 +200,12 @@ export class HeaderComponent implements OnInit {
         // console.log(pos, this.showOnScroll);
       }
     }
+  }
+
+  //lang change function
+  changeLang(language: string) {
+    localStorage.setItem('locale', language);
+    this.translate.use(language);
+    console.log(this.translate.currentLang)
   }
 }
