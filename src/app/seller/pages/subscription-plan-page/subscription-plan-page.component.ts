@@ -174,17 +174,18 @@ export class SubscriptionPlanPageComponent implements OnInit {
             })
             .subscribe(
               (success) => {
+                console.log(success)
                 localStorage.setItem(
                   'payment_add_response',
                   JSON.stringify(success)
                 );
-                localStorage.setItem(
-                  'subscription_data',
-                  JSON.stringify(response)
-                );
+                // localStorage.setItem(
+                //   'subscription_data',
+                //   JSON.stringify(response)
+                // );
                 // console.log(
-                //   'payment_add_response',
-                //   JSON.parse(localStorage.getItem('payment_add_response'))
+                //   'subscription_add_response',
+                //   JSON.parse(localStorage.getItem('subscription_add_response'))
                 // );
                 window.location.href = success.redirect_url;
                 //console.log(this.user);

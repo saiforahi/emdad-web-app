@@ -12,20 +12,20 @@
           <ul class="menu-list">
             <li [ngClass]="activeRoute[1] == 'home' ? 'active' : ''"><a [routerLink]="['/home']"
                 (click)="closeMenu();"><img src="../../../../assets/Home-small.svg" alt="">
-                <span>Home</span></a></li>
+                <span>{{'Nav.Home' | translate}}</span></a></li>
             <li><a [routerLink]="['about-us']" (click)="closeMenu();"><img src="../../../../assets/Paper.svg" alt="">
-                <span>About Us </span></a></li>
+                <span>{{'Nav.About_Us' | translate}}</span></a></li>
             <li><a [routerLink]="['products/categories']" (click)="closeMenu();"><img
                   src="../../../../assets/Category-small.svg" alt="">
-                <span>Categories</span></a></li>
+                <span>{{'Nav.Categories' | translate}}</span></a></li>
             <li><a [routerLink]="['our-partners']" (click)="closeMenu();"><img src="../../../../assets/2-User.svg"
                   alt="">
-                <span>Our Partners</span></a></li>
+                <span>{{'Nav.Our_Partners' | translate}}</span></a></li>
             <li><a  (click)="closeMenu();gotoView();"><img src="../../../../assets/Call-small.svg" alt="">
-                <span>Contact Us</span></a></li>
+                <span>{{'Nav.Contact_Us' | translate}}</span></a></li>
             <li class="sell-emdad">
               <a class="sell-emdad-link" [routerLink]="['sell-on-emdad']" (click)="closeMenu();">
-                Sell on Emdad
+                {{'Nav.Sell_On_Emdad' | translate}}
               </a>
             </li>
             <hr>
@@ -149,7 +149,7 @@
                   <img src="../assets/down-carrot.svg" alt="" />
                 </a>
                 <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
-                  <div ngbDropdownItem>
+                  <div ngbDropdownItem (click)="changeLang('en')">
                     <label class="lan-radio-btn">
                       <img src="../assets/en-lan.svg" alt="" />
                       <span class="lan-title">English</span>
@@ -160,7 +160,7 @@
                   <div style="padding: 0 30px">
                     <mat-divider></mat-divider>
                   </div>
-                  <div ngbDropdownItem>
+                  <div ngbDropdownItem (click)="changeLang('ar')">
                     <label class="lan-radio-btn">
                       <img src="../assets/ar-lan.svg" alt="" />
                       <span class="lan-title">Arabic</span>
@@ -292,31 +292,31 @@
           <ul class="navbar-nav">
             <li class="nav-item" style="margin-right: 17px">
               <a class="nav-link" [routerLink]="['/home']" [ngClass]="activeRoute[1] == 'home' ? 'active' : ''">
-                Home
+                {{'Nav.Home' | translate}}
                 <span class="menu-underline" [ngClass]="activeRoute[1] == 'home' ? 'active' : ''"></span>
               </a>
             </li>
             <li class="nav-item" style="margin-right: 17px">
               <a class="nav-link" [routerLink]="['about-us']" [ngClass]="activeRoute[1] == 'about-us' ? 'active' : ''">
-                About Us
+                {{'Nav.About_Us' | translate}}
                 <span class="menu-underline" [ngClass]="activeRoute[1] == 'about-us' ? 'active' : ''"></span>
               </a>
             </li>
             <li class="nav-item" style="margin-right: 17px">
               <a class="nav-link" [routerLink]="['products/categories']">
-                Categories
+                {{'Nav.Categories' | translate}}
                 <span class="menu-underline"></span>
               </a>
             </li>
             <li class="nav-item" style="margin-right: 17px">
               <a class="nav-link" [routerLink]="['our-partners']">
-                Our Partners
+                {{'Nav.Our_Partners' | translate}}
                 <span class="menu-underline"></span>
               </a>
             </li>
             <li class="nav-item" style="margin-right: 17px">
               <a class="nav-link" (click)="gotoView();">
-                Contact Us
+                {{'Nav.Contact_Us' | translate}}
                 <span class="menu-underline"></span>
               </a>
             </li>
@@ -331,7 +331,7 @@
         </div>
         <div class="nav-item sell-emdad">
           <a class="sell-emdad-link" [routerLink]="['sell-on-emdad']">
-            Sell on Emdad
+            {{'Nav.Sell_On_Emdad' | translate}}
           </a>
         </div>
       </div>

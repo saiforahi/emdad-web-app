@@ -1,0 +1,13 @@
+{
+    "Nav":{
+        "Home":"بيت",
+        "About_Us":"معلومات عنا",
+        "Categories":"فئات",
+        "Our_Partners":"شركاؤنا",
+        "Contact_Us":"اتصل بنا",
+        "Sell_On_Emdad":"بيع على امداد"
+    },
+    "Profile":{
+        "Header":"ملفي"
+    }
+}

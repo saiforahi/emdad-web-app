@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 // import { BrowserModule } from '@angular/platform-browser';
-
+import {TranslateModule} from '@ngx-translate/core';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
@@ -29,6 +29,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     // BrowserModule,
+    TranslateModule,
     RouterModule.forRoot(routes, {
       onSameUrlNavigation: 'reload',
       anchorScrolling: 'enabled',

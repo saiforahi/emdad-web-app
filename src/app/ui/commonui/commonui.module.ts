@@ -21,6 +21,7 @@ import { RfqModalProductDescriptionComponent } from '../../seller/components/rfq
 import { HtmltoPlainPipe } from 'src/app/shared/pipes/htmlto-plain.pipe';
 import { PushIntoArrayPipe } from 'src/app/shared/pipes/push-into-array.pipe';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 const UI = [
   ProductListComponent,
@@ -52,7 +53,8 @@ const UI = [
     NgbModule,
     NgxSpinnerModule,
     AutocompleteLibModule,
+    TranslateModule
   ],
-  exports: [UI],
+  exports: [UI,TranslateModule],
 })
 export class CommonuiModule {}

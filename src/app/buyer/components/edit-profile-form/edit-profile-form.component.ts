@@ -60,8 +60,8 @@ export class EditProfileFormComponent implements OnInit {
         this.profile_pic =
           config.base_url + this.editUserInfo.profile_pic.slice(1);
       // if country is already set then load the cities of the country
-      if (this.editUserInfo.country) {
-        this.onCountryChange(this.editUserInfo.country);
+      if (this.editUserInfo.country!=null) {
+        this.onCountryChange(this.editUserInfo.country.id);
       }
       (error) => (this.error = error);
     });
@@ -119,8 +119,8 @@ export class EditProfileFormComponent implements OnInit {
   onCountryChange(countryId) {
     // reset city if countryId changed
     // console.log(countryId);
-    if (countryId !== this.editUserInfo.country) {
-      this.editUserInfo.city = '';
+    if (countryId !== this.editUserInfo.country.id) {
+      this.editUserInfo.city.id = '';
     }
     this.countryList.allCities(countryId).subscribe(
       (data) => {
