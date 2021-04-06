@@ -217,7 +217,7 @@ button:focus {
   padding: 0 15px 0 0;
 }
 .mat-expansion-panel-header {
-  height: 42px !important;
+  height: 48px !important;
 }
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
@@ -331,7 +331,7 @@ mat-panel-title img {
     height: 30px !important;
   }
   .navbar-brand img {
-    height: 50px !important;
+    height: 40px !important;
   }
   .menu-btn img {
     height: 18px;
@@ -713,4 +713,13 @@ img.logo {
     margin-top: 120px;
     min-height: calc(100vh - 120px);
   }
+}
+@media only screen and (min-width:992px) and (max-width:1199px){
+  .mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  font-size: 18px !important;
+  font-weight: normal !important;
+  line-height: 26px;
+  font-family: Jost !important;
+}
 }
