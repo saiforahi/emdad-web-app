@@ -53,8 +53,13 @@ export class LoginPageComponent implements OnInit {
       (success) => {
         console.log(success);
         this.spinner.hide();
-        swal('Succeed', 'You have logged in successfully', 'success');
-        this.router.navigate(['dashboard']);
+        if (success.success == 'True') {
+          swal('Succeed', success.message, 'success');
+          this.router.navigate(['dashboard']);
+        } else {
+          swal('Failed!', success.message, 'error');
+          this.router.navigate(['dashboard']);
+        }
       },
       (error) => {
         this.error = error;

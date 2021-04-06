@@ -34,7 +34,7 @@ export class UserAuthService {
   // uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   s_uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   s_uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  s_uImg:BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  s_uImg: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   emailVerificationStatus: BehaviorSubject<any> = new BehaviorSubject<any>(
     null
   );
@@ -50,44 +50,49 @@ export class UserAuthService {
   }
 
   private setSession(authResult) {
-    const token = authResult.token;
-    const payload = <JWTPayload>jwt_decode(token);
-    console.log(payload);
-    if (authResult.group == 'buyer') {
-      const expiresAt = moment.unix(payload.exp);
-      localStorage.setItem('token', authResult.token);
-      localStorage.setItem('username', payload.username);
-      if (authResult.profile_pic.length > 0)
+    if (authResult.token != undefined) {
+      const token = authResult.token;
+      const payload = <JWTPayload>jwt_decode(token);
+      console.log(payload);
+      if (authResult.group == 'buyer') {
+        const expiresAt = moment.unix(payload.exp);
+        localStorage.setItem('token', authResult.token);
+        localStorage.setItem('username', payload.username);
+        if (authResult.profile_pic.length > 0)
+          localStorage.setItem(
+            'uimg',
+            config.img_base_url + authResult.profile_pic
+          );
+        else localStorage.setItem('uimg', authResult.profile_pic);
+        localStorage.setItem('uid', JSON.stringify(payload.user_id));
+        // localStorage.setItem('group', authResult.group);
+        localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+        this.uName.next(localStorage.getItem('username'));
+        this.uImg.next(localStorage.getItem('uimg'));
+        this.uId.next(localStorage.getItem('uid'));
+        // this.uGroup.next(localStorage.getItem('group'));
+      }
+      if (authResult.group == 'seller') {
+        const expiresAt = moment.unix(payload.exp);
+        localStorage.setItem('s_token', authResult.token);
+        // localStorage.setItem('group', authResult.group);
+        localStorage.setItem('s_username', payload.username);
+        if (authResult.profile_pic.length > 0)
+          localStorage.setItem(
+            's_uimg',
+            config.img_base_url + authResult.profile_pic
+          );
+        else localStorage.setItem('s_uimg', authResult.profile_pic);
+        localStorage.setItem('s_uid', JSON.stringify(payload.user_id));
         localStorage.setItem(
-          'uimg',
-          config.img_base_url + authResult.profile_pic
+          's_expires_at',
+          JSON.stringify(expiresAt.valueOf())
         );
-      else localStorage.setItem('uimg', authResult.profile_pic);
-      localStorage.setItem('uid', JSON.stringify(payload.user_id));
-      // localStorage.setItem('group', authResult.group);
-      localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-      this.uName.next(localStorage.getItem('username'));
-      this.uImg.next(localStorage.getItem('uimg'));
-      this.uId.next(localStorage.getItem('uid'));
-      // this.uGroup.next(localStorage.getItem('group'));
-    }
-    if (authResult.group == 'seller') {
-      const expiresAt = moment.unix(payload.exp);
-      localStorage.setItem('s_token', authResult.token);
-      // localStorage.setItem('group', authResult.group);
-      localStorage.setItem('s_username', payload.username);
-      if (authResult.profile_pic.length > 0)
-        localStorage.setItem(
-          's_uimg',
-          config.img_base_url + authResult.profile_pic
-        );
-      else localStorage.setItem('s_uimg', authResult.profile_pic);
-      localStorage.setItem('s_uid', JSON.stringify(payload.user_id));
-      localStorage.setItem('s_expires_at', JSON.stringify(expiresAt.valueOf()));
-      this.s_uName.next(localStorage.getItem('s_username'));
-      this.s_uId.next(localStorage.getItem('s_uid'));
-      this.s_uImg.next(localStorage.getItem('s_uimg'));
-      // this.uGroup.next(localStorage.getItem('group'));
+        this.s_uName.next(localStorage.getItem('s_username'));
+        this.s_uId.next(localStorage.getItem('s_uid'));
+        this.s_uImg.next(localStorage.getItem('s_uimg'));
+        // this.uGroup.next(localStorage.getItem('group'));
+      }
     }
   }
 
@@ -99,7 +104,7 @@ export class UserAuthService {
     var data = { email: email, password: password, group: group };
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
-        console.log(response)
+        console.log(response);
         this.setSession(response);
       }),
       shareReplay()
@@ -356,10 +361,7 @@ export class UserAuthService {
       }),
     };
     const updateURL =
-      config.base_url +
-      'api/change/profile/image/' +
-      userId +
-      '/';
+      config.base_url + 'api/change/profile/image/' + userId + '/';
     return this.http.post(updateURL, pro_pic, httpOptions);
   }
 
@@ -370,10 +372,7 @@ export class UserAuthService {
       }),
     };
     const updateURL =
-      config.base_url +
-      'api/change/store/image/' +
-      userId +
-      '/';
+      config.base_url + 'api/change/store/image/' + userId + '/';
     return this.http.post(updateURL, store_pic, httpOptions);
   }
 }

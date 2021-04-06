@@ -26,6 +26,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   @ViewChild('sidenav') sidenav: any;
   activeRoute: string[];
   showSpinner: any;
+  showMenu = true;
+
   toggleSidenav() {
     this.sidenav.toggle();
     console.log(this.sidenav.toggle);
@@ -39,8 +41,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
     private ngxSpinner: NgxSpinnerService
   ) {
     router.events.subscribe((val: any) => {
-      if(val.url){
-        this.activeRoute = val.url.split("/");
+      if (val.url) {
+        this.activeRoute = val.url.split('/');
       }
     });
     this.screenWidth = window.innerWidth;
@@ -56,6 +58,9 @@ export class SellerComponent implements OnInit, AfterViewInit {
       this.router.url.split('/')[2] == 'login' ||
       this.router.url.split('/')[2] == 'signup'
     ) {
+      this.showMenu = false;
+    }else {
+      this.showMenu = true;
     }
     this.UserAuthService.s_uName.subscribe((data) => {
       if (data == null) {
@@ -63,7 +68,6 @@ export class SellerComponent implements OnInit, AfterViewInit {
       } else {
         this.loggedInUser = true;
         this.userName = data;
-        
       }
     });
     this.UserAuthService.s_uId.subscribe((data) => {
@@ -71,19 +75,18 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.uId = data;
       }
     });
-    this.UserAuthService.s_uImg.subscribe((data)=>{
+    this.UserAuthService.s_uImg.subscribe((data) => {
       if (data != null) {
         this.loggedInUserImg = data;
-       
       }
-    })
-    this.spinner.showSpinner.subscribe(item =>{
-      if(item == true){
+    });
+    this.spinner.showSpinner.subscribe((item) => {
+      if (item == true) {
         this.ngxSpinner.show();
-      }else if(item == false){
+      } else if (item == false) {
         this.ngxSpinner.hide();
       }
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -99,5 +102,6 @@ export class SellerComponent implements OnInit, AfterViewInit {
     this.UserAuthService.sellerLogout();
     this.router.navigate(['dashboard/login']);
     swal('Succeed', 'You have logged out successfully', 'success');
+    this.showMenu = true;
   }
 }
