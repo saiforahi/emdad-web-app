@@ -10,6 +10,7 @@ import { DialogueComponent } from './dialogue/dialogue.component';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import swal from 'sweetalert';
+import { ProdCategoryFilterComponent } from './prod-category-filter/prod-category-filter.component';
 
 @Component({
   selector: 'app-sller-products-page',
@@ -19,9 +20,12 @@ import swal from 'sweetalert';
 export class SllerProductsPageComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('sidenav') sidenav: any;
+  @ViewChild('sidenav1') sidenav: any;
   sideMenuCollapsed = false;
   loggedInUser = true;
+  screenWidth: number;
+  mode:any;
+  isOpened:boolean;
   displayedColumns: string[] = [
     'Product Name',
     'Stock',
@@ -73,9 +77,37 @@ export class SllerProductsPageComponent implements OnInit {
     //     }
     //   }
     // });
-  }
 
+
+/*     this.screenWidth = window.innerWidth;
+    window.onresize = () => {
+      // set screenWidth on screen size change
+      this.screenWidth = window.innerWidth;
+    };
+  } */
+}
+/*   isLargeScreen() {
+    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (width > 1199) {
+        this.isOpened == true;
+        this.mode== 'side';
+    } else if (width <= 1199) {
+      this.isOpened == false;
+      this.mode == 'over';
+    
+    }
+  } */
   ngOnInit(): void {
+/*     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (width > 1199) {
+        this.isOpened = true;
+        this.mode= 'side';
+        this.hasBackdrop= false;
+    } else if(width <= 1199) {
+      this.isOpened = false;
+      this.mode = 'over';
+      this.hasBackdrop= true;
+    } */
     // get current param in route
     this.categoryId = this.route.snapshot.params['id'];
     // split soute with '/'
@@ -174,7 +206,15 @@ export class SllerProductsPageComponent implements OnInit {
       }
     });
   }
-
+  viewDialogue(){
+    const dialogRef = this.dialog.open(ProdCategoryFilterComponent, {
+      autoFocus: false,
+    
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   setSideMenuCollapseVar() {
     this.sideMenuCollapsed = !this.sideMenuCollapsed;
   }

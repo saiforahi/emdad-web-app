@@ -1,0 +1,58 @@
+<!--6th April @ 2021-->
+<mat-dialog-content class="mat-typography">
+    <div class="close-btns">
+        <mat-dialog-actions align="end" class="p-0 m-0">
+            <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
+        </mat-dialog-actions>
+    </div>
+    <div class="header">
+        Select Categories
+    </div>
+    <section *ngIf="categories">
+        <mat-accordion *ngFor="let cat of categories">
+            <mat-expansion-panel [expanded]="expandedCat === cat.id" #subCat>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="cat-head" style="font-size: 20px;">
+                           <!--  {{cat.name | titlecase}} -->Mobile (15)
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="expanded-div" [ngClass]="sideMenuCollapsed? 'd-none' : 'd-block'">
+                    <div *ngIf="cat.children.length == 0" style="font-size: 18px;">
+                        No item to show
+                    </div>
+                    <!-- level two -->
+                    <mat-accordion *ngFor="let subcategory of cat.children">
+                        <mat-expansion-panel [expanded]="expandedSubCat == subcategory.id" #childCat>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <div class="cat-head med-child" style="font-size: 18px;">
+                                       Phone
+                                    </div>
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <span class="plus" *ngIf="!childCat.expanded">+</span>
+                                    <span class="minus" *ngIf="childCat.expanded">-</span>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div class="expanded-div">
+                                <div *ngIf="subcategory.children.length == 0" style="font-size: 18px;">
+                                    No item to show
+                                </div>
+                                <!-- level three -->
+                                <div *ngFor="let child of subcategory.children" style="padding: 5px 0;">
+                                    <!-- [routerLink]="['/products/category/', child.id]" -->
+                                    <a (click)="getProdOnFilter(child.id, child.name, subcategory.id, subcategory.name, cat.id, cat.name);"
+                                        style="font-size: 18px;">
+                                        <!-- {{child.name | titlecase}} -->
+Xiaomi                                    </a>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </section>
+</mat-dialog-content>
