@@ -21,9 +21,11 @@ import swal from 'sweetalert';
 export class UploadProductsPageComponent implements OnInit {
   error: any;
   msg;
+  selectedOption:any;
   group: string;
   productUploadForm: FormGroup;
   category: AbstractControl;
+  shopPick:AbstractControl;
   subCategory: AbstractControl;
   childCategory: AbstractControl;
   prodName: AbstractControl;
@@ -98,6 +100,7 @@ export class UploadProductsPageComponent implements OnInit {
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
       ddp: ['', [Validators.required]],
+      shopPick:['',Validators.required],
       prodPrice: ['', [Validators.required]],
       prodImage: [''],
       attachments: [''],
@@ -114,6 +117,7 @@ export class UploadProductsPageComponent implements OnInit {
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
     this.ddp = this.productUploadForm.controls['ddp'];
+    this.shopPick= this.productUploadForm.controls['shopPick'];
     this.prodPrice = this.productUploadForm.controls['prodPrice'];
     this.prodImage = this.productUploadForm.controls['prodImage'];
     this.attachments = this.productUploadForm.controls['attachments'];
