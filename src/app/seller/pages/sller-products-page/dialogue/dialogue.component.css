@@ -5,26 +5,37 @@
 ::ng-deep .mat-dialog-container {
   padding: 60px;
   text-align: center;
+  font-family: Jost !important;
 }
 
 h3 {
+  font-family: Jost;
+  font-style: normal;
   font-weight: 500;
   font-size: 36px;
-  color: #2b2b2b;
+  line-height: 52px;
+
+  color: #2B2B2B;
 }
 
 button {
   height: 80px;
   font-weight: 500;
   font-size: 24px;
-  width: 300px;
+  width: 280px;
+  font-family: Jost !important;
+  line-height: 35px;
+  text-align: center;
 }
 
 button.del-btn {
   background: #ff4b55;
   color: #fff;
 }
-
+.cancel-btn{
+  border: 2px solid #2B2B2B;
+  margin-left: 16px;
+}
 button.cancel-btn {
   background: #fff;
 }
@@ -32,4 +43,44 @@ button.cancel-btn {
 ::ng-deep .mat-dialog-actions {
     text-align: center;
     display: unset;
+}
+
+/*responsive*/
+@media all and (min-width:290px) and (max-width:992px){
+  ::ng-deep .mat-dialog-container{
+    padding: 30px 15px;
+    overflow-x: hidden !important;
+  }
+  h3{
+    font-size: 24px;
+    line-height: 35px;
+  }
+}
+@media all and (min-width:290px) and (max-width:576px){
+button{
+  height: 45px;
+  font-size: 14px;
+  line-height: 20px;
+  width:180px;
+}
+}
+@media all and (min-width:290px) and (max-width:485px){
+  button{
+    height: 45px;
+    font-size: 14px;
+    line-height: 20px;
+    width:150px;
+  }
+  .cancel-btn{
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  }
+@media all and (min-width:290px) and (max-width:992px){
+  button{
+    height: 50px;
+    font-size: 16px;
+    line-height: 23px;
+    width:180px;
+  }
 }
