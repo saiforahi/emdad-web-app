@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import {
   HttpClient,
   HttpHeaders,
@@ -456,5 +461,24 @@ export class SellerAuthGuard implements CanActivate {
       this.router.navigate(['/dashboard/login']);
       return false;
     }
+  }
+}
+
+@Injectable()
+export class IsSignedInGuard implements CanActivate {
+  // here you can inject your auth service to check that user is signed in or not
+  constructor(
+    private UserAuthService: UserAuthService,
+    private router: Router
+  ) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    if (this.UserAuthService.sellerIsLoggedIn()) {
+      this.router.navigate(['/dashboard']); // or home
+      return false;
+    }
+    return true;
   }
 }

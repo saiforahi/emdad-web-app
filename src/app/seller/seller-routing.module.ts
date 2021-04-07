@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SellerAuthGuard } from '../shared/services/user-auth.service';
+import {
+  SellerAuthGuard,
+  IsSignedInGuard,
+} from '../shared/services/user-auth.service';
 import { SellerComponent } from './seller.component';
 
 const routes: Routes = [
@@ -22,6 +25,7 @@ const routes: Routes = [
           import('./pages/login-page/login-page.module').then(
             (m) => m.LoginPageModule
           ),
+        canActivate: [IsSignedInGuard],
       },
       {
         path: 'signup',
@@ -29,6 +33,7 @@ const routes: Routes = [
           import('./pages/signup-page/signup-page.module').then(
             (m) => m.SignupPageModule
           ),
+        canActivate: [IsSignedInGuard],
       },
       {
         path: 'forgot-password',
@@ -36,6 +41,7 @@ const routes: Routes = [
           import(
             './pages/forgot-password-page/forgot-password-page.module'
           ).then((m) => m.ForgotPasswordPageModule),
+        canActivate: [IsSignedInGuard],
       },
       {
         path: 'profile',
@@ -66,7 +72,7 @@ const routes: Routes = [
           import(
             './pages/seller-payment-history-page/seller-payment-history-page.module'
           ).then((m) => m.SellerPaymentHistoryPageModule),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'subscription-plan',
@@ -74,15 +80,15 @@ const routes: Routes = [
           import(
             './pages/subscription-plan-page/subscription-plan-page.module'
           ).then((m) => m.SubscriptionPlanPageModule),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'subscription-payment',
         loadChildren: () =>
-          import(
-            './pages/payment-page/payment-page.module'
-          ).then((m) => m.PaymentPageModule),
-          canActivate: [SellerAuthGuard],
+          import('./pages/payment-page/payment-page.module').then(
+            (m) => m.PaymentPageModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'upload-products',
@@ -90,15 +96,15 @@ const routes: Routes = [
           import(
             './pages/upload-products-page/upload-products-page.module'
           ).then((m) => m.UploadProductsPageModule),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'edit-products/:id',
         loadChildren: () =>
-          import(
-            './pages/edit-products-page/edit-products-page.module'
-          ).then((m) => m.EditProductsPageModule),
-          canActivate: [SellerAuthGuard],
+          import('./pages/edit-products-page/edit-products-page.module').then(
+            (m) => m.EditProductsPageModule
+          ),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'manage-rfqs',
@@ -127,9 +133,9 @@ const routes: Routes = [
       {
         path: 'bulk-products-upload',
         loadChildren: () =>
-          import('./pages/bulk-upload-products/bulk-upload-products.module').then(
-            (m) => m.BulkUploadProductsModule
-          ),
+          import(
+            './pages/bulk-upload-products/bulk-upload-products.module'
+          ).then((m) => m.BulkUploadProductsModule),
         canActivate: [SellerAuthGuard],
       },
       {
@@ -154,7 +160,7 @@ const routes: Routes = [
           import(
             './pages/seller-order-history-page/seller-order-history-page.module'
           ).then((m) => m.SellerOrderHistoryPageModule),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'invoices',
@@ -162,7 +168,7 @@ const routes: Routes = [
           import(
             './pages/seller-invoices-page/seller-invoices-page.module'
           ).then((m) => m.SellerInvoicesPageModule),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'support',
@@ -170,7 +176,7 @@ const routes: Routes = [
           import('./pages/support-page/support-page.module').then(
             (m) => m.SupportPageModule
           ),
-          canActivate: [SellerAuthGuard],
+        canActivate: [SellerAuthGuard],
       },
     ],
   },

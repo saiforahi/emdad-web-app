@@ -10,6 +10,7 @@ import {
   AuthGuard,
   SellerAuthInterceptor,
   SellerAuthGuard,
+  IsSignedInGuard
 } from '../app/shared/services/user-auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -65,6 +66,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     AuthGuard,
     TranslateService,
     SellerAuthGuard,
+    IsSignedInGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
