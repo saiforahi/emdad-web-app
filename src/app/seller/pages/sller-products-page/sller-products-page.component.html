@@ -1,15 +1,18 @@
-<!--05th April @2021-->
-<mat-drawer-container class="product-container desktop-view">
-    <!--desktop drawer-->
-    <mat-drawer #drawer mode="side" opened>
-        <section class="side-menu-holder">
+<!--side nav bar with toggle for mobile-->
+<section class="clearfix">
 
+    <button mat-button class="cat-menu-close-btn" [ngClass]="{ active: catMenuToggle, '': !catMenuToggle }"
+        (click)="closeCatMenu()">
+        <img src="../../../../assets/close.svg" alt="" />
+    </button>
+    <div class="side-cat-menu" [ngClass]="{ active: catMenuToggle, '': !catMenuToggle }">
+        <div class="side-nav-bar">
             <mat-accordion *ngFor="let cat of categories">
                 <mat-expansion-panel [expanded]="expandedCat === cat.id" #subCat>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head" style="font-size: 20px;">
-                                {{cat.name | titlecase}} (15)
+                                {{cat.name | titlecase}} ({{cat.children.length}})
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -49,18 +52,44 @@
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
-        </section>
-    </mat-drawer>
-    <mat-drawer-content>
-        <section class="container whole-content">
-            <section class="page-heading-holder">
+        </div>
+    </div>
+    <!--side nav bar with toggle for mobile ends-->
+    <!--product list view starts-->
+    <div class="product-list-content">
+        <div class="container">
+            <!--desktop header-->
+            <section class="page-heading-holder desktop-view">
                 <h2 class="page-heading d-inline-block">Product Categories</h2>
+                <!--if row selected for delete-->
                 <button mat-raised-button class="float-right d-inline-block delete-btn" (click)="openDialog()"
-                    (click)="dleteProduct();"><img src="../../../../assets/Delete.svg" alt=""> Bulk Delete</button>
+                    (click)="dleteProduct();" *ngIf="selection.hasValue() || isAllSelected()"><img
+                        src="../../../../assets/Delete.svg" alt=""> Bulk Delete</button>
+                <!--normal state-->
+                <button mat-stroked-button class="float-right d-inline-block delete-btn-normal"  *ngIf="!selection.hasValue()"><img
+                        src="../../../../assets/icons/delete-red.svg" alt=""> Bulk Delete</button>
+
+
             </section>
-            <div class="breadcrumb">
+            <!--mobile header-->
+            <section class="page-heading-holder mobile-view">
+                <h2 class="page-heading d-inline-block">Product Categories</h2>
+
+                <!--buttons for mobile-->
+                <div class="sort-btn float-right mobile-buttons d-inline-block">
+                    <button class="filter-btn" (click)="showCatMenu();"><img src="../../../../assets/icons/filter.svg"
+                            alt=""></button>
+                            <!--if not selected anything-->
+                    <button class="delete-btn" *ngIf="!selection.hasValue()"><img
+                            src="../../../../assets/icons/delete-red.svg" alt=""></button>
+                            <!--if selected for delete-->
+                            <button class="delete-btn" *ngIf="selection.hasValue()" (click)="openDialog()" (click)="dleteProduct();"><img
+                                src="../../../../assets/icons/bin-button-mobile-red.svg" alt=""></button>       
+                </div>
+            </section>
+            <section class="bread">
                 <app-seller-breadcrumbs [directoryString]="'Products / '+directoryString"></app-seller-breadcrumbs>
-            </div>
+            </section>
             <section>
                 <div class="row">
                     <div class="col-md-12 card-header">
@@ -81,12 +110,17 @@
                             <div class="col-md-2 name">
                                 Delivery Method
                             </div>
-                            <div class="col-md-2 name text-left">
+                            <div class="col-md-1 name text-left">
+                                <div class="checkbox-holder mt-2">
                                 <mat-checkbox (change)="$event ? masterToggle() : null"
                                     [checked]="selection.hasValue() && isAllSelected()"
                                     [indeterminate]="selection.hasValue() && !isAllSelected()"
                                     [aria-label]="checkboxLabel()">
                                 </mat-checkbox>
+                            </div>
+                            </div>
+                            <div class="col-md-1 name text-left">
+
                             </div>
                         </div>
                     </div>
@@ -95,13 +129,14 @@
                         <div class="show-values" *ngFor="let item of products;">
                             <div class="row">
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                                    <span><span class="mobile-name">Product Name:</span> Name</span>
+                                    <span><span class="mobile-name">Product Name:</span>{{item.name}}</span>
                                 </div>
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                                    <span><span class="mobile-name">Stock:</span> 15</span>
+                                    <span><span class="mobile-name">Stock:</span>{{item.stock_quantity}}</span>
                                 </div>
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                                    <span><span class="mobile-name">Unit of measurement :</span> Unit</span>
+                                    <span *ngIf="item.unit != null"><span class="mobile-name">Unit of measurement
+                                            :</span>{{item.unit.name}}</span>
                                 </div>
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
                                     <span><span class="mobile-name">Unit Price :</span> {{item.unit_price }}</span>
@@ -112,9 +147,16 @@
                                     <span *ngIf="item.delivery_method == 2">Ex-Works</span>
                                 </div>
 
-                                <div class="col-lg-2 col-md-12 col-sm-12 col-12 value mobile-btn">
-                                    <mat-checkbox>
+                                <div
+                                    class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn ml-0 text-right align-right check-div">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(item) : null"
+                                        [checked]="selection.isSelected(item)" [aria-label]="checkboxLabel(item)">
                                     </mat-checkbox>
+
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn check-div">
+
                                     <button [routerLink]="['/dashboard/edit-products', item.id]"
                                         class="edit-product-btn" mat-raised-button><img
                                             src="../../../../assets/Edit.svg" alt=""></button>
@@ -123,9 +165,9 @@
                         </div>
                     </div>
                     <div class="col-md-12" *ngIf="prodEnd" class="no-show">
-                       <p>No more products to show</p> 
+                        <p>No more products to show</p>
                     </div>
-                    <div class="col-md-12" *ngIf="expandedSubCat != null">
+                    <div class="col-md-12" *ngIf="expandedSubCat == null">
                         <div class="view-more-btn-div">
                             <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button
                                 class="m-auto">View More
@@ -134,93 +176,7 @@
                     </div>
                 </div>
             </section>
-        </section>
-    </mat-drawer-content>
-</mat-drawer-container>
-
-
-<!--mobile-view-->
-<section class="mobile-view container">
-    <div class="page-heading-holder">
-        <h2 class="page-heading d-inline-block">Product Categories</h2>
-        <div class="sort-btn float-right  mobile-buttons d-inline-block" *ngIf="categories">
-            <button class="filter-btn" (click)="viewDialogue();" ><img src="../../../../assets/icons/filter.svg" alt=""></button>
-<button class="delete-btn"><img src="../../../../assets/icons/delete-red.svg" alt=""></button>
-        </div>  
-    </div>
-    <div class="breadcrumb">
-        <app-seller-breadcrumbs [directoryString]="'Products / '+directoryString"></app-seller-breadcrumbs>
-    </div>
-    <div class="row">
-        <div class="col-md-12 card-header">
-            <div class="row">
-                <div class="col-md-2 name">
-                    Product Name
-                </div>
-                <div class="col-md-2 name">
-                    Stock
-                </div>
-                <div class="col-md-2 name">
-                    Unit of measurement
-                </div>
-
-                <div class="col-md-2 name">
-                    Unite Price
-                </div>
-                <div class="col-md-2 name">
-                    Delivery Method
-                </div>
-                <div class="col-md-2 name text-left">
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()"
-                        [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                </div>
-            </div>
         </div>
-            <!--data load-->
-            <div class="col-md-12 cards" *ngIf="products">
-                <div class="show-values" *ngFor="let item of products">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                            <span><span class="mobile-name">Product Name:</span>{{item.name}}</span>
-                        </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                            <span><span class="mobile-name">Stock:</span> 15</span>
-                        </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                            <span><span class="mobile-name">Unit of measurement :</span> {{item.unit.name}}</span>
-                        </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                            <span><span class="mobile-name">Unit Price :</span> {{item.unit_price}}</span>
-                        </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                            <span class="mobile-name">Delivery Method :</span>
-                            <span *ngIf="item.delivery_method == 1">DDP</span>
-                            <span *ngIf="item.delivery_method == 2">Ex-Works</span>
-                        </div>
-
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-12 value mobile-btn">
-                            <mat-checkbox class="mr-1 align-center check-btn">
-                            </mat-checkbox>
-                            <button [routerLink]="['/dashboard/edit-products', item.id]"
-                                class="edit-product-btn" mat-raised-button><img
-                                    src="../../../../assets/Edit.svg" alt=""></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" *ngIf="prodEnd" class="no-show">
-               <p>No more products to show</p> 
-            </div>
-            <div class="col-md-12" *ngIf="expandedSubCat != null">
-                <div class="view-more-btn-div">
-                    <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button
-                        class="m-auto">View More
-                        <img src="../../../assets/down-carrot-light.svg" alt=""></button>
-                </div>
-            </div>
-
     </div>
 </section>
+<!--product list view end-->

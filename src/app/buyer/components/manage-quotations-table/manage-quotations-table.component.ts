@@ -57,12 +57,12 @@ export class ManageQuotations implements OnInit {
  */
 //open the dialogue for viewing quotation details
   show_quotation_details(item){
-const dialogRef = this.dialog.open(BuyerQuotationViewComponent,{
-autoFocus:false,
-data:{
-  quoteDetails:item,
-}
-})
+      const dialogRef = this.dialog.open(BuyerQuotationViewComponent,{
+      autoFocus:false,
+      data:{
+        quoteDetails:item,
+      }
+    })
   }
   get_quotation_list() {
     this.quotationService.get_user_quotation_list().subscribe(
