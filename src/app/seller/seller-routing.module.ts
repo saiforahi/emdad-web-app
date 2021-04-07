@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
   SellerAuthGuard,
-  IsSignedInGuard,
+  IsSignedInGuard
 } from '../shared/services/user-auth.service';
 import { SellerComponent } from './seller.component';
 
@@ -42,6 +42,14 @@ const routes: Routes = [
             './pages/forgot-password-page/forgot-password-page.module'
           ).then((m) => m.ForgotPasswordPageModule),
         canActivate: [IsSignedInGuard],
+      },
+      {
+        path: 'welcome',
+        loadChildren: () =>
+          import(
+            './pages/welcome-page/welcome-page.module'
+          ).then((m) => m.WelcomePageModule),
+        canActivate: [SellerAuthGuard],
       },
       {
         path: 'profile',

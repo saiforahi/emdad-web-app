@@ -11,6 +11,7 @@ import { AddProductService } from 'src/app/shared/services/add-product.service';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { config } from '../../../../config';
@@ -72,7 +73,6 @@ export class EditProductsPageComponent implements OnInit {
   existingFiles: any;
 
   constructor(
-    private authService: UserAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -80,8 +80,26 @@ export class EditProductsPageComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private categoryServices: GetCategoryService,
     private addProductService: AddProductService,
-    private getProducts: GetProductService
-  ) {}
+    private getProducts: GetProductService,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('s_token'))

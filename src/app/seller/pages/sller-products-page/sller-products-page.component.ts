@@ -11,6 +11,8 @@ import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import swal from 'sweetalert';
 import { ProdCategoryFilterComponent } from './prod-category-filter/prod-category-filter.component';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-sller-products-page',
@@ -55,8 +57,25 @@ export class SllerProductsPageComponent implements OnInit {
     private getCategories: GetCategoryService,
     public dialog: MatDialog,
     private productService: GetProductService,
-    private deleteProductService: AddProductService
+    private deleteProductService: AddProductService,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
   ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
     // subscribe to route event for route param change
     // router.events.subscribe((val: any) => {
     //   if (val.url) {
@@ -86,6 +105,7 @@ export class SllerProductsPageComponent implements OnInit {
     };
   } */
 }
+
 /*   isLargeScreen() {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (width > 1199) {
@@ -97,6 +117,7 @@ export class SllerProductsPageComponent implements OnInit {
     
     }
   } */
+
   ngOnInit(): void {
 /*     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (width > 1199) {

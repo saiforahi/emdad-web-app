@@ -57,7 +57,17 @@ export class SubscriptionService {
       config.base_url +
         'api/subscription/history/' +
         localStorage.getItem('s_uid') +
-        '/',this.sellerHttpOptions
+        '/',
+      this.sellerHttpOptions
+    );
+  }
+
+  isSubscribed() {
+    return this.http.get(
+      config.base_url +
+        'api/user/subscribe/check/' +
+        localStorage.getItem('s_uid') +
+        '/'
     );
   }
 }

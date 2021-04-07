@@ -13,6 +13,7 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import * as fileSaver from 'file-saver';
 import { config } from 'src/config';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 
 @Component({
   selector: 'app-seller-profile-page',
@@ -52,14 +53,31 @@ export class SellerProfilePageComponent implements OnInit {
   banner_pic: any;
 
   constructor(
-    private authService: UserAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private contry: CountryListService,
     private spinner: SpinnerService,
-    private fileService: FileService
-  ) {}
+    private fileService: FileService,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     this.contry.allCountries().subscribe((item) => {
@@ -162,7 +180,7 @@ export class SellerProfilePageComponent implements OnInit {
       this.selectedImage.length == 2
     ) {
       // if two files to upload
-      console.log("condition one")
+      console.log('condition one');
       this.sellerProfileFormData.append(
         'seller_attachment1',
         this.selectedImage[0]
@@ -175,8 +193,8 @@ export class SellerProfilePageComponent implements OnInit {
       this.userData.seller_attachment1 == null &&
       this.selectedImage.length == 1
     ) {
-      // if only one file to upload in attachment1 
-      console.log("condition two")
+      // if only one file to upload in attachment1
+      console.log('condition two');
       this.sellerProfileFormData.append(
         'seller_attachment1',
         this.selectedImage[0]
@@ -190,7 +208,7 @@ export class SellerProfilePageComponent implements OnInit {
       this.selectedImage.length == 1
     ) {
       // if only one file to upload in attachment2
-      console.log("condition three")
+      console.log('condition three');
       // this.sellerProfileFormData.append(
       //   'seller_attachment1',
       //   null
@@ -201,7 +219,7 @@ export class SellerProfilePageComponent implements OnInit {
       );
     }
     var uId = localStorage.getItem('s_uid');
-    console.log('form data',this.sellerProfileFormData.get('city'))
+    console.log('form data', this.sellerProfileFormData.get('city'));
     this.authService
       .updateSellerProfile(uId, this.sellerProfileFormData)
       .subscribe(
@@ -215,14 +233,14 @@ export class SellerProfilePageComponent implements OnInit {
         (error: any) => {
           console.log(error);
           this.spinner.showSpinner.next(false);
-          swal('Failed!', "Something went wrong", 'error');
+          swal('Failed!', 'Something went wrong', 'error');
         }
       );
   }
 
   getciTyList(id: number) {
     this.contry.allCities(id).subscribe((item) => {
-      console.log(item.data)
+      console.log(item.data);
       this.cityList = item.data;
     });
   }
@@ -257,40 +275,46 @@ export class SellerProfilePageComponent implements OnInit {
       () => console.info('File downloaded successfully');
   }
 
-  deleteExistingFile(column_name){
+  deleteExistingFile(column_name) {
     // this.sellerProfileFormData.set(column_name, null);
-    this.authService.deleteSellerAttachments(column_name).subscribe(item => {
+    this.authService.deleteSellerAttachments(column_name).subscribe((item) => {
       console.log(item);
       this.ngOnInit();
       swal('Succeed', 'Attachments deleted successfully', 'success');
-    })
+    });
   }
 
-  uploadProPic(event){
+  uploadProPic(event) {
     console.log(event);
     this.sellerProfilePicData.append('profile_pic', event.target.files[0]);
     var uId = localStorage.getItem('s_uid');
-    this.authService.uploadSellerProfilePic(uId, this.sellerProfilePicData).subscribe(
-      (success) => {
-        console.log(success);
-        this.ngOnInit()
-    },
-    (error) => {
-      console.log(error);
-    })
+    this.authService
+      .uploadSellerProfilePic(uId, this.sellerProfilePicData)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
-  uploadBannerPic(event){
+  uploadBannerPic(event) {
     console.log(event);
     this.sellerBannerPicData.append('store_pic', event.target.files[0]);
     var uId = localStorage.getItem('s_uid');
-    this.authService.uploadSellerBannerPic(uId, this.sellerBannerPicData).subscribe(
-      (success) => {
-        console.log(success);
-        this.ngOnInit()
-    },
-    (error) => {
-      console.log(error);
-    })
+    this.authService
+      .uploadSellerBannerPic(uId, this.sellerBannerPicData)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

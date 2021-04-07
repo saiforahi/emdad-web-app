@@ -1,16 +1,23 @@
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { OpenTicketModalComponent } from './open-ticket-modal/open-ticket-modal.component';
 import { TicketViewModalComponent } from './ticket-view-modal/ticket-view-modal.component';
 import { TicketService } from '../../../shared/services/ticket.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
-import{PageEvent} from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 
 @Component({
   selector: 'app-support-page',
   templateUrl: './support-page.component.html',
-  styleUrls: ['./support-page.component.css']
+  styleUrls: ['./support-page.component.css'],
 })
 export class SupportPageComponent implements OnInit {
   /**INITIALIZING VARIABLES */
@@ -18,49 +25,67 @@ export class SupportPageComponent implements OnInit {
   toggleSort = true;
   supportIssues: any;
   status = ['Initiative', 'Undergoing', 'Resolved'];
-  filterArray:any=[];
+  filterArray: any = [];
   lowValue: number = 0;
   highValue: number = 10;
-  prodEnd: boolean =false;
+  prodEnd: boolean = false;
   nextBatchProdLink: any;
   /** Initializing table coloumns */
+  
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     return event;
   }
- 
+
   constructor(
     public dialog: MatDialog,
     private ticketService: TicketService,
     private router: Router,
-    private user: UserAuthService) { }
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('s_uid');
 
     /** API CALL FOR SHOWING ALL TICKETS FOR THAT SELLER */
-    this.ticketService.getTickets(localStorage.getItem("s_uid")).subscribe((data: any) => {
-      //console.log(data.data[0].image.split('/')[]);
-      this.supportIssues = data.data;
-    if(this.supportIssues == null){
-      this.prodEnd=true;
-    }
-      console.log("issues from seller:", this.supportIssues);
-    });
+    this.ticketService
+      .getTickets(localStorage.getItem('s_uid'))
+      .subscribe((data: any) => {
+        //console.log(data.data[0].image.split('/')[]);
+        this.supportIssues = data.data;
+        if (this.supportIssues == null) {
+          this.prodEnd = true;
+        }
+        console.log('issues from seller:', this.supportIssues);
+      });
   }
-  
+
   /** SORT TABLE ASC DESC */
-  sortTable(value){
-   
+  sortTable(value) {
     if (this.toggleSort) {
-      value.sort((a, b) => (a.status>b.status?1 : -1));
+      value.sort((a, b) => (a.status > b.status ? 1 : -1));
       this.toggleSort = !this.toggleSort;
-     
     } else {
-     value.sort((a, b) => (a.status<b.status?1 : -1));
+      value.sort((a, b) => (a.status < b.status ? 1 : -1));
       this.toggleSort = !this.toggleSort;
-    
     }
   }
   /** VIEW TICKET/ISSUE DETAILS MODAL */
@@ -70,12 +95,8 @@ export class SupportPageComponent implements OnInit {
       data: {
         uId: this.userId,
         issues: id,
-        
-       
-
       },
     });
-
   }
   /** OPEN A NEW ISSUE */
   openTicket() {
@@ -83,7 +104,5 @@ export class SupportPageComponent implements OnInit {
       autoFocus: false,
       data: {},
     });
-
   }
-
 }
