@@ -6,6 +6,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class SearchForComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
