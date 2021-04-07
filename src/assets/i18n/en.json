@@ -7,12 +7,21 @@
         "Contact_Us":"Contact Us",
         "Sell_On_Emdad":"Sell On Emdad"
     },
+    "Header_DropDowns":{
+        "My_Profile":"My Profile",
+        "Track_Orders":"Track Orders",
+        "My_Wishlist":"My Wishlist",
+        "Raise_a_support":"Raise a support",
+        "Log_Out":"Log Out"
+    },
     "Banner":{
-        "Search":"Search For Products"
+        "Search":"Search For Products",
+        "All_Cat":"All Categories"
     },
     "Home":{
         "Popular_Products":"Popular Products",
-        "Popular_Categories":"Popular Categories"
+        "Popular_Categories":"Popular Categories",
+        "Recent_Products":"Recent Products"
     },
     "Profile":{
         "Header":"My Profile"

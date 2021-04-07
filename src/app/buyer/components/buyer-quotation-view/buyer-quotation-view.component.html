@@ -23,56 +23,52 @@
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Qunatity :</span> <span class="deet-light">{{quotation.quantity}}</span></div>
+                    <div class="date-div"><span class="name mr-2">Qunatity :</span> <span class="deet-light">{{quote.quantity}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">unit Price :</span> <span class="deet-light">$ {{quotation.unit_price}}</span></div>
+                    <div class="date-div"><span class="name mr-2">unit Price :</span> <span class="deet-light">$ {{quote.unit_price}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Total Price :</span> <span class="deet-light">$ {{quotation.total_price}}</span></div>
+                    <div class="date-div"><span class="name mr-2">Total Price :</span> <span class="deet-light">$ {{quote.total_price}}</span></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="date-div"><span class="name mr-2">Message :</span> <span class="deet-light">{{quote.message}}</span></div>
                 </div>
                 <br><br>
                 <div class="col-md-12">
                     <div class="date-div"><span class="name">Attachments :</span> </div>
                 </div>
                 <br><br>
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="quotation.attachment1!=null">
 
                     <div> <a class="a-download" href="javascript:void(0);" (click)="download();"><img
-                        src="../../../../../assets/file-up-yellow.png" class="mr-2"><span class="file-name">ahajd.pdf</span></a>
+                        [src]="base_url+quotation.attachment1" class="mr-2"><span class="file-name">ahajd.pdf</span></a>
                         <br><br>
                     </div>
                 </div>
                  <br>
-                 <div class="col-md-12">
-                     <form action="">
-                         
-                         <div class="form-group">
+                 <div class="col-md-12" *ngIf="quotation.status!=4 && quotation.status!=3">     
+                    <div class="form-group">
                         <label for="description">Comment</label>
                         <p class="mob-warning">Add reason for denial</p>
                         <div class="input-group">
                             <!-- description -->
-                            <textarea rows="15" id="description" class="form-control form-control-md" type="text"
-                                 placeholder="please tell us why you want to deny...">
+                            <textarea [(ngModel)]="comments" rows="15" id="description" class="form-control form-control-md" type="text"
+                                    placeholder="please tell us why you want to deny...">
                             </textarea>
-                        </div>
                     </div>
-
-                        
-                     </form>
-                 </div>
-                 <div class="col-md-12 button-div">
-                     <button mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">accept</button>
-                     <button mat-stroked-button class="deny-btn">deny 
-                        <span class="tooltiptext" style="color: #2b2b2b !important;">Add reason for denial</span>
-                     </button>
+                </div>   
+                </div>
+                 <div *ngIf="quotation.status!=4 && quotation.status!=3" class="col-md-12 button-div">
+                    <button mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">accept</button>
+                    <button [disabled]="comments.length==0" type="button" (click)="deny_quotation()" mat-stroked-button class="deny-btn">deny 
+                    <span class="tooltiptext" style="color: #2b2b2b !important;">Add reason for denial</span>
+                    </button>
                  </div>
                 <br>
-               
             </div>
         </div>
-  
 </mat-dialog-content>
 </section>

@@ -7,8 +7,21 @@
         "Contact_Us":"اتصل بنا",
         "Sell_On_Emdad":"بيع على امداد"
     },
+    "Header_DropDowns":{
+        "My_Profile":"ملفي",
+        "Track_Orders":"تتبع الطلبات",
+        "My_Wishlist":"قائمة امنياتي",
+        "Raise_a_support":"ارفع الدعم",
+        "Log_Out":"تسجيل خروج"
+    },
     "Banner":{
-        "Search":"البحث عن المنتجات"
+        "Search":"البحث عن المنتجات",
+        "All_Cat":"جميع الفئات"
+    },
+    "Home":{
+        "Popular_Products":"المنتجات الشعبية",
+        "Popular_Categories":"الفئات الشعبية",
+        "Recent_Products":"المنتجات الأخيرة"
     },
     "Profile":{
         "Header":"ملفي"

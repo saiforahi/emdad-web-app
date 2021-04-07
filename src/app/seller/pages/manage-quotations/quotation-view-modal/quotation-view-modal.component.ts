@@ -5,6 +5,7 @@ import { config } from 'src/config';
 import {QuotationService} from '../../../../shared/services/quotation.service'
 import swal from 'sweetalert'
 import {NgxSpinnerService} from 'ngx-spinner'
+import { CommissionService } from 'src/app/shared/services/commission.services';
 @Component({
   selector: 'app-quotation-view-modal',
   templateUrl: './quotation-view-modal.component.html',
@@ -22,7 +23,8 @@ export class QuotationViewModalComponent implements OnInit {
   attachments: AbstractControl;
   message: AbstractControl;
   img_base_url=config.img_base_url
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder) {}
+  commission:any
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder, private commissionService:CommissionService) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -31,6 +33,21 @@ export class QuotationViewModalComponent implements OnInit {
       (success)=>{
         this.details=success.data
         console.log('quotation details',this.details)
+        if(parseFloat(this.details.product.commission)<=0){
+          this.commissionService.getCommission().subscribe(
+            (item) => {
+              localStorage.setItem('commission',item.data[0].percentage.toString())
+              this.commission=item.data[0].percentage.toString()
+              console.log('prod commission',this.commission)
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+        else{
+          this.commission=this.details.product.commission
+        }
       }
     )
     this.quoteData = this.fb.group({
@@ -116,5 +133,19 @@ export class QuotationViewModalComponent implements OnInit {
       }
     )
   }
+
+  calc_unit_price(price:string){
+    let new_price= parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))
+    this.quoteData.controls['unit_price'].setValue(new_price.toFixed(2))
+    this.quoteData.controls['total_price'].setValue((new_price * parseFloat(this.quoteData.get('quantity').value)).toFixed(2)) 
+  }
+
+  calc_total_price(){
+    let total=parseFloat(this.quoteData.controls['quantity'].value) * parseFloat(this.quoteData.controls['unit_price'].value)
+    this.quoteData.controls['total_price'].setValue(total.toFixed(2))
+  }
   
+  calc_quotation_unit_price(price){
+    return (parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))).toFixed(2)
+  }
 }
