@@ -23,15 +23,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   uId: any;
   screenWidth: number;
   loggedInUserImg: string = '';
-  @ViewChild('sidenav') sidenav: any;
   activeRoute: string[];
   showSpinner: any;
-  showMenu = true;
-
-  toggleSidenav() {
-    this.sidenav.toggle();
-    console.log(this.sidenav.toggle);
-  }
 
   constructor(
     private elementRef: ElementRef,
@@ -54,14 +47,6 @@ export class SellerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.activeRoute = this.router.url.split('/');
-    if (
-      this.router.url.split('/')[2] == 'login' ||
-      this.router.url.split('/')[2] == 'signup'
-    ) {
-      this.showMenu = false;
-    }else {
-      this.showMenu = true;
-    }
     this.UserAuthService.s_uName.subscribe((data) => {
       if (data == null) {
         this.loggedInUser = false;
@@ -89,6 +74,12 @@ export class SellerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  @ViewChild('sidenav') sidenav: any;
+  toggleSidenav() {
+    this.sidenav.toggle();
+    console.log(this.sidenav.toggle);
+  }
+
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
       '#f9f9f9';
@@ -102,6 +93,5 @@ export class SellerComponent implements OnInit, AfterViewInit {
     this.UserAuthService.sellerLogout();
     this.router.navigate(['dashboard/login']);
     swal('Succeed', 'You have logged out successfully', 'success');
-    this.showMenu = true;
   }
 }
