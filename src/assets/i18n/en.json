@@ -7,6 +7,13 @@
         "Contact_Us":"Contact Us",
         "Sell_On_Emdad":"Sell On Emdad"
     },
+    "Banner":{
+        "Search":"Search For Products"
+    },
+    "Home":{
+        "Popular_Products":"Popular Products",
+        "Popular_Categories":"Popular Categories"
+    },
     "Profile":{
         "Header":"My Profile"
     }

@@ -7,6 +7,9 @@
         "Contact_Us":"اتصل بنا",
         "Sell_On_Emdad":"بيع على امداد"
     },
+    "Banner":{
+        "Search":"البحث عن المنتجات"
+    },
     "Profile":{
         "Header":"ملفي"
     }
