@@ -93,6 +93,7 @@ export class UserAuthService {
           's_expires_at',
           JSON.stringify(expiresAt.valueOf())
         );
+        localStorage.setItem('is_approved', authResult.is_approved);
         this.s_uName.next(localStorage.getItem('s_username'));
         this.s_uId.next(localStorage.getItem('s_uid'));
         this.s_uImg.next(localStorage.getItem('s_uimg'));
@@ -379,6 +380,12 @@ export class UserAuthService {
     const updateURL =
       config.base_url + 'api/change/store/image/' + userId + '/';
     return this.http.post(updateURL, store_pic, httpOptions);
+  }
+
+  sellerIsApproved(userId){
+    const updateURL =
+      config.base_url + 'api/user/approve/check/' + userId + '/';
+    return this.http.get(updateURL);
   }
 }
 

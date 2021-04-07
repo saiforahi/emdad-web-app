@@ -10,6 +10,8 @@ import {
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
+import { Router } from '@angular/router';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 
 @Component({
   selector: 'app-bulk-upload-products',
@@ -42,10 +44,29 @@ export class BulkUploadProductsComponent implements OnInit {
   successMsgDirectory: any;
 
   constructor(
+    private authService: UserAuthService,
     private fb: FormBuilder,
     private getCategories: GetCategoryService,
-    private addProducts: AddProductService
-  ) {}
+    private addProducts: AddProductService,
+    private router: Router,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     // get seller owned category

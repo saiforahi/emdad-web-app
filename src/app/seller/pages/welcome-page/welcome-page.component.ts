@@ -1,28 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-} from '@angular/forms';
 import { Router } from '@angular/router';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
-@Component({
-  selector: 'app-payment-page',
-  templateUrl: './payment-page.component.html',
-  styleUrls: ['./payment-page.component.css'],
-})
-export class PaymentPageComponent implements OnInit {
-  paymentForm: FormGroup;
-  cardNo: AbstractControl;
-  cardHolder: AbstractControl;
-  expiry: AbstractControl;
-  cvv: AbstractControl;
 
+@Component({
+  selector: 'app-welcome-page',
+  templateUrl: './welcome-page.component.html',
+  styleUrls: ['./welcome-page.component.css'],
+})
+export class WelcomePageComponent implements OnInit {
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private authService: UserAuthService,
     private subscription: SubscriptionService
@@ -52,18 +39,5 @@ export class PaymentPageComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.paymentForm = this.fb.group({
-      cardNo: ['', [Validators.required]],
-      cardHolder: [''],
-      expiry: [''],
-      cvv: [''],
-    });
-    this.cardNo = this.paymentForm.controls['cardNo'];
-    this.cardHolder = this.paymentForm.controls['cardHolder'];
-    this.cvv = this.paymentForm.controls['cvv'];
-    this.expiry = this.paymentForm.controls['expiry'];
-  }
-
-  onSubmit() {}
+  ngOnInit(): void {}
 }

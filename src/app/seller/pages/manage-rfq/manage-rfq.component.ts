@@ -5,6 +5,8 @@ import { ViewDialogueComponent } from './view-dialogue/view-dialogue.component';
 import { QuotationService } from 'src/app/shared/services/quotation.service';
 import{PageEvent} from '@angular/material/paginator'
 import { config } from 'src/config';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 
 @Component({
@@ -28,8 +30,26 @@ export class ManageRfqComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private rfq: QuotationService
-  ) { }
+    private rfq: QuotationService,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
        // RFQ table data

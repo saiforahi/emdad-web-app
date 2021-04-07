@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav *ngIf="loggedInUser" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
+  <mat-sidenav *ngIf="loggedInUser && activeRoute[2] != 'welcome'" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
     [fixedBottomGap]="0" [mode]="(screenWidth > 991) ? 'side' : 'over'">
     <section class="desktop-sidenav">
       <img src="../../assets/logo.svg" alt="" class="img-fluid mx-auto">
@@ -380,7 +380,7 @@
     </section>
   </mat-sidenav>
   <mat-sidenav-content>
-    <nav *ngIf="loggedInUser" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav">
+    <nav *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav">
       <div class="container">
         <!-- top navbar -->
         <ul class="navbar-nav">
@@ -477,7 +477,7 @@
     <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}">
       <!--mobile nav-->
       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
-        <button *ngIf="loggedInUser" class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg"
+        <button *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg"
             alt="" /></button>
         <div class="navbar-brand mx-auto">
           <a [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="logo" /></a>

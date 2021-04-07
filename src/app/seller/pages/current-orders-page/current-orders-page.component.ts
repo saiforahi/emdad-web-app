@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { OrderViewModalComponent } from './order-view-modal/order-view-modal.component';
 import {OrderService} from '../../../shared/services/order.service'
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 export interface Order {
   code: string;
@@ -32,10 +35,30 @@ export class CurrentOrdersPageComponent implements OnInit {
   toggleSort:boolean = true;
   lowValue: number = 0;
   highValue: number = 5;
+
   constructor(
     public dialog: MatDialog,
-    private orderService:OrderService
-    ) { }
+    private orderService:OrderService,
+    private router: Router,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('s_token'))

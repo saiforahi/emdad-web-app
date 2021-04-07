@@ -33,6 +33,12 @@ export class SellerComponent implements OnInit, AfterViewInit {
     private spinner: SpinnerService,
     private ngxSpinner: NgxSpinnerService
   ) {
+    if(localStorage.getItem("is_approved") != "true"){
+      this.router.navigate(['/dashboard/welcome']);
+    }
+    if(localStorage.getItem("is_subscribed") != "true"){
+      this.router.navigate(['/dashboard/subscription-plan']);
+    }
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');

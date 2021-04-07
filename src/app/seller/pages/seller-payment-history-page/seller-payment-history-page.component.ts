@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
-import{PageEvent} from '@angular/material/paginator';
-
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-seller-payment-history-page',
   templateUrl: './seller-payment-history-page.component.html',
-  styleUrls: ['./seller-payment-history-page.component.css']
+  styleUrls: ['./seller-payment-history-page.component.css'],
 })
 export class SellerPaymentHistoryPageComponent implements OnInit {
   subscriptionHistory: any;
@@ -19,17 +20,35 @@ export class SellerPaymentHistoryPageComponent implements OnInit {
     this.highValue = this.lowValue + event.pageSize;
     return event;
   }
-  constructor(private subscription: SubscriptionService, ) { }
-
-  ngOnInit(): void {
-    this.subscription.subscriptionHistory().subscribe(items => {
-      console.log(items);
-      this.subscriptionHistory = items.data[0];
-      console.log(this.subscriptionHistory);
+  constructor(
+    private router: Router,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
     })
   }
 
- 
-  // dataSource = ELEMENT_DATA;
+  ngOnInit(): void {
+    this.subscription.subscriptionHistory().subscribe((items) => {
+      console.log(items);
+      this.subscriptionHistory = items.data[0];
+      console.log(this.subscriptionHistory);
+    });
+  }
 
+  // dataSource = ELEMENT_DATA;
 }

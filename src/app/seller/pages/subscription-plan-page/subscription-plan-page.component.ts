@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { HighlightSpanKind } from 'typescript';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscription-plan-page',
@@ -25,7 +26,6 @@ export class SubscriptionPlanPageComponent implements OnInit {
   cityList: any;
   userCountry: string = '';
   userCity: string = '';
-
   fees: any;
   payment_type = 1;
   payment_status = 1;
@@ -37,12 +37,29 @@ export class SubscriptionPlanPageComponent implements OnInit {
   created_by: any;
 
   constructor(
-    private subscription: SubscriptionService,
     private coupon: CouponService,
     private order: OrderService,
+    private countryService: CountryListService,
+    private router: Router,
     private authService: UserAuthService,
-    private countryService: CountryListService
-  ) {}
+    private subscription: SubscriptionService
+  ) {
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 1")
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          console.log("condition 2")
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     this.subscription.plans().subscribe((items) => {
@@ -64,7 +81,6 @@ export class SubscriptionPlanPageComponent implements OnInit {
                 break;
               }
             }
-
             if (this.user.city) {
               this.countryService
                 .allCities(this.user.country)
@@ -125,7 +141,6 @@ export class SubscriptionPlanPageComponent implements OnInit {
       this.total_paid_amount -= this.couponDiscount;
       this.discount_amount = this.couponDiscount;
     }
-
     let response = {
       fees: this.fees,
       payment_type: this.payment_type,
@@ -137,7 +152,6 @@ export class SubscriptionPlanPageComponent implements OnInit {
       discount_coupon: this.discount_coupon,
       created_by: this.created_by,
     };
-
     this.subscription
       .subscribeToPlan(
         response.fees,
