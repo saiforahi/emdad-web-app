@@ -28,7 +28,7 @@ export class BankInfoPageComponent implements OnInit {
   passMatched: boolean;
   showPassState: boolean;
   confShowPassState: boolean;
-  selectedImage: any;
+  selectedImage: any=[];
 
   constructor(
     private authService: UserAuthService,

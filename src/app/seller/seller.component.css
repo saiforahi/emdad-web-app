@@ -715,11 +715,16 @@ img.logo {
   }
 }
 @media only screen and (min-width:992px) and (max-width:1199px){
-  .mat-expansion-panel-header-title,
-.mat-expansion-panel-header-description {
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header,
+  .mat-panel-title
+ {
   font-size: 18px !important;
   font-weight: normal !important;
   line-height: 26px;
   font-family: Jost !important;
+}
+.desktop-sidenav .side-menu-holder ul li{
+  font-size: 18px !important;
+  line-height: 26px !important;
 }
 }

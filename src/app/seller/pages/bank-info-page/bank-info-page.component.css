@@ -11,6 +11,7 @@
   font-size: 48px;
   padding: 40px 0;
   margin: 0;
+  line-height: 69px;
 }
 
 .card {
@@ -42,6 +43,7 @@ a {
   font-weight: 500;
   font-size: 24px;
   width: 300px;
+  font-family: Jost !important;
 }
 
 .login-header {
@@ -65,6 +67,7 @@ label {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  line-height: 29px;
 }
 
 .card {
@@ -86,6 +89,8 @@ label {
   border-radius: 5px;
   border: none;
   height: 80px;
+  font: 20px;
+  line-height: 29px;
 }
 
 .form-label {
@@ -122,79 +127,7 @@ input[type="radio"] {
   box-shadow: none;
 }
 
-.lang-btn {
-  background: #f49814;
-  font-style: normal;
-  color: #ffffff;
-  border-radius: 30px;
-  margin-left: auto;
-  font-weight: normal;
-  font-size: 20px;
-  height: 50px;
-  border: none;
-  padding: 0 20px;
-}
 
-.lang {
-  font-size: 12px;
-  color: #ffffff;
-}
-
-.image-wrapper {
-  margin-top: 60px;
-  background: #eaeaea;
-  border-radius: 20px;
-}
-
-.slogan {
-  color: #ffffff;
-  margin: 30px 0 35px;
-  font-weight: unset;
-  font-size: 30px;
-}
-
-.slogan-description {
-  color: #ffffff;
-}
-
-.card-footer {
-  border-color: #ffffff !important;
-}
-
-.footer-text {
-  color: #ffffff;
-}
-
-.social-icon {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.login-page-social {
-  background: url("../../../../assets/images/login-page-bg.png") center 100%
-    no-repeat;
-  width: 100%;
-  height: 760px;
-  border-radius: 20px;
-}
-
-.card-img-overlay {
-  padding: 105px 65px;
-}
-
-.social-media {
-  margin-bottom: 50px;
-}
-
-.social-media button {
-  color: #1f4f9e;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #fff;
-  border: none;
-  margin-right: 15px;
-}
 
 .alert-danger {
   background: transparent;
@@ -213,7 +146,7 @@ input[type="file"] {
 .custom-file-upload {
   width: 80px;
   height: 80px;
-  background-image: url("../../../../assets/upload.svg");
+  background-image: url("../../../../assets/icons/Uploadupload-grey.png");
   background-repeat: no-repeat;
   background-size: 40%;
   background-position: center center;
@@ -238,14 +171,149 @@ input[type="file"] {
   border-radius: 50%;
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  padding: 0;
   background: #ff4b55;
   border: none;
   color: #fff;
   font-size: 16px;
 }
+.attached-file button img{
+  margin-bottom: 12px;
+}
 
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
+  }
+}
+@media only screen and (min-width:290px) and (max-width:575px){
+  .container{
+    padding: 10px;
+  }
+  .submit-btn{
+    text-align: center !important;
+  }
+  .login_btn{
+    height: 50px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 180px;
+  
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .input-group-text img{
+    height: 20px;
+    width: 20px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 60px;
+    width: 60px;
+  }
+  .card {
+    padding: 14px;
+  }
+  .form-control{
+    height: 60px;
+  }
+  label,.form-check-label,.join-text,input,textarea,.form-control,.attached-file{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .attached-file button{
+    vertical-align: middle !important;
+  }
+  .page-heading{
+    font-size: 32px;
+    line-height: 46px;
+  }
+}
+@media all and (min-width:575px) and (max-width:768px){
+  .container{
+    padding: 10px !important;
+  }
+  .page-heading{
+    font-size: 32px;
+    line-height: 46px;
+  }
+  label,.form-check-label,.join-text,input,textarea,.attached-file,.form-control{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .login_btn{
+    height: 50px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 230px;
+  
+  }
+  .submit-btn{
+    text-align: center !important;
+  }
+  .input-group-text{
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .input-group-text img{
+    height: 20px;
+    width: 20px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 60px;
+    width: 60px;
+  }
+  .card {
+    padding: 14px;
+  }
+  .form-control{
+    height: 60px;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+  label,.form-check-label,.join-text,input,textarea,.attached-file,.form-control{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .container{
+    padding: 15px !important;
+  }
+  .page-heading{
+    font-size: 40px;
+    line-height: 62px;
+  }
+  .input-group-text{
+    font-size: 16px;
+    padding: 0 10px;
+  }
+  .input-group-text img{
+    height: 24px;
+    width: 24px;
+  }
+  .custom-file-upload{
+    /* background-size: 5%; */
+    height: 60px;
+    width: 60px;
+  }
+  .login_btn{
+    height: 60px;
+    font-size: 18px;
+    line-height: 25px;
+   
+  
+  }
+  .submit-btn{
+    text-align: center !important;
+  }
+  .card {
+    padding: 16px;
+  }
+  
+  .form-control{
+    height: 60px;
   }
 }
