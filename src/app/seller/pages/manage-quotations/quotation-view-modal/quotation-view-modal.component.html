@@ -25,7 +25,7 @@
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
                         <label class="form-label" for="prodQuantity">Product Quantity</label>
-                        <input formControlName="quantity" id="prodQuantity" class="form-control form-control-md"
+                        <input (change)="calc_total_price()" formControlName="quantity" id="prodQuantity" class="form-control form-control-md"
                             type="number" required />
                         <!--ERROR CHECK-->
                         <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="align-left">
@@ -40,8 +40,9 @@
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
                         <label for="unitPrice" class="form-label">Unit Price</label>
-                        <input id="unitPrice" formControlName="unit_price" class="form-control form-control-md"
+                        <input id="unitPrice" (change)="calc_unit_price($event.target.value)" formControlName="unit_price" class="form-control form-control-md"
                             type="number" required />
+                        <p class="text-warning">{{commission}}% Commission will be added</p>
                         <!--ERROR CHECK-->
                         <div *ngIf="unit_price.invalid && (unit_price.dirty || unit_price.touched)" class="align-left">
                             <div *ngIf="unit_price.errors?.required">

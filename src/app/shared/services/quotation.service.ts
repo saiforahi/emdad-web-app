@@ -87,4 +87,14 @@ export class QuotationService {
     };
     return this.http.put(config.base_url+'api/quote/update/'+id+'/', formData, httpOptions).pipe(shareReplay());
   }
+
+  updateRfq(id:any,data:any): Observable<any> {
+    return this.http.post(config.base_url + 'api/rfq/update/status/'+id+'/',data,this.httpOptions)
+  }
+
+  updateQuotationStatus(id:any,data:any): Observable<any> {
+    return this.http.post( config.base_url + 'api/quote/update/status/'+id+'/',data,this.httpOptions)
+  }
+
+
 }

@@ -66,14 +66,14 @@
 </section>
 <section class="container">
     <div class="product-list-header">
-        Popular Products
+        {{'Home.Popular_Products' | translate}}
     </div>
     <!-- <app-popular-products></app-popular-products> -->
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
 </section>
 <section class="container">
     <div class="product-list-header popular-cat-div-sm">
-        Popular Categories
+        {{'Home.Popular_Categories' | translate}}
     </div>
     <div class="row">
         <div class="col-6 col-sm-4 col-md-4 col-lg-2 text-center"
@@ -96,7 +96,7 @@
 </section>
 <section class="container">
     <div class="product-list-header" style="padding-bottom: 40px;">
-        Recent Products
+        {{'Home.Recent_Products' | translate}}
     </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
     <p *ngIf="prodEnd" class="text-center mt-5"><b>No more products to show</b></p>

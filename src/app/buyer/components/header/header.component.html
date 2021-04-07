@@ -105,7 +105,7 @@
               <div class="d-inline-block" ngbDropdown>
                 <a class="nav-link" ngbDropdownToggle>
                   <!-- (click)="showAllProdlist()" -->
-                  <span>All Products </span>
+                  <span>{{'Banner.All_Cat' | translate}} </span>
                   <img src="../assets/down-carrot.svg" alt="" />
                 </a>
                 <!-- *ngIf="showAllProdDiv" -->
@@ -229,26 +229,26 @@
                 <div id="accnt-drop-down" ngbDropdownMenu class="profile-list">
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''"
                     [routerLink]="['profile']">
-                    <img src="../assets/Profile.svg" alt="" />My Profile
+                    <img src="../assets/Profile.svg" alt="" />{{'Header_DropDowns.My_Profile' | translate}}
                   </button>
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''"
                     [routerLink]="['track-orders']">
-                    <img src="../assets/Location.svg" alt="" />Track Order
+                    <img src="../assets/Location.svg" alt="" />{{'Header_DropDowns.Track_Orders' | translate}}
                   </button>
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'wishlist' ? 'active' : ''"
                     [routerLink]="['wishlist']">
-                    <img src="../assets/Heart.svg" alt="" />My Wishlist
+                    <img src="../assets/Heart.svg" alt="" />{{'Header_DropDowns.My_Wishlist' | translate}}
                   </button>
                   <!-- <button ngbDropdownItem>
                     <img src="../assets/Document.svg" alt="" />Quotations
                   </button> -->
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"
                     [routerLink]="['/support-ticket']">
-                    <img src="../assets/Danger.svg" alt="" />Raise a support
+                    <img src="../assets/Danger.svg" alt="" />{{'Header_DropDowns.Raise_a_support' | translate}}
                     ticket
                   </button>
                   <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem style="color: #FF4B55;">
-                    <img alt="" src="../assets/logout.svg" />Log Out
+                    <img alt="" src="../assets/logout.svg" />{{'Header_DropDowns.Log_Out' | translate}}
                   </button>
                 </div>
               </div>

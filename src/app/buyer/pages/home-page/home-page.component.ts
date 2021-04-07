@@ -4,6 +4,7 @@ import { GetProductService } from '../../../shared/services/get-product.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { config } from '../../../../config';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
@@ -32,6 +33,7 @@ export class HomePageComponent implements OnInit {
     private getProduct: GetProductService,
     private snackBar: MatSnackBar,
     private router: Router,
+    public translate:TranslateService
   ) {
     this.imgBaseUrl = config.img_base_url;
   }

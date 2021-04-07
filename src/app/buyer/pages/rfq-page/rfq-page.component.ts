@@ -108,7 +108,14 @@ export class RfqPageComponent implements OnInit {
   //   "rfq": {
   //       "status":1
   //   }
-
+  calc_unit_price(){
+    if(parseFloat(this.productData.commission)>0){
+      return (parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(this.productData.commission)/100))).toFixed(2)
+    }
+    else{
+      return (parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(localStorage.getItem('commission'))/100))).toFixed(2)
+    }
+  }
   onSubmit(value) {
     this.spinner.show();
     var rfqData = {
@@ -119,19 +126,20 @@ export class RfqPageComponent implements OnInit {
       address: value.address,
       seller: this.productData.seller.id,
       quantity: value.quantity,
-      unit_price: this.productData.unit_price,
-      total_price: parseFloat(value.quantity) * parseFloat(this.productData.unit_price),
+      unit_price: this.calc_unit_price(),
+      total_price: (parseFloat(value.quantity) * parseFloat(this.productData.unit_price)).toFixed(2),
       quotation: [
         {
           message: value.message,
           user: localStorage.getItem('uid'),
           quantity: value.quantity,
-          unit_price: this.productData.unit_price,
-          total_price: parseFloat(value.quantity) * parseFloat(this.productData.unit_price)
+          unit_price: this.calc_unit_price(),
+          total_price: (parseFloat(value.quantity) * parseFloat(this.productData.unit_price)).toFixed(2)
         },
       ],
       rfq: {
         status: 1,
+        comments:"initiated"
       },
     };
     console.log(rfqData);

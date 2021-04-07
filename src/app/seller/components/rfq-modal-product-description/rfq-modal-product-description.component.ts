@@ -15,4 +15,12 @@ img_base_url=config.img_base_url;
     console.log('modal component detail',this.rfqDetailData)
   }
 
+  calc_unit_price(price:string){
+    if(parseFloat(this.rfqDetailData.product.commission)>0){
+      return parseFloat(price) + (parseFloat(price) * (parseFloat(this.rfqDetailData.product.commission)/100))
+    }
+    else{
+      return parseFloat(price) + (parseFloat(price) * (parseFloat(localStorage.getItem('commission'))/100))
+    }
+  }
 }
