@@ -6,14 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
 import { DialogueComponent } from './dialogue/dialogue.component';
-import { ProdCategoryFilterComponent } from './prod-category-filter/prod-category-filter.component';
 
 const routes: Routes = [
   {path:'', component: SllerProductsPageComponent, pathMatch:'full'}
 ]
 
 @NgModule({
-  declarations: [SllerProductsPageComponent, DialogueComponent, ProdCategoryFilterComponent],
+  declarations: [SllerProductsPageComponent, DialogueComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,6 +21,6 @@ const routes: Routes = [
     CommonuiModule,
     MaterialModule,
   ],
-  entryComponents: [DialogueComponent,ProdCategoryFilterComponent],
+  entryComponents: [DialogueComponent],
 })
 export class SllerProductsPageModule { }

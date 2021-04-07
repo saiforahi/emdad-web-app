@@ -10,7 +10,7 @@ import { DialogueComponent } from './dialogue/dialogue.component';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import swal from 'sweetalert';
-import { ProdCategoryFilterComponent } from './prod-category-filter/prod-category-filter.component';
+
 
 @Component({
   selector: 'app-sller-products-page',
@@ -26,15 +26,8 @@ export class SllerProductsPageComponent implements OnInit {
   screenWidth: number;
   mode:any;
   isOpened:boolean;
-  displayedColumns: string[] = [
-    'Product Name',
-    'Stock',
-    'Unit of Measurement',
-    'Unite Price',
-    'Delivery Method',
-    'select',
-    'edit',
-  ];
+  catMenuToggle = false;
+
   resultsLength = [];
   expandedSubCat: number = null;
   expandedCat: number;
@@ -206,15 +199,7 @@ export class SllerProductsPageComponent implements OnInit {
       }
     });
   }
-  viewDialogue(){
-    const dialogRef = this.dialog.open(ProdCategoryFilterComponent, {
-      autoFocus: false,
-    
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+
   setSideMenuCollapseVar() {
     this.sideMenuCollapsed = !this.sideMenuCollapsed;
   }
@@ -257,5 +242,12 @@ export class SllerProductsPageComponent implements OnInit {
 
   dleteProduct(){
     this.selection.selected.forEach(s => console.log(s.id));
+  }
+  showCatMenu() {
+    this.catMenuToggle = true;
+  }
+
+  closeCatMenu() {
+    this.catMenuToggle = false;
   }
 }
