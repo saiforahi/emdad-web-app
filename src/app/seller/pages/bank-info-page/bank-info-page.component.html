@@ -4,12 +4,12 @@
 <section class="card mb-5">
     <form [formGroup]="bankInfoForm" (ngSubmit)="onSubmit(bankInfoForm.value)">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12 col-lg-6">
             <div class="form-group">
               <label for="bankAcNumber">Bank Account Number</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                  <div class="input-group-text"><img src="../../../../assets/icons/card-small.svg" alt=""></div>
                 </div>
                 <!-- bankAcNumber -->
                 <input id="bankAcNumber" class="form-control form-control-md" type="text" formControlName="bankAcNumber"
@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12 col-lg-6">
             <div class="form-group">
               <label class="d-block">Stamped Account Letter</label>
               <label for="attachments" class="custom-file-upload">
@@ -33,7 +33,8 @@
               <ul class="attached-file">
                 <li *ngFor="let file of selectedImage; let i = index;">
                   {{file.name}}
-                  <button mat-raised-button (click)="removeFile(i);">X</button>
+                  <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
+                    alt="" type="button"></button>
                 </li>
               </ul>
             </div>
@@ -43,7 +44,7 @@
               <label for="bankName">Name of Bank</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                  <div class="input-group-text"><img src="../../../../assets/icons/bank.svg" alt=""></div>
                 </div>
                 <!-- bankName -->
                 <input id="bankName" class="form-control form-control-md" type="text" formControlName="bankName"
@@ -61,7 +62,7 @@
               <label for="swiftCode">Swift Code</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                  <div class="input-group-text"><img src="../../../../assets/icons/info-square.svg" alt=""></div>
                 </div>
                 <!-- swiftCode -->
                 <input id="swiftCode" class="form-control form-control-md" type="text" formControlName="swiftCode"
@@ -79,7 +80,7 @@
               <label for="accountName">Account Name</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-home"></i></div>
+                  <div class="input-group-text"><img src="../../../../assets/Profile.svg" alt=""></div>
                 </div>
                 <!-- accountName -->
                 <input id="accountName" class="form-control form-control-md" type="text" formControlName="accountName"
@@ -97,7 +98,7 @@
               <label for="bankAddress">Bank address</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                  <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
                 </div>
                 <!-- company Address -->
                 <input id="bankAddress" class="form-control form-control-md" type="text" formControlName="bankAddress"
@@ -111,7 +112,7 @@
             </div>
           </div>
           <div class="col-12">
-            <div class="form-group">
+            <div class="form-group submit-btn">
               <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn" [disabled]="bankInfoForm.invalid || passMatched">
                 Save
               </button>

@@ -384,7 +384,7 @@ input[type="file"] {
 }
 @media only screen and (min-width:290px) and (max-width:575px){
   .container{
-    padding: 20px;
+    padding: 10px;
   }
   .seller-profile-pic-div{
     height: 80px;
@@ -516,7 +516,7 @@ top: 10px;
     line-height: 25px;
   }
   .container{
-    padding: 10px !important;
+    padding: 15px !important;
   }
   .seller-profile-pic-div{
     height: 100px;
