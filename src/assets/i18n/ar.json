@@ -1,29 +1,48 @@
 {
     "Nav":{
-        "Home":"بيت",
-        "About_Us":"معلومات عنا",
-        "Categories":"فئات",
-        "Our_Partners":"شركاؤنا",
-        "Contact_Us":"اتصل بنا",
-        "Sell_On_Emdad":"بيع على امداد"
-    },
+        "Home": "الصفحة الرئيسية",
+        "About_Us": "من نحن",
+        "Categories": "الفئات",
+        "Our_Partners": "شركائنا",
+        "Contact_Us": "اتصل بنا",
+        "Sell_On_Emdad": "البيع على إمداد",
+        "Sign_In": "تسجيل الدخول",
+        "Sign_Up": "الاشتراك",
+        "Change_Language": "تغيير اللغة",
+        "Cart": "عربة التسوق",
+        "Notifications": "من نحن"
+      },
     "Header_DropDowns":{
-        "My_Profile":"ملفي",
-        "Track_Orders":"تتبع الطلبات",
-        "My_Wishlist":"قائمة امنياتي",
-        "Raise_a_support":"ارفع الدعم",
-        "Log_Out":"تسجيل خروج"
-    },
+        "My_Profile": "ملفي الشخصي",
+        "Track_Orders": "تتبع الطلبات",
+        "My_Wishlist": "قائمة أمنياتي",
+        "Raise_a_support": "رفع تذكرة دعم",
+        "Log_Out": "تسجيل الخروج"
+      },
     "Banner":{
         "Search":"البحث عن المنتجات",
         "All_Cat":"جميع الفئات"
     },
     "Home":{
-        "Popular_Products":"المنتجات الشعبية",
-        "Popular_Categories":"الفئات الشعبية",
-        "Recent_Products":"المنتجات الأخيرة"
-    },
+        "Popular_Products": "المنتجات الشعبية",
+        "Popular_Categories": "الفئات الشعبية",
+        "Recent_Products": "المنتجات الحديثة",
+        "View_More": "عرض المزيد",
+        "No_Product": "لا يوجد المزيد من المنتجات للعرض"
+      },
     "Profile":{
         "Header":"ملفي"
+    },
+    "Footer":{
+        "Slogan": "شعارك هنا",
+        "Company": "الشركة",
+        "About_Us": "عنا",
+        "Our_Partners": "شركاؤنا",
+        "Sell_On_Emdad": "بيع على إمداد",
+        "Help": "يساعد",
+        "Contact": "اتصل",
+        "Privacy_Policy": "سياسة خاصة",
+        "Terms": "الأحكام والشروط",
+        "Send_Suggestion": "إرسال اقتراح منتج إلى EMDAD"
     }
 }
