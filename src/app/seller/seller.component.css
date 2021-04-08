@@ -706,6 +706,9 @@ img.logo {
     width: calc(100% - 350px);
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
   }
+  nav.navbar.not-approved {
+    width: 100%;
+  }
   .mobile-sidenav {
     display: none;
   }
