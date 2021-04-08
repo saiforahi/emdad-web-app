@@ -73,13 +73,13 @@
                         <label for="message" class="form-label">Message</label>
                         <textarea formControlName="message" id="message" class="form-control form-control-md"></textarea>
                         <!-- ERROR CHECK -->
-                        <div *ngIf="total_price.invalid && (total_price.dirty || total_price.touched)"
+                        <!-- <div *ngIf="message.invalid && (message.dirty || message.touched)"
                             class="align-left">
-                            <div *ngIf="total_price.errors?.required">
+                            <div *ngIf="message.errors?.required">
                                 <app-form-input-alert [alertMsg]="'Total Price is required (digits only).'">
                                 </app-form-input-alert>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!--ATTACHMENTS-->
@@ -88,16 +88,13 @@
                     <div class="form-group">
                         <div class="file-warn">
                             <label class="file-label d-block">Quotation Attachments:</label>
-<!-- 
-                           
-                                <app-form-input-alert [alertMsg]="'You can attach maximum two files'"
-                                    class="align-left">
-                                </app-form-input-alert> -->
-                            
+                            <app-form-input-alert [alertMsg]="'You can attach maximum two files'"
+                                class="align-left">
+                            </app-form-input-alert>
                         </div>
                         <!--FILE UPLOAD-->
-                        <label for="attachments" class="custom-file-upload float-left mr-2">
-                            <input id="attachments" class="form-control" type="file" formControlName="attachments"
+                        <label *ngIf="selectedImage.length<2" for="attachments" class="custom-file-upload float-left mr-2">
+                            <input  id="attachments" class="form-control" type="file" formControlName="attachments"
                                 (change)="handleFileSelect($event);" />
                         </label>
                         <!--Attached file show-->

@@ -82,6 +82,7 @@ export class QuotationService {
   updateQuotationSeller(id, formData: any): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
+        //'Content-Type': 'multipart/form',
         Authorization: 'Bearer ' + localStorage.getItem('s_token'),
       }),
     };
