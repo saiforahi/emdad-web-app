@@ -390,8 +390,8 @@ export class ProductListPageComponent implements OnInit {
     // if (this._price.min<this._price.max) {
     //   query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;
     // }
+    this.products=[]
     if(this.selected_price_ranges?.length>0){
-      this.products=[]
       this.selected_price_ranges.forEach((range)=>{
         let temp_query= query+'&min_price=' + range.split(' ')[0]+'&max_price='+ range.split(' ')[1]
         console.log(temp_query)
@@ -413,6 +413,24 @@ export class ProductListPageComponent implements OnInit {
         }
         return
       })
+    }
+    else{
+      if(this.isSeller){
+        this.searchService.sellerwise_filter_products(query,this.sellerId).subscribe((item) => {
+          this.products = item.data.results
+          window.scrollTo(0, 0);
+          //this.get_menus();
+        });
+      }
+      else{
+        this.searchService.filter_products(query).subscribe((item) => {
+          console.log('products from res',item.data.results)
+          this.products = item.data.results
+          console.log('products',this.products)
+          window.scrollTo(0, 0);
+          //this.get_menus();
+        });
+      }
     }
     // console.log('query: ',query);
     // if(this.isSeller){
