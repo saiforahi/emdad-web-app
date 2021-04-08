@@ -10,10 +10,11 @@
         "Sign_Up":"Sign up",
         "Change_Language":"Change Language",
         "Cart":"Cart",
-        "Notifications":"Notifications"
-    },
-    "Side_Nav":{
-
+        "Notifications":"Notifications",
+        "Profile_Settings":"Profile Settings",
+        "Change_Password":"Change Password",
+        "Order_History":"Order History",
+        "Manage_Quotation":"Manage Quotation"
     },
     "Header_DropDowns":{
         "My_Profile":"My Profile",

@@ -1,17 +1,21 @@
 {
     "Nav":{
-        "Home": "الصفحة الرئيسية",
-        "About_Us": "من نحن",
-        "Categories": "الفئات",
-        "Our_Partners": "شركائنا",
-        "Contact_Us": "اتصل بنا",
-        "Sell_On_Emdad": "البيع على إمداد",
-        "Sign_In": "تسجيل الدخول",
-        "Sign_Up": "الاشتراك",
-        "Change_Language": "تغيير اللغة",
-        "Cart": "عربة التسوق",
-        "Notifications": "من نحن"
-      },
+      "Home": "الصفحة الرئيسية",
+      "About_Us": "من نحن",
+      "Categories": "الفئات",
+      "Our_Partners": "شركائنا",
+      "Contact_Us": "اتصل بنا",
+      "Sell_On_Emdad": "البيع على Emdad",
+      "Sign_In": "تسجيل الدخول",
+      "Sign_Up": "الاشتراك",
+      "Change_Language": "تغيير اللغة",
+      "Cart": "عربة التسوق",
+      "Notifications": "من نحن",
+      "Profile_Settings": "من نحن",
+      "Change_Password": "من نحن",
+      "Order_History": "من نحن",
+      "Manage_Quotation": "من نحن"
+    },
     "Header_DropDowns":{
         "My_Profile": "ملفي الشخصي",
         "Track_Orders": "تتبع الطلبات",

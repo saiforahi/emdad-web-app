@@ -31,7 +31,7 @@
             <hr>
             <li *ngIf="!loggedInUser"><span class="pl-0" (click)="closeMenu();" (click)="show_buyer_login()">
               <img src="../../../../assets/Login.svg" alt="">
-                <span>Sign In / Sign Up</span></span></li>
+                <span>{{'Nav.Sign_In' | translate}} / {{'Nav.Sign_Up' | translate}}</span></span></li>
             <div *ngIf="loggedInUser">
               <li [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''" class="my-profile-menu">
                 <!-- <a [routerLink]="['profile/', uId]" (click)="closeMenu();">
@@ -50,14 +50,10 @@
                     </mat-expansion-panel-header>
                     <div class="expanded-div">
                       <ul class="" style="list-style: none; padding: 0 0 0 11px;">
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">Profile
-                          Settings</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">Change
-                          Password</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">Order
-                          History</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();"
-                          class="mb-0">Manage Quotation</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">{{'Nav.Profile_Settings' | translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">{{'Nav.Change_Password'|translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">{{'Nav.Order_History'|translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">{{'Nav.Manage_Quotation'|translate}}</li>
                       </ul>
                     </div>
                   </mat-expansion-panel>
@@ -82,7 +78,7 @@
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
-                <span>{{'Nav.Notifications|translate'}} </span></a></li>
+                <span>{{'Nav.Notifications' | translate}} </span></a></li>
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
