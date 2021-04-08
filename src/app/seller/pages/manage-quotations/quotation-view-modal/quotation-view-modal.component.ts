@@ -15,12 +15,14 @@ export class QuotationViewModalComponent implements OnInit {
   /* selectedImage:Array<any>; */
   quoteData:FormGroup;
   selectedImage:any=[];
-  quoteFormData=new FormData();
+  quoteFormData:FormData=new FormData();
   details:any;
   quantity:AbstractControl;
   unit_price:AbstractControl;
   total_price:AbstractControl;
   attachments: AbstractControl;
+  attachment1: AbstractControl;
+  attachment2: AbstractControl;
   message: AbstractControl;
   img_base_url=config.img_base_url
   commission:any
@@ -55,15 +57,17 @@ export class QuotationViewModalComponent implements OnInit {
       unit_price: ['', [Validators.required]],
       total_price: ['', [Validators.required]],
       attachments: [''],
-      status: 3,
+      attachment1:'',
+      attachment2:'',
+      status: 2,
       message: '',
       quotation: this.fb.array([
         this.fb.group({
           message: '',
           user: localStorage.getItem('s_uid'),
-          quantity: '',
-          unit_price: '',
-          total_price: ''
+          // quantity: '',
+          // unit_price: '',
+          // total_price: ''
         }),
       ]),
 
@@ -100,21 +104,48 @@ export class QuotationViewModalComponent implements OnInit {
   }
 
   onClickSubmit(data:any){
+    let quoteFormData=new FormData()
     this.spinner.show()
-    console.log('form data',data)
-    this.quoteService.updateQuotationSeller(this.details.id,{
-      quotation:[{
-        message:data.message,
-        user:localStorage.getItem('s_uid'),
-        // quantity:data.quantity,
-        // unit_price:data.unit_price,
-        // total_price:data.total_price
-      }],
-      status:2,
-      quantity:data.quantity,
-      unit_price:data.unit_price,
-      total_price:data.total_price,
-    }).subscribe(
+    data.quotation[0].message=data.message
+    console.log('before setting form group',data.quotation)
+    quoteFormData.append('quantity', data.quantity);
+    quoteFormData.append('unit_price', data.unit_price);
+    quoteFormData.append('total_price', data.total_price);
+    quoteFormData.append('status', data.status);
+    quoteFormData.append('quotation', data.quotation)
+    quoteFormData.append('message',data.message)
+    //image attachment issues
+    
+    if (this.selectedImage.length == 2) {
+      // if two files to upload
+      console.log("condition one")
+      quoteFormData.append('attachment1',this.selectedImage[0]);
+      quoteFormData.append('attachment2',this.selectedImage[1]);
+    } 
+    else if (this.details.attachment1 == null && this.selectedImage.length == 1) {
+      // if only one file to upload in attachment1 
+      console.log("condition two")
+      quoteFormData.append('attachment1',this.selectedImage[0]);
+    } else if ( this.details.attachment2 == null && this.selectedImage.length == 1) {
+      console.log("condition three")
+      quoteFormData.append('attachment2',this.selectedImage[0]);
+    }
+    else if (this.details.attachment1 == null && this.details.attachment2 == null && this.selectedImage.length == 0) {
+      quoteFormData.append("attachment1", this.details.attachment1);
+      quoteFormData.append("attachment2", this.details.attachment2)
+    }
+    for (var pair of Object.entries(quoteFormData)) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
+    quoteFormData.forEach(data=>{
+      if(typeof(data) == 'object'){
+        
+      }
+      else{
+        console.log(data)
+      }
+    })
+    this.quoteService.updateQuotationSeller(this.details.id,quoteFormData).subscribe(
       (success)=>{
         this.details.quotation.push({
           message:data.message,
@@ -128,8 +159,9 @@ export class QuotationViewModalComponent implements OnInit {
         swal('Updated','Quotation updated successfully','success')
       },
       (error)=>{
+        console.log(error)
         this.spinner.hide()
-        swal('Failed',error.error.message,'error')
+        swal('Failed',"error",'error')
       }
     )
   }

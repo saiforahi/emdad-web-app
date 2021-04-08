@@ -64,7 +64,7 @@
             </div>
           </div>
       <!--pagination-->
-      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="rfqTableData != 0">
+      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="rfqTableData?.length > 0">
         <mat-paginator *ngIf="rfqTableData?.length>5"
           [length]="rfqTableData?.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
           (page)="getPaginatorData($event)">
