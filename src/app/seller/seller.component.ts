@@ -10,6 +10,7 @@ import { UserAuthService } from '../shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { SpinnerService } from '../shared/services/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SubscriptionService } from '../shared/services/subscription.service';
 
 @Component({
   selector: 'app-seller',
@@ -25,20 +26,30 @@ export class SellerComponent implements OnInit, AfterViewInit {
   loggedInUserImg: string = '';
   activeRoute: string[];
   showSpinner: any;
+  isSubscribed: boolean;
 
   constructor(
     private elementRef: ElementRef,
     private router: Router,
-    private UserAuthService: UserAuthService,
+    private authService: UserAuthService,
+    private subscription: SubscriptionService,
     private spinner: SpinnerService,
     private ngxSpinner: NgxSpinnerService
   ) {
-    if(localStorage.getItem("is_approved") != "true"){
-      this.router.navigate(['/dashboard/welcome']);
-    }
-    if(localStorage.getItem("is_subscribed") != "true"){
-      this.router.navigate(['/dashboard/subscription-plan']);
-    }
+    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
+      console.log(item)
+      // Approved User, User Not Approve
+      this.subscription.isSubscribed().subscribe((item2: any) => {
+        console.log(item2)
+        this.isSubscribed = item2.message == 'Subscribe User' ? true : false;
+        // User Not Subscribe, Subscribe User
+        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
+          this.router.navigate(['/dashboard/welcome']);
+        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
+          this.router.navigate(['/dashboard/subscription-plan']);
+        }
+      })
+    })
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
@@ -53,7 +64,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.activeRoute = this.router.url.split('/');
-    this.UserAuthService.s_uName.subscribe((data) => {
+    this.authService.s_uName.subscribe((data) => {
       if (data == null) {
         this.loggedInUser = false;
       } else {
@@ -61,12 +72,12 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.userName = data;
       }
     });
-    this.UserAuthService.s_uId.subscribe((data) => {
+    this.authService.s_uId.subscribe((data) => {
       if (data != null) {
         this.uId = data;
       }
     });
-    this.UserAuthService.s_uImg.subscribe((data) => {
+    this.authService.s_uImg.subscribe((data) => {
       if (data != null) {
         this.loggedInUserImg = data;
       }
@@ -96,7 +107,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
   }
 
   logout() {
-    this.UserAuthService.sellerLogout();
+    this.authService.sellerLogout();
     this.router.navigate(['dashboard/login']);
     swal('Succeed', 'You have logged out successfully', 'success');
   }

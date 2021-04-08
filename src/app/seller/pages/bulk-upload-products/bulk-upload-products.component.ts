@@ -12,6 +12,7 @@ import { GetCategoryService } from 'src/app/shared/services/get-category.service
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import { Router } from '@angular/router';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-bulk-upload-products',
@@ -58,10 +59,9 @@ export class BulkUploadProductsComponent implements OnInit {
         console.log(item2)
         // User Not Subscribe, Subscribe User
         if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 1")
           this.router.navigate(['/dashboard/welcome']);
         } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 2")
+          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
           this.router.navigate(['/dashboard/subscription-plan']);
         }
       })

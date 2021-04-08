@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 //import { MatPaginator } from '@angular/material/paginator';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-manage-quotations',
@@ -38,10 +39,9 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
         console.log(item2)
         // User Not Subscribe, Subscribe User
         if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 1")
           this.router.navigate(['/dashboard/welcome']);
         } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 2")
+          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
           this.router.navigate(['/dashboard/subscription-plan']);
         }
       })

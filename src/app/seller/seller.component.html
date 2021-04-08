@@ -6,12 +6,12 @@
       <section class="side-menu-holder">
         <ul>
           <!--dashboard item-->
-          <a mat-button [routerLink]="['/dashboard']"
+          <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard']"
             [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
             <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
           </a>
           <!--Manage Profile-->
-          <li class="accordion-menu-item">
+          <li *ngIf="isSubscribed" class="accordion-menu-item">
             <!-- Manage Profile -->
             <mat-accordion>
               <mat-expansion-panel
@@ -69,7 +69,7 @@
                       Subscription Plan
                     </li>
                   </a>
-                  <a [routerLink]="['/dashboard/payment-history']">
+                  <a *ngIf="isSubscribed" [routerLink]="['/dashboard/payment-history']">
                     <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="">
                       <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">Payment
@@ -82,7 +82,7 @@
           </li>
           <!--Manage Subscription Ends-->
           <!-- Manage Products starts-->
-          <li class="accordion-menu-item">
+          <li *ngIf="isSubscribed" class="accordion-menu-item">
             <!-- Manage Products -->
             <mat-accordion>
               <mat-expansion-panel
@@ -121,19 +121,19 @@
           </li>
           <!-- Manage Products ends-->
           <!--Manage RFQ starts-->
-          <a mat-button [routerLink]="['/dashboard/manage-rfqs']"
+          <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/manage-rfqs']"
             [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''">
             <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
           </a>
           <!--Manage RFQ ends-->
           <!--Manage quotation starts-->
-          <a mat-button [routerLink]="['/dashboard/manage-quotations']"
+          <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/manage-quotations']"
             [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''">
             <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
           </a>
           <!--Manage quotation ends-->
           <!--Manage order starts-->
-          <li class="accordion-menu-item">
+          <li *ngIf="isSubscribed" class="accordion-menu-item">
             <!-- Manage Order -->
             <mat-accordion>
               <mat-expansion-panel
@@ -171,7 +171,7 @@
           </li>
           <!--Manage order ends-->
           <!--Support page starts-->
-          <a mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
+          <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
             <li><img src="../../assets/Chat.svg" alt=""> Support</li>
           </a>
           <!--Support page ends-->
@@ -380,7 +380,14 @@
     </section>
   </mat-sidenav>
   <mat-sidenav-content>
-    <nav *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav">
+    <!-- <div class="text-right pr-3 pt-3" (click)="logout();">
+      <button mat-raised-button type="button" class="">
+        <img src="../assets/seller-logout.svg" alt="" />
+        <span class="">&nbsp; Log out</span>
+      </button>
+       && activeRoute[2] != 'welcome'
+    </div> -->
+    <nav *ngIf="loggedInUser" class="navbar navbar-light navbar-expand-lg bg-light desktop-nav" [ngClass]="activeRoute[2] == 'welcome' ? 'not-approved' : ''">
       <div class="container">
         <!-- top navbar -->
         <ul class="navbar-nav">
@@ -431,8 +438,8 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
-            <div ngbDropdown class="d-inline-block">
+          <li class="nav-item" *ngIf="activeRoute[2] != 'welcome'">
+            <div *ngIf="isSubscribed" ngbDropdown class="d-inline-block">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" />
               </a>

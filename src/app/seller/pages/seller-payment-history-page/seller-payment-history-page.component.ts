@@ -3,6 +3,7 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-seller-payment-history-page',
@@ -32,10 +33,9 @@ export class SellerPaymentHistoryPageComponent implements OnInit {
         console.log(item2)
         // User Not Subscribe, Subscribe User
         if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 1")
           this.router.navigate(['/dashboard/welcome']);
         } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          console.log("condition 2")
+          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
           this.router.navigate(['/dashboard/subscription-plan']);
         }
       })
