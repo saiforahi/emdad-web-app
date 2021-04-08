@@ -317,6 +317,16 @@ height: 100px;
       transition: 0.3s;
       z-index: 999999999999;
     }
+    .cat-menu-close-btn {
+      display: block;
+      position: fixed;
+      left: -100px;
+      z-index: 999999999999;
+      opacity: 0;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+    }
     .cat-menu-close-btn img {
       width: 30px;
     }
