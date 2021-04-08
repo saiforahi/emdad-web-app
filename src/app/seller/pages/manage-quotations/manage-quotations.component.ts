@@ -17,7 +17,7 @@ import swal from 'sweetalert';
 
 export class ManageQuotationsComponent implements OnInit {
 //INITIALIZATION
-quotationData: any;
+quotationData: Array<any>=[]
 status = ['Initiative', 'Sent', 'Completed'];
 filtered_data:Array<any>=[]
 lowValue: number = 0;
@@ -52,8 +52,15 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
      // RFQ table data
      this.quote.get_seller_quotation_list().subscribe(item => {
       // console.log(item);
-      this.quotationData = item.data;
-      this.filtered_data=this.quotationData
+      item.data.forEach(element => {
+        console.log(element.status)
+        if(parseFloat(element.status)>1){
+          this.quotationData.push(element)
+          this.filtered_data.push(element)
+        }
+      });
+      // this.quotationData = item.data;
+      // this.filtered_data=this.quotationData
       console.log("Quotations",this.quotationData);
 
     })

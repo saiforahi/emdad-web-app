@@ -16,7 +16,7 @@ import swal from 'sweetalert';
 })
 export class ManageRfqComponent implements OnInit {
   //INITIALIZATION
-  rfqTableData: any;
+  rfqTableData: Array<any>=[];
   lowValue: number = 0;
   highValue: number = 10;
   toggleSort = true;
@@ -53,8 +53,13 @@ export class ManageRfqComponent implements OnInit {
   ngOnInit(): void {
        // RFQ table data
        this.rfq.get_seller_quotation_list().subscribe(item => {
-        // console.log(item);
-        this.rfqTableData = item.data;
+        item.data.forEach((element:any) => {
+          if(parseFloat(element.status)<2){
+            this.rfqTableData.push(element)
+          }
+        });
+        
+        //this.rfqTableData = item.data;
         console.log("RFQ table Data",this.rfqTableData);
       })
 

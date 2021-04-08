@@ -7,6 +7,8 @@ import { QuotationService } from '../../../../shared/services/quotation.service'
 
 
 import swal from 'sweetalert';
+import { CommissionService } from 'src/app/shared/services/commission.services';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-view-dialogue',
   templateUrl: './view-dialogue.component.html',
@@ -21,8 +23,8 @@ export class ViewDialogueComponent implements OnInit {
   prodRfqForm: FormGroup;
   quoteFormShow: boolean = false;
   quantity: AbstractControl;
-  unitPrice: AbstractControl;
-  totalPrice: AbstractControl;
+  unit_price: AbstractControl;
+  total_price: AbstractControl;
   attachments: AbstractControl;
   numberPattern = '^[0-9]$';
   selectedImage: any = [];
@@ -37,12 +39,15 @@ export class ViewDialogueComponent implements OnInit {
   isEnabled: boolean = true;
   uid;
   submitted = false;
+  commission:any
   existingFiles: number;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: UserAuthService,
     private quoteDetails: QuotationService,
+    private commissionService:CommissionService,
+    private spinner:NgxSpinnerService,
 
     @Inject(MAT_DIALOG_DATA) data: { rfqDetails: any }) {
     this.rfqDetailsData = data.rfqDetails;
@@ -59,18 +64,18 @@ export class ViewDialogueComponent implements OnInit {
     // form for making a quotation seller side
     this.prodRfqForm = this.fb.group({
       quantity: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]],
-      totalPrice: ['', [Validators.required]],
+      unit_price: ['', [Validators.required]],
+      total_price: ['', [Validators.required]],
       attachments: [''],
-      status: 3,
-
+      status: 2,
+      message:"",
       quotation: this.fb.array([
         this.fb.group({
           message: '',
           user: this.uid,
           quantity: this.quantity,
-          unit_price: this.unitPrice,
-          total_price: this.totalPrice
+          unit_price: this.unit_price,
+          total_price: this.total_price
         }),
       ]),
 
@@ -78,8 +83,8 @@ export class ViewDialogueComponent implements OnInit {
     //initializing form fields
 
     this.quantity = this.prodRfqForm.controls['quantity'];
-    this.unitPrice = this.prodRfqForm.controls['unitPrice'];
-    this.totalPrice = this.prodRfqForm.controls['totalPrice'];
+    this.unit_price = this.prodRfqForm.controls['unit_price'];
+    this.total_price = this.prodRfqForm.controls['total_price'];
     this.attachments = this.prodRfqForm.controls['attachment'];
     this.quotation = this.prodRfqForm.controls['quotation'];
 
@@ -88,20 +93,29 @@ export class ViewDialogueComponent implements OnInit {
       item => {
         this.rfqDetailAll = item.data;
         console.log("Product details:", this.rfqDetailAll);
+        this.commissionService.getCommission().subscribe(
+          (item) => {
+            localStorage.setItem('commission',item.data[0].percentage.toString())
+            this.commission=item.data[0].percentage.toString()
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       }
     )
 
   }
   //form submit
   onSubmit(value) {
-
+    this.spinner.show()
 
     this.prodRfqFormData.append('quantity', value.quantity);
-    this.prodRfqFormData.append('unit_price', value.unitPrice);
-    this.prodRfqFormData.append('total_price', value.totalPrice);
+    this.prodRfqFormData.append('unit_price', value.unit_price);
+    this.prodRfqFormData.append('total_price', value.total_price);
     this.prodRfqFormData.append('status', value.status);
     this.prodRfqFormData.append('quotation', value.quotation)
-
+    this.prodRfqFormData.append('message',value.message)
 
     //image attachment issues
 
@@ -156,14 +170,16 @@ export class ViewDialogueComponent implements OnInit {
     }
 
 
-    this.quoteDetails.updateQuotation(this.rfqId, this.prodRfqFormData).subscribe(
+    this.quoteDetails.updateQuotationSeller(this.rfqId, this.prodRfqFormData).subscribe(
       (res) => {
         console.log(res);
+        this.spinner.hide()
         swal('Succeed', "Submitted Quotation Successfully", 'success');
 
       },
       (err) => {
         console.error(err);
+        this.spinner.hide()
         swal('Failed!', "Something went wrong", 'error');
       }
     );
@@ -200,6 +216,21 @@ export class ViewDialogueComponent implements OnInit {
   showQuote() {
     this.btnShow = false;
     this.isShown = true;
+  }
+
+  calc_unit_price(price:string){
+    let new_price= parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))
+    this.prodRfqForm.controls['unit_price'].setValue(new_price.toFixed(2))
+    this.prodRfqForm.controls['total_price'].setValue((new_price * parseFloat(this.prodRfqForm.get('quantity').value)).toFixed(2)) 
+  }
+
+  calc_total_price(){
+    let total=parseFloat(this.prodRfqForm.controls['quantity'].value) * parseFloat(this.prodRfqForm.controls['unit_price'].value)
+    this.prodRfqForm.controls['total_price'].setValue(total.toFixed(2))
+  }
+  
+  calc_quotation_unit_price(price){
+    return (parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))).toFixed(2)
   }
 }
 
