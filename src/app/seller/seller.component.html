@@ -189,18 +189,19 @@
               src="../../../../assets/Profile.svg" alt="" />
             <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
           </div>
-          <span *ngIf="loggedInUser" class="name-show">{{userName}}</span>
+          <span *ngIf="loggedInUser && loggedInUserFullName == ''" class="name-show">{{userName}}</span>
+          <span *ngIf="loggedInUser && loggedInUserFullName != ''" class="name-show">{{loggedInUserFullName}}</span>
         </div>
       </div>
       <div class="mob-sidemenu-holder">
         <ul>
           <!--dashboard item-->
-          <a mat-button [routerLink]="['/dashboard']" (click)="sidenav.close();"
+          <a mat-button [routerLink]="['/dashboard']" (click)="sidenav.close();" *ngIf="isSubscribed"
             [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
             <li><img src="../../assets/icons/Category-small.svg" alt="" class="img-fluid"> Dashboard</li>
           </a>
           <!--Manage Profile-->
-          <li class="accordion-menu-item">
+          <li class="accordion-menu-item" *ngIf="isSubscribed">
             <!-- Manage Profile -->
             <mat-accordion>
               <mat-expansion-panel
@@ -261,7 +262,7 @@
                       Subscription Plan
                     </li>
                   </a>
-                  <a [routerLink]="['/dashboard/payment-history']" (click)="sidenav.close();">
+                  <a *ngIf="isSubscribed" [routerLink]="['/dashboard/payment-history']" (click)="sidenav.close();" >
                     <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt=""
@@ -275,7 +276,7 @@
           </li>
           <!--Manage Subscription Ends-->
           <!-- Manage Products starts-->
-          <li class="accordion-menu-item">
+          <li class="accordion-menu-item" *ngIf="isSubscribed">
             <!-- Manage Products -->
             <mat-accordion>
               <mat-expansion-panel
@@ -315,19 +316,19 @@
           </li>
           <!-- Manage Products ends-->
           <!--Manage RFQ starts-->
-          <a mat-button [routerLink]="['/dashboard/manage-rfqs']"
+          <a mat-button [routerLink]="['/dashboard/manage-rfqs']" *ngIf="isSubscribed"
             [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''" (click)="sidenav.close();">
             <li><img src="../../assets/icons/seller-document.svg" alt="" class="img-fluid"> Manage RFQs</li>
           </a>
           <!--Manage RFQ ends-->
           <!--Manage quotation starts-->
-          <a mat-button [routerLink]="['/dashboard/manage-quotations']"
+          <a mat-button [routerLink]="['/dashboard/manage-quotations']" *ngIf="isSubscribed"
             [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''" (click)="sidenav.close();">
             <li><img src="../../assets/icons/quotation-small.svg" alt="" class="img-fluid"> Manage Quotations</li>
           </a>
           <!--Manage quotation ends-->
           <!--Manage order starts-->
-          <li class="accordion-menu-item">
+          <li class="accordion-menu-item" *ngIf="isSubscribed">
             <!-- Manage Order -->
             <mat-accordion>
               <mat-expansion-panel
@@ -366,7 +367,7 @@
           </li>
           <!--Manage order ends-->
           <!--Support page starts-->
-          <a mat-button [routerLink]="['/dashboard/support']" (click)="sidenav.close();"
+          <a mat-button *ngIf="isSubscribed" [routerLink]="['/dashboard/support']" (click)="sidenav.close();"
             [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
             <li><img src="../../assets/icons/chat-small.svg" class="img-fluid" alt=""> Support</li>
           </a>
@@ -398,7 +399,8 @@
                   src="../../../../assets/Profile.svg" alt="" />
                 <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
               </div>
-              <span *ngIf="loggedInUser" style="margin-left: 15px;">{{userName}}</span>
+              <span *ngIf="loggedInUser && loggedInUserFullName == ''" style="margin-left: 15px;">{{userName}}</span>
+              <span *ngIf="loggedInUser && loggedInUserFullName != ''" style="margin-left: 15px;">{{loggedInUserFullName}}</span>
             </div>
             <div ngbDropdownMenu>
               <div ngbDropdownItem (click)="logout();">
@@ -481,10 +483,10 @@
         </ul>
       </div>
     </nav>
-    <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}">
+    <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}" >
       <!--mobile nav-->
       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
-        <button *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="menu-btn mr-auto" (click)="sidenav.open();"><img src="../assets/Filter.svg"
+        <button *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="menu-btn mr-auto" (click)="sidenav.open()"><img src="../assets/Filter.svg"
             alt="" /></button>
         <div class="navbar-brand mx-auto">
           <a [routerLink]="['/']"><img src="../assets/logo.svg" alt="logo" class="logo" /></a>
@@ -519,12 +521,12 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser">
+          <li class="nav-item" *ngIf="loggedInUser && isSubscribed">
             <div ngbDropdown class="d-inline-block">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" class="btn-icon" />
               </a>
-              <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+              <div id="noti-panel"  ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <div class="notification-header">
                   Notifications
                 </div>
@@ -564,6 +566,11 @@
               <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
               Arabic
             </button>
+          </li>
+          <li class="nav-item " *ngIf="loggedInUser && activeRoute[2] == 'welcome'">
+            <a mat-button (click)="logout();" class="logout">
+              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid mr-2" alt=""><span class="show-in-med">Log out</span></li>
+            </a>
           </li>
         </ul>
       </nav>

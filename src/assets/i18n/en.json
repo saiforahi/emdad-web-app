@@ -5,13 +5,22 @@
         "Categories":"Categories",
         "Our_Partners":"Our Partnars",
         "Contact_Us":"Contact Us",
-        "Sell_On_Emdad":"Sell On Emdad"
+        "Sell_On_Emdad":"Sell On Emdad",
+        "Sign_In":"Sign in",
+        "Sign_Up":"Sign up",
+        "Change_Language":"Change Language",
+        "Cart":"Cart",
+        "Notifications":"Notifications",
+        "Profile_Settings":"Profile Settings",
+        "Change_Password":"Change Password",
+        "Order_History":"Order History",
+        "Manage_Quotation":"Manage Quotation"
     },
     "Header_DropDowns":{
         "My_Profile":"My Profile",
         "Track_Orders":"Track Orders",
         "My_Wishlist":"My Wishlist",
-        "Raise_a_support":"Raise a support",
+        "Raise_a_support":"Raise a support ticket",
         "Log_Out":"Log Out"
     },
     "Banner":{
@@ -21,9 +30,23 @@
     "Home":{
         "Popular_Products":"Popular Products",
         "Popular_Categories":"Popular Categories",
-        "Recent_Products":"Recent Products"
+        "Recent_Products":"Recent Products",
+        "View_More":"View More",
+        "No_Product":"No more products to show"
     },
     "Profile":{
         "Header":"My Profile"
+    },
+    "Footer":{
+        "Slogan":"Your Slogan Here",
+        "Company":"COMPANY",
+        "About_Us":"ABOUT US",
+        "Our_Partners":"OUR PARTNERS",
+        "Sell_On_Emdad":"SELL ON EMDAD",
+        "Help":"HELP",
+        "Contact":"CONTACT",
+        "Privacy_Policy":"PRIVACY POLICY",
+        "Terms":"TERMS AND CONDITIONS",
+        "Send_Suggestion":"SEND PRODUCT SUGGESTION TO EMDAD"
     }
 }

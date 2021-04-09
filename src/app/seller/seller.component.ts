@@ -27,7 +27,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   activeRoute: string[];
   showSpinner: any;
   isSubscribed: boolean;
-
+  loggedInUserFullName: string ='';
+userInfo:any;
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -82,6 +83,15 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.loggedInUserImg = data;
       }
     });
+   if(this.uId == localStorage.getItem('s_uid')){
+     this.authService.getSeller(this.uId).subscribe((data) =>{
+       this.userInfo = data.data;
+       console.log("info",this.userInfo);
+       this.loggedInUserFullName = this.userInfo.store_name;
+       
+       console.log("fullname",this.loggedInUserFullName);
+     })
+   }
     this.spinner.showSpinner.subscribe((item) => {
       if (item == true) {
         this.ngxSpinner.show();

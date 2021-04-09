@@ -43,7 +43,7 @@ export class BulkUploadProductsComponent implements OnInit {
   filesDirectory: any = [];
   progressDirectory: any;
   successMsgDirectory: any;
-
+  catMenuToggle = false;
   constructor(
     private authService: UserAuthService,
     private fb: FormBuilder,
@@ -190,6 +190,12 @@ export class BulkUploadProductsComponent implements OnInit {
   }
 
   removeDirectory() {}
+  showCatMenu() {
+    this.catMenuToggle = true;
+  }
 
+  closeCatMenu() {
+    this.catMenuToggle = false;
+  }
   onSubmit(value) {}
 }

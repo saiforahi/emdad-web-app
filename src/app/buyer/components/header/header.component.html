@@ -31,7 +31,7 @@
             <hr>
             <li *ngIf="!loggedInUser"><span class="pl-0" (click)="closeMenu();" (click)="show_buyer_login()">
               <img src="../../../../assets/Login.svg" alt="">
-                <span>Sign In / Sign Up</span></span></li>
+                <span>{{'Nav.Sign_In' | translate}} / {{'Nav.Sign_Up' | translate}}</span></span></li>
             <div *ngIf="loggedInUser">
               <li [ngClass]="activeRoute[1] == 'profile' ? 'active' : ''" class="my-profile-menu">
                 <!-- <a [routerLink]="['profile/', uId]" (click)="closeMenu();">
@@ -44,49 +44,45 @@
                       <mat-panel-title>
                         <div class="cat-head">
                           <img src="../../../../assets/Profile-small.svg" alt="">
-                          <span>My Profile</span>
+                          <span>{{'Profile.Header'|translate}}</span>
                         </div>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="expanded-div">
                       <ul class="" style="list-style: none; padding: 0 0 0 11px;">
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">Profile
-                          Settings</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">Change
-                          Password</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">Order
-                          History</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();"
-                          class="mb-0">Manage Quotation</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">{{'Nav.Profile_Settings' | translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">{{'Nav.Change_Password'|translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">{{'Nav.Order_History'|translate}}</li>
+                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">{{'Nav.Manage_Quotation'|translate}}</li>
                       </ul>
                     </div>
                   </mat-expansion-panel>
                 </mat-accordion>
               </li>
               <li [ngClass]="activeRoute[1] == 'track-orders' ? 'active' : ''"><a [routerLink]="['track-orders']"
-                  (click)="closeMenu();"><img src="../../../../assets/Location-small.svg" alt=""> <span>Track Order
+                  (click)="closeMenu();"><img src="../../../../assets/Location-small.svg" alt=""> <span>{{'Header_DropDowns.Track_Orders' | translate}}
                   </span></a></li>
               <li [ngClass]="activeRoute[1] == 'wishlist' ? 'active' : ''"><a [routerLink]="['wishlist']"
                   (click)="closeMenu();"><img src="../../../../assets/Heart.svg" alt="">
-                  <span>My Wishlist</span></a></li>
+                  <span>{{'Header_DropDowns.My_Wishlist' | translate}}</span></a></li>
               <!-- <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Document.svg" alt="">
                   <span>Quotations</span></a></li> -->
               <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['support-ticket']"
                   (click)="closeMenu();"><img src="../../../../assets/Danger.svg" alt="">
-                  <span>Rasie a Support Ticket</span></a></li>
+                  <span>{{'Header_DropDowns.Raise_a_support' | translate}}</span></a></li>
               <hr>
             </div>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
-                <span>Change Language </span></a></li>
+                <span>{{'Header_DropDowns.Raise_a_support' | translate}} </span></a></li>
             <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
-                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>Cart
+                (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
-                <span>Notifications </span></a></li>
+                <span>{{'Nav.Notifications' | translate}} </span></a></li>
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
-                  <span style="color: #FF4B55">Log Out </span></a></li>
+                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out | translate'}} </span></a></li>
             </div>
           </ul>
         </div>
@@ -128,7 +124,7 @@
             </li>
             <li class="nav-item user-name-holder">
               <a (click)="show_buyer_login()" class="nav-link" *ngIf="!loggedInUser">
-                <span class="sign-text">Sign in / Sign up</span>
+                <span class="sign-text">{{'Nav.Sign_In' | translate}} / {{'Nav.Sign_Up' | translate}}</span>
                 <img class="sign-icon" src="../../../../assets/Login.svg" alt="">
               </a>
               <div class="user-name" *ngIf="loggedInUser">
@@ -138,8 +134,10 @@
                       src="../../../../assets/Profile.svg" alt="" />
                     <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
                   </div>
-                  <span *ngIf="loggedInUser" style="margin-left: 15px;">{{ userName }}</span>
+                  <span *ngIf="loggedInUser && loggedInUserFullName == ''" style="margin-left: 15px;">{{userName}}</span>
+                  <span *ngIf=" loggedInUser && loggedInUserFullName != ''" style="margin-left: 15px;">{{loggedInUserFullName}}</span>
                 </a>
+                
               </div>
             </li>
             <li class="nav-item">
@@ -245,7 +243,6 @@
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"
                     [routerLink]="['/support-ticket']">
                     <img src="../assets/Danger.svg" alt="" />{{'Header_DropDowns.Raise_a_support' | translate}}
-                    ticket
                   </button>
                   <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem style="color: #FF4B55;">
                     <img alt="" src="../assets/logout.svg" />{{'Header_DropDowns.Log_Out' | translate}}
