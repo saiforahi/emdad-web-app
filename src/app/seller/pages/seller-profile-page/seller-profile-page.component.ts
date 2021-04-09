@@ -62,20 +62,32 @@ export class SellerProfilePageComponent implements OnInit {
     private authService: UserAuthService,
     private subscription: SubscriptionService
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    this.authService
+      .sellerIsApproved(localStorage.getItem('s_uid'))
+      .subscribe((item: any) => {
+        console.log(item);
+        // Approved User, User Not Approve
+        this.subscription.isSubscribed().subscribe((item2: any) => {
+          console.log(item2);
+          // User Not Subscribe, Subscribe User
+          if (
+            item.message != 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            this.router.navigate(['/dashboard/welcome']);
+          } else if (
+            item.message == 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            swal(
+              'Access Denied!',
+              'you are not subscribed to any plan! Please subscribe.',
+              'error'
+            );
+            this.router.navigate(['/dashboard/subscription-plan']);
+          }
+        });
+      });
   }
 
   ngOnInit(): void {
@@ -122,8 +134,11 @@ export class SellerProfilePageComponent implements OnInit {
       .subscribe((item) => {
         console.log(item);
         this.userData = item.data;
-        this.profile_pic = config.base_url + this.userData.profile_pic.slice(1);
-        this.banner_pic = config.base_url + this.userData.store_pic.slice(1);
+        if (this.userData.profile_pic != null)
+          this.profile_pic =
+            config.base_url + this.userData.profile_pic.slice(1);
+        if (this.userData.store_pic != null)
+          this.banner_pic = config.base_url + this.userData.store_pic.slice(1);
         if (
           this.userData.seller_attachment1 != null &&
           this.userData.seller_attachment2 != null

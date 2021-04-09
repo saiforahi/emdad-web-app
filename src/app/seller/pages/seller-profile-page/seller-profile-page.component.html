@@ -3,24 +3,23 @@
 </section>
 <section class="card mb-5">
   <div class="profile-banner-holder">
-    <img src="{{banner_pic}}" alt="">
-   <!--  <img src="../../../../assets/images/profile-banner.png" alt=""> -->
+    <img *ngIf="banner_pic != undefined" src="{{banner_pic}}" alt="">
+    <img *ngIf="banner_pic == undefined" src="../../../../assets/banner-default.jpg" alt="">
     <label for="banner" class="banner-img-up-btn mb-0">
       <!-- banner -->
-      <input id="banner" class="form-control form-control-md" type="file"
-        (change)="uploadBannerPic($event);"/>
+      <input id="banner" class="form-control form-control-md" type="file" (change)="uploadBannerPic($event);" />
     </label>
     <!-- <button mat-raised-button class="banner-img-up-btn"><img src="../../../../assets/banner-img-up-icon.svg"
         alt=""></button> -->
     <div class="seller-pro-pic-holder">
       <div class="seller-profile-pic-div">
-        <img src="{{profile_pic}}" alt="">
+        <img *ngIf="profile_pic != undefined" src="{{profile_pic}}" alt="">
+        <img *ngIf="profile_pic == undefined" src="../../../../assets/Profile.svg" style="background: #eee;">
         <!-- <img src="../../../../assets/images/seller-pro-pic.png" alt=""> -->
       </div>
       <label for="propic" class="pro-img-up-btn mb-0">
         <!-- propic -->
-        <input id="propic" class="form-control form-control-md" type="file"
-          (change)="uploadProPic($event);"/>
+        <input id="propic" class="form-control form-control-md" type="file" (change)="uploadProPic($event);" />
       </label>
       <!-- <button mat-raised-button class="pro-img-up-btn" type="file"><img src="../../../../assets/Plus-light.svg" alt=""></button> -->
     </div>
@@ -36,7 +35,8 @@
                 <div class="input-group-text"><img src="../../../../assets/Home.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- comName -->
-              <input id="comName" class="form-control form-control-md" type="text" formControlName="comName" placeholder="Guy Hawkins" required />
+              <input id="comName" class="form-control form-control-md" type="text" formControlName="comName"
+                placeholder="Guy Hawkins" required />
             </div>
             <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
               <div *ngIf="comName.errors?.required">
@@ -50,10 +50,11 @@
             <label for="email">Company email</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Message.svg"  class="img-fluid" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Message.svg" class="img-fluid" alt=""></div>
               </div>
               <!-- email -->
-              <input id="email" placeholder="guyhawkins257@example.com" class="form-control form-control-md" type="email" formControlName="email" disabled/>
+              <input id="email" placeholder="guyhawkins257@example.com" class="form-control form-control-md"
+                type="email" formControlName="email" disabled />
             </div>
           </div>
         </div>
@@ -62,11 +63,11 @@
             <label for="comPhone">Company Mobile Number</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Call.svg"  class="img-fluid" alt=""></div>
+                <div class="input-group-text"><img src="../../../../assets/Call.svg" class="img-fluid" alt=""></div>
               </div>
               <!-- phone -->
-              <input id="comPhone" class="form-control form-control-md" placeholder="(704) 555-0127" type="phone" formControlName="comPhone"
-                required />
+              <input id="comPhone" class="form-control form-control-md" placeholder="(704) 555-0127" type="phone"
+                formControlName="comPhone" required />
             </div>
             <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
               <div *ngIf="comPhone.errors?.required">
@@ -83,11 +84,11 @@
             <label for="comAddress">Company Address</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- company Address -->
-              <input id="comAddress" placeholder="3517 W. Gray St. Utica, Pennsylvania 57867" class="form-control form-control-md" type="text" formControlName="comAddress"
-                required />
+              <input id="comAddress" placeholder="3517 W. Gray St. Utica, Pennsylvania 57867"
+                class="form-control form-control-md" type="text" formControlName="comAddress" required />
             </div>
             <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
               <div *ngIf="comAddress.errors?.required">
@@ -124,10 +125,10 @@
             <label for="country">Country</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- company country -->
-              <select id="country" class="form-control form-control-md" type="text" formControlName="country" 
+              <select id="country" class="form-control form-control-md" type="text" formControlName="country"
                 (change)="getciTyList($event.target.value)">
                 <option value="" disabled>Select Country</option>
                 <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
@@ -144,8 +145,8 @@
           <div class="form-group">
             <label for="city">City</label>
             <div class="input-group">
-              <div class="input-group-prepend"> 
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
+              <div class="input-group-prepend">
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- company city -->
               <select id="city" class="form-control form-control-md" type="text" formControlName="city">
@@ -165,10 +166,11 @@
             <label for="area">Area</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- area -->
-              <input id="area" class="form-control form-control-md" type="text" placeholder="Pennsylvania" formControlName="area" />
+              <input id="area" class="form-control form-control-md" type="text" placeholder="Pennsylvania"
+                formControlName="area" />
             </div>
             <!-- <div *ngIf="area.invalid && (area.dirty || area.touched)">
                     <div *ngIf="area.errors?.required">
@@ -182,10 +184,11 @@
             <label for="zipCode">Zip code</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""class="img-fluid"></div>
+                <div class="input-group-text"><img src="../../../../assets/Location.svg" alt="" class="img-fluid"></div>
               </div>
               <!-- zipCode -->
-              <input id="zipCode" class="form-control form-control-md" placeholder="57867" type="text" formControlName="zipCode" />
+              <input id="zipCode" class="form-control form-control-md" placeholder="57867" type="text"
+                formControlName="zipCode" />
             </div>
             <!-- <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
                     <div *ngIf="zipCode.errors?.required">
@@ -199,10 +202,12 @@
             <label for="sellerDescription">Seller Description</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt=""  class="img-fluid"></div>
+                <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt="" class="img-fluid">
+                </div>
               </div>
               <!-- sellerDescription -->
-              <textarea id="sellerDescription" placeholder="Seller Description" class="form-control form-control-md" type="text" formControlName="sellerDescription" rows="10"></textarea>
+              <textarea id="sellerDescription" placeholder="Seller Description" class="form-control form-control-md"
+                type="text" formControlName="sellerDescription" rows="10"></textarea>
             </div>
             <!-- <div *ngIf="sellerDescription.invalid && (sellerDescription.dirty || sellerDescription.touched)">
                     <div *ngIf="sellerDescription.errors?.required">
@@ -216,24 +221,29 @@
             <label class="d-block">Attachments <small>(max. two attachments allowed)</small></label>
             <ul class="already-added-file d-block">
               <li *ngIf="userData?.seller_attachment1">
-                <span (click)="download(userData.seller_attachment1)" >{{splitFileName(userData.seller_attachment1)}}</span>&nbsp;
-                <button mat-button type="button" *ngIf="userData.seller_attachment1 != undefined" (click)="deleteExistingFile('seller_attachment1');"><i class="fas fa-trash-alt"></i></button>
+                <span
+                  (click)="download(userData.seller_attachment1)">{{splitFileName(userData.seller_attachment1)}}</span>&nbsp;
+                <button mat-button type="button" *ngIf="userData.seller_attachment1 != undefined"
+                  (click)="deleteExistingFile('seller_attachment1');"><i class="fas fa-trash-alt"></i></button>
               </li>
               <li *ngIf="userData?.seller_attachment2">
-                <span (click)="download(userData.seller_attachment2)" >{{splitFileName(userData.seller_attachment2)}}</span>&nbsp;
-                <button mat-button type="button" *ngIf="userData.seller_attachment2 != undefined" (click)="deleteExistingFile('seller_attachment2');"><i class="fas fa-trash-alt"></i></button>
+                <span
+                  (click)="download(userData.seller_attachment2)">{{splitFileName(userData.seller_attachment2)}}</span>&nbsp;
+                <button mat-button type="button" *ngIf="userData.seller_attachment2 != undefined"
+                  (click)="deleteExistingFile('seller_attachment2');"><i class="fas fa-trash-alt"></i></button>
               </li>
             </ul>
             <label for="attachments" class="custom-file-upload" *ngIf="selectedImage.length + existingFiles < 2">
               <!-- Attachments -->
               <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
-                (change)="handleFileSelect($event);"/>
+                (change)="handleFileSelect($event);" />
             </label>
             <span *ngIf="selectedImage.length + existingFiles < 2">&nbsp;</span>
             <ul class="attached-file">
               <li *ngFor="let file of selectedImage; let i = index;">
                 {{file.name}}
-                <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" style="margin-bottom: 14px;"></button>
+                <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
+                    style="margin-bottom: 14px;"></button>
               </li>
             </ul>
           </div>

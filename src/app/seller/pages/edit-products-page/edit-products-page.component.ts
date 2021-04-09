@@ -152,7 +152,7 @@ export class EditProductsPageComponent implements OnInit {
 
   populateFormData() {
     this.getProducts.productDetails(this.productId).subscribe(item => {
-      // console.log(item.data[0].pickup_address[0].address);
+      console.log(item.data[0]);
       this.productDetails = item.data[0];
       this.childCatId = item.data[0].category.id;
       this.brandId = this.productDetails.brand != null ? this.productDetails.brand.id : null;
@@ -250,14 +250,14 @@ export class EditProductsPageComponent implements OnInit {
     console.log(value);
     // this.spinner.show();
     this.productUploadFormData.append('category', value.childCategory);
-    // this.productUploadFormData.append('attachment', this.selectedFiles[0], this.selectedFiles[0].name);
-    // for (var i = 0; i < this.selectedFiles.length; i++) {
-    //   this.productUploadFormData.append(
-    //     `attachment[${i}]path`,
-    //     this.selectedFiles[i],
-    //     this.selectedFiles[i].name
-    //   );
-    // }
+    this.productUploadFormData.append('attachment', this.selectedFiles[0], this.selectedFiles[0].name);
+    for (var i = 0; i < this.selectedFiles.length; i++) {
+      this.productUploadFormData.append(
+        `attachment[${i}]path`,
+        this.selectedFiles[i],
+        this.selectedFiles[i].name
+      );
+    }
     var pickupAddress = {"city": null, "address": value.ddp};
     this.productUploadFormData.append('pickup_address', pickupAddress.toString());
     this.productUploadFormData.append('brand', value.manufactererName);
@@ -279,15 +279,16 @@ export class EditProductsPageComponent implements OnInit {
       this.productUploadFormData.append('ex_works_lead_time', value.leadTime);
     }
     this.productUploadFormData.append('stock_quantity', value.prodStock);
-    // this.productUploadFormData.append('status', '1');
-    // if (this.selectedImage.length > 0)
-    //   this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
-    // if (this.selectedImage.length > 1)
-    //   this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
+    this.productUploadFormData.append('status', '1');
+    if (this.selectedImage.length > 0)
+      this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
+    if (this.selectedImage.length > 1)
+      this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
     this.addProductService.updateProduct(this.productUploadFormData, this.productDetails.id).subscribe(
       (success) => {
         console.log(success);
         this.spinner.hide();
+        this.populateFormData();
         swal('Succeed', success.message, 'success');
       },
       (error: any) => {
@@ -298,9 +299,10 @@ export class EditProductsPageComponent implements OnInit {
   }
 
   deleteExistingImage(value){
-    console.log(value)
+    console.log(value.column)
     this.addProductService.deleteProdImage(this.productId, value.column).subscribe(success => {
       console.log(success)
+      this.populateFormData();
     })
   }
 
@@ -322,6 +324,14 @@ export class EditProductsPageComponent implements OnInit {
   removeImg(id) {
     this.selectedImage.splice(id, 1);
     this.imgPreviewList.splice(id, 1);
+  }
+
+  deleteExistingFile(attachmentId){
+    console.log(attachmentId)
+    this.addProductService.deleteProdAttachment(attachmentId).subscribe(success => {
+      console.log(success)
+      this.populateFormData();
+    })
   }
 
   handleFileSelect(event) {
