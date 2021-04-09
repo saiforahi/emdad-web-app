@@ -41,7 +41,9 @@ export class QuotationService {
       this.sellerHttpOptions
     );
   }
-  
+  getNextBatchItem(link): Observable<any> {
+    return this.http.get(link);
+  }
   get_seller_quotation_details(id): Observable<any> {
     return this.http.get(
       config.base_url + 'api/quote/details/' + id + '/',
