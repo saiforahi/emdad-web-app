@@ -114,7 +114,8 @@ export class ViewDialogueComponent implements OnInit {
     this.prodRfqFormData.append('unit_price', value.unit_price);
     this.prodRfqFormData.append('total_price', value.total_price);
     this.prodRfqFormData.append('status', value.status);
-    this.prodRfqFormData.append('quotation', value.quotation)
+    this.prodRfqFormData.append('quotation[0]user', localStorage.getItem('s_uid'))
+    this.prodRfqFormData.append('quotation[0]message',value.message)
     this.prodRfqFormData.append('message',value.message)
 
     //image attachment issues
