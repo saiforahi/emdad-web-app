@@ -14,6 +14,7 @@ import swal from 'sweetalert';
 import * as fileSaver from 'file-saver';
 import { config } from 'src/config';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-seller-profile-page',
@@ -60,7 +61,8 @@ export class SellerProfilePageComponent implements OnInit {
     private spinner: SpinnerService,
     private fileService: FileService,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,
+    public translate : TranslateService
   ) {
     this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
       console.log(item)

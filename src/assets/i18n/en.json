@@ -1,4 +1,7 @@
 {
+    "Buttons":{
+        "Save":"Save"
+    },
     "Nav":{
         "Home":"Home",
         "About_Us":"About Us",
@@ -94,6 +97,43 @@
         "Privacy_Policy":"PRIVACY POLICY",
         "Terms":"TERMS AND CONDITIONS",
         "Send_Suggestion":"SEND PRODUCT SUGGESTION TO EMDAD"
+    },
+    "Seller_Profile":{
+      "Company_Profile":"Company Profile",
+      "Company_Name":"Company Name",
+      "Attachments":"Attachments",
+      "Seller_Description":"Seller Description",
+      "Zip_Code":"Zip Code",
+      "Area":"Area",
+      "Select_City":"Select City",
+      "Select_Country":"Select Country",
+      "City":"City",
+      "Country":"Country",
+      "Company_Address":"Company Address",
+      "Company_Mobile_Number":"Company Mobile Number",
+      "Company_Email":"Company Email",
+      "Max_Two":"(max. two attachments allowed)"
+    },
+    "Seller_Menu":{
+        "Dashboard":"Dashboard",
+        "Manage_Profile":"Manage Profile",
+        "Company_Profile":"Company Profile",
+        "Bank_Account_Information":"Bank Account Information",
+        "Change_Password":"Change Password",
+        "Manage_Subscription":"Manage Subscription",
+        "Subscription_Plan":"Subscription Plan",
+        "Payment_History":"Payment History",
+        "Manage_Products":"Manage Products",
+        "Product_Categories":"Product Categories",
+        "Bulk_Products_Import":"Bulk Products Import",
+        "Upload_Products":"Upload Products",
+        "Manage_RFQs":"Manage RFQs",
+        "Manage_Quotations":"Manage Quotations",
+        "Manage_Orders":"Manage Orders",
+        "Current_Orders":"Current Orders",
+        "Order_History":"Order History",
+        "Invoices":"Invoices",
+        "Support":"Support"
     }
 }
 

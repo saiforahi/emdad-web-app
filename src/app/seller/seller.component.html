@@ -8,7 +8,7 @@
           <!--dashboard item-->
           <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard']"
             [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
-            <li><img src="../../assets/dashboard.svg" alt=""> Dashboard</li>
+            <li><img src="../../assets/dashboard.svg" alt=""> {{'Seller_Menu.Dashboard'|translate}}</li>
           </a>
           <!--Manage Profile-->
           <li *ngIf="isSubscribed" class="accordion-menu-item">
@@ -19,29 +19,29 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/seller-Profile.svg" alt="">
-                    Manage Profile
+                    {{'Seller_Menu.Manage_Profile'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
                   <a [routerLink]="['/dashboard/profile']">
                     <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt=""> Company
-                      Profile
+                      <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/dot-light.svg" alt="">
+                      {{'Seller_Menu.Company_Profile'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/bank-info']">
                     <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
-                      Information
+                      <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">
+                      {{'Seller_Menu.Bank_Account_Information'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/change-password']">
                     <li [ngClass]="activeRoute[2] == 'change-password' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/dot-light.svg" alt="">Change
-                      Password
+                      <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/dot-light.svg" alt="">
+                      {{'Seller_Menu.Change_Password'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -58,7 +58,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/Wallet.svg" alt="">
-                    Manage Subscription
+                    {{'Seller_Menu.Manage_Subscription'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
@@ -66,14 +66,14 @@
                     <li [ngClass]="activeRoute[2] == 'subscription-plan' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="">
                       <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt="">
-                      Subscription Plan
+                      {{'Seller_Menu.Subscription_Plan'|translate}}
                     </li>
                   </a>
                   <a *ngIf="isSubscribed" [routerLink]="['/dashboard/payment-history']">
                     <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">Payment
-                      History
+                      <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt="">
+                      {{'Seller_Menu.Payment_History'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -90,29 +90,29 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/Chart.svg" alt="">
-                    Manage Products
+                    {{'Seller_Menu.Manage_Products'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
                   <a [routerLink]="['/dashboard/products']">
                     <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt=""> Product
-                      Categories
+                      <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt=""> 
+                      {{'Seller_Menu.Product_Categories'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/bulk-products-upload']">
                     <li [ngClass]="activeRoute[2] == 'bulk-products-upload' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt="">
                       <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt="">
-                      Bulk Products Import
+                      {{'Seller_Menu.Bulk_Products_Import' | translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/upload-products']">
                     <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""> Upload
-                      Products
+                      <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""> 
+                      {{'Seller_Menu.Upload_Products'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -123,13 +123,13 @@
           <!--Manage RFQ starts-->
           <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/manage-rfqs']"
             [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''">
-            <li><img src="../../assets/seller-Document.svg" alt=""> Manage RFQs</li>
+            <li><img src="../../assets/seller-Document.svg" alt=""> {{'Seller_Menu.Manage_RFQs'|translate}}</li>
           </a>
           <!--Manage RFQ ends-->
           <!--Manage quotation starts-->
           <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/manage-quotations']"
             [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''">
-            <li><img src="../../assets/seller-Document.svg" alt=""> Manage Quotations</li>
+            <li><img src="../../assets/seller-Document.svg" alt=""> {{'Seller_Menu.Manage_Quotations'|translate}}</li>
           </a>
           <!--Manage quotation ends-->
           <!--Manage order starts-->
@@ -141,28 +141,26 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/Buy.svg" alt="">
-                    Manage Order
+                    {{'Seller_Menu.Manage_Orders'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
                   <a [routerLink]="['/dashboard/current-orders']">
                     <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""> Current
-                      Order
+                      <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""> {{'Seller_Menu.Current_Orders'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/order-history']">
                     <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""> Order
-                      History
+                      <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""> {{'Seller_Menu.Order_History'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/invoices']">
                     <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt=""> Invoices
+                      <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt=""> {{'Seller_Menu.Invoices'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -172,7 +170,7 @@
           <!--Manage order ends-->
           <!--Support page starts-->
           <a *ngIf="isSubscribed" mat-button [routerLink]="['/dashboard/support']" [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
-            <li><img src="../../assets/Chat.svg" alt=""> Support</li>
+            <li><img src="../../assets/Chat.svg" alt=""> {{'Seller_Menu.Support'|translate}}</li>
           </a>
           <!--Support page ends-->
         </ul>
@@ -198,7 +196,7 @@
           <!--dashboard item-->
           <a mat-button [routerLink]="['/dashboard']" (click)="sidenav.close();" *ngIf="isSubscribed"
             [ngClass]="activeRoute[1] == 'dashboard' &&  activeRoute.length == 2 ? 'active' : ''">
-            <li><img src="../../assets/icons/Category-small.svg" alt="" class="img-fluid"> Dashboard</li>
+            <li><img src="../../assets/icons/Category-small.svg" alt="" class="img-fluid"> {{'Seller_Menu.Dashboard'|translate}}</li>
           </a>
           <!--Manage Profile-->
           <li class="accordion-menu-item" *ngIf="isSubscribed">
@@ -209,7 +207,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/icons/profile-small.svg" alt="" class="img-fluid">
-                    Manage Profile
+                    {{'Seller_Menu.Manage_Profile'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
@@ -217,14 +215,13 @@
                     <li [ngClass]="activeRoute[2] == 'profile' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'profile'" src="../../assets/icons/blue-dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'profile'" src="../../assets/icons/white-dot.svg" alt=""
-                        class="dot"> Company Profile
+                        class="dot"> {{'Seller_Menu.Company_Profile'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/bank-info']" (click)="sidenav.close();">
                     <li [ngClass]="activeRoute[2] == 'bank-info' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'bank-info'" src="../../assets/dot.svg" alt="">
-                      <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">Bank Account
-                      Information
+                      <img *ngIf="activeRoute[2] != 'bank-info'" src="../../assets/dot-light.svg" alt="">{{'Seller_Menu.Bank_Account_Information'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/change-password']" (click)="sidenav.close();">
@@ -232,8 +229,7 @@
                       <img *ngIf="activeRoute[2] == 'change-password'" src="../../assets/icons/blue-dot.svg" alt=""
                         class="dot">
                       <img *ngIf="activeRoute[2] != 'change-password'" src="../../assets/icons/white-dot.svg" alt=""
-                        class="dot">Change
-                      Password
+                        class="dot">{{'Seller_Menu.Change_Password'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -250,7 +246,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/icons/Wallet-small.svg" alt="" class="img-fluid">
-                    Manage Subscription
+                    {{'Seller_Menu.Manage_Subscription'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
@@ -259,15 +255,14 @@
                       <img *ngIf="activeRoute[2] == 'subscription-plan'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'subscription-plan'" src="../../assets/dot-light.svg" alt=""
                         class="dot">
-                      Subscription Plan
+                        {{'Seller_Menu.Subscription_Plan'|translate}}
                     </li>
                   </a>
                   <a *ngIf="isSubscribed" [routerLink]="['/dashboard/payment-history']" (click)="sidenav.close();" >
                     <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt=""
-                        class="dot">Payment
-                      History
+                        class="dot">{{'Seller_Menu.Payment_History'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -284,7 +279,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/icons/Chart-small.svg" alt="" class="img-fluid">
-                    Manage Products
+                    {{'Seller_Menu.Manage_Products'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
@@ -292,7 +287,7 @@
                     <li [ngClass]="activeRoute[2] == 'products' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'products'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'products'" src="../../assets/dot-light.svg" alt="" class="dot">
-                      Product Categories
+                      {{'Seller_Menu.Product_Categories'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/bulk-products-upload']" (click)="sidenav.close();">
@@ -300,14 +295,14 @@
                       <img *ngIf="activeRoute[2] == 'bulk-products-upload'" src="../../assets/dot.svg" alt=""
                         class="dot">
                       <img *ngIf="activeRoute[2] != 'bulk-products-upload'" src="../../assets/dot-light.svg" alt=""
-                        class="dot"> Bulk Products Import
+                        class="dot"> {{'Seller_Menu.Bulk_Products_Import'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/upload-products']" (click)="sidenav.close();">
                     <li [ngClass]="activeRoute[2] == 'upload-products' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'upload-products'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'upload-products'" src="../../assets/dot-light.svg" alt=""
-                        class="dot"> Upload Products
+                        class="dot"> {{'Seller_Menu.Upload_Products'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -318,13 +313,13 @@
           <!--Manage RFQ starts-->
           <a mat-button [routerLink]="['/dashboard/manage-rfqs']" *ngIf="isSubscribed"
             [ngClass]="activeRoute[2] == 'manage-rfqs' ? 'active' : ''" (click)="sidenav.close();">
-            <li><img src="../../assets/icons/seller-document.svg" alt="" class="img-fluid"> Manage RFQs</li>
+            <li><img src="../../assets/icons/seller-document.svg" alt="" class="img-fluid"> {{'Seller_Menu.Manage_RFQs'|translate}}</li>
           </a>
           <!--Manage RFQ ends-->
           <!--Manage quotation starts-->
           <a mat-button [routerLink]="['/dashboard/manage-quotations']" *ngIf="isSubscribed"
             [ngClass]="activeRoute[2] == 'manage-quotations' ? 'active' : ''" (click)="sidenav.close();">
-            <li><img src="../../assets/icons/quotation-small.svg" alt="" class="img-fluid"> Manage Quotations</li>
+            <li><img src="../../assets/icons/quotation-small.svg" alt="" class="img-fluid"> {{'Seller_Menu.Manage_Quotations'|translate}}</li>
           </a>
           <!--Manage quotation ends-->
           <!--Manage order starts-->
@@ -336,7 +331,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <img src="../../assets/icons/Buycart-small.svg" alt="" class="img-fluid">
-                    Manage Order
+                    {{'Seller_Menu.Manage_Orders'|translate}}
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="child-item">
@@ -344,21 +339,21 @@
                     <li [ngClass]="activeRoute[2] == 'current-orders' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'current-orders'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'current-orders'" src="../../assets/dot-light.svg" alt=""
-                        class="dot"> Current Order
+                        class="dot"> {{'Seller_Menu.Current_Orders'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/order-history']" (click)="sidenav.close();">
                     <li [ngClass]="activeRoute[2] == 'order-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'order-history'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'order-history'" src="../../assets/dot-light.svg" alt=""
-                        class="dot"> Order History
+                        class="dot"> {{'Seller_Menu.Order_History'|translate}}
                     </li>
                   </a>
                   <a [routerLink]="['/dashboard/invoices']" (click)="sidenav.close();">
                     <li [ngClass]="activeRoute[2] == 'invoices' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'invoices'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'invoices'" src="../../assets/dot-light.svg" alt="" class="dot">
-                      Invoices
+                      {{'Seller_Menu.Invoices'|translate}}
                     </li>
                   </a>
                 </ul>
@@ -369,12 +364,12 @@
           <!--Support page starts-->
           <a mat-button *ngIf="isSubscribed" [routerLink]="['/dashboard/support']" (click)="sidenav.close();"
             [ngClass]="activeRoute[2] == 'support' ? 'active' : ''">
-            <li><img src="../../assets/icons/chat-small.svg" class="img-fluid" alt=""> Support</li>
+            <li><img src="../../assets/icons/chat-small.svg" class="img-fluid" alt=""> {{'Seller_Menu.Support'|translate}}</li>
           </a>
           <!--Support page ends-->
           <!--logout button-->
           <a mat-button (click)="logout();" class="logout">
-            <li><img src="../../assets/icons/logout-small.svg" class="img-fluid" alt="">Logout</li>
+            <li><img src="../../assets/icons/logout-small.svg" class="img-fluid" alt="">{{'Header_DropDowns.Log_Out' | translate}}</li>
           </a>
         </ul>
       </div>
@@ -406,7 +401,7 @@
               <div ngbDropdownItem (click)="logout();">
                 <label class="">
                   <img src="../assets/seller-logout.svg" alt="" />
-                  <span class="lan-title">Log out</span>
+                  <span class="lan-title">{{'Header_DropDowns.Log_out'|translate}}</span>
                 </label>
               </div>
             </div>
@@ -418,7 +413,7 @@
                 <img src="../assets/down-carrot.svg" alt="" />
               </a>
               <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
-                <div ngbDropdownItem>
+                <div ngbDropdownItem (click)="changeLang('en')">
                   <label class="lan-radio-btn">
                     <img src="../assets/en-lan.svg" alt="" />
                     <span class="lan-title">English</span>
@@ -429,7 +424,7 @@
                 <div style="padding: 0 30px">
                   <mat-divider></mat-divider>
                 </div>
-                <div ngbDropdownItem>
+                <div ngbDropdownItem (click)="changeLang('ar')">
                   <label class="lan-radio-btn">
                     <img src="../assets/ar-lan.svg" alt="" />
                     <span class="lan-title">Arabic</span>
@@ -447,7 +442,7 @@
               </a>
               <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <div class="notification-header">
-                  Notifications
+                 {{'Nav.Notifications'|translate}}
                 </div>
                 <button ngbDropdownItem class="drop-item">
                   <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
@@ -499,7 +494,7 @@
                 <img src="../assets/down-carrot.svg" alt="" class="drop-icon" />
               </a>
               <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
-                <div ngbDropdownItem>
+                <div ngbDropdownItem (click)="changeLang('en')">
                   <label class="lan-radio-btn">
                     <img src="../assets/en-lan.svg" alt="" />
                     <span class="lan-title">English</span>
@@ -510,10 +505,10 @@
                 <div style="padding: 0 30px">
                   <mat-divider></mat-divider>
                 </div>
-                <div ngbDropdownItem>
+                <div ngbDropdownItem (click)="changeLang('ar')">
                   <label class="lan-radio-btn">
                     <img src="../assets/ar-lan.svg" alt="" />
-                    <span class="lan-title">Arabic</span>
+                    <span  class="lan-title">Arabic</span>
                     <input type="radio" name="language" />
                     <span class="checkmark"></span>
                   </label>
@@ -528,7 +523,7 @@
               </a>
               <div id="noti-panel"  ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <div class="notification-header">
-                  Notifications
+                  {{'Nav.Notifications'|translate}}
                 </div>
                 <button ngbDropdownItem class="drop-item">
                   <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
@@ -562,14 +557,14 @@
             </div>
           </li>
           <li class="nav-item" *ngIf="!loggedInUser">
-            <button mat-raised-button class="lang-btn">
+            <button type="button" (click)="changeLang('ar')" class="lang-btn">
               <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
               Arabic
             </button>
           </li>
           <li class="nav-item " *ngIf="loggedInUser && activeRoute[2] == 'welcome'">
             <a mat-button (click)="logout();" class="logout">
-              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid mr-2" alt=""><span class="show-in-med">Log out</span></li>
+              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid mr-2" alt=""><span class="show-in-med">{{'Header_DropDowns.Log_out' | translate}}</span></li>
             </a>
           </li>
         </ul>

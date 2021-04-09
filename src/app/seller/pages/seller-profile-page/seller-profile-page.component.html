@@ -1,5 +1,5 @@
 <section>
-  <h2 class="page-heading">Company Profile</h2>
+  <h2 class="page-heading">{{'Seller_Profile.Company_Profile'|translate}}</h2>
 </section>
 <section class="card mb-5">
   <div class="profile-banner-holder">
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="comName">Company Name</label>
+            <label for="comName">{{'Seller_Profile.Company_Name'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Home.svg" alt="" class="img-fluid"></div>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="email">Company email</label>
+            <label for="email">{{'Seller_Profile.Company_Email'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Message.svg"  class="img-fluid" alt=""></div>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="comPhone">Company Mobile Number</label>
+            <label for="comPhone">{{'Seller_Profile.Company_Mobile_Number'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Call.svg"  class="img-fluid" alt=""></div>
@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
-            <label for="comAddress">Company Address</label>
+            <label for="comAddress">{{'Seller_Profile.Company_Address'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
@@ -121,7 +121,7 @@
         </div> -->
         <div class="col-md-6">
           <div class="form-group">
-            <label for="country">Country</label>
+            <label for="country">{{'Seller_Profile.Country'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
@@ -129,7 +129,7 @@
               <!-- company country -->
               <select id="country" class="form-control form-control-md" type="text" formControlName="country" 
                 (change)="getciTyList($event.target.value)">
-                <option value="" disabled>Select Country</option>
+                <option value="" disabled>{{'Seller_Profile.Select_Country'|translate}}</option>
                 <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
               </select>
             </div>
@@ -142,14 +142,14 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="city">City</label>
+            <label for="city">{{'Seller_Profile.City'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend"> 
                 <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
               </div>
               <!-- company city -->
               <select id="city" class="form-control form-control-md" type="text" formControlName="city">
-                <option value="" disabled>Select City</option>
+                <option value="" disabled>{{'Seller_Profile.Select_City'|translate}}</option>
                 <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
               </select>
             </div>
@@ -162,7 +162,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="area">Area</label>
+            <label for="area">{{'Seller_Profile.Area'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""  class="img-fluid"></div>
@@ -179,7 +179,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="zipCode">Zip code</label>
+            <label for="zipCode">{{'Seller_Profile.Zip_Code'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""class="img-fluid"></div>
@@ -196,7 +196,7 @@
         </div>
         <div class="col-md-12 seller-description">
           <div class="form-group">
-            <label for="sellerDescription">Seller Description</label>
+            <label for="sellerDescription">{{'Seller_Profile.Seller_Description'|translate}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text"><img src="../../../../assets/Edit-light.svg" alt=""  class="img-fluid"></div>
@@ -213,7 +213,7 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
-            <label class="d-block">Attachments <small>(max. two attachments allowed)</small></label>
+            <label class="d-block">{{'Seller_Profile.Attachments'|translate}} <small>{{'Seller_Profile.Max_Two'|translate}}</small></label>
             <ul class="already-added-file d-block">
               <li *ngIf="userData?.seller_attachment1">
                 <span (click)="download(userData.seller_attachment1)" >{{splitFileName(userData.seller_attachment1)}}</span>&nbsp;
@@ -242,7 +242,7 @@
           <div class="form-group submit-btn">
             <button type="submit" mat-raised-button class="btn btn-primary btn-block btn-md login_btn"
               [disabled]="sellerProfileForm.invalid || passMatched">
-              Save
+              {{'Buttons.Save'|translate}}
             </button>
           </div>
         </div>

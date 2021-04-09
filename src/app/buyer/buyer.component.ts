@@ -16,7 +16,7 @@ export class BuyerComponent implements OnInit {
       localStorage.setItem('locale', 'en');
       translate.setDefaultLang('en');
     }
-   }
+  }
 
   ngOnInit(): void {
   }

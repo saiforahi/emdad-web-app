@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 import { SpinnerService } from '../shared/services/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SubscriptionService } from '../shared/services/subscription.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-seller',
@@ -35,8 +36,16 @@ userInfo:any;
     private authService: UserAuthService,
     private subscription: SubscriptionService,
     private spinner: SpinnerService,
-    private ngxSpinner: NgxSpinnerService
+    private ngxSpinner: NgxSpinnerService,
+    private translate:TranslateService
   ) {
+    if (localStorage.getItem('locale')) {
+      const browserLang = localStorage.getItem('locale');
+      translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    } else {
+      localStorage.setItem('locale', 'en');
+      translate.setDefaultLang('en');
+    }
     this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
       console.log(item)
       // Approved User, User Not Approve
@@ -120,5 +129,11 @@ userInfo:any;
     this.authService.sellerLogout();
     this.router.navigate(['dashboard/login']);
     swal('Succeed', 'You have logged out successfully', 'success');
+  }
+
+  changeLang(language: string) {
+    localStorage.setItem('locale', language);
+    this.translate.use(language);
+    console.log(this.translate.currentLang)
   }
 }
