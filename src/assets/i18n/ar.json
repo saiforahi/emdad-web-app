@@ -10,11 +10,11 @@
       "Sign_Up": "الاشتراك",
       "Change_Language": "تغيير اللغة",
       "Cart": "عربة التسوق",
-      "Notifications": "من نحن",
-      "Profile_Settings": "من نحن",
-      "Change_Password": "من نحن",
-      "Order_History": "من نحن",
-      "Manage_Quotation": "من نحن"
+      "Notifications": "إشعارات",
+      "Profile_Settings": "إعدادات الملف الشخصي",
+      "Change_Password": "تغيير كلمة المرور",
+      "Order_History": "تاريخ الطلب",
+      "Manage_Quotation": "إدارة الاقتباس"
     },
     "Header_DropDowns":{
         "My_Profile": "ملفي الشخصي",
@@ -34,9 +34,55 @@
         "View_More": "عرض المزيد",
         "No_Product": "لا يوجد المزيد من المنتجات للعرض"
       },
-    "Profile":{
+    "Buyer_Profile":{
         "Header":"ملفي"
     },
+    "Buyer_Profile_Form":{
+      "Full_Name": "الاسم الكامل",
+      "Comapany_Name": "اسم الشركة (اختياري)",
+      "Email": "البريد الإلكتروني",
+      "Mobile_Number": "رقم الهاتف المحمول",
+      "Address": "العنوان",
+      "Country": "البلد",
+      "Select_one": "حدد واحدًا",
+      "City": "المدينة",
+      "Area": "المنطقة",
+      "Zip_Code": "الرمز البريدي",
+      "Save": "حفظ"
+    },
+    "Buyer_Change_Password_Form":{
+      "Current_Password":"كلمة السر الحالية",
+      "New_Password":"كلمة السر الجديدة",
+      "Confirm_Password":"تأكيد كلمة المرور"
+  },
+  "Buyer_Order_History":{
+    "Order_ID": "معرف الطلب",
+    "Payment_Date": "تاريخ الدفع",
+    "Delivery_Date": "تاريخ التسليم",
+    "Amount": "المبلغ",
+    "View": "عرض",
+    "No_Data": "لا توجد بيانات متاحة"
+  },
+  "Buyer_Quotation_History":{
+    "Quotation_ID": "معرف عرض الأسعار",
+    "Date": "التاريخ",
+    "RFQ_ID": "معرف طلب عرض الأسعار",
+    "Seller_Name": "اسم البائع",
+    "Status": "الحالة",
+    "Initiated": "تم البدء",
+    "Sent": "تم الإرسال",
+    "Completed": "مكتمل",
+    "Closed": "مغلق",
+    "Qunatity": "كمية",
+    "Unit_Price": "سعر الوحده",
+    "Total_Price": "سعر توتا",
+    "Message": "رسالة",
+    "Attachments": "المرفقات",
+    "Comment": "تعليق",
+    "reason_denial": "أضف سببًا للرفض",
+    "Accept": "قبول",
+    "Deny": "أنكر"
+  },
     "Footer":{
         "Slogan": "شعارك هنا",
         "Company": "الشركة",

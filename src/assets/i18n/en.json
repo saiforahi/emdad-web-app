@@ -34,8 +34,54 @@
         "View_More":"View More",
         "No_Product":"No more products to show"
     },
-    "Profile":{
+    "Buyer_Profile":{
         "Header":"My Profile"
+    },
+    "Buyer_Profile_Form":{
+        "Full_Name":"Full Name",
+        "Comapany_Name":"Company Name (Optional)",
+        "Email":"Email",
+        "Mobile_Number":"Mobile Number",
+        "Address":"Address",
+        "Country":"Country",
+        "Select_one":"Select one",
+        "City":"City",
+        "Area":"Area",
+        "Zip_Code":"Zip Code",
+        "Save":"Save"
+    },
+    "Buyer_Change_Password_Form":{
+        "Current_Password":"Current Password",
+        "New_Password":"New Password",
+        "Confirm_Password":"Confirm Password"
+    },
+    "Buyer_Order_History":{
+        "Order_ID":"Order ID",
+        "Payment_Date":"Payment Date",
+        "Delivery_Date":"Delivery Date",
+        "Amount":"Amount",
+        "View":"View",
+        "No_Data":"No data available"
+    },
+    "Buyer_Quotation_History":{
+        "Quotation_ID":"Quotation ID",
+        "Date":"Date",
+        "RFQ_ID":"RFQ ID",
+        "Seller_Name":"Seller Name",
+        "Status":"Status",
+        "Initiated":"Initiated",
+        "Sent":"Sent",
+        "Completed":"Completed",
+        "Closed":"Closed",
+        "Qunatity":"Qunatity",
+        "Unit_Price":"Unit Price",
+        "Total_Price":"Total Price",
+        "Message":"Message",
+        "Attachments":"Attachments",
+        "Comment":"Comment",
+        "reason_denial":"Add reason for denial",
+        "Accept":"Accept",
+        "Deny":"Deny"
     },
     "Footer":{
         "Slogan":"Your Slogan Here",
@@ -50,3 +96,5 @@
         "Send_Suggestion":"SEND PRODUCT SUGGESTION TO EMDAD"
     }
 }
+
+

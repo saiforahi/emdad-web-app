@@ -25,13 +25,13 @@
     <table mat-table [dataSource]="orderData | slice: lowValue:highValue">
       <!-- quotation id Column -->
       <ng-container matColumnDef="Order ID">
-        <th mat-header-cell *matHeaderCellDef>Order ID</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Buyer_Order_History.Order_ID' | translate}}</th>
         <td mat-cell *matCellDef="let element">#{{ element.order_code }}</td>
       </ng-container>
 
       <!-- date Column -->
       <ng-container matColumnDef="Payment Date">
-        <th mat-header-cell *matHeaderCellDef>Payment Date</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Buyer_Order_History.Payment_Date' | translate}}</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.order_payment?.length > 0
@@ -43,7 +43,7 @@
 
       <!--rfq id Column -->
       <ng-container matColumnDef="Delivery Date">
-        <th mat-header-cell *matHeaderCellDef>Delivery Date</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Buyer_Order_History.Delivery_Date' | translate}}</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.tracking_order?.length>0
@@ -54,7 +54,7 @@
       </ng-container>
       <!-- buyer name Column -->
       <ng-container matColumnDef="Amount">
-        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Buyer_Order_History.Amount' | translate}}</th>
         <td mat-cell *matCellDef="let element">{{ element.total_amount }}</td>
       </ng-container>
       <!--view coloumn-->
@@ -67,7 +67,7 @@
             [routerLink]="['/order/details/', element.id]"
             align="right"
           >
-            View
+          {{'Buyer_Order_History.View' | translate}}
           </button>
         </td>
       </ng-container>
@@ -83,7 +83,7 @@
       *ngIf="orderData?.length>5"
     ></mat-paginator>
     <div class="no-data" *ngIf="orderData == undefined || orderData == null">
-      No data available
+      {{'Buyer_Order_History.No_Data' | translate}}
     </div>
   </div>
 </section>
