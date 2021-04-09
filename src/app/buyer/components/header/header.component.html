@@ -82,7 +82,7 @@
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
-                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out|translate'}} </span></a></li>
+                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out | translate'}} </span></a></li>
             </div>
           </ul>
         </div>
@@ -134,9 +134,10 @@
                       src="../../../../assets/Profile.svg" alt="" />
                     <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
                   </div>
-                  <span *ngIf="loggedInUser && fullName == ''" style="margin-left: 15px;">{{ userName }}</span>
-                  <span *ngIf="loggedInUser && fullName != ''" style="margin-left: 15px;">{{ fullName }}</span>
+                  <span *ngIf="loggedInUser && loggedInUserFullName == ''" style="margin-left: 15px;">{{userName}}</span>
+                  <span *ngIf=" loggedInUser && loggedInUserFullName != ''" style="margin-left: 15px;">{{loggedInUserFullName}}</span>
                 </a>
+                
               </div>
             </li>
             <li class="nav-item">
