@@ -134,7 +134,8 @@
                       src="../../../../assets/Profile.svg" alt="" />
                     <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
                   </div>
-                  <span *ngIf="loggedInUser" style="margin-left: 15px;">{{ userName }}</span>
+                  <span *ngIf="loggedInUser && fullName == ''" style="margin-left: 15px;">{{ userName }}</span>
+                  <span *ngIf="loggedInUser && fullName != ''" style="margin-left: 15px;">{{ fullName }}</span>
                 </a>
               </div>
             </li>
