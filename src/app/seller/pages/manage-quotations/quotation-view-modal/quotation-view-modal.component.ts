@@ -112,7 +112,8 @@ export class QuotationViewModalComponent implements OnInit {
     quoteFormData.append('unit_price', data.unit_price);
     quoteFormData.append('total_price', data.total_price);
     quoteFormData.append('status', data.status);
-    quoteFormData.append('quotation', data.quotation)
+    quoteFormData.append('quotation[0]message', data.message)
+    quoteFormData.append('quotation[0]user', localStorage.getItem('s_uid'))
     quoteFormData.append('message',data.message)
     //image attachment issues
     
