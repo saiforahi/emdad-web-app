@@ -129,7 +129,7 @@ export class SllerProductsPageComponent implements OnInit {
     this.getCategories
       .categoriesOfSeller(localStorage.getItem('s_uid'))
       .subscribe((item: any) => {
-        console.log(item);
+        console.log("item",item);
         this.categories = item.data[0].category_info;
       });
     // filter products for given cat id in route

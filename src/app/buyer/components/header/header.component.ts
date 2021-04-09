@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit {
   activeRoute: any;
   loggedInUserImg: string = '';
   cartLength: any;
+  fullName:string ='';
+  userInfo: any;
 
   constructor(
     private UserAuthService: UserAuthService,
@@ -89,6 +91,13 @@ export class HeaderComponent implements OnInit {
         this.uId = data;
       }
     });
+    if(this.uId == localStorage.getItem('uid')){
+      this.UserAuthService.getUser(this.uId).subscribe((data) =>{
+        this.userInfo = data.data;
+        this.fullName = this.userInfo.full_name;
+        console.log("fullname",this.fullName);
+      })
+    }
     // this.UserAuthService.uGroup.subscribe((data) => {
     //   if (data != null) {
     //     this.uGroup = data;

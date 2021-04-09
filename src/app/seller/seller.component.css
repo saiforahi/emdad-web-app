@@ -683,6 +683,7 @@ img.logo {
     align-items: center;
     
   }
+ 
 }
 
 @media only screen and (min-width: 992px) {
@@ -730,4 +731,9 @@ img.logo {
   font-size: 18px !important;
   line-height: 26px !important;
 }
+}
+@media all and (min-width:290px) and (max-width:310px){
+  .show-in-med{
+    display: none !important;
+  }
 }
