@@ -1,160 +1,210 @@
 <!--8th april @ 2021-->
 <!--side nav bar with toggle for mobile-->
 <section class="clearfix">
-
   <button mat-button class="cat-menu-close-btn" [ngClass]="{ active: catMenuToggle, '': !catMenuToggle }"
-      (click)="closeCatMenu();">
-      <img src="../../../../assets/close.svg" alt="" />
+    (click)="closeCatMenu()">
+    <img src="../../../../assets/close.svg" alt="" />
   </button>
   <div class="side-cat-menu" [ngClass]="{ active: catMenuToggle, '': !catMenuToggle }">
-      <div class="side-nav-bar">
-          <mat-accordion *ngFor="let cat of categories;">
-              <mat-expansion-panel #subCat>
-                  <mat-expansion-panel-header>
-                      <mat-panel-title>
-                          <div class="cat-head" style="font-size: 20px;">
-                              {{cat.name | titlecase}} ({{cat.children.length}})
-                          </div>
-                      </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <div class="expanded-div" [ngClass]="sideMenuCollapsed? 'd-none' : 'd-block'">
-                      <div *ngIf="cat.children.length == 0" style="font-size: 18px;">
-                          No item to show
-                      </div>
-                      <!-- level two -->
-                      <mat-accordion *ngFor="let subcategory of cat.children">
-                          <mat-expansion-panel #childCat>
-                              <mat-expansion-panel-header>
-                                  <mat-panel-title>
-                                      <div class="cat-head med-child" style="font-size: 18px;">
-                                          {{subcategory.name | titlecase}}
-                                      </div>
-                                  </mat-panel-title>
-                                  <mat-panel-description>
-                                      <span class="plus" *ngIf="!childCat.expanded">+</span>
-                                      <span class="minus" *ngIf="childCat.expanded">-</span>
-                                  </mat-panel-description>
-                              </mat-expansion-panel-header>
-                              <div class="expanded-div">
-                                  <div *ngIf="subcategory.children.length == 0" style="font-size: 18px;">
-                                      No item to show
-                                  </div>
-                                  <!-- level three -->
-                                  <div *ngFor="let child of subcategory.children" style="padding: 5px 0;">
-                                      <!-- [routerLink]="['/products/category/', child.id]" -->
-                                      <a style="font-size: 18px;">
-                                          {{child.name | titlecase}}
-                                      </a>
-                                  </div>
-                              </div>
-                          </mat-expansion-panel>
-                      </mat-accordion>
+    <div class="side-nav-bar">
+      <mat-accordion *ngFor="let cat of categories">
+        <mat-expansion-panel #subCat>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="cat-head" style="font-size: 20px">
+                {{ cat.name | titlecase }}
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="expanded-div" [ngClass]="sideMenuCollapsed ? 'd-none' : 'd-block'">
+            <div *ngIf="cat.children.length == 0" style="font-size: 18px">
+              No item to show
+            </div>
+            <!-- level two -->
+            <mat-accordion *ngFor="let subcategory of cat.children">
+              <mat-expansion-panel #childCat>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div class="cat-head med-child" style="font-size: 18px">
+                      {{ subcategory.name | titlecase }}
+                    </div>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <span class="plus" *ngIf="!childCat.expanded">+</span>
+                    <span class="minus" *ngIf="childCat.expanded">-</span>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="expanded-div">
+                  <div *ngIf="subcategory.children.length == 0" style="font-size: 18px">
+                    No item to show
                   </div>
+                  <!-- level three -->
+                  <div *ngFor="let child of subcategory.children" style="padding: 5px 0">
+                    <!-- [routerLink]="['/products/category/', child.id]" -->
+                    <a style="font-size: 18px" (click)="selectedCat(child.id);">
+                      {{ child.name | titlecase }}
+                    </a>
+                  </div>
+                </div>
               </mat-expansion-panel>
-          </mat-accordion>
-      </div>
+            </mat-accordion>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
   <!--side nav bar with toggle for mobile ends-->
-     <!--bulk upload page starts-->
-      <div class="product-list-content">
-        <div class="container">
-          <!--heading show-->
-        <section class="page-heading-holder desktop-view">
-          <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
-        </section>
-         <!--mobile header-->
-         <section class="page-heading-holder mobile-view">
-          <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
+  <!--bulk upload page starts-->
+  <div class="product-list-content">
+    <div class="container">
+      <!--heading show-->
+      <section class="page-heading-holder desktop-view">
+        <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
+      </section>
+      <!--mobile header-->
+      <section class="page-heading-holder mobile-view">
+        <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
 
-          <!--buttons for mobile-->
-          <div class="sort-btn float-right mobile-buttons d-inline-block">
-              <button class="filter-btn" (click)="showCatMenu();"><img src="../../../../assets/icons/filter.svg"
-                      alt=""></button>
-                      <!--if not selected anything-->
-              
-          </div>
+        <!--buttons for mobile-->
+        <div class="sort-btn float-right mobile-buttons d-inline-block">
+          <button class="filter-btn" (click)="showCatMenu()">
+            <img src="../../../../assets/icons/filter.svg" alt="" />
+          </button>
+          <!--if not selected anything-->
+        </div>
       </section>
       <!--breadcrumbs-->
       <section>
         <app-seller-breadcrumbs [directoryString]="'Products'"></app-seller-breadcrumbs>
       </section>
-        <!--state show-->
-        <section class="state-holder mt-3">
-          <img *ngIf="false" src="../../../../assets/first-state.svg" alt="">
-          <img *ngIf="true" src="../../../../assets/second-state.svg" alt="">
-        </section>
-        <section *ngIf="uploadStep1" class="step1-up">
-          <div class="card">
-            <ngx-dropzone (change)="onSelect($event)" style="height: auto;">
-              <ngx-dropzone-label>
-                <img src="../../../../assets/xls-icon.png" alt="" class="img-fluid xl-img">
-                <p *ngIf="files.length == 0 && successMsg == undefined" class="up-instruction">Drop to
-                  attach file or choose from finder <br>
-                  Must be in (xls) format.
-                </p>
-                <p *ngIf="files.length != 0 && successMsg == undefined" class="up-instruction patience">Please be
-                  patient until the product <br>
-                  uploaded successfully.
-                </p>
-                <p *ngIf="files.length == 0 && successMsg != undefined" class="up-instruction up-success">
-                  {{successMsg}}!
-                </p>
-                <div *ngIf="successMsg != undefined" class="progress-bar mx-auto mt-3 mb-3">
-                  <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
-                  <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> {{progress}}%
-                  </div>
+      <!--state show-->
+      <section class="state-holder mt-3">
+        <img *ngIf="false" src="../../../../assets/first-state.svg" alt="" />
+        <img *ngIf="true" src="../../../../assets/second-state.svg" alt="" />
+      </section>
+      <section *ngIf="uploadStep1" class="step1-up">
+        <div class="card">
+          <!-- file upload dropzone -->
+          <ngx-dropzone (change)="onSelect($event)" style="height: auto" *ngIf="progress != 100" [disabled]="selectedCatId == undefined">
+            <ngx-dropzone-label>
+              <img src="../../../../assets/xls-icon.png" alt="" class="img-fluid xl-img" />
+              <p *ngIf="files.length == 0 && successMsg == undefined" class="up-instruction">
+                Drop to attach file or choose from finder <br />
+                Must be in (xls) format.
+              </p>
+              <p *ngIf="files.length != 0 && successMsg == undefined" class="up-instruction patience">
+                Please be patient until the product <br />
+                uploaded successfully.
+              </p>
+              <p *ngIf="successMsg != undefined" class="up-instruction up-success">
+                {{ successMsg }}!
+              </p>
+              <div *ngIf="successMsg != undefined" class="progress-bar mx-auto mt-3 mb-3">
+                <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
+                <div style="position: absolute; padding: 10px; color: white" class="show-prog-value">
+                  {{ progress }}%
                 </div>
-              </ngx-dropzone-label>
-              <!-- <div *ngIf="false">
-                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                  <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
-                </ngx-dropzone-preview>
-              </div> -->
-            </ngx-dropzone>
+              </div>
+            </ngx-dropzone-label>
+          </ngx-dropzone>
+          <!-- after upload delete -->
+          <div class="text-center" *ngIf="progress == 100">
+            <div class="img-preview-div">
+              <img src="../../../../assets/xls-icon.png" alt="" class="img-fluid xl-img" />
+              <button mat-raised-button type="button" (click)="deleteXlFile(files[0].name);"><img
+                  src="../../../../assets/close.svg" alt=""></button>
+            </div>
+            <p *ngIf="successMsg != undefined" class="up-instruction up-success">
+              {{ successMsg }}!
+            </p>
+            <div *ngIf="successMsg != undefined" class="progress-bar mx-auto mt-3 mb-3">
+              <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
+              <div style="position: absolute; padding: 10px; color: white" class="show-prog-value">
+                {{ progress }}%
+              </div>
+            </div>
           </div>
-          <div class="disclaimer" *ngIf="files.length == 0 && progress != 100">
-            <p>(You must select a child category before uploading products in bulk. Here's a sample file that shows
-              how
-              to upload in bulk!)</p>
-            <p class="file-warn"><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank"
-                download><img src="../../../../assets/Documentdoc-icon.png" alt="icon"><span>Download Sample
-                  File</span></a></p>
-          </div>
-          <div *ngIf="progress == 100" class="next-button mt-3 text-center">
-            <button mat-stroked-button (click)="uploadNextStep()">Next</button>
-          </div>
-        </section>
-        <!--step after first step is completed-->
-        <section *ngIf="uploadStep2">
-          <div class="card">
-            <ngx-dropzone (change)="onSelectDirectory($event)" style="height: auto;">
-              <ngx-dropzone-label>
-                <img src="../../../../assets/directory-icon.png" alt="" class="img-fluid xl-img">
-                <p *ngIf="filesDirectory.length == 0 && successMsgDirectory == undefined" class="up-instruction">Please upload a file directory <br> for all of your products
-                </p>
-                <p *ngIf="filesDirectory.length != 0 && successMsgDirectory == undefined" class="up-instruction patience">Please be
-                  patient until the Directory <br>
-                  uploaded successfully.
-                </p>
-                <p *ngIf="filesDirectory.length == 0 && successMsgDirectory != undefined" class="up-instruction up-success">
-                  {{successMsgDirectory}}!
-                </p>
-                <div *ngIf="progressDirectory != undefined" class="progress-bar mx-auto mt-3 mb-3">
-                  <mat-progress-bar mode="determinate" value="progressDirectory"></mat-progress-bar>
-                  <div style="position: absolute; padding: 10px; color: white;" class="show-prog-value"> {{progressDirectory}}%
-                  </div>
+        </div>
+        <!-- upload product msg and sample file -->
+        <div class="disclaimer" *ngIf="files.length == 0 && progress != 100">
+          <p>
+            (You must select a child category before uploading products in bulk.
+            Here's a sample file that shows how to upload in bulk!)
+          </p>
+          <p class="file-warn">
+            <a href="../../../../assets/Product-bulk-format.xlsx" target="_blank" download><img
+                src="../../../../assets/Documentdoc-icon.png" alt="icon" /><span>Download Sample File</span></a>
+          </p>
+        </div>
+        <div *ngIf="progress == 100" class="next-button mt-3 text-center">
+          <button mat-stroked-button (click)="uploadNextStep()">Next</button>
+        </div>
+      </section>
+      <!--step after first step is completed-->
+      <section *ngIf="uploadStep2">
+        <div class="card">
+          <!-- upload directory dropzone -->
+          <ngx-dropzone (change)="onSelectDirectory($event)" style="height: auto" *ngIf="progressDirectory != 100">
+            <ngx-dropzone-label>
+              <img src="../../../../assets/directory-icon.png" alt="" class="img-fluid xl-img" />
+              <p *ngIf="
+                  filesDirectory.length == 0 && successMsgDirectory == undefined
+                " class="up-instruction">
+                Please upload a file directory <br />
+                for all of your products
+              </p>
+              <p *ngIf="
+                  filesDirectory.length != 0 && successMsgDirectory == undefined
+                " class="up-instruction patience">
+                Please be patient until the Directory <br />
+                uploaded successfully.
+              </p>
+              <p *ngIf="
+                  successMsgDirectory != undefined
+                " class="up-instruction up-success">
+                {{ successMsgDirectory }}!
+              </p>
+              <div *ngIf="progressDirectory != undefined" class="progress-bar mx-auto mt-3 mb-3">
+                <mat-progress-bar mode="determinate" value="progressDirectory"></mat-progress-bar>
+                <div style="position: absolute; padding: 10px; color: white" class="show-prog-value">
+                  {{ progressDirectory }}%
                 </div>
-              </ngx-dropzone-label>
-              <!-- <div *ngIf="false">
-                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                  <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
-                </ngx-dropzone-preview>
-              </div> -->
-            </ngx-dropzone>
+              </div>
+            </ngx-dropzone-label>
+          </ngx-dropzone>
+          <!-- after upload delete -->
+          <div class="text-center" *ngIf="progressDirectory == 100">
+            <div class="img-preview-div">
+              <img src="../../../../assets/directory-icon.png" alt="" class="img-fluid xl-img" />
+              <button mat-raised-button type="button" (click)="deleteDirectory(filesDirectory[0].name);"><img
+                  src="../../../../assets/close.svg" alt=""></button>
+            </div>
+            <p *ngIf="successMsgDirectory != undefined" class="up-instruction up-success">
+              {{ successMsgDirectory }}!
+            </p>
+            <div *ngIf="successMsgDirectory != undefined" class="progress-bar mx-auto mt-3 mb-3">
+              <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
+              <div style="position: absolute; padding: 10px; color: white" class="show-prog-value">
+                {{ progressDirectory }}%
+              </div>
+            </div>
           </div>
-          <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
-            <button mat-stroked-button (click)="finishUpload()">Submit</button>
+        </div>
+        <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
+          <button mat-stroked-button (click)="finishUpload()">Submit</button>
+        </div>
+      </section>
+      <section *ngIf="showFinish == true">
+        <div class="card">
+          <div class="text-center">
+            <img src="../../../../assets/happy-face.png" alt="">
+            <p class="up-instruction up-success">Products uploaded successfully!</p>
           </div>
-        </section>
-      </div>
-      </div>
+        </div>
+        <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
+          <button mat-stroked-button (click)="initialFaze()">Finish</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
