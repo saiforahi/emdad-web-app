@@ -13,11 +13,11 @@
                 </div>
                 <!-- bankAcNumber -->
                 <input id="bankAcNumber" class="form-control form-control-md" type="text" formControlName="bankAcNumber"
-                  required />
+                  />
               </div>
               <div *ngIf="bankAcNumber.invalid && (bankAcNumber.dirty || bankAcNumber.touched)">
                 <div *ngIf="bankAcNumber.errors?.required">
-                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                  <app-form-input-alert [alertMsg]="'Account number is required.'"></app-form-input-alert>
                 </div>
               </div>
             </div>
@@ -25,13 +25,20 @@
           <div class="col-md-12 col-lg-6">
             <div class="form-group">
               <label class="d-block">Stamped Account Letter</label>
-              <label for="attachments" class="custom-file-upload">
+              <label for="attachments" class="custom-file-upload mr-3" *ngIf="existingFile.length + selectedFile.length < 1">
                 <!-- Attachments -->
                 <input id="attachments" class="form-control form-control-md" type="file"
                   formControlName="attachments" (change)="handleFileSelect($event);" />
               </label>
-              <ul class="attached-file">
-                <li *ngFor="let file of selectedImage; let i = index;">
+              <ul class="attached-file pl-0">
+                <li *ngFor="let file of existingFile; let i = index;">
+                  {{file.name}}
+                  <button mat-raised-button (click)="deleteFile(i);"><img src="../../../../assets/close.svg"
+                    alt="" type="button"></button>
+                </li>
+              </ul>
+              <ul class="attached-file pl-0">
+                <li *ngFor="let file of selectedFile; let i = index;">
                   {{file.name}}
                   <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
                     alt="" type="button"></button>
@@ -48,11 +55,11 @@
                 </div>
                 <!-- bankName -->
                 <input id="bankName" class="form-control form-control-md" type="text" formControlName="bankName"
-                  required />
+                  />
               </div>
               <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)">
                 <div *ngIf="bankName.errors?.required">
-                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                  <app-form-input-alert [alertMsg]="'Bank name is required.'"></app-form-input-alert>
                 </div>
               </div>
             </div>
@@ -66,13 +73,13 @@
                 </div>
                 <!-- swiftCode -->
                 <input id="swiftCode" class="form-control form-control-md" type="text" formControlName="swiftCode"
-                  required />
+                  />
               </div>
-              <div *ngIf="swiftCode.invalid && (swiftCode.dirty || swiftCode.touched)">
+              <!-- <div *ngIf="swiftCode.invalid && (swiftCode.dirty || swiftCode.touched)">
                 <div *ngIf="swiftCode.errors?.required">
                   <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -84,11 +91,11 @@
                 </div>
                 <!-- accountName -->
                 <input id="accountName" class="form-control form-control-md" type="text" formControlName="accountName"
-                  required />
+                  />
               </div>
               <div *ngIf="accountName.invalid && (accountName.dirty || accountName.touched)">
                 <div *ngIf="accountName.errors?.required">
-                  <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                  <app-form-input-alert [alertMsg]="'Account name is required.'"></app-form-input-alert>
                 </div>
               </div>
             </div>
@@ -102,11 +109,11 @@
                 </div>
                 <!-- company Address -->
                 <input id="bankAddress" class="form-control form-control-md" type="text" formControlName="bankAddress"
-                  required />
+                  />
               </div>
               <div *ngIf="bankAddress.invalid && (bankAddress.dirty || bankAddress.touched)">
                 <div *ngIf="bankAddress.errors?.required">
-                  <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
+                  <app-form-input-alert [alertMsg]="'Bank address is required.'"></app-form-input-alert>
                 </div>
               </div>
             </div>

@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  AbstractControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BankInfoService } from 'src/app/shared/services/bank-info.service';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -10,7 +16,7 @@ import swal from 'sweetalert';
 @Component({
   selector: 'app-bank-info-page',
   templateUrl: './bank-info-page.component.html',
-  styleUrls: ['./bank-info-page.component.css']
+  styleUrls: ['./bank-info-page.component.css'],
 })
 export class BankInfoPageComponent implements OnInit {
   error: any;
@@ -28,7 +34,8 @@ export class BankInfoPageComponent implements OnInit {
   passMatched: boolean;
   showPassState: boolean;
   confShowPassState: boolean;
-  selectedImage: any=[];
+  selectedFile: any = [];
+  existingFile: any = [];
 
   constructor(
     private authService: UserAuthService,
@@ -37,32 +44,46 @@ export class BankInfoPageComponent implements OnInit {
     private fb: FormBuilder,
     private contry: CountryListService,
     private spinner: NgxSpinnerService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,
+    private bankInfo: BankInfoService
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    this.populateFormData();
+    this.authService
+      .sellerIsApproved(localStorage.getItem('s_uid'))
+      .subscribe((item: any) => {
+        console.log(item);
+        // Approved User, User Not Approve
+        this.subscription.isSubscribed().subscribe((item2: any) => {
+          console.log(item2);
+          // User Not Subscribe, Subscribe User
+          if (
+            item.message != 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            this.router.navigate(['/dashboard/welcome']);
+          } else if (
+            item.message == 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            swal(
+              'Access Denied!',
+              'you are not subscribed to any plan! Please subscribe.',
+              'error'
+            );
+            this.router.navigate(['/dashboard/subscription-plan']);
+          }
+        });
+      });
   }
 
   ngOnInit(): void {
     this.bankInfoForm = this.fb.group({
       bankAcNumber: ['', [Validators.required]],
-      attachments: ['', [Validators.required]],
-      bankName: [''],
+      attachments: [''],
+      bankName: ['', [Validators.required]],
       swiftCode: [''],
       accountName: ['', [Validators.required]],
-      bankAddress: ['', [Validators.required]]
+      bankAddress: ['', [Validators.required]],
     });
     this.bankAcNumber = this.bankInfoForm.controls['bankAcNumber'];
     this.attachments = this.bankInfoForm.controls['attachments'];
@@ -72,34 +93,74 @@ export class BankInfoPageComponent implements OnInit {
     this.bankAddress = this.bankInfoForm.controls['bankAddress'];
   }
 
+  populateFormData() {
+    this.bankInfo
+      .getBankInfo(localStorage.getItem('s_uid'))
+      .subscribe((item: any) => {
+        console.log(item.data[0]);
+        var data = item.data[0];
+        this.bankInfoForm.setValue({
+          bankAcNumber: data.account_number,
+          bankName: data.bank_name,
+          swiftCode: data.swift_code,
+          accountName: data.account_name,
+          bankAddress: data.bank_address,
+          attachments: '',
+        });
+        this.existingFile[0] = { name: data.account_letter.split('/')[5] };
+      });
+  }
+
   onSubmit(value) {
     // console.log(value);
     this.spinner.show();
-    this.authService.sellerSignup(this.bankInfoForm).subscribe(
-      (success) => {
-        console.log(success);
-        this.router.navigate(['dashboard']);
-        swal('Succeed', 'You have registered successfully', 'success');
-      },
-      (error: any) => {
-        this.error = error.error.email.toString();
-        console.log(error);
-        // if(error.email){
-        //   swal('Failed!', error.email, 'error');
-        // }
-        swal('Failed!', this.error, 'error');
-      }
-    );
+    console.log(this.selectedFile[0], this.selectedFile[0].name);
+    var bankInfoFormData = new FormData();
+    bankInfoFormData.append('seller', localStorage.getItem('s_uid'));
+    bankInfoFormData.append('account_number', value.bankAcNumber);
+    bankInfoFormData.append('bank_name', value.bankName);
+    bankInfoFormData.append('swift_code', value.swiftCode);
+    bankInfoFormData.append('bank_address', value.bankAddress);
+    bankInfoFormData.append('account_name', value.accountName);
+    bankInfoFormData.append('cart_currency', 'SR');
+    bankInfoFormData.append('account_letter', this.selectedFile[0]);
+    this.bankInfo
+      .addBankInfo(bankInfoFormData, localStorage.getItem('s_uid'))
+      .subscribe(
+        (success) => {
+          console.log(success);
+          this.spinner.hide();
+          this.selectedFile = [];
+          this.populateFormData();
+          swal('Succeed', 'Bank Information added successfully', 'success');
+        },
+        (error: any) => {
+          console.log(error);
+          this.spinner.hide();
+          swal('Failed!', this.error, 'error');
+        }
+      );
   }
 
   handleFileSelect(event) {
     var reader = new FileReader();
-    this.selectedImage.push(event.target.files[0]);
-    console.log(this.selectedImage);
+    this.selectedFile.push(event.target.files[0]);
+    console.log(this.selectedFile[0]);
   }
 
   removeFile(id) {
-    this.selectedImage.splice(id, 1);
+    this.selectedFile.splice(id, 1);
   }
 
+  deleteFile(id) {
+    this.spinner.show();
+    this.bankInfo
+      .fileDelete(localStorage.getItem('s_uid'))
+      .subscribe((item) => {
+        console.log(item);
+        this.spinner.hide();
+        this.existingFile = [];
+        swal('Succeed', 'File deleted successfully', 'success');
+      });
+  }
 }
