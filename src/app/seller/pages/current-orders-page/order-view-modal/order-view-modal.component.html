@@ -10,7 +10,7 @@
             <p class="top-details">Order ID: <span class="prod">#{{data.order.order.order_code}}</span></p>
             <p class="top-details">Order Date:<span class="prod"> {{data.order.order.order_datetime | date:'longDate'}}</span>
             </p>
-            <p class="top-details">Total Price: <span class="prod">${{data.order.order.total_amount}}</span></p>
+            <p class="top-details">Total Price: <span class="prod">SAR {{data.order.order.total_amount}}</span></p>
         </div>
         <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
@@ -44,7 +44,7 @@
                         Quantity: {{detail.quantity}}
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-3 col-6 order-data value">
-                        ${{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}
+                        SAR{{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}
                     </div>
                 </div>
             </div>
