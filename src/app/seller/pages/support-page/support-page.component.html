@@ -10,13 +10,13 @@
           
       <!--dropdown-->
       <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
-        <div ngbDropdownItem>
+        <div ngbDropdownItem (click)="filter_tickets(0);">
           <span class="lan-title">Running</span>
         </div>
         <div style="padding: 0 15px">
           <mat-divider></mat-divider>
         </div>
-        <div ngbDropdownItem>
+        <div ngbDropdownItem (click)="filter_tickets(2);">
           <span class="lan-title">Solved</span>
         </div>
       </div>
@@ -97,11 +97,11 @@
         </div>
       </div>
       <!--pagination-->
-      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="supportIssues">
+     <!--  <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="supportIssues">
         <mat-paginator *ngIf="supportIssues != 0" [length]="supportIssues.length" [pageSize]="10"
           [pageSizeOptions]="[5, 10, 15,20]" (page)="getPaginatorData($event)">
         </mat-paginator>
-      </div>
+      </div> -->
 
     </div>
   </div>

@@ -8,21 +8,7 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 
-export interface Order {
-  id: string;
-  payment_date: string;
-  delivery_date: string;
-  status: number;
-  amount: number;
-}
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', status: 1 },
-//   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', status: 2 },
-//   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', status: 1 },
-//   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', status: 1 },
-//   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B', status: 2 },
-// ];
 
 @Component({
   selector: 'app-seller-order-history-page',
@@ -75,14 +61,7 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     );
   }
 
-  displayedColumns: string[] = [
-    'id',
-    'payment_date',
-    'delivery_date',
-    'status',
-    'amount',
-    'view',
-  ];
+
   //dataSource = ELEMENT_DATA;
 
   openDialog(order: any) {
@@ -94,6 +73,8 @@ export class SellerOrderHistoryPageComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  //filtering for orders according to status
+ 
   filter_data(orders: Array<any>) {
     let temp: Array<any> = [];
     orders.forEach((order) => {
@@ -113,7 +94,7 @@ export class SellerOrderHistoryPageComponent implements OnInit {
   }
 
   //filtering orders
-  filter_orders(value: any) {
+  filter_orders(value: number) {
     this.filtered_orders = [];
     if (value == 1) {
       this.orders.forEach((order: any) => {

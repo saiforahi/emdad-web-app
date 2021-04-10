@@ -42,7 +42,7 @@
   
         <!--cards if valid data-->
         <div class="col-md-12 cards" *ngIf="orders ">
-          <div class="show-values" *ngFor="let item of orders | slice: lowValue:highValue; ">
+          <div class="show-values" *ngFor="let item of orders">
             <div class="row">
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
                <span> #{{item.order.order_code}}</span>
@@ -82,12 +82,12 @@
               </div>
             </div>
         <!--pagination-->
-        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="orders" >
+     <!--    <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="orders" >
           <mat-paginator *ngIf="orders != null || orders != undefined" 
             [length]="orders.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
             (page)="getPaginatorData($event)">
           </mat-paginator>
-        </div>
+        </div> -->
     
       </div>
     </div>

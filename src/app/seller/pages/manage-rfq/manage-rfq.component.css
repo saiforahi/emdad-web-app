@@ -7,6 +7,9 @@
 /* .container{
   padding:60px;
 } */
+.payment-history{
+  padding-bottom: 60px;
+}
 .page-heading {
   font-style: normal;
   font-weight: 500;

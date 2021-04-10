@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+.payment-history{
+  padding-bottom: 60px;
+}
 .page-heading-holder .sort-btn {
   position: absolute;
   top: 50%;
@@ -158,11 +161,12 @@ color: #2B2B2B;
   border: none;
   border-radius: 0;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
  
   }
   .dropdown-item {
     padding: 10px 20px;
-    
+    cursor: pointer;
   }
   .dropdown-toggle::after {
     display: none;

@@ -13,7 +13,9 @@
   margin: 0;
   line-height: 69px;
 }
-
+.payment-history{
+  padding-bottom: 60px;
+}
 .card {
   padding: 30px;
   border: none;
