@@ -12,7 +12,7 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head" style="font-size: 20px;">
-                                {{cat.name | titlecase}} ({{cat.total_product}})
+                                {{cat.name | titlecase}} 
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -80,11 +80,10 @@
                     <button class="filter-btn" (click)="showCatMenu();"><img src="../../../../assets/icons/filter.svg"
                             alt=""></button>
                             <!--if not selected anything-->
-                    <button class="delete-btn" *ngIf="!selection.hasValue()"><img
-                            src="../../../../assets/icons/delete-red.svg" alt=""></button>
+                   <!--  <button class="delete-btn" *ngIf="!selection.hasValue()"><img
+                            src="../../../../assets/icons/delete-red.svg" alt=""></button> -->
                             <!--if selected for delete-->
-                            <button class="delete-btn" *ngIf="selection.hasValue()" (click)="openDialog()" (click)="dleteProduct();"><img
-                                src="../../../../assets/icons/bin-button-mobile-red.svg" alt=""></button>       
+                           
                 </div>
             </section>
             <section class="bread">
@@ -139,7 +138,7 @@
                                             :</span>{{item.unit.name}}</span>
                                 </div>
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
-                                    <span><span class="mobile-name">{{'Seller_Product_Categories.Unit_Price'|translate}} :</span> {{item.unit_price }}</span>
+                                    <span><span class="mobile-name">{{'Seller_Product_Categories.Unit_Price'|translate}} :</span>SAR {{item.unit_price }}</span>
                                 </div>
                                 <div class="col-lg-2 col-md-12 col-sm-12 col-12 value">
                                     <span class="mobile-name">{{'Seller_Product_Categories.Delivery_Method'|translate}} :</span>
@@ -148,17 +147,23 @@
                                 </div>
 
                                 <div
-                                    class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn ml-0 text-right align-right check-div">
+                                    class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn ml-0 text-right align-right check-div remove-bulk">
                                     <mat-checkbox (click)="$event.stopPropagation()"
                                         (change)="$event ? selection.toggle(item) : null"
                                         [checked]="selection.isSelected(item)" [aria-label]="checkboxLabel(item)">
                                     </mat-checkbox>
 
                                 </div>
+                                <div class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn check-div remove-single">
+
+                                    <button (click)="deleteProduct(item.id);"
+                                        class="edit-product-btn" mat-raised-button><img
+                                            src="../../../../assets/icons/bin-button-mobile-red.svg" alt=""></button>
+                                </div>
                                 <div class="col-lg-1 col-md-1 col-sm-2 col-2 value mobile-btn check-div">
 
                                     <button [routerLink]="['/dashboard/edit-products', item.id]"
-                                        class="edit-product-btn" mat-raised-button><img
+                                        class="edit-product-btn right-btn" mat-raised-button><img
                                             src="../../../../assets/Edit.svg" alt=""></button>
                                 </div>
                             </div>
