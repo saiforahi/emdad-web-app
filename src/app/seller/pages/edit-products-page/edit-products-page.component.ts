@@ -97,11 +97,11 @@ export class EditProductsPageComponent implements OnInit {
           this.router.navigate(['/dashboard/subscription-plan']);
         }
       })
-    })
+    });
   }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('s_token'))
+    // console.log(localStorage.getItem('s_token'));
     this.productId = this.route.snapshot.params['id'];
     this.categoryServices.category().subscribe((item) => {
       this.categories = item;
