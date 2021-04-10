@@ -68,6 +68,7 @@ line-height: 26px;
 color: #2B2B2B;
 /* word-wrap: break-word; */
 white-space: pre-line;
+overflow-wrap: break-word !important;
 
 }
 

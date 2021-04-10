@@ -59,7 +59,7 @@
                 <div class="row p-3">
 
 
-                    <div class="col-md-12 card-header" *ngIf="rfqTableData?.length != 0">
+                    <div class="col-md-12 card-header" *ngIf="quotationTableData?.length != 0">
                         <div class="row">
                             <div class="col-md-3 name">
                                 {{'Seller_Dashboard.Quotation_ID' | translate}}
@@ -76,8 +76,8 @@
                         </div>
                     </div>
                     <!--cards with valid data-->
-                    <div class="col-12 cards" *ngIf="rfqTableData != null || rfqTableData != undefined">
-                        <div class="show-values no-shadow" *ngFor="let item of rfqTableData | slice:0:5;">
+                    <div class="col-12 cards" *ngIf="quotationTableData != null || quotationTableData != undefined">
+                        <div class="show-values no-shadow" *ngFor="let item of quotationTableData | slice:0:5;">
                             <div class="row">
                                 <div class="col-lg-3 col-xl-3 col-6 value">
                                     # {{item.quotation_code}}
@@ -89,7 +89,7 @@
                                     # {{item.rfq[0].id}}
                                 </div>
                                 <div class="col-lg-3 col-xl-3 col-6 value">
-                                    <span *ngIf="item.status == 1">{{'Seller_Dashboard.Sent' | translate}}</span>
+                                <span *ngIf="item.status == 1">{{'Seller_Dashboard.Sent' | translate}}</span>
                                 <span *ngIf="item.status == 2">{{'Seller_Dashboard.Waiting' | translate}}</span>
                                 <span *ngIf="item.status == 3">{{'Seller_Dashboard.Completed' | translate}}</span>
                                 </div>
@@ -97,9 +97,9 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
+                    <div class="col-12" *ngIf="quotationTableData == null || quotationTableData == undefined || quotationTableData?.length == 0">
                         <div class="no-data">
-                            {{'Seller_Dashboard.No_data'|translate}}
+                            {{'Seller_Dashboard.No_data'| translate}}
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                 <div class="row p-3">
 
 
-                    <div class="col-md-12 card-header" *ngIf="OrderTableData?.length != 0">
+                    <div class="col-md-12 card-header" *ngIf="orderHistory?.length != 0">
                         <div class="row">
                             <div class="col-md-3 name">
                                 {{'Seller_Dashboard.Order_ID'|translate}}
@@ -131,17 +131,17 @@
                         </div>
                     </div>
                     <!--cards with valid data-->
-                    <div class="col-12 cards" *ngIf="OrderTableData != null || OrderTableData != undefined">
-                        <div class="show-values no-shadow" *ngFor="let item of OrderTableData | slice:0:5;">
+                    <div class="col-12 cards" *ngIf="orderHistory != null || orderHistory != undefined">
+                        <div class="show-values no-shadow" *ngFor="let item of orderHistory | slice:0:5;">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-6 value">
                                    <p> # {{item.order.order_code}}</p>
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
-                                    <p> {{item.order.order_payment[0]?.created_at | date:'mediumDate'}}</p>
+                                    <p> {{item.order.order_payment?.length>0 ? formatDate(item.order.order_payment[0].created_at) : '-'}}</p>
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
-                                <p> {{item.delivery_date | date :'mediumDate'}}</p> 
+                                <p> {{formatDate(item.delivery_date)}}</p> 
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
                                   <p>  ${{item.order.total_amount}}</p>
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
+                    <div class="col-12" *ngIf="orderHistory == null || orderHistory == undefined || orderHistory?.length == 0">
                         <div class="no-data">
                             {{'Seller_Dashboard.No_data'}}
                         </div>
@@ -167,7 +167,7 @@
                 <div class="row p-3">
 
 
-                    <div class="col-md-12 card-header" *ngIf="OrderTableData?.length != 0">
+                    <div class="col-md-12 card-header" *ngIf="currentOrders?.length != 0">
                         <div class="row">
                             <div class="col-md-2 col-lg-2 name">
                                 {{'Seller_Dashboard.Order_ID'|translate}}
@@ -187,23 +187,23 @@
                         </div>
                     </div>
                     <!--cards with valid data-->
-                    <div class="col-12 cards" *ngIf="OrderTableData != null || OrderTableData != undefined">
-                        <div class="show-values no-shadow" *ngFor="let item of OrderTableData | slice:0:5;">
+                    <div class="col-12 cards" *ngIf="currentOrders != null || currentOrders != undefined">
+                        <div class="show-values no-shadow" *ngFor="let item of currentOrders | slice:0:5;">
                             <div class="row">
                                 <div class="col-xl-2 col-lg-2 col-6 value">
                                     # {{item.order.order_code}}
                                 </div>
                                 <div class="col-xl-2 col-lg-2 col-6 value">
-                                    {{item.order.order_payment[0]?.created_at | date:'mediumDate'}}
+                                    {{item.order.order_payment?.length>0 ? formatDate(item.order.order_payment[0].created_at) : '-'}}
                                 </div>
                                 <div class="col-xl-2 col-lg-2 col-6 value">
-                                    {{item.delivery_date | date :'mediumDate'}} 
+                                    {{formatDate(item.delivery_date)}} 
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
-                                    <p *ngIf="item.status == 1">{{'Seller_Dashboard.Recieved' | translate}}</p>
-                                <p *ngIf="item.status == 2">{{'Seller_Dashboard.Recived'|translate}}</p>
-                                <p *ngIf="item.status == 3">{{'Seller_Dashboard.Processing'|translate}}</p>
-                                <p *ngIf="item.status == 4">{{'Seller_Dashboard.Delivered'|translate}}</p>
+                                    <p *ngIf="decide_status(item) == 1">{{'Seller_Dashboard.Recieved' | translate}}</p>
+                                <p *ngIf="decide_status(item) == 2">{{'Seller_Dashboard.Recived'|translate}}</p>
+                                <p *ngIf="decide_status(item) == 3">{{'Seller_Dashboard.Processing' |translate}}</p>
+                                <p *ngIf="decide_status(item) == 4">{{'Seller_Dashboard.Delivered' |translate}}</p>
 
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <!--cards with no data-->
-                    <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
+                    <div class="col-12" *ngIf="currentOrders == null || currentOrders == undefined || currentOrders?.length == 0">
                         <div class="no-data">
                             {{'Seller_Dashboard.No_data'|translate}}
                         </div>
