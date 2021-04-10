@@ -226,6 +226,18 @@
         "Shop_Pick_Up_Location":"Shop Pick Up Location",
         "DDP_Destination":"DDP Destination",
         "Product_Image":"Product Image"
+    },
+    "Seller_RFQ":{
+        "title":"Manage RFQs",
+        "Sort":"Sort By Date",
+        "Buyer_Name":"Buyer Name",
+        "Created":"Created",
+        "Buyer":"Buyer",
+        "Make_Quote":"Make A Quotation",
+        "Product_Quantity":"Product Quantity",
+        "Unit_Price":"Unit Price",
+        "Commission":"Commission will be added",
+        "Quotation_Attachments":"Quotation Attachments"
     }
 }
 

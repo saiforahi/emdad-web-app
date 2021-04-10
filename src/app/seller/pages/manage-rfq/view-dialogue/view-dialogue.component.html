@@ -1,7 +1,6 @@
 <mat-dialog-content class="mat-typography" *ngIf="rfqDetailsData">
     <app-rfq-modal-product-description [rfqDetailData]="rfqDetailAll"></app-rfq-modal-product-description>
-    <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">Make A
-            Quotation</button></div>
+    <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">{{'Seller_RFQ.Make_Quote'|translate}}</button></div>
 
 
     <div class="quote-form container" *ngIf="isShown">
@@ -11,7 +10,7 @@
                 <!--INPUT FOR PRODUCT QUANTITY-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="quantity">Product Quantity</label>
+                        <label class="form-label" for="quantity">{{'Seller_RFQ.Product_Quantity'|translate}}</label>
                         <input (change)="calc_total_price()" id="quantity" class="form-control form-control-md" type="number"
                             formControlName="quantity" required />
                         <!--ERROR CHECK-->
@@ -27,14 +26,14 @@
                 <!--INPUT FOR UNIT PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="unit_price">Unit Price (VAT Exclusive) </label>
+                        <label class="form-label" for="unit_price">{{'Seller_RFQ.Unit_Price'|translate}} ({{'Seller_Upload_Product.VatEx'|translate}}) </label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
                             </div>
                             <input (change)="calc_unit_price($event.target.value)" id="unit_price" class="form-control form-control-md" type="number"
                                 formControlName="unit_price" required />
-                            <p class="text-warning">{{commission}}% Commission will be added</p>
+                            <p class="text-warning">{{commission}}% {{'Seller_RFQ.Commission'|translate}}</p>
 
                         </div>
                         <!--ERROR CHECK-->
@@ -49,7 +48,7 @@
                 <!--INPUT FOR TOTAL PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="total_price">Total Price (VAT Exclusive) </label>
+                        <label class="form-label" for="total_price">{{'Buyer_Quotation_History.Total_Price'|translate}} ({{'Seller_Upload_Product.VatEx'|translate}}) </label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
@@ -68,7 +67,7 @@
                 </div>
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
+                        <label for="message" class="form-label">{{'Buyer_Quotation_History.Message'|translate}}</label>
                         <textarea formControlName="message" id="message" class="form-control form-control-md"></textarea>
                     </div>
                 </div>
@@ -77,7 +76,7 @@
                     <!--label show and warning message show-->
                     <div class="form-group">
                         <div class="file-warn">
-                            <label class="file-label d-block">Quotation Attachments:</label>
+                            <label class="file-label d-block">{{'Seller_RFQ.Quotation_Attachments'|translate}}:</label>
                            
                            <div> <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
                             </app-form-input-alert>
@@ -93,7 +92,7 @@
                             <li *ngFor="let file of selectedImage; let i = index;">
                                 {{file.name}}
                                 <button mat-mini-fab (click)="removeFile(i);">
-                                    <mat-icon>close</mat-icon>
+                                    <mat-icon>{{'Seller_RFQ.Close'|translate}}</mat-icon>
                                 </button>
                             </li>
                         </ul>
@@ -107,7 +106,7 @@
                     <div class="form-group mobile-show mt-3">
                         <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                             mat-dialog-close [disabled]="prodRfqForm.invalid">
-                            Submit
+                            {{'Seller_Bulk_Upload_Product.Submit'|translate}}
                         </button>
                     </div>
                 </div>
