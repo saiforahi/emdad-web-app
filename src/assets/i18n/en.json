@@ -1,4 +1,7 @@
 {
+    "Buttons":{
+        "Save":"Save"
+    },
     "Nav":{
         "Home":"Home",
         "About_Us":"About Us",
@@ -34,8 +37,54 @@
         "View_More":"View More",
         "No_Product":"No more products to show"
     },
-    "Profile":{
+    "Buyer_Profile":{
         "Header":"My Profile"
+    },
+    "Buyer_Profile_Form":{
+        "Full_Name":"Full Name",
+        "Comapany_Name":"Company Name (Optional)",
+        "Email":"Email",
+        "Mobile_Number":"Mobile Number",
+        "Address":"Address",
+        "Country":"Country",
+        "Select_one":"Select one",
+        "City":"City",
+        "Area":"Area",
+        "Zip_Code":"Zip Code",
+        "Save":"Save"
+    },
+    "Buyer_Change_Password_Form":{
+        "Current_Password":"Current Password",
+        "New_Password":"New Password",
+        "Confirm_Password":"Confirm Password"
+    },
+    "Buyer_Order_History":{
+        "Order_ID":"Order ID",
+        "Payment_Date":"Payment Date",
+        "Delivery_Date":"Delivery Date",
+        "Amount":"Amount",
+        "View":"View",
+        "No_Data":"No data available"
+    },
+    "Buyer_Quotation_History":{
+        "Quotation_ID":"Quotation ID",
+        "Date":"Date",
+        "RFQ_ID":"RFQ ID",
+        "Seller_Name":"Seller Name",
+        "Status":"Status",
+        "Initiated":"Initiated",
+        "Sent":"Sent",
+        "Completed":"Completed",
+        "Closed":"Closed",
+        "Qunatity":"Qunatity",
+        "Unit_Price":"Unit Price",
+        "Total_Price":"Total Price",
+        "Message":"Message",
+        "Attachments":"Attachments",
+        "Comment":"Comment",
+        "reason_denial":"Add reason for denial",
+        "Accept":"Accept",
+        "Deny":"Deny"
     },
     "Footer":{
         "Slogan":"Your Slogan Here",
@@ -48,5 +97,44 @@
         "Privacy_Policy":"PRIVACY POLICY",
         "Terms":"TERMS AND CONDITIONS",
         "Send_Suggestion":"SEND PRODUCT SUGGESTION TO EMDAD"
+    },
+    "Seller_Profile":{
+      "Company_Profile":"Company Profile",
+      "Company_Name":"Company Name",
+      "Attachments":"Attachments",
+      "Seller_Description":"Seller Description",
+      "Zip_Code":"Zip Code",
+      "Area":"Area",
+      "Select_City":"Select City",
+      "Select_Country":"Select Country",
+      "City":"City",
+      "Country":"Country",
+      "Company_Address":"Company Address",
+      "Company_Mobile_Number":"Company Mobile Number",
+      "Company_Email":"Company Email",
+      "Max_Two":"(max. two attachments allowed)"
+    },
+    "Seller_Menu":{
+        "Dashboard":"Dashboard",
+        "Manage_Profile":"Manage Profile",
+        "Company_Profile":"Company Profile",
+        "Bank_Account_Information":"Bank Account Information",
+        "Change_Password":"Change Password",
+        "Manage_Subscription":"Manage Subscription",
+        "Subscription_Plan":"Subscription Plan",
+        "Payment_History":"Payment History",
+        "Manage_Products":"Manage Products",
+        "Product_Categories":"Product Categories",
+        "Bulk_Products_Import":"Bulk Products Import",
+        "Upload_Products":"Upload Products",
+        "Manage_RFQs":"Manage RFQs",
+        "Manage_Quotations":"Manage Quotations",
+        "Manage_Orders":"Manage Orders",
+        "Current_Orders":"Current Orders",
+        "Order_History":"Order History",
+        "Invoices":"Invoices",
+        "Support":"Support"
     }
 }
+
+

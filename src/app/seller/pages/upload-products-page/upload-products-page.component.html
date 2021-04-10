@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-md-4 col-lg-4 col-12">
                 <div class="form-group">
-                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)" formControlName="category">
+                    <select class="form-control form-control-lg" #catId (change)="setSubCAt(catId.value)"
+                        formControlName="category">
                         <option value="" disabled selected>Select Category</option>
                         <option value="{{cat.id}}" *ngFor="let cat of categories">{{cat.name}}</option>
                     </select>
@@ -19,7 +20,8 @@
             </div>
             <div class="col-md-4 col-lg-4 col-12">
                 <div class="form-group">
-                    <select class="form-control form-control-lg" #subCatId (change)="setChildCAt(subCatId.value)" formControlName="subCategory">
+                    <select class="form-control form-control-lg" #subCatId (change)="setChildCAt(subCatId.value)"
+                        formControlName="subCategory">
                         <option value="" disabled selected>Select Sub-Category</option>
                         <option value="{{subCat.id}}" *ngFor="let subCat of subCategories">{{subCat.name}}</option>
                     </select>
@@ -46,12 +48,9 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="prodName">Product Name</label>
-                    
-                       
-                        <!-- prodName -->
-                        <input id="prodName" class="form-control form-control-md" type="text" formControlName="prodName" placeholder="Product Name"
-                             />
-                    
+                    <!-- prodName -->
+                    <input id="prodName" class="form-control form-control-md" type="text" formControlName="prodName"
+                        placeholder="Product Name" />
                     <div *ngIf="prodName.invalid && (prodName.dirty || prodName.touched)">
                         <div *ngIf="prodName.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product name is required.'"></app-form-input-alert>
@@ -64,14 +63,15 @@
                     <label for="prodDetails">Product Details</label>
                     <div class="input-group">
                         <!-- prodDetails -->
-                        <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text" formControlName="prodDetails" placeholder="Product Details.."></textarea>
+                        <textarea rows="15" id="prodDetails" class="form-control form-control-md" type="text"
+                            formControlName="prodDetails" placeholder="Product Details.."></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="manufactererName">Manufacturer Name</label>
-                        <!-- manufactererName -->
+                    <!-- manufactererName -->
                     <select class="form-control form-control-lg" formControlName="manufactererName">
                         <option value="" disabled selected>Manufacturer Name</option>
                         <option value="{{brand.id}}" *ngFor="let brand of brandList">{{brand.name | titlecase}}</option>
@@ -81,12 +81,9 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodStock">Product Stock</label>
-                    
-                       
-                        <!-- prodStock -->
-                        <input id="prodStock" class="form-control form-control-md" type="text" formControlName="prodStock"
-                             />
-                    
+                    <!-- prodStock -->
+                    <input id="prodStock" class="form-control form-control-md" type="text"
+                        formControlName="prodStock" />
                     <div *ngIf="prodStock.invalid && (prodStock.dirty || prodStock.touched)">
                         <div *ngIf="prodStock.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product stock name is required.'"></app-form-input-alert>
@@ -97,12 +94,9 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodSize">Size</label>
-                    
-                     
-                        <!-- prodSize -->
-                        <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize"
-                           placeholder="10"  />
-                   
+                    <!-- prodSize -->
+                    <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize"
+                        placeholder="10" />
                     <!-- <div *ngIf="prodSize.invalid && (prodSize.dirty || prodSize.touched)">
                         <div *ngIf="prodSize.errors?.required">
                             <app-form-input-alert [alertMsg]="'Size is required.'"></app-form-input-alert>
@@ -127,7 +121,8 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodDeliMethod">Product Delivery Method</label>
-                    <select class="form-control form-control-lg" formControlName="prodDeliMethod"  [(ngModel)]="selectedOption"> 
+                    <select class="form-control form-control-lg" formControlName="prodDeliMethod"
+                        [(ngModel)]="selectedOption">
                         <option value="" disabled selected>Product Delivery Method</option>
                         <option value="1">DDP</option>
                         <option value="2">Ex-Works</option>
@@ -142,12 +137,9 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="leadTime">Set Lead Time</label>
-                 
-                        
-                        <!-- leadTime -->
-                        <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime"
-                         placeholder="Ex-work 20 Days"    />
-                 
+                    <!-- leadTime -->
+                    <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime"
+                        placeholder="Ex-work 20 Days" />
                     <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
                         <div *ngIf="leadTime.errors?.required">
                             <app-form-input-alert [alertMsg]="'Lead time is required.'"></app-form-input-alert>
@@ -158,14 +150,12 @@
             <div class="col-md-6 col-12" *ngIf="selectedOption == '2'">
                 <div class="form-group">
                     <label for="shopPick">Shop Pick Up Location</label>
-                
-                        <!--shopPick -->
-                        <input id="shopPick" class="form-control form-control-md" type="text" formControlName="shopPick"
-                             />
-           
+                    <!--shopPick -->
+                    <input id="shopPick" class="form-control form-control-md" type="text" formControlName="shopPick" />
                     <div *ngIf="shopPick.invalid && (shopPick.dirty || shopPick.touched)">
                         <div *ngIf="shopPick.errors?.required">
-                            <app-form-input-alert [alertMsg]="'Shop pick up location is required.'"></app-form-input-alert>
+                            <app-form-input-alert [alertMsg]="'Shop pick up location is required.'">
+                            </app-form-input-alert>
                         </div>
                     </div>
                 </div>
@@ -173,11 +163,8 @@
             <div class="col-md-6 col-12" *ngIf="selectedOption == '1'">
                 <div class="form-group">
                     <label for="ddp">DDP Destination</label>
-                
-                        <!-- ddp -->
-                        <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp"
-                             />
-           
+                    <!-- ddp -->
+                    <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp" />
                     <div *ngIf="ddp.invalid && (ddp.dirty || ddp.touched)">
                         <div *ngIf="ddp.errors?.required">
                             <app-form-input-alert [alertMsg]="'DDP Destination is required.'"></app-form-input-alert>
@@ -188,12 +175,9 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodPrice">Product Unit Price(VAT exclusive)</label>
-                    
-                      
-                        <!-- prodPrice -->
-                        <input id="prodPrice" class="form-control form-control-md" type="text" formControlName="prodPrice"
-                         placeholder="Product Unit Price"    />
-                   
+                    <!-- prodPrice -->
+                    <input id="prodPrice" class="form-control form-control-md" type="text" formControlName="prodPrice"
+                        placeholder="Product Unit Price" />
                     <div *ngIf="prodPrice.invalid && (prodPrice.dirty || prodPrice.touched)">
                         <div *ngIf="prodPrice.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product Unit Price is required.'"></app-form-input-alert>
@@ -205,10 +189,11 @@
                 <div class="form-group">
                     <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
                     <!-- <ul class="attached-file"> -->
-                        <div *ngFor="let img of imgPreviewList; let i = index;" class="d-inline-block img-preview-div">
-                            <img [src]="img" alt="" width="80" height="80">
-                            <button mat-raised-button (click)="removeImg(i);"><img src="../../../../assets/close.svg" alt=""></button>
-                        </div>
+                    <div *ngFor="let img of imgPreviewList; let i = index;" class="d-inline-block img-preview-div">
+                        <img [src]="img" alt="" width="80" height="80">
+                        <button mat-raised-button (click)="removeImg(i);"><img src="../../../../assets/close.svg"
+                                alt=""></button>
+                    </div>
                     <!-- </ul> -->
                     <label for="prodImage" class="custom-file-upload" *ngIf="imgPreviewList.length < 2">
                         <input id="prodImage" class="form-control form-control-md" type="file"
@@ -226,7 +211,8 @@
                     <ul class="attached-file pl-0">
                         <li *ngFor="let file of selectedFiles; let i = index;">
                             {{file.name}}
-                            <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
+                            <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
+                                    alt=""></button>
                         </li>
                     </ul>
                 </div>

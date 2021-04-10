@@ -6,39 +6,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="id-div"><span class="name mr-2">Quotation ID :</span> <span class="deets">#
+                    <div class="id-div"><span class="name mr-2">{{'Buyer_Quotation_History.Quotation_ID' | translate}} :</span> <span class="deets">#
                            {{quotation.quotation_code}}</span></div>
                 </div>
                 <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">RFQ ID : </span> <span class="deet-light"># {{quotation.rfq[0].id}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.RFQ_ID' | translate}} : </span> <span class="deet-light"># {{quotation.rfq[0].id}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Date :</span> <span class="deet-light">{{quotation.created_at | date:'medium'}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Date' | translate}} :</span> <span class="deet-light">{{quotation.created_at | date:'medium'}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Seller Name:</span> <span class="deet-light">{{quotation.seller.full_name}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Seller_Name' | translate}}:</span> <span class="deet-light">{{quotation.seller.full_name}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Qunatity :</span> <span class="deet-light">{{quote.quantity}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Qunatity' | translate}} :</span> <span class="deet-light">{{quote.quantity}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">unit Price :</span> <span class="deet-light">$ {{quote.unit_price}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Unit_Price' | translate}} :</span> <span class="deet-light">$ {{quote.unit_price}}</span></div>
                 </div>
                  <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Total Price :</span> <span class="deet-light">$ {{quote.total_price}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Total_Price' | translate}} :</span> <span class="deet-light">$ {{quote.total_price}}</span></div>
                 </div>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name mr-2">Message :</span> <span class="deet-light">{{quote.message}}</span></div>
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Message' | translate}} :</span> <span class="deet-light">{{quote.message}}</span></div>
                 </div>
                 <br><br>
                 <div class="col-md-12">
-                    <div class="date-div"><span class="name">Attachments :</span> </div>
+                    <div class="date-div"><span class="name">{{'Buyer_Quotation_History.Attachments' | translate}} :</span> </div>
                 </div>
                 <br><br>
                 <div class="col-md-12" *ngIf="quotation.attachment1!=null">
@@ -51,8 +51,8 @@
                  <br>
                  <div class="col-md-12" *ngIf="quotation.status!=4 && quotation.status!=3">     
                     <div class="form-group">
-                        <label for="description">Comment</label>
-                        <p class="mob-warning">Add reason for denial</p>
+                        <label for="description">{{'Buyer_Quotation_History.Comment' | translate}}</label>
+                        <p class="mob-warning">{{'Buyer_Quotation_History.reason_denial' | translate}}</p>
                         <div class="input-group">
                             <!-- description -->
                             <textarea [(ngModel)]="comments" rows="15" id="description" class="form-control form-control-md" type="text"
@@ -62,9 +62,9 @@
                 </div>   
                 </div>
                  <div *ngIf="quotation.status!=4 && quotation.status!=3" class="col-md-12 button-div">
-                    <button mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">accept</button>
-                    <button [disabled]="comments.length==0" type="button" (click)="deny_quotation()" mat-stroked-button class="deny-btn">deny 
-                    <span class="tooltiptext" style="color: #2b2b2b !important;">Add reason for denial</span>
+                    <button mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">{{'Buyer_Quotation_History.Accept' | translate}}</button>
+                    <button [disabled]="comments.length==0" type="button" (click)="deny_quotation()" mat-stroked-button class="deny-btn">{{'Buyer_Quotation_History.Deny' | translate}} 
+                    <span class="tooltiptext" style="color: #2b2b2b !important;">{{'Buyer_Quotation_History.reason_denial' | translate}}</span>
                     </button>
                  </div>
                 <br>

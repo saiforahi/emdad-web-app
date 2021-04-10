@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 const routes: Routes = [
   {path:'', component: SellerProfilePageComponent, pathMatch:'full'}
@@ -19,6 +20,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonuiModule,
     MaterialModule,
+    TranslateModule
   ]
 })
 export class SellerProfilePageModule { }

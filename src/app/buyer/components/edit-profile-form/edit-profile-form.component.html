@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Full_Name' | translate}}</label>
           <input *ngIf="editUserInfo"
             name="full_name"
             [(ngModel)]="editUserInfo.full_name"
@@ -33,7 +33,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Company Name (Optional)</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Comapany_Name' | translate}}</label>
           <input
             name="company_name"
             class="form-control"
@@ -44,7 +44,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Email' | translate}}</label>
           <input
             name="userMail"
             [(ngModel)]="userMail"
@@ -57,7 +57,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Mobile Number</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Mobile_Number' | translate}}</label>
           <input *ngIf="editUserInfo"
             name="phone"
             [(ngModel)]="editUserInfo.phone"
@@ -69,7 +69,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <label class="form-label">Address</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Address' | translate}}</label>
           <label for="addressError" *ngIf="addressError" class="errors ml-1">
             * required</label
           >
@@ -84,7 +84,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Country</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Country' | translate}}</label>
           <label for="countryError" *ngIf="countryError" class="errors ml-1">
             * required</label
           >
@@ -94,7 +94,7 @@
             [(ngModel)]="editUserInfo.country.id"
             (input)="onCountryChange($event.target.value)"
           >
-            <option value="-1">Select one</option>
+            <option value="-1">{{'Buyer_Profile_Form.Select_one' | translate}}</option>
             <option *ngFor="let country of countries" [value]="country.id">
               {{ country.name }}
             </option>
@@ -103,7 +103,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">City</label>
+          <label class="form-label">{{'Buyer_Profile_Form.City' | translate}}</label>
           <label for="cityError" *ngIf="cityError" class="errors ml-1">
             * required</label
           >
@@ -120,7 +120,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Area</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Area' | translate}}</label>
           <input *ngIf="editUserInfo"
             name="area"
             class="form-control"
@@ -132,7 +132,7 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <label class="form-label">Zip Code</label>
+          <label class="form-label">{{'Buyer_Profile_Form.Zip_Code' | translate}}</label>
           <input *ngIf="editUserInfo"
             name="zip"
             class="form-control"
@@ -150,7 +150,7 @@
             (keydown.enter)="saveData()"
             (click)="saveData()"
           >
-            Save
+          {{'Buyer_Profile_Form.Save' | translate}}
           </button>
         </div>
       </div>

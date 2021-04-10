@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="header-text">{{'Profile.Header' | translate}}</h3>
+  <h3 class="header-text">{{'Buyer_Profile.Header' | translate}}</h3>
   <div class="row">
     <!-- <div class=""> -->
       <div class="col-xs-none col-sm-none col-md-none col-lg-block col-lg-4">
@@ -15,7 +15,7 @@
               show_order_history = false;
               show_manage_quotations = false
             ">
-              Profile Settings
+              {{'Nav.Profile_Settings' | translate}}
             </li>
             <li [ngClass]="
               show_change_pass_form === true
@@ -27,7 +27,7 @@
               show_order_history = false;
               show_manage_quotations = false
             ">
-              Change Password
+            {{'Nav.Change_Password' | translate}}
             </li>
             <li [ngClass]="
               show_order_history === true
@@ -39,7 +39,7 @@
               show_order_history = true;
               show_manage_quotations = false
             " class="list-group-item">
-              Order History
+            {{'Nav.Order_History' | translate}}
             </li>
             <li [ngClass]="
               show_manage_quotations === true
@@ -51,9 +51,9 @@
               show_order_history = false;
               show_profile_form = false
             ">
-              Manage Quotation
+            {{'Nav.Manage_Quotation' | translate}}
             </li>
-            <li class="list-group-item" (click)="show_logout_modal()">Logout</li>
+            <li class="list-group-item" (click)="show_logout_modal()">{{'Header_DropDowns.Log_Out' | translate}}</li>
           </ul>
         </div>
       </div>

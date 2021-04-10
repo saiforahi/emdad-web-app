@@ -23,6 +23,8 @@ filtered_data:Array<any>=[]
 lowValue: number = 0;
 highValue: number = 5;
 displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view'];
+  nextBatchData: any;
+  prodEnd: boolean=false;
 
   constructor(
     public dialog: MatDialog,
@@ -59,13 +61,29 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
           this.filtered_data.push(element)
         }
       });
+      this.nextBatchData = item.data.next;
+      if(this.nextBatchData == null){
+        this.prodEnd = true;
+      }
       // this.quotationData = item.data;
       // this.filtered_data=this.quotationData
+      
       console.log("Quotations",this.quotationData);
 
     })
   }
-
+  getNextBatchData(){
+    if(this.nextBatchData != null){
+      this.quote.getNextBatchItem(this.nextBatchData).subscribe((item) =>{
+        this.filtered_data = [...this.filtered_data, ...item.data.results];
+        this.nextBatchData = item.data.next;
+        console.log("nextBatchData",this.nextBatchData);
+      });
+    }
+    if(this.nextBatchData == null){
+      this.prodEnd = true;
+    }
+  }
   openDialog(quotation) {
     console.log('open dialog data',quotation)
     const dialogRef = this.dialog.open(QuotationViewModalComponent, {

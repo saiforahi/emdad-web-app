@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GetProductService } from '../../../shared/services/get-product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerReviewService } from 'src/app/shared/services/customer-review.service';
@@ -34,7 +34,7 @@ export class ProductDetailsPageComponent implements OnInit {
   sliceMaxValue: number;
   activeRoute: string[];
   commnetsEnd: boolean;
-
+  route_subscription:any;
   constructor(
     private getProduct: GetProductService,
     private route: ActivatedRoute,
@@ -47,20 +47,28 @@ export class ProductDetailsPageComponent implements OnInit {
     private router: Router,
   ) {
     this.getScreenSize();
-    router.events.subscribe((val: any) => {
+    this.route_subscription=router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
-        if(this.activeRoute[2] == 'details'){
+        if(this.activeRoute[2] == 'details' && val instanceof NavigationEnd){
           this.ngOnInit();
         }
       }
     });
   }
-
+  ngOnDestroy() {
+    // avoid memory leaks here by cleaning up after ourselves. If we  
+    // don't then we will continue to run our initialiseInvites()   
+    // method on every navigationEnd event.
+    if (this.route_subscription) {  
+       this.route_subscription.unsubscribe();
+    }
+  }
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.activeRoute = this.router.url.split('/');
     this.productId = this.route.snapshot.params['id'];
+    console.log('prod id',this.productId)
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
       this.sliderImgArray = [
@@ -74,7 +82,7 @@ export class ProductDetailsPageComponent implements OnInit {
         .getProductByCategory(this.prodcutDetails.category.id)
         .subscribe((item) => {
           this.relatedProducts = item.data.results;
-          // console.log('prod list:' ,this.relatedProducts)
+           console.log('similar prod list:' ,this.relatedProducts)
         });
       this.comments
         .getComments(this.prodcutDetails.id)
@@ -93,7 +101,7 @@ export class ProductDetailsPageComponent implements OnInit {
         });
     });
   }
-
+  
   scroll_to_reviews(element_id: string) {
     this.viewportScroller.scrollToAnchor(element_id);
   }

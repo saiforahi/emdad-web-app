@@ -177,6 +177,31 @@ color: #2B2B2B;
     font-size: 18px;
     line-height: 26px;
   }
+  .no-show{
+    text-align: center !important;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .view-more-btn-div{
+    text-align: center;
+  }
+  .view-more-btn-div button {
+    /* background: #f49814; */
+    background: #1f4f9e;
+    color: #fff;
+    padding: 15px 25px;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 5px;
+  }
   /*responsive -_- :/ */
 @media only screen and (min-width:1200px){
   .container {
@@ -193,6 +218,10 @@ color: #2B2B2B;
 .card{
   background-color: transparent !important;
   
+}
+.no-show{
+  font-size: 14px;
+  line-height: 20px;
 }
 .total-order-price{
   font-size:16px;
@@ -251,7 +280,16 @@ vertical-align: center !important;
   .card{
     padding: 8px;
   }
-
+  .view-more-btn-div button{
+    height: 45px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .view-more-btn-div img{
+    height: 10px;
+    width: 10px;
+  
+  }
 }
 @media all and (min-width:290px) and (max-width:360px){
   .big-view{
@@ -280,6 +318,16 @@ vertical-align: center !important;
   .mob{
     margin-top: 14px;
   }
+  .view-more-btn-div button{
+    height: 45px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .view-more-btn-div img{
+    height: 10px;
+    width: 10px;
+  
+  }
 }
 
 @media all and (min-width:360px) and (max-width:576px){
@@ -306,6 +354,16 @@ vertical-align: center !important;
   }
   .mob{
     margin-top: 14px;
+  }
+  .view-more-btn-div button{
+    height: 45px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .view-more-btn-div img{
+    height: 10px;
+    width: 10px;
+  
   }
 }
 @media all and (min-width:576px) and (max-width:768px){
@@ -340,6 +398,16 @@ vertical-align: center !important;
   .mob{
     margin-top: 14px;
   }
+  .view-more-btn-div button{
+    height: 60px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .view-more-btn-div img{
+    height: 13px;
+    width: 13px;
+
+  }
 }
 @media all and (min-width:768px) and (max-width:992px){
   .page-heading{
@@ -369,6 +437,16 @@ vertical-align: center !important;
   }
   .card{
     padding: 10px !important;
+  }
+  .view-more-btn-div button{
+    height: 60px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .view-more-btn-div img{
+    height: 13px;
+    width: 13px;
+
   }
   
 }

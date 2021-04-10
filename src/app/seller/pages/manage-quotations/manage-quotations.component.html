@@ -96,7 +96,7 @@
   
         <!--cards if valid data-->
         <div class="col-md-12 cards" *ngIf="filtered_data">
-          <div class="show-values" *ngFor="let item of filtered_data | slice: lowValue:highValue;">
+          <div class="show-values" *ngFor="let item of filtered_data">
             <div class="row">
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
                 <span> #{{item.quotation_code}}</span>
@@ -126,21 +126,34 @@
             </div>
           </div>
         </div>
+          <!--cards if no more data to load-->
+       <div class="col-md-12" *ngIf="prodEnd">
+        <div class="no-show mt-2">
+          No more data to show
+        </div>
+      </div>
         <!--cards if no data-->
-        <div class="col-md-12" *ngIf="filtered_data">
+        <!-- <div class="col-md-12" *ngIf="filtered_data">
           <div class="no-data mt-2"
             *ngIf="filtered_data == null || filtered_data == undefined || filtered_data?.length == 0">
             No data available
           </div>
-        </div>
+        </div> -->
 
         <!--pagination-->
-        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="filtered_data">
+        <!-- <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="filtered_data">
           <mat-paginator *ngIf="filtered_data?.length >10" [length]="filtered_data.length" [pageSize]="10"
             [pageSizeOptions]="[5, 10, 15,20]" (page)="getPaginatorData($event)">
           </mat-paginator>
-        </div>
-
+        </div> -->
+<!--view more button-->
+<div class="col-md-12" *ngIf="!prodEnd">
+  <div class="view-more-btn-div">
+      <button  (click)=" getNextBatchData();" mat-raised-button
+          class="m-auto">View More
+          <img src="../../../assets/down-carrot-light.svg" alt=""></button>
+  </div>
+</div>
   
       </div>
     </div>

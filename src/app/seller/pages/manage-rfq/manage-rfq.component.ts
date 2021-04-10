@@ -21,6 +21,8 @@ export class ManageRfqComponent implements OnInit {
   highValue: number = 10;
   toggleSort = true;
   img_base_url=config.img_base_url
+  nextBatchData: any;
+  prodEnd: boolean = false;
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
@@ -55,14 +57,31 @@ export class ManageRfqComponent implements OnInit {
        this.rfq.get_seller_quotation_list().subscribe(item => {
         item.data.forEach((element:any) => {
           if(parseFloat(element.status)<2){
-            this.rfqTableData.push(element)
+            this.rfqTableData.push(element);
+            
           }
+          
         });
-        
+        this.nextBatchData = item.data.next;
+        if(this.nextBatchData == null){
+          this.prodEnd = true;
+        }
         //this.rfqTableData = item.data;
         console.log("RFQ table Data",this.rfqTableData);
       })
 
+  }
+  getNextBatchData(){
+    if(this.nextBatchData != null){
+      this.rfq.getNextBatchItem(this.nextBatchData).subscribe((item) =>{
+        this.rfqTableData = [...this.rfqTableData, ...item.data.results];
+        this.nextBatchData = item.data.next;
+        console.log("nextBatchData",this.nextBatchData);
+      });
+    }
+    if(this.nextBatchData == null){
+      this.prodEnd = true;
+    }
   }
  
   //OPEN THE DIALOG FOR VIEWING RFQ DETAILS
