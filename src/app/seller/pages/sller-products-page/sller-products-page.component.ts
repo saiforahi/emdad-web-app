@@ -263,6 +263,7 @@ export class SllerProductsPageComponent implements OnInit {
   dleteProduct(){
     this.selection.selected.forEach(s => console.log(s.id));
   }
+  
   showCatMenu() {
     this.catMenuToggle = true;
   }

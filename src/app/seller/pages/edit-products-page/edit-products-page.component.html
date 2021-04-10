@@ -188,7 +188,7 @@
                     <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
                     <div *ngFor="let img of existingImgList; let i = index;" class="d-inline-block img-preview-div">
                         <img *ngIf="img.link != null" [src]="img.link" alt="" width="80" height="80">
-                        <button mat-raised-button (click)="deleteExistingImage(existingImgList[i]);" type="button"><img
+                        <button mat-raised-button (click)="deleteExistingImage(existingImgList[i], i);" type="button"><img
                                 src="../../../../assets/close.svg" alt=""></button>
                     </div>
                     <div *ngFor="let img of imgPreviewList; let i = index;" class="d-inline-block img-preview-div">
@@ -232,7 +232,7 @@
                         [disabled]="productUpdateForm.invalid">
                         Save
                     </button>
-                    <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn delete-btn">
+                    <button type="submit" mat-raised-button (click)="deleteProduct();" class="btn btn-primary btn-md login_btn delete-btn">
                         Delete Product
                     </button>
                 </div>
