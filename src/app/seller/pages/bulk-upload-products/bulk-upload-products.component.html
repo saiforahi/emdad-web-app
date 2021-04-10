@@ -18,7 +18,7 @@
           </mat-expansion-panel-header>
           <div class="expanded-div" [ngClass]="sideMenuCollapsed ? 'd-none' : 'd-block'">
             <div *ngIf="cat.children.length == 0" style="font-size: 18px">
-              No item to show
+              {{'Home.No_Item'|translate}}
             </div>
             <!-- level two -->
             <mat-accordion *ngFor="let subcategory of cat.children">
@@ -36,7 +36,7 @@
                 </mat-expansion-panel-header>
                 <div class="expanded-div">
                   <div *ngIf="subcategory.children.length == 0" style="font-size: 18px">
-                    No item to show
+                    {{'Home.No_Item'|translate}}
                   </div>
                   <!-- level three -->
                   <div *ngFor="let child of subcategory.children" style="padding: 5px 0">
@@ -59,11 +59,11 @@
     <div class="container">
       <!--heading show-->
       <section class="page-heading-holder desktop-view">
-        <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
+        <h2 class="page-heading d-inline-block">{{'Seller_Bulk_Upload_Product.title'|translate}}</h2>
       </section>
       <!--mobile header-->
       <section class="page-heading-holder mobile-view">
-        <h2 class="page-heading d-inline-block">Bulk Upload Product</h2>
+        <h2 class="page-heading d-inline-block">{{'Seller_Bulk_Upload_Product.title'|translate}}</h2>
 
         <!--buttons for mobile-->
         <div class="sort-btn float-right mobile-buttons d-inline-block">
@@ -89,12 +89,12 @@
             <ngx-dropzone-label>
               <img src="../../../../assets/xls-icon.png" alt="" class="img-fluid xl-img" />
               <p *ngIf="files.length == 0 && successMsg == undefined" class="up-instruction">
-                Drop to attach file or choose from finder <br />
-                Must be in (xls) format.
+                {{'Seller_Bulk_Upload_Product.placeholder_text1'|translate}} <br />
+                {{'Seller_Bulk_Upload_Product.placeholder_text2'|translate}}
               </p>
               <p *ngIf="files.length != 0 && successMsg == undefined" class="up-instruction patience">
-                Please be patient until the product <br />
-                uploaded successfully.
+                {{'Seller_Bulk_Upload_Product.waiting_text1'|translate}} <br />
+                {{'Seller_Bulk_Upload_Product.waiting_text2'|translate}}
               </p>
               <p *ngIf="successMsg != undefined" class="up-instruction up-success">
                 {{ successMsg }}!
@@ -128,16 +128,15 @@
         <!-- upload product msg and sample file -->
         <div class="disclaimer" *ngIf="files.length == 0 && progress != 100">
           <p>
-            (You must select a child category before uploading products in bulk.
-            Here's a sample file that shows how to upload in bulk!)
+            ({{'Seller_Bulk_Upload_Product.Info_Text'|translate}})
           </p>
           <p class="file-warn">
             <a href="../../../../assets/Product-bulk-format.xlsx" target="_blank" download><img
-                src="../../../../assets/Documentdoc-icon.png" alt="icon" /><span>Download Sample File</span></a>
+                src="../../../../assets/Documentdoc-icon.png" alt="icon" /><span>{{'Seller_Bulk_Upload_Product.Download'|translate}}</span></a>
           </p>
         </div>
         <div *ngIf="progress == 100" class="next-button mt-3 text-center">
-          <button mat-stroked-button (click)="uploadNextStep()">Next</button>
+          <button mat-stroked-button (click)="uploadNextStep()">{{'Seller_Bulk_Upload_Product.Next'|translate}}</button>
         </div>
       </section>
       <!--step after first step is completed-->
@@ -150,14 +149,14 @@
               <p *ngIf="
                   filesDirectory.length == 0 && successMsgDirectory == undefined
                 " class="up-instruction">
-                Please upload a file directory <br />
-                for all of your products
+                {{'Seller_Bulk_Upload_Product.instruction3'|translate}} <br />
+                {{'Seller_Bulk_Upload_Product.instruction4'|translate}}
               </p>
               <p *ngIf="
                   filesDirectory.length != 0 && successMsgDirectory == undefined
                 " class="up-instruction patience">
-                Please be patient until the Directory <br />
-                uploaded successfully.
+               {{'Seller_Bulk_Upload_Product.instruction1'|translate}} <br />
+               {{'Seller_Bulk_Upload_Product.instruction2'|translate}} 
               </p>
               <p *ngIf="
                   successMsgDirectory != undefined
@@ -191,18 +190,18 @@
           </div>
         </div>
         <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
-          <button mat-stroked-button (click)="finishUpload()">Submit</button>
+          <button mat-stroked-button (click)="finishUpload()">{{'Seller_Bulk_Upload_Product.Submit'|translate}}</button>
         </div>
       </section>
       <section *ngIf="showFinish == true">
         <div class="card">
           <div class="text-center">
             <img src="../../../../assets/happy-face.png" alt="">
-            <p class="up-instruction up-success">Products uploaded successfully!</p>
+            <p class="up-instruction up-success">{{'Seller_Bulk_Upload_Product.success_text'|translate}}</p>
           </div>
         </div>
         <div *ngIf="progressDirectory == 100" class="next-button mt-3 text-center">
-          <button mat-stroked-button (click)="initialFaze()">Finish</button>
+          <button mat-stroked-button (click)="initialFaze()">{{'Seller_Bulk_Upload_Product.Finish'|translate}}</button>
         </div>
       </section>
     </div>

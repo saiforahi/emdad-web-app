@@ -189,6 +189,43 @@
         "Unit_of_measurement":"Unit of measurement",
         "DDP":"DDP",
         "ExWorks":"Ex-Works"
+    },
+    "Seller_Bulk_Upload_Product":{
+        "title":"Bulk Upload Product",
+        "Info_Text":"You must select a child category before uploading products in bulk. Here's a sample file that shows how to upload in bulk!",
+        "Download":"Download Sample File",
+        "Next":"Next",
+        "placeholder_text1":"Drop to attach file or choose from finder",
+        "placeholder_text2":"Must be in {{format}} format.",
+        "waiting_text1":"Please be patient until the product",
+        "waiting_text2":"uploaded successfully.",
+        "instruction1":"Please upload a file directory",
+        "instruction2":"uploaded successfully.",
+        "instruction3":"Please upload a file directory",
+        "instruction4":"for all of your products",
+        "success_text":"Products uploaded successfully!",
+        "Finish":"Finish",
+        "Submit":"Submit"
+    },
+    "Seller_Upload_Product":{
+        "title":"Upload Product",
+        "Product_Delivery_Method":"Product Delivery Method",
+        "Set_Lead_Time":"Set Lead Time",
+        "Product_Unit_Price":"Product Unit Price",
+        "VatEx":"(VAT exclusive)",
+        "Image_Upload_Instruction":"max. two images can be uploaded",
+        "Product_Attachments":"Product Attachments",
+        "Select_Category":"Select Category",
+        "Select_Sub_Category":"Select Sub Category",
+        "Select_Child_Category":"Select Child Category",
+        "Product_Details":"Product Details",
+        "Manufacturer_Name":"Manufacturer Name",
+        "Product_Stock":"Product Stock",
+        "Size":"Size",
+        "Ex_Works_20_days":"Ex Works 20 days",
+        "Shop_Pick_Up_Location":"Shop Pick Up Location",
+        "DDP_Destination":"DDP Destination",
+        "Product_Image":"Product Image"
     }
 }
 
