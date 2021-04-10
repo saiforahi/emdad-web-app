@@ -1,12 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { GetCategoryService } from 'src/app/shared/services/get-category.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
@@ -17,21 +9,9 @@ import swal from 'sweetalert';
 @Component({
   selector: 'app-bulk-upload-products',
   templateUrl: './bulk-upload-products.component.html',
-  styleUrls: ['./bulk-upload-products.component.css'],
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { displayDefaultIndicatorType: false },
-    },
-  ],
+  styleUrls: ['./bulk-upload-products.component.css']
 })
 export class BulkUploadProductsComponent implements OnInit {
-  prodXlUpData = new FormData();
-  prodUpDirectoryDate = new FormData();
-  prodDirectoryUpform: FormGroup;
-  prodXlUpform: FormGroup;
-  selectedImage: any = [];
-  // -------------------
   categories: any;
   @ViewChild('sidenav') sidenav: any;
   sideMenuCollapsed = false;
@@ -44,68 +24,55 @@ export class BulkUploadProductsComponent implements OnInit {
   progressDirectory: any;
   successMsgDirectory: any;
   catMenuToggle = false;
+  selectedCatId: any;
+  showFinish: boolean = false;
+
   constructor(
     private authService: UserAuthService,
-    private fb: FormBuilder,
     private getCategories: GetCategoryService,
     private addProducts: AddProductService,
     private router: Router,
     private subscription: SubscriptionService
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    this.authService
+      .sellerIsApproved(localStorage.getItem('s_uid'))
+      .subscribe((item: any) => {
+        console.log(item);
+        // Approved User, User Not Approve
+        this.subscription.isSubscribed().subscribe((item2: any) => {
+          console.log(item2);
+          // User Not Subscribe, Subscribe User
+          if (
+            item.message != 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            this.router.navigate(['/dashboard/welcome']);
+          } else if (
+            item.message == 'Approved User' &&
+            item2.message != 'Subscribe User'
+          ) {
+            swal(
+              'Access Denied!',
+              'you are not subscribed to any plan! Please subscribe.',
+              'error'
+            );
+            this.router.navigate(['/dashboard/subscription-plan']);
+          }
+        });
+      });
   }
 
   ngOnInit(): void {
     // get seller owned category
-    this.getCategories
-      .categoriesOfSeller(localStorage.getItem('s_uid'))
-      .subscribe((item: any) => {
-        // console.log(item);
-        this.categories = item.data[0].category_info;
-      });
-    /*CODE FOR ACTIVATING THE STEPPER */
-    /* var $firstButton = $(".first"),
-    $secondButton = $(".second"),
-    $input = $("input"),
-    $name = $(".name"),
-    $more = $(".more"),
-    $yourname = $(".yourname"),
-    $reset = $(".reset"),
-    $ctr = $(".container");
-  
-  $firstButton.on("click", function(e){
-    $(this).text("Saving...").delay(900).queue(function(){
-      $ctr.addClass("center slider-two-active").removeClass("full slider-one-active");
+    this.getCategories.category().subscribe((item: any) => {
+      // console.log(item);
+      this.categories = item;
     });
-    e.preventDefault();
-  });
-  
-  $secondButton.on("click", function(e){
-    $(this).text("Saving...").delay(900).queue(function(){
-      $ctr.addClass("full slider-three-active").removeClass("center slider-two-active slider-one-active");
-      $name = $name.val();
-      if($name == "") {
-        $yourname.html("Anonymous!");
-      }
-      else { $yourname.html($name+"!"); }
-    });
-    e.preventDefault();
-  }); */
-    // copy
-    /* balapaCop("Step by Step Form", "#999"); */
+  }
+
+  selectedCat(id){
+    console.log("cat id", id)
+    this.selectedCatId = id;
   }
 
   toggleSidenav() {
@@ -118,6 +85,7 @@ export class BulkUploadProductsComponent implements OnInit {
   }
 
   onSelect(event) {
+    this.files = [];
     this.progress = 0;
     console.log(event);
     this.files.push(...event.addedFiles);
@@ -128,7 +96,6 @@ export class BulkUploadProductsComponent implements OnInit {
       if (typeof response.message == 'number') {
         this.progress = response.message;
         // event.srcElement.value = null;
-        this.files = [];
       } else {
         this.successMsg = response.message;
       }
@@ -146,6 +113,7 @@ export class BulkUploadProductsComponent implements OnInit {
   }
 
   onSelectDirectory(event) {
+    this.filesDirectory = [];
     this.progressDirectory = 0;
     console.log(event);
     this.filesDirectory.push(...event.addedFiles);
@@ -160,7 +128,6 @@ export class BulkUploadProductsComponent implements OnInit {
       if (typeof response.message == 'number') {
         this.progressDirectory = response.message;
         // event.srcElement.value = null;
-        this.filesDirectory = [];
       } else {
         this.successMsgDirectory = response.message;
       }
@@ -168,6 +135,55 @@ export class BulkUploadProductsComponent implements OnInit {
   }
 
   finishUpload() {
+    this.addProducts.finishBulkUpload(this.files[0].name, this.selectedCatId).subscribe((success: any) => {
+      console.log(success)
+      this.showFinish = true;
+      this.uploadStep2 = false;
+    })
+  }
+
+  showCatMenu() {
+    this.catMenuToggle = true;
+  }
+
+  closeCatMenu() {
+    this.catMenuToggle = false;
+  }
+
+  deleteXlFile(filesName){
+    this.addProducts.deleteXl(filesName).subscribe((item: any) => {
+      console.log(item)
+      if(item.success == "True") {
+        this.progress = 0;
+        this.files = [];
+        this.successMsg = undefined;
+        swal(
+          'Success',
+          'Uploaded file deleted successfully, please upload again.',
+          'success'
+        );
+      }
+    })
+  }
+
+  deleteDirectory(filesName){
+    this.addProducts.deleteXl(filesName).subscribe((item: any) => {
+      console.log(item)
+      if(item.success == "True") {
+        this.progressDirectory = 0;
+        this.filesDirectory = [];
+        this.successMsgDirectory = undefined;
+        swal(
+          'Success',
+          'Uploaded file deleted successfully, please upload again.',
+          'success'
+        );
+      }
+    })
+  }
+
+  initialFaze(){
+    this.showFinish = false;
     this.files = [];
     this.progress = undefined;
     this.successMsg = undefined;
@@ -177,25 +193,4 @@ export class BulkUploadProductsComponent implements OnInit {
     this.progressDirectory = undefined;
     this.successMsgDirectory = undefined;
   }
-
-  handleFileSelect(event) {
-    var reader = new FileReader();
-    this.selectedImage.push(event.target.files[0]);
-    console.log(this.selectedImage);
-  }
-  onSubmitProd(value) {}
-
-  removeFile() {
-    /* this.selectedImage.splice(id, 1); */
-  }
-
-  removeDirectory() {}
-  showCatMenu() {
-    this.catMenuToggle = true;
-  }
-
-  closeCatMenu() {
-    this.catMenuToggle = false;
-  }
-  onSubmit(value) {}
 }

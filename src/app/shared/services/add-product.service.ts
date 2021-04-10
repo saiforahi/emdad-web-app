@@ -82,7 +82,7 @@ export class AddProductService {
   }
 
   uploadXl(data) {
-    let uploadURL = `${config.base_url}api/product/bulk/add/`;
+    let uploadURL = `${config.base_url}api/product/bulk/file/add/`;
     return this.http
       .post<any>(uploadURL, data, {
         reportProgress: true,
@@ -101,6 +101,19 @@ export class AddProductService {
           }
         })
       );
+  }
+
+  deleteXl(fileName){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      config.base_url + 'api/product/bulk/file/remove/',
+      {"file": fileName},
+      httpOptions
+    );
   }
 
   uploadDirectory(data){
@@ -123,5 +136,19 @@ export class AddProductService {
           }
         })
       );
+  }
+
+  finishBulkUpload(fileName, catId){
+    console.log(fileName, catId)
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      config.base_url + 'api/product/bulk/add/',
+      {"file": fileName, "seller": localStorage.getItem("s_uid"), "category": catId},
+      httpOptions
+    );
   }
 }
