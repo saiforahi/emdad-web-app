@@ -1,6 +1,7 @@
 {
   "Buttons":{
-    "Save": "يحفظ"
+    "Save": "يحفظ",
+    "View":"منظر"
   },
     "Nav":{
       "Home": "الصفحة الرئيسية",
@@ -232,6 +233,14 @@
       "Sort": "فرز حسب التاريخ",
       "Buyer_Name": "اسم المشتري",
       "Created": "تم الإنشاء",
-      "Buyer": "المشتري"
+      "Buyer": "المشتري",
+      "Make_Quote": "تقديم عرض أسعار",
+      "Product_Quantity": "كمية المنتج",
+      "Unit_Price": "سعر الوحدة",
+      "Commission": "سيتم إضافة العمولة",
+      "Quotation_Attachments": "مرفقات عرض الأسعار",
+      "Product_Description": "فرز حسب التاريخ",
+      "Time": "فرز حسب التاريخ",
+      "Quantity": "فرز حسب التاريخ"
     }
 }

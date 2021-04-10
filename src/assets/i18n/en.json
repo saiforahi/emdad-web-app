@@ -1,6 +1,7 @@
 {
     "Buttons":{
-        "Save":"Save"
+        "Save":"Save",
+        "View":"View"
     },
     "Nav":{
         "Home":"Home",
@@ -237,7 +238,10 @@
         "Product_Quantity":"Product Quantity",
         "Unit_Price":"Unit Price",
         "Commission":"Commission will be added",
-        "Quotation_Attachments":"Quotation Attachments"
+        "Quotation_Attachments":"Quotation Attachments",
+        "Product_Description":"Product Description",
+        "Time":"Time",
+        "Quantity":"Quantity"
     }
 }
 
