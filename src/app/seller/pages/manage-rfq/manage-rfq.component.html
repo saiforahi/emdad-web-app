@@ -1,28 +1,28 @@
 <section class="payment-history container">
   <div class="page-heading-holder">
-  <h2 class="page-heading">Manage RFQs</h2>
+  <h2 class="page-heading">{{'Seller_RFQ.title'|translate}}</h2>
   <div class="sort-btn d-inline-block big-view">
-    <button mat-stroked-button class="sort-btn" (click)="sortTable()">Sort by Date </button>
+    <button mat-stroked-button class="sort-btn" (click)="sortTable()">{{'Seller_RFQ.Sort'|translate}} </button>
   </div>
 </div>
 <div class="mobile-name">
-  <button mat-stroked-button (click)="sortTable()">Sort by Date </button>
+  <button mat-stroked-button (click)="sortTable()">{{'Seller_RFQ.Sort'|translate}} </button>
 </div>
   <div class="card">
     <div class="row">
       <div class="col-md-12 card-header">
         <div class="row">
           <div class="col-md-2 name">
-            RFQ ID
+            {{'Seller_Dashboard.rfq_id'|translate}}
           </div>
           <div class="col-md-2 name">
-            Date
+            {{'Seller_Dashboard.date'|translate}}
           </div>
           <div class="col-md-2 name">
-            Status
+            {{'Buyer_Quotation_History.Status'|translate}}
           </div>
           <div class="col-md-4 name">
-            Buyer Name
+            {{'Seller_RFQ.Buyer_Name'|translate}}
           </div>
           <div class="col-md-2 name">
             
@@ -40,19 +40,19 @@
              <span> #{{item.rfq[0].id}}</span>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 col-12 value">
-              <span><span class="mobile-name">Created:</span> {{ item.created_at | date :'mediumDate' }}</span>
+              <span><span class="mobile-name">{{'Seller_RFQ.Created'|translate}}:</span> {{ item.created_at | date :'mediumDate' }}</span>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 col-12 value">
-              <span *ngIf="item.rfq[0].status == true">Sent</span>
-              <span *ngIf="item.rfq[0].status == false">Completed</span>
+              <span *ngIf="item.rfq[0].status == true">{{'Buyer_Quotation_History.Sent'|translate}}</span>
+              <span *ngIf="item.rfq[0].status == false">{{'Buyer_Quotation_History.Completed'|translate}}</span>
               <span *ngIf="item.rfq[0].status == null"> - </span>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12 value">
-              <span><span class="mobile-name">Buyer :</span> {{item.buyer.full_name}}</span>
+              <span><span class="mobile-name">{{'Seller_RFQ.Buyer'}} :</span> {{item.buyer.full_name}}</span>
             </div>
             <div class="col-lg-2 col-md-12 col-sm-12 col-12 value mobile-btn">
-              <span class="big-view"><button class="edit-product-btn" mat-button (click)="openDialog(item)">View</button></span>
-              <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button (click)="openDialog(item)">View</button></span>
+              <span class="big-view"><button class="edit-product-btn" mat-button (click)="openDialog(item)">{{'Buttons.View'|translate}}</button></span>
+              <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button (click)="openDialog(item)">{{'Buttons.View'|translate}}</button></span>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
           <!--cards if no data-->
           <div class="col-md-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
             <div class="no-data mt-2">
-              No data available
+              {{'Buyer_Order_History.No_Data'|translate}}
             </div>
           </div>
       <!--pagination-->

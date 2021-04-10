@@ -58,9 +58,7 @@ export class ManageRfqComponent implements OnInit {
         item.data.forEach((element:any) => {
           if(parseFloat(element.status)<2){
             this.rfqTableData.push(element);
-            
           }
-          
         });
        
         //this.rfqTableData = item.data;
