@@ -10,13 +10,13 @@
             
         <!--dropdown-->
         <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
-          <div ngbDropdownItem>
+          <div ngbDropdownItem (click)="filter_orders(1);">
             <span class="lan-title">Paid</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
-          <div ngbDropdownItem>
+          <div ngbDropdownItem (click)="filter_orders(0);">
             <span class="lan-title">Unpaid</span>
           </div>
         </div>
@@ -72,7 +72,7 @@
   
         <!--cards if valid data-->
         <div class="col-md-12 cards" *ngIf="filtered_orders">
-          <div class="show-values" *ngFor="let item of filtered_orders | slice: lowValue:highValue;">
+          <div class="show-values" *ngFor="let item of filtered_orders">
             <div class="row">
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
                 <span> #{{item.order.order_code}}</span>
@@ -89,7 +89,7 @@
                 <span *ngIf="item.order.payment_type == 0">Unpaid</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span><span class="mobile-name">Amount :</span> {{item.order.total_amount}}</span>
+                <span><span class="mobile-name">Amount :</span>SAR {{item.order.total_amount}}</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-12 col-12 value mobile-btn">
                 <span class="big-view"><button class="edit-product-btn" mat-button
@@ -109,11 +109,11 @@
         </div>
 
         <!--pagination-->
-        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="filtered_orders">
+    <!--     <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="filtered_orders">
           <mat-paginator *ngIf="filtered_orders != null" [length]="filtered_orders.length" [pageSize]="10"
             [pageSizeOptions]="[5, 10, 15,20]" (page)="getPaginatorData($event)">
           </mat-paginator>
-        </div>
+        </div> -->
   <!--total amount-->
   <div class="col-md-12" *ngIf="filtered_orders != null || filtered_orders != undefined">
     <div class="total-order-price mb-3">

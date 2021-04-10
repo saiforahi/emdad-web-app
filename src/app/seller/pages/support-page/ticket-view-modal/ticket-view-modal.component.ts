@@ -11,7 +11,7 @@ export class TicketViewModalComponent implements OnInit {
   issueData;
   selectedIssueId: any;
   selectedIssueData: any;
-  status = ['Initiative', 'Undergoing', 'Resolved'];
+  status = ['Running', 'Solved'];
   adminResponse: any;
   constructor(
     private ticketService: TicketService,

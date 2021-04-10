@@ -62,28 +62,13 @@ export class ManageRfqComponent implements OnInit {
           }
           
         });
-        this.nextBatchData = item.data.next;
-        if(this.nextBatchData == null){
-          this.prodEnd = true;
-        }
+       
         //this.rfqTableData = item.data;
-        console.log("RFQ table Data",this.rfqTableData);
+       
       })
 
   }
-  getNextBatchData(){
-    if(this.nextBatchData != null){
-      this.rfq.getNextBatchItem(this.nextBatchData).subscribe((item) =>{
-        this.rfqTableData = [...this.rfqTableData, ...item.data.results];
-        this.nextBatchData = item.data.next;
-        console.log("nextBatchData",this.nextBatchData);
-      });
-    }
-    if(this.nextBatchData == null){
-      this.prodEnd = true;
-    }
-  }
- 
+
   //OPEN THE DIALOG FOR VIEWING RFQ DETAILS
   openDialog(item) {
     const dialogRef = this.dialog.open(ViewDialogueComponent,{

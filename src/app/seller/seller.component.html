@@ -262,7 +262,7 @@
                     <li [ngClass]="activeRoute[2] == 'payment-history' ? 'active' : ''">
                       <img *ngIf="activeRoute[2] == 'payment-history'" src="../../assets/dot.svg" alt="" class="dot">
                       <img *ngIf="activeRoute[2] != 'payment-history'" src="../../assets/dot-light.svg" alt=""
-                        class="dot">{{'Seller_Menu.Payment_History'|translate}}
+                        class="dot">{{'Seller_Menu.Payment_History'| translate}}
                     </li>
                   </a>
                 </ul>
@@ -401,7 +401,7 @@
               <div ngbDropdownItem (click)="logout();">
                 <label class="">
                   <img src="../assets/seller-logout.svg" alt="" />
-                  <span class="lan-title">{{'Header_DropDowns.Log_out'|translate}}</span>
+                  <span class="lan-title">{{'Header_DropDowns.Log_out' |translate}}</span>
                 </label>
               </div>
             </div>
@@ -564,7 +564,7 @@
           </li>
           <li class="nav-item " *ngIf="loggedInUser && activeRoute[2] == 'welcome'">
             <a mat-button (click)="logout();" class="logout">
-              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid mr-2" alt=""><span class="show-in-med">{{'Header_DropDowns.Log_out' | translate}}</span></li>
+              <li><img src="../../assets/icons/logout-small.svg" class="img-fluid mr-2" alt=""><span class="show-in-med">{{'Header_DropDowns.Log_out' |translate}}</span></li>
             </a>
           </li>
         </ul>

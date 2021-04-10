@@ -14,6 +14,7 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { PageEvent } from '@angular/material/paginator';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import swal from 'sweetalert';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-support-page',
@@ -31,6 +32,7 @@ export class SupportPageComponent implements OnInit {
   highValue: number = 10;
   prodEnd: boolean = false;
   nextBatchProdLink: any;
+  filtered_data: any;
   /** Initializing table coloumns */
   
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -71,9 +73,7 @@ export class SupportPageComponent implements OnInit {
       .subscribe((data: any) => {
         //console.log(data.data[0].image.split('/')[]);
         this.supportIssues = data.data;
-        if (this.supportIssues == null) {
-          this.prodEnd = true;
-        }
+     this.filtered_data = data.data;
         console.log('issues from seller:', this.supportIssues);
       });
   }
@@ -104,5 +104,14 @@ export class SupportPageComponent implements OnInit {
       autoFocus: false,
       data: {},
     });
+  }
+  filter_tickets(status:number){
+    this.supportIssues=[];
+  this.filtered_data.forEach(element =>{
+    if(element.status == status){
+      this.supportIssues.push(element);
+    }
+  })
+
   }
 }

@@ -4,6 +4,9 @@
   outline: none;
   box-shadow: none;
 }
+.payment-history{
+  padding-bottom: 60px !important;
+}
 /* .container{
   padding:60px;
 } */

@@ -10,10 +10,11 @@
             <p class="short-head"><span class="name">Date:</span><span> {{issueData.issue_date | date}}</span></p>
             <p class="large-head"><span class="name">Subject: </span><span>{{issueData.title}}</span></p>
             <p class="large-head"><span class="name">Details: </span><span> {{issueData.description}}</span></p>
-            <p class="short-head"><span class="name">Status: {{status[issueData.status]}}</span></p>
+            <p class="short-head"><span class="name">Status:  <span *ngIf="issueData.status == 0">Running</span>
+                <span *ngIf="issueData.status == 2">Solved</span></span></p>
         </div>
         <!-- FOLLOW UP RESPONSES BY ADMIN DISPLAY-->
-       <div *ngIf="adminResponse != 0">
+       <div *ngIf="adminResponse != 0 || adminResponse != undefined">
         <div class="admin-response" *ngFor="let response of adminResponse;">
             <p><span class="admin-header">Admin Response</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
             <p class="message">{{response.message}}</p>

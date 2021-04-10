@@ -20,7 +20,7 @@
 
       <!--cards if valid data-->
       <div class="col-md-12 cards" *ngIf="subscriptionHistory">
-        <div class="show-values" *ngFor="let item of subscriptionHistory | slice: lowValue:highValue;">
+        <div class="show-values" *ngFor="let item of subscriptionHistory ">
           <div class="row">
             <div class="col-lg-4 col-md-6 col-12 value">
               <span> <span class="mobile-name">{{'Seller_Dashboard.Payment_Date'|translate}} : </span> {{item.start_date | date:'mediumDate'}}</span>
@@ -36,12 +36,12 @@
         </div>
       </div>
       <!--pagination-->
-      <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="subscriptionHistory">
+      <!-- <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="subscriptionHistory">
         <mat-paginator 
           [length]="subscriptionHistory.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15,20]"
           (page)="getPaginatorData($event)">
         </mat-paginator>
-      </div>
+      </div> -->
       <!--cards if no data-->
       <div class="col-md-12" *ngIf="subscriptionHistory == null || subscriptionHistory==undefined">
         <div class="no-data">

@@ -4,7 +4,7 @@
 <section class="card mb-5">
   <div class="profile-banner-holder">
     <img *ngIf="banner_pic != undefined" src="{{banner_pic}}" alt="">
-    <img *ngIf="banner_pic == undefined" src="../../../../assets/banner-default.jpg" alt="">
+    <img *ngIf="banner_pic == undefined" src="../../../../assets/banner-default.jpg" alt="" class="img-fluid">
     <label for="banner" class="banner-img-up-btn mb-0">
       <!-- banner -->
       <input id="banner" class="form-control form-control-md" type="file" (change)="uploadBannerPic($event);" />

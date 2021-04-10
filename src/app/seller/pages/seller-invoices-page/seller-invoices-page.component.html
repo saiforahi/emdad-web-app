@@ -3,11 +3,11 @@
     <div class="page-heading-holder">
     <h2 class="page-heading">Invoices</h2>
     <div class="sort-btn d-inline-block big-view">
-      <button mat-stroked-button class="sort-btn" (click)="sortTable()">Sort by Date <mat-icon>expand_more</mat-icon></button>
+      <button mat-stroked-button class="sort-btn" (click)="sortTable();">Sort by Date </button>
     </div>
   </div>
   <div class="mobile-name">
-    <button mat-stroked-button (click)="sortTable()">Sort by Date <mat-icon>expand_more</mat-icon></button>
+    <button mat-stroked-button (click)="sortTable();">Sort by Date </button>
   </div>
     <div class="card">
       <div class="row">
@@ -33,7 +33,7 @@
   
         <!--cards if valid data-->
         <div class="col-md-12 cards" *ngIf="invoices">
-          <div class="show-values" *ngFor="let item of invoices | slice: lowValue:highValue;">
+          <div class="show-values" *ngFor="let item of invoices">
             <div class="row">
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
                <span> #{{item.invoice_code}}</span>
@@ -59,12 +59,12 @@
               </div>
             </div>
         <!--pagination-->
-        <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="invoices != null">
+       <!--  <div class="col-md-12 col-12 mt-2 pagination-show" *ngIf="invoices != null">
           <mat-paginator 
             [length]="invoices.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 15,20]"
             (page)="getPaginatorData($event)" *ngIf="invoices?.length>5">
           </mat-paginator>
-        </div>
+        </div> -->
     
       </div>
     </div>
