@@ -1,12 +1,12 @@
 <section>
-    <h2 class="page-heading">Bank Account Information</h2>
+    <h2 class="page-heading">{{'Seller_Bank_Info.title'|translate}}</h2>
 </section>
 <section class="card mb-5">
     <form [formGroup]="bankInfoForm" (ngSubmit)="onSubmit(bankInfoForm.value)">
         <div class="row">
           <div class="col-md-12 col-lg-6">
             <div class="form-group">
-              <label for="bankAcNumber">Bank Account Number</label>
+              <label for="bankAcNumber">{{'Seller_Bank_Info.Number'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/icons/card-small.svg" alt=""></div>
@@ -24,8 +24,8 @@
           </div>
           <div class="col-md-12 col-lg-6">
             <div class="form-group">
-              <label class="d-block">Stamped Account Letter</label>
-              <label for="attachments" class="custom-file-upload mr-3" *ngIf="existingFile.length + selectedFile.length < 1">
+              <label class="d-block">{{'Seller_Bank_Info.Account_Letter'|translate}}</label>
+              <label for="attachments" class="custom-file-upload">
                 <!-- Attachments -->
                 <input id="attachments" class="form-control form-control-md" type="file"
                   formControlName="attachments" (change)="handleFileSelect($event);" />
@@ -48,7 +48,7 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="bankName">Name of Bank</label>
+              <label for="bankName">{{'Seller_Bank_Info.Bank_Name'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/icons/bank.svg" alt=""></div>
@@ -66,7 +66,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="swiftCode">Swift Code</label>
+              <label for="swiftCode">{{'Seller_Bank_Info.Swift_Code'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/icons/info-square.svg" alt=""></div>
@@ -84,7 +84,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="accountName">Account Name</label>
+              <label for="accountName">{{'Seller_Bank_Info.Account_Name'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/Profile.svg" alt=""></div>
@@ -102,7 +102,7 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="bankAddress">Bank address</label>
+              <label for="bankAddress">{{'Seller_Bank_Info.Bank_Address'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
@@ -121,7 +121,7 @@
           <div class="col-12">
             <div class="form-group submit-btn">
               <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn" [disabled]="bankInfoForm.invalid || passMatched">
-                Save
+                {{'Buttons.Save'|translate}}
               </button>
             </div>
           </div>

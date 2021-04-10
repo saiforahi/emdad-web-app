@@ -1,17 +1,17 @@
 <section class="payment-history container">
-  <h2 class="page-heading">Payment History</h2>
+  <h2 class="page-heading">{{'Seller_Menu.Payment_History'|translate}}</h2>
   <div class="card">
     <div class="row">
       <div class="col-md-12 card-header">
         <div class="row">
           <div class="col-md-4 name">
-            Payment Date
+            {{'Seller_Dashboard.Payment_Date'|translate}}
           </div>
           <div class="col-md-4 name">
-            Subscription Plan Name
+            {{'Seller_Subscription.Plan_Name'|translate}}
           </div>
           <div class="col-md-4 name">
-            Expired Date
+            {{'Seller_Subscription.Expired_Date'|translate}}
           </div>
         </div>
       </div>
@@ -23,14 +23,14 @@
         <div class="show-values" *ngFor="let item of subscriptionHistory | slice: lowValue:highValue;">
           <div class="row">
             <div class="col-lg-4 col-md-6 col-12 value">
-              <span> <span class="mobile-name">Payment Date: </span> {{item.start_date | date:'mediumDate'}}</span>
+              <span> <span class="mobile-name">{{'Seller_Dashboard.Payment_Date'|translate}} : </span> {{item.start_date | date:'mediumDate'}}</span>
             </div>
             <div class="col-lg-4 col-md-6 col-12 value">
-              <span><span class="mobile-name">Subscription Plan Name : </span> {{ item.subscription_plan.title |
+              <span><span class="mobile-name">{{'Seller_Subscription.Plan_Name'|translate}} : </span> {{ item.subscription_plan.title |
                 titlecase }}</span>
             </div>
             <div class="col-lg-4 col-md-6 col-12 value end-date">
-              <span><span class="mobile-name">Expired Date: </span> {{item.end_date | date:'mediumDate'}}</span>
+              <span><span class="mobile-name">{{'Seller_Subscription.Expired_Date'|translate}} : </span> {{item.end_date | date:'mediumDate'}}</span>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
       <!--cards if no data-->
       <div class="col-md-12" *ngIf="subscriptionHistory == null || subscriptionHistory==undefined">
         <div class="no-data">
-          No data available
+          {{'Seller_Dashboard.No_Data'|translate}}
         </div>
       </div>
     </div>

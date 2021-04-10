@@ -35,7 +35,13 @@
         "Popular_Categories":"Popular Categories",
         "Recent_Products":"Recent Products",
         "View_More":"View More",
-        "No_Product":"No more products to show"
+        "No_Product":"No more products to show",
+        "No_Item":"No item to show",
+        "Brands":"Brands",
+        "Colors":"Colors",
+        "Price":"Price",
+        "Search_Result":"Search Result",
+        "Items":"items"
     },
     "Buyer_Profile":{
         "Header":"My Profile"
@@ -134,6 +140,55 @@
         "Order_History":"Order History",
         "Invoices":"Invoices",
         "Support":"Support"
+    },
+    "Seller_Dashboard":{
+        "Quick_View":"Quick View",
+        "rfq_id":"RFQ ID",
+        "date":"Date",
+        "status":"Status",
+        "Quotations_List":"Quotations List",
+        "Quotation_ID":"Quotation ID",
+        "Sent":"Sent",
+        "Waiting":"Waiting",
+        "Completed":"Completed",
+        "Order_ID":"Order ID",
+        "Payment_Date":"Payment Date",
+        "Delivery_Date":"Delivery Date",
+        "Amount":"Amount",
+        "Recieved":"Recieved",
+        "Delivered":"Delivered"
+    },
+    "Seller_Bank_Info":{
+        "title":"Bank Account Information",
+        "Number":"Bank Account Number",
+        "Account_Letter":"Stamped Account Letter",
+        "Bank_Name":"Name of Bank",
+        "Swift_Code":"Swift Code",
+        "Account_Name":"Account Name",
+        "Bank_Address":"Bank Address"
+    },
+    "Seller_Subscription":{
+        "title":"Choose Subscription Plan",
+        "Half_Yearly":"Half yearly",
+        "Yearly":"Yearly",
+        "VAT":"VAT Inclusive",
+        "Discount":"Discount is SAR",
+        "Proceed":"Proceed To Pay",
+        "Apply":"Apply",
+        "Coupon_Text":"Enter Discount Coupon",
+        "Plan_Name":"Subscription Plan Name",
+        "Expired_Date":"Expired Date"
+    },
+    "Seller_Product_Categories":{
+        "title":"Product Categories",
+        "Product_Name":"Product Name",
+        "Bulk_Delete":"Bulk Delete",
+        "Delivery_Method":"Delivery Method",
+        "Stock":"Stock",
+        "Unit_Price":"Unit Price",
+        "Unit_of_measurement":"Unit of measurement",
+        "DDP":"DDP",
+        "ExWorks":"Ex-Works"
     }
 }
 

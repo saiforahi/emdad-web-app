@@ -11,6 +11,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup-page',
@@ -56,7 +57,8 @@ export class SignupPageComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private contry: CountryListService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public translate:TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -216,5 +218,11 @@ export class SignupPageComponent implements OnInit {
   }
   removeVatCert(id){
     this.selectedCert.splice(id,1);
+  }
+
+  changeLang(language: string) {
+    localStorage.setItem('locale', language);
+    this.translate.use(language);
+    console.log(this.translate.currentLang)
   }
 }

@@ -1,11 +1,11 @@
 <section class="container">
-    <h2 class="page-heading">Quick View</h2>
+    <h2 class="page-heading">{{'Seller_Dashboard.Quick_View'|translate}}</h2>
     <div class="row">
         <!--rfq table data-->
         <div class="col-lg-12 col-xl-6 col-md-12 mt-3  rfq" [routerLink]="['/dashboard/manage-rfqs']">
             <div class="table-view h-100">
                 <div class="header-show">
-                    <h3 class="header">Manage RFQs</h3>
+                    <h3 class="header">{{'Seller_Menu.Manage_RFQs'|translate}}</h3>
                 </div>
                 <div class="row p-3">
 
@@ -13,13 +13,13 @@
                     <div class="col-md-12 card-header" *ngIf="rfqTableData?.length != 0">
                         <div class="row">
                             <div class="col-md-4 name">
-                                RFQ ID
+                                {{'Seller_Dashboard.rfq_id'|translate}}
                             </div>
                             <div class="col-md-4 name">
-                                Date
+                                {{'Seller_Dashboard.date' | translate}}
                             </div>
                             <div class="col-md-4 name">
-                                Status
+                                {{'Seller_Dashboard.status' | translate}}
                             </div>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                                     {{item.created_at | date:'mediumDate'}}
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-4 value">
-                                    <span *ngIf="item.rfq[0].status == true">Sent</span>
-                                    <span *ngIf="item.rfq[0].status == false">Closed</span>
+                                    <span *ngIf="item.rfq[0].status == true">{{'Seller_Dashboard.Sent' | translate}}</span>
+                                    <span *ngIf="item.rfq[0].status == false">{{'Seller_Dashboard.Closed'|translate}}</span>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                     <!--cards with no data-->
                     <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
                         <div class="no-data">
-                            No data available
+                            {{'Seller_Dashboard.No_data'|translate}}
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
         <div class="col-lg-12 col-xl-6 col-md-12 mt-3" [routerLink]="['/dashboard/manage-quotations']">
             <div class="table-view h-100">
                 <div class="header-show">
-                    <h3 class="header">Quotations List</h3>
+                    <h3 class="header">{{'Seller_Dashboard.Quotations_List'|translate}}</h3>
                 </div>
                 <div class="row p-3">
 
@@ -62,16 +62,16 @@
                     <div class="col-md-12 card-header" *ngIf="rfqTableData?.length != 0">
                         <div class="row">
                             <div class="col-md-3 name">
-                                Quotation ID
+                                {{'Seller_Dashboard.Quotation_ID' | translate}}
                             </div>
                             <div class="col-md-3 name">
-                                Date
+                                {{'Seller_Dashboard.date' | translate}}
                             </div>
                             <div class="col-md-3 name">
-                                RFQ ID
+                                {{'Seller_Dashboard.rfq_id' | translate}}
                             </div>
                             <div class="col-md-3 name">
-                                Status
+                                {{'Seller_Dashboard.status' | translate}}
                             </div>
                         </div>
                     </div>
@@ -89,9 +89,9 @@
                                     # {{item.rfq[0].id}}
                                 </div>
                                 <div class="col-lg-3 col-xl-3 col-6 value">
-                                    <span *ngIf="item.status == 1">Sent</span>
-                                <span *ngIf="item.status == 2">Waiting</span>
-                                <span *ngIf="item.status == 3">Completed</span>
+                                    <span *ngIf="item.status == 1">{{'Seller_Dashboard.Sent' | translate}}</span>
+                                <span *ngIf="item.status == 2">{{'Seller_Dashboard.Waiting' | translate}}</span>
+                                <span *ngIf="item.status == 3">{{'Seller_Dashboard.Completed' | translate}}</span>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                     <!--cards with no data-->
                     <div class="col-12" *ngIf="rfqTableData == null || rfqTableData == undefined || rfqTableData?.length == 0">
                         <div class="no-data">
-                            No data available
+                            {{'Seller_Dashboard.No_data'|translate}}
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
         <div class="col-lg-12 col-xl-6 col-md-12 mt-3" [routerLink]="['/dashboard/order-history']">
             <div class="table-view h-100" >
                 <div class="header-show">
-                    <h3 class="header">Order History</h3>
+                    <h3 class="header">{{'Seller_Menu.Order_History' | translate}}</h3>
                 </div>
                 <div class="row p-3">
 
@@ -117,16 +117,16 @@
                     <div class="col-md-12 card-header" *ngIf="OrderTableData?.length != 0">
                         <div class="row">
                             <div class="col-md-3 name">
-                                Order ID
+                                {{'Seller_Dashboard.Order_ID'|translate}}
                             </div>
                             <div class="col-md-3 name">
-                                Payment Date
+                                {{'Seller_Dashboard.Payment_Date' |translate}}
                             </div>
                             <div class="col-md-3 name">
-                                Delivery Date
+                                {{'Seller_Dashboard.Delivery_Date'|translate}}
                             </div>
                             <div class="col-md-3 name">
-                                Amount
+                                {{'Seller_Dashboard.Amount'|translate}}
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                     <!--cards with no data-->
                     <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
                         <div class="no-data">
-                            No data available
+                            {{'Seller_Dashboard.No_data'}}
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
         <div class="col-lg-12 col-xl-6 col-md-12 mt-3" [routerLink]="['/dashboard/current-orders']">
             <div class="table-view h-100" >
                 <div class="header-show">
-                    <h3 class="header">Current Order</h3>
+                    <h3 class="header">{{'Seller_Menu.Current_Orders'|translate}}</h3>
                 </div>
                 <div class="row p-3">
 
@@ -170,19 +170,19 @@
                     <div class="col-md-12 card-header" *ngIf="OrderTableData?.length != 0">
                         <div class="row">
                             <div class="col-md-2 col-lg-2 name">
-                                Order ID
+                                {{'Seller_Dashboard.Order_ID'|translate}}
                             </div>
                             <div class="col-md-2 col-lg-2 name">
-                                Payment Date
+                                {{'Seller_Dashboard.Payment_Date'|translate}}
                             </div>
                             <div class="col-md-2 col-lg-2 name">
-                                Delivery Date
+                                {{'Seller_Dashboard.Delivery_Date'|translate}}
                             </div>
                             <div class="col-md-3 col-lg-3 name">
-                                Status
+                                {{'Seller_Dashboard.status'|translate}}
                             </div>
                             <div class="col-md-3 col-lg-3 name">
-                                Amount
+                                {{'Seller_Dashboard.Amount'|translate}}
                             </div>
                         </div>
                     </div>
@@ -200,10 +200,10 @@
                                     {{item.delivery_date | date :'mediumDate'}} 
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
-                                    <p *ngIf="item.status == 1">Recieved</p>
-                                <p *ngIf="item.status == 2">Recived</p>
-                                <p *ngIf="item.status == 3">Processing</p>
-                                <p *ngIf="item.status == 4">Delivered</p>
+                                    <p *ngIf="item.status == 1">{{'Seller_Dashboard.Recieved' | translate}}</p>
+                                <p *ngIf="item.status == 2">{{'Seller_Dashboard.Recived'|translate}}</p>
+                                <p *ngIf="item.status == 3">{{'Seller_Dashboard.Processing'|translate}}</p>
+                                <p *ngIf="item.status == 4">{{'Seller_Dashboard.Delivered'|translate}}</p>
 
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-6 value">
@@ -215,7 +215,7 @@
                     <!--cards with no data-->
                     <div class="col-12" *ngIf="OrderTableData == null || OrderTableData == undefined || OrderTableData?.length == 0">
                         <div class="no-data">
-                            No data available
+                            {{'Seller_Dashboard.No_data'|translate}}
                         </div>
                     </div>
                 </div>
