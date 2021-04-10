@@ -111,6 +111,7 @@ export class UserAuthService {
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
         console.log(response);
+        localStorage.clear()
         this.setSession(response);
       }),
       shareReplay()
