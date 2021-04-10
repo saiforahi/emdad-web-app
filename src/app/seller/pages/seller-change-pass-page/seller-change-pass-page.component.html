@@ -1,12 +1,12 @@
 <section>
-    <h2 class="page-heading">Change Password</h2>
+    <h2 class="page-heading">{{'Nav.Change_Password'|translate}}</h2>
 </section>
 <section class="card mb-5">
     <form [formGroup]="changePassForm" (ngSubmit)="onSubmit(changePassForm.value)">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="crntPassword">Current Password</label>
+                    <label for="crntPassword">{{'Buyer_Change_Password_Form.Current_Password'|translate}}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="newPassword">New Password</label>
+                    <label for="newPassword">{{'Buyer_Change_Password_Form.New_Password'|translate}}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="confPassword">Confirm Password</label>
+                    <label for="confPassword">{{'Buyer_Change_Password_Form.Confirm_Password'|translate}}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -109,7 +109,7 @@
                 <div class="form-group submit-btn">
                     <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                         [disabled]="changePassForm.invalid || passMatched">
-                        Save
+                        {{'Buttons.Save'|translate}}
                     </button>
                 </div>
             </div>

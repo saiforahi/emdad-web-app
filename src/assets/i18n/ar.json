@@ -31,12 +31,18 @@
         "All_Cat":"جميع الفئات"
     },
     "Home":{
-        "Popular_Products": "المنتجات الشعبية",
-        "Popular_Categories": "الفئات الشعبية",
-        "Recent_Products": "المنتجات الحديثة",
-        "View_More": "عرض المزيد",
-        "No_Product": "لا يوجد المزيد من المنتجات للعرض"
-      },
+      "Popular_Products": "المنتجات الشعبية",
+      "Popular_Categories": "الفئات الشائعة",
+      "Recent_Products": "المنتجات الحديثة",
+      "View_More": "عرض المزيد",
+      "No_Product": "لا يوجد المزيد من المنتجات للعرض",
+      "No_Item": "لا يوجد عنصر للعرض",
+      "Brands": "العلامات التجارية",
+      "Colors": "الألوان",
+      "Price": "السعر",
+      "Search_Result": "نتيجة البحث",
+      "Items": "الفئات الشائعة"
+    },
     "Buyer_Profile":{
         "Header":"ملفي"
     },
@@ -134,5 +140,54 @@
       "Order_History": "إدارة الملف الشخصي",
       "Invoices": "إدارة الملف الشخصي",
       "Support": "إدارة الملف الشخصي"
+    },
+    "Seller_Dashboard":{
+      "Quick_View": "عرض سريع",
+      "rfq_id": "معرّف RFQ",
+      "date": "التاريخ",
+      "status": "الحالة",
+      "Quotations_List": "قائمة عروض الأسعار",
+      "Quotation_ID": "معرّف عرض الأسعار",
+      "Sent": "تم الإرسال",
+      "Waiting": "قيد الانتظار",
+      "Completed": "مكتمل",
+      "Order_ID": "معرّف الطلب",
+      "Payment_Date": "تاريخ الدفع",
+      "Delivery_Date": "تاريخ التسليم او الوصول",
+      "Amount": "كمية",
+      "Recieved": "تم الاستلام",
+      "Delivered": "تم التوصيل"
+    },
+    "Seller_Bank_Info":{
+      "title": "معلومات الحساب المصرفي",
+      "Number": "رقم الحساب المصرفي",
+      "Account_Letter": "خطاب حساب مختوم",
+      "Bank_Name": "اسم البنك",
+      "Swift_Code": "رمز السرعة",
+      "Account_Name": "أسم الحساب",
+      "Bank_Address": "عنوان البنك"
+    },
+    "Seller_Subscription":{
+      "title": "اختر خطة الاشتراك",
+      "Half_Yearly": "نصف سنوي",
+      "Yearly": "سنوي",
+      "VAT": "شامل لضريبة القيمة المضافة",
+      "Discount": "الخصم ريال سعودي",
+      "Proceed": "متابعة الدفع",
+      "Apply": "تطبيق",
+      "Coupon_Text": "أدخل قسيمة الخصم",
+      "Plan_Name": "اسم خطة الاشتراك",
+      "Expired_Date": "تاريخ انتهاء الصلاحية"
+    },
+    "Seller_Product_Categories":{
+      "title": "فئات المنتجات",
+      "Product_Name": "اسم المنتج",
+      "Bulk_Delete": "الحذف بالجملة",
+      "Delivery_Method": "طريقة التسليم",
+      "Stock": "المخزون",
+      "Unit_Price": "سعر الوحدة",
+      "Unit_of_measurement": "وحدة القياس",
+      "DDP": "DDP",
+      "ExWorks": "الأعمال السابقة"
     }
 }

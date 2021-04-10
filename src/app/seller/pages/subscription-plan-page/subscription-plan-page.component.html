@@ -1,10 +1,10 @@
 <section class="subs-plan-holder">
-    <h2 class="page-heading">Choose Subscription Plan</h2>
+    <h2 class="page-heading">{{'Seller_Subscription.title'|translate}}</h2>
     <div class="row">
         <div class="col-lg-6 col-md-12 mt-3" *ngFor="let plan of planList; let i = index;">
             <div class="plan-card h-100" (click)="selectedPlan(i);" [ngClass]="selectedPlanId == i ? 'active': ''">
-                <p class="plan-title">{{plan.title | titlecase}} - <span *ngIf="plan.subscription_plan == 'y'">Yearly</span><span *ngIf="plan.subscription_plan == 'h'">Half yearly</span></p>
-                <p class="plan-price">${{plan.fees}} <span>VAT Inclusive</span></p>
+                <p class="plan-title">{{plan.title | titlecase}} - <span *ngIf="plan.subscription_plan == 'y'">{{'Seller_Subscription.Yearly'|translate}}</span><span *ngIf="plan.subscription_plan == 'h'">{{'Seller_Subscription.Half_Yearly'|translate}}</span></p>
+                <p class="plan-price">${{plan.fees}} <span>{{'Seller_Subscription.VAT'|translate}}</span></p>
                 <mat-checkbox class="plan-check" [checked]="selectedPlanId == i"></mat-checkbox>
             </div>
         </div>
@@ -15,18 +15,18 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><img src="../../../../assets/coupon.svg" alt=""></div>
                 </div>
-                <input [(ngModel)]="couponInput" class="form-control form-control-md" type="text" required placeholder="Enter discount coupon"/>
+                <input [(ngModel)]="couponInput" class="form-control form-control-md" type="text" required placeholder="{{'Seller_Subscription.Coupon_Text'|translate}}"/>
             </div>
         </div>
         <div class="col-md-12 col-lg-3 col-12">
-            <button mat-raised-button (click)="applyCoupon()" class="login-btn apply-btn">Apply</button>
+            <button mat-raised-button (click)="applyCoupon()" class="login-btn apply-btn">{{'Seller_Subscription.Apply'|translate}}</button>
             <div *ngIf="msg">
               <span>{{ msg }}.</span>
-              <span *ngIf="couponDiscount != null"> Discount is SAR{{couponDiscount}}.</span>
+              <span *ngIf="couponDiscount != null"> {{'Seller_Subscription.Discount'|translate}}{{couponDiscount}}.</span>
             </div>
         </div>
        
-        <div class="col-md-12 col-lg-12 col-12"> <button (click)="proceedToPay()" class="d-block mt-5 login-btn proceed-btn" mat-raised-button>Proceed to pay</button></div>
+        <div class="col-md-12 col-lg-12 col-12"> <button (click)="proceedToPay()" class="d-block mt-5 login-btn proceed-btn" mat-raised-button>{{'Seller_Subscription.Proceed'|translate}}</button></div>
        
     </div>
 </section>
