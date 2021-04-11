@@ -14,7 +14,7 @@ a {
   font-size: 20px;
   line-height: 29px;
 }
- @media all and (min-width:290px) and (max-width:992px){
+ @media all and (min-width:290px) and (max-width:991px){
   .breadcrumbs {
     background: transparent !important;
     border: 0;

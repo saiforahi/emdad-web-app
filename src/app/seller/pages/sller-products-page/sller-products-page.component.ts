@@ -10,6 +10,7 @@ import { DialogueComponent } from './dialogue/dialogue.component';
 import { GetProductService } from 'src/app/shared/services/get-product.service';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import swal from 'sweetalert';
+import { NgxSpinnerService } from 'ngx-spinner';
 // import { ProdCategoryFilterComponent } from './prod-category-filter/prod-category-filter.component';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -52,7 +53,9 @@ export class SllerProductsPageComponent implements OnInit {
     private productService: GetProductService,
     private deleteProductService: AddProductService,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,
+    private addProductService: AddProductService,
+    private spinner: NgxSpinnerService,
   ) {
     this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
       console.log(item)
@@ -270,5 +273,17 @@ export class SllerProductsPageComponent implements OnInit {
 
   closeCatMenu() {
     this.catMenuToggle = false;
+  }
+  deleteProduct(id){
+    this.spinner.show();
+    this.addProductService.deleteProduct(id).subscribe((success: any) => {
+      console.log(success.message);
+      this.router.navigate(['/dashboard/products'])
+      this.spinner.hide();
+      swal('Success!', 'Product deleted succssfully', 'success');
+    },
+    (error: any) => {
+      console.log(error);
+    })
   }
 }

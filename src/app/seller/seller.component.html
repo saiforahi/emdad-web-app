@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav *ngIf="loggedInUser && activeRoute[2] != 'welcome'" #sidenav [opened]="screenWidth > 991" [fixedInViewport]="true" [fixedTopGap]="0"
-    [fixedBottomGap]="0" [mode]="(screenWidth > 991) ? 'side' : 'over'">
+  <mat-sidenav *ngIf="loggedInUser && activeRoute[2] != 'welcome'" #sidenav [opened]="screenWidth >= 992" [fixedInViewport]="true" [fixedTopGap]="0"
+    [fixedBottomGap]="0" [mode]="(screenWidth >= 992) ? 'side' : 'over'">
     <section class="desktop-sidenav">
       <img src="../../assets/logo.svg" alt="" class="img-fluid mx-auto">
       <section class="side-menu-holder">
@@ -183,7 +183,7 @@
       <div class="mobile-username-holder mt-3">
         <div class="mobile-user-name" *ngIf="loggedInUser">
           <div class="mob-img-holder">
-            <img class="img-fluid img-thumbnail" *ngIf="loggedInUser && loggedInUserImg == ''"
+            <img class="img-fluid img-thumbnail" *ngIf="loggedInUserImg == ''"
               src="../../../../assets/Profile.svg" alt="" />
             <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
           </div>
@@ -401,7 +401,7 @@
               <div ngbDropdownItem (click)="logout();">
                 <label class="">
                   <img src="../assets/seller-logout.svg" alt="" />
-                  <span class="lan-title">{{'Header_DropDowns.Log_Out'|translate}}</span>
+                  <span class="lan-title">{{'Header_DropDowns.Log_Out' |translate}}</span>
                 </label>
               </div>
             </div>
@@ -478,7 +478,7 @@
         </ul>
       </div>
     </nav>
-    <div [ngStyle]="{'display' : (screenWidth > 991) ? 'none' : 'block'}" >
+    <div [ngStyle]="{'display' : (screenWidth >= 992) ? 'none' : 'block'}" >
       <!--mobile nav-->
       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light mobile-nav">
         <button *ngIf="loggedInUser && activeRoute[2] != 'welcome'" class="menu-btn mr-auto" (click)="sidenav.open()"><img src="../assets/Filter.svg"
