@@ -143,7 +143,8 @@
             <li class="nav-item">
               <div ngbDropdown class="d-inline-block">
                 <a class="nav-link" id="en-btn" ngbDropdownToggle>
-                  <img src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
+                  <img *ngIf="currentLang==='en'" src="../assets/en-lan.svg" alt="" style="margin-right: 7.5px" />
+                  <img src="../assets/ar-lan.svg" *ngIf="currentLang==='ar'" alt="" style="margin-right: 7.5px" />
                   <img src="../assets/down-carrot.svg" alt="" />
                 </a>
                 <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="en-btn">
