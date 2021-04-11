@@ -278,6 +278,12 @@ export class ProductListPageComponent implements OnInit {
       (value, index, array) =>
         array.findIndex((t) => t.id === value.id) === index
     ); //setting colors
+    this.getProduct.getBrands().subscribe(
+      (success)=>{
+        console.log('brand list',success.data)
+        this.brands=success.data[0]
+      }
+    )
   }
 
   getProdOnFilter(ChildCatId, subCatId, catId, ChildCatName) {
