@@ -197,7 +197,7 @@
         "Download":"Download Sample File",
         "Next":"Next",
         "placeholder_text1":"Drop to attach file or choose from finder",
-        "placeholder_text2":"Must be in {{format}} format.",
+        "placeholder_text2":"Must be in .xls format.",
         "waiting_text1":"Please be patient until the product",
         "waiting_text2":"uploaded successfully.",
         "instruction1":"Please upload a file directory",

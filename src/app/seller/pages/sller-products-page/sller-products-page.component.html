@@ -1,5 +1,5 @@
 <!--side nav bar with toggle for mobile-->
-<section class="clearfix">
+<section class="clearfix prod-div">
 
     <button mat-button class="cat-menu-close-btn" [ngClass]="{ active: catMenuToggle, '': !catMenuToggle }"
         (click)="closeCatMenu()">
@@ -12,7 +12,7 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head" style="font-size: 20px;">
-                                {{cat.name | titlecase}} 
+                                {{cat.name | titlecase}} ({{cat.total_product}})
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -168,6 +168,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="products == undefined || products == null" class="no-show">
+                        <p>{{'Home.No_Item'|translate}}</p>
                     </div>
                     <div class="col-md-12" *ngIf="prodEnd" class="no-show">
                         <p>{{'Home.No_Product'|translate}}</p>
