@@ -1,29 +1,29 @@
 <!--01st april 2021-->
 <section class="payment-history container">
     <div class="page-heading-holder">
-      <h2 class="page-heading">Manage Quotations</h2>
+      <h2 class="page-heading">{{'Seller_Menu.Manage_Quotations'|translate}}</h2>
       <div class="sort-btn d-inline-block big-view">
        
         <span ngbDropdown class="dropping">
-          <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>
-              expand_more</mat-icon></button>
+          <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>{{'Seller_Quotes.Filter_by_Status'|translate}} <mat-icon>
+              </mat-icon></button>
             
         <!--dropdown-->
         <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
           <div ngbDropdownItem (click)="filter_quotations(1)">
-            <span class="lan-title">Initiated</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Initiated'|translate}}</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
           <div ngbDropdownItem (click)="filter_quotations(2)">
-            <span class="lan-title">Sent</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Sent'|translate}}</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
           <div ngbDropdownItem (click)="filter_quotations(3)">
-            <span class="lan-title">Completed</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Completed'|translate}}</span>
           </div>
         <!--   <div style="padding: 0 15px">
             <mat-divider></mat-divider>
@@ -38,24 +38,24 @@
     <div class="mobile-button">
      
       <span ngbDropdown>
-        <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>expand_more
+        <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>{{'Seller_Quotes.Filter_by_Status'|translate}} <mat-icon>expand_more
           </mat-icon></button>
       <!--dropdown-->
       <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
         <div ngbDropdownItem>
-            <span class="lan-title">Initiated</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Initiated'|translate}}</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
           <div ngbDropdownItem>
-            <span class="lan-title">Sent</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Sent'|translate}}</span>
           </div>
           <div style="padding: 0 15px">
             <mat-divider></mat-divider>
           </div>
           <div ngbDropdownItem>
-            <span class="lan-title">Completed</span>
+            <span class="lan-title">{{'Buyer_Quotation_History.Completed'|translate}}</span>
           </div>
           <!-- <div style="padding: 0 15px">
             <mat-divider></mat-divider>
@@ -71,20 +71,20 @@
         <div class="col-md-12 card-header">
           <div class="row">
             <div class="col-md-2 name">
-                Quotation ID
+                {{'Seller_Quotes.Quote_Id'|translate}}
             </div>
             <div class="col-md-2 name">
-                Date
+                {{'Buyer_Quotation_History.Date'|translate}}
             </div>
             <div class="col-md-2 name">
-                RFQ ID
+                {{'Buyer_Quotation_History.RFQ_ID'|translate}}
             </div>
   
             <div class="col-md-2 name">
-                Status
+              {{'Buyer_Quotation_History.Status'|translate}}
             </div>
             <div class="col-md-2 name">
-                Buyer Name
+              {{'Buyer_Quotation_History.Status'|translate}}
             </div>
             <div class="col-md-2 name">
   
@@ -102,26 +102,26 @@
                 <span> #{{item.quotation_code}}</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span><span class="mobile-name">Date:</span> {{item.created_at | date :'mediumDate'}}</span>
+                <span><span class="mobile-name">{{'Buyer_Quotation_History.Date'|translate}}:</span> {{item.created_at | date :'mediumDate'}}</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span><span class="mobile-name">RFQ ID :</span> {{item.rfq[0].id }}</span>
+                <span><span class="mobile-name">{{'Buyer_Quotation_History.RFQ_ID'|translate}} :</span> {{item.rfq[0].id }}</span>
               </div>
               
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span *ngIf="item.status == 1">Initiated</span>
-                <span *ngIf="item.status == 2">Sent</span>
-                <span *ngIf="item.status == 3"> Completed</span>
+                <span *ngIf="item.status == 1">{{'Buyer_Quotation_History.Initiated'|translate}}</span>
+                <span *ngIf="item.status == 2">{{'Buyer_Quotation_History.Sent'|translate}}</span>
+                <span *ngIf="item.status == 3"> {{'Buyer_Quotation_History.Completed'|translate}}</span>
                 <span *ngIf="item.status == null"> - </span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span><span class="mobile-name">Buyer :</span> {{item.buyer.full_name}}</span>
+                <span><span class="mobile-name">{{'Seller_RFQ.Buyer'|translate}} :</span> {{item.buyer.full_name}}</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-12 col-12 value mobile-btn">
                 <span class="big-view"><button class="edit-product-btn" mat-button
-                    (click)="openDialog(item);">View</button></span>
+                    (click)="openDialog(item);">{{'Buttons.View'|translate}}</button></span>
                 <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button
-                    (click)="openDialog(item);">View</button></span>
+                    (click)="openDialog(item);">{{'Buttons.View'|translate}}</button></span>
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@
         <div class="col-md-12" *ngIf="filtered_data">
           <div class="no-data mt-2"
             *ngIf="filtered_data == null || filtered_data == undefined || filtered_data?.length == 0">
-            No data available
+            {{'Buyer_Order_History.No_Data'|translate}}
           </div>
         </div>
 

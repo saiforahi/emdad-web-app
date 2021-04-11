@@ -242,5 +242,11 @@
       "Product_Description": "فرز حسب التاريخ",
       "Time": "فرز حسب التاريخ",
       "Quantity": "فرز حسب التاريخ"
+    },
+    "Seller_Quotes":{
+      "ReSubmit": "إعادة التقديم",
+      "Filter_by_Status": "التصفية حسب الحالة",
+      "Quote_Id": "معرّف عرض الأسعار",
+      "Max_Two_Files": "يمكنك إرفاق ملفين كحد أقصى"
     }
 }
