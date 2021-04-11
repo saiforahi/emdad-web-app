@@ -242,6 +242,12 @@
         "Product_Description":"Product Description",
         "Time":"Time",
         "Quantity":"Quantity"
+    },
+    "Seller_Quotes":{
+        "ReSubmit":"Resubmit",
+        "Filter_by_Status":"Filter by Status",
+        "Quote_Id":"Quotation ID",
+        "Max_Two_Files":"You can attach maximum two files"
     }
 }
 
