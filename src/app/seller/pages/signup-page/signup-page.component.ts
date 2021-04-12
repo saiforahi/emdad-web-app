@@ -30,6 +30,7 @@ export class SignupPageComponent implements OnInit {
   email: AbstractControl;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   password: AbstractControl;
+  passwordPattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
   confPassword: AbstractControl;
   comAddress: AbstractControl;
   comRegistration: AbstractControl;
@@ -78,7 +79,7 @@ export class SignupPageComponent implements OnInit {
       comName: ['', [Validators.required]],
       comPhone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required,Validators.minLength(8),Validators.pattern(this.passwordPattern)]],
       confPassword: ['', [Validators.required]],
       comAddress: ['', [Validators.required]],
       comRegistration: [''],

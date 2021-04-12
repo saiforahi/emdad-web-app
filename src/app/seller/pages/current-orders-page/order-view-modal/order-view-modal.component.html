@@ -7,7 +7,7 @@
 
         <div class="order-data">
 
-            <p class="top-details">Order ID: <span class="prod">#{{data.order.order.order_code}}</span></p>
+            <p class="top-details">{{'Buyer_Order_History.Order_ID'|translate}}: <span class="prod">#{{data.order.order.order_code}}</span></p>
             <p class="top-details">Order Date:<span class="prod"> {{data.order.order.order_datetime | date:'longDate'}}</span>
             </p>
             <p class="top-details">Total Price: <span class="prod">SAR {{data.order.order.total_amount}}</span></p>

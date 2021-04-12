@@ -19,6 +19,8 @@ import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 import { config } from '../../../config';
 import { SubscriptionService } from './subscription.service';
+import { Cart } from '../models/Cart.model';
+import { NotificationService } from './notification.service';
 
 interface JWTPayload {
   user_id: number;
@@ -44,7 +46,7 @@ export class UserAuthService {
     null
   );
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,private notificationService:NotificationService) {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
     this.uImg.next(localStorage.getItem('uimg'));
@@ -75,6 +77,7 @@ export class UserAuthService {
         this.uName.next(localStorage.getItem('username'));
         this.uImg.next(localStorage.getItem('uimg'));
         this.uId.next(localStorage.getItem('uid'));
+        // this.notificationService.getAllNotificationsForBuyer()
         // this.uGroup.next(localStorage.getItem('group'));
       }
       if (authResult.group == 'seller') {
@@ -97,6 +100,7 @@ export class UserAuthService {
         this.s_uName.next(localStorage.getItem('s_username'));
         this.s_uId.next(localStorage.getItem('s_uid'));
         this.s_uImg.next(localStorage.getItem('s_uimg'));
+        // this.notificationService.getAllNotificationsForSeller()
         // this.uGroup.next(localStorage.getItem('group'));
       }
     }
@@ -111,7 +115,7 @@ export class UserAuthService {
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
         console.log(response);
-        localStorage.clear()
+        this.clear_seller_data()
         this.setSession(response);
       }),
       shareReplay()
@@ -195,8 +199,8 @@ export class UserAuthService {
     }
     this.router.navigate(['/home']);
   }
-
-  sellerLogout() {
+  
+  clear_seller_data(){
     localStorage.removeItem('s_token');
     localStorage.removeItem('s_username');
     localStorage.removeItem('s_uid');
@@ -204,6 +208,9 @@ export class UserAuthService {
     localStorage.removeItem('s_expires_at');
     this.s_uName.next(null);
     this.s_uId.next(null);
+  }
+  sellerLogout() {
+    this.clear_seller_data()
     // this.uGroup.next(null);
     localStorage.clear();
     this.router.navigate(['/dashboard/login']);
@@ -383,7 +390,8 @@ export class UserAuthService {
     return this.http.post(updateURL, store_pic, httpOptions);
   }
 
-  sellerIsApproved(userId){
+  sellerIsApproved(userId:any){
+    console.log('user id from param',userId)
     const updateURL =
       config.base_url + 'api/user/approve/check/' + userId + '/';
     return this.http.get(updateURL);

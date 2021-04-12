@@ -12,13 +12,15 @@ import { SpinnerService } from '../shared/services/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SubscriptionService } from '../shared/services/subscription.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { WebSocketBridge } from 'django-channels'
+import { NotificationService } from '../shared/services/notification.service';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
   styleUrls: ['./seller.component.css'],
 })
 export class SellerComponent implements OnInit, AfterViewInit {
+  webSocketBridge = new WebSocketBridge()
   sideMenuCollapsed = false;
   loggedInUser;
   userName: string;
@@ -31,6 +33,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   loggedInUserFullName: string ='';
   userInfo:any;
   currentLang:string
+  notifications:Array<any>=[]
+  unread_notification_length:number
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -38,8 +42,15 @@ export class SellerComponent implements OnInit, AfterViewInit {
     private subscription: SubscriptionService,
     private spinner: SpinnerService,
     private ngxSpinner: NgxSpinnerService,
-    private translate: TranslateService
+    private translate:TranslateService,
+    private notificationService:NotificationService
   ) {
+    this.webSocketBridge.connect('ws://103.123.8.52:8002/ws/notifications');
+    this.webSocketBridge.addEventListener("message", function(event) {
+      // console.log('notification',event.data);
+      // alert(event.data.message)
+      notificationService.refresh_notification_details()
+    });
     if (localStorage.getItem('locale')) {
       const browserLang = localStorage.getItem('locale');
       translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
@@ -78,7 +89,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
       }
     });
     router.events.subscribe((val: any) => {
-      if (val.url) {
+      if (val.url && val instanceof NavigationEnd) {
         this.activeRoute = val.url.split('/');
       }
     });
@@ -92,6 +103,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.currentLang=localStorage.getItem('locale')
     this.activeRoute = this.router.url.split('/');
+    this.initialize_notification()
     this.authService.s_uName.subscribe((data) => {
       if (data == null) {
         this.loggedInUser = false;
@@ -151,5 +163,22 @@ export class SellerComponent implements OnInit, AfterViewInit {
     this.translate.use(language);
     this.currentLang=language
     console.log(this.translate.currentLang)
+  }
+
+  //initialize notifications
+  initialize_notification(){
+    this.notificationService.getAllNotificationsForSeller()
+    this.notificationService.s_unread.subscribe((data)=>{
+      if(data!=null){
+        this.unread_notification_length=data
+      }
+    })
+    this.notificationService.s_messages.subscribe((messages)=>{
+      this.notifications=messages
+    })
+  }
+
+  markAllNotificationAsRead(){
+    this.notificationService.markAllNotificationSeller()
   }
 }

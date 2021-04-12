@@ -23,11 +23,13 @@
                                 <p class="name">{{detail.product.name}}</p>
                                 <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span>({{detail.product.ddp_lead_time}}) days</p>
                                 <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span>({{detail.product.ex_works_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP Address</span></p>
+                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>Ex Address</span></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-12 col-12 order-data proof">
-                        <a href="">proof.pdf</a>
+                        <a href="javascript:void(0);" (click)="download(i)">{{detail.order.tracking_order[i].delivery_challan?'proof':''}}</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12 order-data quantity desktop">
                         Quantity: {{detail.quantity}}
