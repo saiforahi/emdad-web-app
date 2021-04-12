@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../shared/services/user-auth.service';
 import { BuyerComponent } from './buyer.component';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './buyer.module';
 import { HttpClient } from '@angular/common/http';
 const routes: Routes = [
@@ -206,11 +206,11 @@ const routes: Routes = [
           ),
       },
       {
-       path: 'our-partners',
-      loadChildren: () =>
-       import('./pages/our-partners/our-partners.module').then(
-           (m) => m.OurPartnersModule
-         ),
+        path: 'our-partners',
+        loadChildren: () =>
+          import('./pages/our-partners/our-partners.module').then(
+            (m) => m.OurPartnersModule
+          ),
       },
       {
         path: 'registration/profile/verify/:token',
@@ -219,12 +219,26 @@ const routes: Routes = [
             (m) => m.VerifyProfilePageModule
           ),
       },
+      {
+        path: 'privacy-policy',
+        loadChildren: () =>
+          import('./pages/privacy-policy-page/privacy-policy-page.module').then(
+            (m) => m.PrivacyPolicyPageModule
+          ),
+      },
+      {
+        path: 'terms-conditions',
+        loadChildren: () =>
+          import(
+            './pages/terms-condition-page/terms-condition-page.module'
+          ).then((m) => m.TermsConditionPageModule),
+      },
     ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),TranslateModule],
-  exports: [RouterModule,TranslateModule],
+  imports: [RouterModule.forChild(routes), TranslateModule],
+  exports: [RouterModule, TranslateModule],
 })
 export class BuyerRoutingModule {}
