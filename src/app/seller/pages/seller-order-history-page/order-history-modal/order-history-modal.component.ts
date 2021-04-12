@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileService } from 'src/app/shared/services/file.service';
 import { config } from 'src/config';
 import {OrderService} from '../../../../shared/services/order.service'
-
+import * as fileSaver from 'file-saver';
 @Component({
   selector: 'app-order-history-modal',
   templateUrl: './order-history-modal.component.html',
@@ -11,7 +12,7 @@ import {OrderService} from '../../../../shared/services/order.service'
 export class OrderHistoryModalComponent implements OnInit {
   details:any
   img_base_url:string=config.img_base_url
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private orderService:OrderService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private orderService:OrderService,private fileService:FileService) { }
 
   ngOnInit(): void {
     console.log(this.data.order)
@@ -30,4 +31,22 @@ export class OrderHistoryModalComponent implements OnInit {
     }
     return '-'
   }
+
+  download(index: string) {
+    if(this.details[0].order.tracking_order[index].delivery_challan!=undefined){
+      this.fileService.downloadFile(this.details[0].order.tracking_order[index].delivery_challan).subscribe((response) => {
+        // console.log(response);
+        let blob: any = new Blob([response], {
+          type: 'text/plain;charset=utf-8',
+        });
+        const url = window.URL.createObjectURL(blob);
+        //window.open(url);
+        //window.location.href = response.url;
+        fileSaver.saveAs(blob, 'proof.jpg');
+      }),
+        (error) => console.log('Error downloading the file'),
+        () => console.info('File downloaded successfully');
+      }
+    }
+    
 }

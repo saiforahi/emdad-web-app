@@ -77,12 +77,12 @@
             <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
-            <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt="">
+            <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt=""><small *ngIf="unread_notification_length>0" style="color: red;">{{unread_notification_length}}</small>
                 <span>{{'Nav.Notifications' | translate}} </span></a></li>
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
-                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out | translate'}} </span></a></li>
+                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out' | translate}} </span></a></li>
             </div>
           </ul>
         </div>
@@ -185,37 +185,17 @@
               <div ngbDropdown class="d-inline-block">
                 <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                   <img src="../assets/notification.svg" alt="" />
+                  <span *ngIf="unread_notification_length>0" class="cart-length">{{unread_notification_length}}</span>
+                  
                 </a>
-                <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
+                <div *ngFor="let notification of notification_messages;let i=index" id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                   <button ngbDropdownItem>
-                    Your order #3342 has been confirmed!
+                    {{notification}}
                   </button>
-                  <div style="padding: 0 30px">
+                  <div *ngIf="i!=notification_messages?.length-1" style="padding: 0 30px">
                     <mat-divider></mat-divider>
                   </div>
-                  <button ngbDropdownItem>Your order #3342 is on the way!</button>
-                  <div style="padding: 0 30px">
-                    <mat-divider></mat-divider>
-                  </div>
-                  <button ngbDropdownItem>
-                    #5463 order has been placed successfully.
-                  </button>
-                  <div style="padding: 0 30px">
-                    <mat-divider></mat-divider>
-                  </div>
-                  <button ngbDropdownItem>Your order #3342 is on the way!</button>
-                  <div style="padding: 0 30px">
-                    <mat-divider></mat-divider>
-                  </div>
-                  <button ngbDropdownItem>
-                    #5463 order has been placed successfully.
-                  </button>
-                  <div style="padding: 0 30px">
-                    <mat-divider></mat-divider>
-                  </div>
-                  <button ngbDropdownItem>
-                    #5463 order has been placed successfully.
-                  </button>
+                  
                 </div>
               </div>
             </li>

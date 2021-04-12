@@ -33,7 +33,7 @@ status = ['Initiative', 'Undergoing', 'Resolved'];
       const url = window.URL.createObjectURL(blob);
       //window.open(url);
       //window.location.href = response.url;
-      fileSaver.saveAs(blob, 'employees.jpg');
+      fileSaver.saveAs(blob, 'ticket.jpg');
     }),
       (error) => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');

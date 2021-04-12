@@ -248,5 +248,8 @@
       "Filter_by_Status": "التصفية حسب الحالة",
       "Quote_Id": "معرّف عرض الأسعار",
       "Max_Two_Files": "يمكنك إرفاق ملفين كحد أقصى"
+    },
+    "Seller_Support":{
+      "New_Ticket": "تذكرة جديدة"
     }
 }

@@ -2,9 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {OrderService} from '../../../../shared/services/order.service'
 import {config} from '../../../../../config';
-import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import * as fileSaver from 'file-saver';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import swal from 'sweetalert';
+import { FileService } from 'src/app/shared/services/file.service';
 @Component({
   selector: 'app-order-view-modal',
   templateUrl: './order-view-modal.component.html',
@@ -19,7 +21,7 @@ export class OrderViewModalComponent implements OnInit {
   challan: FormData;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, 
-    private orderService:OrderService, private spinner:NgxSpinnerService,
+    private orderService:OrderService, private spinner:NgxSpinnerService, private fileService:FileService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -68,23 +70,34 @@ export class OrderViewModalComponent implements OnInit {
   upload_challan(prod_id,index:number){ //challan uploading and updating status
     if(this.proofDoc!==null && this.proofDoc!==undefined){
       this.spinner.show()
-      this.challan.append('Delivery_challan', this.proofDoc);
+      this.challan.append('delivery_challan', this.proofDoc);
       this.challan.append('status','4')
+      console.log(this.challan.get('Delivery_challan'))
       this.orderService.upload_delivery_challan(this.details[0].order.tracking_order[index].id,this.challan).subscribe( //uploading challan
-        (success) => {                                                    //if success then call update track status API
-          this.orderService.update_tracking_status({                      //passing data with http call
-            "order": this.details[0].order.id,
-            "product":prod_id,
-            "order_confirmed_by":Number(localStorage.getItem('s_uid')),
-            "order_confirmed_date":new Date().toISOString().slice(0, 10),
-            "delivery_by_courier_name":"hasan",
-            "delivery_date": new Date(),
-            "status":"4"
-          }).subscribe(
-            (success)=>{
-              console.log(success.data);this.spinner.hide();swal('Uploaded','Note Uploaded!','success');this.initialize(); 
-            }
-          )
+        (success1) => {       
+          console.log('challan upload status',success1.data)                                             //if success then call update track status API
+          if(success1.data.success==='True'){
+            this.orderService.update_tracking_status({                      //passing data with http call
+              "order": this.details[0].order.id,
+              "product":prod_id,
+              "order_confirmed_by":Number(localStorage.getItem('s_uid')),
+              "order_confirmed_date":new Date().toISOString().slice(0, 10),
+              "delivery_by_courier_name":"hasan",
+              "delivery_date": new Date(),
+              "status":"4"
+            }).subscribe(
+              (success)=>{
+                this.spinner.hide();swal('Uploaded','Note Uploaded!','success');this.initialize(); 
+              },
+              (error)=>{
+                this.spinner.hide()
+              }
+            )
+          }
+          else{
+            this.spinner.hide()
+            swal('Failed','Failed to upload delivery note','error')
+          }
         }
       )
     }
@@ -149,4 +162,6 @@ export class OrderViewModalComponent implements OnInit {
   get_price(unit_price:string,quantity:string,commission:string,vat_amount:string){
     return (parseFloat(unit_price)*parseFloat(quantity)).toFixed(2)
   }
+
+  
 }

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CartServiceService } from 'src/app/shared/services/cart-service.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -30,6 +31,8 @@ export class HeaderComponent implements OnInit {
   loggedInUserFullName:string ='';
   userInfo: any;
   currentLang:string
+  notification_messages:Array<any>=[]
+  unread_notification_length:number
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
@@ -37,7 +40,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private cart: CartServiceService,
     private myElement: ElementRef,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public notificationService:NotificationService
   ) {
     //translate.addLangs(['en', 'ar']);
     if (localStorage.getItem('locale')) {
@@ -64,6 +68,13 @@ export class HeaderComponent implements OnInit {
     console.log(this.translate.currentLang)
     this.currentLang=localStorage.getItem('locale')
     this.activeRoute = this.router.url.split('/');
+    this.notificationService.getAllNotificationsForBuyer()
+    this.notificationService.messages.subscribe((data:any)=>{
+      this.notification_messages=data
+    })
+    this.notificationService.unread.subscribe((data:any)=>{
+      this.unread_notification_length=data
+    })
     if(this.activeRoute[1] == 'home'){
       this.showOnScroll = false;
     }else {

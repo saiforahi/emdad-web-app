@@ -343,6 +343,12 @@
                     <div *ngIf="password.errors?.required">
                       <app-form-input-alert [alertMsg]="'Password is required.'"></app-form-input-alert>
                     </div>
+                    <div *ngIf="password.errors?.minLength">
+                      <app-form-input-alert [alertMsg]="'Must be 8 characters at least'"></app-form-input-alert>
+                    </div>
+                    <div *ngIf="password.errors?.pattern">
+                      <app-form-input-alert [alertMsg]="'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'"></app-form-input-alert>
+                    </div>
                     <!-- <div *ngIf="password.errors?.minLength">
                       <app-form-input-alert [alertMsg]="'password length is minimum 8 characters.'">
                       </app-form-input-alert>

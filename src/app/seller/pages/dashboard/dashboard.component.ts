@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { element } from 'protractor';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { QuotationService } from 'src/app/shared/services/quotation.service';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     private order: OrderService,
     private router: Router,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,private notificationService:NotificationService
   ) {
     
     this.authService.s_uId.subscribe((s_uid) => {
@@ -59,6 +60,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.notificationService.getAllNotificationsForBuyer()
     // RFQ table data
     this.rfq.get_seller_quotation_list().subscribe((item) => {
       // console.log(item);
