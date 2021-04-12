@@ -74,11 +74,11 @@
             </div>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>{{'Nav.Change_Language' | translate}} </span></a></li>
-            <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']" 
+            <li  [ngClass]="activeRoute[1] == 'cart' ? 'active' : ''"><a [routerLink]="['cart']" 
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><span *ngIf="cartLength != null" style="color: red;">({{cartLength}})</span></a></li>
-            <li><a [routerLink]="['/']" (click)="closeMenu();" ><img src="../../../../assets/notification.svg" alt=""><span *ngIf="unread_notification_length>0" style="color: red;">{{unread_notification_length}}</span>
-                <span>{{'Nav.Notifications' | translate}} </span></a></li>
+            <li ><a [routerLink]="['/']" (click)="closeMenu();" ><img src="../../../../assets/notification.svg" alt="">
+                <span>{{'Nav.Notifications' | translate}} </span><span *ngIf="unread_notification_length>0" style="color: red;">({{unread_notification_length}})</span></a></li>
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">

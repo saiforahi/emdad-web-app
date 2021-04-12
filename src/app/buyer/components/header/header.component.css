@@ -413,6 +413,22 @@ button:focus {
   font-family: Jost;
   box-shadow: 0 0 5px rgb(0 0 0 / 50%);
 }
+.cart-length-mobile{
+  position: absolute;
+  background: red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  top: 3px;
+  right: -110px;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.8;
+  font-weight: normal !important;
+  font-family: Jost;
+  box-shadow: 0 0 5px rgb(0 0 0 / 50%);
+}
 
 @media only screen and (min-width: 1200px) {
   .container {
