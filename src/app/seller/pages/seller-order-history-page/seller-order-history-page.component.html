@@ -85,8 +85,8 @@
               </div>
               
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
-                <span *ngIf="item.order.payment_type == 1">{{'Seller_Order_History.Paid_Status'|translate}}</span>
-                <span *ngIf="item.order.payment_type == 0">{{'Seller_Order_History.Unpaid_Status'|translate}}</span>
+                <span *ngIf="item.order.seller_payment_status == 1">{{'Seller_Order_History.Paid_Status'|translate}}</span>
+                <span *ngIf="item.order.seller_payment_status == 0">{{'Seller_Order_History.Unpaid_Status'|translate}}</span>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6 col-12 value">
                 <span><span class="mobile-name"> {{'Seller_Dashboard.Amount'|translate}} :</span>SAR {{item.order.total_amount}}</span>
