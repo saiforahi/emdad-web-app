@@ -70,6 +70,7 @@ export class CartPageComponent implements OnInit {
   couponId: any = '';
   commissionAmount: number;
   totalItems = 0;
+  trans_totalItems={totalItems:this.totalItems}
   img_base_url = config.img_base_url;
   emptyCart: boolean = true;
   couponButtonClicked: boolean = false;

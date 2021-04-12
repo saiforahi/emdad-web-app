@@ -1,40 +1,40 @@
 <div class="container">
   <div class="row justify-content-between">
-    <h3 class="col header-text">Order Details</h3>
+    <h3 class="col header-text">{{'Buyer_Order_Details.Title'|translate}}</h3>
     <button
       *ngIf="order_status === 'placed'"
       type="button"
       class="btn status-btn placed"
     >
-      Order placed
+      {{'Buyer_Order_Details.Order_placed'|translate}}
     </button>
     <button
       *ngIf="order_status === 'confirmed'"
       type="button"
       class="btn status-btn confirmed"
     >
-      Order Confirmed
+      {{'Buyer_Order_Details.Order_Confirmed'|translate}}
     </button>
     <button
       *ngIf="order_status === 'processing'"
       type="button"
       class="btn status-btn processing"
     >
-      Order Processing
+      {{'Buyer_Order_Details.Order_Processing'|translate}}
     </button>
     <button
       *ngIf="order_status === 'completed'"
       type="button"
       class="btn status-btn completed"
     >
-      Order Completed
+      {{'Buyer_Order_Details.Order_Completed'|translate}}
     </button>
   </div>
   <div class="row mt-30" *ngIf="orders?.length>0">
     <div class="col">
       <div class="order-num-div">
         <p class="order-num mb-0">
-          <span>Order ID:</span> #{{ orders[0].order.order_code }}
+          <span>{{'Buyer_Order_History.Order_ID'}}:</span> #{{ orders[0].order.order_code }}
         </p>
       </div>
     </div>
@@ -58,13 +58,13 @@
                   class="sub-text1"
                   *ngIf="product.product.delivery_method === 1"
                 >
-                  (DDP)
+                  ({{'Seller_Product_Categories.DDP'|translate}})
                 </p>
                 <p
                   class="sub-text1"
                   *ngIf="product.product.delivery_method === 2"
                 >
-                  (Ex-works)
+                  ({{'Seller_Product_Categories.ExWorks'|translate}})
                 </p>
                 <p class="status-txt">
                   {{ get_product_status(product.product.id) }}
@@ -87,26 +87,26 @@
       <div class="card-body cart-summery">
         <div class="d-flex justify-content-between">
           <div>
-            <p>Sub Total ({{ orders.length }} items)</p>
+            <p>{{'Buyer_Cart.Sub_Total'|translate:trans_totalItems}}</p>
           </div>
           <p>${{ calcTotalPrice() | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
-            <p>Discount</p>
+            <p>{{'Buyer_Cart.Discount'|translate}}</p>
           </div>
           <p>- ${{ discount | number: "1.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
-            <p>Vat</p>
+            <p>{{'Buyer_Cart.VAT'|translate}}</p>
           </div>
           <p>+ {{ vat | number: "2.2-2" }}</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
           <div>
-            <p class="mb-0"><span>Total</span></p>
+            <p class="mb-0"><span>{{'Seller_Order_History.Total'|translate}}</span></p>
           </div>
           <p class="mb-0">
             <span>${{ orders[0]?.order.total_amount }}</span>
@@ -123,19 +123,16 @@
       class="col-12 col-sm-12 col-md-12 col-lg-8"
     >
       <div class="card-body payment-summery">
-        <h4>Payment Details</h4>
+        <h4>{{'Buyer_Order_Details.Payment_Details'|translate}}</h4>
         <p>
-          <span class="name">Payment Method:</span
-          ><span class="deets"> Wire-Transfer</span>
+          <span class="name">{{'Buyer_Order_Details.Payment Method'|translate}}:</span
+          ><span class="deets"> {{'Buyer_Order_Details.Wire_Transfer'|translate}}</span>
         </p>
         <p class="deets">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at
-          assumenda eaque laborum beatae ipsum earum similique hic eveniet,
-          reiciendis omnis nemo consectetur veritatis fuga quae maiores
-          cupiditate ea iste.
+          {{'Buyer_Order_Details.Wire_text'|translate}}
         </p>
         <p>
-          <span class="name">Account Number : </span
+          <span class="name">{{'Buyer_Order_Details.Account_Number'|translate}} : </span
           ><span class="deets">702 555-0122</span>
         </p>
         <!--upload button-->
@@ -151,7 +148,7 @@
         <!--proceed button-->
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12 col-12 mobile-center">
-            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">Upload Invoice</button>
+            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">{{'Buyer_Order_Details.Upload_Invoice'|translate}}</button>
           </div>
         </div>
       </div>
@@ -162,16 +159,16 @@
       class="col-12 col-sm-12 col-md-12 col-lg-8"
     >
       <div class="card-body payment-summery">
-        <h4>Payment Details</h4>
+        <h4>{{'Buyer_Order_Details.Payment_Details'|translate}}</h4>
         <p>
-          <span class="name">Payment Method:</span
+          <span class="name">{{'Buyer_Order_Details.Payment Method'|translate}}:</span
           ><span class="deets"> Card </span>
         </p>
         <br />
         <!--field for card number as ui,comment out if not needed-->
         <p class="name">**** **** **** 1234</p>
         <p>
-          <span class="name">Payment Date: </span
+          <span class="name">{{'Buyer_Order_History.Payment_Date'|translate}}: </span
           ><span class="deets">{{
             formatDate(orders[0].order.order_datetime)
           }}</span>
@@ -185,7 +182,7 @@
               *ngIf="dataLoaded"
               (click)="createPdf()"
             >
-              Download Invoice
+              {{'Buyer_Order_Details.Download_Invoice'|translate}}
             </button>
           </div>
         </div>

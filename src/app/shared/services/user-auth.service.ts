@@ -171,6 +171,9 @@ export class UserAuthService {
   }
 
   logout() {
+    this.notificationService.notifications.next([])
+    this.notificationService.messages.next([])
+    this.notificationService.unread.next(0)
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
@@ -201,6 +204,9 @@ export class UserAuthService {
   }
   
   clear_seller_data(){
+    this.notificationService.s_notifications.next([])
+    this.notificationService.s_messages.next([])
+    this.notificationService.s_unread.next(0)
     localStorage.removeItem('s_token');
     localStorage.removeItem('s_username');
     localStorage.removeItem('s_uid');

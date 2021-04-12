@@ -84,22 +84,25 @@ export class BuyerSigninFormComponent implements OnInit {
       this.authService.login(email.value, password.value, this.group).subscribe(
         (success) => {
           document.getElementById('buyerLogin').style.display = 'none';
-          // console.log(success);
-          swal('Succeed', 'You have logged in successfully', 'success');
-
-          if (this.rememberMe) {
-            localStorage.setItem('email', email.value);
-            localStorage.setItem('password', password.value);
-          } else {
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.signInForm.reset();
-          }
-          this.spinner.hide();
-
-          this.submitted = false;
-          this.notificationService.getAllNotificationsForBuyer()
-          this.router.navigate(['/home']);
+           console.log(success);
+           if(success.success==='False'){
+            this.spinner.hide();
+            swal('Wrong', success.message, 'error');
+           }
+           else{
+            if (this.rememberMe) {
+              localStorage.setItem('email', email.value);
+              localStorage.setItem('password', password.value);
+            } else {
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+              this.signInForm.reset();
+            }
+            this.submitted = false;
+            this.notificationService.getAllNotificationsForBuyer()
+            this.spinner.hide();
+            this.router.navigate(['/home']);
+           }
         },
         (error) => {
           this.submitted = false;
