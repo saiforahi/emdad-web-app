@@ -114,7 +114,12 @@ nav .all-products-list .dropdown-item:focus,
   vertical-align: middle;
   background: #ddd;
 }
-
+.user-name span{
+  display: inline;
+  -webkit-display:inline ;
+  -o-display:inline;
+  -moz-display:inline;
+}
 .user-img-holder img {
   position: absolute;
   width: inherit;
@@ -356,7 +361,7 @@ button:focus {
   display: none;
 }
 
-.cart-length {
+/* .cart-length {
   position: inherit;
   background: red;
   width: 20px;
@@ -370,6 +375,43 @@ button:focus {
   line-height: 1.8;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+} */
+.cart-length {
+  position: absolute;
+  background: red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  top: 13px;
+  right: -3px;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.8;
+  font-weight: normal !important;
+  font-family: Jost;
+  padding: 2.5px 4px;
+  box-shadow: 0 0 5px rgb(0 0 0 / 50%);
+}
+.notification {
+  position: relative;
+ 
+}
+ .badge {
+  position: absolute;
+  background: red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  top: 3px;
+  right: -5px;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.8;
+  font-weight: normal !important;
+  font-family: Jost;
+  box-shadow: 0 0 5px rgb(0 0 0 / 50%);
 }
 
 @media only screen and (min-width: 1200px) {
@@ -514,6 +556,9 @@ button:focus {
   }
   .user-name span {
     display: none;
+    -webkit-display:none;
+    -o-display:none;
+    -moz-display:none;
   }
   .all-products-list .row .col-lg-3:nth-child(4n) {
     border-right: none;
@@ -554,7 +599,10 @@ button:focus {
     display: none;
   }
   .user-name span {
-    display: none;
+    display: none !important;
+      -webkit-display:none;
+    -o-display:none;
+    -moz-display:none;
   }
   .all-products-list .row .col-xl-2:nth-child(6n) {
     border-right: none;

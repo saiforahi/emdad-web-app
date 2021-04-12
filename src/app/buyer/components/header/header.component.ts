@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild,Input } from '@angular/core';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  
+  @Input() fullName;
   loggedInUser = false;
   userName;
   uId;
@@ -103,14 +103,14 @@ export class HeaderComponent implements OnInit {
         this.uId = data;
       }
     });
-    if(this.uId == localStorage.getItem('uid')){
+   /*  if(this.uId == localStorage.getItem('uid')){
       this.UserAuthService.getUser(this.uId).subscribe((data) =>{
         this.userInfo = data.data;
         console.log('info',this.userInfo);
         this.loggedInUserFullName = this.userInfo.full_name;
         console.log("loggedInUserFullName",this.loggedInUserFullName);
       });
-    }
+    } */
     // this.UserAuthService.uGroup.subscribe((data) => {
     //   if (data != null) {
     //     this.uGroup = data;

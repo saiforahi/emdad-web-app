@@ -74,10 +74,10 @@
             </div>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>{{'Nav.Change_Language' | translate}} </span></a></li>
-            <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
+            <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']" 
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
-                </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
-            <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/notification.svg" alt=""><small *ngIf="unread_notification_length>0" style="color: red;">{{unread_notification_length}}</small>
+                </span><span *ngIf="cartLength != null" style="color: red;">({{cartLength}})</span></a></li>
+            <li><a [routerLink]="['/']" (click)="closeMenu();" ><img src="../../../../assets/notification.svg" alt=""><span *ngIf="unread_notification_length>0" style="color: red;">{{unread_notification_length}}</span>
                 <span>{{'Nav.Notifications' | translate}} </span></a></li>
             <div *ngIf="loggedInUser">
               <hr>
@@ -134,8 +134,8 @@
                       src="../../../../assets/Profile.svg" alt="" />
                     <img *ngIf="loggedInUserImg != ''" src="{{loggedInUserImg}}" alt="" />
                   </div>
-                  <span *ngIf="loggedInUser && loggedInUserFullName == ''" style="margin-left: 15px;">{{userName}}</span>
-                  <span *ngIf=" loggedInUser && loggedInUserFullName != ''" style="margin-left: 15px;">{{loggedInUserFullName}}</span>
+                  <span *ngIf="loggedInUser && fullName == ''" style="margin-left: 15px;">{{userName}}</span>
+                  <span *ngIf=" loggedInUser && fullName != ''" style="margin-left: 15px;">{{fullName}}</span>
                 </a>
                 
               </div>
@@ -183,9 +183,9 @@
             <li class="nav-item">
               <!-- (click)="handle_notification_drop()" -->
               <div ngbDropdown class="d-inline-block">
-                <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+                <a class="nav-link notification" id="notification-btn" ngbDropdownToggle>
                   <img src="../assets/notification.svg" alt="" />
-                  <span *ngIf="unread_notification_length>0" class="cart-length">{{unread_notification_length}}</span>
+                  <span *ngIf="unread_notification_length > 0" class="badge">{{unread_notification_length}}</span>
                   
                 </a>
                 <div *ngFor="let notification of notification_messages;let i=index" id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
