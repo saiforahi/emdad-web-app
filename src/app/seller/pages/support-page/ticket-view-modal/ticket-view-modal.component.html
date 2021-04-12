@@ -6,17 +6,18 @@
        
         <!-- ORIGINAL ISSUE POST DISPLAY-->
         <div class="order-data" *ngIf="issueData">
-            <p class="short-head"><span class="name">Report ID: </span><span class="name">#{{issueData.issue_code}}</span></p>
-            <p class="short-head"><span class="name">Date:</span><span> {{issueData.issue_date | date}}</span></p>
-            <p class="large-head"><span class="name">Subject: </span><span>{{issueData.title}}</span></p>
-            <p class="large-head"><span class="name">Details: </span><span> {{issueData.description}}</span></p>
-            <p class="short-head"><span class="name">Status:  <span *ngIf="issueData.status == 0">Running</span>
-                <span *ngIf="issueData.status == 2">Solved</span></span></p>
+            <p class="short-head">#<span class="name">{{'Seller_Tickets.Report_ID'|translate}}: </span><span class="name">{{issueData.issue_code}}</span></p>
+            <p class="short-head"><span class="name">{{'Seller_Tickets.Date'|translate}}:</span><span> {{issueData.issue_date | date}}</span></p>
+            <p class="large-head"><span class="name">{{'Seller_Tickets.Subject'|translate}}: </span><span>{{issueData.title}}</span></p>
+            <p class="large-head"><span class="name">{{'Seller_Tickets.Details'|translate}}: </span><span> {{issueData.description}}</span></p>
+            <p class="short-head"><span class="name">{{'Seller_Dashboard.status'|translate}}:  
+                <span *ngIf="issueData.status == 0">{{'Seller_Tickets.Running'|translate}}</span>
+                <span *ngIf="issueData.status == 2">{{'Seller_Tickets.Solved'|translate}}</span></span></p>
         </div>
         <!-- FOLLOW UP RESPONSES BY ADMIN DISPLAY-->
-       <div *ngIf="adminResponse != 0 || adminResponse != undefined">
+       <div *ngIf="adminResponse != null || adminResponse != undefined">
         <div class="admin-response" *ngFor="let response of adminResponse;">
-            <p><span class="admin-header">Admin Response</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
+            <p><span class="admin-header">{{'Seller_Tickets.Admin_Response'|translate}}</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
             <p class="message">{{response.message}}</p>
         </div>
     </div>

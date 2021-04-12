@@ -72,6 +72,7 @@
         "Amount":"Amount",
         "View":"View",
         "No_Data":"No data available"
+       
     },
     "Buyer_Quotation_History":{
         "Quotation_ID":"Quotation ID",
@@ -158,6 +159,7 @@
         "Amount":"Amount",
         "Recieved":"Recieved",
         "Delivered":"Delivered"
+        
     },
     "Seller_Bank_Info":{
         "title":"Bank Account Information",
@@ -248,7 +250,37 @@
         "Filter_by_Status":"Filter by Status",
         "Quote_Id":"Quotation ID",
         "Max_Two_Files":"You can attach maximum two files"
-    }
+    },
+    "Seller_Order_History":{
+        "Paid_Status":"Paid",
+        "Unpaid_Status":"Unpaid",
+        "Total":"Total",
+        "Order_Date":"Order Date",
+        "Payment_Status":"Payment Status",
+        "Total_Price":"Total Price",
+        "Quantity":"Quantity",
+        "Proof_PDF":"Proof"
+    },
+    "Seller_Invoice":{
+        "Invoice_ID":"Invoice ID",
+        "Pending":"Pending"
+    },
+    "Seller_Tickets":{
+        "New_Ticket":"New Ticket",
+        "Ticket_List":"Ticket List",
+        "Report_ID":"Report ID",
+        "Subject":"Subject",
+        "Running":"Running",
+        "Solved":"Solved",
+        "Date":"Date",
+        "Details":"Details",
+        "Admin_Response":"Admin Response",
+        "Create_Ticket":"Create New Ticket",
+        "Submit":"Submit",
+        "Upload_image":"Upload Image",
+        "Issue_Title_Error":"Write your subject here",
+        "Issue_Description_Error":"Write down the issue in details..."
+      }
 }
 
 

@@ -1,26 +1,26 @@
 <!--05th April @ 2021-->
 <section class="payment-history container">
     <div class="page-heading-holder">
-    <h2 class="page-heading">Invoices</h2>
+    <h2 class="page-heading">{{'Seller_Menu.Invoices'|translate}}</h2>
     <div class="sort-btn d-inline-block big-view">
-      <button mat-stroked-button class="sort-btn" (click)="sortTable();">Sort by Date </button>
+      <button mat-stroked-button class="sort-btn" (click)="sortTable();">{{'Seller_RFQ.Sort'|translate}}</button>
     </div>
   </div>
   <div class="mobile-name">
-    <button mat-stroked-button (click)="sortTable();">Sort by Date </button>
+    <button mat-stroked-button (click)="sortTable();">{{'Seller_RFQ.Sort'|translate}}</button>
   </div>
     <div class="card">
       <div class="row">
         <div class="col-md-12 card-header">
           <div class="row">
             <div class="col-md-3 name">
-                Invoice ID
+                {{'Seller_Invoice.Invoice_ID'|translate}}
             </div>
             <div class="col-md-3 name">
-                Payment Date
+               {{'Seller_Dashboard.Payment_Date'|translate}}
             </div>
             <div class="col-md-3 name">
-                Amount
+                {{'Seller_Dashboard.Amount'|translate}}
             </div>
            
             <div class="col-md-3 name">
@@ -39,15 +39,15 @@
                <span> #{{item.invoice_code}}</span>
               </div>
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
-                <span><span class="mobile-name">Payment Date:</span> {{ item.payment_date==='Pending'?'Pending':formatDate(item.payment_date) }}</span>
+                <span><span class="mobile-name">{{'Seller_Dashboard.Payment_Date'|translate}}:</span> {{ item.payment_date==='Pending'?'Pending':formatDate(item.payment_date) }}</span>
               </div>
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 value">
-                <span><span class="mobile-name">Amount:</span>SAR {{ item.total_amount }}</span>
+                <span><span class="mobile-name"> {{'Seller_Dashboard.Amount'|translate}}:</span>SAR {{ item.total_amount }}</span>
               </div>
              
               <div class="col-lg-3 col-md-12 col-sm-12 col-12 value mobile-btn">
-                <span class="big-view"><button class="edit-product-btn" mat-button (click)="openDialog(item);">View</button></span>
-                <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button (click)="openDialog(item);">View</button></span>
+                <span class="big-view"><button class="edit-product-btn" mat-button (click)="openDialog(item);">{{'Buyer_Order_History.View'|translate}}</button></span>
+                <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button (click)="openDialog(item);">{{'Buyer_Order_History.View'|translate}}</button></span>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
             <!--cards if no data-->
             <div class="col-md-12" *ngIf="invoices == null || invoices == undefined || invoices?.length == 0">
               <div class="no-data mt-2">
-                No data available
+               {{'Buyer_Order_History.No_Data'|translate}}
               </div>
             </div>
         <!--pagination-->

@@ -763,7 +763,7 @@ width: 50px;
     position: absolute !important;
     left: 230px;
     top: 160px;
-    background: #f49814;
+    background: #f49814 !important;
     border-radius: 25px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;

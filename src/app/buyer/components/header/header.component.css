@@ -477,13 +477,24 @@ button:focus {
   .my-profile-menu ::ng-deep .mat-expansion-panel-header {
     padding: 0 5px 0 0;
     height: 24px;
+    font-family: Jost !important;
+    font-size: 16px;
+    color: #2b2b2b;
+   
   }
   .my-profile-menu ::ng-deep .mat-expansion-panel {
     -webkit-box-shadow: none;
             box-shadow: none;
+            font-family: Jost !important;  
+            font-size: 16px;
+           
   }
   .my-profile-menu ::ng-deep .mat-expansion-panel-body {
     padding: 15px 24px 0px;
+    font-family: Jost !important;
+    font-size: 16px;
+    color: #2b2b2b;
+    
   }
 }
 
