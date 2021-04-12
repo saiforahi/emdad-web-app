@@ -21,6 +21,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [],
   imports: [
@@ -46,7 +47,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatStepperModule,
     MatIconModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatBadgeModule
   ],
   exports: [
     MatMenuModule,
@@ -69,7 +71,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatChipsModule,
     MatStepperModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule {}
