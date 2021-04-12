@@ -281,7 +281,7 @@
   },
   "Buyer_Cart":{
     "My_Cart": "سلة التسوق",
-    "Sub_Total": "المجموع الفرعي ({{totalItems}} من العناصر)",
+    "Sub_Total": "المجموع الفرعي",
     "Discount": "الخصم",
     "VAT": "ضريبة القيمة المضافة",
     "Proceed": "المتابعة"
@@ -308,5 +308,11 @@
     "Wire_Text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at الافتراضات الحالية من العمل Beatae ipsum earum similique hic eveniet، reiciendis omnis nemo consectetur veritatis fuga quae maiores cupiditate ea iste.",
     "Account_Number": "رقم الحساب",
     "Download_Invoice": "تم تقديم الطلب"
+  },
+  "Buyer_Support_Ticket":{
+    "Title": "رفع تذكرة دعم",
+    "New_Ticket": "فتح تذكرة جديدة",
+    "Ticket_ID": "معرف التذكرة",
+    "Subject": "الموضوع"
   }
 }
