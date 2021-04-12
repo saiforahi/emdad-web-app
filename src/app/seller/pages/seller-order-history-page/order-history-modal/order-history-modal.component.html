@@ -23,6 +23,7 @@
                                 <p class="name">{{detail.product.name}}</p>
                                 <p *ngIf="detail.product.delivery_method===1" class="method"><span>{{'Seller_Product_Categories.DDP'|translate}}</span>({{detail.product.ddp_lead_time}}) days</p>
                                 <p *ngIf="detail.product.delivery_method===2" class="method"><span>{{'Seller_Product_Categories.ExWorks'|translate}}</span>({{detail.product.ex_works_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===2"></p>
                             </div>
                         </div>
                     </div>

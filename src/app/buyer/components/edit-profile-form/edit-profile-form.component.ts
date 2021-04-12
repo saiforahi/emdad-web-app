@@ -27,6 +27,7 @@ export class EditProfileFormComponent implements OnInit {
   userMail: string;
   error;
   country;
+  city;
   profile_pic: any = undefined;
   new_profile_pic: any = undefined;
   addressError: any = undefined;
@@ -54,7 +55,9 @@ export class EditProfileFormComponent implements OnInit {
     });
     this.authService.getUser(this.userId).subscribe((data) => {
       this.editUserInfo = data.data;
-
+      console.log('profile details',this.editUserInfo)
+      this.country=this.editUserInfo.country!=null?this.editUserInfo.country.id:'-1'
+      this.city=this.editUserInfo.city!=null?this.editUserInfo.city.id:'-1'
       // if profile_pic is a string(path), then set the value
       if (typeof this.editUserInfo.profile_pic === 'string')
         this.profile_pic =
@@ -79,6 +82,8 @@ export class EditProfileFormComponent implements OnInit {
     this.addressError = false;
     this.countryError = false;
     this.cityError = false;
+    this.editUserInfo.country=this.country
+    this.editUserInfo.city=this.city
 
     if (this.editUserInfo.address.length === 0) {
       this.addressError = true;
@@ -119,8 +124,9 @@ export class EditProfileFormComponent implements OnInit {
   onCountryChange(countryId) {
     // reset city if countryId changed
     // console.log(countryId);
-    if (countryId !== this.editUserInfo.country.id) {
-      this.editUserInfo.city.id = '';
+    if (countryId !== this.country) {
+      this.city='-1'
+      this.editUserInfo.city=null;
     }
     this.countryList.allCities(countryId).subscribe(
       (data) => {

@@ -34,7 +34,7 @@
     <div class="col">
       <div class="order-num-div">
         <p class="order-num mb-0">
-          <span>{{'Buyer_Order_History.Order_ID'}}:</span> #{{ orders[0].order.order_code }}
+          <span>{{'Buyer_Order_History.Order_ID'|translate}}:</span> #{{ orders[0].order.order_code }}
         </p>
       </div>
     </div>
@@ -87,7 +87,7 @@
       <div class="card-body cart-summery">
         <div class="d-flex justify-content-between">
           <div>
-            <p>{{'Buyer_Cart.Sub_Total'|translate:trans_totalItems}}</p>
+            <p>{{'Buyer_Cart.Sub_Total'|translate}} {{'('+orders?.length+' items)'}}</p>
           </div>
           <p>${{ calcTotalPrice() | number: "2.2-2" }}</p>
         </div>
@@ -125,7 +125,7 @@
       <div class="card-body payment-summery">
         <h4>{{'Buyer_Order_Details.Payment_Details'|translate}}</h4>
         <p>
-          <span class="name">{{'Buyer_Order_Details.Payment Method'|translate}}:</span
+          <span class="name">{{'Buyer_Order_Details.Payment_Method'|translate}}:</span
           ><span class="deets"> {{'Buyer_Order_Details.Wire_Transfer'|translate}}</span>
         </p>
         <p class="deets">

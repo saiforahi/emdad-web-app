@@ -91,7 +91,7 @@
           <select *ngIf="editUserInfo"
             class="form-control"
             name="country"
-            [(ngModel)]="editUserInfo.country.id"
+            [(ngModel)]="country"
             (input)="onCountryChange($event.target.value)"
           >
             <option value="-1">{{'Buyer_Profile_Form.Select_one' | translate}}</option>
@@ -110,8 +110,9 @@
           <select *ngIf="editUserInfo"
             class="form-control"
             name="city"
-            [(ngModel)]="editUserInfo.city.id"
+            [(ngModel)]="city"
           >
+          <option value="-1">{{'Buyer_Profile_Form.Select_one' | translate}}</option>
             <option *ngFor="let city of editCities" [value]="city.id">
               {{ city.name }}
             </option>
