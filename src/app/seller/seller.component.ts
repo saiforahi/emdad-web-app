@@ -28,8 +28,9 @@ export class SellerComponent implements OnInit, AfterViewInit {
   activeRoute: string[];
   showSpinner: any;
   isSubscribed: boolean;
-  loggedInUserFullName: string = '';
-
+  loggedInUserFullName: string ='';
+  userInfo:any;
+  currentLang:string
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -89,6 +90,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.currentLang=localStorage.getItem('locale')
     this.activeRoute = this.router.url.split('/');
     this.authService.s_uName.subscribe((data) => {
       if (data == null) {
@@ -147,6 +149,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
   changeLang(language: string) {
     localStorage.setItem('locale', language);
     this.translate.use(language);
-    console.log(this.translate.currentLang);
+    this.currentLang=language
+    console.log(this.translate.currentLang)
   }
 }

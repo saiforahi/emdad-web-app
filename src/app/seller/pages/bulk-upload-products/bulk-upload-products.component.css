@@ -10,7 +10,7 @@
   bottom: 0;
   background: #ffffff;
 
-  margin-left: -12px !important;
+  margin-left: -15px !important;
 }
 .side-nav-bar {
   background: #ddd;
@@ -278,8 +278,8 @@ p.file-warn {
   height: 20px;
   vertical-align: top;
 }
-
-@media all and (min-width: 1200px) {
+/**RESPONSIVE***/
+@media all and (min-width: 1201px) {
   .mobile-view {
     display: none !important;
   }
@@ -289,8 +289,20 @@ p.file-warn {
   .container {
     max-width: 1600px !important;
   }
+  .side-cat-menu {
+    position: relative;
+    width: 25%;
+    float: left;
+    bottom: 0;
+    background: #ffffff;
+  
+    margin-left: -30px !important;
+  }
+  .product-list-content{
+    width: 75% !important;
+  }
 }
-@media all and (min-width: 290px) and (max-width: 992px) {
+@media all and (min-width: 290px) and (max-width: 991px) {
   .mobile-view {
     display: block;
   }
@@ -311,7 +323,7 @@ p.file-warn {
   }
 }
 
-@media all and (min-width: 992px) and (max-width: 1199px) {
+@media all and (min-width: 991px) and (max-width: 1200px) {
   .mobile-view {
     display: block;
   }
@@ -488,7 +500,7 @@ p.file-warn {
     height: 60px;
   }
 }
-@media all and (min-width: 576px) and (max-width: 992px) {
+@media all and (min-width: 576px) and (max-width: 991px) {
   .page-heading {
     font-size: 30px;
     line-height: 40px;
@@ -515,7 +527,7 @@ p.file-warn {
     width: 250px !important;
   }
 }
-@media only screen and (min-width: 321px) and (max-width: 992px) {
+@media only screen and (min-width: 321px) and (max-width: 991px) {
   .side-cat-menu {
     position: fixed;
     width: 300px;

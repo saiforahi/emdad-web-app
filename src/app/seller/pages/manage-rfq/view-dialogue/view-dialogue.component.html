@@ -78,9 +78,9 @@
                         <div class="file-warn">
                             <label class="file-label d-block">{{'Seller_RFQ.Quotation_Attachments'|translate}}:</label>
                            
-                           <div> <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left">
-                            </app-form-input-alert>
-                        </div>
+                           <div> 
+                               <app-form-input-alert [alertMsg]="'You can attach maximum two files'" class="align-left"></app-form-input-alert>
+                            </div>
                         </div>
                         <!--FILE UPLOAD-->
                         <label for="attachments" class="custom-file-upload float-left mr-2" *ngIf="isEnabled">

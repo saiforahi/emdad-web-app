@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   cartLength: any;
   loggedInUserFullName:string ='';
   userInfo: any;
-
+  currentLang:string
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
@@ -62,6 +62,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.translate.currentLang)
+    this.currentLang=localStorage.getItem('locale')
     this.activeRoute = this.router.url.split('/');
     if(this.activeRoute[1] == 'home'){
       this.showOnScroll = false;
@@ -217,5 +218,6 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('locale', language);
     this.translate.use(language);
     console.log(this.translate.currentLang)
+    this.currentLang=language
   }
 }

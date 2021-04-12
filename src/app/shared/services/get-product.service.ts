@@ -50,4 +50,8 @@ export class GetProductService {
       config.base_url+'api/product/category/products/'+id+'/'
     );
   }
+
+  getBrands(): Observable<any>{
+    return this.http.get(config.base_url+'api/brand/list')
+  }
 }
