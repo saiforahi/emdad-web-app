@@ -65,7 +65,7 @@ export class LoginPageComponent implements OnInit {
         this.error = error;
         console.log(error);
         this.spinner.hide();
-        swal('Failed!', error.message, 'error');
+        swal('Failed!', error.error.message, 'error');
       }
     );
   }

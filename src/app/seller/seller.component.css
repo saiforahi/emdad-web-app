@@ -687,9 +687,9 @@ img.logo {
 }
 
 @media only screen and (min-width: 992px) {
-/*   .container {
+  .container {
     max-width: 1600px !important;
-  } */
+  }
   .mat-sidenav {
     width: 350px;
     max-width: 350px;
