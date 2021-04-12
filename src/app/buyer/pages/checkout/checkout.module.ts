@@ -5,10 +5,12 @@ import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [CheckoutComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     CheckoutRoutingModule,
     NgxSpinnerModule,
     MaterialModule,FormsModule,ReactiveFormsModule
