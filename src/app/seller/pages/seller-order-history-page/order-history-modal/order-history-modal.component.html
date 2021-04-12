@@ -4,13 +4,13 @@
             <button mat-dialog-close><i class="fas fa-times mt-0 p-0"></i></button>
         </mat-dialog-actions>
         <div class="order-data">
-            <p class="top-details">Order ID: <span class="prod">#{{data.order.order.order_code}}</span></p>
+            <p class="top-details">#{{'Seller_Dashboard.Order_ID'|translate}}:<span class="prod">{{data.order.order.order_code}}</span></p>
             <br>
-            <p class="top-details">Order Date:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Order_Date'|translate}}:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
             <br>
-            <p class="top-details">Payment Status:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Payment_Status'|translate}}:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
             <br>
-            <p class="top-details">Total Price: <span class="prod">SAR{{data.order.order.total_amount}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Total_Price' | translate}}: <span class="prod">SAR{{data.order.order.total_amount}}</span></p>
         </div>
         <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
@@ -21,8 +21,8 @@
                                 alt="Generic placeholder image">
                             <div class="media-body">
                                 <p class="name">{{detail.product.name}}</p>
-                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span>({{detail.product.ddp_lead_time}}) days</p>
-                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span>({{detail.product.ex_works_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>{{'Seller_Product_Categories.DDP'|translate}}</span>({{detail.product.ddp_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>{{'Seller_Product_Categories.Exworks'|translate}}</span>({{detail.product.ex_works_lead_time}}) days</p>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                         <a href="">proof.pdf</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12 order-data quantity desktop">
-                        Quantity: {{detail.quantity}}
+                        {{'Seller_Order_History.Quantity'|translate}}: {{detail.quantity}}
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12 order-data value">
                        SAR{{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}

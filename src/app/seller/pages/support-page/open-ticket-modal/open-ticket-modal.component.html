@@ -4,7 +4,7 @@
 <mat-dialog-content class="mat-typography">
     <section>
         <h3 class="open-ticket-modal-header">
-            Create New Ticket
+            {{'Seller_Tickets.Create_Ticket'|translate}}
         </h3>
     </section>
     <section>
@@ -13,11 +13,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="title">Subject</label>
+                        <label for="title">{{'Seller_Tickets.Subject'|translate}}</label>
                         <div class="input-group">
                             <!-- title -->
                             <input id="title" class="form-control form-control-md" type="text"
-                                formControlName="title" required placeholder="Write your subject here"/>
+                                formControlName="title" required placeholder="{{'Seller_Tickets.Issue_Title_Error'|translate}}"/>
                         </div>
                         <div *ngIf="title.invalid && (title.dirty || title.touched)">
                             <div *ngIf="title.errors?.required">
@@ -28,11 +28,11 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="description">Details</label>
+                        <label for="description">{{'Seller_Tickets.Details'|translate}}</label>
                         <div class="input-group">
                             <!-- description -->
                             <textarea rows="15" id="description" class="form-control form-control-md" type="text"
-                                formControlName="description" placeholder="Write down the issue in details..."></textarea>
+                                formControlName="description" placeholder="{{'Seller_Tickets.Issue_Description_Error'|translate}}"></textarea>
                         </div>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)">
                             <div *ngIf="description.errors?.required">
@@ -44,7 +44,7 @@
                 <!--Image upload-->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="d-block">Upload Image</label>
+                        <label class="d-block">{{'Seller_Tickets.Upload_image'|translate}}</label>
                         <label for="image" class="custom-file-upload" *ngIf="isEnabled">
                             <input id="image" class="form-control form-control-md" type="file" accept="image/*"
                                 formControlName="image" (change)="handleFileSelect($event);" [disabled]="isEnabled" />
@@ -69,7 +69,7 @@
                     <div class="form-group submit-button">
                         <button type="submit" [mat-dialog-close]="true" mat-raised-button class="btn btn-primary btn-md  login_btn"
                             [disabled]="ticketForm.invalid">
-                            Submit
+                            {{'Seller_Tickets.Submit'|translate}}
                         </button>
                     </div>
                 </div>

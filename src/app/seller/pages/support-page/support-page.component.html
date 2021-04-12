@@ -1,23 +1,23 @@
 <!--01st april 2021-->
 <section class="payment-history container">
   <div class="page-heading-holder">
-    <h2 class="page-heading">Ticket List</h2>
+    <h2 class="page-heading">{{'Seller_Tickets.Ticket_List'|translate}}</h2>
     <div class="sort-btn d-inline-block big-view">
-      <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
+      <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">{{'Seller_Tickets.New_Ticket'|translate}}</button>
       <span ngbDropdown class="dropping">
-        <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>
+        <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>{{'Seller_Quotes.Filter_by_Status'|translate}} <mat-icon>
             expand_more</mat-icon></button>
           
       <!--dropdown-->
       <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
         <div ngbDropdownItem (click)="filter_tickets(0);">
-          <span class="lan-title">Running</span>
+          <span class="lan-title">{{'Seller_Tickets.Running'|translate}}</span>
         </div>
         <div style="padding: 0 15px">
           <mat-divider></mat-divider>
         </div>
         <div ngbDropdownItem (click)="filter_tickets(2);">
-          <span class="lan-title">Solved</span>
+          <span class="lan-title">{{'Seller_Tickets.Solved'|translate}}</span>
         </div>
       </div>
     </span>
@@ -31,13 +31,13 @@
     <!--dropdown-->
     <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
       <div ngbDropdownItem>
-        <span class="lan-title">Running</span>
+        <span class="lan-title">{{'Seller_Tickets.Running' |translate}}</span>
       </div>
       <div style="padding: 0 15px">
         <mat-divider></mat-divider>
       </div>
       <div ngbDropdownItem>
-        <span class="lan-title">Solved</span>
+        <span class="lan-title">{{'Seller_Tickets.Solved'|translate}}</span>
       </div>
     </div>
   </span>
@@ -47,13 +47,13 @@
       <div class="col-md-12 card-header">
         <div class="row">
           <div class="col-md-3 name">
-            Report ID
+           {{'Seller_Tickets.Report_ID'|translate}}
           </div>
           <div class="col-md-4 name">
-            Subject
+            {{'Seller_Tickets.Subject'|translate}}
           </div>
           <div class="col-md-3 name">
-            Status
+            {{'Seller_Dashboard.status'|translate}}
           </div>
 
           <div class="col-md-2 name">
@@ -72,19 +72,19 @@
               <span> #{{item.issue_code}}</span>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-9 col-12 value">
-              <span><span class="mobile-name">Subject:</span> {{item.title}}</span>
+              <span><span class="mobile-name">{{'Seller_Tickets.Subject'|translate}}:</span> {{item.title}}</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-4 col-12 value">
-              <span *ngIf="item.status == 0">Running</span>
-              <span *ngIf="item.status == 2">Solved</span>
+              <span *ngIf="item.status == 0">{{'Seller_Tickets.Running'|translate}}</span>
+              <span *ngIf="item.status == 2">{{'Seller_Tickets.Solved'|translate}}</span>
               <span *ngIf="item.status == null"> - </span>
             </div>
 
             <div class="col-lg-2 col-md-3 col-sm-4 col-12 value mobile-btn">
               <span class="big-view"><button class="edit-product-btn" mat-button
-                  (click)="ticketView(item);">View</button></span>
+                  (click)="ticketView(item);">{{'Buyer_Order_History.View'|translate}}</button></span>
               <span class="mobile-name"><button class="edit-product-btn mob" mat-raised-button
-                  (click)="ticketView(item);">View</button></span>
+                  (click)="ticketView(item);">{{'Buyer_Order_History.View'|translate}}</button></span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
       <div class="col-md-12" *ngIf="supportIssues">
         <div class="no-data mt-2"
           *ngIf="supportIssues == 0 || supportIssues == undefined || supportIssues?.length == 0">
-          No data available
+          {{'Buyer_Order_History.No_Data'|translate}}
         </div>
       </div>
       <!--pagination-->

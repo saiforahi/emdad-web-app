@@ -6,17 +6,17 @@
         </mat-dialog-actions>
         <!--show header part-->
         <div class="order-data">
-            <p class="top-details">Invoice ID: <span class="prod">#{{details?.invoice_code}}</span></p>
-            <p class="top-details">Payment Date : <span class="prod">{{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
+            <p class="top-details">#{{'Seller_Invoice.Invoice_ID'|translate}}: <span class="prod">{{details?.invoice_code}}</span></p>
+            <p class="top-details">{{'Seller_Dashboard.Payment_Date'|translate}} : <span class="prod">{{details?.payment_date==='Pending'?'Pending':formatDate(data.invoice.payment_date)}}</span></p>
         </div>
         <div class="row">
             <div class="col-md-12 card-header">
                 <div class="row">
                     <div class="col-md-6 name">
-                        Order ID
+                        {{'Seller_Dashboard.Order_ID'|translate}}
                     </div>
                     <div class="col-md-6 name amount">
-                        Amount
+                        {{'Seller_Dashboard.Amount'|translate}}
                     </div>
                 </div>  
             </div>
@@ -26,10 +26,10 @@
                 <div class="show-values" *ngFor="let item of details?.ordered_product">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12 value">
-                            <span><span class="mobile-name">Order ID:</span>  # {{item.order}}</span>
+                            <span><span class="mobile-name"> {{'Seller_Dashboard.Order_ID'|translate}}:</span>  # {{item.order}}</span>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12 value amount">
-                            <span><span class="mobile-name">Amount :</span> SR {{ get_price(item.unit_price,item.quantity,item.commission,item.vat_amount) }}</span>
+                            <span><span class="mobile-name">{{'Seller_Dashboard.Amount'|translate}} :</span> SR {{ get_price(item.unit_price,item.quantity,item.commission,item.vat_amount) }}</span>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
              <!--total price-->
              <div class="col-md-12">
                 <div class="total-order-price">
-                    Total: SR{{get_total_price()}}
+                    {{'Seller_Order_History.Total'|translate}}: SR{{get_total_price()}}
                 </div>
              </div>
         </div>

@@ -44,7 +44,7 @@
                       <mat-panel-title>
                         <div class="cat-head">
                           <img src="../../../../assets/Profile-small.svg" alt="">
-                          <span>{{'Profile.Header'|translate}}</span>
+                          <span>{{'Header_DropDowns.My_Profile'|translate}}</span>
                         </div>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -73,7 +73,7 @@
               <hr>
             </div>
             <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
-                <span>{{'Header_DropDowns.Raise_a_support' | translate}} </span></a></li>
+                <span>{{'Nav.Change_Language' | translate}} </span></a></li>
             <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['cart']"
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><small *ngIf="cartLength != null" style="color: red;">({{cartLength}})</small></a></li>
@@ -82,7 +82,7 @@
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
-                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out | translate'}} </span></a></li>
+                  <span style="color: #FF4B55">{{'Header_DropDowns.Log_Out' | translate}} </span></a></li>
             </div>
           </ul>
         </div>
@@ -246,7 +246,7 @@
                     <img src="../assets/Danger.svg" alt="" />{{'Header_DropDowns.Raise_a_support' | translate}}
                   </button>
                   <button *ngIf="loggedInUser" (click)="logout()" ngbDropdownItem style="color: #FF4B55;">
-                    <img alt="" src="../assets/logout.svg" />{{'Header_DropDowns.Log_Out' | translate}}
+                    <img alt="" src="../assets/logout.svg" />{{'Header_DropDowns.Log_Out'|translate}}
                   </button>
                 </div>
               </div>
