@@ -54,8 +54,8 @@
         <ul class="list-group">
           <li class="list-group-item pt-0 link-head">{{'Footer.Help' | translate}}</li>
           <li class="list-group-item"><a [routerLink]="['support-ticket']">{{'Header_DropDowns.Raise_a_support' | translate}}</a></li>
-          <li class="list-group-item"><a href="#">{{'Footer.Privacy_Policy' | translate}}</a></li>
-          <li class="list-group-item"><a href="#">{{'Footer.Terms' | translate}}</a></li>
+          <li class="list-group-item"><a [routerLink]="['privacy-policy']">{{'Footer.Privacy_Policy' | translate}}</a></li>
+          <li class="list-group-item"><a [routerLink]="['terms-conditions']">{{'Footer.Terms' | translate}}</a></li>
           <li class="list-group-item"><a href="#">{{'Footer.Send_Suggestion' | translate}}</a></li>
         </ul>
       </div>
