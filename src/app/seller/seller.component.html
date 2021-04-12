@@ -436,43 +436,25 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" *ngIf="activeRoute[2] != 'welcome'">
+          <li class="nav-item" *ngIf="activeRoute[2] != 'welcome'" (click)="markAllNotificationAsRead">
             <div *ngIf="isSubscribed" ngbDropdown class="d-inline-block">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" />
+                <span *ngIf="unread_notification_length>0" class="cart-length">{{unread_notification_length}}</span>
               </a>
               <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <div class="notification-header">
                  {{'Nav.Notifications'|translate}}
                 </div>
-                <button ngbDropdownItem class="drop-item">
-                  <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
-                  send a new RFQ
-                </button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
+                <div *ngFor="let notification of notifications;let i=index">
+                    <button ngbDropdownItem class="drop-item">
+                      <!-- <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  -->
+                      {{notification}}
+                    </button>
+                    <div *ngIf="i!=notifications?.length-1" style="padding: 0 30px">
+                      <mat-divider></mat-divider>
+                    </div>
                 </div>
-                <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt=""
-                    class="img-fluid mr-1">You received a payment from #100089</button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button class="drop-item" ngbDropdownItem>
-                  <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new
-                  order #10785
-                </button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt=""
-                    class="img-fluid mr-1">You received a payment from #100089</button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem class="drop-item">
-                  <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new
-                  RFQ
-                </button>
               </div>
             </div>
           </li>
@@ -517,7 +499,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser && isSubscribed">
+          <li class="nav-item" *ngIf="loggedInUser && isSubscribed" (click)="markAllNotificationAsRead">
             <div ngbDropdown class="d-inline-block">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" class="btn-icon" />
@@ -526,34 +508,15 @@
                 <div class="notification-header">
                   {{'Nav.Notifications'|translate}}
                 </div>
-                <button ngbDropdownItem class="drop-item">
-                  <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Abu Raihan Zilani
-                  send a new RFQ
-                </button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button class="drop-item" ngbDropdownItem><img src="../../assets/icons/payment-noti.svg" alt=""
-                    class="img-fluid mr-1">You received a payment from #100089</button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button class="drop-item" ngbDropdownItem>
-                  <img src="../../assets/icons/order-noti.svg" alt="" class="img-fluid mr-1"> Billah placed a new
-                  order #10785
-                </button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem class="drop-item"><img src="../../assets/icons/payment-noti.svg" alt=""
-                    class="img-fluid mr-1">You received a payment from #100089</button>
-                <div style="padding: 0 30px">
-                  <mat-divider></mat-divider>
-                </div>
-                <button ngbDropdownItem class="drop-item">
-                  <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1"> Billah send a new
-                  RFQ
-                </button>
+                <div *ngFor="let notification of notifications;let i=index">
+                  <button ngbDropdownItem class="drop-item">
+                    <!-- <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  -->
+                    {{notification}}
+                  </button>
+                  <div *ngIf="i!=notifications?.length-1" style="padding: 0 30px">
+                    <mat-divider></mat-divider>
+                  </div>
+              </div>
               </div>
             </div>
           </li>

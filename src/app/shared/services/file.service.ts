@@ -7,7 +7,7 @@ export class FileService {
   constructor(private http: HttpClient) {}
 
   downloadFile(url:string): any {
-    return this.http.get(config.base_url+url, {responseType: 'blob'});
+    return this.http.get(config.img_base_url+url, {responseType: 'blob'});
   }
    
 }

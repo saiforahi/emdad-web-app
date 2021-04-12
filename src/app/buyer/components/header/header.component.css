@@ -357,7 +357,7 @@ button:focus {
 }
 
 .cart-length {
-  position: absolute;
+  position: inherit;
   background: red;
   width: 20px;
   height: 20px;

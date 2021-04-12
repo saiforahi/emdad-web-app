@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { element } from 'protractor';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { QuotationService } from 'src/app/shared/services/quotation.service';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
@@ -24,25 +25,42 @@ export class DashboardComponent implements OnInit {
     private order: OrderService,
     private router: Router,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,private notificationService:NotificationService
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    
+    this.authService.s_uId.subscribe((s_uid) => {
+      console.log(s_uid);
+      if (s_uid != null) {
+        this.authService.sellerIsApproved(s_uid).subscribe((item: any) => {
+          console.log(item);
+          // Approved User, User Not Approve
+          this.subscription.isSubscribed().subscribe((item2: any) => {
+            console.log(item2);
+            // User Not Subscribe, Subscribe User
+            if (
+              item.message != 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              this.router.navigate(['/dashboard/welcome']);
+            } else if (
+              item.message == 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              swal(
+                'Access Denied!',
+                'you are not subscribed to any plan! Please subscribe.',
+                'error'
+              );
+              this.router.navigate(['/dashboard/subscription-plan']);
+            }
+          });
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
+    this.notificationService.getAllNotificationsForBuyer()
     // RFQ table data
     this.rfq.get_seller_quotation_list().subscribe((item) => {
       // console.log(item);

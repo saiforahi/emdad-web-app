@@ -687,9 +687,9 @@ img.logo {
 }
 
 @media only screen and (min-width: 992px) {
-/*   .container {
+  .container {
     max-width: 1600px !important;
-  } */
+  }
   .mat-sidenav {
     width: 350px;
     max-width: 350px;
@@ -744,4 +744,20 @@ img.logo {
   .show-in-med{
     display: none !important;
   }
+}
+
+.cart-length {
+  position: absolute;
+  background: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 20px;
+  right: 5px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.8;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

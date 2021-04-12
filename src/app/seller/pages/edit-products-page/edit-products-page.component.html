@@ -134,10 +134,10 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodDeliMethod">Product Delivery Method</label>
-                    <select class="form-control form-control-lg" formControlName="prodDeliMethod">
+                    <select class="form-control form-control-lg" formControlName="prodDeliMethod" *ngIf="productDetails" [(ngModel)]="selectedOption">
                         <option value="" disabled selected>Product Delivery Method</option>
-                        <option value="1">DDP</option>
-                        <option value="2">Ex-Works</option>
+                        <option value="1" [selected]="productDetails.delivery_method == 1">DDP</option>
+                        <option value="2" [selected]="productDetails.delivery_method == 2">Ex-Works</option>
                     </select>
                     <div *ngIf="prodDeliMethod.invalid && (prodDeliMethod.dirty || prodDeliMethod.touched)">
                         <div *ngIf="prodDeliMethod.errors?.required">
@@ -158,18 +158,31 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6  col-12">
+            <div class="col-md-6 col-12" *ngIf="selectedOption == '2'">
                 <div class="form-group">
-                    <label for="ddp">DDP Destination</label>
+                    <label for="shopPick">{{'Seller_Upload_Product.Shop_Pick_Up_Location'|translate}}</label>
+                    <!--shopPick -->
+                    <input id="shopPick" class="form-control form-control-md" type="text" formControlName="shopPick" />
+                    <div *ngIf="shopPick.invalid && (shopPick.dirty || shopPick.touched)">
+                        <div *ngIf="shopPick.errors?.required">
+                            <app-form-input-alert [alertMsg]="'Shop pick up location is required.'">
+                            </app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-6  col-12">
+                <div class="form-group">
+                    <label for="ddp">DDP Destination</label> -->
                     <!-- ddp -->
-                    <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp" />
+                    <!-- <input id="ddp" class="form-control form-control-md" type="text" formControlName="ddp" />
                     <div *ngIf="ddp.invalid && (ddp.dirty || ddp.touched)">
                         <div *ngIf="ddp.errors?.required">
                             <app-form-input-alert [alertMsg]="'DDP Destination is required.'"></app-form-input-alert>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodPrice">Product Unit Price</label>

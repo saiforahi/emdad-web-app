@@ -74,20 +74,36 @@ export class UploadProductsPageComponent implements OnInit {
     private authService: UserAuthService,
     private subscription: SubscriptionService
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    
+    this.authService.s_uId.subscribe((s_uid) => {
+      console.log(s_uid);
+      if (s_uid != null) {
+        this.authService.sellerIsApproved(s_uid).subscribe((item: any) => {
+          console.log(item);
+          // Approved User, User Not Approve
+          this.subscription.isSubscribed().subscribe((item2: any) => {
+            console.log(item2);
+            // User Not Subscribe, Subscribe User
+            if (
+              item.message != 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              this.router.navigate(['/dashboard/welcome']);
+            } else if (
+              item.message == 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              swal(
+                'Access Denied!',
+                'you are not subscribed to any plan! Please subscribe.',
+                'error'
+              );
+              this.router.navigate(['/dashboard/subscription-plan']);
+            }
+          });
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -192,8 +208,10 @@ export class UploadProductsPageComponent implements OnInit {
         this.selectedFiles[i].name
       );
     }
-    var pickupAddress = {"city": null, "address": value.ddp};
-    this.productUploadFormData.append('pickup_address', pickupAddress.toString());
+    if(value.ddp = 2) {
+      this.productUploadFormData.append('pickup_address[0]city', "1");
+      this.productUploadFormData.append('pickup_address[0]address', value.shopPick);
+    }
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
@@ -223,6 +241,7 @@ export class UploadProductsPageComponent implements OnInit {
         console.log(success);
         this.spinner.hide();
         swal('Succeed', success.message, 'success');
+        this.productUploadForm.reset();
       },
       (error: any) => {
         console.log(error);

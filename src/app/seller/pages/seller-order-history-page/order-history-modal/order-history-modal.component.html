@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-12 col-12 order-data proof">
-                        <a href="">proof.pdf</a>
+                        <a href="javascript:void(0);" (click)="download(i)">{{detail.order.tracking_order[i].delivery_challan?'proof':''}}</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12 order-data quantity desktop">
                         {{'Seller_Order_History.Quantity'|translate}}: {{detail.quantity}}

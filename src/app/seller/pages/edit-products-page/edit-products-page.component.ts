@@ -37,7 +37,7 @@ export class EditProductsPageComponent implements OnInit {
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
-  ddp: AbstractControl;
+  // ddp: AbstractControl;
   prodPrice: AbstractControl;
   phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
   email: AbstractControl;
@@ -64,6 +64,7 @@ export class EditProductsPageComponent implements OnInit {
   selectedFiles: any = [];
   productId: any;
   productDetails: any;
+  shopPick:AbstractControl;
   parentCatId: any;
   subCatId: any;
   childCatId: any;
@@ -71,6 +72,7 @@ export class EditProductsPageComponent implements OnInit {
   unitId: any;
   existingImgList = [];
   existingFiles: any;
+  selectedOption;
 
   constructor(
     private router: Router,
@@ -84,32 +86,36 @@ export class EditProductsPageComponent implements OnInit {
     private authService: UserAuthService,
     private subscription: SubscriptionService,
   ) {
-    this.authService
-      .sellerIsApproved(localStorage.getItem('s_uid'))
-      .subscribe((item: any) => {
-        console.log(item);
-        // Approved User, User Not Approve
-        this.subscription.isSubscribed().subscribe((item2: any) => {
-          console.log(item2);
-          // User Not Subscribe, Subscribe User
-          if (
-            item.message != 'Approved User' &&
-            item2.message != 'Subscribe User'
-          ) {
-            this.router.navigate(['/dashboard/welcome']);
-          } else if (
-            item.message == 'Approved User' &&
-            item2.message != 'Subscribe User'
-          ) {
-            swal(
-              'Access Denied!',
-              'you are not subscribed to any plan! Please subscribe.',
-              'error'
-            );
-            this.router.navigate(['/dashboard/subscription-plan']);
-          }
+    
+    this.authService.s_uId.subscribe((s_uid) => {
+      console.log(s_uid);
+      if (s_uid != null) {
+        this.authService.sellerIsApproved(s_uid).subscribe((item: any) => {
+          console.log(item);
+          // Approved User, User Not Approve
+          this.subscription.isSubscribed().subscribe((item2: any) => {
+            console.log(item2);
+            // User Not Subscribe, Subscribe User
+            if (
+              item.message != 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              this.router.navigate(['/dashboard/welcome']);
+            } else if (
+              item.message == 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              swal(
+                'Access Denied!',
+                'you are not subscribed to any plan! Please subscribe.',
+                'error'
+              );
+              this.router.navigate(['/dashboard/subscription-plan']);
+            }
+          });
         });
-      });
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -141,10 +147,11 @@ export class EditProductsPageComponent implements OnInit {
       prodUnit: ['', [Validators.required]],
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
-      ddp: ['', [Validators.required]],
+      // ddp: ['', [Validators.required]],
       prodPrice: ['', [Validators.required]],
       prodImage: [''],
       attachments: [''],
+      shopPick:[''],
     });
     this.category = this.productUpdateForm.controls['category'];
     this.subCategory = this.productUpdateForm.controls['subCategory'];
@@ -157,10 +164,11 @@ export class EditProductsPageComponent implements OnInit {
     this.prodUnit = this.productUpdateForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
     this.leadTime = this.productUpdateForm.controls['leadTime'];
-    this.ddp = this.productUpdateForm.controls['ddp'];
+    // this.ddp = this.productUpdateForm.controls['ddp'];
     this.prodPrice = this.productUpdateForm.controls['prodPrice'];
     this.prodImage = this.productUpdateForm.controls['prodImage'];
     this.attachments = this.productUpdateForm.controls['attachments'];
+    this.shopPick= this.productUpdateForm.controls['shopPick'];
   }
 
   populateFormData() {
@@ -181,6 +189,7 @@ export class EditProductsPageComponent implements OnInit {
       }
       this.removeEmptyChildren(this.categories);
       // console.log(this.childCatId);
+      this.selectedOption = this.productDetails.delivery_method;
       this.productUpdateForm.setValue({
         category: this.parentCatId,
         subCategory: this.subCatId,
@@ -193,7 +202,7 @@ export class EditProductsPageComponent implements OnInit {
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         leadTime: setLeadTime,
-        ddp:
+        shopPick:
           this.productDetails.pickup_address.length != 0
             ? this.productDetails.pickup_address[0].address
             : '',
@@ -288,11 +297,10 @@ export class EditProductsPageComponent implements OnInit {
         );
       }
     }
-    var pickupAddress = { city: null, address: value.ddp };
-    this.productUploadFormData.append(
-      'pickup_address',
-      pickupAddress.toString()
-    );
+    if(value.ddp = 2) {
+      this.productUploadFormData.append('pickup_address[0]city', "1");
+      this.productUploadFormData.append('pickup_address[0]address', value.shopPick);
+    }
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));

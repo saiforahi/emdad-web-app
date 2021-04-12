@@ -4,6 +4,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import swal from 'sweetalert';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 @Component({
   selector: 'app-buyer-login-modal-form',
   templateUrl: './buyer-login-modal-form.component.html',
@@ -25,7 +26,7 @@ export class BuyerSigninFormComponent implements OnInit {
     private authService: UserAuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,private notificationService:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -97,6 +98,7 @@ export class BuyerSigninFormComponent implements OnInit {
           this.spinner.hide();
 
           this.submitted = false;
+          this.notificationService.getAllNotificationsForBuyer()
           this.router.navigate(['/home']);
         },
         (error) => {
