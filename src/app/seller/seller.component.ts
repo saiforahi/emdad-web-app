@@ -28,8 +28,8 @@ export class SellerComponent implements OnInit, AfterViewInit {
   activeRoute: string[];
   showSpinner: any;
   isSubscribed: boolean;
-  loggedInUserFullName: string ='';
-userInfo:any;
+  loggedInUserFullName: string = '';
+
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -37,7 +37,7 @@ userInfo:any;
     private subscription: SubscriptionService,
     private spinner: SpinnerService,
     private ngxSpinner: NgxSpinnerService,
-    private translate:TranslateService
+    private translate: TranslateService
   ) {
     if (localStorage.getItem('locale')) {
       const browserLang = localStorage.getItem('locale');
@@ -46,20 +46,36 @@ userInfo:any;
       localStorage.setItem('locale', 'en');
       translate.setDefaultLang('en');
     }
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        this.isSubscribed = item2.message == 'Subscribe User' ? true : false;
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    this.authService.s_uId.subscribe((s_uid) => {
+      console.log(s_uid);
+      if (s_uid != null) {
+        this.authService.sellerIsApproved(s_uid).subscribe((item: any) => {
+          console.log(item);
+          // Approved User, User Not Approve
+          this.subscription.isSubscribed().subscribe((item2: any) => {
+            console.log(item2);
+            this.isSubscribed = item2.message == 'Subscribe User' ? true : false;
+            // User Not Subscribe, Subscribe User
+            if (
+              item.message != 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              this.router.navigate(['/dashboard/welcome']);
+            } else if (
+              item.message == 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              swal(
+                'Access Denied!',
+                'you are not subscribed to any plan! Please subscribe.',
+                'error'
+              );
+              this.router.navigate(['/dashboard/subscription-plan']);
+            }
+          });
+        });
+      }
+    });
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
@@ -85,6 +101,12 @@ userInfo:any;
     this.authService.s_uId.subscribe((data) => {
       if (data != null) {
         this.uId = data;
+        if (this.uId == localStorage.getItem('s_uid')) {
+          this.authService.getSeller(this.uId).subscribe((data) => {
+            this.loggedInUserFullName = data.data.store_name;
+            //  console.log("fullname",this.loggedInUserFullName);
+          });
+        }
       }
     });
     this.authService.s_uImg.subscribe((data) => {
@@ -92,15 +114,6 @@ userInfo:any;
         this.loggedInUserImg = data;
       }
     });
-   if(this.uId == localStorage.getItem('s_uid')){
-     this.authService.getSeller(this.uId).subscribe((data) =>{
-       this.userInfo = data.data;
-       console.log("info",this.userInfo);
-       this.loggedInUserFullName = this.userInfo.store_name;
-       
-       console.log("fullname",this.loggedInUserFullName);
-     })
-   }
     this.spinner.showSpinner.subscribe((item) => {
       if (item == true) {
         this.ngxSpinner.show();
@@ -134,6 +147,6 @@ userInfo:any;
   changeLang(language: string) {
     localStorage.setItem('locale', language);
     this.translate.use(language);
-    console.log(this.translate.currentLang)
+    console.log(this.translate.currentLang);
   }
 }
