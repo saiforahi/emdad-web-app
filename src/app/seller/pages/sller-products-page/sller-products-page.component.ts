@@ -57,20 +57,36 @@ export class SllerProductsPageComponent implements OnInit {
     private addProductService: AddProductService,
     private spinner: NgxSpinnerService,
   ) {
-    this.authService.sellerIsApproved(localStorage.getItem("s_uid")).subscribe((item: any) => {
-      console.log(item)
-      // Approved User, User Not Approve
-      this.subscription.isSubscribed().subscribe((item2: any) => {
-        console.log(item2)
-        // User Not Subscribe, Subscribe User
-        if (item.message != 'Approved User' && item2.message != 'Subscribe User') {
-          this.router.navigate(['/dashboard/welcome']);
-        } else if (item.message == 'Approved User' && item2.message != 'Subscribe User') {
-          swal('Access Denied!', "you are not subscribed to any plan! Please subscribe.", 'error');
-          this.router.navigate(['/dashboard/subscription-plan']);
-        }
-      })
-    })
+    
+    this.authService.s_uId.subscribe((s_uid) => {
+      console.log(s_uid);
+      if (s_uid != null) {
+        this.authService.sellerIsApproved(s_uid).subscribe((item: any) => {
+          console.log(item);
+          // Approved User, User Not Approve
+          this.subscription.isSubscribed().subscribe((item2: any) => {
+            console.log(item2);
+            // User Not Subscribe, Subscribe User
+            if (
+              item.message != 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              this.router.navigate(['/dashboard/welcome']);
+            } else if (
+              item.message == 'Approved User' &&
+              item2.message != 'Subscribe User'
+            ) {
+              swal(
+                'Access Denied!',
+                'you are not subscribed to any plan! Please subscribe.',
+                'error'
+              );
+              this.router.navigate(['/dashboard/subscription-plan']);
+            }
+          });
+        });
+      }
+    });
     // subscribe to route event for route param change
     // router.events.subscribe((val: any) => {
     //   if (val.url) {
