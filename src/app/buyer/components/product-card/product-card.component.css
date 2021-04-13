@@ -107,6 +107,7 @@ mat-card:hover button {
 
 .mat-card-image:first-child {
   margin-top: 0px;
+  object-fit: cover;
 }
 
 .mat-card-image {

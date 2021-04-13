@@ -1,0 +1,10 @@
+<mat-dialog-content class="mat-typography">
+    <div class="form-group">
+        <label for="prodBrand">Enter Brand</label>
+        <input id="prodBrand" class="form-control form-control-md" type="text" [(ngModel)]="brandName"/>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button class="submit_btn" mat-button [mat-dialog-close]="brandName" cdkFocusInitial [disabled]="brandName == ''">Add Brand</button>
+    <button class="cancel" mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

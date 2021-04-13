@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
@@ -15,6 +16,9 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { config } from '../../../../config';
+import { AddBrandModalComponent } from '../../components/add-brand-modal/add-brand-modal.component';
+import { AddColorModalComponent } from '../../components/add-color-modal/add-color-modal.component';
+import { AddUnitModalComponent } from '../../components/add-unit-modal/add-unit-modal.component';
 
 @Component({
   selector: 'app-edit-products-page',
@@ -33,7 +37,7 @@ export class EditProductsPageComponent implements OnInit {
   prodDetails: AbstractControl;
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
-  prodSize: AbstractControl;
+  prodColor: AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -73,6 +77,8 @@ export class EditProductsPageComponent implements OnInit {
   existingImgList = [];
   existingFiles: any;
   selectedOption;
+  colorList: any;
+  colorId: any;
 
   constructor(
     private router: Router,
@@ -85,6 +91,7 @@ export class EditProductsPageComponent implements OnInit {
     private getProducts: GetProductService,
     private authService: UserAuthService,
     private subscription: SubscriptionService,
+    public dialog: MatDialog,
   ) {
     
     this.authService.s_uId.subscribe((s_uid) => {
@@ -134,6 +141,10 @@ export class EditProductsPageComponent implements OnInit {
       this.brandList = item.data[0];
       // console.log(item.data[0]);
     });
+    this.addProductService.getColorList().subscribe((item) => {
+      this.colorList = item.data[0];
+      console.log(item.data[0]);
+    });
     // this.populateFormData();
     this.productUpdateForm = this.fb.group({
       category: ['', [Validators.required]],
@@ -142,7 +153,7 @@ export class EditProductsPageComponent implements OnInit {
       prodName: ['', [Validators.required]],
       prodDetails: [''],
       manufactererName: ['', [Validators.required]],
-      prodSize: [''],
+      prodColor: [''],
       prodStock: ['', [Validators.required]],
       prodUnit: ['', [Validators.required]],
       prodDeliMethod: ['', [Validators.required]],
@@ -160,7 +171,7 @@ export class EditProductsPageComponent implements OnInit {
     this.prodDetails = this.productUpdateForm.controls['prodDetails'];
     this.manufactererName = this.productUpdateForm.controls['manufactererName'];
     this.prodStock = this.productUpdateForm.controls['prodStock'];
-    this.prodSize = this.productUpdateForm.controls['prodSize'];
+    this.prodColor = this.productUpdateForm.controls['prodColor'];
     this.prodUnit = this.productUpdateForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
     this.leadTime = this.productUpdateForm.controls['leadTime'];
@@ -179,6 +190,8 @@ export class EditProductsPageComponent implements OnInit {
       this.childCatId = item.data[0].category.id;
       this.brandId =
         this.productDetails.brand != null ? this.productDetails.brand.id : null;
+      this.colorId =
+        this.productDetails.color != null ? this.productDetails.color.id : null;
       this.unitId =
         this.productDetails.unit != null ? this.productDetails.unit.id : null;
       var setLeadTime;
@@ -198,7 +211,7 @@ export class EditProductsPageComponent implements OnInit {
         prodDetails: this.productDetails.description,
         manufactererName: this.brandId,
         prodStock: this.productDetails.stock_quantity,
-        prodSize: null,
+        prodColor: null,
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         leadTime: setLeadTime,
@@ -283,6 +296,81 @@ export class EditProductsPageComponent implements OnInit {
     ).children;
   }
 
+  addNewBrand(value){
+    if(value == 'new'){
+      this.openAddBrandDialog();
+    }
+  }
+
+  openAddBrandDialog() {
+    const dialogRef = this.dialog.open(AddBrandModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addBrand(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getBrandList().subscribe((item) => {
+            this.brandList = item.data[0];
+            console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
+  addNewColor(value){
+    if(value == 'new'){
+      this.openAddColorDialog();
+    }
+  }
+
+  openAddColorDialog() {
+    const dialogRef = this.dialog.open(AddColorModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addColor(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getColorList().subscribe((item) => {
+            this.colorList = item.data[0];
+            console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
+  addNewUnit(value){
+    if(value == 'new'){
+      this.openAddUnitDialog();
+    }
+  }
+
+  openAddUnitDialog() {
+    const dialogRef = this.dialog.open(AddUnitModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addUnit(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getUnitOfProduct().subscribe((item) => {
+            this.unitList = item.data[0];
+            // console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
   onSubmit(value) {
     console.log(value);
     this.spinner.show();
@@ -302,6 +390,7 @@ export class EditProductsPageComponent implements OnInit {
       this.productUploadFormData.append('pickup_address[0]address', value.shopPick);
     }
     this.productUploadFormData.append('brand', value.manufactererName);
+    this.productUploadFormData.append('color', value.prodColor);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
     this.productUploadFormData.append('name', value.prodName);

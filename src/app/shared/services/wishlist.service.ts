@@ -47,10 +47,15 @@ export class WishlistService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    return this.http.get(
-      config.base_url + 'api/product/wishlist/status/check/' + product_id + '/',
-      httpOptions
-    );
+    if (localStorage.getItem('uid') != null) {
+      return this.http.get(
+        config.base_url +
+          'api/product/wishlist/status/check/' +
+          product_id +
+          '/',
+        httpOptions
+      );
+    }
   }
 
   getWishlist(): Observable<any> {
