@@ -25,6 +25,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   product_statuses: Array<any> = [];
   img_base_url;
   previousUrl: any;
+  trans_totalItems:any
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
@@ -42,6 +43,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
       (success) => {
         console.log(success.data);
         this.orders = success.data;
+        this.trans_totalItems=this.orders.length
         this.dataLoaded = true;
         this.get_order_status();
         //this.get_order_status()

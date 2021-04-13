@@ -66,9 +66,10 @@ export class SellerOrderHistoryPageComponent implements OnInit {
       (success) => {
         console.log('orders', success.data);
         success.data.forEach((element) => {
-          this.orders.push({});
+          if(element.order.buyer_payment_status==1){
+            this.orders.push(element);
+          }
         });
-        this.orders = success.data;
         this.filtered_orders = this.orders;
       },
       (error) => {
@@ -112,26 +113,32 @@ export class SellerOrderHistoryPageComponent implements OnInit {
   //filtering orders
   filter_orders(value: number) {
     this.filtered_orders = [];
-    if (value == 1) {
-      this.orders.forEach((order: any) => {
-        if (
-          order.order.payment_type === 1 &&
-          order.order.order_payment.length > 0
-        ) {
-          console.log('type', order.order.payment_type);
-          this.filtered_orders.push(order);
-        }
-      });
-    } else if (value == 0) {
-      this.orders.forEach((order: any) => {
-        if (order.order.payment_type === 0) {
-          console.log('type', order.order.payment_type);
-          this.filtered_orders.push(order);
-        }
-      });
-    } else {
-      this.filtered_orders = this.orders;
-    }
+    this.orders.forEach((order: any) => {
+      if (order.order.seller_payment_status ==value ) {
+        console.log('type', order.order.payment_type);
+        this.filtered_orders.push(order);
+      }
+    });
+    // if (value == 1) {
+    //   this.orders.forEach((order: any) => {
+    //     if (
+    //       order.order.payment_type === 1 &&
+    //       order.order.order_payment.length > 0
+    //     ) {
+    //       console.log('type', order.order.payment_type);
+    //       this.filtered_orders.push(order);
+    //     }
+    //   });
+    // } else if (value == 0) {
+    //   this.orders.forEach((order: any) => {
+    //     if (order.order.payment_type === 0) {
+    //       console.log('type', order.order.payment_type);
+    //       this.filtered_orders.push(order);
+    //     }
+    //   });
+    // } else {
+    //   this.filtered_orders = this.orders;
+    // }
   }
   get_price(id: any) {
     // this.orderService.get_seller_order_details(id).subscribe(
