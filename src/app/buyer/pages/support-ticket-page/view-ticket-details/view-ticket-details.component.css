@@ -18,6 +18,7 @@
    border: 0px transparent !important;
   
 }
+
 .name,.deets{
 font-family: Jost;
 font-style: normal;
@@ -36,6 +37,9 @@ color: #2B2B2B;
     font-size: 18px;
     line-height: 26px;
     color: #2B2B2B; 
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 a,a.active{
     
@@ -46,8 +50,22 @@ a,a.active{
     line-height: 26px !important;
   color: #F49814 !important;
 }
+
 @media all and (min-width:992px){
     mat-dialog-content{
         max-width: 800px;
+      
+    }
+   ::ng-deep .mat-dialog-container{
+        margin-top: 180px !important;
+    }
+}
+@media all and (min-width:290px) and (max-width:575px){
+    .name,.deet-light,.deets,a,a.active{
+        font-size:14px !important;
+        line-height: 20px !important;
+    }
+    a img{
+        height: 18px;
     }
 }

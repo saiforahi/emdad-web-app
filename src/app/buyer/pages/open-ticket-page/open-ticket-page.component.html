@@ -1,9 +1,9 @@
 <!--20th march 2021-->
 <div class="open-ticket">
-  <app-breadcrumbs [directoryString]="'Open a New Ticket'"></app-breadcrumbs>
+  <app-breadcrumbs [directoryString]="'Buyer_Support_Ticket.New_Ticket'|translate" [style]="'NA'"></app-breadcrumbs>
 
   <div class="container">
-    <h1 class="head">Open a New Ticket</h1>
+    <h1 class="head">{{'Buyer_Support_Ticket.New_Ticket'|translate}}</h1>
     <!--show loader-->
     <div class="card step-card">
       <div class="row">
@@ -39,7 +39,7 @@
           <!--subject-->
           <div class="col-md-12">
             <div class="form-group">
-              <label for="ticket">Subject</label>
+              <label for="ticket">{{'Buyer_Support_Ticket.Subject'|translate}}</label>
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Write your subject here" formControlName="title" />
                 <div *ngIf="ticketForm.get('title').errors && submitted">
@@ -51,7 +51,7 @@
           <!--description-->
           <div class="col-md-12">
             <div class="form-group">
-              <label for="description">Tell Us More</label>
+              <label for="description">{{'Buyer_Support_Ticket.Tell_us'|translate}}</label>
               <div class="input-group">
                 <textarea type="text" class="form-control" placeholder="Write down the issue in details..." rows="7"
                   formControlName="description"></textarea>
@@ -63,14 +63,14 @@
           </div>
           <!--order number-->
           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
-            <label for="order_code">Order Number(Optional)</label>
+            <label for="order_code">{{'Buyer_Support_Ticket.Order_no'|translate}}</label>
             <div class="input-group">
               <input type="number" class="form-control" placeholder="Order Number" formControlName="order_code" />
             </div>
           </div>
           <!--attachments-->
           <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12 col-12 add-m">
-            <label for="uploadImage">Upload Image</label>
+            <label for="uploadImage">{{'Seller_Tickets.Upload_image'|translate}}</label>
             <div class="row">
               <div class="col-6 col-md-5 image-show" *ngIf="selectedImage">
                 <div class="form-group attached-file">
@@ -96,8 +96,7 @@
           <!--submit button-->
           <div class="col-md-12">
             <div class="form-group">
-              <input type="submit" value="Submit" mat-raised-button class="btn btn-primary btn-md login_btn"
-                />
+              <input type="submit" value="{{'Seller_Tickets.Submit'|translate}}" mat-raised-button class="btn btn-primary btn-md login_btn"/>
               
              
             </div>

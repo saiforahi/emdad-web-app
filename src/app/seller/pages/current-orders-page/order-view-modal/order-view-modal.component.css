@@ -81,6 +81,7 @@ text-align: center;
   height: 48px;
   /* margin-top: 12px; */
   padding-top: 8px;
+  text-align: center;
 }
 select option{
   background: #fff !important;
@@ -97,8 +98,16 @@ select:hover,select:focus{
 
 .order-data {
     margin-bottom: 30px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
+.name,.media-body{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 
+}
 
 ::ng-deep .mat-dialog-container {
   padding: 30px 30px 0;
@@ -284,6 +293,13 @@ margin-top: 4px;
   text-align: center;
   justify-content: center;
 }
+select,option,label.deliverd{
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+.deliverd{
+  padding-top: 2px;
+}
 }
 @media all and (min-width:290px) and (max-width:992px){
   .show-text{
@@ -300,6 +316,10 @@ margin-top: 4px;
 .show-file{
   font-size: 12px;
   line-height: 28px;
+}
+select,option,label.deliverd{
+  font-size: 14px !important;
+  line-height: 20px !important;
 }
 
 }
@@ -333,6 +353,9 @@ margin-top: 4px;
     width: 40px;
     height: 40px;
     }
+    .deliverd{
+      padding-top: 2px;
+    }
  /*  .dropdown{
     max-width:180px !important
   } */
@@ -346,5 +369,7 @@ margin-top: 4px;
   font-size: 14px;
     line-height: 20px;
 }
-
+.deliverd{
+  padding-top: 12px;
+}
 } 

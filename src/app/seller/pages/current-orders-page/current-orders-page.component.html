@@ -63,7 +63,7 @@
                     <mat-chip *ngIf="element.status == 2" class="order-confirmed-chips">Confirmed</mat-chip> -->
                     <mat-chip *ngIf="decide_status(item) == 1" class="order-confirmed-chips">{{'Seller_Dashboard.Recieved'|translate}}</mat-chip>
                     <mat-chip *ngIf="decide_status(item) == 2" class="order-confirmed-chips">{{'Seller_Dashboard.Recieved'|translate}}</mat-chip>
-                    <mat-chip *ngIf="decide_status(item) == 3" class="order-processing-chips">{{'Seller_Orders.Proccessing'|translate}}</mat-chip>
+                    <mat-chip *ngIf="decide_status(item) == 3" class="order-processing-chips">{{'Seller_Dashboard.Processing'|translate}}</mat-chip>
                     <mat-chip *ngIf="decide_status(item) == 4" class="order-delivered-chips">{{'Seller_Dashboard.Delivered'|translate}}</mat-chip>
                     <!-- <mat-chip *ngIf="element.status == 5" class="order-completed-chips">Completed</mat-chip> -->
                 </mat-chip-list>
@@ -78,7 +78,7 @@
             <!--cards if no data-->
             <div class="col-md-12" *ngIf="orders" >
               <div class="no-data mt-2" *ngIf="orders == null || orders == undefined || orders?.length == 0">
-                {{'Buyer_Order_History.No_Data'}}
+                {{'Buyer_Order_History.No_Data'|translate}}
               </div>
             </div>
         <!--pagination-->
