@@ -33,9 +33,10 @@
                             </div>
                             <input (change)="calc_unit_price($event.target.value)" id="unit_price" class="form-control form-control-md" type="number"
                                 formControlName="unit_price" required />
-                            <p class="text-warning">{{commission}}% {{'Seller_RFQ.Commission'|translate}}</p>
+                           
 
                         </div>
+                        <p class="text-warning d-block">{{commission}}% {{'Seller_RFQ.Commission'|translate}}</p>
                         <!--ERROR CHECK-->
                         <div *ngIf="unit_price.invalid && (unit_price.dirty || unit_price.touched)" class="align-left">
                             <div *ngIf="unit_price.errors?.required">

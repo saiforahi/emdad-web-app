@@ -158,7 +158,8 @@
         "Delivery_Date":"Delivery Date",
         "Amount":"Amount",
         "Recieved":"Recieved",
-        "Delivered":"Delivered"
+        "Delivered":"Delivered",
+        "Processing": "Processing"
         
     },
     "Seller_Bank_Info":{
@@ -191,7 +192,9 @@
         "Unit_Price":"Unit Price",
         "Unit_of_measurement":"Unit of measurement",
         "DDP":"DDP",
-        "ExWorks":"Ex-Works"
+        "ExWorks":"Ex-Works",
+        "Days": "days"
+
     },
     "Seller_Bulk_Upload_Product":{
         "title":"Bulk Upload Product",
@@ -316,7 +319,19 @@
         "Title":"Raise A Support Ticket",
         "New_Ticket":"Open a new ticket",
         "Ticket_ID":"Ticket ID",
-        "Subject":"Subject"
+        "Subject":"Subject",
+        "Description":"Description",
+        "Tell_us":"Tell Us More",
+        "Order_no":"Order Number(Optional)"
+      
+    },
+    "Seller_Current_Orders": {
+        "Update_Status": "Update Status",
+        "Progress": "In Progress",
+        "Delivered": "Delivered",
+        "Completed": "Completed",
+        "Delivery_Attach_Message":"Please upload a proof of delivery",
+        "Delivery_Note":"Delivery Note"
     }
 }
 

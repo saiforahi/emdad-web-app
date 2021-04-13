@@ -5,30 +5,34 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="id-div"><span class="name mr-2">ticket id :</span> <span class="deets">#
+                <div class="id-div"><span class="name mr-2"># {{'Buyer_Support_Ticket.Ticket_ID'|translate}} :</span> <span class="deets">
                         {{details.issue_code}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">Date :</span> <span class="deet-light">{{details.issue_date | date :'mediumDate'}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Seller_Tickets.Date'|translate}} :</span> <span class="deet-light">{{details.issue_date | date :'mediumDate'}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">Subject :</span> <span class="deet-light">{{details.title}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Subject'|translate}} :</span> <span class="deet-light">{{details.title}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">Description :</span> <span class="deet-light">{{details.description}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Description'|translate}} :</span> <span class="deet-light">{{details.description}}</span></div>
             </div>
             <br><br>
-            <div class="col-md-12">
+            <div class="col-md-12" *ngIf="details.image != null">
                 <div> <a class="a-download" href="javascript:void(0);" (click)="download(details.image)"><img
                     src="../../../../../assets/file-up-yellow.png" class="mr-2"><span class="file-name">{{get_image_name(details.image)}}</span></a></div>
-            </div>
-            <br><br>
+            
+                    <br>   
+                 </div>
+            <br>
             <div class="col-md-12">
-                <div class="id-div"><span class="name mr-2">ticket id :</span> <span class="deets">
-                    {{status[details.status]}}</span></div>
+                <div class="id-div"><span class="name mr-2">{{'Seller_Dashboard.status'|translate}} :</span> 
+                    <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Running'|translate}}</span>
+                    <span *ngIf="details.status == 2" class="deets">{{'Buyer_Quotation_History.Completed'|translate}}</span>
+                </div>
             </div>
         </div>
     </div>

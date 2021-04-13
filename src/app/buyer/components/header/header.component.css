@@ -60,13 +60,16 @@ nav {
 .nav-link.active {
   color: #1f4f9e !important;
 }
+.dropdown{
+  z-index: 9999999 !important;
+}
 
-nav .dropdown-menu {
-  top: 88px;
+.dropdown-menu {
+  top: 80px;
   left: unset;
   right: 0;
   border: none;
-  border-radius: 0;
+ border-radius: 0;
   -webkit-box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
           box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
 }
@@ -217,7 +220,7 @@ app-search-for ::ng-deep button {
   -webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
-  z-index: 99;
+  z-index: 1000;
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
 }
@@ -351,6 +354,7 @@ button:focus {
   background: #e8e8e8;
 }
 
+
 .user-name-holder {
   margin: 0 42px;
 }
@@ -430,6 +434,10 @@ button:focus {
   font-family: Jost;
   box-shadow: 0 0 5px rgb(0 0 0 / 50%);
 }
+#en-btn{
+  position: relative;
+}
+
 
 @media only screen and (min-width: 1200px) {
   .container {

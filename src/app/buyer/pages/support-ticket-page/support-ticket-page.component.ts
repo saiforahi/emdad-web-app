@@ -27,7 +27,8 @@ export class SupportTicketPageComponent implements OnInit {
   toggleSort = true;
   //pagination stuff
   lowValue: number = 0;
-  highValue: number = 10;
+  highValue: number = 5;
+  filtered_data: any;
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
@@ -48,6 +49,7 @@ export class SupportTicketPageComponent implements OnInit {
     this.ticketService.getTickets(uid).subscribe((data) => {
       //console.log(data.data[0].image.split('/')[]);
       this.supportTicketData = data.data;
+      this.filtered_data=data.data;
       console.log("data",this.supportTicketData);
     });
   }
@@ -78,5 +80,14 @@ export class SupportTicketPageComponent implements OnInit {
   }
   formatDate(d: string): string {
     return new Date(d).toDateString();
+  }
+  filter_tickets(status:number){
+    this.supportTicketData=[];
+  this.filtered_data.forEach(element =>{
+    if(element.status == status){
+      this.supportTicketData.push(element);
+    }
+  })
+
   }
 }
