@@ -66,9 +66,10 @@ export class SellerOrderHistoryPageComponent implements OnInit {
       (success) => {
         console.log('orders', success.data);
         success.data.forEach((element) => {
-          this.orders.push({});
+          if(element.order.buyer_payment_status==1){
+            this.orders.push(element);
+          }
         });
-        this.orders = success.data;
         this.filtered_orders = this.orders;
       },
       (error) => {
