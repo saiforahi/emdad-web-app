@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.products)
     //this.view_style='grid'
     if(this.view_style!=='grid' && this.view_style!=='list'){
       this.view_style='grid'

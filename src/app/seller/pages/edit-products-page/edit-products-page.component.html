@@ -78,22 +78,20 @@
                 <div class="form-group">
                     <label for="manufactererName">Manufacturer Name</label>
                     <!-- manufactererName -->
-                    <select class="form-control form-control-lg" formControlName="manufactererName">
+                    <select class="form-control form-control-lg" formControlName="manufactererName" (change)="addNewBrand(manufactererName.value)">
                         <option value="" disabled selected>Manufacturer Name</option>
                         <option value="{{brand.id}}" [selected]="brandId == brand.id" *ngFor="let brand of brandList">
                             {{brand.name | titlecase}}</option>
+                            <option value="new">Others</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodStock">Product Stock</label>
-
-
                     <!-- prodStock -->
                     <input id="prodStock" class="form-control form-control-md" type="text"
                         formControlName="prodStock" />
-
                     <div *ngIf="prodStock.invalid && (prodStock.dirty || prodStock.touched)">
                         <div *ngIf="prodStock.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product stock name is required.'"></app-form-input-alert>
@@ -101,34 +99,38 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-12">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodSize">Size</label>
-
-
-                    <!-- prodSize -->
-                    <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize" />
-
-                    <!-- <div *ngIf="prodSize.invalid && (prodSize.dirty || prodSize.touched)">
-                        <div *ngIf="prodSize.errors?.required">
-                            <app-form-input-alert [alertMsg]="'Size is required.'"></app-form-input-alert>
-                        </div>
-                    </div> -->
+                    <label for="prodColor">{{'Seller_Upload_Product.prod_color'|translate}}</label>
+                    <!-- Color -->
+                    <select class="form-control form-control-lg" formControlName="prodColor" (change)="addNewColor(prodColor.value)">
+                        <option value="" disabled selected>{{'Seller_Upload_Product.prod_color'|translate}}</option>
+                        <option value="{{color.id}}" [selected]="colorId == color.id" *ngFor="let color of colorList">{{color.name | titlecase}}</option>
+                        <option value="new">Others</option>
+                    </select>
                 </div>
             </div>
+            <!-- <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label for="prodSize">Size</label> -->
+                    <!-- prodSize -->
+                    <!-- <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize" />
+                </div>
+            </div> -->
             <div class="col-md-6 col-lg-6 col-12">
                 <div class="form-group">
                     <label for="prodUnit">Unit of Measurement</label>
-                    <select class="form-control form-control-lg" formControlName="prodUnit">
+                    <select class="form-control form-control-lg" formControlName="prodUnit" (change)="addNewUnit(prodUnit.value)">
                         <option value="" disabled selected>Unit of Measurement</option>
                         <option value="{{unit.id}}" [selected]="unitId == unit.id" *ngFor="let unit of unitList">
                             {{unit.name | titlecase}}</option>
+                            <option value="new">Others</option>
                     </select>
-                    <div *ngIf="prodUnit.invalid && (prodUnit.dirty || prodUnit.touched)">
+                    <!-- <div *ngIf="prodUnit.invalid && (prodUnit.dirty || prodUnit.touched)">
                         <div *ngIf="prodUnit.errors?.required">
                             <app-form-input-alert [alertMsg]="'Product unit is required.'"></app-form-input-alert>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-md-6 col-12">

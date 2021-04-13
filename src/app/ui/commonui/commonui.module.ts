@@ -22,6 +22,9 @@ import { HtmltoPlainPipe } from 'src/app/shared/pipes/htmlto-plain.pipe';
 import { PushIntoArrayPipe } from 'src/app/shared/pipes/push-into-array.pipe';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AddBrandModalComponent } from 'src/app/seller/components/add-brand-modal/add-brand-modal.component';
+import { AddColorModalComponent } from 'src/app/seller/components/add-color-modal/add-color-modal.component';
+import { AddUnitModalComponent } from 'src/app/seller/components/add-unit-modal/add-unit-modal.component';
 
 const UI = [
   ProductListComponent,
@@ -37,8 +40,10 @@ const UI = [
   SellerBreadcrumbsComponent,
   RfqModalProductDescriptionComponent,
   HtmltoPlainPipe,
-  PushIntoArrayPipe
-
+  PushIntoArrayPipe,
+  AddBrandModalComponent,
+  AddColorModalComponent,
+  AddUnitModalComponent,
 ];
 
 @NgModule({
@@ -53,8 +58,13 @@ const UI = [
     NgbModule,
     NgxSpinnerModule,
     AutocompleteLibModule,
-    TranslateModule
+    TranslateModule,
   ],
-  exports: [UI,TranslateModule],
+  exports: [UI, TranslateModule],
+  entryComponents: [
+    AddBrandModalComponent,
+    AddColorModalComponent,
+    AddUnitModalComponent,
+  ],
 })
 export class CommonuiModule {}

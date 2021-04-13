@@ -28,8 +28,51 @@ export class AddProductService {
     return this.http.get(config.base_url + 'api/unit/list');
   }
 
+  addUnit(value){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      config.base_url + 'api/product/unit/add/',
+      {"name": value},
+      httpOptions
+    );
+  }
+
   getBrandList(): Observable<any> {
     return this.http.get(config.base_url + 'api/brand/list');
+  }
+
+  addBrand(value){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      config.base_url + 'api/product/brand/add/',
+      {"name": value},
+      httpOptions
+    );
+  }
+
+  getColorList(): Observable<any> {
+    return this.http.get(config.base_url + 'api/color/list');
+  }
+
+  addColor(value){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      config.base_url + 'api/product/color/add/',
+      {"name": value},
+      httpOptions
+    );
   }
 
   updateProduct(productData: any, id): Observable<any> {
