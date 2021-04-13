@@ -7,43 +7,43 @@
 
         <div class="order-data">
 
-            <p class="top-details">{{'Buyer_Order_History.Order_ID'|translate}}: <span class="prod">#{{data.order.order.order_code}}</span></p>
-            <p class="top-details">Order Date:<span class="prod"> {{data.order.order.order_datetime | date:'longDate'}}</span>
+            <p class="top-details">#{{'Buyer_Order_History.Order_ID'|translate}}: <span class="prod">{{data.order.order.order_code}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Order_Date'|translate}}:<span class="prod"> {{data.order.order.order_datetime | date:'longDate'}}</span>
             </p>
-            <p class="top-details">Total Price: <span class="prod">SAR {{data.order.order.total_amount}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Total_Price'|translate}}: <span class="prod">SAR {{data.order.order.total_amount}}</span></p>
         </div>
         <div class="card" *ngFor="let detail of details;let i=index">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-5 col-md-12 col-12 col-12 col-sm-12">
+                    <div class="col-lg-4 col-md-12 col-12 col-12 col-sm-12">
                         <div class="media">
                             <img [src]="img_base_url+detail.product.image1" alt="Generic placeholder image" class="img-fluid">
                             <div class="media-body">
                                 <p class="name">{{detail.product.name}}</p>
-                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span>({{detail.product.ddp_lead_time}}) days</p>
-                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span>({{detail.product.ex_works_lead_time}}) days</p>
+                                <p *ngIf="detail.product.delivery_method===1" class="method"><span>{{'Seller_Product_Categories.DDP'|translate}}</span>({{detail.product.ddp_lead_time}}){{'Seller_Product_Categories.Days'|translate}}</p>
+                                <p *ngIf="detail.product.delivery_method===2" class="method"><span>{{'Seller_Product_Categories.ExWorks'|translate}}</span>({{detail.product.ex_works_lead_time}}){{'Seller_Product_Categories.Days'|translate}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity desktop">
-                        Quantity: {{detail.quantity}}
+                        {{'Seller_RFQ.Quantity'|translate}}: {{detail.quantity}}
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-6 col-12 order-data">
                         <select [id]="detail.order.tracking_order[i].id+'status'" [(ngModel)]="detail.order.tracking_order[i].status" *ngIf="detail.order.tracking_order[i].status!==5" class="form-control dropdown" (change)="change_status($event.target.value,detail.product.id)">
-                            <option *ngIf="detail.order.tracking_order[i].status==1" value="1">Update Status</option>
-                            <option *ngIf="detail.order.tracking_order[i].status==2" value="2">Update Status</option>
-                            <option value="3">In Progress</option>
-                            <option value="4">Delivered</option>
-                            <option value="5">Completed</option>
+                            <option *ngIf="detail.order.tracking_order[i].status==1" value="1">{{'Seller_Current_Orders.Update_Status'|translate}}</option>
+                            <option *ngIf="detail.order.tracking_order[i].status==2" value="2">{{'Seller_Current_Orders.Update_Status'|translate}}</option>
+                            <option value="3">{{'Seller_Current_Orders.Progress'|translate}}</option>
+                            <option value="4">{{'Seller_Current_Orders.Delivered'|translate}}</option>
+                            <option value="5">{{'Seller_Current_Orders.Completed'|translate}}</option>
                         </select>
                         <!--show this if status is delivered-->
                         <!-- <label *ngIf="detail.order.tracking_order[i].status===4" class="deliverd" >Delivered</label> -->
-                        <label *ngIf="detail.order.tracking_order[i].status===5" class="deliverd" >Completed</label>
+                        <label *ngIf="detail.order.tracking_order[i].status===5" class="deliverd" >{{'Seller_Current_Orders.Completed'|translate}}</label>
                     </div>
-                    <div class="col-md-4 col-lg-2 col-sm-3 col-6 order-data quantity mobile">
-                        Quantity: {{detail.quantity}}
+                    <div class="col-md-4 col-lg-2 col-sm-3 col-5 order-data quantity mobile">
+                        {{'Seller_RFQ.Quantity'|translate}}: {{detail.quantity}}
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-3 col-6 order-data value">
+                    <div class="col-lg-3 col-md-4 col-sm-3 col-7 order-data value">
                         SAR{{get_price(detail.unit_price,detail.quantity,detail.commission,detail.vat_amount)}}
                     </div>
                 </div>
@@ -51,8 +51,8 @@
             <div *ngIf="detail" class="card-body" style="display: none;" id="{{detail.product.id+'card'}}">
                 <div class="row">
                     <div class="col-lg-5 col-md-12 col-12 show-text">
-                        <p class="del-proof">Please upload a proof of delivery</p>
-                        <p class="file-ex del-proof"> "Delivery Note"</p>
+                        <p class="del-proof">{{'Seller_Current_Orders.Delivery_Attach_Message'|translate}}</p>
+                        <p class="file-ex del-proof"> "{{'Seller_Current_Orders.Delivery_Note'|translate}}"</p>
                     </div>
                     <div class="col-lg-7 col-md-12 col-12 ">
                         <form>

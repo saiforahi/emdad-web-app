@@ -157,7 +157,8 @@
     "Delivery_Date": "تاريخ التسليم او الوصول",
     "Amount": "كمية",
     "Recieved": "تم الاستلام",
-    "Delivered": "تم التوصيل"
+    "Delivered": "تم التوصيل",
+    "Processing": "معالجة"
   },
   "Seller_Bank_Info": {
     "title": "معلومات الحساب المصرفي",
@@ -189,7 +190,8 @@
     "Unit_Price": "سعر الوحدة",
     "Unit_of_measurement": "وحدة القياس",
     "DDP": "DDP",
-    "ExWorks": "الأعمال السابقة"
+    "ExWorks": "الأعمال السابقة",
+    "Days": "أيام"
   },
   "Seller_Bulk_Upload_Product": {
     "title": "منتج التحميل المجمع",
@@ -314,5 +316,13 @@
     "New_Ticket": "فتح تذكرة جديدة",
     "Ticket_ID": "معرف التذكرة",
     "Subject": "الموضوع"
-  }
+  },
+  "Seller_Current_Orders": {
+    "Update_Status": "تحديث الحالة",
+  "Progress": "قيد التقدم",
+  "Delivered": "تم التسليم",
+  "Completed": "مكتمل",
+  "Delivery_Attach_Message": "الرجاء تحميل إثبات التسليم",
+  "Delivery_Note": "إشعار التسليم"
+}
 }
