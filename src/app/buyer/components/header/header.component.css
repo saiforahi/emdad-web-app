@@ -116,15 +116,16 @@ nav .all-products-list .dropdown-item:focus,
 }
 
 .user-img-holder img {
-  position: absolute;
-  width: inherit;
-  height: auto;
+  /* position: absolute; */
+  width: 60px;
+  height: 60px;
   background: #eee;
-  top: 50%;
+  object-fit: cover;
+  /* top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); */
 }
 
 /* hide default bootstrap down carrot */

@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +20,6 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  
   loggedInUser = false;
   userName;
   uId;
@@ -28,11 +34,11 @@ export class HeaderComponent implements OnInit {
   activeRoute: any;
   loggedInUserImg: string = '';
   cartLength: any;
-  loggedInUserFullName:string ='';
+  loggedInUserFullName: string = '';
   userInfo: any;
-  currentLang:string
-  notification_messages:Array<any>=[]
-  unread_notification_length:number
+  currentLang: string;
+  notification_messages: Array<any> = [];
+  unread_notification_length: number;
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
@@ -41,7 +47,7 @@ export class HeaderComponent implements OnInit {
     private cart: CartServiceService,
     private myElement: ElementRef,
     public translate: TranslateService,
-    public notificationService:NotificationService
+    public notificationService: NotificationService
   ) {
     //translate.addLangs(['en', 'ar']);
     if (localStorage.getItem('locale')) {
@@ -50,14 +56,14 @@ export class HeaderComponent implements OnInit {
     } else {
       localStorage.setItem('locale', 'en');
       translate.setDefaultLang('en');
-      translate.use('en')
+      translate.use('en');
     }
     router.events.subscribe((val: any) => {
       if (val.url) {
         this.activeRoute = val.url.split('/');
-        if(this.activeRoute[1] == 'home'){
+        if (this.activeRoute[1] == 'home') {
           this.showOnScroll = false;
-        }else {
+        } else {
           this.showOnScroll = true;
         }
       }
@@ -65,19 +71,19 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.translate.currentLang)
-    this.currentLang=localStorage.getItem('locale')
+    console.log(this.translate.currentLang);
+    this.currentLang = localStorage.getItem('locale');
     this.activeRoute = this.router.url.split('/');
-    this.notificationService.getAllNotificationsForBuyer()
-    this.notificationService.messages.subscribe((data:any)=>{
-      this.notification_messages=data
-    })
-    this.notificationService.unread.subscribe((data:any)=>{
-      this.unread_notification_length=data
-    })
-    if(this.activeRoute[1] == 'home'){
+    this.notificationService.getAllNotificationsForBuyer();
+    this.notificationService.messages.subscribe((data: any) => {
+      this.notification_messages = data;
+    });
+    this.notificationService.unread.subscribe((data: any) => {
+      this.unread_notification_length = data;
+    });
+    if (this.activeRoute[1] == 'home') {
       this.showOnScroll = false;
-    }else {
+    } else {
       this.showOnScroll = true;
     }
     window.scrollTo({
@@ -101,16 +107,14 @@ export class HeaderComponent implements OnInit {
     this.UserAuthService.uId.subscribe((data) => {
       if (data != null) {
         this.uId = data;
+        this.UserAuthService.getUser(data).subscribe((data) => {
+          this.userInfo = data.data;
+          console.log('info', this.userInfo);
+          this.loggedInUserFullName = this.userInfo.full_name;
+          console.log('loggedInUserFullName', this.loggedInUserFullName);
+        });
       }
     });
-    if(this.uId == localStorage.getItem('uid')){
-      this.UserAuthService.getUser(this.uId).subscribe((data) =>{
-        this.userInfo = data.data;
-        console.log('info',this.userInfo);
-        this.loggedInUserFullName = this.userInfo.full_name;
-        console.log("loggedInUserFullName",this.loggedInUserFullName);
-      });
-    }
     // this.UserAuthService.uGroup.subscribe((data) => {
     //   if (data != null) {
     //     this.uGroup = data;
@@ -138,7 +142,7 @@ export class HeaderComponent implements OnInit {
       // console.log(item);
     });
   }
- 
+
   openSnackBar(message, action) {
     this.snackBar.open(message, action, {
       duration: 5000,
@@ -150,7 +154,7 @@ export class HeaderComponent implements OnInit {
     this.loggedInUserImg = '';
     this.openSnackBar('You have been logged out.', 'ok');
   }
- 
+
   show_lang_drop() {
     if (document.getElementById('lang-drop-down').classList.contains('show')) {
       document.getElementById('lang-drop-down').classList.remove('show');
@@ -201,8 +205,10 @@ export class HeaderComponent implements OnInit {
   closeMenu() {
     this.showSideMenu = false;
   }
-  gotoView(){
-    this.myElement.nativeElement.ownerDocument.getElementById('footer').scrollIntoView({behavior: 'smooth'});
+  gotoView() {
+    this.myElement.nativeElement.ownerDocument
+      .getElementById('footer')
+      .scrollIntoView({ behavior: 'smooth' });
   }
 
   @HostListener('window:scroll')
@@ -228,7 +234,7 @@ export class HeaderComponent implements OnInit {
   changeLang(language: string) {
     localStorage.setItem('locale', language);
     this.translate.use(language);
-    console.log(this.translate.currentLang)
-    this.currentLang=language
+    console.log(this.translate.currentLang);
+    this.currentLang = language;
   }
 }

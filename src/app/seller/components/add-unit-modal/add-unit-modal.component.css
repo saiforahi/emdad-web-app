@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+label {
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+}
+
+.form-control {
+  background: #efefef;
+  border-radius: 5px;
+  border: none;
+  height: 80px;
+  font-size: 20px;
+  line-height: 29px;
+}
+
+.submit_btn {
+  background: #1f4f9e;
+  border-radius: 5px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 24px;
+  width: 300px;
+  font-family: Jost;
+  color: #fff;
+}
+
+.cancel {
+  background: #ff4b55;
+  border-radius: 5px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 24px;
+  width: 300px;
+  font-family: Jost;
+  color: #fff;
+}
+
+.mat-dialog-actions {
+  margin-bottom: 0;
+}
+
+.mat-button.mat-button-disabled.mat-button-disabled {
+    color: #888;
+    background: #ccc;
+}
+
+@media only screen and (min-width: 290px) and (max-width: 575px) {
+  label,
+  .form-check-label,
+  .join-text,
+  input,
+  textarea,
+  .attached-file {
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .submit_btn,
+  .cancel {
+    height: 50px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 180px;
+  }
+  .form-control {
+    height: 60px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+}
+
+@media all and (min-width: 575px) and (max-width: 768px) {
+  label,
+  .form-check-label,
+  .join-text,
+  input,
+  textarea,
+  .attached-file {
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .submit_btn,
+  .cancel {
+    height: 50px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 220px;
+  }
+  .form-control {
+    height: 60px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  label,
+  .form-check-label,
+  .join-text,
+  input,
+  textarea,
+  .attached-file {
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .submit_btn,
+  .cancel {
+    height: 60px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 220px;
+  }
+  .form-control {
+    height: 60px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .submit_btn,
+  .cancel {
+    height: 60px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 220px;
+  }
+}

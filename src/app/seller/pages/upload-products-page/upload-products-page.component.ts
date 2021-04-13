@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
@@ -13,6 +14,9 @@ import { GetCategoryService } from 'src/app/shared/services/get-category.service
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
+import { AddBrandModalComponent } from '../../components/add-brand-modal/add-brand-modal.component';
+import { AddColorModalComponent } from '../../components/add-color-modal/add-color-modal.component';
+import { AddUnitModalComponent } from '../../components/add-unit-modal/add-unit-modal.component';
 
 @Component({
   selector: 'app-upload-products-page',
@@ -33,7 +37,7 @@ export class UploadProductsPageComponent implements OnInit {
   prodDetails: AbstractControl;
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
-  prodSize: AbstractControl;
+  prodColor: AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -62,6 +66,7 @@ export class UploadProductsPageComponent implements OnInit {
   brandList: any;
   imgPreviewList = [];
   selectedFiles: any = [];
+  colorList: any;
 
   constructor(
     private router: Router,
@@ -72,7 +77,8 @@ export class UploadProductsPageComponent implements OnInit {
     private categoryServices: GetCategoryService,
     private addProductService: AddProductService,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,
+    public dialog: MatDialog,
   ) {
     
     this.authService.s_uId.subscribe((s_uid) => {
@@ -120,16 +126,20 @@ export class UploadProductsPageComponent implements OnInit {
       this.brandList = item.data[0];
       console.log(item.data[0]);
     });
+    this.addProductService.getColorList().subscribe((item) => {
+      this.colorList = item.data[0];
+      console.log(item.data[0]);
+    });
     this.productUploadForm = this.fb.group({
       category: ['', [Validators.required]],
       subCategory: ['', [Validators.required]],
       childCategory: ['', [Validators.required]],
       prodName: ['', [Validators.required]],
       prodDetails: [''],
-      manufactererName: ['', [Validators.required]],
-      prodSize: [''],
+      manufactererName: [''],
+      prodColor: [''],
       prodStock: ['', [Validators.required]],
-      prodUnit: ['', [Validators.required]],
+      prodUnit: [''],
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
       ddp: [''],
@@ -145,7 +155,7 @@ export class UploadProductsPageComponent implements OnInit {
     this.prodDetails = this.productUploadForm.controls['prodDetails'];
     this.manufactererName = this.productUploadForm.controls['manufactererName'];
     this.prodStock = this.productUploadForm.controls['prodStock'];
-    this.prodSize = this.productUploadForm.controls['prodSize'];
+    this.prodColor = this.productUploadForm.controls['prodColor'];
     this.prodUnit = this.productUploadForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
@@ -197,6 +207,81 @@ export class UploadProductsPageComponent implements OnInit {
     ).children;
   }
 
+  addNewBrand(value){
+    if(value == 'new'){
+      this.openAddBrandDialog();
+    }
+  }
+
+  openAddBrandDialog() {
+    const dialogRef = this.dialog.open(AddBrandModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addBrand(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getBrandList().subscribe((item) => {
+            this.brandList = item.data[0];
+            console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
+  addNewColor(value){
+    if(value == 'new'){
+      this.openAddColorDialog();
+    }
+  }
+
+  openAddColorDialog() {
+    const dialogRef = this.dialog.open(AddColorModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addColor(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getColorList().subscribe((item) => {
+            this.colorList = item.data[0];
+            console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
+  addNewUnit(value){
+    if(value == 'new'){
+      this.openAddUnitDialog();
+    }
+  }
+
+  openAddUnitDialog() {
+    const dialogRef = this.dialog.open(AddUnitModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.spinner.show();
+        // console.log(`Dialog result: ${result}`);
+        this.addProductService.addUnit(result).subscribe((item: any) => {
+          // console.log(item);
+          this.addProductService.getUnitOfProduct().subscribe((item) => {
+            this.unitList = item.data[0];
+            // console.log(item.data[0]);
+          });
+          this.spinner.hide();
+          swal('Succeed', item.message, 'success');
+        })
+      }
+    });
+  }
+
   onSubmit(value) {
     this.spinner.show();
     this.productUploadFormData.append('category', value.childCategory);
@@ -214,6 +299,7 @@ export class UploadProductsPageComponent implements OnInit {
     }
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
+    this.productUploadFormData.append('color', value.prodColor);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
     this.productUploadFormData.append('name', value.prodName);
     this.productUploadFormData.append(
