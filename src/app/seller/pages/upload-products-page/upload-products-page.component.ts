@@ -26,11 +26,11 @@ import { AddUnitModalComponent } from '../../components/add-unit-modal/add-unit-
 export class UploadProductsPageComponent implements OnInit {
   error: any;
   msg;
-  selectedOption:any;
+  selectedOption: any;
   group: string;
   productUploadForm: FormGroup;
   category: AbstractControl;
-  shopPick:AbstractControl;
+  shopPick: AbstractControl;
   subCategory: AbstractControl;
   childCategory: AbstractControl;
   prodName: AbstractControl;
@@ -67,6 +67,9 @@ export class UploadProductsPageComponent implements OnInit {
   imgPreviewList = [];
   selectedFiles: any = [];
   colorList: any;
+  currentAddedBrand: any;
+  currentAddedColor: any;
+  currentAddedUnit: any;
 
   constructor(
     private router: Router,
@@ -78,9 +81,8 @@ export class UploadProductsPageComponent implements OnInit {
     private addProductService: AddProductService,
     private authService: UserAuthService,
     private subscription: SubscriptionService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {
-    
     this.authService.s_uId.subscribe((s_uid) => {
       console.log(s_uid);
       if (s_uid != null) {
@@ -143,7 +145,7 @@ export class UploadProductsPageComponent implements OnInit {
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
       ddp: [''],
-      shopPick:[''],
+      shopPick: [''],
       prodPrice: ['', [Validators.required]],
       prodImage: [''],
       attachments: [''],
@@ -160,7 +162,7 @@ export class UploadProductsPageComponent implements OnInit {
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
     this.ddp = this.productUploadForm.controls['ddp'];
-    this.shopPick= this.productUploadForm.controls['shopPick'];
+    this.shopPick = this.productUploadForm.controls['shopPick'];
     this.prodPrice = this.productUploadForm.controls['prodPrice'];
     this.prodImage = this.productUploadForm.controls['prodImage'];
     this.attachments = this.productUploadForm.controls['attachments'];
@@ -207,77 +209,101 @@ export class UploadProductsPageComponent implements OnInit {
     ).children;
   }
 
-  addNewBrand(value){
-    if(value == 'new'){
+  addNewBrand(value) {
+    if (value == 'new') {
       this.openAddBrandDialog();
     }
   }
 
   openAddBrandDialog() {
     const dialogRef = this.dialog.open(AddBrandModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addBrand(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getBrandList().subscribe((item) => {
-            this.brandList = item.data[0];
-            console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addBrand(result).subscribe(
+          (success: any) => {
+            this.currentAddedBrand = success.data[0].id;
+            this.addProductService.getBrandList().subscribe((item) => {
+              this.brandList = item.data[0];
+              console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.manufactererName.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
 
-  addNewColor(value){
-    if(value == 'new'){
+  addNewColor(value) {
+    if (value == 'new') {
       this.openAddColorDialog();
     }
   }
 
   openAddColorDialog() {
     const dialogRef = this.dialog.open(AddColorModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addColor(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getColorList().subscribe((item) => {
-            this.colorList = item.data[0];
-            console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addColor(result).subscribe(
+          (success: any) => {
+            this.currentAddedColor = success.data[0].id;
+            this.addProductService.getColorList().subscribe((item) => {
+              this.colorList = item.data[0];
+              console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.prodColor.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
 
-  addNewUnit(value){
-    if(value == 'new'){
+  addNewUnit(value) {
+    if (value == 'new') {
       this.openAddUnitDialog();
     }
   }
 
   openAddUnitDialog() {
     const dialogRef = this.dialog.open(AddUnitModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addUnit(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getUnitOfProduct().subscribe((item) => {
-            this.unitList = item.data[0];
-            // console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addUnit(result).subscribe(
+          (success: any) => {
+            this.currentAddedUnit = success.data[0].id;
+            this.addProductService.getUnitOfProduct().subscribe((item) => {
+              this.unitList = item.data[0];
+              // console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.prodUnit.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
@@ -293,9 +319,12 @@ export class UploadProductsPageComponent implements OnInit {
         this.selectedFiles[i].name
       );
     }
-    if(value.ddp = 2) {
-      this.productUploadFormData.append('pickup_address[0]city', "1");
-      this.productUploadFormData.append('pickup_address[0]address', value.shopPick);
+    if ((value.ddp = 2)) {
+      this.productUploadFormData.append('pickup_address[0]city', '1');
+      this.productUploadFormData.append(
+        'pickup_address[0]address',
+        value.shopPick
+      );
     }
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
@@ -319,15 +348,29 @@ export class UploadProductsPageComponent implements OnInit {
     this.productUploadFormData.append('stock_quantity', value.prodStock);
     this.productUploadFormData.append('status', '1');
     if (this.selectedImage.length > 0)
-      this.productUploadFormData.append('image1', this.selectedImage[0], this.selectedImage[0].name);
+      this.productUploadFormData.append(
+        'image1',
+        this.selectedImage[0],
+        this.selectedImage[0].name
+      );
     if (this.selectedImage.length > 1)
-      this.productUploadFormData.append('image2', this.selectedImage[1], this.selectedImage[1].name);
+      this.productUploadFormData.append(
+        'image2',
+        this.selectedImage[1],
+        this.selectedImage[1].name
+      );
     this.addProductService.addProduct(this.productUploadFormData).subscribe(
       (success) => {
         console.log(success);
         this.spinner.hide();
         swal('Succeed', success.message, 'success');
         this.productUploadForm.reset();
+        this.manufactererName.reset('');
+        this.prodColor.reset('');
+        this.prodUnit.reset('');
+        this.imgPreviewList = [];
+        this.selectedImage = [];
+        this.selectedFiles = [];
       },
       (error: any) => {
         console.log(error);

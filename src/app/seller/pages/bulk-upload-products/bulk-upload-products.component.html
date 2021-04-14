@@ -41,7 +41,7 @@
                   <!-- level three -->
                   <div *ngFor="let child of subcategory.children" style="padding: 5px 0">
                     <!-- [routerLink]="['/products/category/', child.id]" -->
-                    <a style="font-size: 18px" (click)="selectedCat(child.id);">
+                    <a style="font-size: 18px" (click)="selectedCat(child.id, cat.name, subcategory.name, child.name);">
                       {{ child.name | titlecase }}
                     </a>
                   </div>
@@ -75,7 +75,7 @@
       </section>
       <!--breadcrumbs-->
       <section>
-        <app-seller-breadcrumbs [directoryString]="'Products'"></app-seller-breadcrumbs>
+        <app-seller-breadcrumbs [directoryString]="'Products / ' + urlString"></app-seller-breadcrumbs>
       </section>
       <!--state show-->
       <section class="state-holder mt-3">

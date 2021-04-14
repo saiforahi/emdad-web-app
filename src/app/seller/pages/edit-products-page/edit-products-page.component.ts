@@ -304,69 +304,93 @@ export class EditProductsPageComponent implements OnInit {
 
   openAddBrandDialog() {
     const dialogRef = this.dialog.open(AddBrandModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addBrand(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getBrandList().subscribe((item) => {
-            this.brandList = item.data[0];
-            console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addBrand(result).subscribe(
+          (success: any) => {
+            this.brandId = success.data[0].id;
+            this.addProductService.getBrandList().subscribe((item) => {
+              this.brandList = item.data[0];
+              console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.manufactererName.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
 
-  addNewColor(value){
-    if(value == 'new'){
+  addNewColor(value) {
+    if (value == 'new') {
       this.openAddColorDialog();
     }
   }
 
   openAddColorDialog() {
     const dialogRef = this.dialog.open(AddColorModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addColor(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getColorList().subscribe((item) => {
-            this.colorList = item.data[0];
-            console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addColor(result).subscribe(
+          (success: any) => {
+            this.colorId = success.data[0].id;
+            this.addProductService.getColorList().subscribe((item) => {
+              this.colorList = item.data[0];
+              console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.prodColor.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
 
-  addNewUnit(value){
-    if(value == 'new'){
+  addNewUnit(value) {
+    if (value == 'new') {
       this.openAddUnitDialog();
     }
   }
 
   openAddUnitDialog() {
     const dialogRef = this.dialog.open(AddUnitModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
-        this.addProductService.addUnit(result).subscribe((item: any) => {
-          // console.log(item);
-          this.addProductService.getUnitOfProduct().subscribe((item) => {
-            this.unitList = item.data[0];
-            // console.log(item.data[0]);
-          });
-          this.spinner.hide();
-          swal('Succeed', item.message, 'success');
-        })
+        this.addProductService.addUnit(result).subscribe(
+          (success: any) => {
+            this.unitId = success.data[0].id;
+            this.addProductService.getUnitOfProduct().subscribe((item) => {
+              this.unitList = item.data[0];
+              // console.log(item.data[0]);
+            });
+            this.spinner.hide();
+            swal('Succeed', success.message, 'success');
+          },
+          (error: any) => {
+            console.log(error);
+            this.prodUnit.reset('');
+            this.spinner.hide();
+            swal('Failed!', error.error.name[0], 'error');
+          }
+        );
       }
     });
   }
