@@ -32,7 +32,8 @@ export class LoginPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private notificationService:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class LoginPageComponent implements OnInit {
     this.password = this.sellerLoginForm.controls['password'];
   }
 
-  onSubmit(value) {
+  onSubmit(value:any) {
     this.spinner.show();
     // console.log(value);
     this.authService.login(value.email, value.password, 'seller').subscribe(
@@ -55,6 +56,7 @@ export class LoginPageComponent implements OnInit {
         console.log(success);
         this.spinner.hide();
         if (success.success == 'True') {
+          this.notificationService.getAllNotificationsForSeller()
           swal('Succeed', success.message, 'success');
           this.router.navigate(['dashboard']);
         } else {
