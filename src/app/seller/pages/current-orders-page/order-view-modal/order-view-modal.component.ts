@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import swal from 'sweetalert';
 import { FileService } from 'src/app/shared/services/file.service';
+import { AddressService } from 'src/app/shared/services/address.service';
 @Component({
   selector: 'app-order-view-modal',
   templateUrl: './order-view-modal.component.html',
@@ -22,7 +23,7 @@ export class OrderViewModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, 
     private orderService:OrderService, private spinner:NgxSpinnerService, private fileService:FileService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,private addressService:AddressService) { }
 
   ngOnInit(): void {
     console.log('dialog data',this.data)
@@ -38,6 +39,16 @@ export class OrderViewModalComponent implements OnInit {
           if(Number(element.status)<3){
             //element.status="-1"
           }
+        });
+        this.details.forEach((element:any) => {
+          this.addressService.get_pickup_address_details(element.pickup_address).subscribe(
+            (success)=>{
+              console.log(success.data[0])
+              if(success.data.length>0){
+                element.pickup_address=success.data[0]
+              } 
+            }
+          )
         });
       },
       (error)=>{}

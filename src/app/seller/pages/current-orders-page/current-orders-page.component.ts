@@ -67,7 +67,7 @@ export class CurrentOrdersPageComponent implements OnInit {
         console.log('response', success.data);
         let temp: Array<any> = [];
         success.data.forEach((element: any) => {
-          if (this.decide_status(element) != 5) {
+          if (this.decide_status(element) != 5 && element.order.buyer_payment_status == 1) {
             temp.push(element);
           }
         });

@@ -13,6 +13,12 @@ export class AddressService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };
+  sellerHttpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('s_token'),
+    }),
+  };
   statusUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
   constructor(private http: HttpClient) {}
   putOrder(finalCart): Observable<any>{
@@ -65,5 +71,9 @@ export class AddressService {
   }
   get_addresses():Observable<any>{
     return this.http.get(config.base_url+'api/address/book/list/'+localStorage.getItem('uid')+'/',this.httpOptions)
+  }
+
+  get_pickup_address_details(id:any):Observable<any>{
+    return this.http.get(config.base_url+'api/pickup/'+id+'/',this.sellerHttpOptions)
   }
 }
