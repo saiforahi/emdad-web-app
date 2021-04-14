@@ -51,7 +51,9 @@ export class OrderViewModalComponent implements OnInit {
           )
         });
       },
-      (error)=>{}
+      (error)=>{
+        console.log(error)
+      }
     )
   }
   upload(event){
@@ -86,8 +88,8 @@ export class OrderViewModalComponent implements OnInit {
       console.log(this.challan.get('Delivery_challan'))
       this.orderService.upload_delivery_challan(this.details[0].order.tracking_order[index].id,this.challan).subscribe( //uploading challan
         (success1) => {       
-          console.log('challan upload status',success1.data)                                             //if success then call update track status API
-          if(success1.data.success==='True'){
+          console.log('challan upload status',success1)                                             //if success then call update track status API
+          if(success1.success==='True'){
             this.orderService.update_tracking_status({                      //passing data with http call
               "order": this.details[0].order.id,
               "product":prod_id,
@@ -114,6 +116,10 @@ export class OrderViewModalComponent implements OnInit {
     }
   }
 
+  cancel_upload(prod_id:any){
+    document.getElementById(prod_id+'card').style.display='none'
+    this.initialize()
+  }
   change_status(value,prod_id){
     if(value=="3"){
       this.spinner.show()

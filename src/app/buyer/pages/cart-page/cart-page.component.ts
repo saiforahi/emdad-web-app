@@ -352,16 +352,44 @@ export class CartPageComponent implements OnInit {
       else{
         commission= parseFloat(product.unit_price) * (parseFloat(localStorage.getItem('commission'))/100)
       }
-      orders_details.push({
-        quantity:product.cart_qty,
-        unit_price:product.unit_price,
-        seller:product.seller.id,
-        pickup_address:product.pickup_address[0]?.id,
-        //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
-        vat_amount:product.vat_amount,
-        commission:commission.toFixed(2),
-        product:product.id
-      })
+      if(product.delivery_method ===1){
+        orders_details.push({
+          quantity:product.cart_qty,
+          unit_price:product.unit_price,
+          seller:product.seller.id,
+          pickup_address:product.pickup_address[0]?.id,
+          shipping_address:'',
+          //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
+          vat_amount:product.vat_amount,
+          commission:commission.toFixed(2),
+          product:product.id
+        })
+      }
+      else{
+        orders_details.push({
+          quantity:product.cart_qty,
+          unit_price:product.unit_price,
+          seller:product.seller.id,
+          pickup_address:product.pickup_address[0]?.id,
+          shipping_address:'',
+          //shipping_address:'',
+          //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
+          vat_amount:product.vat_amount,
+          commission:commission.toFixed(2),
+          product:product.id
+        })
+      }
+      // orders_details.push({
+      //   quantity:product.cart_qty,
+      //   unit_price:product.unit_price,
+      //   seller:product.seller.id,
+      //   pickup_address:product.pickup_address[0]?.id,
+      //   shipping_address:'',
+      //   //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
+      //   vat_amount:product.vat_amount,
+      //   commission:commission.toFixed(2),
+      //   product:product.id
+      // })
     });
     var cart_cash = {
       subtotal: this.subTotal,

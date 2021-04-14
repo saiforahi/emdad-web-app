@@ -23,6 +23,7 @@
                                 <p *ngIf="detail.product.delivery_method===1" class="method"><span>DDP</span>({{detail.product.ddp_lead_time}}) days</p>
                                 <p *ngIf="detail.product.delivery_method===2" class="method"><span>EX-Works</span>({{detail.product.ex_works_lead_time}}) days</p>
                                 <p *ngIf="detail.product.delivery_method==2" class="method"><span>{{detail.pickup_address.address}}</span></p>
+                                <p *ngIf="detail.product.delivery_method==1" class="method"><span>{{detail.shipping_address.address}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +72,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex btn-view">
                                     <button mat-mini-fab type="button" (click)="upload_challan(detail.product.id,i)" class="okay"><mat-icon class="accept-icon">done</mat-icon></button>
-                                    <button mat-mini-fab class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
+                                    <button mat-mini-fab type="button" (click)="cancel_upload(detail.product.id)" class="deny"><mat-icon class="deny-icon">close</mat-icon></button>
                                 </div>
                             </div>
                         </form>

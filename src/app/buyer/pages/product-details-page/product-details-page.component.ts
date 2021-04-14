@@ -289,7 +289,7 @@ export class ProductDetailsPageComponent implements OnInit {
       total = unit_price + parseFloat(price)
       //console.log('else total',total)
     }
-    console.log(total.toFixed(2))
+    //console.log(total.toFixed(2))
     return total.toFixed(2)
   }
 }

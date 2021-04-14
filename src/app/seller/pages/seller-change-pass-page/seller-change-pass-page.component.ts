@@ -67,8 +67,8 @@ export class SellerChangePassPageComponent implements OnInit {
   ngOnInit(): void {
     this.changePassForm = this.fb.group({
       crntPassword: ['', [Validators.required]],
-      newPassword: ['', [Validators.required]],
-      confPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required,Validators.minLength(8)]],
+      confPassword: ['', [Validators.required,Validators.minLength(8)]],
     });
     this.crntPassword = this.changePassForm.controls['crntPassword'];
     this.newPassword = this.changePassForm.controls['newPassword'];
@@ -77,19 +77,31 @@ export class SellerChangePassPageComponent implements OnInit {
 
   onSubmit(value) {
     // console.log(value);
-    this.spinner.show();
-    this.authService.sellerChangePassword(value.crntPassword, value.newPassword).subscribe(
-      (success) => {
-        // console.log(success);
-        this.spinner.hide();
-        swal('Succeed', 'You have changed password successfully', 'success');
-      },
-      (error: any) => {
-        console.log(error);
-        swal('Failed!', this.error, 'error');
-      }
-    );
-    this.changePassForm.reset();
+    if(value.crntPassword!=value.newPassword){
+      this.spinner.show();
+      this.authService.sellerChangePassword(value.crntPassword, value.newPassword).subscribe(
+        (success) => {
+          // console.log(success);
+          this.spinner.hide();
+          swal('Succeed', 'You have changed password successfully', 'success');
+        },
+        (error: any) => {
+          console.log(error);
+          this.spinner.hide()
+          if(error.error.old_password[0]){
+            swal('Failed!', error.error.old_password[0], 'error');
+          }
+          else{
+            swal('Failed!', 'Internal Server Error', 'error');
+          }
+        }
+      );
+      this.changePassForm.reset();
+    }
+    else{
+      swal('Hold On!','Your new password is same to your old password','warning')
+    }
+    
   }
 
   matchBothPassord(pass1, pass2){
