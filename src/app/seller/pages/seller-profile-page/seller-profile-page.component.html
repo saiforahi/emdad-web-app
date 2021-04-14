@@ -242,7 +242,7 @@
             <ul class="attached-file">
               <li *ngFor="let file of selectedImage; let i = index;">
                 {{file.name}}
-                <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
+                <button mat-raised-button (click)="removeFile(i);" class="close-button"><img src="../../../../assets/close.svg"
                     style="margin-bottom: 14px;"></button>
               </li>
             </ul>

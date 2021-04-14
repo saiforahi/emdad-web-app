@@ -146,7 +146,11 @@ border: 3px dashed #ccc;
   cursor: pointer;
   margin-right: 10px;
 }
-
+.attached-file{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
 .attached-file button {
  
   width: 24px;

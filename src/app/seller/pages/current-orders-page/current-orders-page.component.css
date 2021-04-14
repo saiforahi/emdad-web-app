@@ -212,7 +212,7 @@ margin-top: 14px;
   .card{
     padding: 8px;
   }
-  .page-heading-holder>.sort-btn>.mat-stroked-button{
+/*   .page-heading-holder>.sort-btn>.mat-stroked-button{
     width:auto;
   height: 45px;
   border: 2px solid #1F4F9E;
@@ -224,6 +224,23 @@ margin-top: 14px;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+  } */
+  .page-heading-holder>.sort-btn>.mat-stroked-button{
+    display: none;
+  }
+  .mobile-name>.mat-stroked-button{
+    width:auto;
+  height: 45px;
+  border: 2px solid #1F4F9E;
+  color: #1F4F9E;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  display: block !important;
   }
  
 }

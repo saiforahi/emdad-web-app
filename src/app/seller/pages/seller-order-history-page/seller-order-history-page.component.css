@@ -269,7 +269,7 @@ vertical-align: center !important;
   
   }
  .mobile-button > span > .filter-btn{
-    width: 145px !important;
+    width:auto;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;

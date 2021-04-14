@@ -11,6 +11,12 @@
       <!--dropdown-->
       <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
         <div ngbDropdownItem (click)="filter_tickets(0);">
+          <span class="lan-title">{{'Seller_Tickets.Initiative'|translate}}</span>
+        </div>
+        <div style="padding: 0 15px">
+          <mat-divider></mat-divider>
+        </div>
+        <div ngbDropdownItem (click)="filter_tickets(1);">
           <span class="lan-title">{{'Seller_Tickets.Running'|translate}}</span>
         </div>
         <div style="padding: 0 15px">
@@ -24,15 +30,22 @@
     </div>
   </div>
   <div class="mobile-button">
-    <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">New Ticket</button>
+    <button mat-raised-button class="ticket-btn" [autofocus]="false" (click)="openTicket();">{{'Seller_Tickets.New_Ticket'|translate}}</button>
     <span ngbDropdown>
-      <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>Filter by Status <mat-icon>expand_more
+      <button mat-stroked-button class="filter-btn" id="filter" ngbDropdownToggle>{{'Seller_Quotes.Filter_by_Status'|translate}}<mat-icon>expand_more
         </mat-icon></button>
     <!--dropdown-->
     <div id="lang-drop-down" ngbDropdownMenu aria-labelledby="filter">
       <div ngbDropdownItem (click)="filter_tickets(0);">
-        <span class="lan-title">{{'Seller_Tickets.Running' |translate}}</span>
+        <span class="lan-title">{{'Seller_Tickets.Initiative' |translate}}</span>
       </div>
+      <div style="padding: 0 15px">
+        <mat-divider></mat-divider>
+      </div>
+      <div ngbDropdownItem (click)="filter_tickets(1);">
+        <span class="lan-title">{{'Seller_Tickets.Running'|translate}}</span>
+      </div>
+   
       <div style="padding: 0 15px">
         <mat-divider></mat-divider>
       </div>
@@ -75,9 +88,9 @@
               <span><span class="mobile-name">{{'Seller_Tickets.Subject'|translate}}:</span> {{item.title}}</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-4 col-12 value">
-              <span *ngIf="item.status == 0">{{'Seller_Tickets.Running'|translate}}</span>
-              <span *ngIf="item.status == 2">{{'Seller_Tickets.Solved'|translate}}</span>
-              <span *ngIf="item.status == null"> - </span>
+              <span *ngIf="item.status == 0">{{'Seller_Tickets.Initiative'|translate}}</span>
+              <span *ngIf="item.status == 1">{{'Seller_Tickets.Running'|translate}}</span>
+              <span *ngIf="item.status == 2"> {{'Seller_Tickets.Solved'|translate}} </span>
             </div>
 
             <div class="col-lg-2 col-md-3 col-sm-4 col-12 value mobile-btn">

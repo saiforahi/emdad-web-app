@@ -307,7 +307,11 @@ height: 88px;
 }
 @media all and (min-width:333px) and (max-width:768px){
   .s-head{
-    height: 55px;
+    height: 70px;
+    -webkit-height:70px;
+    -moz-height:70px;
+    -o-height:70px
+    
   }
 }
 @media all and (min-width:290px) and (max-width:768px){

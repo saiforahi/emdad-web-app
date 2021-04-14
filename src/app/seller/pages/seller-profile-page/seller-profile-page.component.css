@@ -143,6 +143,7 @@ a {
   font-weight: 500;
   font-size: 24px;
   width: 300px;
+  font-family: Jost;
 }
 
 .login-header {
@@ -347,6 +348,9 @@ input[type="file"] {
   list-style: none !important;
   font-size: 20px;
   line-height: 29px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .attached-file button {
@@ -361,7 +365,9 @@ input[type="file"] {
   padding: 0;
    vertical-align: middle !important;
 }
-
+.attached-file button img{
+  vertical-align: middle !important;
+}
 .already-added-file {
   list-style: none;
   padding-left: 10px;
@@ -432,6 +438,10 @@ label,.form-check-label,.join-text,input,textarea{
 .card {
   padding: 14px;
 }
+.attached-file{
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
 .banner-img-up-btn{
 height: 30px !important;
 width: 30px !important;
@@ -461,6 +471,10 @@ top: 10px;
   height: 25px;
   width:25px;
   min-width: 25px;
+}
+.attached-file{
+  font-size: 14px !important;
+  line-height: 20px !important;
 }
 .page-heading{
   font-size: 32px;

@@ -6,7 +6,10 @@
 
 .example-container /deep/ .mat-sidenav-inner-container {
   overflow: unset !important;
+  -webkit-overflow:unset !important;
   overflow-y: hidden !important;
+  -webkit-overflow-y:hidden !important;
+  -moz-overflow-y:hidden !important
 }
 
 .mat-sidenav-content {
@@ -553,8 +556,8 @@ img.logo {
   .mobile-sidenav .mat-expansion-panel-header {
     padding: 0 10px 0 0;
     height: auto !important;
-    font-size: 16px;
-    line-height: 23px;
+    font-size: 16px !important;
+    line-height: 23px !important;
     font-weight: 400 !important;
   }
 
@@ -569,7 +572,7 @@ img.logo {
     width: 20px !important;
   }
   .mat-expansion-panel-header-title,
-  mat-panel-title {
+  .mat-panel-title {
     font-family: Jost;
     font-size: 16px !important;
     line-height: 23px !important;
@@ -682,6 +685,21 @@ img.logo {
     justify-content: center;
     align-items: center;
     
+  }
+  .cart-length-mobile{
+    position: absolute;
+    background: red;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 4px;
+    right: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.8;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
  
 }
