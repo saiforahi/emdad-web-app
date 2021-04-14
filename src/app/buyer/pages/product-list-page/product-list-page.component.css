@@ -78,7 +78,7 @@
   background: none;
   border-radius: 0px !important;
   -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .mat-expansion-panel-header {
@@ -147,11 +147,11 @@ mat-expansion-panel-header.mat-expanded {
 
 .expanded-div .mat-expansion-panel-header-description {
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .mat-expansion-panel-header-title,
@@ -286,7 +286,7 @@ nav {
     height: 100vh;
     z-index: 99999;
     -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
     opacity: 1;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
@@ -309,7 +309,7 @@ nav {
     min-width: 55px;
     padding: 5px;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   }
   .cat-menu-toggle-btn img {
     height: 25px;
@@ -338,7 +338,7 @@ nav {
     min-width: 55px;
     padding: 5px;
     -webkit-box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
-            box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
     opacity: 1;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
