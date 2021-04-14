@@ -40,8 +40,8 @@ color: #2B2B2B;
 .filter-btn{
   width: 230px;
 height: 60px;
-border: 2px solid #1F4F9E;
-color: #1F4F9E;
+border: 2px solid #2B2B2B;
+color: #2B2B2B;
 box-sizing: border-box;
 border-radius: 5px;
 font-family: Jost;
@@ -468,7 +468,7 @@ padding: 4px;
     z-index: 999 !important;
   } 
   .big-view >.ticket-btn,.big-view > span >.filter-btn{
-    width: 150px !important;
+    width: 180px !important;
     font-size: 16px !important;
     line-height: 23px !important;
     height: 45px !important;
@@ -483,6 +483,7 @@ padding: 4px;
   }
   .big-view>.ticket-btn{
     margin-right: 8px;
+    width: 180px;
   }
   .mob{
     margin-top: 14px;
@@ -493,21 +494,32 @@ padding: 4px;
     }
 }
 @media all and (min-width:360px) and (max-width:576px){
-  .big-view >.ticket-btn,.big-view > span >.filter-btn{
-    width: 140px !important;
+  .big-view{
+    display: none !important;
+  }
+  .mobile-button{
+    display:flex !important;
+    z-index: 999 !important;
+  
+  }
+ .mobile-button > span > .filter-btn{
+    width: 175px !important;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;
+    border: 2px solid #2B2B2B !important;
+    
+  /*   margin-top: 10px; */
   }
-  .page-heading-holder .sort-btn{
-    position: static;
-    display: block;
-    justify-content: right;
-    align-items: flex-end;
-    text-align: right !important;
-    margin-top: 17px;
+  .mobile-button>.mat-raised-button{
+    width: 175px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    height: 40px !important;
+    margin-right: 5px !important;
+    text-align: center !important;
    
-}
+  }
 .lan-title {
   font-size:14px;
   line-height: 20px;
@@ -532,16 +544,16 @@ padding: 4px;
   
   }
  .mobile-button > span > .filter-btn{
-    width: 145px !important;
+    width: 150px !important;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;
-    border: 2px solid #1f4f9e !important;
+    border: 2px solid #2B2B2B !important;
     display: block;
     margin-top: 10px;
   }
   .mobile-button>.mat-raised-button{
-    width: 145px !important;
+    width: 140px !important;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;

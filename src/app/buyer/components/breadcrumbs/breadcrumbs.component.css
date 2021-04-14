@@ -85,7 +85,7 @@ a {
   }
   .breadcrumbs {
     height: 60px;
-    margin: 80px 0 20px;
+    margin: 0px 0 20px;
     padding: 18px 0;
   }
   .breadcrumbs-for-seller {
@@ -103,7 +103,7 @@ a {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .breadcrumbs {
     height: 70px;
-    margin: 220px 0 20px;
+    margin: 0px 0 20px;
     padding: 20px 0;
   }
   .url {

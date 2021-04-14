@@ -19,6 +19,7 @@
 }
 app-breadcrumbs{
   background-color: #E5E5E5 !important;
+  
 }
 .head{
   font-family: Jost;
@@ -314,6 +315,7 @@ margin-top:10px;
     background: #E5E5E5;
     padding-bottom: 30px;
   }
+
 }
 @media all and (min-width:768px) and (max-width:992px){
 .add-m{

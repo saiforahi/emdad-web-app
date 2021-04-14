@@ -503,6 +503,7 @@
             <div ngbDropdown class="d-inline-block">
               <a class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" class="btn-icon" />
+                <span *ngIf="unread_notification_length>0" class="cart-length-mobile">{{unread_notification_length}}</span>
               </a>
               <div id="noti-panel"  ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
                 <div class="notification-header">
