@@ -47,7 +47,7 @@ export class ProductListPageComponent implements OnInit {
   selected_child_category_name: any;
   filteredCatArray: any = [];
   selected_price_ranges: Array<any> = [];
-
+  selected_price_range:any
   constructor(
     private getProduct: GetProductService,
     private router: Router,

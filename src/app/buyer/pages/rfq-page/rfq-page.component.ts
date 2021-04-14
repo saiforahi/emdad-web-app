@@ -80,11 +80,11 @@ export class RfqPageComponent implements OnInit {
       // this.rfqForm.patchValue({ quotation: [{ message: '', user: uid }] });
     });
     this.rfqForm = this.fb.group({
-      email: [''],
-      phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
-      address: [''],
-      quantity: [''],
-      message: [''],
+      email: ['',[Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern(this.phonePattern),Validators.minLength(11)]],
+      address: ['',[Validators.required]],
+      quantity: ['',[Validators.required]],
+      message: ['',[Validators.required]],
     });
     this.email = this.rfqForm.controls['email'];
     this.phone = this.rfqForm.controls['phone'];
