@@ -271,8 +271,9 @@
   "Ticket_List": "قائمة التذاكر",
   "Report_ID": "معرّف التقرير",
   "Subject": "الموضوع",
-  "Running": "قيد التشغيل",
-  "Solved": "محلول",
+  "Running": "قيد التنفيذ",
+  "Solved": "تم الحل",
+  "Initiative": "مبادرة",
   "Date": "التاريخ",
   "Details": "التفاصيل",
   "Admin_Response": "رد المسؤول",
@@ -319,7 +320,8 @@
     "Subject": "الموضوع",
     "Description":"الوصف",
     "Tell_us":"أخبرنا بالمزيد",
-    "Order_no":"رقم الطلب (اختياري)"
+    "Order_no":"رقم الطلب (اختياري)",
+    "Order_place": "رقم الطلب"
   },
   "Seller_Current_Orders": {
     "Update_Status": "تحديث الحالة",
@@ -328,5 +330,8 @@
   "Completed": "مكتمل",
   "Delivery_Attach_Message": "الرجاء تحميل إثبات التسليم",
   "Delivery_Note": "إشعار التسليم"
+},
+"Our_Partners_Common":{
+  "Success_Stories":"قصص نجاح الشريك"
 }
 }

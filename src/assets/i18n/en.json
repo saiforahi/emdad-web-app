@@ -274,8 +274,9 @@
         "Ticket_List":"Ticket List",
         "Report_ID":"Report ID",
         "Subject":"Subject",
-        "Running":"Running",
-        "Solved":"Solved",
+        "Running":"Undergoing",
+        "Solved":"Resolved",
+        "Initiative":"Initiative",
         "Date":"Date",
         "Details":"Details",
         "Admin_Response":"Admin Response",
@@ -322,7 +323,8 @@
         "Subject":"Subject",
         "Description":"Description",
         "Tell_us":"Tell Us More",
-        "Order_no":"Order Number(Optional)"
+        "Order_no":"Order Number(Optional)",
+        "Order_place":"Order number"
       
     },
     "Seller_Current_Orders": {
@@ -332,6 +334,9 @@
         "Completed": "Completed",
         "Delivery_Attach_Message":"Please upload a proof of delivery",
         "Delivery_Note":"Delivery Note"
+    },
+    "Our_Partners_Common":{
+        "Success_Stories":"Partner Success Stories"
     }
 }
 
