@@ -74,7 +74,7 @@
                     <!-- manufactererName -->
                     <select class="form-control form-control-lg" formControlName="manufactererName" (change)="addNewBrand(manufactererName.value)">
                         <option value="" disabled selected>{{'Seller_Upload_Product.Manufacturer_Name'|translate}}</option>
-                        <option value="{{brand.id}}" *ngFor="let brand of brandList">{{brand.name | titlecase}}</option>
+                        <option value="{{brand.id}}" [selected]="currentAddedBrand == brand.id" *ngFor="let brand of brandList">{{brand.name | titlecase}}</option>
                         <option value="new">Others</option>
                     </select>
                 </div>
@@ -98,7 +98,7 @@
                     <!-- Color -->
                     <select class="form-control form-control-lg" formControlName="prodColor" (change)="addNewColor(prodColor.value)">
                         <option value="" disabled selected>{{'Seller_Upload_Product.prod_color'|translate}}</option>
-                        <option value="{{color.id}}" *ngFor="let color of colorList">{{color.name | titlecase}}</option>
+                        <option value="{{color.id}}" [selected]="currentAddedColor == color.id" *ngFor="let color of colorList">{{color.name | titlecase}}</option>
                         <option value="new">Others</option>
                     </select>
                 </div>
@@ -116,7 +116,7 @@
                     <label for="prodUnit">{{'Seller_Product_Categories.Unit_of_measurement'|translate}}</label>
                     <select class="form-control form-control-lg" formControlName="prodUnit" (change)="addNewUnit(prodUnit.value)">
                         <option value="" disabled selected>{{'Seller_Product_Categories.Unit_of_measurement'|translate}}</option>
-                        <option value="{{unit.id}}" *ngFor="let unit of unitList">{{unit.name | titlecase}}</option>
+                        <option value="{{unit.id}}" [selected]="currentAddedUnit == unit.id" *ngFor="let unit of unitList">{{unit.name | titlecase}}</option>
                         <option value="new">Others</option>
                     </select>
                     <!-- <div *ngIf="prodUnit.invalid && (prodUnit.dirty || prodUnit.touched)">
@@ -146,7 +146,7 @@
                 <div class="form-group">
                     <label for="leadTime">{{'Seller_Upload_Product.Set_Lead_Time'|translate}}</label>
                     <!-- leadTime -->
-                    <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime"
+                    <input id="leadTime" class="form-control form-control-md" type="number" min="0" formControlName="leadTime"
                         placeholder="{{'Seller_Upload_Product.Ex_Works_20_days' | translate}}" />
                     <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
                         <div *ngIf="leadTime.errors?.required">
@@ -184,7 +184,7 @@
                 <div class="form-group">
                     <label for="prodPrice">{{'Seller_Upload_Product.Product_Unit_Price'|translate}}{{'Seller_Upload_Product.VatEx'|translate}}</label>
                     <!-- prodPrice -->
-                    <input id="prodPrice" class="form-control form-control-md" type="text" formControlName="prodPrice"
+                    <input id="prodPrice" class="form-control form-control-md" type="number" formControlName="prodPrice"
                         placeholder="{{'Seller_Upload_Product.Product_Unit_Price'|translate}}" />
                     <div *ngIf="prodPrice.invalid && (prodPrice.dirty || prodPrice.touched)">
                         <div *ngIf="prodPrice.errors?.required">

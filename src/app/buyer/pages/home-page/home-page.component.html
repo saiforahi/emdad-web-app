@@ -100,7 +100,7 @@
     </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
     <p *ngIf="prodEnd" class="text-center mt-5"><b>{{'Home.No_Product' | translate}}</b></p>
-    <div class="view-more-btn-div" *ngIf="products.length > 10">
+    <div class="view-more-btn-div" *ngIf="nextBatchProdLink != null">
         <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button class="m-auto">{{'Home.View_More' | translate}} <img
                 src="../../../assets/down-carrot-light.svg" alt=""></button>
     </div>

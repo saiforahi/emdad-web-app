@@ -26,6 +26,7 @@ export class BulkUploadProductsComponent implements OnInit {
   catMenuToggle = false;
   selectedCatId: any;
   showFinish: boolean = false;
+  urlString: string = '';
 
   constructor(
     private authService: UserAuthService,
@@ -74,8 +75,9 @@ export class BulkUploadProductsComponent implements OnInit {
     });
   }
 
-  selectedCat(id){
+  selectedCat(id, cat, subCat, child){
     console.log("cat id", id)
+    this.urlString = cat + " / " + subCat + " / " + child;
     this.selectedCatId = id;
   }
 

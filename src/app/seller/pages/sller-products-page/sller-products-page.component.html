@@ -176,7 +176,7 @@
                         <p>{{'Home.No_Product'|translate}}</p>
                     </div>
                     <div class="col-md-12" *ngIf="expandedSubCat == null">
-                        <div class="view-more-btn-div" *ngIf="products.length > 10">
+                        <div class="view-more-btn-div" *ngIf="nextBatchProdLink != null">
                             <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button
                                 class="m-auto">{{'Home.View_More'|translate}}
                                 <img src="../../../assets/down-carrot-light.svg" alt=""></button>
