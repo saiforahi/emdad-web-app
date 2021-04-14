@@ -5,6 +5,9 @@
   ::ng-deep .mat-dialog-container {
     padding: 30px 30px 0;
     width: 900px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
     border-radius: 0;
   }
  .mat-dialog-content{
@@ -142,10 +145,16 @@ input[type="file"] {
   .attached-file{
     display: inline-block !important;
     margin-left: -20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   .attached-file li{
     margin-top: 5px;
     margin-left: -20px;
+ 
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
   }
    
   .attached-file button {
@@ -244,6 +253,9 @@ display: block !important;
     display: block !important;
     margin-left: -12px;
   }
+   ::ng-deep .mat-dialog-content{
+padding-bottom: 20px !important;
+   }
 }
 @media all and (min-width:576px) and (max-width:768px){
   .quote-button{
@@ -286,6 +298,9 @@ line-height: 23px;
       .form-control{
         height: 60px;
       }
+      ::ng-deep .mat-dialog-content{
+        padding-bottom: 20px !important;
+           }
 }
 @media all and (min-width:768px) and (max-width:992px){
   .quote-button{

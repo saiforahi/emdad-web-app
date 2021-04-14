@@ -323,16 +323,28 @@ input[type="file"] {
   cursor: pointer;
 }
 
+
+
 .attached-file {
   display: inline-block;
   vertical-align: top;
-}
-
-.attached-file {
   list-style: none !important;
   font-size: 20px;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-all;
+  
 }
-
+.attached-file li{
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  
+}
+.file-up{
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  
+}
 .attached-file button {
   border-radius: 50%;
   width: 24px;
@@ -343,7 +355,8 @@ input[type="file"] {
   font-size: 16px;
 }
 .attached-file button img{
-  vertical-align: baseline;
+  vertical-align: -webkit-baseline-middle;
+  vertical-align: middle;
 }
 .join-text{
   font-family: Jost;
@@ -454,6 +467,10 @@ padding-bottom: 10px;
 .social-media button{
   height: 30px;
   width: 30px;
+}
+.attached-file{
+  font-size: 14px;
+  line-height: 20px;
 }
 }
 @media only screen and (min-width:576px) and (max-width:768px){

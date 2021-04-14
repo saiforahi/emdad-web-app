@@ -217,7 +217,10 @@ margin-top: 14px;
     padding: 8px;
   }
   .page-heading-holder>.sort-btn>.mat-stroked-button{
-    width:auto;
+    display: none;
+  }
+  .mobile-name>.mat-stroked-button{
+    width:200 !important;
   height: 45px;
   border: 2px solid #1F4F9E;
   color: #1F4F9E;
@@ -228,6 +231,11 @@ margin-top: 14px;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+  display: block !important;
+  }
+  .mobile-name>.mat-stroked-button>mat-icon{
+   
+    font-size:10px;
   }
   .view-more-btn-div button{
     height: 45px;
