@@ -190,6 +190,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
     }
   }
   markAllNotificationAsRead(){
+    console.log('marking...')
     this.notificationService.markAllNotificationSeller()
   }
 }

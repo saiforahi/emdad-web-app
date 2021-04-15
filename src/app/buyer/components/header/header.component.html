@@ -203,7 +203,7 @@
             <li class="nav-item">
               <!-- (click)="handle_notification_drop()" -->
               <div ngbDropdown class="d-inline-block">
-                <a class="nav-link notification" id="notification-btn" ngbDropdownToggle>
+                <a (click)="markAllNotificationAsRead()" class="nav-link notification" id="notification-btn" ngbDropdownToggle>
                   <img src="../assets/notification.svg" alt="" />
                   <span *ngIf="unread_notification_length > 0" class="badge">{{unread_notification_length}}</span>
                 </a>
