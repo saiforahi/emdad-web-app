@@ -211,7 +211,7 @@ export class EditProductsPageComponent implements OnInit {
         prodDetails: this.productDetails.description,
         manufactererName: this.brandId,
         prodStock: this.productDetails.stock_quantity,
-        prodColor: null,
+        prodColor: this.colorId,
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         leadTime: setLeadTime,
