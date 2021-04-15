@@ -126,6 +126,7 @@
 .create-accnt {
   color: #1f4f9e;
   text-decoration: underline;
+  text-transform: capitalize;
 }
 
 .form-check-input {

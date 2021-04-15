@@ -522,9 +522,9 @@
             </div>
           </li>
           <li class="nav-item" *ngIf="!loggedInUser">
-            <button type="button" (click)="changeLang('ar')" class="lang-btn">
+            <button type="button" (click)="toggle_language()" class="lang-btn">
               <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
-              Arabic
+              {{currentLang=='en'?'Arabic':'English'}}
             </button>
           </li>
           <li class="nav-item " *ngIf="loggedInUser && activeRoute[2] == 'welcome'">

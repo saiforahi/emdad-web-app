@@ -350,5 +350,35 @@
   "Remember_me": "تذكرني",
   "Forgot_Password": "هل نسيت كلمة المرور؟",
   "Not_Seller": "لست بائعًا بعد؟"
+},
+"Buyer_Sign_In":{
+  "Email":"البريد الإلكتروني",
+  "Password":"كلمة المرور",
+  "Remember":"تذكرني",
+  "Forgot":"نسيت كلمة المرور",
+  "Sign":"تسجيل الدخول",
+  "No_Account":"ليس لديك حساب بعد؟",
+  "Create_Account":"إنشاء حساب",
+  "require":"مطلوب"
+
+},
+"Buyer_Register":{
+  "Register":"تسجيل",
+  "Full_Name":"الاسم الكامل",
+  "require":"مطلوب",
+  "Email":"البريد الإلكتروني",
+  "Password":"كلمة المرور",
+  "Confirm_Pass":"تأكيد كلمة المرور",
+  "No_Match":"لم يتطابق",
+  "Phone_Number":"رقم الهاتف (اختياري)",
+  "Process":"جارٍ المعالجة ...",
+  "Account_No":"لديك حساب بالفعل"
+  
+},
+"Seller_Product_Delete":{
+  "Delete_Prompt":"هل تريد حذف هذه المنتجات",
+  "Delete":"حذف",
+  "Cancel":"إلغاء"
 }
+
 }

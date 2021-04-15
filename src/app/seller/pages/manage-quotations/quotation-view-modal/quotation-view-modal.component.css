@@ -165,7 +165,7 @@ input[type="file"] {
   word-wrap: break-word;
   word-break: break-all;
   }
-  
+ 
   .attached-file{
     display: inline-block !important;
     margin-left: -20px;

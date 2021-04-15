@@ -115,6 +115,7 @@
   border-radius: 5px;
   height: 80px;
   margin-top: 44px;
+  text-transform: capitalize;
 }
 
 .col-sm-auto {
