@@ -11,6 +11,7 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
@@ -26,17 +27,19 @@ export class LoginPageComponent implements OnInit {
   password: AbstractControl;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   showPassState: boolean = false;
-
+  currentLang:any
   constructor(
     private authService: UserAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    public translate:TranslateService
   ) {}
 
   ngOnInit(): void {
+    this.currentLang=this.translate.currentLang
     this.spinner.hide();
     this.group = this.router.url.split('/', 3)[1];
     console.log(this.group);
@@ -77,6 +80,18 @@ export class LoginPageComponent implements OnInit {
     this.showPassState = true;
   }
 
+  toggle_language(){
+    if(this.translate.currentLang == 'en'){
+      localStorage.setItem('locale', 'ar');
+      this.translate.use('ar')
+      this.currentLang='ar'
+    }
+    else{
+      localStorage.setItem('locale', 'en');
+      this.translate.use('en')
+      this.currentLang='en'
+    }
+  }
   hidePass() {
     this.showPassState = false;
   }

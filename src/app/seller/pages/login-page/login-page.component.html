@@ -2,20 +2,20 @@
   <div class="row">
     <div class="col-md-12 col-sm-12 login-form-holder col-12 col-lg-6">
       <div class="float-right lang-float">
-        <button mat-raised-button class="lang-btn">
+        <button mat-raised-button class="lang-btn" (click)="toggle_language()" type="button">
          <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
-          Arabic
+         {{currentLang=='en'?'Arabic':'English'}}
         </button>
       </div>
       <div class="card">
         <div class="card-header">
-          <h1 class="login-header">Sign in</h1>
-          <h4 class="login-sub-header text-center">Hi, Let’s get started !</h4>
+          <h1 class="login-header">{{'Nav.Sign_In'|translate}}</h1>
+          <h4 class="login-sub-header text-center">{{'Seller_Sign_In.text1'|translate}}</h4>
         </div>
         <div class="card-body">
           <form [formGroup]="sellerLoginForm" (ngSubmit)="onSubmit(sellerLoginForm.value)">
             <div class="form-group">
-              <label for="email" class="form-label">Company email</label>
+              <label for="email" class="form-label">{{'Seller_Profile.Company_Email'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/Message.svg" alt=""></div>
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="password" class="form-label">Password</label>
+              <label for="password" class="form-label">{{'Seller_Sign_Up.Password'|translate}}</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -65,21 +65,21 @@
               <div class="col-6">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="autoSizingCheck" />
-                  <label class="form-check-label" for="autoSizingCheck">Remember me</label>
+                  <label class="form-check-label" for="autoSizingCheck">{{'Seller_Sign_In.Remember_me'|translate}}</label>
                 </div>
               </div>
               <div class="col-6 text-right">
-                <a [routerLink]="['/dashboard/forgot-password']"><label class="form-label">Forgot your password?</label></a>
+                <a [routerLink]="['/dashboard/forgot-password']"><label class="form-label">{{'Seller_Sign_In.Forgot_Password'|translate}}</label></a>
               </div>
             </div>
             <div class="form-group">
               <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn">
-                Sign in
+                {{'Nav.Sign_In'|translate}}
               </button>
             </div>
             <div class="form-group">
               <div class="text-center">
-                <label class="join-text">Not a seller, yet? <a [routerLink]="['/dashboard/signup']" class="ml-1 join">Join Us</a></label>
+                <label class="join-text">{{'Seller_Sign_In.Not_Seller'|translate}} <a [routerLink]="['/dashboard/signup']" class="ml-1 join">{{'Seller_Sign_Up.Join_Us'|translate}}</a></label>
               </div>
             </div>
           </form>
@@ -93,7 +93,7 @@
             <img src="../../../assets/logo-white.svg" alt="align-self-center" class="img-fluid logo-img" />
           </div>
           <div class="row justify-content-center">
-            <h3 class="slogan text-center">YOUR SLOGAN HERE</h3>
+            <h3 class="slogan text-center">{{'Footer.Slogan'|translate}}</h3>
           </div>
           <div class="row justify-content-center">
             <h5 class="slogan-description text-center">

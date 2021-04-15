@@ -337,6 +337,23 @@
     },
     "Our_Partners_Common":{
         "Success_Stories":"Partner Success Stories"
+    },
+    "Seller_Sign_Up":{
+        "Join_Us":"Join Us",
+        "text1":"Let’s begin the journey !",
+        "Password":"Password",
+        "Commercial_Registration":"Commercial Registration",
+        "Expiry_Date":"Expiry Date",
+        "VAT_Certificate":"VAT Certificate",
+        "Terms":"I agree to EMDAD Terms and Condtions, Privacy Policy & Provided Correctness of information",
+        "Register":"Register",
+        "Already_have":"Already have an account?"
+    },
+    "Seller_Sign_In":{
+        "text1":"Hi, Let’s get started !",
+        "Remember_me":"Remember me",
+        "Forgot_Password":"Forgot your password?",
+        "Not_Seller":"Not a Seller yet?"
     }
 }
 

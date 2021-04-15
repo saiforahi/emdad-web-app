@@ -77,8 +77,28 @@
             <li  [ngClass]="activeRoute[1] == 'cart' ? 'active' : ''"><a [routerLink]="['cart']" 
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}
                 </span><span *ngIf="cartLength != null" style="color: red;">({{cartLength}})</span></a></li>
-            <li ><a [routerLink]="['/']" (click)="closeMenu();" ><img src="../../../../assets/notification.svg" alt="">
-                <span>{{'Nav.Notifications' | translate}} </span><span *ngIf="unread_notification_length>0" style="color: red;">({{unread_notification_length}})</span></a></li>
+            <li [ngClass]="activeRoute[1] == 'cart' ? 'active' : ''" class="my-profile-menu">
+              <a [routerLink]="['/']" (click)="closeMenu();" ><img src="../../../../assets/notification.svg" alt="">
+                <span>{{'Nav.Notifications' | translate}} </span><span *ngIf="unread_notification_length>0" style="color: red;">({{unread_notification_length}})</span>
+              </a>
+              <!-- <mat-accordion>
+                <mat-expansion-panel [expanded]="false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="cat-head">
+                        <img src="../../../../assets/notification.svg" alt="">
+                        <span>{{'Nav.Notifications' | translate}}</span><span *ngIf="unread_notification_length>0" style="color: red;">({{unread_notification_length}})</span>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="expanded-div">
+                    <ul class="" style="list-style: none; padding: 0 0 0 11px;">
+                      <li *ngFor="let notification of notification_messages;let i=index">{{notification}}</li>
+                    </ul>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion> -->
+            </li>
             <div *ngIf="loggedInUser">
               <hr>
               <li><a (click)="closeMenu();" (click)="logout()"><img src="../../../../assets/logout.svg" alt="">
