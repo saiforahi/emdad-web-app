@@ -194,7 +194,7 @@
             <img src="../../../assets/emdad_logo.svg" alt="align-self-center" />
           </div>
           <div class="row d-flex justify-content-center mb-4">
-            <h3 class="slogan">Your Slogan Here...</h3>
+            <h3 class="slogan">{{Your Slogan Here}}...</h3>
           </div>
           <div class="row d-flex justify-content-center mb-5">
             <h5 class="slogan-description" align="center">
@@ -243,22 +243,22 @@
   <div class="row">
     <div class="col-md-12 col-lg-6 login-form-holder">
       <div class="float-right lang-float">
-        <button mat-raised-button class="lang-btn" (click)="changeLang('ar')" type="button">
+        <button mat-raised-button class="lang-btn" (click)="toggle_language()" type="button">
           <img src="../../../../assets/icons/Group 102arabic-icon.png" alt="">
-          Arabic
+          {{currentLang=='en'?'Arabic':'English'}}
         </button>
       </div>
       <div class="card sell-card">
         <div class="card-header">
-          <h1 class="login-header">Join Us</h1>
-          <h4 class="login-sub-header text-center">Let’s begin the journey !</h4>
+          <h1 class="login-header">{{'Seller_Sign_Up.Join_Us'|translate}}</h1>
+          <h4 class="login-sub-header text-center">{{'Seller_Sign_Up.text1'|translate}}</h4>
         </div>
         <div class="card-body">
           <form [formGroup]="sellerRegForm" (ngSubmit)="onSubmit(sellerRegForm.value)">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="comName">Company Name</label>
+                  <label for="comName">{{'Seller_Profile.Company_Name'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Home.svg" alt="">
@@ -277,7 +277,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="email">Company email</label>
+                  <label for="email">{{'Seller_Profile.Company_Email'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Message.svg" alt=""></div>
@@ -298,7 +298,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="comPhone">Company Phone Number</label>
+                  <label for="comPhone">{{'Seller_Profile.Company_Mobile_Number'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Call.svg" alt=""></div>
@@ -319,7 +319,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="password">Password</label>
+                  <label for="password">{{'Seller_Sign_Up.Password'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -361,7 +361,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="password">Confirm Password</label>
+                  <label for="password">{{'Buyer_Change_Password_Form.Confirm_Password'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -395,7 +395,7 @@
               <!--company address-->
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="comAddress">Company Address</label>
+                  <label for="comAddress">{{'Seller_Profile.Company_Address'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
@@ -414,7 +414,7 @@
               <!--commercial registration-->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="comRegistration">Commercial Registration</label>
+                  <label for="comRegistration">{{'Seller_Sign_Up.Commercial_Registration'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Paper.svg" alt=""></div>
@@ -452,7 +452,7 @@
               <!--country-->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="country">Country</label>
+                  <label for="country">{{'Buyer_Profile_Form.Country'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
@@ -474,7 +474,7 @@
                <!-- company city -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="city">City</label>
+                  <label for="city">{{'Buyer_Profile_Form.City'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
@@ -495,7 +495,7 @@
            <!--area-->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="area">Area</label>
+                  <label for="area">{{'Buyer_Profile_Form.Area'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/Location.svg" alt=""></div>
@@ -513,7 +513,7 @@
               <!--zip code-->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="zipCode">Zip code</label>
+                  <label for="zipCode">{{'Buyer_Profile_Form.Zip_Code'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/icons/More Square.svg" alt=""></div>
@@ -531,7 +531,7 @@
               <!--commercial registration-->
               <div class="col-md-6 col-sm-12 col-12 col-lg-6 file-up">
                 <div class="form-group">
-                  <label class="d-block">Commercial Registration</label>
+                  <label class="d-block">{{'Seller_Sign_Up.Commercial_Registration'|translate}}</label>
                   <label for="commercialRegistrationUpload" class="custom-file-upload">
                     <!-- commercialRegistrationUpload -->
                     <input id="commercialRegistrationUpload" class="form-control form-control-md" type="file"
@@ -549,7 +549,7 @@
               <!--vat certificate-->
               <div class="col-md-6 col-lg-6 col-12 file-up">
                 <div class="form-group">
-                  <label class="d-block">VAT Certificate </label>
+                  <label class="d-block">{{'Seller_Sign_Up.VAT_Certificate'|translate}} </label>
                   <label for="vatCertificate" class="custom-file-upload">
                     <!-- vatCertificate -->
                     <input id="vatCertificate" class="form-control form-control-md" type="file"
@@ -568,9 +568,7 @@
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="agrreToPolicy"
                       formControlName="agrreToPolicy" />
-                    <label class="form-check-label" for="agrreToPolicy">I agree to EMDAD Terms and Condtions,
-                      Privacy
-                      Policy & Provided Correctness of information</label>
+                    <label class="form-check-label" for="agrreToPolicy">{{'Seller_Sign_Up.Terms'|translate}}</label>
                   </div>
                 </div>
               </div>
@@ -578,15 +576,15 @@
                 <div class="form-group">
                   <button type="submit" mat-raised-button class="btn btn-primary btn-md btn-block login_btn"
                     [disabled]="sellerRegForm.invalid || passMatched">
-                    Register
+                    {{'Seller_Sign_Up.Register'|translate}}
                   </button>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="join-text">Already have an account? <a [routerLink]="['/dashboard/login']"
-                        class="ml-1 join">Sign in</a></label>
+                    <label class="join-text">{{'Seller_Sign_Up.Already_have'|translate}} <a [routerLink]="['/dashboard/login']"
+                        class="ml-1 join">{{'Nav.Sign_In'|translate}}</a></label>
                   </div>
                 </div>
               </div>
@@ -602,7 +600,7 @@
             <img src="../../../assets/logo-white.svg" alt="align-self-center" class="img-fluid logo-img" />
           </div>
           <div class="row justify-content-center mb-4">
-            <h3 class="slogan">YOUR SLOGAN HERE</h3>
+            <h3 class="slogan">{{'Footer.Slogan'|translate}}</h3>
           </div>
           <div class="row justify-content-center ">
             <h5 class="slogan-description text-center">

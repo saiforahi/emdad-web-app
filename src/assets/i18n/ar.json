@@ -333,5 +333,22 @@
 },
 "Our_Partners_Common":{
   "Success_Stories":"قصص نجاح الشريك"
+},
+"Seller_Sign_Up":{
+  "Join_Us": "انضم إلينا",
+  "text1": "لنبدأ الرحلة!",
+  "Password": "كلمة المرور",
+  "Commercial_Registration": "التسجيل التجاري",
+  "Expiry_Date": "تاريخ انتهاء الصلاحية",
+  "VAT_Certificate": "شهادة ضريبة القيمة المضافة",
+  "Terms": "أوافق على شروط وأحكام EMDAD وسياسة الخصوصية وصحة المعلومات المقدمة",
+  "Register": "سجل",
+  "Already_have": "لديك بالفعل الحساب؟"
+},
+"Seller_Sign_In":{
+  "text1": "مرحبًا ، فلنبدأ!",
+  "Remember_me": "تذكرني",
+  "Forgot_Password": "هل نسيت كلمة المرور؟",
+  "Not_Seller": "لست بائعًا بعد؟"
 }
 }

@@ -51,7 +51,7 @@ export class SignupPageComponent implements OnInit {
   cityList: any;
   agrreToPolicy: any;
   sellerRegFormData = new FormData();
-
+  currentLang:any
   constructor(
     private authService: UserAuthService,
     private router: Router,
@@ -63,6 +63,7 @@ export class SignupPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.currentLang=this.translate.currentLang
     // document.getElementById('passowrd').addEventListener('paste',function(e){
     //   e.preventDefault()
     // })
@@ -225,5 +226,17 @@ export class SignupPageComponent implements OnInit {
     localStorage.setItem('locale', language);
     this.translate.use(language);
     console.log(this.translate.currentLang)
+  }
+  toggle_language(){
+    if(this.translate.currentLang == 'en'){
+      localStorage.setItem('locale', 'ar');
+      this.translate.use('ar')
+      this.currentLang='ar'
+    }
+    else{
+      localStorage.setItem('locale', 'en');
+      this.translate.use('en')
+      this.currentLang='en'
+    }
   }
 }
