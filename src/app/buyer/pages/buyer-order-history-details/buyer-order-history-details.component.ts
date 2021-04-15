@@ -41,7 +41,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     this.order_id = this.route.snapshot.params['order_id'];
     this.orderService.get_buyer_order_details(this.order_id).subscribe(
       (success) => {
-        console.log(success.data);
+        console.log('order detaails',success.data);
         this.orders = success.data;
         this.trans_totalItems=this.orders.length
         this.dataLoaded = true;
@@ -74,14 +74,14 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
 
   get_order_status() {
     if (this.orders?.length > 0) {
-      if (this.orders[0].order.payment_type === 1) {
-        this.order_status = 'confirmed';
-      } else {
-        this.order_status = 'placed';
-      }
+        this.order_status = this.orders[0].order.tracking_order[0].status;
     }
+    console.log('order status',this.order_status)
     this.orders[0].order.tracking_order.forEach((element) => {
       console.log('status', element.status);
+      if(parseInt(element.status) < parseInt(this.order_status) ){
+        this.order_status=element.status
+      }
       switch (element.status) {
         // case 1:
         //   this.product_statuses.push({product:element.product,status:''})
@@ -101,9 +101,9 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
             status: 'delivered',
           });
           break;
-        // case 5:
-        //   this.product_statuses.push({product:element.product,status:'completed'})
-        //   break
+        case 5:
+          this.product_statuses.push({product:element.product,status:'completed'})
+          break
       }
     });
 

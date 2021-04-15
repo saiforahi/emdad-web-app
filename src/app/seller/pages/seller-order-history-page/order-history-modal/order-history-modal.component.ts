@@ -21,7 +21,7 @@ export class OrderHistoryModalComponent implements OnInit {
       (success)=> {
         this.details=success.data;;
         this.details.forEach((element:any) => {
-          this.addressService.get_pickup_address_details(element.pickup_address).subscribe(
+          this.addressService.get_pickup_address_details(element.pickup_address.id).subscribe(
             (success)=>{
               console.log(success.data[0])
               if(success.data.length>0){

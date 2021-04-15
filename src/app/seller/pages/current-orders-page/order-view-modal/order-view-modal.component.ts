@@ -118,7 +118,7 @@ export class OrderViewModalComponent implements OnInit {
 
   cancel_upload(prod_id:any){
     document.getElementById(prod_id+'card').style.display='none'
-    this.initialize()
+    //this.initialize()
   }
   change_status(value,prod_id){
     if(value=="3"){
