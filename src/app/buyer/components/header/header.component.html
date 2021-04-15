@@ -72,7 +72,7 @@
                   <span>{{'Header_DropDowns.Raise_a_support' | translate}}</span></a></li>
               <hr>
             </div>
-            <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
+            <li><a (click)="toggle_language()" [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Swap.svg" alt="">
                 <span>{{'Nav.Change_Language' | translate}} </span></a></li>
             <li  [ngClass]="activeRoute[1] == 'cart' ? 'active' : ''"><a [routerLink]="['cart']" 
                 (click)="closeMenu();"><img src="../../../../assets/bag.svg" alt=""> <span>{{'Nav.Cart' | translate}}

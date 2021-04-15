@@ -247,4 +247,14 @@ export class HeaderComponent implements OnInit {
     console.log(this.translate.currentLang);
     this.currentLang = language;
   }
+  toggle_language(){
+    if(this.translate.currentLang == 'en'){
+      localStorage.setItem('locale', 'ar');
+      this.translate.use('ar')
+    }
+    else{
+      localStorage.setItem('locale', 'en');
+      this.translate.use('en')
+    }
+  }
 }
