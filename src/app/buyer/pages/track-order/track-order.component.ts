@@ -8,7 +8,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
 })
 export class TrackOrderComponent implements OnInit {
   orderData:Array<any>=[];
-  filtered_orders: any[] = [];
+  filtered_orders:Array<any> = [];
   statuses: string[];
   status = ['Created', 'Confirmed', 'Processing', 'Delivered', 'Completed'];
   displayedColumns: string[] = [
@@ -24,14 +24,23 @@ export class TrackOrderComponent implements OnInit {
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
     this.get_orders();
-    console.log('orders',this.orderData)
   }
 
   get_orders() {
+    this.filtered_orders=[]
+    this.orderData=[]
     this.orderService.get_buyer_order_list().subscribe((result) => {
-      console.log(result.data);
-      this.orderData = result.data;
-      this.filtered_orders = result.data;
+      console.log('orders from response',result.data);
+      result.data.forEach(element => {
+        if(element.payment_type==1 && element.buyer_payment_status==1){
+          this.orderData.push(element)
+        }
+        else if(element.payment_type==0){
+          this.orderData.push(element)
+        }
+      });
+      this.filtered_orders=this.orderData
+      console.log('orders',this.filtered_orders);
       this.get_statuses()
     });
   }
@@ -105,7 +114,7 @@ export class TrackOrderComponent implements OnInit {
         min_status=element.status
       }
     });
-    console.log('min_status',min_status)
+    //console.log('min_status',min_status)
     return min_status
   }
 }
