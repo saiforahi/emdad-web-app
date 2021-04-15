@@ -2,21 +2,21 @@
   <div class="row justify-content-between">
     <h3 class="col header-text">{{'Buyer_Order_Details.Title'|translate}}</h3>
     <button
-      *ngIf="order_status === 'placed'"
+      *ngIf="order_status == '1'"
       type="button"
       class="btn status-btn placed"
     >
       {{'Buyer_Order_Details.Order_placed'|translate}}
     </button>
     <button
-      *ngIf="order_status === 'confirmed'"
+      *ngIf="order_status == '2'"
       type="button"
       class="btn status-btn confirmed"
     >
       {{'Buyer_Order_Details.Order_Confirmed'|translate}}
     </button>
     <button
-      *ngIf="order_status === 'processing'"
+      *ngIf="order_status == '3'"
       type="button"
       class="btn status-btn processing"
     >
