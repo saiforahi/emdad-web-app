@@ -436,9 +436,9 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" *ngIf="activeRoute[2] != 'welcome'" (click)="markAllNotificationAsRead">
+          <li class="nav-item" *ngIf="activeRoute[2] != 'welcome'">
             <div *ngIf="isSubscribed" ngbDropdown class="d-inline-block">
-              <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+              <a (click)="markAllNotificationAsRead()" class="nav-link" id="notification-btn" ngbDropdownToggle>
                 <img src="../assets/notification.svg" alt="" />
                 <span *ngIf="unread_notification_length>0" class="cart-length">{{unread_notification_length}}</span>
               </a>
@@ -499,9 +499,9 @@
               </div>
             </div>
           </li>
-          <li class="nav-item" *ngIf="loggedInUser && isSubscribed" (click)="markAllNotificationAsRead">
+          <li class="nav-item" *ngIf="loggedInUser && isSubscribed">
             <div ngbDropdown class="d-inline-block">
-              <a class="nav-link" id="notification-btn" ngbDropdownToggle>
+              <a class="nav-link" id="notification-btn" ngbDropdownToggle (click)="markAllNotificationAsRead()">
                 <img src="../assets/notification.svg" alt="" class="btn-icon" />
                 <span *ngIf="unread_notification_length>0" class="cart-length-mobile">{{unread_notification_length}}</span>
               </a>

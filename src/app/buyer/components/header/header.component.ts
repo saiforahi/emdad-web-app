@@ -257,4 +257,7 @@ export class HeaderComponent implements OnInit {
       this.translate.use('en')
     }
   }
+  markAllNotificationAsRead(){
+    this.notificationService.markAllNotificationBuyer()
+  }
 }

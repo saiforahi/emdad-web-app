@@ -84,15 +84,11 @@ export class ProductDetailsPageComponent implements OnInit {
         config.img_base_url + item.data[0].image2,
       ];
       console.log(this.prodcutDetails);
-      this.getProduct
-        .getProductByCategory(this.prodcutDetails.category.id)
-        .subscribe((item) => {
+      this.getProduct.getProductByCategory(this.prodcutDetails.category.id).subscribe((item) => {
           this.relatedProducts = item.data.results;
           console.log('similar prod list:', this.relatedProducts);
-        });
-      this.comments
-        .getComments(this.prodcutDetails.id)
-        .subscribe((item: any) => {
+      });
+      this.comments.getComments(this.prodcutDetails.id).subscribe((item: any) => {
           this.commentlist = item.data.results;
           this.nextCommentsLink = item.data.links.next;
           // alert(JSON.stringify(this.commentlist));

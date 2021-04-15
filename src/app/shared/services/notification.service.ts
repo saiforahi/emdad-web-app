@@ -46,7 +46,7 @@ export class NotificationService {
                     let temp_messages=[]
                     success.data[0].forEach(element => {
                         temp_messages.push(element.notification)
-                        if(element.read_at===null){
+                        if(element.status===false){
                             unread++
                         }
                     });
@@ -57,10 +57,18 @@ export class NotificationService {
         )
     }
     markAllNotificationSeller(){
-        for(let index=0;index<this.s_notifications.getValue().length;index++){
-            this.http.get(config.base_url+'api/notification/mark/as/read/'+this.s_notifications.getValue()[index].id+'/')
-        }
+        this.http.get(config.base_url+'api/notification/mark/as/read/'+localStorage.getItem('s_uid')+'/',this.sellerHttpOptions).subscribe(
+            (success)=>{console.log('notification marking result',success)},
+            (error)=> {console.log('notification marking result',error)}
+        )
         this.s_unread.next(0)
+    }
+    markAllNotificationBuyer(){
+        this.http.get(config.base_url+'api/notification/mark/as/read/'+localStorage.getItem('uid')+'/',this.httpOptions).subscribe(
+            (success)=>{console.log('notification marking result',success)},
+            (error)=> {console.log('notification marking result',error)}
+        )
+        this.unread.next(0)
     }
     getAllNotificationsForSeller(){
         this.http.get(config.base_url+'api/notification/user/wise/list/'+localStorage.getItem('s_uid')+'/',this.sellerHttpOptions).subscribe(
@@ -73,7 +81,7 @@ export class NotificationService {
                     let temp_messages=[]
                     success.data[0].forEach(element => {
                         temp_messages.push(element.notification)
-                        if(element.read_at===null){
+                        if(element.status===false){
                             unread++
                         }
                     });
