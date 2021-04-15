@@ -29,6 +29,7 @@ export class QuotationViewModalComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder, private commissionService:CommissionService) {}
 
   ngOnInit(): void {
+ 
     window.scrollTo(0, 0);
     console.log('data',this.data)
     this.quoteService.get_seller_quotation_details(this.data.quotation.id).subscribe(
@@ -102,7 +103,7 @@ export class QuotationViewModalComponent implements OnInit {
     }
     return '-'
   }
-
+ 
   onClickSubmit(data:any){
     let quoteFormData=new FormData()
     this.spinner.show()

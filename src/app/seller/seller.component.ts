@@ -177,7 +177,18 @@ export class SellerComponent implements OnInit, AfterViewInit {
       this.notifications=messages
     })
   }
-
+  toggle_language(){
+    if(this.translate.currentLang == 'en'){
+      localStorage.setItem('locale', 'ar');
+      this.translate.use('ar')
+      this.currentLang='ar'
+    }
+    else{
+      localStorage.setItem('locale', 'en');
+      this.translate.use('en')
+      this.currentLang='en'
+    }
+  }
   markAllNotificationAsRead(){
     this.notificationService.markAllNotificationSeller()
   }

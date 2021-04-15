@@ -23,16 +23,14 @@
           <div class="wishlist-review-div">
             <button type="button" class="mb-3" mat-button *ngIf="addToWishlistStatus == '1'"
               (click)="addToWishlist(prodcutDetails.id)">
-              <img src="../../../assets/wish.svg" alt="" />Add to Wishlist
+              <img src="../../../assets/wish.svg" alt="" />{{'Buyer_Product_Details.Add_Wishlist'|translate}}
             </button>
             <button class="mb-3" type="button" mat-button *ngIf="addToWishlistStatus == '0'"
               (click)="removeFromWishlist(prodcutDetails.id)">
-              <img src="../../../assets/wish_filledup.svg" alt="" />Remove from
-              Wishlist
+              <img src="../../../assets/wish_filledup.svg" alt="" />{{'Buyer_Product_Details.Remove_Wishlist'|translate}}
             </button>
             <button type="button" class="mb-3" type="button" mat-button (click)="scroll_to_reviews('reviews')">
-              <img src="../../../assets/review-icon.svg" alt="" />Customer
-              Review
+              <img src="../../../assets/review-icon.svg" alt="" />{{'Buyer_Product_Details.Customer_Review'|translate}}
               <span>{{ totalComments }}</span>
             </button>
           </div>
@@ -44,12 +42,12 @@
               <ng-template #cityNa>(Not Specified)</ng-template>
             </p>
             <p *ngIf="prodcutDetails">
-              <b>Shop Pickup Location: </b>
+              <b>{{'Buyer_Product_Details.Pickup_Location'|translate}} </b>
               <ng-template *ngIf="
                   prodcutDetails.pickup_address?.length > 0;
                   else pickAddressNa
                 ">{{ prodcutDetails.pickup_address[0].address }}</ng-template>
-              <ng-template #pickAddressNa>Not Specified</ng-template>
+              <ng-template #pickAddressNa>{{'Buyer_Product_Details.Not_Specified'|translate}}</ng-template>
             </p>
           </div>
           <!-- <div class="quantity-input">
@@ -64,7 +62,7 @@
             </div>
           </div> -->
           <h5>
-            <b>Stock: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}
+            <b>{{'Buyer_Product_Details.Stock'|translate}}: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}
           </h5>
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
@@ -74,11 +72,11 @@
                   ? 'add-to-cart-btn'
                   : ''
               " class="add-to-cart-btn" mat-button (click)="add_to_cart()">
-              Add to Cart
+              {{'Buyer_Product_Details.Add_to_Cart'|translate}}
             </button>
             &nbsp;
             <button class="req-for-quote-btn" type="button" mat-button [routerLink]="['/rfq/', prodcutDetails.id]">
-              <i class="far fa-file-excel"></i> Request for Quotation
+              <i class="far fa-file-excel"></i> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}
             </button>
           </div>
         </div>
@@ -88,7 +86,7 @@
           </p>
           <p class="prod-price">Unit Price: {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
-            <span>Seller Name: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+            <span>{{'Buyer_Product_Details.Seller_Name'|translate}}: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
               style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.store_name | titlecase }}</a>
           </p>
           <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
@@ -96,7 +94,7 @@
             {{prodcutDetails.brand.name | titlecase}}
           </p>
           <p class="prod-details-header" *ngIf="prodcutDetails?.description">
-            <span>Product Details: </span>
+            <span>{{'Buyer_Product_Details.Product_Details'|translate}}: </span>
             <span class="border-bottom-75"></span>
           </p>
           <p *ngIf="prodcutDetails?.description">{{ prodcutDetails.description }}</p>
@@ -107,7 +105,7 @@
   <div class="similar-product-holder">
     <div class="container">
       <div class="similar-prod-header">
-        <h4 class="d-inline-block">Similar Products</h4>
+        <h4 class="d-inline-block">{{'Buyer_Product_Details.Similar_Products'|translate}}</h4>
         <button mat-raised-button class="d-inline-block float-right" type="button" (click)="nextSlide();"><img
             src="../../../../assets/right-arrow.svg" alt=""/></button>
         <button mat-raised-button class="d-inline-block float-right" type="button" (click)="prevSlide();"><img
@@ -121,7 +119,7 @@
         </div>
       </div>
       <div class="similar-prod-header">
-        <h4>Reviews</h4>
+        <h4>{{'Buyer_Product_Details.Reviews'|translate}}</h4>
       </div>
     </div>
   </div>
@@ -140,14 +138,14 @@
         </div>
       </div>
       <h4 *ngIf="commentlist.length === 0" class="text-center">
-        <b>No Comments Posted Yet</b>
+        <b>{{'Buyer_Product_Details.No_Comments'|translate}}</b>
       </h4>
       <div class="text-center mt-5">
         <button mat-raised-button *ngIf="nextCommentsLink !== null" type="button" (click)="getNextComments()" class="submit-review-btn mr-3">
-          More Comments
+          {{'Buyer_Product_Details.More_Comments'|translate}}
         </button>
         <button mat-raised-button (click)="show_review_modal()" type="button" class="submit-review-btn">
-          Submit yor review
+          {{'Buyer_Product_Details.Submit_Review'|translate}}
         </button>
         <app-product-review-modal [prodcutDetails]="prodcutDetails">
         </app-product-review-modal>
@@ -156,7 +154,7 @@
   </div>
   <div class="seller-description">
     <div class="container">
-      <h4 class="similar-prod-header">Seller Description</h4>
+      <h4 class="similar-prod-header">{{'Buyer_Product_Details.Seller_Description'|translate}}</h4>
       <div class="comment-div">
         <p class="commenter-name mb-0" *ngIf="prodcutDetails">
           <b>{{ prodcutDetails.seller.full_name | titlecase }}</b>
@@ -180,7 +178,7 @@
         </p> -->
       </div>
       <div class="comment-div">
-        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>Address</b></p>
+        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>{{'Buyer_Profile_Form.Address'|translate}}</b></p>
         <p>
           <span *ngIf="prodcutDetails.seller.store_address">{{
             prodcutDetails.seller.store_address }}</span>
