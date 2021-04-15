@@ -382,8 +382,25 @@
         "Delete_Prompt":"Do you want to delete those products",
         "Delete":"Delete",
         "Cancel":"Cancel"
+    },
+    "Buyer_Product_Details":{
+        "Add_Wishlist":"Add to Wishlist",
+        "Remove_Wishlist":"Remove From Wishlist",
+        "Customer_Review":"Customer Review",
+        "Pickup_Location":"Shop Pickup Location:",
+        "Not_Specified":"Not Specified",
+        "Stock":"Stock",
+        "Add_to_Cart":"Add to Cart",
+        "Request_for_Quotation":"Request for Quotation",
+        "Seller_Name":"Seller Name:",
+        "Product_Details":"Product Details",
+        "Similar_Products":"Similar Products",
+        "Reviews":"Reviews",
+        "No_Comments":"No Comments Posted Yet",
+        "More_Comments":"More Comments",
+        "Submit_Review":"Submit yor review",
+        "Seller_Description":"Seller Description"
     }
-  
 }
 
 

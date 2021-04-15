@@ -379,6 +379,24 @@
   "Delete_Prompt":"هل تريد حذف هذه المنتجات",
   "Delete":"حذف",
   "Cancel":"إلغاء"
+},
+"Buyer_Product_Details":{
+  "Add_Wishlist": "أضف إلى قائمة الرغبات",
+  "Remove_Wishlist": "إزالة من قائمة الرغبات",
+  "Customer_Review": "مراجعة العميل",
+  "Pickup_Location": "موقع الاستلام من المتجر:",
+  "Not_Specified": "غير محدد",
+  "Stock": "مخزون",
+  "Add_to_Cart": "أضف إلى عربة التسوق",
+  "Request_for_Quotation": "طلب عرض أسعار",
+  "Seller_Name": "اسم البائع:",
+  "Product_Details": "تفاصيل المنتج",
+  "Similar_Products": "إزالة من قائمة الرغبات",
+  "Reviews": "إزالة من قائمة الرغبات",
+  "No_Comments": "إزالة من قائمة الرغبات",
+  "More_Comments": "إزالة من قائمة الرغبات",
+  "Submit_Review": "إزالة من قائمة الرغبات",
+  "Seller_Description": "إزالة من قائمة الرغبات"
 }
 
 }
