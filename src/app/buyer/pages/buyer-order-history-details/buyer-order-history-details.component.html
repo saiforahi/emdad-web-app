@@ -23,7 +23,14 @@
       {{'Buyer_Order_Details.Order_Processing'|translate}}
     </button>
     <button
-      *ngIf="order_status === 'completed'"
+      *ngIf="order_status == '4'"
+      type="button"
+      class="btn status-btn completed"
+    >
+      {{'Seller_Dashboard.Delivered'|translate}}
+    </button>
+    <button
+      *ngIf="order_status == '5'"
       type="button"
       class="btn status-btn completed"
     >
