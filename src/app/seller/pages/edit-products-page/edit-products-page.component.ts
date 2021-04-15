@@ -211,7 +211,7 @@ export class EditProductsPageComponent implements OnInit {
         prodDetails: this.productDetails.description,
         manufactererName: this.brandId,
         prodStock: this.productDetails.stock_quantity,
-        prodColor: null,
+        prodColor: this.colorId,
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         leadTime: setLeadTime,
@@ -434,7 +434,7 @@ export class EditProductsPageComponent implements OnInit {
     }
     this.productUploadFormData.append('stock_quantity', value.prodStock);
     this.productUploadFormData.append('status', '1');
-    if (this.productDetails.image1 != null && this.selectedImage.length != 0) {
+    if (this.productDetails.image1 != null && this.selectedImage.length == 1) {
       this.productUploadFormData.append(
         'image2',
         this.selectedImage[0],
@@ -470,7 +470,8 @@ export class EditProductsPageComponent implements OnInit {
         },
         (error: any) => {
           console.log(error);
-          swal('Failed!', this.error, 'error');
+          this.spinner.hide();
+          swal('Failed!', error.error.message, 'error');
         }
       );
   }

@@ -365,6 +365,9 @@ export class UploadProductsPageComponent implements OnInit {
         this.spinner.hide();
         swal('Succeed', success.message, 'success');
         this.productUploadForm.reset();
+        this.category.reset('');
+        this.subCategory.reset('');
+        this.childCategory.reset('');
         this.manufactererName.reset('');
         this.prodColor.reset('');
         this.prodUnit.reset('');
