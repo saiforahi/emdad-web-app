@@ -33,8 +33,17 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   get_orders() {
+    this.orderData=[]
     this.orderService.get_buyer_order_list().subscribe((res) => {
-      this.orderData = res.data;
+      res.data.forEach((element:any) => {
+        if(element.payment_type==1 && element.buyer_payment_status==1){
+          this.orderData.push(element)
+        }
+        else if(element.payment_type==0){
+          this.orderData.push(element)
+        }
+      });
+      //this.orderData = res.data;
       console.log(this.orderData);
     });
   }
