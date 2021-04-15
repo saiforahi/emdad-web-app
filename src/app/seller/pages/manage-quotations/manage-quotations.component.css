@@ -306,7 +306,7 @@ vertical-align: center !important;
   
   }
  .mobile-button > span > .filter-btn{
-    width: 145px !important;
+    width: 170px !important;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;
@@ -337,7 +337,7 @@ vertical-align: center !important;
 
 @media all and (min-width:360px) and (max-width:576px){
   .big-view >.ticket-btn,.big-view > span >.filter-btn{
-    width: 140px !important;
+    width: 170px !important;
     font-size: 14px !important;
     line-height: 20px !important;
     height: 40px !important;

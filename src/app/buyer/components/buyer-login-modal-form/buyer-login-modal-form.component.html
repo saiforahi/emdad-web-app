@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-0">
       <div class="modal-header text-center">
-        <h5 class="modal-title w-100" id="staticBackdropLabel">Sign in</h5>
+        <h5 class="modal-title w-100" id="staticBackdropLabel">{{'Buyer_Sign_In.Sign'|translate}}</h5>
         <button (click)="hide_buyer_login()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><img src="../../../../assets/close-dark.svg" alt="" /></span>
         </button>
@@ -15,16 +15,16 @@
                 <div class="card-body">
                   <form [formGroup]="signInForm" (ngSubmit)="signin()">
                     <div class="form-group">
-                      <label class="form-label" for="email">Email</label>
+                      <label class="form-label" for="email">{{'Buyer_Sign_In.Email'|translate}}</label>
                       <small for="emailError" *ngIf="signInForm.get('email').errors && submitted"
-                        class="errors ml-1">*required</small>
+                        class="errors ml-1">*{{'Buyer_Sign_In.require'|translate}}</small>
                       <input class="form-control" type="email" id="email" name="email" formControlName="email"
                         autofocus />
                     </div>
                     <div class="form-group">
-                      <label class="form-label" for="password">Password</label>
+                      <label class="form-label" for="password">{{'Buyer_Sign_In.Password'|translate}}</label>
                       <small for="passwordError" *ngIf="signInForm.get('password').errors && submitted"
-                        class="errors ml-1">*required</small>
+                        class="errors ml-1">*{{'Buyer_Sign_In.require'|translate}}</small>
                       <input class="form-control" type="password" id="password" name="password"
                         formControlName="password" (keydown.enter)="signin()" />
                     </div>
@@ -33,25 +33,23 @@
                         <div class="form-check sm-2">
                           <input class="form-check-input rem-check" style="margin-top: 7px" type="checkbox"
                             id="autoSizingCheck" [checked]="rememberMe" (change)="rememberMe = !rememberMe" />
-                          <label class="form-check-label forget-pass" for="autoSizingCheck">Remember me</label>
+                          <label class="form-check-label forget-pass" for="autoSizingCheck">{{'Buyer_Sign_In.Remember'|translate}}</label>
                         </div>
                       </div>
                       <div class="col-12 col-sm-12 col-md-6">
-                        <a (click)="show_forget_password()" class="forget-pass"><label class="float-right">Forgot
-                            password?</label></a>
+                        <a (click)="show_forget_password()" class="forget-pass"><label class="float-right">{{'Buyer_Sign_In.Forgot'|translate}}?</label></a>
                       </div>
                     </div>
                     <div class="form-group">
                       <button class="btn btn-primary btn-md btn-block login_btn" type="submit" (click)="signin()">
-                        Sign In
+                        {{'Buyer_Sign_In.Sign'|translate}}
                       </button>
                     </div>
                   </form>
                   <div class="form-group row footer">
                     <div class="col-sm-auto">
-                      <label>No account yet?
-                        <a class="create-accnt" (click)="show_buyer_registration_modal_form()">Create an
-                          account</a></label>
+                      <label>{{'Buyer_Sign_In.No_Account'|translate}}
+                        <a class="create-accnt" (click)="show_buyer_registration_modal_form()">{{'Buyer_Sign_In.Create_Account'|translate}}</a></label>
                     </div>
                   </div>
                 </div>

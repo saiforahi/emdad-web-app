@@ -354,7 +354,36 @@
         "Remember_me":"Remember me",
         "Forgot_Password":"Forgot your password?",
         "Not_Seller":"Not a Seller yet?"
+    },
+    "Buyer_Sign_In":{
+        "Email":"Email",
+        "Password":"Password",
+        "Remember":"Remember me",
+        "Forgot":"Forgot password",
+        "Sign":"Sign in",
+        "No_Account":"No account yet?",
+        "Create_Account":"Create an account",
+        "require":"required"
+
+    },
+    "Buyer_Register":{
+        "Register":"Register",
+        "Full_Name":"Full Name",
+        "require":"required",
+        "Email":"Email",
+        "Password":"Password",
+        "Confirm_Pass":"Confirm Password",
+        "No_Match":"didn't match",
+        "Phone_Number":"Phone Number (optional)",
+        "Process":"Processing...",
+        "Account_No":"Have an account already"
+    },
+    "Seller_Product_Delete":{
+        "Delete_Prompt":"Do you want to delete those products",
+        "Delete":"Delete",
+        "Cancel":"Cancel"
     }
+  
 }
 
 

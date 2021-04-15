@@ -105,6 +105,7 @@ pinch-zoom /deep/ .pinch-zoom-content {
   font-weight: 500;
   font-size: 24px;
   color: #fff;
+  text-align: center !important;
 }
 
 .cart-quote-btn-div button.req-for-quote-btn {
@@ -334,7 +335,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px !important;
   }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 115px;
+    width: 130px;
     height: 50px;
     font-size: 16px;
     margin-bottom: 10px;
@@ -427,7 +428,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px !important;
   }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 115px;
+    width: 130px;
     height: 60px;
     font-size: 18px;
     margin-bottom: 10px;
