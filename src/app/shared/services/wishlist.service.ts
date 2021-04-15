@@ -47,7 +47,6 @@ export class WishlistService {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       }),
     };
-    if (localStorage.getItem('uid') != null) {
       return this.http.get(
         config.base_url +
           'api/product/wishlist/status/check/' +
@@ -55,7 +54,6 @@ export class WishlistService {
           '/',
         httpOptions
       );
-    }
   }
 
   getWishlist(): Observable<any> {

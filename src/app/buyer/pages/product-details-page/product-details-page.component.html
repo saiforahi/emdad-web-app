@@ -25,7 +25,7 @@
               (click)="addToWishlist(prodcutDetails.id)">
               <img src="../../../assets/wish.svg" alt="" />{{'Buyer_Product_Details.Add_Wishlist'|translate}}
             </button>
-            <button class="mb-3" type="button" mat-button *ngIf="addToWishlistStatus == '0'"
+            <button class="mb-3" type="button" mat-button *ngIf="addToWishlistStatus == '0' && uid != undefined"
               (click)="removeFromWishlist(prodcutDetails.id)">
               <img src="../../../assets/wish_filledup.svg" alt="" />{{'Buyer_Product_Details.Remove_Wishlist'|translate}}
             </button>

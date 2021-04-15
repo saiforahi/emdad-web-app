@@ -93,7 +93,11 @@ export class ProductListPageComponent implements OnInit {
       this.getProduct
         .getProductByCategory(this.selected_child_category)
         .subscribe((item) => {
+        console.log(item)
           this.products = item.data.results;
+          if (item.data.links != null) {
+            this.nextBatchProdLink = item.data.links.next;
+          }
           this.getCategories.category().subscribe((item) => {
             item.forEach((element) => {
               element.children.forEach((element1) => {
@@ -108,9 +112,6 @@ export class ProductListPageComponent implements OnInit {
             });
             this.get_menus();
             this.prices = this.get_price_ranges();
-            if (item.data.links != null) {
-              this.nextBatchProdLink = item.data.links.next;
-            }
           });
         });
     } else if (this.router.url.substr(10, 10) == 'categories') {
@@ -118,6 +119,7 @@ export class ProductListPageComponent implements OnInit {
       this.set_all_categories();
       console.log('categories', this.categories);
       this.getProduct.popularProduct().subscribe((products) => {
+        console.log(products)
         this.products = products.data.results;
         console.log('popular products', this.products);
         this.get_menus();
