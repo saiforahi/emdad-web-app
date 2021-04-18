@@ -214,7 +214,7 @@ export class CartPageComponent implements OnInit {
       //   });
       // }
     });
-    console.log('commission list',this.commissionList)
+    //console.log('commission list',this.commissionList)
   }
 
   removeFromCart(prodId: number) {

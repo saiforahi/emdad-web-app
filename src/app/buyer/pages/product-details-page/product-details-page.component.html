@@ -37,19 +37,18 @@
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails">
-              <i class="fas fa-info-circle"></i>
-              {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days
-              DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
-              <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa">{{
-                prodcutDetails.pickup_address[0].city }}</ng-template>
-              <ng-template #cityNa>(Not Specified)</ng-template>
+              <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
+              <ng-template *ngIf="prodcutDetails.pickup_address?.length > 0; else cityNa">
+                {{prodcutDetails.pickup_address[0].address }}
+              </ng-template>
+              <ng-template #cityNa>({{'Buyer_Product_Details.Not_Specified'|translate}})</ng-template>
             </p>
             <p *ngIf="prodcutDetails">
               <b>{{'Buyer_Product_Details.Pickup_Location'|translate}} </b>
               <ng-template *ngIf="
-                  prodcutDetails.pickup_address?.length > 0;
-                  else pickAddressNa
-                ">{{ prodcutDetails.pickup_address[0].address }}</ng-template>
+                prodcutDetails.pickup_address?.length > 0;
+                else pickAddressNa
+              ">{{ prodcutDetails.pickup_address[0].address }}</ng-template>
               <ng-template #pickAddressNa>{{'Buyer_Product_Details.Not_Specified'|translate}}</ng-template>
             </p>
           </div>
@@ -101,8 +100,7 @@
           <p class="prod-name">
             {{ prodcutDetails.name | titlecase }}
           </p>
-          <p class="prod-price">{{'Buyer_Quotation_History.Unit_Price'|translate}}: SAR {{
-            get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
+          <p class="prod-price">Unit Price: SAR {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
             <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a
               [routerLink]="['/products/seller/', prodcutDetails.seller.id]"

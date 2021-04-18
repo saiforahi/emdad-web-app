@@ -102,6 +102,6 @@ export class ProductCardComponent implements OnInit {
       total = unit_price + parseFloat(price)
       // console.log('else total',total)
     }
-    return total
+    return (total+(total*(parseFloat(localStorage.getItem('vat'))/100))).toFixed(2)
   }
 }
