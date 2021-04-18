@@ -10,7 +10,7 @@
                 <!--INPUT FOR PRODUCT QUANTITY-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="quantity">{{'Seller_RFQ.Product_Quantity'|translate}}</label>
+                        <label class="form-label height-label" for="quantity">{{'Seller_RFQ.Product_Quantity'|translate}}</label>
                         <input (change)="calc_total_price()" id="quantity" class="form-control form-control-md" type="number"
                             formControlName="quantity" required />
                         <!--ERROR CHECK-->
@@ -26,7 +26,7 @@
                 <!--INPUT FOR UNIT PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="unit_price">{{'Seller_RFQ.Unit_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}} </label>
+                        <label class="form-label height-label" for="unit_price">{{'Seller_RFQ.Unit_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}} </label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
@@ -49,7 +49,7 @@
                 <!--INPUT FOR TOTAL PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="total_price">{{'Buyer_Quotation_History.Total_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}} </label>
+                        <label class="form-label height-label" for="total_price">{{'Buyer_Quotation_History.Total_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}} </label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">SR <span class="ml-2 stick">&#124;</span></div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="form-group">
-                        <label for="message" class="form-label">{{'Buyer_Quotation_History.Message'|translate}}</label>
+                        <label for="message height-label" class="form-label">{{'Buyer_Quotation_History.Message'|translate}}</label>
                         <textarea formControlName="message" id="message" class="form-control form-control-md"></textarea>
                     </div>
                 </div>

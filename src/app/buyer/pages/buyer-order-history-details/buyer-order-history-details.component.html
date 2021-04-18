@@ -57,7 +57,7 @@
               alt="Generic placeholder image"
             />
             <div class="media-body row">
-              <div class="col-md-8 col-lg-6">
+              <div class="col-md-7 col-lg-6">
                 <h5 class="prod-name mt-0 mb-1">
                   {{ product.product.name | titlecase }}
                 </h5>
@@ -80,9 +80,9 @@
               <div class="col-md-2 col-lg-3 ml-45">
                 <p class="sub-text2">{{ product.quantity }}</p>
               </div>
-              <div class="col-md-2 col-lg-3 ml-30">
+              <div class="col-md-3 col-lg-3">
                 <p style="color: #2b2b2b" class="sub-text3">
-                  ${{ cal_individual_total(i) | number: "2.2-2" }}
+                  SAR {{ cal_individual_total(i) | number: "2.2-2" }}
                 </p>
               </div>
             </div>
@@ -96,13 +96,13 @@
           <div>
             <p>{{'Buyer_Cart.Sub_Total'|translate}} {{'('+orders?.length+' items)'}}</p>
           </div>
-          <p>${{ calcTotalPrice() | number: "2.2-2" }}</p>
+          <p>SAR {{ calcTotalPrice() | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
             <p>{{'Buyer_Cart.Discount'|translate}}</p>
           </div>
-          <p>- ${{ discount | number: "1.2-2" }}</p>
+          <p>- SAR {{ discount | number: "1.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
@@ -116,7 +116,7 @@
             <p class="mb-0"><span>{{'Seller_Order_History.Total'|translate}}</span></p>
           </div>
           <p class="mb-0">
-            <span>${{ orders[0]?.order.total_amount }}</span>
+            <span>SAR {{ orders[0]?.order.total_amount }}</span>
           </p>
         </div>
       </div>
@@ -132,11 +132,10 @@
       <div class="card-body payment-summery">
         <h4>{{'Buyer_Order_Details.Payment_Details'|translate}}</h4>
         <p>
-          <span class="name">{{'Buyer_Order_Details.Payment_Method'|translate}}:</span
-          ><span class="deets"> {{'Buyer_Order_Details.Wire_Transfer'|translate}}</span>
+          <span class="name">{{'Buyer_Order_Details.Payment_Method'|translate}}:</span><span class="deets"> {{'Buyer_Order_Details.Wire_Transfer'|translate}}</span>
         </p>
         <p class="deets">
-          {{'Buyer_Order_Details.Wire_text'|translate}}
+          {{'Buyer_Order_Details.Wire_Text'|translate}}
         </p>
         <p>
           <span class="name">{{'Buyer_Order_Details.Account_Number'|translate}} : </span
@@ -168,7 +167,7 @@
       <div class="card-body payment-summery">
         <h4>{{'Buyer_Order_Details.Payment_Details'|translate}}</h4>
         <p>
-          <span class="name">{{'Buyer_Order_Details.Payment Method'|translate}}:</span
+          <span class="name">{{'Buyer_Order_Details.Payment_Method'|translate}}:</span
           ><span class="deets"> Card </span>
         </p>
         <br />

@@ -302,3 +302,17 @@ button.cancel-btn img {
     height: 30px;
   }
 }
+@media only screen and (min-width:401px) and (max-width:499px){
+  .custom-btn img {
+    width: 20px;
+  }
+  button.cancel-btn img {
+    height: 20px;
+  }
+  button.cancel-btn {
+    height: 20px;
+    width: 20px;
+    line-height: 1;
+    margin-top: 15px;
+  }
+}

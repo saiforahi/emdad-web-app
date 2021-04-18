@@ -24,7 +24,7 @@
                 <!--INPUT FOR PRODUCT QUANTITY-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label class="form-label" for="prodQuantity">{{'Seller_RFQ.Product_Quantity'|translate}}</label>
+                        <label class="form-label height-label" for="prodQuantity">{{'Seller_RFQ.Product_Quantity'|translate}}</label>
                         <input (change)="calc_total_price()" formControlName="quantity" id="prodQuantity" class="form-control form-control-md"
                             type="number" required />
                         <!--ERROR CHECK-->
@@ -39,7 +39,7 @@
                 <!--INPUT FOR UNIT PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label for="unitPrice" class="form-label">{{'Seller_RFQ.Unit_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}}</label>
+                        <label for="unitPrice" class="form-label height-label">{{'Seller_RFQ.Unit_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}}</label>
                         <input id="unitPrice" (change)="calc_unit_price($event.target.value)" formControlName="unit_price" class="form-control form-control-md"
                             type="number" required />
                         <p class="text-warning">{{commission}}% {{'Seller_RFQ.Commission'|translate}}</p>
@@ -55,7 +55,7 @@
                 <!--INPUT FOR TOTAL PRICE-->
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group">
-                        <label for="totalPrice" class="form-label">{{'Buyer_Quotation_History.Total_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}}</label>
+                        <label for="totalPrice" class="form-label height-label">{{'Buyer_Quotation_History.Total_Price'|translate}} {{'Seller_Upload_Product.VatEx'|translate}}</label>
                         <input formControlName="total_price" id="totalPrice" class="form-control form-control-md"
                             type="number" required />
                         <!-- ERROR CHECK -->
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="form-group">
-                        <label for="message" class="form-label">{{'Buyer_Quotation_History.Message'|translate}}</label>
+                        <label for="message" class="form-label height-label">{{'Buyer_Quotation_History.Message'|translate}}</label>
                         <textarea formControlName="message" id="message" class="form-control form-control-md"></textarea>
                         <!-- ERROR CHECK -->
                         <!-- <div *ngIf="message.invalid && (message.dirty || message.touched)"

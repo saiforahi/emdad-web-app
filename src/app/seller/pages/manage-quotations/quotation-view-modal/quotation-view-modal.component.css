@@ -19,6 +19,9 @@
 
  
 }
+.height-label{
+  min-height:52px !important;
+}
 /*expansion panels*/
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
@@ -238,6 +241,10 @@ height: 60px;
     width: 180px;
    
   }
+  .height-label{
+    min-height: auto !important;
+
+  }
   .mobile-show{
     text-align: center !important;
     justify-content: center;
@@ -288,6 +295,9 @@ display: block !important;
     font-size: 16px;
     line-height: 23px; 
     height: 40px;
+  }
+  .height-label{
+    min-height: auto !important;
   }
   .attached-file,.login_btn,.attached-file button{
     font-size: 16px;

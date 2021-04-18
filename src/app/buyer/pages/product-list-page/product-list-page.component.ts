@@ -331,9 +331,9 @@ export class ProductListPageComponent implements OnInit {
           ' ' +
           (Math.trunc(this.min_price) + range + 1),
         name:
-          '$' +
+          'SAR ' +
           Math.trunc(this.min_price) +
-          ' to $' +
+          ' to SAR ' +
           (Math.trunc(this.min_price) + range),
       });
       ranges.push({
@@ -344,9 +344,9 @@ export class ProductListPageComponent implements OnInit {
           ' ' +
           (Math.trunc(this.min_price) + range * 2 + 1),
         name:
-          '$' +
+          'SAR ' +
           (Math.trunc(this.min_price) + range) +
-          ' to $' +
+          ' to SAR ' +
           (Math.trunc(this.min_price) + range * 2),
       });
       ranges.push({
@@ -357,9 +357,9 @@ export class ProductListPageComponent implements OnInit {
           ' ' +
           (Math.trunc(this.max_price) + 1),
         name:
-          '$' +
+          'SAR ' +
           (Math.trunc(this.min_price) + range * 2) +
-          ' to $' +
+          ' to SAR ' +
           Math.trunc(this.max_price),
       });
       return ranges;

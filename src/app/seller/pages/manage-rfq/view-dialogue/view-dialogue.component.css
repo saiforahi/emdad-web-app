@@ -18,6 +18,9 @@
   
    
   }
+  .height-label{
+    min-height:52px !important;
+  }
   .quote-button{
     background: #1F4F9E;
     border-radius: 5px;
@@ -215,6 +218,9 @@ height: 60px;
     width: 180px;
    
   }
+  .height-label{
+    min-height:auto !important;
+  }
   .mobile-show{
     text-align: center !important;
     justify-content: center;
@@ -301,6 +307,9 @@ line-height: 23px;
       ::ng-deep .mat-dialog-content{
         padding-bottom: 20px !important;
            }
+           .height-label{
+            min-height:auto !important;
+          }
 }
 @media all and (min-width:768px) and (max-width:992px){
   .quote-button{
