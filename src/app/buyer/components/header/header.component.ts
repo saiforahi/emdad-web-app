@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   currentLang: string;
   notification_messages: Array<any> = [];
   unread_notification_length: number;
+  notifications:Array<any>=[]
   constructor(
     private UserAuthService: UserAuthService,
     private getCategory: GetCategoryService,
@@ -83,6 +84,9 @@ export class HeaderComponent implements OnInit {
     this.notificationService.unread.subscribe((data: any) => {
       this.unread_notification_length = data;
     });
+    this.notificationService.notifications.subscribe((data:any)=>{
+      this.notifications=data
+    })
     if (this.activeRoute[1] == 'home') {
       this.showOnScroll = false;
     } else {
@@ -259,5 +263,11 @@ export class HeaderComponent implements OnInit {
   }
   markAllNotificationAsRead(){
     this.notificationService.markAllNotificationBuyer()
+  }
+
+  notification_action(index){
+    if(this.notifications[index].event=='Order Created'){
+      this.router.navigate(['/order/details/',this.notifications[index].event_id])
+    }
   }
 }

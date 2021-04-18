@@ -311,7 +311,10 @@
                     <div *ngIf="comPhone.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company Phone is required.'"></app-form-input-alert>
                     </div>
-                    <div *ngIf="comPhone.errors?.pattern">
+                    <div *ngIf="comPhone.errors?.minLength">
+                      <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
+                    </div>
+                    <div *ngIf="comPhone.errors?.maxLength">
                       <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
                     </div>
                   </div>
@@ -433,7 +436,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="expDate">Expiry Date</label>
+                  <label for="expDate">{{'Seller_Sign_Up.Expiry_Date'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>

@@ -80,7 +80,7 @@ export class SignupPageComponent implements OnInit {
       comName: ['', [Validators.required]],
       comPhone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required,Validators.minLength(8),Validators.pattern(this.passwordPattern)]],
+      password: ['', [Validators.required,Validators.minLength(8),Validators.minLength(8),Validators.maxLength(15)]],
       confPassword: ['', [Validators.required]],
       comAddress: ['', [Validators.required]],
       comRegistration: [''],
