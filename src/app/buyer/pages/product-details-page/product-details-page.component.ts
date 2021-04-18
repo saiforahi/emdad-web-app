@@ -12,6 +12,7 @@ import { Product } from '../../../shared/models/Product.model';
 import { Cart } from 'src/app/shared/models/Cart.model';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
+import { VatService } from 'src/app/shared/services/vat.service';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -38,7 +39,8 @@ export class ProductDetailsPageComponent implements OnInit {
   commnetsEnd: boolean;
   route_subscription: any;
   uid: any;
-
+  vatPercentage:number=0
+  location:any
   constructor(
     private getProduct: GetProductService,
     private route: ActivatedRoute,
@@ -49,7 +51,7 @@ export class ProductDetailsPageComponent implements OnInit {
     private cartService: CartServiceService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private user: UserAuthService
+    private user: UserAuthService,private vat:VatService
   ) {
     this.getScreenSize();
     this.route_subscription = router.events.subscribe((val: any) => {
@@ -79,6 +81,8 @@ export class ProductDetailsPageComponent implements OnInit {
     console.log('prod id', this.productId);
     this.getProduct.productDetails(this.productId).subscribe((item) => {
       this.prodcutDetails = item.data[0];
+      console.log('pickup_address',this.prodcutDetails.pickup_address[0].address)
+      this.location=this.prodcutDetails.pickup_address[0].address
       this.sliderImgArray = [
         config.img_base_url + item.data[0].image1,
         config.img_base_url + item.data[0].image2,
@@ -285,6 +289,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
   get_unit_price(product_commission: any, price: any) {
     //generating unit price with commission
+    
     let total = 0;
     if (parseFloat(product_commission) > 0) {
       let unit_price =
@@ -301,6 +306,6 @@ export class ProductDetailsPageComponent implements OnInit {
       //console.log('else total',total)
     }
     //console.log(total.toFixed(2))
-    return total.toFixed(2);
+    return ((total*(parseFloat(localStorage.getItem('vat'))/100))+total).toFixed(2);
   }
 }
