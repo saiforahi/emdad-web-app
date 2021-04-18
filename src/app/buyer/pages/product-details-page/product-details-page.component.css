@@ -9,8 +9,12 @@ a {
   text-decoration: none;
 }
 
-*:focus {
-  outline: none;
+*:focus,button:focus,input:focus,input:active,button:active {
+  outline:none;
+  box-shadow: none;
+}
+.btn,.form-control{
+  outline: 0 !important;
 }
 
 .prodcutDetails {
@@ -182,7 +186,49 @@ pinch-zoom /deep/ .pinch-zoom-content {
   font-size: 56px;
   margin: 40px 0 60px;
 }
-
+.input-number,.form-control{
+  width:80px !important;
+  min-width:80px;
+  /* max-width: 150px; */
+  height:80px;
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 35px;
+border: 1px solid #CFCFCF;
+box-sizing: border-box;
+/* identical to box height */
+font-family: Jost;
+text-align: center;
+color: #2B2B2B;
+border-radius: 0 !important;
+}
+.plus-button{
+  width:80px !important;
+  height:80px !important;
+  border: 1px solid #CFCFCF;
+box-sizing: border-box;
+/* border-radius: 5px 0px 0px 5px; */
+font-weight:400 !important;
+font-size:24px !important;
+line-height: 35px;
+font-family: Jost;
+border-radius: 0 !important;
+}
+btn{
+  border-radius: 0 !important;
+}
+.minus{
+  margin-right: 0 !important;
+}
+.plus{
+  margin-left: 0 !important;
+}
+.plus-button img{
+  height:30px;
+  width:30px;
+}
 .similar-prod-header button {
   background: #eaeaea;
   border-radius: 10px;
@@ -195,7 +241,32 @@ pinch-zoom /deep/ .pinch-zoom-content {
 .similar-prod-header button:last-child {
   margin-right: 15px;
 }
+.stock{
+  font-family: Jost;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
 
+
+/* #2B2B2B */
+
+color: #2B2B2B;
+}
+.stock>span{
+  font-weight: 500 !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 @-webkit-keyframes example {
   0% {
     /* opacity: 1; */
@@ -334,8 +405,12 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   .prod-delivery-info h5 {
     font-size: 16px !important;
   }
+  .stock{
+    font-size: 14px;
+    line-height: 20px;
+  }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 130px;
+    width: 180px;
     height: 50px;
     font-size: 16px;
     margin-bottom: 10px;
@@ -389,6 +464,9 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   .seller-description {
     padding: 15px 0 15px;
   }
+.input-text{
+  padding-top: 10px;
+}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1399px) {
@@ -404,6 +482,9 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   }
   .prodcutDetails .mat-raised-button img {
     height: 10px;
+  }
+  .input-text{
+    padding-top: 10px;
   }
   .wishlist-review-div,
   .cart-quote-btn-div {
@@ -428,7 +509,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px !important;
   }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 130px;
+    width: 180px;
     height: 60px;
     font-size: 18px;
     margin-bottom: 10px;

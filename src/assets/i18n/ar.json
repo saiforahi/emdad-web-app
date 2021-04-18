@@ -395,9 +395,10 @@
   "Similar_Products": "إزالة من قائمة الرغبات",
   "Reviews": "إزالة من قائمة الرغبات",
   "No_Comments": "إزالة من قائمة الرغبات",
-  "More_Comments": "إزالة من قائمة الرغبات",
-  "Submit_Review": "إزالة من قائمة الرغبات",
-  "Seller_Description": "إزالة من قائمة الرغبات"
+  "More_Comments":"المزيد من التعليقات",
+  "Submit_Review":"إرسال رأيك",
+  "Seller_Description": "إزالة من قائمة الرغبات",
+  "Brand_Name":"اسم العلامة التجارية"
 }
 
 }
