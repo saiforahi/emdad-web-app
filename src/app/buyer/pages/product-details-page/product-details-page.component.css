@@ -182,7 +182,9 @@ pinch-zoom /deep/ .pinch-zoom-content {
   font-size: 56px;
   margin: 40px 0 60px;
 }
-
+.input-number{
+  width: 100px;
+}
 .similar-prod-header button {
   background: #eaeaea;
   border-radius: 10px;
@@ -195,7 +197,22 @@ pinch-zoom /deep/ .pinch-zoom-content {
 .similar-prod-header button:last-child {
   margin-right: 15px;
 }
+.stock{
+  font-family: Jost;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
 
+
+/* #2B2B2B */
+
+color: #2B2B2B;
+}
+.stock>span{
+  font-weight: 500 !important;
+}
 @-webkit-keyframes example {
   0% {
     /* opacity: 1; */
@@ -334,8 +351,12 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   .prod-delivery-info h5 {
     font-size: 16px !important;
   }
+  .stock{
+    font-size: 14px;
+    line-height: 20px;
+  }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 130px;
+    width: 180px;
     height: 50px;
     font-size: 16px;
     margin-bottom: 10px;
@@ -428,7 +449,7 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px !important;
   }
   .cart-quote-btn-div button.add-to-cart-btn {
-    width: 130px;
+    width: 180px;
     height: 60px;
     font-size: 18px;
     margin-bottom: 10px;

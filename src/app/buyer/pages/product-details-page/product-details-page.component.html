@@ -27,7 +27,8 @@
             </button>
             <button class="mb-3" type="button" mat-button *ngIf="addToWishlistStatus == '0' && uid != undefined"
               (click)="removeFromWishlist(prodcutDetails.id)">
-              <img src="../../../assets/wish_filledup.svg" alt="" />{{'Buyer_Product_Details.Remove_Wishlist'|translate}}
+              <img src="../../../assets/wish_filledup.svg"
+                alt="" />{{'Buyer_Product_Details.Remove_Wishlist'|translate}}
             </button>
             <button type="button" class="mb-3" type="button" mat-button (click)="scroll_to_reviews('reviews')">
               <img src="../../../assets/review-icon.svg" alt="" />{{'Buyer_Product_Details.Customer_Review'|translate}}
@@ -36,7 +37,9 @@
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails">
-              <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
+              <i class="fas fa-info-circle"></i>
+              {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days
+              DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               <ng-template *ngIf="prodcutDetails.pickup_address.length > 0; else cityNa">{{
                 prodcutDetails.pickup_address[0].city }}</ng-template>
               <ng-template #cityNa>(Not Specified)</ng-template>
@@ -61,8 +64,22 @@
               </button>
             </div>
           </div> -->
-          <h5>
-            <b>{{'Buyer_Product_Details.Stock'|translate}}: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}
+          <!--quantity-->
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="form-check-inline">
+                <button class="btn" (click)="plus()"><i class="fa fa-plus"></i></button>
+              </div>
+              <div class="form-check-inline input-number">
+                <input type="text" class="form-control" [(ngModel)]="inputnumber">
+              </div>
+              <div class="form-check-inline">
+                <button class="btn" (click)="minus()"><i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+          </div>
+          <h5 class="stock">
+            <span>{{'Buyer_Product_Details.Stock'|translate}}: </span> {{ get_quantity(prodcutDetails.stock_quantity) }}
           </h5>
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
@@ -84,13 +101,15 @@
           <p class="prod-name">
             {{ prodcutDetails.name | titlecase }}
           </p>
-          <p class="prod-price">Unit Price: {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
+          <p class="prod-price">{{'Buyer_Quotation_History.Unit_Price'|translate}}: SAR {{
+            get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
-            <span>{{'Buyer_Product_Details.Seller_Name'|translate}}: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+            <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a
+              [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
               style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.store_name | titlecase }}</a>
           </p>
           <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
-            <span>Brand Name: </span>
+            <span>{{'Buyer_Product_Details.Brand_Name'|translate}}: </span>
             {{prodcutDetails.brand.name | titlecase}}
           </p>
           <p class="prod-details-header" *ngIf="prodcutDetails?.description">
@@ -107,9 +126,9 @@
       <div class="similar-prod-header">
         <h4 class="d-inline-block">{{'Buyer_Product_Details.Similar_Products'|translate}}</h4>
         <button mat-raised-button class="d-inline-block float-right" type="button" (click)="nextSlide();"><img
-            src="../../../../assets/right-arrow.svg" alt=""/></button>
+            src="../../../../assets/right-arrow.svg" alt="" /></button>
         <button mat-raised-button class="d-inline-block float-right" type="button" (click)="prevSlide();"><img
-            src="../../../../assets/left-arrow.svg" alt=""/></button>
+            src="../../../../assets/left-arrow.svg" alt="" /></button>
       </div>
       <div class="row">
         <div [ngClass]="sliderClassName" *ngFor="let product of relatedProducts | slice:sliceMinValue:sliceMaxValue">
@@ -141,7 +160,8 @@
         <b>{{'Buyer_Product_Details.No_Comments'|translate}}</b>
       </h4>
       <div class="text-center mt-5">
-        <button mat-raised-button *ngIf="nextCommentsLink !== null" type="button" (click)="getNextComments()" class="submit-review-btn mr-3">
+        <button mat-raised-button *ngIf="nextCommentsLink !== null" type="button" (click)="getNextComments()"
+          class="submit-review-btn mr-3">
           {{'Buyer_Product_Details.More_Comments'|translate}}
         </button>
         <button mat-raised-button (click)="show_review_modal()" type="button" class="submit-review-btn">
@@ -178,7 +198,8 @@
         </p> -->
       </div>
       <div class="comment-div">
-        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>{{'Buyer_Profile_Form.Address'|translate}}</b></p>
+        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address">
+          <b>{{'Buyer_Profile_Form.Address'|translate}}</b></p>
         <p>
           <span *ngIf="prodcutDetails.seller.store_address">{{
             prodcutDetails.seller.store_address }}</span>
