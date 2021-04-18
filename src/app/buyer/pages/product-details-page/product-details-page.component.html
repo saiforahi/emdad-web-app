@@ -62,8 +62,25 @@
               </button>
             </div>
           </div> -->
-          <h5>
-            <b>{{'Buyer_Product_Details.Stock'|translate}}: </b> {{ get_quantity(prodcutDetails.stock_quantity) }}
+           <!--quantity-->
+           <div class="row mb-3">
+            <div class="col-12 col-md-12">
+              <div class="form-check-inline minus">
+                <button class="btn plus-button" (click)="minus()"><img src="../../../assets/minus.svg"
+                  /></button>
+              </div>
+             
+              <div class="form-check-inline minus input-text">
+                <input type="number" class="form-control input-number" [(ngModel)]="inputnumber">
+              </div>
+              <div class="form-check-inline plus">
+                <button class="btn plus-button" (click)="plus()"><img src="../../../assets/plus.svg"
+                  /></button>
+              </div>
+            </div>
+          </div>
+          <h5 class="stock">
+            <span>{{'Buyer_Product_Details.Stock'|translate}}: </span> {{ get_quantity(prodcutDetails.stock_quantity) }}
           </h5>
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
@@ -85,13 +102,13 @@
           <p class="prod-name">
             {{ prodcutDetails.name | titlecase }}
           </p>
-          <p class="prod-price">Unit Price: SAR {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
+          <p class="prod-price">{{'Buyer_Quotation_History.Unit_Price'|translate}}: SAR {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
-            <span>{{'Buyer_Product_Details.Seller_Name'|translate}}: </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+            <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
               style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.store_name | titlecase }}</a>
           </p>
           <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
-            <span>Brand Name: </span>
+            <span>{{'Buyer_Product_Details.Brand_Name'|translate}}: </span>
             {{prodcutDetails.brand.name | titlecase}}
           </p>
           <p class="prod-details-header" *ngIf="prodcutDetails?.description">

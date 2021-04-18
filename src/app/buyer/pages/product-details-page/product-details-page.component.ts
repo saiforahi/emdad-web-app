@@ -13,12 +13,15 @@ import { Cart } from 'src/app/shared/models/Cart.model';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { VatService } from 'src/app/shared/services/vat.service';
+
+
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
   styleUrls: ['./product-details-page.component.css'],
 })
 export class ProductDetailsPageComponent implements OnInit {
+  inputnumber = 0;
   productId;
   prodcutDetails;
   sliderImgArray;
@@ -307,5 +310,17 @@ export class ProductDetailsPageComponent implements OnInit {
     }
     //console.log(total.toFixed(2))
     return ((total*(parseFloat(localStorage.getItem('vat'))/100))+total).toFixed(2);
+  }
+  plus()
+  {
+   this.inputnumber = this.inputnumber+1;
+  }
+  minus()
+  {
+    if(this.inputnumber != 0)
+  {
+   this.inputnumber = this.inputnumber-1;
+  }
+  
   }
 }
