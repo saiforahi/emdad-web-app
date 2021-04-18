@@ -53,7 +53,7 @@
           <div>
             <p>{{'Buyer_Checkout.Sub_Total'|translate}}</p>
           </div>
-          <p>${{ cash_details.subtotal | number: "2.2-2" }}</p>
+          <p>SAR {{ cash_details.subtotal | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
@@ -65,7 +65,7 @@
           <div>
             <p>{{'Buyer_Cart.VAT'|translate}}</p>
           </div>
-          <p>+ ${{ cash_details.vat | number: "2.2-2" }}</p>
+          <p>+ SAR {{ cash_details.vat | number: "2.2-2" }}</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
@@ -73,7 +73,7 @@
             <p class="mb-0"><span>{{'Seller_Order_History.Total'|translate}}</span></p>
           </div>
           <p class="mb-0">
-            <span>${{ cash_details.total | number: "2.2-2" }}</span>
+            <span>SAR {{ cash_details.total | number: "2.2-2" }}</span>
           </p>
         </div>
       </div>

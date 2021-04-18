@@ -315,6 +315,7 @@
         "Wire_Transfer":"Wire-Transfer",
         "Wire_Text":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at assumenda eaque laborum beatae ipsum earum similique hic eveniet, reiciendis omnis nemo consectetur veritatis fuga quae maiores cupiditate ea iste.",
         "Account_Number":"Account Number",
+        "Upload_Invoice":"Upload Invoice",
         "Download_Invoice":"Download Invoice"
     },
     "Buyer_Support_Ticket":{
