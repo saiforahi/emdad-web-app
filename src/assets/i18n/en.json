@@ -301,7 +301,8 @@
         "required":"required",
         "Choose_Payment":"Choose Payment Method",
         "Card":"Card",
-        "Wire":"Wire Transfer"
+        "Wire":"Wire Transfer",
+        "Place_Order":"Place Order"
     },
     "Buyer_Order_Details":{
         "Title":"Order Details",

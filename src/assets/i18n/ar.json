@@ -298,7 +298,8 @@
     "required": "مطلوب",
     "Choose_Payment": "اختر طريقة الدفع",
     "Card": "البطاقة",
-    "Wire": "التحويل البنكي"
+    "Wire": "التحويل البنكي",
+    "Place_Order":"مكان الامر"
   },
   "Buyer_Order_Details":{
     "Title": "تفاصيل الطلب",
