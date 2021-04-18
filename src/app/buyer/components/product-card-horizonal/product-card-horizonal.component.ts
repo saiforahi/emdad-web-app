@@ -14,11 +14,11 @@ import { Product } from 'src/app/shared/models/Product.model';
   styleUrls: ['./product-card-horizonal.component.css'],
 })
 export class ProductCardHorizonalComponent implements OnInit {
-  @Input() product;
+  @Input() product:any;
   defaultImage = '../assets/images/default-image-620x600.jpg';
   prodCartArray = [];
-  prod_qty: number;
-  userId;
+  prod_qty: number=1;
+  userId:any;
   img_base_url = config.img_base_url;
 
   constructor(
@@ -60,12 +60,12 @@ export class ProductCardHorizonalComponent implements OnInit {
       existingCart.products.push(prod);
       this.cartService.existingCartLength.next(existingCartLength + 1);
       console.log('cart',existingCart)
+      localStorage.setItem('cart', JSON.stringify(existingCart));
       this.openSnackBar('Product added to cart!', 'OK');
     } else {
-      this.openSnackBar('Product quantity updated!', 'OK');
+      this.openSnackBar('Product is already in cart!', 'OK');
     }
-    this.prod_qty=0
-    localStorage.setItem('cart', JSON.stringify(existingCart));
+    this.prod_qty=1
   }
   // addToCart(prod:Product) {
   //   var foundSameProduct = false;

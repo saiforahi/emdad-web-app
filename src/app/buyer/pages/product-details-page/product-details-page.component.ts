@@ -21,7 +21,7 @@ import { VatService } from 'src/app/shared/services/vat.service';
   styleUrls: ['./product-details-page.component.css'],
 })
 export class ProductDetailsPageComponent implements OnInit {
-  inputnumber = 0;
+  inputnumber:number = 1;
   productId;
   prodcutDetails;
   sliderImgArray;
@@ -137,60 +137,69 @@ export class ProductDetailsPageComponent implements OnInit {
       this.prevBtnDisabled = true;
     }
   }
-  add_to_cart() {
-    console.log('product details', this.prodcutDetails);
-    let existingCart: Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
-    let existingCartLength: number = 0; //initializing number of products in
-    var foundSameProduct: boolean = false;
-    if (existingCart === null) {
-      existingCart = new Cart(); //initializing cart object if it's the first attempt to add to cart
-    }
-    console.log('cart', existingCart);
-    if (existingCart?.products?.length > 0) {
-      existingCartLength = existingCart.products.length;
-      existingCart.products.forEach((element) => {
-        if (element.id == this.prodcutDetails.id) {
-          foundSameProduct = true;
-        }
-      });
-    }
-    if (this.prodcutDetails && !foundSameProduct) {
-      this.prodcutDetails.cart_qty = 1;
-      existingCart.products.push(this.prodcutDetails);
-      this.cartService.existingCartLength.next(existingCartLength + 1);
-      console.log('cart', existingCart);
-      localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.openSnackBar('Product added to cart!', 'OK');
-    } else {
-      this.openSnackBar('Product alreay in cart!', 'OK');
-    }
-  }
-  // addToCart() {
-  //   this.prodCartArray = [];
-  //   var existingCart:Cart = JSON.parse(localStorage.getItem('cart'));
-  //   var existingCartLength = 0;
-  //   var foundSameProduct = false;
-
-  //   if (existingCart != null) {
+  // add_to_cart() {
+  //   console.log('product details', this.prodcutDetails);
+  //   let existingCart: Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
+  //   let existingCartLength: number = 0; //initializing number of products in
+  //   var foundSameProduct: boolean = false;
+  //   if (existingCart === null) {
+  //     existingCart = new Cart(); //initializing cart object if it's the first attempt to add to cart
+  //   }
+  //   console.log('cart', existingCart);
+  //   if (existingCart?.products?.length > 0) {
   //     existingCartLength = existingCart.products.length;
   //     existingCart.products.forEach((element) => {
-  //       if (element.id != this.prodcutDetails.id) {
-  //         this.prodCartArray.push(element);
-  //       } else foundSameProduct = true;
+  //       if (element.id == this.prodcutDetails.id) {
+  //         foundSameProduct = true;
+  //       }
   //     });
   //   }
-  //   // if product details available only then add to it in the cartService array
   //   if (this.prodcutDetails && !foundSameProduct) {
   //     this.prodcutDetails.cart_qty = 1;
-  //     this.prodCartArray.push(this.prodcutDetails);
+  //     existingCart.products.push(this.prodcutDetails);
   //     this.cartService.existingCartLength.next(existingCartLength + 1);
-  //     console.log('cartService')
-  //     localStorage.setItem('prodCartArray', JSON.stringify(this.prodCartArray));
+  //     console.log('cart', existingCart);
+  //     localStorage.setItem('cart', JSON.stringify(existingCart));
   //     this.openSnackBar('Product added to cart!', 'OK');
   //   } else {
   //     this.openSnackBar('Product alreay in cart!', 'OK');
   //   }
   // }
+  add_to_cart(){
+    if(parseInt(this.prodcutDetails.stock_quantity)>=this.inputnumber && this.inputnumber>0){
+      let existingCart:Cart = JSON.parse(localStorage.getItem('cart')); //fetching existing cart from local storage
+      let existingCartLength:number=0; //initializing number of products in 
+      var foundSameProduct:boolean = false;
+      if(existingCart===null){
+        existingCart=new Cart() //initializing cart object if it's the first attempt to add to cart
+      }
+      if(existingCart?.products?.length>0){
+        existingCartLength=existingCart.products.length
+        existingCart.products.forEach((element) => {
+          if (element.id == this.prodcutDetails.id) {
+            // console.log('element qty:',element.cart_qty)
+            // console.log('selected qty:',this.inputnumber)
+            element.cart_qty= Number(element.cart_qty) + Number(this.inputnumber)
+            foundSameProduct = true;
+          }
+        });
+      }
+      if (this.prodcutDetails && !foundSameProduct) {
+        this.prodcutDetails.cart_qty = this.inputnumber;
+        existingCart.products.push(this.prodcutDetails);
+        this.cartService.existingCartLength.next(existingCartLength + 1);
+        //console.log('cart',existingCart)
+        localStorage.setItem('cart', JSON.stringify(existingCart));
+        this.openSnackBar('Product added to cart!', 'OK');
+      } else {
+        this.openSnackBar('Product is already in cart', 'OK');
+      }
+      this.inputnumber=1
+    }
+    else{
+      this.openSnackBar('Invalid Quantity', 'OK');
+    }
+  }
 
   show_review_modal() {
     document.getElementById('prodReviewModal').style.display = 'block';
