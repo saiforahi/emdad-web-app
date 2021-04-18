@@ -208,11 +208,11 @@
                   <span *ngIf="unread_notification_length > 0" class="badge">{{unread_notification_length}}</span>
                 </a>
                 <div id="noti-panel" ngbDropdownMenu aria-labelledby="notification-btn" class="notification-list">
-                  <div *ngFor="let notification of notification_messages;let i=index">
-                    <button type="button" ngbDropdownItem>
-                      {{notification}}
+                  <div *ngFor="let notification of notifications;let i=index">
+                    <button type="button" ngbDropdownItem (click)="notification_action(i)">
+                      {{notification.notification}}
                     </button>
-                    <div *ngIf="i!=notification_messages?.length-1" style="padding: 0 30px">
+                    <div *ngIf="i!=notifications?.length-1" style="padding: 0 30px">
                       <mat-divider></mat-divider>
                     </div>
                   </div>
