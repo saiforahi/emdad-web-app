@@ -269,5 +269,8 @@ export class HeaderComponent implements OnInit {
     if(this.notifications[index].event=='Order Created'){
       this.router.navigate(['/order/details/',this.notifications[index].event_id])
     }
+    else if(this.notifications[index].event=='Order Payment'){
+      this.router.navigate(['/order/details/',this.notifications[index].event_id])
+    }
   }
 }
