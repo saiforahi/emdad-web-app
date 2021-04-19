@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {QuotationService} from '../../../shared/services/quotation.service'
 import swal from 'sweetalert';
+import * as fileSaver from 'file-saver';
+import { FileService } from '../../../shared/services/file.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { config } from 'src/config';
 @Component({
@@ -15,8 +17,10 @@ export class BuyerQuotationViewComponent implements OnInit {
   quoteData: FormGroup
   base_url:string=config.base_url
   quote:any
-  comments:string=""
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { quoteDetails: any }, private quotationService: QuotationService, private spinner: NgxSpinnerService) { 
+  comments:string="";
+  param_array:any;
+  constructor(private fileService: FileService,
+    @Inject(MAT_DIALOG_DATA) public data: { quoteDetails: any }, private quotationService: QuotationService, private spinner: NgxSpinnerService) { 
     this.quotation = data.quoteDetails;
     this.quote=data.quoteDetails.quotation[data.quoteDetails.quotation.length-1]
     console.log('quotation detail from modal',this.quotation);
@@ -25,11 +29,24 @@ export class BuyerQuotationViewComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  download(){
-
+  download(file_url:string){
+    this.fileService.downloadFile(file_url).subscribe((response) => {
+      // console.log(response);
+      let blob: any = new Blob([response], {
+        type: 'text/plain;charset=utf-8',
+      });
+      const url = window.URL.createObjectURL(blob);
+      //window.open(url);
+      //window.location.href = response.url;
+      fileSaver.saveAs(blob,this.param_array[this.param_array.length - 1]);
+    }),
+      (error) => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
   }
-  getImageName(){
-
+  
+  getImageName(image_url: string){
+    this.param_array = image_url.split('/');
+    return this.param_array[this.param_array.length - 1];
   }
   deny_quotation(){
     this.spinner.show()

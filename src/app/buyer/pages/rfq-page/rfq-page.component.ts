@@ -46,7 +46,7 @@ export class RfqPageComponent implements OnInit {
   email: AbstractControl;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   phone: AbstractControl;
-  phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
+  /* phonePattern = '^((\\+91-?)|0)?[0-9]{10}$'; */
   address: AbstractControl;
   quantity: AbstractControl;
   message: AbstractControl;
@@ -81,7 +81,7 @@ export class RfqPageComponent implements OnInit {
     });
     this.rfqForm = this.fb.group({
       email: ['',[Validators.required]],
-      phone: ['', [Validators.required, Validators.pattern(this.phonePattern),Validators.minLength(11)]],
+      phone: ['', [Validators.required,Validators.minLength(8)]],
       address: ['',[Validators.required]],
       quantity: ['',[Validators.required]],
       message: ['',[Validators.required]],
