@@ -110,10 +110,14 @@ export class RfqPageComponent implements OnInit {
   //   }
   calc_unit_price(){
     if(parseFloat(this.productData.commission)>0){
-      return (parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(this.productData.commission)/100))).toFixed(2)
+      let total=parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(this.productData.commission)/100))
+      total= total + (total * (parseFloat(localStorage.getItem('vat'))/100))
+      return total.toFixed(2)
     }
     else{
-      return (parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(localStorage.getItem('commission'))/100))).toFixed(2)
+      let total=parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(localStorage.getItem('commission'))/100))
+      total= total + (total * (parseFloat(localStorage.getItem('vat'))/100))
+      return total.toFixed(2)
     }
   }
   onSubmit(value) {
