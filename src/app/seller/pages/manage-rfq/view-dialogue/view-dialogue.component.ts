@@ -120,11 +120,7 @@ export class ViewDialogueComponent implements OnInit {
 
     //image attachment issues
 
-    if (
-      (this.rfqDetailsData.attachment1 == null || this.rfqDetailsData.attachment1 != null) &&
-      (this.rfqDetailsData.attachment2 == null && this.rfqDetailsData.attachment2 != null) &&
-      this.selectedImage.length == 2
-    ) {
+    if (this.selectedImage.length == 2) {
       // if two files to upload
       console.log("condition one")
       this.prodRfqFormData.append(
@@ -145,10 +141,6 @@ export class ViewDialogueComponent implements OnInit {
         'attachment1',
         this.selectedImage[0]
       );
-      // this.prodRfqFormData.append(
-      //   'attachment2',
-      //   null
-      // );
     } else if (
       this.rfqDetailsData.attachment2 == null &&
       this.selectedImage.length == 1
@@ -167,10 +159,9 @@ export class ViewDialogueComponent implements OnInit {
     else if (this.rfqDetailsData.attachment1 == null && this.rfqDetailsData.attachment2 == null && this.selectedImage.length == 0) {
       this.prodRfqFormData.append("attachment1", this.rfqDetailsData.attachment1);
       this.prodRfqFormData.append("attachment2", this.rfqDetailsData.attachment2)
-
     }
 
-
+    console.log('files',this.selectedImage)
     this.quoteDetails.updateQuotationSeller(this.rfqId, this.prodRfqFormData).subscribe(
       (res) => {
         console.log(res);
