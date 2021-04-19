@@ -18,7 +18,10 @@
                     <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Date' | translate}} :</span> <span class="deet-light">{{quotation.created_at | date:'medium'}}</span></div>
                 </div>
                  <br><br>
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="quotation.seller.full_name==''">
+                    <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Seller_Name' | translate}}:</span> <span class="deet-light">{{quotation.seller.store_name}}</span></div>
+                </div>
+                <div class="col-md-12" *ngIf="quotation.seller.full_name !=''">
                     <div class="date-div"><span class="name mr-2">{{'Buyer_Quotation_History.Seller_Name' | translate}}:</span> <span class="deet-light">{{quotation.seller.full_name}}</span></div>
                 </div>
                  <br><br>
@@ -42,10 +45,23 @@
                     <div class="date-div"><span class="name">{{'Buyer_Quotation_History.Attachments' | translate}} :</span> </div>
                 </div>
                 <br><br>
-                <div class="col-md-12" *ngIf="quotation.attachment1!=null">
+                <div class="col-md-12" *ngIf="quotation.attachment1 != null">
+
+                    <div> <a class="a-download" href="javascript:void(0);" (click)="download(quotation.attachment1);"><img
+                        src="../../../../../assets/file-up-yellow.png" class="mr-2"><span class="file-name">{{getImageName(quotation.attachment1)}}</span></a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="quotation.attachment2 != null">
 
                     <div> <a class="a-download" href="javascript:void(0);" (click)="download();"><img
-                        [src]="base_url+quotation.attachment1" class="mr-2"><span class="file-name">ahajd.pdf</span></a>
+                        src="../../../../../assets/file-up-yellow.png" class="mr-2"><span class="file-name">ahajd.pdf</span></a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="quotation.attachment1 == null && quotation.attachment2 == null">
+
+                    <div> <span class="no-file">No attachment available</span>
                         <br><br>
                     </div>
                 </div>

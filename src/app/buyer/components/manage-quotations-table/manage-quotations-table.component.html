@@ -61,7 +61,7 @@
       <ng-container matColumnDef="Seller Name">
         <th mat-header-cell *matHeaderCellDef>{{'Buyer_Quotation_History.Seller_Name' | translate}}</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.seller !== undefined ? element.seller.full_name : "" }}
+          {{ element.seller.full_name == '' ? element.seller.store_name : element.seller.full_name }}
         </td>
       </ng-container>
       <!--view coloumn-->
@@ -101,8 +101,7 @@
     ></mat-paginator>
     <div
       class="no-data"
-      *ngIf="quotationData == undefined || quotationData == null"
-    >
+      *ngIf="quotationData == undefined || quotationData == null">
     {{'Buyer_Order_History.No_Data' | translate}}
     </div>
   </div>
