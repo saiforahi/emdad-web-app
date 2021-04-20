@@ -65,6 +65,7 @@ export class UserAuthService {
         const expiresAt = moment.unix(payload.exp);
         localStorage.setItem('token', authResult.token);
         localStorage.setItem('username', payload.username);
+        localStorage.setItem('full_name',authResult.full_name)
         if (authResult.profile_pic.length > 0)
           localStorage.setItem(
             'uimg',
