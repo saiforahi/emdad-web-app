@@ -159,8 +159,8 @@
         "Amount":"Amount",
         "Recieved":"Recieved",
         "Delivered":"Delivered",
-        "Processing": "Processing"
-        
+        "Processing": "Processing",
+        "Closed": "Closed"
     },
     "Seller_Bank_Info":{
         "title":"Bank Account Information",
