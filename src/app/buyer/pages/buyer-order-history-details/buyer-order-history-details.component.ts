@@ -26,6 +26,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   img_base_url;
   previousUrl: any;
   trans_totalItems:any
+  admin_bank_info:Array<any>=[]
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
@@ -39,6 +40,9 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     this.base_url = config.base_url;
     this.img_base_url = config.img_base_url;
     this.order_id = this.route.snapshot.params['order_id'];
+    this.orderService.getAdminBankAccountInfo().subscribe(
+      (success)=>{this.admin_bank_info=success.data[0]}
+    )
     this.orderService.get_buyer_order_details(this.order_id).subscribe(
       (success) => {
         console.log(success.data);
