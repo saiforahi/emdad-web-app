@@ -69,7 +69,7 @@
               </div>
              
               <div class="form-check-inline minus input-text">
-                <input type="number" class="form-control input-number" [(ngModel)]="inputnumber">
+                <input type="number" class="form-control input-number" [(ngModel)]="inputnumber" (input)="check_qty($event.target.value)">
               </div>
               <div class="form-check-inline plus">
                 <button type="button" class="btn plus-button" (click)="plus()"><img src="../../../assets/plus.svg"
@@ -82,16 +82,16 @@
           </h5>
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
-                get_quantity(prodcutDetails.stock_quantity) > 0 ? false : true
+                addToCart=='false'
               " [ngClass]="
-                get_quantity(prodcutDetails.stock_quantity) > 0
+                addToCart=='true'
                   ? 'add-to-cart-btn'
                   : ''
               " class="add-to-cart-btn" mat-button (click)="add_to_cart()">
               {{'Buyer_Product_Details.Add_to_Cart'|translate}}
             </button>
             &nbsp;
-            <button class="req-for-quote-btn" type="button" mat-button [routerLink]="['/rfq/', prodcutDetails.id]">
+            <button [disabled]="addToCart=='true'" class="req-for-quote-btn" type="button" mat-button [routerLink]="['/rfq/', prodcutDetails.id]">
               <i class="far fa-file-excel"></i> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}
             </button>
           </div>

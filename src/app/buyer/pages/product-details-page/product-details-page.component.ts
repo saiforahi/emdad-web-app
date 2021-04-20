@@ -44,6 +44,7 @@ export class ProductDetailsPageComponent implements OnInit {
   uid: any;
   vatPercentage:number=0
   location:any
+  addToCart:any='true'
   constructor(
     private getProduct: GetProductService,
     private route: ActivatedRoute,
@@ -332,5 +333,14 @@ export class ProductDetailsPageComponent implements OnInit {
    this.inputnumber = this.inputnumber-1;
   }
   
+  }
+
+  check_qty(value:any){
+    if(parseInt(value)<=parseInt(this.prodcutDetails.stock_quantity) && parseInt(value)>0){
+      this.addToCart='true'
+    }
+    else{
+      this.addToCart='false'
+    }
   }
 }
