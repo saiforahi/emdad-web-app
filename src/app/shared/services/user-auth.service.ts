@@ -116,7 +116,8 @@ export class UserAuthService {
     return this.http.post(config.base_url + 'api/login/', data).pipe(
       tap((response) => {
         console.log(response);
-        this.clear_seller_data()
+        this.clear_seller_data();
+        this.removeBuyerData();
         this.setSession(response);
       }),
       shareReplay()
@@ -170,7 +171,20 @@ export class UserAuthService {
       .post(config.base_url + 'api/seller/registration/', data)
       .pipe(shareReplay());
   }
-
+  removeBuyerData(){
+    this.notificationService.notifications.next([])
+    this.notificationService.messages.next([])
+    this.notificationService.unread.next(0)
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('uid');
+    localStorage.removeItem('uimg');
+    // localStorage.removeItem('uGroup');
+    localStorage.removeItem('expires_at');
+    this.uName.next(null);
+    this.uImg.next(null);
+    this.uId.next(null);
+  }
   logout() {
     this.notificationService.notifications.next([])
     this.notificationService.messages.next([])
