@@ -83,8 +83,9 @@ export class ProductDetailsPageComponent implements OnInit {
     });
     console.log('prod id', this.productId);
     this.getProduct.productDetails(this.productId).subscribe((item) => {
+      console.log('product details',item.data[0])
       this.prodcutDetails = item.data[0];
-      console.log('pickup_address',this.prodcutDetails.pickup_address[0].address)
+      
       this.location=this.prodcutDetails.pickup_address[0].address
       this.sliderImgArray = [
         config.img_base_url + item.data[0].image1,

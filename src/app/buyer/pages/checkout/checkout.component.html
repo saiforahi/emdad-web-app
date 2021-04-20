@@ -29,7 +29,8 @@
                   color="accent"
                 >
                 </mat-radio-button>
-                <span>{{ address.address }}</span>
+                <span>{{user.full_name}}</span><br/>
+                <span>{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</span>
               </mat-radio-group>
             </div>
           </div>

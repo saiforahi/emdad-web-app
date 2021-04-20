@@ -35,12 +35,12 @@
             </button>
           </div>
           <div class="prod-delivery-info">
-            <p>
+            <p *ngIf="prodcutDetails.pickup_address?.length > 0">
               <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               (<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)
               <span *ngIf="prodcutDetails.pickup_address?.length == 0">({{'Buyer_Product_Details.Not_Specified'|translate}})</span>
             </p>
-            <p>
+            <p *ngIf="prodcutDetails.pickup_address?.length > 0">
               <b>{{'Buyer_Product_Details.Pickup_Location'|translate}} </b><span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address }}</span>
               <ng-template *ngIf="
                 prodcutDetails.pickup_address?.length > 0;

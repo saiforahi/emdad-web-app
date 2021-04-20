@@ -36,7 +36,6 @@ export class CheckoutComponent implements OnInit {
   cities: any = [];
   selected_address: any;
   new_address_add_form_submitted: boolean;
-
   constructor(
     private countryListService: CountryListService,
     private addressService: AddressService,
@@ -65,7 +64,7 @@ export class CheckoutComponent implements OnInit {
     console.log('cash details', this.cash_details);
     this.addressService.get_addresses().subscribe((success) => {
       this.addresses = success.data;
-      console.log('addresses',success)
+      console.log('addresses',success.data)
       if (this.addresses?.length == 1) {
         this.selected_address = 0;
       }
