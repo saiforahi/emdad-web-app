@@ -16,7 +16,7 @@
                   ? 'address-row address-row-selected'
                   : 'address-row'
               "
-              class="address-row mb-3"
+              class="address-row mb-3 pl-2"
               id="{{ 'address_div_' + address.id }}"
               *ngFor="let address of addresses; let i = index"
               (click)="selected_address = i"
@@ -29,8 +29,9 @@
                   color="accent"
                 >
                 </mat-radio-button>
-                <span>{{user.full_name}}</span><br/>
-                <span>{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</span>
+                <span class="full-name">{{user.full_name}}</span>
+                <br>
+                <span class="full-name add-space">{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</span>
               </mat-radio-group>
             </div>
           </div>
@@ -60,7 +61,7 @@
           <div>
             <p>{{'Buyer_Cart.Discount'|translate}}</p>
           </div>
-          <p>-{{ cash_details.discount | number: "2.2-2" }}</p>
+          <p>- SAR {{ cash_details.discount | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
@@ -232,11 +233,11 @@
       <div class="card-body" style="margin-top: 40px; margin-bottom: 120px;">
         <mat-card class="example-card" *ngIf="isWired" style="margin-bottom: 30px;">
           <mat-card-content *ngIf="isWired">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook
+              <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook
               </p>
-              <p><strong>Account Holder: </strong>{{admin_bank_info.account_name}}<br/>
-              <strong>Account Number: </strong>{{admin_bank_info.account_number}}<br/>
-              <strong>Account Number: </strong>{{admin_bank_info.bank_name}}</p>
+              <p class="content"><span class="bold-content">Account Holder: {{admin_bank_info.account_name}}</span><br/>
+             <span class="bold-content"> Account Number:</span> {{admin_bank_info.account_number}}<br/>
+              <span class="bold-content">Bank Name:</span> {{admin_bank_info.bank_name}}</p>
           </mat-card-content>
           <!-- <mat-card-content *ngIf="isCard">
               <div class="row">

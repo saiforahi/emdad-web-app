@@ -125,13 +125,13 @@
             <p *ngIf="couponType === 1">{{'Buyer_Cart.Discount'|translate}} (SR{{ couponDiscount }})</p>
             <p *ngIf="couponType === 2">{{'Buyer_Cart.Discount'|translate}} ({{ couponDiscount }}%)</p>
           </div>
-          <p>-{{ discount_coupon_amount | number: "2.2-2" }}</p>
+          <p>- SAR {{ discount_coupon_amount | number: "2.2-2" }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <div>
             <p class="vat-text">{{'Buyer_Cart.VAT'|translate}} ({{ vatPercentage }}%)</p>
           </div>
-          <p>+{{ vatAmount | number: "2.2-2" }}</p>
+          <p>+ SAR {{ vatAmount | number: "2.2-2" }}</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
