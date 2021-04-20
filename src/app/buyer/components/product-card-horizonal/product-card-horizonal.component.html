@@ -13,9 +13,9 @@
                             {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
                         </a>
                         <p class="store-name">{{product.seller.full_name | titlecase}}</p>
-                        <p class="stock"><span>Stock :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
+                        <p class="stock"><span>{{'Buyer_Product_Details.Stock'|translate}} :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
                         <p class="product-price">SAR {{ get_unit_price(product.commission,product.unit_price) }}</p>
-                        <p class="pickup"><span>Shop Pickup Location :</span> {{product.pickup_address[0]?.address}}</p>
+                        <p class="pickup"><span>{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> {{product.pickup_address[0]?.address}}</p>
                     </div>
                 </div>
             </div>
@@ -28,17 +28,16 @@
                     <div class="col-sm-4" style="width: 100%;">
                         <mat-form-field class="example-form-field">
                             <mat-label>Qty</mat-label>
-                            <input matInput type="text" [(ngModel)]="prod_qty">
+                            <input matInput type="text" [(ngModel)]="prod_qty" (input)="check_qty($event.target.value)">
                         </mat-form-field>
                     </div>
                     <div class="col-sm-8">
-                        <button mat-raised-button class="add-to-cart float-right" (click)="prod_qty>0?add_to_cart(product):''">Add to
-                            Cart</button>
+                        <button type="button" [disabled]="addToCart=='false'" mat-raised-button class="add-to-cart float-right" (click)="prod_qty>0?add_to_cart(product):''">{{'Buyer_Product_Details.Add_to_Cart'|translate}}</button>
                     </div>
                 </div>
                 <div class="p-3">
-                    <button class="btn btn-block request-btn align-self-center" (click)="go_to_rfq()"
-                        [routerLink]="['/rfq/']"><img src="assets/file_plus.svg" /> Request for quotation</button>
+                    <button type="button" [disabled]="addToCart=='true'" class="btn btn-block request-btn align-self-center"
+                        [routerLink]="['/rfq/',product.id]"><img src="assets/file_plus.svg" /> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}</button>
                 </div>
             </div>
         </div>
