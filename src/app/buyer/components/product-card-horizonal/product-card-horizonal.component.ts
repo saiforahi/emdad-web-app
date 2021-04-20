@@ -20,7 +20,7 @@ export class ProductCardHorizonalComponent implements OnInit {
   prod_qty: number=1;
   userId:any;
   img_base_url = config.img_base_url;
-
+  addToCart:any='true'
   constructor(
     private wishlist: WishlistService,
     private snackBar: MatSnackBar,
@@ -135,15 +135,7 @@ export class ProductCardHorizonalComponent implements OnInit {
       return url;
     }
   }
-  go_to_rfq() {
-    console.log('id', this.product.id);
-    this.ProductService.productDetails(this.product.id).subscribe(
-      (response) => {
-        this.router.navigate(['/rfq/']);
-      }
-    );
-  }
-
+  
   get_unit_price(product_commission:any,price:any){ //generating unit price with commission
     let total=0
     if(parseFloat(product_commission)>0){
@@ -160,6 +152,18 @@ export class ProductCardHorizonalComponent implements OnInit {
       //console.log('else total',total)
     }
     return (total+(total*(parseFloat(localStorage.getItem('vat'))/100))).toFixed(2)
+  }
+  check_qty(value:any){
+    if(parseInt(value)<=parseInt(this.product.stock_quantity) && parseInt(value)>0 && value!=null){
+      this.addToCart='true'
+    }
+    else if(parseInt(value)<=0 || value==null){
+      console.log('value',value)
+      this.addToCart='n/a'
+    }
+    else{
+      this.addToCart='false'
+    }
   }
 
 }
