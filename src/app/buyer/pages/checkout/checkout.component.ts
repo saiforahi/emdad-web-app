@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
   cities: any = [];
   selected_address: any;
   new_address_add_form_submitted: boolean;
+  admin_bank_info:any
   constructor(
     private countryListService: CountryListService,
     private addressService: AddressService,
@@ -57,6 +58,9 @@ export class CheckoutComponent implements OnInit {
       this.countries = [...response.data];
       console.log(this.countries);
     });
+    this.orderService.getAdminBankAccountInfo().subscribe(
+      (success)=>{console.log('bank info',success.data[0][0]);this.admin_bank_info=success.data[0][0]}
+    )
     this.isCard = true;
     this.payment_type = '1';
     this.isWired = false;
@@ -182,10 +186,11 @@ export class CheckoutComponent implements OnInit {
           localStorage.removeItem('cart_cash');
           localStorage.removeItem('cart');
           this.cartService.existingCartLength.next(null);
-          this.router.navigate([
-            'order/details/',
-            this.add_order_response.data[0].id,
-          ]);
+          // this.router.navigate([
+          //   'order/details/',
+          //   this.add_order_response.data[0].id,
+          // ]);
+          this.router.navigate(['/profile'], { queryParams: { activeItem: '3',wiredOrderPlaced:'true' } });
         } else {
           localStorage.setItem(
             'temp_order_id',

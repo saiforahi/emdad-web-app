@@ -190,7 +190,7 @@ export class UserAuthService {
     var email = localStorage.getItem('email');
     var password = localStorage.getItem('password');
 
-    localStorage.clear();
+    //localStorage.clear();
 
     if (
       email !== 'null' &&

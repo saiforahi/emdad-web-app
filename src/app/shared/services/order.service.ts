@@ -146,4 +146,8 @@ export class OrderService {
   update_tracking_status(data:any):Observable<any> {
     return this.http.post( config.base_url + 'api/order/update/tracking/status/'+localStorage.getItem('s_uid')+'/',data,this.sellerHttpOptions)
   }
+
+  getAdminBankAccountInfo():Observable<any>{
+    return this.http.get(config.base_url+'api/admin/bank/account/info/',this.httpOptions)
+  }
 }
