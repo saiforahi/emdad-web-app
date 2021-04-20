@@ -302,7 +302,7 @@
         "Choose_Payment":"Choose Payment Method",
         "Card":"Card",
         "Wire":"Wire Transfer",
-        "Place_Order":"Place Order"
+        "Place_Order":"Proceed"
     },
     "Buyer_Order_Details":{
         "Title":"Order Details",

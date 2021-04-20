@@ -25,7 +25,8 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   product_statuses: Array<any> = [];
   img_base_url;
   previousUrl: any;
-  trans_totalItems:any
+  trans_totalItems:any;
+  
   admin_bank_info:Array<any>=[]
   constructor(
     private route: ActivatedRoute,
