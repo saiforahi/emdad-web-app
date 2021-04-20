@@ -228,59 +228,69 @@
           </div>
         </div>
       </div>
-      <div class="card-body" style="margin-bottom: 120px">
-        <!-- <mat-card class="example-card mt-4" style="margin-bottom: 120px">
-                    <mat-card-content *ngIf="isWired">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook
-                        </p>
-                        <p><strong>Account Number: 702 555-0122</strong></p>
-                    </mat-card-content>
-                    <mat-card-content *ngIf="isCard">
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field class="example-full-width w-100">
-                                    <mat-label>Card Number</mat-label>
-                                    <input matInput placeholder="Card Number" #card_number />
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-md-3">
-                                <mat-form-field class="example-full-width w-100">
-                                    <mat-label>Card Holder</mat-label>
-                                    <input matInput placeholder="Card Holder Name" data-paylib="number" #card_holder />
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-3"> -->
-        <!-- <label>Expires</label>
-                            <input type="text" class="form-control" placeholder="Expire date"/> -->
-        <!-- <mat-form-field class="example-full-width w-100">
-                                    <mat-label>Expires month</mat-label>
-                                    <input matInput placeholder="Expiry date" data-paylib="expmonth"
-                                        #card_expiry_date />
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-3"> -->
-        <!-- <label>Expires</label>
-                            <input type="text" class="form-control" placeholder="Expire date"/> -->
-        <!-- <mat-form-field class="example-full-width w-100">
-                                    <mat-label>Expires Year</mat-label>
-                                    <input matInput placeholder="Expiry date" data-paylib="expyear" #card_expiry_date />
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-3"> -->
-        <!-- <label>CVC</label>
-                            <input type="text" class="form-control" placeholder="cvc"/> -->
-        <!-- <mat-form-field class="example-full-width w-100">
-                                    <mat-label>CVV</mat-label>
-                                    <input matInput placeholder="security code" data-paylib="cvv" #card_cvv />
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                    <mat-card-actions>
-                    </mat-card-actions>
-                </mat-card> -->
+      
+      <div class="card-body" style="margin-top: 40px; margin-bottom: 120px;">
+        <mat-card class="example-card" *ngIf="isWired" style="margin-bottom: 30px;">
+          <mat-card-content *ngIf="isWired">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook
+              </p>
+              <p><strong>Account Holder: </strong>{{admin_bank_info.account_name}}<br/>
+              <strong>Account Number: </strong>{{admin_bank_info.account_number}}<br/>
+              <strong>Account Number: </strong>{{admin_bank_info.bank_name}}</p>
+          </mat-card-content>
+          <!-- <mat-card-content *ngIf="isCard">
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field class="example-full-width w-100">
+                          <mat-label>Card Number</mat-label>
+                          <input matInput placeholder="Card Number" #card_number />
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row mt-4">
+                  <div class="col-md-3">
+                      <mat-form-field class="example-full-width w-100">
+                          <mat-label>Card Holder</mat-label>
+                          <input matInput placeholder="Card Holder Name" data-paylib="number" #card_holder />
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Expires</label>
+                  <input type="text" class="form-control" placeholder="Expire date"/>
+                      <mat-form-field class="example-full-width w-100">
+                          <mat-label>Expires month</mat-label>
+                          <input matInput placeholder="Expiry date" data-paylib="expmonth"
+                              #card_expiry_date />
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                      <label>Expires</label>
+                      <input type="text" class="form-control" placeholder="Expire date"/>
+                      <mat-form-field class="example-full-width w-100">
+                          <mat-label>Expires Year</mat-label>
+                          <input matInput placeholder="Expiry date" data-paylib="expyear" #card_expiry_date />
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <label>CVC</label>
+                    <input type="text" class="form-control" placeholder="cvc"/>
+                    <mat-form-field class="example-full-width w-100">
+                        <mat-label>CVV</mat-label>
+                        <input matInput placeholder="security code" data-paylib="cvv" #card_cvv />
+                    </mat-form-field>
+                  </div>
+              </div>
+          </mat-card-content> -->
+          <!-- <mat-card-actions class="mb-1">
+            <button
+                class="btn btn-block proceed-btn"
+                mat-raised-button
+                (click)="make_order()"
+              >
+                {{'Buyer_Checkout.Place_Order'|translate}}
+              </button>
+          </mat-card-actions> -->
+      </mat-card>
         <div class="row">
           <div class="col-sm-4">
             <button

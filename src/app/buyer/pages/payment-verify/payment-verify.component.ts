@@ -58,7 +58,7 @@ export class PaymentVerifyComponent implements OnInit {
           this.spinner.hide();
           swal('Succeed!', 'Payment Verified', 'success').then((isValid) => {
             let order_id = localStorage.getItem('temp_order_id');
-            localStorage.removeItem('temp_order_id');
+            //localStorage.removeItem('temp_order_id');
             localStorage.removeItem('prodCartArray');
             localStorage.removeItem('finalCart');
             localStorage.removeItem('cart_items');
@@ -67,7 +67,8 @@ export class PaymentVerifyComponent implements OnInit {
             localStorage.removeItem('cart');
             this.cart.existingCartLength.next(null);
             if (order_id) {
-              this.router.navigate(['/order/details/', order_id]);
+              //this.router.navigate(['/order/details/', order_id]);
+              this.router.navigate(['/profile'], { queryParams: { activeItem: '3',cardOrderPlaced:'true' } });
             } else {
               this.router.navigate(['/dashboard']);
             }

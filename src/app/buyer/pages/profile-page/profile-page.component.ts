@@ -5,7 +5,7 @@ import { CountryListService } from '../../../shared/services/country-list.servic
 import { Order } from 'src/app/shared/models/Order.model';
 import { Quotation } from '../../../shared/models/quotation.model';
 import { TranslateService } from '@ngx-translate/core';
-
+import swal from 'sweetalert'
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -61,7 +61,30 @@ export class ProfilePageComponent implements OnInit {
         this.show_profile_form = false;
         this.show_order_history = false;
         this.show_manage_quotations = false;
-      } else if (params.activeItem == '3') {
+      }else if(params.wiredOrderPlaced == 'true' && params.activeItem == '3'){
+        this.show_change_pass_form = false;
+        this.show_profile_form = false;
+        this.show_order_history = true;
+        this.show_manage_quotations = false;
+        if(localStorage.getItem('temp_order_id')){
+          swal('Order Placed','Upload Invoice to confirm your order #'+localStorage.getItem('temp_order_id'),'success').then(()=>{
+            localStorage.removeItem('temp_order_id')
+          })
+        }
+        
+      }
+      else if(params.cardOrderPlaced == 'true' && params.activeItem == '3'){
+        this.show_change_pass_form = false;
+        this.show_profile_form = false;
+        this.show_order_history = true;
+        this.show_manage_quotations = false;
+        if(localStorage.getItem('temp_order_id')){
+          swal('Order Placed','Your order #'+localStorage.getItem('temp_order_id')+' is confirmedd!','success').then(()=>{
+            localStorage.removeItem('temp_order_id')
+          })
+        }
+      }
+       else if (params.activeItem == '3' && params.wiredOrderPlaced==undefined && params.cardOrderPlaced==undefined) {
         this.show_change_pass_form = false;
         this.show_profile_form = false;
         this.show_order_history = true;
