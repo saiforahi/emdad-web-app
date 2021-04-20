@@ -108,7 +108,7 @@
           <div>
             <p>{{'Buyer_Cart.VAT'|translate}}</p>
           </div>
-          <p>+ {{ vat | number: "2.2-2" }}</p>
+          <p>+ SAR {{ vat | number: "2.2-2" }}</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
@@ -150,11 +150,13 @@
         <!--upload button-->
         <div class="row">
           <div class="col-md-12">
-            <button class="download-payment-history w-100">
-              <input type="file" (change)="set_invoice($event)"/>
-              <!-- <img src="../../../../assets/upload.svg" alt="" />  -->
+            <label for="attachments" class="custom-file-upload d-flex">
               
-            </button>
+              <input type="file" (change)="set_invoice($event);"/>
+              <img src="../../../../assets/icons/upload-thin.svg" alt="">
+              <span class="file-name">Payment History.pdf</span>
+          </label>
+          
           </div>
         </div>
         <!--proceed button-->
