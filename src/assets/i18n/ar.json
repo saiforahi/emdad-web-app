@@ -310,10 +310,12 @@
     "Payment_Details": "تفاصيل الدفع",
     "Payment_Method": "طريقة الدفع",
     "Wire_Transfer": "التحويل الإلكتروني",
-    "Wire_Text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt at الافتراضات الحالية من العمل Beatae ipsum earum similique hic eveniet، reiciendis omnis nemo consectetur veritatis fuga quae maiores cupiditate ea iste.",
+    "Wire_Text": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     "Account_Number": "رقم الحساب",
+    "Upload_Invoice": "تم تقديم الطلب",
     "Download_Invoice": "تم تقديم الطلب",
-    "Upload_Invoice": "تحميل الفاتورة"
+    "Account_Holder": "تم تقديم الطلب",
+    "Bank_Name": "تم تقديم الطلب"
   },
   "Buyer_Support_Ticket":{
     "Title": "رفع تذكرة دعم",

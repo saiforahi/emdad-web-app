@@ -137,10 +137,16 @@
         <p class="deets">
           {{'Buyer_Order_Details.Wire_Text'|translate}}
         </p>
-        <p>
-          <span class="name">{{'Buyer_Order_Details.Account_Number'|translate}} : </span
-          ><span class="deets">702 555-0122</span>
-        </p>
+        <div *ngIf="admin_bank_info?.length>0">
+          <p *ngFor="let info of admin_bank_info;let i=index">
+            <span class="name">{{'Buyer_Order_Details.Account_Number'|translate}} : </span
+            ><span class="deets">{{info.account_number}}</span><br/>
+            <span class="name">{{'Buyer_Order_Details.Account_Holder'|translate}} : </span
+              ><span class="deets">{{info.account_name}}</span><br/>
+              <span class="name">{{'Seller_Bank_Info.Bank_Name'|translate}} : </span
+                ><span class="deets">{{info.bank_name}}</span>
+          </p>
+        </div>
         <!--upload button-->
         <div class="row">
           <div class="col-md-12">
@@ -154,7 +160,7 @@
         <!--proceed button-->
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12 col-12 mobile-center">
-            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">{{'Buyer_Order_Details.Upload_Invoice'|translate}}</button>
+            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">{{'Buyer_Cart.Proceed'|translate}}</button>
           </div>
         </div>
       </div>

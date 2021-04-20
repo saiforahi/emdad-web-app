@@ -235,9 +235,9 @@
           <mat-card-content *ngIf="isWired">
               <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hasook
               </p>
-              <p class="content"><span class="bold-content">Account Holder: {{admin_bank_info.account_name}}</span><br/>
-             <span class="bold-content"> Account Number:</span> {{admin_bank_info.account_number}}<br/>
-              <span class="bold-content">Bank Name:</span> {{admin_bank_info.bank_name}}</p>
+              <p *ngFor="let info of admin_bank_info;let i=index"><strong>{{'Buyer_Order_Details.Account_holder'|translate}}: </strong>{{info.account_name}}<br/>
+              <strong>{{'Buyer_Order_Details.Account_Number'|translate}}: </strong>{{info.account_number}}<br/>
+              <strong>{{'Buyer_Order_Details.Bank_Name'|translate}}: </strong>{{info.bank_name}}</p>
           </mat-card-content>
           <!-- <mat-card-content *ngIf="isCard">
               <div class="row">
