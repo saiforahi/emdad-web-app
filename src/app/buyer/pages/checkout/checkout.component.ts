@@ -186,11 +186,11 @@ export class CheckoutComponent implements OnInit {
           localStorage.removeItem('cart_cash');
           localStorage.removeItem('cart');
           this.cartService.existingCartLength.next(null);
-          // this.router.navigate([
-          //   'order/details/',
-          //   this.add_order_response.data[0].id,
-          // ]);
-          this.router.navigate(['/profile'], { queryParams: { activeItem: '3',wiredOrderPlaced:'true' } });
+          this.router.navigate([
+            'order/details/',
+            this.add_order_response.data[0].id,
+          ]);
+          //this.router.navigate(['/profile'], { queryParams: { activeItem: '3',wiredOrderPlaced:'true' } });
         } else {
           localStorage.setItem(
             'temp_order_id',
