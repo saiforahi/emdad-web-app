@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
       console.log(this.countries);
     });
     this.orderService.getAdminBankAccountInfo().subscribe(
-      (success)=>{console.log('bank info',success.data[0][0]);this.admin_bank_info=success.data[0][0]}
+      (success)=>{console.log('bank info',success.data[0]);this.admin_bank_info=success.data[0]}
     )
     this.isCard = true;
     this.payment_type = '1';
