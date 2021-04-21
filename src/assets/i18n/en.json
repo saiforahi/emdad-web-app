@@ -405,6 +405,14 @@
         "Submit_Review":"Submit your review",
         "Seller_Description":"Seller Description",
         "Brand_Name":"Brand Name"
+    },
+    "Privacy_Policy":{
+        "Privacy":"Privacy",
+        "Policy":"Policy"
+    },
+    "Terms_Conditions":{
+        "Terms":"Terms",
+        "Conditions":"Conditions"
     }
 }
 
