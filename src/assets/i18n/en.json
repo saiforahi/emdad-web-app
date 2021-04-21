@@ -413,7 +413,15 @@
     "Terms_Conditions":{
         "Terms":"Terms",
         "Conditions":"Conditions"
+    },
+    "Forgot_Password":{
+        "Forget_Pass":"Forgot your password?",
+        "Sub_Text":"Lost your Password? Please enter your email address",
+        "Sub_Text2":"You will recieve a link to create a new password via email.",
+        "Button_Text":"Reset Password",
+        "Placeholder":"Enter your email here"
     }
+    
 }
 
 
