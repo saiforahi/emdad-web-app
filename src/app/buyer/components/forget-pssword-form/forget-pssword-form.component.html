@@ -1,26 +1,27 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center forget-password-page">
     <div class="card col-md-6 text-align-center">
-      <h3 class="fp-header">Forgot your password?</h3>
-      <p class="fp-para">Lost Password? Please enter your email address</p>
+      <h3 class="fp-header">{{'Forgot_Password.Forget_Pass'|translate}}</h3>
+      <p class="fp-para">{{'Forgot_Password.Sub_Text'|translate}}</p>
       <p class="fp-para">
-        You will recieve a link to create a new password via email.
+        {{'Forgot_Password.Sub_Text2'|translate}}
       </p>
-      <div class="email-box text-center">
-        <input
+      <div class="email-box text-center row">
+        <div class=" col-md-8"><input
           #email
           type="email"
           class="form-control"
-          placeholder="Enter your email here"
-        />
-        <button
+          placeholder="{{'Forgot_Password.Placeholder'|translate}}"
+        /></div>
+        <div class=" col-md-4"> <button 
           (click)="sendMail(email.value)"
           (keydown.enter)="sendMail(email.value)"
           class="btn btn-outline-secondary frgt-btn"
           type="button"
         >
-          Reset Password
-        </button>
+          {{'Forgot_Password.Button_Text'|translate}}
+        </button></div>
+       
       </div>
       <p *ngIf="error">{{ error }}</p>
     </div>

@@ -85,8 +85,11 @@
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
+  line-height:35px;
   height: 80px;
-  margin-top: 15px;
+  font-family:Jost;
+ min-width: 164px;
+ 
 }
 
 @media only screen and (min-width: 300px) and (max-width: 991px) {
@@ -106,15 +109,26 @@
   .btn {
     font-weight: 500;
     height: 50px;
-    margin-top: 15px;
+    
     font-size: 16px;
   }
 }
-
+@media only screen and (min-width:300px) and (max-width:575px){
+  .form-control{
+    width: 70%;
+    margin: auto;
+  }
+  .btn{
+    margin-top: 16px;
+  }
+}
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .form-control {
-    width: 80%;
+    width: 60%;
     margin: auto;
+  }
+  .btn{
+    margin-top: 16px;
   }
 }
 
@@ -129,13 +143,11 @@
   }
 
   .form-control {
-    height: 60px;
+    height: 80px;
     font-size: 18px;
   }
   .btn {
-    font-weight: 500;
-    height: 60px;
-    margin-top: 15px;
+    height: 80px;
     font-size: 18px;
   }
 }
