@@ -407,6 +407,7 @@ export class CartPageComponent implements OnInit {
       discount_coupon: this.discount_coupon,
       orders_details: orders_details,
       tracking_order: this.tracking_order,
+      total_items: this.totalItems
     };
 
     localStorage.setItem('cart_items', JSON.stringify(cart_items));

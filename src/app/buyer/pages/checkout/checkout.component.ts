@@ -37,6 +37,8 @@ export class CheckoutComponent implements OnInit {
   selected_address: any;
   new_address_add_form_submitted: boolean;
   admin_bank_info:any
+  totalItems:any;
+  cart_details:any
   constructor(
     private countryListService: CountryListService,
     private addressService: AddressService,
@@ -54,6 +56,7 @@ export class CheckoutComponent implements OnInit {
       left: 0,
       behavior: 'smooth',
     });
+  
     this.countryListService.allCountries().subscribe((response) => {
       this.countries = [...response.data];
       console.log(this.countries);
@@ -66,6 +69,8 @@ export class CheckoutComponent implements OnInit {
     this.isWired = false;
     this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
     console.log('cash details', this.cash_details);
+    this.cart_details = JSON.parse(localStorage.getItem('cart_items'));
+    console.log("cart details",this.cart_details);
     this.addressService.get_addresses().subscribe((success) => {
       this.addresses = success.data;
       console.log('addresses',success.data)
@@ -166,6 +171,7 @@ export class CheckoutComponent implements OnInit {
       console.log('selected address', this.addresses[this.selected_address]);
       this.spinner.show();
       let data = JSON.parse(localStorage.getItem('cart_items')); //setting cart data from localstorage
+   
       data.payment_type = parseInt(this.payment_type);
       data.tracking_order.forEach((element) => {
         element.status = this.payment_type == '1' ? 2 : 1;

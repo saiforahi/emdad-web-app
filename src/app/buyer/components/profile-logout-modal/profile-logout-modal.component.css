@@ -12,6 +12,7 @@
 
 .modal {
   background-color: #000000c7;
+  font-family: Jost;
 }
 
 .modal-dialog {
@@ -36,6 +37,7 @@
   line-height: 69px;
   text-align: center;
   color: #2b2b2b;
+  margin-top: 40px;
 }
 
 .logout-text {
@@ -49,21 +51,27 @@
           justify-content: center;
   text-align: center;
   color: black;
+  margin-top: 14px;
 }
 
 .btn-ok {
-  background: #df1e26;
+  background: #DF1E26;
   border-radius: 5px;
   color: #ffffff;
+  font-family: Jost;
+text-align: center;
+
+color: #FFFFFF;
+min-width: 300px;
+min-height: 80px;
 }
 
 .btn-cancel {
-  border: 2px solid #2b2b2b;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 5px;
-  background: #ffffff;
-  color: black;
+  text-align: center;
+color: #454F63;
+background-color: transparent;
+border: 1px solid #2B2B2B;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -72,9 +80,17 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 35px;
+  /* identical to box height */
+  min-width: 300px;
+min-height: 80px;
   text-align: center;
+  
+ 
 }
-
+.btn-toolbar{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 @media only screen and (min-width: 992px) and (max-width: 1399px) {
   .modal-content {
     width: 80%;
@@ -89,4 +105,36 @@
   .btn {
     font-size: 18px;
   }
+}
+@media all and (min-width:290px) and (max-width:767px){
+  .btn{
+    display: block !important;
+    font-size: 16px;
+    line-height: 35px;
+  }
+  .btn-toolbar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .header{
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 42px;
+  }
+  .logout-text{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .btn-cancel{
+    margin-top: 10px;
+    min-height: 45px;
+    min-width: 250px;
+   margin-left: 0;
+  }
+  .btn-ok{
+    min-height: 45px;
+    min-width: 250px;
+    margin-right: unset;
+  }
+  
 }

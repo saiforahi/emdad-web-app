@@ -53,7 +53,7 @@
       <div class="card-body cart-summery">
         <div class="d-flex justify-content-between">
           <div>
-            <p>{{'Buyer_Checkout.Sub_Total'|translate}}</p>
+            <p>{{'Buyer_Checkout.Sub_Total'|translate}} ({{cart_details?.total_items}} items)</p>
           </div>
           <p>SAR {{ cash_details.subtotal | number: "2.2-2" }}</p>
         </div>

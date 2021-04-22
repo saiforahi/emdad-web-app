@@ -18,7 +18,8 @@
         "Profile_Settings":"Profile Settings",
         "Change_Password":"Change Password",
         "Order_History":"Order History",
-        "Manage_Quotation":"Manage Quotation"
+        "Manage_Quotation":"Manage Quotation",
+        "Update":"Update"
         
     },
     "Header_DropDowns":{
@@ -26,7 +27,8 @@
         "Track_Orders":"Track Orders",
         "My_Wishlist":"My Wishlist",
         "Raise_a_support":"Raise a support ticket",
-        "Log_Out":"Log Out"
+        "Log_Out":"Logout",
+        "Quotations":"Quotations"
     },
     "Banner":{
         "Search":"Search For Products",
@@ -425,6 +427,12 @@
         "Sub_Text2":"You will recieve a link to create a new password via email.",
         "Button_Text":"Reset Password",
         "Placeholder":"Enter your email here"
+    },
+    "Logout_Modal_Buyer":{
+        "Sure_Text":"Are you sure?",
+        "Logout_text":"Logout of EMDAD? Anyway! You can always login at any time.",
+        "Logout":"Logout",
+        "Cancel":"Cancel"
     }
     
 }
