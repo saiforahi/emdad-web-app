@@ -16,7 +16,7 @@
             </p>
             <p class="card-point">
               <span class="mr-1 left-point">Seller Name:</span>
-              <span style="cursor: pointer;" [routerLink]="['/products/seller/', productData.seller.id]" class="store-value">{{ productData.seller.full_name }}</span>
+              <span style="cursor: pointer;" (click)="go_to_seller_wise_product_list()" class="store-value">{{ productData.seller.store_name }}</span>
             </p>
             <p class="card-point">
               <span class="mr-1 left-point">Stock:</span>

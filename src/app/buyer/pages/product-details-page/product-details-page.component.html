@@ -102,7 +102,7 @@
           </p>
           <p class="prod-price">{{'Buyer_Quotation_History.Unit_Price'|translate}}: SAR {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
-            <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a [routerLink]="['/products/seller/', prodcutDetails.seller.id]"
+            <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a (click)="go_to_seller_wise_product_list()"
               style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.store_name | titlecase }}</a>
           </p>
           <p class="brand-name" *ngIf="prodcutDetails?.brand != null">

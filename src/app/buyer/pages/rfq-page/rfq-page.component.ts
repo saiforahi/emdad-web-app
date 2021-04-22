@@ -40,7 +40,7 @@ export class RfqPageComponent implements OnInit {
   //   ]),
   //   rfq: { status: 1 },
   // });
-  productData;
+  productData:any;
   image = null;
   rfqForm: FormGroup;
   email: AbstractControl;
@@ -189,5 +189,9 @@ export class RfqPageComponent implements OnInit {
     //   this.spinner.hide();
     //   this.clicked = false;
     // }
+  }
+
+  go_to_seller_wise_product_list(){
+    this.router.navigate(['/products/seller/', this.productData.seller.id],{ queryParams: { store_name: this.productData.seller.store_name } })
   }
 }
