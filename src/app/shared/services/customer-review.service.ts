@@ -21,7 +21,7 @@ export class CustomerReviewService {
 
   getAllComments(prod_id): Observable<any> {
     return this.http.get(
-      config.base_url + 'api/product/comment/total/' + prod_id + '/'
+      config.base_url + 'api/product/comment/total/'+ prod_id +'/'
     );
   }
 

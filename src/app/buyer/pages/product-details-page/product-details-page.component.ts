@@ -29,7 +29,7 @@ export class ProductDetailsPageComponent implements OnInit {
   nextBtnDisabled: boolean = false;
   prevBtnDisabled: boolean = true;
   relatedProducts: any;
-  totalComments = 0;
+  totalComments:any=0;
   commentlist = [];
   nextCommentsLink = null;
   addToWishlistStatus: string = '1';
@@ -105,6 +105,12 @@ export class ProductDetailsPageComponent implements OnInit {
             this.commnetsEnd = true;
           }
         });
+        this.comments.getAllComments(this.productId).subscribe((item:any)=>{
+          
+          console.log("TotalCOmments:",item);
+          this.totalComments=item.total;
+        });
+      
       if (localStorage.getItem('uid') != null) {
         this.wishlist
           .wishlistStatusCheck(this.productId)
@@ -114,6 +120,7 @@ export class ProductDetailsPageComponent implements OnInit {
           });
       }
     });
+   
   }
 
   scroll_to_reviews(element_id: string) {

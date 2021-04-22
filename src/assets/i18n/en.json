@@ -19,6 +19,7 @@
         "Change_Password":"Change Password",
         "Order_History":"Order History",
         "Manage_Quotation":"Manage Quotation"
+        
     },
     "Header_DropDowns":{
         "My_Profile":"My Profile",
@@ -38,11 +39,12 @@
         "View_More":"View More",
         "No_Product":"No more products to show",
         "No_Item":"No item to show",
-        "Brands":"Brands",
+        "Brands":"Manufacturers",
         "Colors":"Colors",
         "Price":"Price",
         "Search_Result":"Search Result",
-        "Items":"items"
+        "Items":"items",
+        "Clear":"Clear All"
     },
     "Buyer_Profile":{
         "Header":"My Profile"
@@ -406,7 +408,8 @@
         "More_Comments":"More Comments",
         "Submit_Review":"Submit your review",
         "Seller_Description":"Seller Description",
-        "Brand_Name":"Brand Name"
+        "Brand_Name":"Manufacturer Name",
+        "Your_Review":"Your Review"
     },
     "Privacy_Policy":{
         "Privacy":"Privacy",

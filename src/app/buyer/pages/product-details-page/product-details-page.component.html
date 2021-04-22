@@ -31,17 +31,17 @@
             </button>
             <button type="button" class="mb-3" type="button" mat-button (click)="scroll_to_reviews('reviews')">
               <img src="../../../assets/review-icon.svg" alt="" />{{'Buyer_Product_Details.Customer_Review'|translate}}
-              <span>{{ totalComments }}</span>
+              <span>({{ totalComments }})</span>
             </button>
           </div>
           <div class="prod-delivery-info">
-            <p *ngIf="prodcutDetails.pickup_address?.length > 0">
+            <p *ngIf="prodcutDetails.pickup_address?.length > 0"  class="pick-address">
               <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               (<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)
               <span *ngIf="prodcutDetails.pickup_address?.length == 0">({{'Buyer_Product_Details.Not_Specified'|translate}})</span>
             </p>
-            <p *ngIf="prodcutDetails.pickup_address?.length > 0">
-              <b>{{'Buyer_Product_Details.Pickup_Location'|translate}} </b><span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address }}</span>
+            <p *ngIf="prodcutDetails.pickup_address?.length > 0" class="pick-address">
+              <span class="bold-pick">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span><span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address }}</span>
               <ng-template *ngIf="
                 prodcutDetails.pickup_address?.length > 0;
                 else pickAddressNa
@@ -103,7 +103,7 @@
           <p class="prod-price">{{'Buyer_Quotation_History.Unit_Price'|translate}}: SAR {{ get_unit_price(prodcutDetails.commission,prodcutDetails.unit_price) }}</p>
           <p class="seller-name" *ngIf="prodcutDetails">
             <span>{{'Buyer_Product_Details.Seller_Name'|translate}} </span><a (click)="go_to_seller_wise_product_list()"
-              style="text-decoration: underline; color: #2b2b2b">{{ prodcutDetails.seller.store_name | titlecase }}</a>
+              style="text-decoration:1px #1f4f9e solid underline; color: #1f4f9e">{{ prodcutDetails.seller.store_name | titlecase }}</a>
           </p>
           <p class="brand-name" *ngIf="prodcutDetails?.brand != null">
             <span>{{'Buyer_Product_Details.Brand_Name'|translate}}: </span>
@@ -170,34 +170,20 @@
   </div>
   <div class="seller-description">
     <div class="container">
-      <h4 class="similar-prod-header">{{'Buyer_Product_Details.Seller_Description'|translate}}</h4>
+      <h4 class="seller-desc-head">{{'Buyer_Product_Details.Seller_Description'|translate}}</h4>
+      
       <div class="comment-div">
-        <p class="commenter-name mb-0" *ngIf="prodcutDetails">
-          <b>{{ prodcutDetails.seller.full_name | titlecase }}</b>
+        <p class="seller-head mb-0" *ngIf="prodcutDetails">
+         {{ prodcutDetails.seller.store_name | titlecase }}
         </p>
-        <!-- <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum It is a long established fact that a
-          reader will be distracted by the readable content of a page when
-          looking at its layout. The point of using Lorem Ipsum is that it has a
-          more-or-less normal distribution of letters, as opposed to using
-          'Content here, content here', making it look like readable English.
-          Many desktop publishing packages and web page editors now use Lorem
-          Ipsum as their default model text, and a search for 'lorem ipsum'
-        </p> -->
+      <p class="seller-desc"></p>
       </div>
+     
       <div class="comment-div">
-        <p class="commenter-name mb-0" *ngIf="prodcutDetails.seller.store_address"><b>{{'Buyer_Profile_Form.Address'|translate}}</b></p>
-        <p>
-          <span *ngIf="prodcutDetails.seller.store_address">{{
-            prodcutDetails.seller.store_address }}</span>
+        <p class="seller-head mb-0" *ngIf="prodcutDetails.seller.store_address">{{'Buyer_Profile_Form.Address'|translate}}</p>
+       <br>
+        <p *ngIf="prodcutDetails.seller.store_address" class="seller-desc"> 
+         {{prodcutDetails.seller.store_address }}
         </p>
       </div>
     </div>
