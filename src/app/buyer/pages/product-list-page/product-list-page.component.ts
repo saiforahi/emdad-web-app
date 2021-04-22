@@ -48,6 +48,7 @@ export class ProductListPageComponent implements OnInit {
   filteredCatArray: any = [];
   selected_price_ranges: Array<any> = [];
   selected_price_range:any
+  store_name:string
   constructor(
     private getProduct: GetProductService,
     private router: Router,
@@ -67,6 +68,11 @@ export class ProductListPageComponent implements OnInit {
     if (this.router.url.split('/').length > 2) {
       this.prodInRow6 = false;
     }
+    this.route.queryParams.subscribe((params) => {
+      if(params.store_name!==undefined){
+        this.store_name=params.store_name
+      }
+    })
     this.selected_child_category = this.route.snapshot.params['id'];
     this.sellerId = this.route.snapshot.params['id'];
     // this.expandedCat = parseInt(localStorage.getItem("expandedCat"));

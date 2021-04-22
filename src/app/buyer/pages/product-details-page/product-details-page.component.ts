@@ -343,4 +343,7 @@ export class ProductDetailsPageComponent implements OnInit {
       this.addToCart='false'
     }
   }
+  go_to_seller_wise_product_list(){
+    this.router.navigate(['/products/seller/', this.prodcutDetails.seller.id],{ queryParams: { store_name: this.prodcutDetails.seller.store_name } })
+  }
 }
