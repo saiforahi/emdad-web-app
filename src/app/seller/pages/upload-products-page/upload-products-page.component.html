@@ -129,9 +129,9 @@
             <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="prodDeliMethod">{{'Seller_Upload_Product.Product_Delivery_Method'|translate}}</label>
-                    <select class="form-control form-control-lg" formControlName="prodDeliMethod"
+                    <select (change)="change_placeholder($event.target.value)" class="form-control form-control-lg" formControlName="prodDeliMethod"
                         [(ngModel)]="selectedOption">
-                        <option value="" disabled selected>{{'Seller_Upload_Product.Product_Delivery_Method'|translate}}</option>
+                        <option value="-1" disabled selected>{{'Seller_Upload_Product.Product_Delivery_Method'|translate}}</option>
                         <option value="1">{{'Seller_Product_Categories.DDP'|translate}}</option>
                         <option value="2">{{'Seller_Product_Categories.ExWorks'|translate}}</option>
                     </select>
@@ -163,6 +163,19 @@
                     <div *ngIf="shopPick.invalid && (shopPick.dirty || shopPick.touched)">
                         <div *ngIf="shopPick.errors?.required">
                             <app-form-input-alert [alertMsg]="'Shop pick up location is required.'">
+                            </app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" *ngIf="selectedOption == '1'">
+                <div class="form-group">
+                    <label for="shopPick">{{'Seller_Upload_Product.ddp_destination'|translate}}</label>
+                    <!--shopPick -->
+                    <input id="ddp_destination" class="form-control form-control-md" type="text" formControlName="ddp_destination" />
+                    <div *ngIf="ddp_destination.invalid && (ddp_destination.dirty || ddp_destination.touched)">
+                        <div *ngIf="ddp_destination.errors?.length>0">
+                            <app-form-input-alert [alertMsg]="'Invalid DDP destination'">
                             </app-form-input-alert>
                         </div>
                     </div>

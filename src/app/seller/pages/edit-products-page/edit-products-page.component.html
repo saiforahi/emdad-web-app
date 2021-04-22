@@ -160,6 +160,19 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-12" *ngIf="selectedOption == '1'">
+                <div class="form-group">
+                    <label for="ddp_destination">{{'Seller_Upload_Product.ddp_destination'|translate}}</label>
+                    <!--shopPick -->
+                    <input id="ddp_destination" class="form-control form-control-md" type="text" formControlName="ddp_destination" />
+                    <div *ngIf="ddp_destination.invalid && (ddp_destination.dirty || ddp_destination.touched)">
+                        <div *ngIf="ddp_destination.errors?.length>0">
+                            <app-form-input-alert [alertMsg]="'DDP Destination is invalid.'">
+                            </app-form-input-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6 col-12" *ngIf="selectedOption == '2'">
                 <div class="form-group">
                     <label for="shopPick">{{'Seller_Upload_Product.Shop_Pick_Up_Location'|translate}}</label>

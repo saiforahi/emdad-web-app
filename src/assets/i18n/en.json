@@ -230,6 +230,8 @@
         "Product_Stock":"Product Stock",
         "Size":"Size",
         "Ex_Works_20_days":"Ex Works 20 days",
+        "ddp_lead_time":"XX days (DDP)",
+        "ddp_destination":"DDP Destination",
         "Shop_Pick_Up_Location":"Shop Pick Up Location",
         "DDP_Destination":"DDP Destination",
         "Product_Image":"Product Image"
