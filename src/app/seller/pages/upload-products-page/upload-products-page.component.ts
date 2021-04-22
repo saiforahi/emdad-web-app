@@ -38,7 +38,7 @@ export class UploadProductsPageComponent implements OnInit {
   prodDetails: AbstractControl;
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
-  prodColor: AbstractControl;
+  prodSize:AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -68,11 +68,11 @@ export class UploadProductsPageComponent implements OnInit {
   brandList: any;
   imgPreviewList = [];
   selectedFiles: any = [];
-  colorList: any;
   currentAddedBrand: any;
   currentAddedColor: any;
   currentAddedUnit: any;
-
+  size:any
+  sizeList:Array<any>=[]
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -131,10 +131,10 @@ export class UploadProductsPageComponent implements OnInit {
       this.brandList = item.data[0];
       console.log(item.data[0]);
     });
-    this.addProductService.getColorList().subscribe((item) => {
-      this.colorList = item.data[0];
-      console.log(item.data[0]);
-    });
+    // this.addProductService.getColorList().subscribe((item) => {
+    //   this.sizeList = item.data[0];
+    //   console.log(item.data[0]);
+    // });
     this.productUploadForm = this.fb.group({
       category: ['', [Validators.required]],
       subCategory: ['', [Validators.required]],
@@ -142,7 +142,7 @@ export class UploadProductsPageComponent implements OnInit {
       prodName: ['', [Validators.required]],
       prodDetails: [''],
       manufactererName: [''],
-      prodColor: [''],
+      prodSize: [''],
       prodStock: ['', [Validators.required]],
       prodUnit: [''],
       prodDeliMethod: ['', [Validators.required]],
@@ -161,7 +161,7 @@ export class UploadProductsPageComponent implements OnInit {
     this.prodDetails = this.productUploadForm.controls['prodDetails'];
     this.manufactererName = this.productUploadForm.controls['manufactererName'];
     this.prodStock = this.productUploadForm.controls['prodStock'];
-    this.prodColor = this.productUploadForm.controls['prodColor'];
+    this.prodSize = this.productUploadForm.controls['prodSize'];
     this.prodUnit = this.productUploadForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
@@ -247,40 +247,40 @@ export class UploadProductsPageComponent implements OnInit {
     });
   }
 
-  addNewColor(value) {
-    if (value == 'new') {
-      this.openAddColorDialog();
-    }
-  }
+  // addNewSize(value) {
+  //   if (value == 'new') {
+  //     this.openAddColorDialog();
+  //   }
+  // }
 
-  openAddColorDialog() {
-    const dialogRef = this.dialog.open(AddColorModalComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.spinner.show();
-        // console.log(`Dialog result: ${result}`);
-        this.addProductService.addColor(result).subscribe(
-          (success: any) => {
-            this.currentAddedColor = success.data[0].id;
-            this.addProductService.getColorList().subscribe((item) => {
-              this.colorList = item.data[0];
-              console.log(item.data[0]);
-            });
-            this.spinner.hide();
-            swal('Succeed', success.message, 'success');
-          },
-          (error: any) => {
-            console.log(error);
-            this.prodColor.reset('');
-            this.spinner.hide();
-            swal('Failed!', error.error.name[0], 'error');
-          }
-        );
-      }
-    });
-  }
+  // openAddColorDialog() {
+  //   const dialogRef = this.dialog.open(AddColorModalComponent);
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result != null) {
+  //       this.spinner.show();
+  //       // console.log(`Dialog result: ${result}`);
+  //       this.addProductService.addColor(result).subscribe(
+  //         (success: any) => {
+  //           this.currentAddedColor = success.data[0].id;
+  //           this.addProductService.getColorList().subscribe((item) => {
+  //             this.sizeList = item.data[0];
+  //             console.log(item.data[0]);
+  //           });
+  //           this.spinner.hide();
+  //           swal('Succeed', success.message, 'success');
+  //         },
+  //         (error: any) => {
+  //           console.log(error);
+  //           this.prodSize.reset('');
+  //           this.spinner.hide();
+  //           swal('Failed!', error.error.name[0], 'error');
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
 
-  addNewUnit(value) {
+  addNewUnit(value:any) {
     if (value == 'new') {
       this.openAddUnitDialog();
     }
@@ -333,7 +333,7 @@ export class UploadProductsPageComponent implements OnInit {
     }
     this.productUploadFormData.append('brand', value.manufactererName);
     this.productUploadFormData.append('unit', value.prodUnit);
-    this.productUploadFormData.append('color', value.prodColor);
+    this.productUploadFormData.append('size', value.prodSize);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
     this.productUploadFormData.append('name', value.prodName);
     this.productUploadFormData.append(
@@ -373,7 +373,7 @@ export class UploadProductsPageComponent implements OnInit {
         this.subCategory.reset('');
         this.childCategory.reset('');
         this.manufactererName.reset('');
-        this.prodColor.reset('');
+        this.prodSize.reset('');
         this.prodUnit.reset('');
         this.imgPreviewList = [];
         this.selectedImage = [];

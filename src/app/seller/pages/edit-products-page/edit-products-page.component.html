@@ -76,7 +76,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                    <label for="manufactererName">Manufacturer Name</label>
+                    <label for="manufactererName">{{'Seller_Upload_Product.Manufacturer_Name'|translate}}</label>
                     <!-- manufactererName -->
                     <select class="form-control form-control-lg" formControlName="manufactererName" (change)="addNewBrand(manufactererName.value)">
                         <option value="" disabled selected>Manufacturer Name</option>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodStock">Product Stock</label>
+                    <label for="prodStock">{{'Seller_Upload_Product.Product_Stock'|translate}}</label>
                     <!-- prodStock -->
                     <input id="prodStock" class="form-control form-control-md" type="text"
                         formControlName="prodStock" />
@@ -99,27 +99,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <!-- <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodColor">{{'Seller_Upload_Product.prod_color'|translate}}</label>
-                    <!-- Color -->
+                    <label for="prodColor">{{'Seller_Upload_Product.prod_size'|translate}}</label>
+                    Color
                     <select class="form-control form-control-lg" formControlName="prodColor" (change)="addNewColor(prodColor.value)">
                         <option value="" disabled selected>{{'Seller_Upload_Product.prod_color'|translate}}</option>
                         <option value="{{color.id}}" [selected]="colorId == color.id" *ngFor="let color of colorList">{{color.name | titlecase}}</option>
                         <option value="new">Others</option>
                     </select>
                 </div>
-            </div>
-            <!-- <div class="col-lg-6 col-md-6 col-12">
-                <div class="form-group">
-                    <label for="prodSize">Size</label> -->
-                    <!-- prodSize -->
-                    <!-- <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize" />
-                </div>
             </div> -->
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label for="prodSize">{{'Seller_Upload_Product.prod_size'|translate}}</label>
+                    <!-- prodSize -->
+                    <input id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize" />
+                </div>
+            </div>
             <div class="col-md-6 col-lg-6 col-12">
                 <div class="form-group">
-                    <label for="prodUnit">Unit of Measurement</label>
+                    <label for="prodUnit">{{'Seller_Product_Categories.Unit_of_measurement'|translate}}</label>
                     <select class="form-control form-control-lg" formControlName="prodUnit" (change)="addNewUnit(prodUnit.value)">
                         <option value="" disabled selected>Unit of Measurement</option>
                         <option value="{{unit.id}}" [selected]="unitId == unit.id" *ngFor="let unit of unitList">
@@ -135,11 +135,11 @@
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodDeliMethod">Product Delivery Method</label>
+                    <label for="prodDeliMethod">{{'Seller_Upload_Product.Product_Delivery_Method'|translate}}</label>
                     <select class="form-control form-control-lg" formControlName="prodDeliMethod" *ngIf="productDetails" [(ngModel)]="selectedOption">
-                        <option value="" disabled selected>Product Delivery Method</option>
-                        <option value="1" [selected]="productDetails.delivery_method == 1">DDP</option>
-                        <option value="2" [selected]="productDetails.delivery_method == 2">Ex-Works</option>
+                        <option value="" disabled selected>{{'Seller_Upload_Product.Product_Delivery_Method'|translate}}</option>
+                        <option value="1" [selected]="productDetails.delivery_method == 1">{{'Seller_Product_Categories.DDP'|translate}}</option>
+                        <option value="2" [selected]="productDetails.delivery_method == 2">{{'Seller_Product_Categories.ExWorks'|translate}}</option>
                     </select>
                     <div *ngIf="prodDeliMethod.invalid && (prodDeliMethod.dirty || prodDeliMethod.touched)">
                         <div *ngIf="prodDeliMethod.errors?.required">
@@ -150,7 +150,7 @@
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="leadTime">Set Lead Time</label>
+                    <label for="leadTime">{{'Seller_Upload_Product.Set_Lead_Time'|translate}}</label>
                     <!-- leadTime -->
                     <input id="leadTime" class="form-control form-control-md" type="text" formControlName="leadTime" />
                     <div *ngIf="leadTime.invalid && (leadTime.dirty || leadTime.touched)">
@@ -200,7 +200,7 @@
             </div> -->
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodPrice">Product Unit Price</label>
+                    <label for="prodPrice">{{'Seller_Upload_Product.Product_Unit_Price'|translate}}{{'Seller_Upload_Product.VatEx'|translate}}</label>
                     <!-- prodPrice -->
                     <input id="prodPrice" class="form-control form-control-md" type="text"
                         formControlName="prodPrice" />
@@ -213,7 +213,7 @@
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label class="d-block">Product Image <small>(max. two images can be uploaded)</small></label>
+                    <label class="d-block">{{'Seller_Upload_Product.Product_Image'|translate}} <small>({{'Seller_Upload_Product.Image_Upload_Instruction'|translate}})</small></label>
                     <div *ngFor="let img of existingImgList; let i = index;" class="d-inline-block img-preview-div">
                         <img *ngIf="img.link != null" [src]="img.link" alt="" width="80" height="80">
                         <button mat-raised-button (click)="deleteExistingImage(existingImgList[i], i);" type="button"><img
@@ -233,7 +233,7 @@
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label class="d-block">Product Attachments</label>
+                    <label class="d-block">{{'Seller_Upload_Product.Product_Attachments'|translate}}</label>
                     <ul class="attached-file pl-0 d-block">
                         <li *ngFor="let file of existingFiles; let i = index;">
                             {{fileNameExtarc(file.path)}}
@@ -258,9 +258,9 @@
                 <div class="form-group">
                     <button type="submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                         [disabled]="productUpdateForm.invalid">
-                        Save
+                        {{'Buttons.Save'|translate}}
                     </button>
-                    <button type="submit" mat-raised-button (click)="deleteProduct();" class="btn btn-primary btn-md login_btn delete-btn">
+                    <button type="button" mat-raised-button (click)="openDialog();" class="btn btn-primary btn-md login_btn delete-btn">
                         Delete Product
                     </button>
                 </div>
