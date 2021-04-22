@@ -69,6 +69,7 @@ export class EditProductsPageComponent implements OnInit {
   productId: any;
   productDetails: any;
   shopPick:AbstractControl;
+  ddp_destination:AbstractControl;
   parentCatId: any;
   subCatId: any;
   childCatId: any;
@@ -159,6 +160,7 @@ export class EditProductsPageComponent implements OnInit {
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
       // ddp: ['', [Validators.required]],
+      ddp_destination: [''],
       prodPrice: ['', [Validators.required]],
       prodImage: [''],
       attachments: [''],
@@ -174,6 +176,7 @@ export class EditProductsPageComponent implements OnInit {
     this.prodColor = this.productUpdateForm.controls['prodColor'];
     this.prodUnit = this.productUpdateForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
+    this.ddp_destination = this.productUpdateForm.controls['ddp_destination'];
     this.leadTime = this.productUpdateForm.controls['leadTime'];
     // this.ddp = this.productUpdateForm.controls['ddp'];
     this.prodPrice = this.productUpdateForm.controls['prodPrice'];
@@ -186,14 +189,13 @@ export class EditProductsPageComponent implements OnInit {
     this.existingImgList = [];
     this.getProducts.productDetails(this.productId).subscribe((item) => {
       console.log(item.data[0]);
+      console.log('ddp_destination',item.data[0].ddp_destination);
       this.productDetails = item.data[0];
       this.childCatId = item.data[0].category.id;
-      this.brandId =
-        this.productDetails.brand != null ? this.productDetails.brand.id : null;
-      this.colorId =
-        this.productDetails.color != null ? this.productDetails.color.id : null;
-      this.unitId =
-        this.productDetails.unit != null ? this.productDetails.unit.id : null;
+      this.brandId = this.productDetails.brand != null ? this.productDetails.brand.id : null;
+      this.colorId = this.productDetails.color != null ? this.productDetails.color.id : null;
+      this.unitId = this.productDetails.unit != null ? this.productDetails.unit.id : null;
+      this.ddp_destination= this.productDetails.ddp_destination!=null?this.productDetails.ddp_destination:''
       var setLeadTime;
       if (this.productDetails.delivery_method == 1) {
         setLeadTime = this.productDetails.ddp_lead_time;
@@ -214,6 +216,7 @@ export class EditProductsPageComponent implements OnInit {
         prodColor: this.colorId,
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
+        ddp_destination:this.ddp_destination,
         leadTime: setLeadTime,
         shopPick:
           this.productDetails.pickup_address.length != 0
@@ -425,6 +428,9 @@ export class EditProductsPageComponent implements OnInit {
     this.productUploadFormData.append('description', value.prodDetails);
     this.productUploadFormData.append('unit_price', value.prodPrice);
     this.productUploadFormData.append('delivery_method', value.prodDeliMethod);
+    if(value.prodDeliMethod=='1' && value.ddp_destination.length>0){
+      this.productUploadFormData.append('ddp_destination',value.ddp_destination)
+    }
     if (value.prodDeliMethod == 1) {
       this.productUploadFormData.append('ddp_lead_time', value.leadTime);
       this.productUploadFormData.append('ex_works_lead_time', '0');

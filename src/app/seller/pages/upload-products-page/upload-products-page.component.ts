@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddProductService } from 'src/app/shared/services/add-product.service';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
@@ -26,7 +27,7 @@ import { AddUnitModalComponent } from '../../components/add-unit-modal/add-unit-
 export class UploadProductsPageComponent implements OnInit {
   error: any;
   msg;
-  selectedOption: any;
+  selectedOption: any="-1";
   group: string;
   productUploadForm: FormGroup;
   category: AbstractControl;
@@ -42,6 +43,7 @@ export class UploadProductsPageComponent implements OnInit {
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
   ddp: AbstractControl;
+  ddp_destination:AbstractControl;
   prodPrice: AbstractControl;
   phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
   email: AbstractControl;
@@ -81,7 +83,8 @@ export class UploadProductsPageComponent implements OnInit {
     private addProductService: AddProductService,
     private authService: UserAuthService,
     private subscription: SubscriptionService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate:TranslateService
   ) {
     this.authService.s_uId.subscribe((s_uid) => {
       console.log(s_uid);
@@ -145,6 +148,7 @@ export class UploadProductsPageComponent implements OnInit {
       prodDeliMethod: ['', [Validators.required]],
       leadTime: ['', [Validators.required]],
       ddp: [''],
+      ddp_destination:[''],
       shopPick: [''],
       prodPrice: ['', [Validators.required]],
       prodImage: [''],
@@ -162,6 +166,7 @@ export class UploadProductsPageComponent implements OnInit {
     this.prodDeliMethod = this.productUploadForm.controls['prodDeliMethod'];
     this.leadTime = this.productUploadForm.controls['leadTime'];
     this.ddp = this.productUploadForm.controls['ddp'];
+    this.ddp_destination=this.productUploadForm.controls['ddp_destination'];
     this.shopPick = this.productUploadForm.controls['shopPick'];
     this.prodPrice = this.productUploadForm.controls['prodPrice'];
     this.prodImage = this.productUploadForm.controls['prodImage'];
@@ -319,7 +324,7 @@ export class UploadProductsPageComponent implements OnInit {
         this.selectedFiles[i].name
       );
     }
-    if ((value.ddp = 2)) {
+    if (value.ddp == '2') {
       this.productUploadFormData.append('pickup_address[0]city', '1');
       this.productUploadFormData.append(
         'pickup_address[0]address',
@@ -341,6 +346,7 @@ export class UploadProductsPageComponent implements OnInit {
     if (value.prodDeliMethod == 1) {
       this.productUploadFormData.append('ddp_lead_time', value.leadTime);
       this.productUploadFormData.append('ex_works_lead_time', '0');
+      this.productUploadFormData.append('ddp_destination',value.ddp_destination)
     } else if (value.prodDeliMethod == 2) {
       this.productUploadFormData.append('ddp_lead_time', '0');
       this.productUploadFormData.append('ex_works_lead_time', value.leadTime);
@@ -362,8 +368,6 @@ export class UploadProductsPageComponent implements OnInit {
     this.addProductService.addProduct(this.productUploadFormData).subscribe(
       (success) => {
         console.log(success);
-        this.spinner.hide();
-        swal('Succeed', success.message, 'success');
         this.productUploadForm.reset();
         this.category.reset('');
         this.subCategory.reset('');
@@ -374,10 +378,13 @@ export class UploadProductsPageComponent implements OnInit {
         this.imgPreviewList = [];
         this.selectedImage = [];
         this.selectedFiles = [];
+        this.spinner.hide();
+        swal('Succeed', success.message, 'success');
       },
       (error: any) => {
         console.log(error);
-        swal('Failed!', this.error, 'error');
+        this.spinner.hide();
+        swal('Failed!', 'Error in Submission', 'error');
       }
     );
   }
@@ -414,5 +421,22 @@ export class UploadProductsPageComponent implements OnInit {
 
   removeFile(id) {
     this.selectedFiles.splice(id, 1);
+  }
+
+  change_placeholder(value:any){
+    if(value=='1'){
+      this.translate.get('Seller_Upload_Product.ddp_lead_time').subscribe((res: string) => {
+        console.log(res);
+        document.getElementById('leadTime').setAttribute('placeholder',res)
+        //=> 'hello world'
+      });
+    }
+    else if(value=='2'){
+      this.translate.get('Seller_Upload_Product.Ex_Works_20_days').subscribe((res: string) => {
+        console.log(res);
+        document.getElementById('leadTime').setAttribute('placeholder',res)
+      });
+    }
+    
   }
 }
