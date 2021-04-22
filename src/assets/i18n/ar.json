@@ -38,11 +38,12 @@
     "View_More": "عرض المزيد",
     "No_Product": "لا يوجد المزيد من المنتجات للعرض",
     "No_Item": "لا يوجد عنصر للعرض",
-    "Brands": "العلامات التجارية",
+    "Brands": "الشركات المصنعة",
     "Colors": "الألوان",
     "Price": "السعر",
     "Search_Result": "نتيجة البحث",
-    "Items": "الفئات الشائعة"
+    "Items": "الفئات الشائعة",
+    "Clear": "امسح الكل"
   },
   "Buyer_Profile": {
     "Header": "ملفي"
@@ -401,7 +402,8 @@
   "More_Comments":"المزيد من التعليقات",
   "Submit_Review":"إرسال رأيك",
   "Seller_Description": "إزالة من قائمة الرغبات",
-  "Brand_Name":"اسم العلامة التجارية"
+  "Brand_Name": "اسم المصنع",
+  "Your_Review": "مراجعتك"
 },
 "Privacy_Policy":{
   "Privacy": "خصوصية",

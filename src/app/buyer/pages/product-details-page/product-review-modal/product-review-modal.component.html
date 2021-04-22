@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-0">
       <div style="border: none" class="modal-header pb-0">
-        <h5 class="modal-title w-100" id="staticBackdropLabel">Your Review</h5>
+        <h5 class="modal-title w-100" id="staticBackdropLabel">{{'Buyer_Product_Details.Your_Review'|translate}}</h5>
         <button (click)="hide_review_modal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,11 +13,11 @@
             <div class="">
               <div class="form-group">
                 <textarea [(ngModel)]="reviewText" class="form-control" id="review"
-                  placeholder="Type your comments here.." rows="7"></textarea>
+                  placeholder="Type your comments here.." rows="6"></textarea>
               </div>
               <div class="form-group">
                 <button class="btn btn-primary btn-md btn-block login_btn" type="button" (click)="addComments()">
-                  Submit
+                  {{'Seller_Tickets.Submit'|translate}}
                 </button>
               </div>
             </div>

@@ -220,7 +220,7 @@ app-search-for ::ng-deep button {
   -webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
   margin-top: 120px;
-  z-index: 1000;
+  z-index: 1001;
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
 }

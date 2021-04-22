@@ -60,9 +60,9 @@ pinch-zoom /deep/ .pinch-zoom-content {
   min-width: 60px;
   min-height: 60px;
   left: unset;
-}
+  }
 
-.wishlist-review-div,
+.wishlist-review-div
 .cart-quote-btn-div {
   padding: 40px 0 0;
 }
@@ -76,13 +76,21 @@ pinch-zoom /deep/ .pinch-zoom-content {
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
+  padding-left: 0;
+  margin-top: 50px;
 }
 
-.prod-delivery-info {
+.pick-address{
   font-family: Jost;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+font-weight: normal;
+}
+.bold-pick{
+  font-weight: 500 !important;
 }
 
 .quantity-input input {
@@ -98,7 +106,9 @@ pinch-zoom /deep/ .pinch-zoom-content {
   min-height: 80px;
   background: none;
 }
-
+.cart-quote-btn-div{
+  padding-top: 30px;
+}
 .cart-quote-btn-div button.add-to-cart-btn {
   width: 250px;
   height: 80px;
@@ -362,7 +372,31 @@ ngb-carousel /deep/ .carousel-control-next-icon {
 .module {
   scroll-behavior: smooth;
 }
-
+.seller-desc-head{
+  font-family: Jost;
+font-style: normal;
+font-weight: 500;
+font-size: 56px;
+line-height: 81px;
+color: #2B2B2B;
+}
+.seller-head{
+  font-family: Jost;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 29px;
+text-transform: capitalize;
+color: #2B2B2B;
+}
+.seller-desc{
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+color: #2B2B2B;
+}
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
@@ -391,15 +425,19 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px;
     background: #efefef;
     margin-right: 15px;
+    margin-top: unset;
+    padding-left: 15px;
   }
   .wishlist-review-div button img {
     height: 16px;
   }
-  .prod-delivery-info {
-    font-size: 16px;
-  }
+ .pick-address{
+   font-size: 16px;
+   line-height: 23px;
+ }
+
   .prod-delivery-info p {
-    font-size: 16px;
+    
     margin-bottom: 10px;
   }
   .prod-delivery-info h5 {
@@ -430,10 +468,19 @@ ngb-carousel /deep/ .carousel-control-next-icon {
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .similar-prod-header h4 {
+  .similar-prod-header h4,.seller-desc-head {
     font-size: 20px;
+    
     margin: 15px 0 15px;
   }
+.seller-head{
+  font-size: 16px;
+  line-height: 23px;
+}
+.seller-desc{
+  font-size: 14px;
+  line-height: 20px;
+}
   .similar-prod-header button {
     margin-top: 10px;
     width: 30px;

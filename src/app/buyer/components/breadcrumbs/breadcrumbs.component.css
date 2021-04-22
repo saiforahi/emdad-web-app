@@ -36,9 +36,19 @@
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
-  line-height: 60px;
+  line-height: 35px;
+  color: #2B2B2B;
 }
-
+.clear{
+  margin-right: 15px;
+  font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 35px;
+text-decoration: 1px #1f4f9e solid underline;
+color: #1F4F9E;
+}
 .clear-btn {
   margin-right: 40px;
   font-family: Jost;
@@ -97,6 +107,10 @@ a {
   .url {
     font-size: 16px;
     line-height: 16px;
+  }
+  .serach-result,.clear{
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
