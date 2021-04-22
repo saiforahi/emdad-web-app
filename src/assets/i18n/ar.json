@@ -18,14 +18,16 @@
     "Profile_Settings": "إعدادات الملف الشخصي",
     "Change_Password": "تغيير كلمة المرور",
     "Order_History": "تاريخ الطلب",
-    "Manage_Quotation": "إدارة الاقتباس"
+    "Manage_Quotation": "إدارة الاقتباس",
+    "Update": "تحديث"
   },
   "Header_DropDowns": {
     "My_Profile": "ملفي الشخصي",
     "Track_Orders": "تتبع الطلبات",
     "My_Wishlist": "قائمة أمنياتي",
     "Raise_a_support": "رفع تذكرة دعم",
-    "Log_Out": "تسجيل الخروج"
+    "Log_Out": "تسجيل خروج",
+    "Quotations":"Quotations"
   },
   "Banner": {
     "Search": "البحث عن المنتجات",
@@ -419,6 +421,12 @@
   "Sub_Text2": "ستتلقى رابطًا لإنشاء كلمة مرور جديدة عبر البريد الإلكتروني.",
   "Button_Text": "إعادة تعيين كلمة المرور",
   "Placeholder": "أدخل عنوان بريدك الإلكتروني هنا"
+},
+"Logout_Modal_Buyer":{
+  "Sure_Text": "هل أنت متأكد؟",
+  "Logout_text": "الخروج من إمداد؟ على أي حال! يمكنك دائمًا تسجيل الدخول في أي وقت.",
+  "Logout": "تسجيل الخروج",
+  "Cancel": "إلغاء"
 }
 
 }

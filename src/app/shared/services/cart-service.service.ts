@@ -9,8 +9,10 @@ export class CartServiceService {
 
   constructor() {
     var existingCart = JSON.parse(localStorage.getItem('cart'));
+    
     if (existingCart != null) {
       this.existingCartLength.next(existingCart.products.length);
     }
+    
   }
 }

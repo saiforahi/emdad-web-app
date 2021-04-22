@@ -176,12 +176,12 @@
         <p class="seller-head mb-0" *ngIf="prodcutDetails">
          {{ prodcutDetails.seller.store_name | titlecase }}
         </p>
-      <p class="seller-desc"></p>
+      <p class="seller-desc" *ngIf="prodcutDetails.seller.seller_description">{{prodcutDetails.seller.seller_description}}</p>
       </div>
      
       <div class="comment-div">
         <p class="seller-head mb-0" *ngIf="prodcutDetails.seller.store_address">{{'Buyer_Profile_Form.Address'|translate}}</p>
-       <br>
+ 
         <p *ngIf="prodcutDetails.seller.store_address" class="seller-desc"> 
          {{prodcutDetails.seller.store_address }}
         </p>
