@@ -17,9 +17,8 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import swal from 'sweetalert';
 import { config } from '../../../../config';
 import { AddBrandModalComponent } from '../../components/add-brand-modal/add-brand-modal.component';
-import { AddColorModalComponent } from '../../components/add-color-modal/add-color-modal.component';
 import { AddUnitModalComponent } from '../../components/add-unit-modal/add-unit-modal.component';
-
+import { DialogueComponent } from '../sller-products-page/dialogue/dialogue.component';
 @Component({
   selector: 'app-edit-products-page',
   templateUrl: './edit-products-page.component.html',
@@ -37,7 +36,7 @@ export class EditProductsPageComponent implements OnInit {
   prodDetails: AbstractControl;
   manufactererName: AbstractControl;
   prodStock: AbstractControl;
-  prodColor: AbstractControl;
+  prodSize: AbstractControl;
   prodUnit: AbstractControl;
   prodDeliMethod: AbstractControl;
   leadTime: AbstractControl;
@@ -78,8 +77,6 @@ export class EditProductsPageComponent implements OnInit {
   existingImgList = [];
   existingFiles: any;
   selectedOption;
-  colorList: any;
-  colorId: any;
 
   constructor(
     private router: Router,
@@ -142,10 +139,10 @@ export class EditProductsPageComponent implements OnInit {
       this.brandList = item.data[0];
       // console.log(item.data[0]);
     });
-    this.addProductService.getColorList().subscribe((item) => {
-      this.colorList = item.data[0];
-      console.log(item.data[0]);
-    });
+    // this.addProductService.getColorList().subscribe((item) => {
+    //   this.colorList = item.data[0];
+    //   console.log(item.data[0]);
+    // });
     // this.populateFormData();
     this.productUpdateForm = this.fb.group({
       category: ['', [Validators.required]],
@@ -154,7 +151,7 @@ export class EditProductsPageComponent implements OnInit {
       prodName: ['', [Validators.required]],
       prodDetails: [''],
       manufactererName: ['', [Validators.required]],
-      prodColor: [''],
+      prodSize: [''],
       prodStock: ['', [Validators.required]],
       prodUnit: ['', [Validators.required]],
       prodDeliMethod: ['', [Validators.required]],
@@ -173,7 +170,7 @@ export class EditProductsPageComponent implements OnInit {
     this.prodDetails = this.productUpdateForm.controls['prodDetails'];
     this.manufactererName = this.productUpdateForm.controls['manufactererName'];
     this.prodStock = this.productUpdateForm.controls['prodStock'];
-    this.prodColor = this.productUpdateForm.controls['prodColor'];
+    this.prodSize = this.productUpdateForm.controls['prodSize'];
     this.prodUnit = this.productUpdateForm.controls['prodUnit'];
     this.prodDeliMethod = this.productUpdateForm.controls['prodDeliMethod'];
     this.ddp_destination = this.productUpdateForm.controls['ddp_destination'];
@@ -193,7 +190,6 @@ export class EditProductsPageComponent implements OnInit {
       this.productDetails = item.data[0];
       this.childCatId = item.data[0].category.id;
       this.brandId = this.productDetails.brand != null ? this.productDetails.brand.id : null;
-      this.colorId = this.productDetails.color != null ? this.productDetails.color.id : null;
       this.unitId = this.productDetails.unit != null ? this.productDetails.unit.id : null;
       this.ddp_destination= this.productDetails.ddp_destination!=null?this.productDetails.ddp_destination:''
       var setLeadTime;
@@ -213,7 +209,7 @@ export class EditProductsPageComponent implements OnInit {
         prodDetails: this.productDetails.description,
         manufactererName: this.brandId,
         prodStock: this.productDetails.stock_quantity,
-        prodColor: this.colorId,
+        prodSize: this.productDetails.size,
         prodUnit: this.unitId,
         prodDeliMethod: this.productDetails.delivery_method,
         ddp_destination:this.ddp_destination,
@@ -332,38 +328,38 @@ export class EditProductsPageComponent implements OnInit {
     });
   }
 
-  addNewColor(value) {
-    if (value == 'new') {
-      this.openAddColorDialog();
-    }
-  }
+  // addNewColor(value) {
+  //   if (value == 'new') {
+  //     this.openAddColorDialog();
+  //   }
+  // }
 
-  openAddColorDialog() {
-    const dialogRef = this.dialog.open(AddColorModalComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.spinner.show();
-        // console.log(`Dialog result: ${result}`);
-        this.addProductService.addColor(result).subscribe(
-          (success: any) => {
-            this.colorId = success.data[0].id;
-            this.addProductService.getColorList().subscribe((item) => {
-              this.colorList = item.data[0];
-              console.log(item.data[0]);
-            });
-            this.spinner.hide();
-            swal('Succeed', success.message, 'success');
-          },
-          (error: any) => {
-            console.log(error);
-            this.prodColor.reset('');
-            this.spinner.hide();
-            swal('Failed!', error.error.name[0], 'error');
-          }
-        );
-      }
-    });
-  }
+  // openAddColorDialog() {
+  //   const dialogRef = this.dialog.open(AddColorModalComponent);
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result != null) {
+  //       this.spinner.show();
+  //       // console.log(`Dialog result: ${result}`);
+  //       this.addProductService.addColor(result).subscribe(
+  //         (success: any) => {
+  //           this.colorId = success.data[0].id;
+  //           this.addProductService.getColorList().subscribe((item) => {
+  //             this.colorList = item.data[0];
+  //             console.log(item.data[0]);
+  //           });
+  //           this.spinner.hide();
+  //           swal('Succeed', success.message, 'success');
+  //         },
+  //         (error: any) => {
+  //           console.log(error);
+  //           this.prodSize.reset('');
+  //           this.spinner.hide();
+  //           swal('Failed!', error.error.name[0], 'error');
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
 
   addNewUnit(value) {
     if (value == 'new') {
@@ -417,7 +413,7 @@ export class EditProductsPageComponent implements OnInit {
       this.productUploadFormData.append('pickup_address[0]address', value.shopPick);
     }
     this.productUploadFormData.append('brand', value.manufactererName);
-    this.productUploadFormData.append('color', value.prodColor);
+    this.productUploadFormData.append('size', value.prodSize);
     this.productUploadFormData.append('unit', value.prodUnit);
     this.productUploadFormData.append('seller', localStorage.getItem('s_uid'));
     this.productUploadFormData.append('name', value.prodName);
@@ -552,13 +548,24 @@ export class EditProductsPageComponent implements OnInit {
     this.selectedFiles.splice(id, 1);
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogueComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      if(result == true){
+        this.deleteProduct()
+      }
+    });
+  }
+
   deleteProduct(){
     this.spinner.show();
     this.addProductService.deleteProduct(this.productId).subscribe((success: any) => {
       console.log(success.message);
-      this.router.navigate(['/dashboard/products'])
       this.spinner.hide();
-      swal('Success!', 'Product deleted succssfully', 'success');
+      swal('Success!', 'Product deleted succssfully', 'success').then(()=>{
+        this.router.navigate(['/dashboard/products'])
+      });
     },
     (error: any) => {
       console.log(error);

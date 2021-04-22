@@ -94,13 +94,15 @@
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    <label for="prodColor">{{'Seller_Upload_Product.prod_color'|translate}}</label>
+                    <label for="prodSize">{{'Seller_Upload_Product.prod_size'|translate}}</label>
+                    <!-- Size-->
+                    <input placeholder="10" id="prodSize" class="form-control form-control-md" type="text" formControlName="prodSize" />
                     <!-- Color -->
-                    <select class="form-control form-control-lg" formControlName="prodColor" (change)="addNewColor(prodColor.value)">
+                    <!-- <select class="form-control form-control-lg" formControlName="prodSize" (change)="addNewSize(prodSize.value)">
                         <option value="" disabled selected>{{'Seller_Upload_Product.prod_color'|translate}}</option>
-                        <option value="{{color.id}}" [selected]="currentAddedColor == color.id" *ngFor="let color of colorList">{{color.name | titlecase}}</option>
+                        <option value="{{color.id}}" [selected]="currentAddedColor == color.id" *ngFor="let size of sizeList">{{color.name | titlecase}}</option>
                         <option value="new">Others</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <!-- <div class="col-md-6 col-12">

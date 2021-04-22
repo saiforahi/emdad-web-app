@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
-
+import { DialogueComponent } from '../sller-products-page/dialogue/dialogue.component';
 const routes: Routes = [
   {path:'', component: EditProductsPageComponent, pathMatch:'full'}
 ]
@@ -19,6 +19,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonuiModule,
     MaterialModule,
-  ]
+  ],
+  entryComponents: [DialogueComponent],
 })
 export class EditProductsPageModule { }
