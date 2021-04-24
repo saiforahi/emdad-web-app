@@ -17,18 +17,18 @@ export class SearchPageComponent implements OnInit {
   categories: any;
   prodInRow6: boolean;
   brands: any = [];
-  colors: any = [];
+  sizes: any = [];
   prices: any = [];
   price = new FormControl(0);
   min_price: number;
   max_price: number;
   _brand: any;
   selected_brands: Array<any> = [];
-  _color: any;
+  _size: any;
   selected_colors: Array<any> = [];
   _price: any;
   selected_price_ranges: Array<any> = [];
-  price_slider_value;
+  price_slider_value:any;
   catMenuToggle: boolean = false;
   nextBatchProdLink: any;
   prodEnd: boolean;
@@ -48,7 +48,7 @@ export class SearchPageComponent implements OnInit {
     }
     this.route.queryParams.subscribe((params) => {
       this.searchService.search(params.query).subscribe((item) => {
-        // console.log(item)
+        console.log(item.data.results)
         this.products = item.data.results;
         this.get_menus();
         if (item.data.links != null) {
@@ -87,18 +87,18 @@ export class SearchPageComponent implements OnInit {
       if (product.brand !== null) {
         this.brands.push(product.brand);
       }
-      if (product.color !== null) {
-        this.colors.push(product.color);
+      if (product.size !== null) {
+        this.sizes.push(product.size);
       }
     });
     this.brands = this.brands.filter(
-      (value, index, array) =>
+      (value:any, index:any, array:Array<any>) =>
         array.findIndex((t) => t.id === value.id) === index
     ); //setting brands
-    this.colors = this.colors.filter(
-      (value, index, array) =>
-        array.findIndex((t) => t.id === value.id) === index
-    ); //setting colors
+    this.sizes = this.sizes.filter(
+      (value:any, index:any, array:Array<any>) =>
+        array.findIndex((t) => t === value) === index
+    ); //setting sizes
     this.prices = this.get_price_ranges();
   }
 
@@ -195,14 +195,14 @@ export class SearchPageComponent implements OnInit {
   setColor(color_name: string, checked: boolean) {
     if (checked) {
       this.selected_colors.push(color_name);
-      console.log('selected colors', this.selected_colors);
+      console.log('selected sizes', this.selected_colors);
       this._filter();
     } else {
       this.selected_colors = this.array_item_remover(
         color_name,
         this.selected_colors
       );
-      console.log('selected colors', this.selected_colors);
+      console.log('selected sizes', this.selected_colors);
       this._filter();
     }
   }
@@ -242,7 +242,7 @@ export class SearchPageComponent implements OnInit {
       query += '&brand=' + this.selected_brands.toString();
     }
     if (this.selected_colors.length > 0) {
-      query += '&color=' + this.selected_colors.toString();
+      query += '&size=' + this.selected_colors.toString();
     }
     // if (this._price !== null &&this._price !== undefined &&this._price !== '') {
     //   query +='&min_price=' +this._price.split(' ')[0] +'&max_price=' +this._price.split(' ')[1];

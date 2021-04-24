@@ -1,8 +1,6 @@
 import {
   Component,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -36,11 +34,11 @@ export class ProductListPageComponent implements OnInit {
   min_price: number;
   max_price: number;
   _brand: any;
-  _color: any;
+  _size: any;
   brands: any = [];
   selected_brands: Array<string> = [];
   selected_colors: Array<string> = [];
-  colors: any = [];
+  sizes: any = [];
   prices: any = [];
   catMenuToggle = false;
   selected_child_category: any;
@@ -125,7 +123,7 @@ export class ProductListPageComponent implements OnInit {
       this.set_all_categories();
       console.log('categories', this.categories);
       this.getProduct.popularProduct().subscribe((products) => {
-        console.log(products)
+        console.log('products',products.data.results)
         this.products = products.data.results;
         console.log('popular products', this.products);
         this.get_menus();
@@ -243,11 +241,11 @@ export class ProductListPageComponent implements OnInit {
       this._filter();
     }
     // if(color_name?.length>0){
-    //   this._color = color_name;
+    //   this._size = color_name;
     //   this._filter();
     // }
     // else{
-    //   this._color=""
+    //   this._size=""
     //   this._filter();
     // }
   }
@@ -284,24 +282,24 @@ export class ProductListPageComponent implements OnInit {
   get_menus() {
     //setting menus from product list
     this.brands = [];
-    this.colors = [];
+    this.sizes = [];
     Array.from(this.products).forEach((product: any) => {
-      if (product.color !== null) {
-        this.colors.push(product.color);
+      if (product.size !== null) {
+        this.sizes.push(product.size);
       }
       if (product.brand !== null) {
         this.brands.push(product.brand);
       }
     });
-    this._color = '';
+    this._size = '';
     this._brand = '';
     this.brands = this.brands.filter(
       (value, index, array) =>
         array.findIndex((t) => t.id === value.id) === index
     ); //setting brands
-    this.colors = this.colors.filter(
+    this.sizes = this.sizes.filter(
       (value, index, array) =>
-        array.findIndex((t) => t.id === value.id) === index
+        array.findIndex((t) => t === value) === index
     ); //setting colors
     this.getProduct.getBrands().subscribe((success) => {
       console.log('brand list', success.data);
@@ -421,10 +419,10 @@ export class ProductListPageComponent implements OnInit {
       query += '&brand=' + this.selected_brands.toString();
     }
     if (this.selected_colors.length > 0) {
-      query += '&color=' + this.selected_colors.toString();
+      query += '&size=' + this.selected_colors.toString();
     }
-    // if (this._color !== null && this._color !== undefined && this._color !== '') {
-    //   query += '&color=' + this._color;
+    // if (this._size !== null && this._size !== undefined && this._size !== '') {
+    //   query += '&color=' + this._size;
     // }
     // if (this._price.min<this._price.max) {
     //   query += '&min_price=' + this._price.min + '&max_price=' + this._price.max;

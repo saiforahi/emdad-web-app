@@ -206,13 +206,13 @@
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <div class="cat-head">{{'Home.Colors' | translate}}</div>
+                            <div class="cat-head">{{'Seller_Upload_Product.Size' | translate}}</div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="expanded-div">
-                        <mat-panel-title *ngFor="let color of colors">
-                            <mat-checkbox (change)="setColor(color.name,$event.checked)" class="color-check-box">{{
-                                color.name | titlecase }}</mat-checkbox>
+                        <mat-panel-title *ngFor="let size of sizes">
+                            <mat-checkbox (change)="setColor(size,$event.checked)" class="color-check-box">{{
+                                size | titlecase }}</mat-checkbox>
                         </mat-panel-title>
                     </div>
                 </mat-expansion-panel>

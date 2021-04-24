@@ -18,7 +18,7 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head">
-                                Brands
+                                {{'Home.Brands' | translate}}
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -35,14 +35,14 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head">
-                                Colors
+                                {{'Seller_Upload_Product.Size' | translate}}
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="expanded-div mt-2">
-                        <mat-panel-title *ngFor="let color of colors">
-                            <mat-checkbox (change)="setColor(color.name,$event.checked)" class="example-margin">
-                                {{color.name | titlecase}}</mat-checkbox>
+                        <mat-panel-title *ngFor="let size of sizes">
+                            <mat-checkbox (change)="setColor(size,$event.checked)" class="example-margin">
+                                {{size | titlecase}}</mat-checkbox>
                         </mat-panel-title>
                     </div>
                 </mat-expansion-panel>
@@ -52,7 +52,7 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="cat-head">
-                                Price
+                                {{'Home.Price' | translate}}
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
