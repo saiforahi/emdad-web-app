@@ -447,9 +447,9 @@
                  {{'Nav.Notifications'|translate}}
                 </div>
                 <div *ngFor="let notification of notifications;let i=index">
-                    <button ngbDropdownItem class="drop-item">
+                    <button ngbDropdownItem class="drop-item" type="button" (click)="notification_action(i)">
                       <!-- <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  -->
-                      {{notification}}
+                      {{notification.notification}}
                     </button>
                     <div *ngIf="i!=notifications?.length-1" style="padding: 0 30px">
                       <mat-divider></mat-divider>
@@ -510,9 +510,9 @@
                   {{'Nav.Notifications'|translate}}
                 </div>
                 <div *ngFor="let notification of notifications;let i=index">
-                  <button ngbDropdownItem class="drop-item">
+                  <button ngbDropdownItem class="drop-item" type="button" (click)="notification_action(i)">
                     <!-- <img src="../../assets/icons/docs-notification.svg" alt="" class="img-fluid mr-1">  -->
-                    {{notification}}
+                    {{notification.notification}}
                   </button>
                   <div *ngIf="i!=notifications?.length-1" style="padding: 0 30px">
                     <mat-divider></mat-divider>

@@ -173,7 +173,7 @@ export class SellerComponent implements OnInit, AfterViewInit {
         this.unread_notification_length=data
       }
     })
-    this.notificationService.s_messages.subscribe((messages)=>{
+    this.notificationService.s_notifications.subscribe((messages)=>{
       this.notifications=messages
     })
   }
@@ -192,5 +192,18 @@ export class SellerComponent implements OnInit, AfterViewInit {
   markAllNotificationAsRead(){
     console.log('marking...')
     this.notificationService.markAllNotificationSeller()
+  }
+
+  notification_action(index:any){
+    console.log(this.notifications[index])
+    if(this.notifications[index].event=='Order Created'){
+      this.router.navigate(['/dashboard/current-orders'])
+    }
+    else if(this.notifications[index].event=='Order Payment'){
+      this.router.navigate(['/dashboard/current-orders'])
+    }
+    else if(this.notifications[index].event == 'RFQ'){
+      this.router.navigate(['/dashboard/manage-rfqs'])
+    }
   }
 }
