@@ -272,6 +272,9 @@ export class HeaderComponent implements OnInit {
     else if(this.notifications[index].event=='Order Payment'){
       this.router.navigate(['/order/details/',this.notifications[index].event_id])
     }
+    else if(this.notifications[index].event == 'RFQ'){
+      this.router.navigate(['/profile'],{queryParams:{activeItem:'4'}})
+    }
   }
   go_to_quotation(){
     this.router.navigate(['/profile'],{queryParams:{activeItem:4}})
