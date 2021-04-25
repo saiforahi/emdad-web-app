@@ -98,7 +98,7 @@
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="filtered_orders.length" showFirstLastButtons
       *ngIf="filtered_orders?.length>5"></mat-paginator>
-    <div class="no-data" *ngIf="filtered_orders == undefined || filtered_orders == null">
+    <div class="no-data" *ngIf="filtered_orders == undefined || filtered_orders == null || !filtered_orders">
       No data available
     </div>
   </div>
