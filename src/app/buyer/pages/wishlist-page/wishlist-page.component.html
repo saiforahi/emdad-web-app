@@ -1,12 +1,17 @@
-<app-breadcrumbs [directoryString]="'Wishlist'" (view_style)="set_style($event)"></app-breadcrumbs>
+
 <section class="container">
-    <div class="row" *ngIf="products">
+  <app-breadcrumbs [directoryString]="'Wishlist'" (view_style)="set_style($event)"></app-breadcrumbs>
+    <div class="row prod-row" *ngIf="products">
         <!-- <div class="col-md-2" *ngFor="let product of products"> -->
           <!-- <app-product-card [product]="product"></app-product-card> -->
-          <app-product-list [products]="products" [view_style]="style" [prodInRow6]='true'>
+          <div class="col-md-12">
+          <app-product-list [products]="products"  [view_style]="style" [prodInRow6]='true'>
           </app-product-list>
+        </div>
         <!-- </div> -->
-        <p *ngIf="prodEnd || products.length == 0" class="text-center mt-5"><b>No more products to show</b></p>
+        <div class="col-md-12" *ngIf="prodEnd || products.length == 0">
+        <p  class="text-center mt-5"><b>No more products to show</b></p>
+      </div>
         <div class="view-more-btn-div" *ngIf="nextBatchProdLink != null">
             <button *ngIf="!prodEnd" (click)="getNextBatchproduct()" mat-raised-button class="m-auto">View More <img
                     src="../../../assets/down-carrot-light.svg" alt=""></button>

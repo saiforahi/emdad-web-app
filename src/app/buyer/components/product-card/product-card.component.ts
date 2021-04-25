@@ -11,6 +11,7 @@ import {CommissionService} from '../../../shared/services/commission.services'
 })
 export class ProductCardComponent implements OnInit {
   @Input() product;
+  /* @Input() directoryString = ''; */
   defaultImage = '../assets/images/default-image-620x600.jpg';
   base_url = config.base_url;
   prodCartArray = [];
@@ -67,7 +68,8 @@ export class ProductCardComponent implements OnInit {
   removeFromWishlist(prod_id) {
     this.wishlist.removeFromWishllist(prod_id).subscribe((item) => {
       this.openSnackBar('Successfully removed from wishlist!', 'OK');
-      this.ngOnInit();
+      /* this.ngOnInit(); */
+      window.location.reload();
     });
   }
 

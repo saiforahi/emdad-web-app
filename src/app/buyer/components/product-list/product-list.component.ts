@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
   @Input() prodEnd;
   @Input() prodInRow6;
   @Input() view_style;
+  /* @Input() directoryString = ''; */
   constructor() { }
 
   ngOnInit(): void {

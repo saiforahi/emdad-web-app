@@ -273,4 +273,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/order/details/',this.notifications[index].event_id])
     }
   }
+  go_to_quotation(){
+    this.router.navigate(['/profile'],{queryParams:{activeItem:4}})
+  }
 }
