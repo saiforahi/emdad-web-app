@@ -12,6 +12,7 @@ import swal from 'sweetalert';
 import { CountryListService } from 'src/app/shared/services/country-list.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-signup-page',
@@ -84,7 +85,7 @@ export class SignupPageComponent implements OnInit {
       confPassword: ['', [Validators.required]],
       comAddress: ['', [Validators.required]],
       comRegistration: [''],
-      expDate: [''],
+      expDate: ['',this.dateValidator],
       country: ['', [Validators.required]],
       city: ['', [Validators.required]],
       area: [''],
@@ -238,5 +239,16 @@ export class SignupPageComponent implements OnInit {
       this.translate.use('en')
       this.currentLang='en'
     }
+  }
+
+  dateValidator(control: FormControl): { [s: string]: boolean } {
+    if (control.value) {
+      const date = moment(control.value);
+      const today = moment();
+      if (!date.isSameOrAfter(today)) {
+        return { 'invalidDate': true }
+      }
+    }
+    return null;
   }
 }
