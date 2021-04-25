@@ -25,14 +25,14 @@
                     <p><strong class="sar-text">SAR {{get_unit_price(product.commission,product.unit_price)|number:'1.0-0'}}</strong> / each</p>
                 </div>
                 <div class="row justify-content-between p-3 mt-3">
-                    <div class="col-sm-4" style="width: 100%;">
-                        <mat-form-field class="example-form-field">
+                    <div class="col-sm-12 col-md-12 col-xl-4" style="width: 100%;">
+                        <mat-form-field class="example-form-field" appearance="outline">
                             <mat-label>Qty</mat-label>
                             <input matInput type="text" [(ngModel)]="prod_qty" (input)="check_qty($event.target.value)">
                         </mat-form-field>
                     </div>
-                    <div class="col-sm-8">
-                        <button type="button" [disabled]="addToCart=='false'" mat-raised-button class="add-to-cart float-right" (click)="prod_qty>0?add_to_cart(product):''">{{'Buyer_Product_Details.Add_to_Cart'|translate}}</button>
+                    <div class="col-sm-12 col-md-12 col-xl-8 button-div">
+                        <button type="button" [disabled]="addToCart=='false'" mat-raised-button class="add-to-cart" (click)="prod_qty>0?add_to_cart(product):''">{{'Buyer_Product_Details.Add_to_Cart'|translate}}</button>
                     </div>
                 </div>
                 <div class="p-3">
