@@ -53,7 +53,7 @@
                         <li [routerLink]="['profile']" [queryParams]="{ activeItem: 1 }" (click)="closeMenu();">{{'Nav.Profile_Settings' | translate}}</li>
                         <li [routerLink]="['profile']" [queryParams]="{ activeItem: 2 }" (click)="closeMenu();">{{'Nav.Change_Password'|translate}}</li>
                         <li [routerLink]="['profile']" [queryParams]="{ activeItem: 3 }" (click)="closeMenu();">{{'Nav.Order_History'|translate}}</li>
-                        <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">{{'Nav.Manage_Quotation'|translate}}</li>
+                       <!--  <li [routerLink]="['profile']" [queryParams]="{ activeItem: 4 }" (click)="closeMenu();" class="mb-0">{{'Header_DropDowns.Quotations'|translate}}</li> -->
                       </ul>
                     </div>
                   </mat-expansion-panel>
@@ -65,8 +65,9 @@
               <li [ngClass]="activeRoute[1] == 'wishlist' ? 'active' : ''"><a [routerLink]="['wishlist']"
                   (click)="closeMenu();"><img src="../../../../assets/Heart.svg" alt="">
                   <span>{{'Header_DropDowns.My_Wishlist' | translate}}</span></a></li>
-              <!-- <li><a [routerLink]="['/']" (click)="closeMenu();"><img src="../../../../assets/Document.svg" alt="">
-                  <span>Quotations</span></a></li> -->
+                  <li [ngClass]="activeRoute[1] == 'profile?activeItem=4' ? 'active' : ''"><a 
+                    (click)="closeMenu();go_to_quotation();"><img src="../assets/Document.svg" alt="" />
+                    <span>{{'Header_DropDowns.Quotations' | translate}}</span></a></li>
               <li [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"><a [routerLink]="['support-ticket']"
                   (click)="closeMenu();"><img src="../../../../assets/Danger.svg" alt="">
                   <span>{{'Header_DropDowns.Raise_a_support' | translate}}</span></a></li>
@@ -239,9 +240,9 @@
                     [routerLink]="['wishlist']">
                     <img src="../assets/Heart.svg" alt="" />{{'Header_DropDowns.My_Wishlist' | translate}}
                   </button>
-                 <!--  <button ngbDropdownItem [ngClass]="">
-                    <img src="../assets/Document.svg" alt="" />Quotations
-                  </button> -->
+                  <button ngbDropdownItem [ngClass]="activeRoute[1] == 'profile?activeItem=4' ? 'active' : ''" (click)="go_to_quotation()">
+                    <img src="../assets/Document.svg" alt="" />{{'Header_DropDowns.Quotations'|translate}}
+                  </button>
                   <button ngbDropdownItem [ngClass]="activeRoute[1] == 'support-ticket' ? 'active' : ''"
                     [routerLink]="['/support-ticket']">
                     <img src="../assets/Danger.svg" alt="" />{{'Header_DropDowns.Raise_a_support' | translate}}
