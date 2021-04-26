@@ -6,17 +6,26 @@
 */
 
 .banner {
-  position: relative;
-  height: auto;
+  /* position: relative; */
+  height: 400px !important;
+  /* width:100%; */
   text-align: center;
+  overflow: hidden !important;
   /* background: #ddd; */
   /* background: url("../../../../assets/images/banner.jpg") no-repeat; */
   /* background-size: 100%; */
 }
-
-.banner img {
-  width: 100%;
+.navbar-toggler{
+  color: #efefef !important;
+  border-color: #efefef;
+}
+navbar-toggler-icon{
+  color: #efefef !important;
+}
+.banner>img {
+   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .navbar-light .navbar-nav .active > .nav-link,
@@ -196,7 +205,11 @@ nav {
 .product-list-content {
   width: 75%;
   float: left;
-  padding: 0 15px 0 15px;
+  padding: 0px 15px 0px 15px;
+}
+.seller-deets{
+padding-top: 60px;
+padding-bottom: 60px;
 }
 .cat-menu-toggle-btn {
   display: none;
@@ -381,10 +394,18 @@ nav {
   .small-menu {
     display: none;
   }
+ .logo-img{
+    height:50px !important;
+  }
 }
 
 @media only screen and (max-width: 991px) {
   .large-menu {
     display: none;
+  }
+}
+@media all and (min-width:300px) and (max-width:768px){
+  .banner{
+    height:250px !important;
   }
 }

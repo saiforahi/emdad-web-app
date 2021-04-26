@@ -351,6 +351,10 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
   go_to_seller_wise_product_list(){
-    this.router.navigate(['/products/seller/', this.prodcutDetails.seller.id],{ queryParams: { store_name: this.prodcutDetails.seller.store_name } })
+    this.router.navigate(['/products/seller/', this.prodcutDetails.seller.id],{ queryParams: { store_name: this.prodcutDetails.seller.store_name } }) 
+      
+    
+ 
+
   }
 }

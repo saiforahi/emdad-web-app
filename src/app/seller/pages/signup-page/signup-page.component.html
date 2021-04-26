@@ -305,7 +305,7 @@
                     </div>
                     <!-- phone -->
                     <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
-                      required placeholder="(480) 555-0103"/>
+                   minlength="8" maxlength="15"   required placeholder="(480) 555-0103"/>
                   </div>
                   <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
                     <div *ngIf="comPhone.errors?.required">

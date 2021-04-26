@@ -1,15 +1,15 @@
-<section *ngIf="isSeller" class="banner">
-    <img src="../../../../assets/banner.svg" alt="banner image">
+<section *ngIf="isSeller && sellerProPic != '' && sellerProPic != null" class="banner">
+    <img src="{{sellerProPic}}" alt="banner image" class="img-fluid">
 </section>
 <section *ngIf="isSeller" style="background: #fff">
-    <h4 class="container store-name-header mb-0">{{store_name}}</h4>
+    <h4 class="container store-name-header mb-0">{{store_name |uppercase}}</h4>
 </section>
 <section *ngIf="isSeller" class="seller-cat-menu">
     <div class="small-menu">
         <nav style="background: #F49814 !important;"
             class="navbar navbar-expand-lg navbar-light bg-light secondary-menu">
             <div class="container">
-                <span class="navbar-brand"><img class="rounded" src="../../../assets/Group.svg"
+                <span class="navbar-brand" *ngIf="sellerLogo != '' && sellerLogo != null"><img class="rounded-circle" src="{{sellerLogo}}"
                         alt="seller logo" /></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false"
@@ -34,7 +34,7 @@
     <div class="large-menu">
         <div class="container">
             <div class="media">
-                <img class="mr-3" src="../../../assets/Group.svg" alt="Generic placeholder image">
+                <img class="mr-3 rounded-circle logo-img" *ngIf="sellerLogo != '' && sellerLogo != null" src="{{sellerLogo}}" alt="Generic placeholder image">
                 <div class="media-body">
                     <span *ngFor="let child of filteredCatArray" style="margin-right: 17px">
                         <a *ngIf="child" class="" [routerLink]="['/products/category/', child.id]">
@@ -49,7 +49,7 @@
 <app-breadcrumbs *ngIf="products?.length>0 && !isSeller"
     [directoryString]="isCategories?'Categories': isSeller?'Categories':'Categories / ' + products[0].category.name"
     [searchLength]="products.length" [style]="style" (view_style)="set_style($event)"></app-breadcrumbs>
-<section class="container clearfix" [ngClass]="isSeller?'':'container clearfix'">
+<section class="container clearfix seller-deets" [ngClass]="isSeller?'':'container clearfix'">
     <button *ngIf="!catMenuToggle" mat-button class="cat-menu-toggle-btn" (click)="showCatMenu()">
         <img src="../../../../assets/cat-filter.svg" alt="" />
     </button>

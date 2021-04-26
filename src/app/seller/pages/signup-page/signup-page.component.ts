@@ -27,7 +27,7 @@ export class SignupPageComponent implements OnInit {
   sellerRegForm: FormGroup;
   comName: AbstractControl;
   comPhone: AbstractControl;
-  phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
+/*   phonePattern = '^((\\+91-?)|0)?[0-9]{10}$'; */
   email: AbstractControl;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   password: AbstractControl;
@@ -79,7 +79,7 @@ export class SignupPageComponent implements OnInit {
     })
     this.sellerRegForm = this.fb.group({
       comName: ['', [Validators.required]],
-      comPhone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
+      comPhone: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required,Validators.minLength(8),Validators.minLength(8),Validators.maxLength(15)]],
       confPassword: ['', [Validators.required]],
