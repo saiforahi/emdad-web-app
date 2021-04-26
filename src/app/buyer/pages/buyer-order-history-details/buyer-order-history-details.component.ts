@@ -26,7 +26,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   img_base_url;
   previousUrl: any;
   trans_totalItems:any;
-  
+  selectedImage: any = [];
   admin_bank_info:Array<any>=[]
   constructor(
     private route: ActivatedRoute,
@@ -233,5 +233,10 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+  }
+  handleFileSelect(event) {
+    var reader = new FileReader();
+    this.selectedImage.push(event.target.files[0]);
+    console.log(this.selectedImage);
   }
 }
