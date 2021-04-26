@@ -23,19 +23,20 @@
 .custom-file-upload {
   width:100%;
   height: 140px;
-  /* background-image: url("../../../../assets/icons/upload-thin.svg"); */
-/*   background-repeat: no-repeat;
+/*   background-image: url("../../../../assets/icons/upload-thin.svg");
+  background-repeat: no-repeat;
   background-size: 5%;
   background-position: center; */
   border-radius: 5px;
   border: 2px dashed #CFCFCF;
-  display: inline-block;
-  padding: 6px 12px;
+  display: block;
+  /* padding: 6px 12px; */
   cursor: pointer;
   text-align: center !important;
   justify-content: center;
   align-items: center;
 display: flex;
+
 }
 .custom-file-upload img{
 height: 60px;
@@ -56,7 +57,12 @@ left: 54%;
 top: 40%; */
 }
 input[type="file"] {
+/* width:100%; */
+/* visibility: hidden; */
   display: none;
+}
+.proceed.disabled,.proceed:disabled{
+  opacity: .65;
 }
 .sub-text2 {
   font-family: Jost;

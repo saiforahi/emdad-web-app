@@ -150,19 +150,20 @@
         <!--upload button-->
         <div class="row">
           <div class="col-md-12">
-            <label for="attachments" class="custom-file-upload d-flex">
-              
-              <input type="file" (change)="set_invoice($event);"/>
+   
+            <label for="attachments" class="custom-file-upload">
+              <input type="file" id="attachments" class="form-control"/>
               <img src="../../../../assets/icons/upload-thin.svg" alt="">
-              <span class="file-name">Payment History.pdf</span>
-          </label>
+             <span class="file-name">Payment History.pdf</span>
+            </label> 
           
+         
           </div>
         </div>
         <!--proceed button-->
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12 col-12 mobile-center">
-            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn">{{'Buyer_Cart.Proceed'|translate}}</button>
+            <button [disabled]="!invoice.has('image')" (click)="uploadInvoice()" mat-raised-button class="download-btn proceed">{{'Buyer_Cart.Proceed'|translate}}</button>
           </div>
         </div>
       </div>
