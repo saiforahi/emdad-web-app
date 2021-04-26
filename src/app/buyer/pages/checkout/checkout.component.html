@@ -29,7 +29,7 @@
                   color="accent"
                 >
                 </mat-radio-button>
-                <span class="full-name">{{user.full_name}}</span>
+                <span *ngIf="user" class="full-name">{{user.full_name}}</span>
                 <br>
                 <span class="full-name add-space">{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</span>
               </mat-radio-group>

@@ -84,6 +84,7 @@ export class ProductListPageComponent implements OnInit {
     if (this.isSeller == true) {
       // get product by seller
       this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
+        console.log('seller products',item.data)
         this.products = item.data.results;
         this.set_seller_categories(this.products);
         this.get_menus();
@@ -462,7 +463,7 @@ export class ProductListPageComponent implements OnInit {
           .sellerwise_filter_products(query, this.sellerId)
           .subscribe((item) => {
             this.products = item.data.results;
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 350);
             //this.get_menus();
           });
       } else {
@@ -470,7 +471,7 @@ export class ProductListPageComponent implements OnInit {
           console.log('products from res', item.data.results);
           this.products = item.data.results;
           console.log('products', this.products);
-          window.scrollTo(0, 0);
+          window.scrollTo(0, 350);
           //this.get_menus();
         });
       }
