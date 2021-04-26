@@ -152,9 +152,9 @@
           <div class="col-md-12">
    
             <label for="attachments" class="custom-file-upload">
-              <input type="file" id="attachments" class="form-control"/>
+              <input type="file" id="attachments" class="form-control" (change)="set_invoice($event)" />
               <img src="../../../../assets/icons/upload-thin.svg" alt="">
-             <span class="file-name">Payment History.pdf</span>
+             <span class="file-name">{{file_name}}</span>
             </label> 
           
          

@@ -28,6 +28,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   trans_totalItems:any;
   selectedImage: any = [];
   admin_bank_info:Array<any>=[]
+  file_name:any
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,6 +41,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.base_url = config.base_url;
+    this.file_name="PaymentHistory.pdf"
     this.img_base_url = config.img_base_url;
     this.order_id = this.route.snapshot.params['order_id'];
     this.orderService.getAdminBankAccountInfo().subscribe(
@@ -214,6 +216,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   }
   set_invoice(event:any){
     let file = event.target.files[0];
+    this.file_name=file.name
     this.invoice.append('image', file, file.name);
   }
   uploadInvoice() {

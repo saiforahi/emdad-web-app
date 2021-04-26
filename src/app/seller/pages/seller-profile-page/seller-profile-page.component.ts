@@ -140,9 +140,10 @@ export class SellerProfilePageComponent implements OnInit {
       .subscribe((item) => {
         console.log(item);
         this.userData = item.data;
-        if (this.userData.profile_pic != null)
-          this.profile_pic =
-            config.base_url + this.userData.profile_pic.slice(1);
+        if (this.userData.profile_pic != null){
+          this.profile_pic = config.base_url + this.userData.profile_pic.slice(1);
+          this.authService.s_uImg.next(this.profile_pic);
+        }
         if (this.userData.store_pic != null)
           this.banner_pic = config.base_url + this.userData.store_pic.slice(1);
         if (

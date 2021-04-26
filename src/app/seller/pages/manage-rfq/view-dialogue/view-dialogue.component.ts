@@ -89,7 +89,7 @@ export class ViewDialogueComponent implements OnInit {
     this.quotation = this.prodRfqForm.controls['quotation'];
 
     //Getting data for a individual rfq request
-    this.quoteDetails.get_quotation_details(this.rfqId).subscribe(
+    this.quoteDetails.get_seller_quotation_details(this.rfqId).subscribe(
       item => {
         this.rfqDetailAll = item.data;
         console.log("Product details:", this.rfqDetailAll);

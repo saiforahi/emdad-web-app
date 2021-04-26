@@ -81,7 +81,6 @@
             <span *ngIf="element.status == 2"> {{'Seller_Tickets.Solved'|translate}} </span>
           </td>
         </ng-container>
-    
      
         <!--VIEW RFQ DETAILS MODAL BUTTON-->
         <ng-container matColumnDef="view">
@@ -97,15 +96,11 @@
       <div class="no-data" *ngIf="supportTicketData == undefined || supportTicketData == null || supportTicketData.length == 0">
         {{'Buyer_Order_History.No_Data'|translate}}
       </div>
-    <div *ngIf="supportTicketData != null">
+      <div *ngIf="supportTicketData != null">
         <mat-paginator *ngIf="supportTicketData != undefined || supportTicketData != null" [length]="supportTicketData.length" [pageSize]="5"
           [pageSizeOptions]="[5, 10, 15,20]" (page)="getPaginatorData($event)">
         </mat-paginator>
       </div>
-    
-    
-    
-    
     </section>
    </div>
  </div>

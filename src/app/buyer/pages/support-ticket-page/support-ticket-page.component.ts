@@ -83,11 +83,10 @@ export class SupportTicketPageComponent implements OnInit {
   }
   filter_tickets(status:number){
     this.supportTicketData=[];
-  this.filtered_data.forEach(element =>{
-    if(element.status == status){
-      this.supportTicketData.push(element);
-    }
-  })
-
+    this.filtered_data.forEach(element =>{
+      if(element.status == status){
+        this.supportTicketData.push(element);
+      }
+    })
   }
 }
