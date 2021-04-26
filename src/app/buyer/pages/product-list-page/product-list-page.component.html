@@ -50,7 +50,7 @@
 <app-breadcrumbs *ngIf="products?.length>0 && !isSeller"
     [directoryString]="isCategories?'Categories': isSeller?'Categories':'Categories / ' + products[0].category.name"
     [searchLength]="products.length" [style]="style" (view_style)="set_style($event)"></app-breadcrumbs>
-<section class="container clearfix" [ngClass]="isSeller?'':'container clearfix'">
+<section class="container clearfix mt-5" [ngClass]="isSeller?'':'container clearfix'">
     <button *ngIf="!catMenuToggle" mat-button class="cat-menu-toggle-btn" (click)="showCatMenu()">
         <img src="../../../../assets/cat-filter.svg" alt="" />
     </button>
