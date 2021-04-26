@@ -70,6 +70,7 @@ export class CheckoutComponent implements OnInit {
     this.cash_details = JSON.parse(localStorage.getItem('cart_cash'));
     console.log('cash details', this.cash_details);
     this.cart_details = JSON.parse(localStorage.getItem('cart_items'));
+    this.totalItems=this.cart_details.total_items
     console.log("cart details",this.cart_details);
     this.addressService.get_addresses().subscribe((success) => {
       this.addresses = success.data;
@@ -181,7 +182,7 @@ export class CheckoutComponent implements OnInit {
       });
       console.log('cart_data after', JSON.stringify(data));
       this.orderService.putOrder(data).subscribe((success) => {
-        console.log(this.add_order_response);
+        console.log('add_order_response',success);
         this.add_order_response = success;
         if (this.isWired) {
           this.spinner.hide();
@@ -201,6 +202,10 @@ export class CheckoutComponent implements OnInit {
           localStorage.setItem(
             'temp_order_id',
             this.add_order_response.data[0].id
+          );
+          localStorage.setItem(
+            'temp_order_code',
+            this.add_order_response.data[0].order_code
           );
           this.add_payment();
         }

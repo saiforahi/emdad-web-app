@@ -1,5 +1,5 @@
-<section *ngIf="isSeller && sellerProPic != '' && sellerProPic != null" class="banner">
-    <img src="{{sellerProPic}}" alt="banner image" class="img-fluid">
+<section *ngIf="isSeller" class="banner">
+    <img class="image-fluid" src="{{products[0].seller.store_pic}}" alt="banner image">
 </section>
 <section *ngIf="isSeller" style="background: #fff">
     <h4 class="container store-name-header mb-0">{{store_name |uppercase}}</h4>
@@ -34,9 +34,10 @@
     <div class="large-menu">
         <div class="container">
             <div class="media">
-                <img class="mr-3 rounded-circle logo-img" *ngIf="sellerLogo != '' && sellerLogo != null" src="{{sellerLogo}}" alt="Generic placeholder image">
+                <img class="mr-3" style="width: 50px;height: 50px;" src="{{products[0].seller.profile_pic}}" alt="Generic placeholder image">
+                <p class="mr-2 store-name">{{products[0].seller.store_name|uppercase }}</p>
                 <div class="media-body">
-                    <span *ngFor="let child of filteredCatArray" style="margin-right: 17px">
+                    <span *ngFor="let child of filteredCatArray | slice:0:6" style="margin-right: 17px">
                         <a *ngIf="child" class="" [routerLink]="['/products/category/', child.id]">
                             {{ child.name | titlecase }}
                         </a>
