@@ -65,20 +65,20 @@
                   class="sub-text1"
                   *ngIf="product.product.delivery_method === 1"
                 >
-                  ({{'Seller_Product_Categories.DDP'|translate}})
+                <span class="order_no mr-1">#{{product.order.order_code}}</span> ({{'Seller_Product_Categories.DDP'|translate}})
                 </p>
                 <p
                   class="sub-text1"
                   *ngIf="product.product.delivery_method === 2"
                 >
-                  ({{'Seller_Product_Categories.ExWorks'|translate}})
+                <span class="order_no mr-1">#{{product.order.order_code}}</span> ({{'Seller_Product_Categories.ExWorks'|translate}})
                 </p>
                 <p class="status-txt">
                   {{ get_product_status(product.product.id) }}
                 </p>
               </div>
               <div class="col-md-2 col-lg-3 ml-45">
-                <p class="sub-text2">{{ product.quantity }}</p>
+                <p class="sub-text2">{{ product.quantity| number:'2.0' }}</p>
               </div>
               <div class="col-md-3 col-lg-3">
                 <p style="color: #2b2b2b" class="sub-text3">
