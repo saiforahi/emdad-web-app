@@ -4,7 +4,17 @@
 * Autoprefixer: v9.7.6
 * Browsers: last 4 version
 */
+.store-name{
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
 
+  /* white */
+
+  color: #FFFFFF;
+}
 .banner {
   position: relative;
   height: auto;
