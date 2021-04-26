@@ -30,8 +30,9 @@
             <br>
             <div class="col-md-12">
                 <div class="id-div"><span class="name mr-2">{{'Seller_Dashboard.status'|translate}} :</span> 
-                    <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Running'|translate}}</span>
-                    <span *ngIf="details.status == 2" class="deets">{{'Buyer_Quotation_History.Completed'|translate}}</span>
+                    <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Initiative'|translate}}</span>
+                    <span *ngIf="details.status == 1" class="deets">{{'Seller_Tickets.Running'|translate}}</span>
+                    <span *ngIf="details.status == 2" class="deets">{{'Seller_Tickets.Solved'|translate}}</span>
                 </div>
             </div>
         </div>

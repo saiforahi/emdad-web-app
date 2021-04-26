@@ -33,15 +33,16 @@
               <ul class="attached-file pl-0">
                 <li *ngFor="let file of existingFile; let i = index;">
                   {{file.name}}
-                  <button mat-raised-button (click)="deleteFile(i);"><img src="../../../../assets/close.svg"
+                  <button type="button" mat-raised-button (click)="deleteFile(i);"><img src="../../../../assets/close.svg"
                     alt="" type="button"></button>
                 </li>
               </ul>
               <ul class="attached-file pl-0">
                 <li *ngFor="let file of selectedFile; let i = index;">
                   {{file.name}}
-                  <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg"
-                    alt="" type="button"></button>
+                  <button type="button" mat-raised-button (click)="removeFile(i);">
+                    <img src="../../../../assets/close.svg" alt=""/>
+                  </button>
                 </li>
               </ul>
             </div>

@@ -152,11 +152,11 @@ export class BankInfoPageComponent implements OnInit {
     console.log(this.selectedFile[0]);
   }
 
-  removeFile(id) {
+  removeFile(id:any) {
     this.selectedFile.splice(id, 1);
   }
 
-  deleteFile(id) {
+  deleteFile(id:any) {
     this.spinner.show();
     this.bankInfo
       .fileDelete(localStorage.getItem('s_uid'))
