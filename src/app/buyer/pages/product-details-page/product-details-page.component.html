@@ -36,7 +36,7 @@
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails.pickup_address?.length > 0"  class="pick-address">
-              <i class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
+              <i data-target="tooltip" title="{{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}" class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               (<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)
               <span *ngIf="prodcutDetails.pickup_address?.length == 0">({{'Buyer_Product_Details.Not_Specified'|translate}})</span>
             </p>
@@ -83,15 +83,11 @@
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
                 addToCart=='false'
-              " [ngClass]="
-                addToCart=='true'
-                  ? 'add-to-cart-btn'
-                  : ''
-              " class="add-to-cart-btn" mat-button (click)="add_to_cart()">
+              " class="add-to-cart-btn" mat-raised-button (click)="add_to_cart()" [ngClass]="addToCart?'add-to-cart-btn':''">
               {{'Buyer_Product_Details.Add_to_Cart'|translate}}
             </button>
             &nbsp;
-            <button [disabled]="addToCart=='true'" class="req-for-quote-btn" type="button" mat-button [routerLink]="['/rfq/', prodcutDetails.id]">
+            <button [disabled]="addToCart=='true'" class="req-for-quote-btn" type="button" mat-raised-button [routerLink]="['/rfq/', prodcutDetails.id]">
               <i class="far fa-file-excel"></i> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}
             </button>
           </div>

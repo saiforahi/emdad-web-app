@@ -30,6 +30,7 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
   admin_bank_info:Array<any>=[]
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private orderService: OrderService,
     private spinner: NgxSpinnerService,
     private urlService:UrlService,
@@ -222,7 +223,9 @@ export class BuyerOrderHistoryDetailsComponent implements OnInit {
     this.orderService.upload_invoice(this.order_id, this.invoice).subscribe(
       (success: any) => {
         this.spinner.hide();
-        swal("Success","Wire Transfer document is uploaded for order #"+this.order_id,"success");
+        swal("Success","Payment record has been uploaded for order #"+this.order_id,"success").then(()=>{
+          this.router.navigate(['/profile'],{queryParams:{activeItem:'3'}})
+        });
         // this.openSnackBar('Profile Picture Updated!', 'OK');
         // this.profile_pic = config.img_base_url + success.data.profile_pic;
         // this.authService.uImg.next(this.profile_pic);
