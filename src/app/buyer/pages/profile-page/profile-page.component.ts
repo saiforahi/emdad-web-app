@@ -79,8 +79,9 @@ export class ProfilePageComponent implements OnInit {
         this.show_order_history = true;
         this.show_manage_quotations = false;
         if(localStorage.getItem('temp_order_id')){
-          swal('Order Placed','Your order #'+localStorage.getItem('temp_order_id')+' is confirmedd!','success').then(()=>{
+          swal('Order Placed','Your order #'+localStorage.getItem('temp_order_code')+' is confirmedd!','success').then(()=>{
             localStorage.removeItem('temp_order_id')
+            localStorage.removeItem('temp_order_code')
           })
         }
       }

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryService } from '../../../shared/services/get-category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '../../../shared/services/search.service';
+import { config } from 'src/config';
 
 @Component({
   selector: 'app-product-list-page',
@@ -47,6 +48,8 @@ export class ProductListPageComponent implements OnInit {
   selected_price_ranges: Array<any> = [];
   selected_price_range:any
   store_name:string
+  img_base_url = config.img_base_url
+  random_cat:Array<any>
   constructor(
     private getProduct: GetProductService,
     private router: Router,
@@ -196,6 +199,8 @@ export class ProductListPageComponent implements OnInit {
       });
       this.filterChildCat(this.categories);
     });
+    this.random_cat=this.random_categories(this.filteredCatArray)
+    console.log('random',this.random_cat)
     // console.log('categories from products after filter',this.categories)
   }
 
@@ -499,5 +504,13 @@ export class ProductListPageComponent implements OnInit {
 
   closeCatMenu() {
     this.catMenuToggle = false;
+  }
+
+  random_categories(categories:Array<any>){
+    let temp:Array<any>=[]
+    while(temp.length<7){
+      temp.push(categories[Math.floor(Math.random() * categories.length)])
+    }
+    return temp
   }
 }
