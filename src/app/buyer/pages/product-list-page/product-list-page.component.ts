@@ -50,6 +50,8 @@ export class ProductListPageComponent implements OnInit {
   store_name:string
   img_base_url = config.img_base_url
   random_cat:Array<any>
+  sellerProPic: any;
+  sellerLogo: any;
   constructor(
     private getProduct: GetProductService,
     private router: Router,
@@ -88,6 +90,8 @@ export class ProductListPageComponent implements OnInit {
       // get product by seller
       this.getProduct.getProductBySeller(this.sellerId).subscribe((item) => {
         console.log('seller products',item.data)
+        this.sellerProPic=item.data.results[0].seller.store_pic;
+        this.sellerLogo=item.data.results[0].seller.profile_pic;
         this.products = item.data.results;
         this.set_seller_categories(this.products);
         this.get_menus();

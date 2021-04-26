@@ -488,6 +488,9 @@ color: #2B2B2B;
     height: 30px;
     padding: 0;
   }
+  .add-to-cart-btn .disabled,.add-to-cart-btn:disabled{
+    opacity: .65;
+  }
   .similar-prod-header button img {
     height: 15px;
     vertical-align: text-top;
