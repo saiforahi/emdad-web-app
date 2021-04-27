@@ -90,7 +90,7 @@ export class ChangePasswordFormComponent implements OnInit {
           (error) => {
             this.error = error;
             console.log(this.error);
-            swal('Failed!', 'Password Changed Failed', 'error');
+            swal('Failed!', this.error.error.old_password[0], 'error');
             this.spinner.hide();
             this.submitted = false;
           }

@@ -14,11 +14,12 @@ details:any;
 status = ['Initiative', 'Undergoing', 'Resolved'];
   constructor(private fileService: FileService,
     private ticketService: TicketService,
-    @Inject(MAT_DIALOG_DATA) data: { supportData: any } ) {
+    @Inject(MAT_DIALOG_DATA)public data: { supportData: any } ) {
       this.details=data.supportData;
      }
 
   ngOnInit(): void {
+    console.log('ticket details',this.data)
   }
   get_image_name(image_url: string) {
     let param_array = image_url.split('/');
