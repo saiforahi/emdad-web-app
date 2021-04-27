@@ -13,6 +13,12 @@ font-size: 48px;
 line-height: 69px;
 color: #2B2B2B;
 }
+.normal{
+  overflow-wrap: break-word !important;
+  word-wrap: break-word;
+  word-break: break-all !important;
+
+}
 .card {
   padding: 30px;
   border: none;
@@ -156,11 +162,16 @@ th {
   font-size: 18px;
   color: #2b2b2b;
 }
+.mat-row {
+  height: auto;
+}
+
 
 td {
   font-weight: normal;
   font-size: 18px;
   color: #2b2b2b;
+
 }
 
 /* .page-heading-holder {
@@ -322,7 +333,21 @@ padding: 4px;
     padding: 4px;
     }
 }
-
+@media all and (min-width:992px){
+  .normal{
+    overflow-wrap: break-word !important;
+    word-wrap: break-word;
+  }
+  .mat-cell {
+    padding: 8px 10px 10px 0;
+    justify-content: left !important;
+  align-items: left !important;
+  text-align: left;
+  }
+  .mat-column-subject{
+   padding-left: 10px !important;
+  }
+}
 
 
 
@@ -581,5 +606,5 @@ padding: 4px;
   .card{
     padding: 8px;
   }
-
+ 
 }
