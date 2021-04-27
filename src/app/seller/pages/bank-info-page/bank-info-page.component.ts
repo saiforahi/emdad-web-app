@@ -115,10 +115,10 @@ export class BankInfoPageComponent implements OnInit {
       });
   }
 
-  onSubmit(value) {
+  onSubmit(value:any) {
     // console.log(value);
     this.spinner.show();
-    console.log(this.selectedFile[0], this.selectedFile[0].name);
+    //console.log(this.selectedFile[0], this.selectedFile[0].name);
     var bankInfoFormData = new FormData();
     bankInfoFormData.append('seller', localStorage.getItem('s_uid'));
     bankInfoFormData.append('account_number', value.bankAcNumber);

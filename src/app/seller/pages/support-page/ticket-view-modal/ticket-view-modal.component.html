@@ -11,8 +11,9 @@
             <p class="large-head"><span class="name">{{'Seller_Tickets.Subject'|translate}}: </span><span>{{issueData.title}}</span></p>
             <p class="large-head"><span class="name">{{'Seller_Tickets.Details'|translate}}: </span><span> {{issueData.description}}</span></p>
             <p class="short-head"><span class="name">{{'Seller_Dashboard.status'|translate}}:  
-                <span *ngIf="issueData.status == 0">{{'Seller_Tickets.Running'|translate}}</span>
-                <span *ngIf="issueData.status == 2">{{'Seller_Tickets.Solved'|translate}}</span></span></p>
+                <span *ngIf="issueData.status == 0">{{'Seller_Tickets.Initiative'|translate}}</span>
+                <span *ngIf="issueData.status == 2">{{'Seller_Tickets.Solved'|translate}}</span>
+                <span *ngIf="issueData.status == 1">{{'Seller_Tickets.Running'|translate}}</span></span></p>
         </div>
         <!-- FOLLOW UP RESPONSES BY ADMIN DISPLAY-->
        <div *ngIf="adminResponse != null || adminResponse != undefined">
