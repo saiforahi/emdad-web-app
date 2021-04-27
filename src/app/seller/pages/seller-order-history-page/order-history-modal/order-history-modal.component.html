@@ -8,9 +8,9 @@
             <br>
             <p class="top-details">{{'Seller_Order_History.Order_Date'|translate}}:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
             <br>
-            <p class="top-details">{{'Buyer_Order_History.Payment_Date'|translate}}:<span class="prod"> {{formatDate(data.order.order.order_datetime)}}</span></p>
+            <p class="top-details">{{'Buyer_Order_History.Payment_Date'|translate}}:<span class="prod"> {{data.order.order.seller_payment_status=='1' ? formatDate(data.order.order.seller_payment_date):''}}</span></p>
             <br>
-            <p class="top-details">{{'Seller_Order_History.Payment_Status'|translate}}:<span class="prod"> {{data.order.seller_payment_status=='0'?'Paid':'Unpaid'}}</span></p>
+            <p class="top-details">{{'Seller_Order_History.Payment_Status'|translate}}:<span class="prod"> {{data.order.order.seller_payment_status=='0'?'Unpaid':'Paid'}}</span></p>
             <br>
             <p class="top-details">{{'Seller_Order_History.Total_Price' | translate}}: <span class="prod">SAR{{data.order.order.total_amount}}</span></p>
         </div>
