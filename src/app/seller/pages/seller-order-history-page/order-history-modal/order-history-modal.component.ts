@@ -16,10 +16,11 @@ export class OrderHistoryModalComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private addressService:AddressService, private orderService:OrderService,private fileService:FileService) { }
 
   ngOnInit(): void {
-    console.log(this.data.order)
+    //console.log('details',this.data.order)
     this.orderService.get_seller_order_details(this.data.order.order.id).subscribe(
       (success)=> {
-        this.details=success.data;;
+        this.details=success.data;
+        console.log('details',this.data.order.order)
         this.details.forEach((element:any) => {
           this.addressService.get_pickup_address_details(element.pickup_address).subscribe(
             (success)=>{
@@ -30,7 +31,6 @@ export class OrderHistoryModalComponent implements OnInit {
             }
           )
         });
-        console.log('details',this.details)
         //this.get_pickup_address(this.details[0].pickup_address)
       }
     )
