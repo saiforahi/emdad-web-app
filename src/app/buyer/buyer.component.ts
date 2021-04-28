@@ -36,15 +36,22 @@ export class BuyerComponent implements OnInit {
         this.uId = data;
       }
     });
+    this.UserAuthService.uFullName.subscribe((data) =>{
+      if(data != null){
+        console.log("dT",this.loggedInUserFullName);
+        this.loggedInUserFullName = data;
+        
+      }
+    });
   
-    if(this.uId == localStorage.getItem('uid')){
+   /*  if(this.uId == localStorage.getItem('uid')){
       this.UserAuthService.getUser(this.uId).subscribe((data) =>{
       
       
         this.loggedInUserFullName = data.data.full_name;
         console.log("loggedInUserFullName",this.loggedInUserFullName);
       });
-    }
+    } */
     this.notificationService.getAllNotificationsForBuyer()
   }
 
