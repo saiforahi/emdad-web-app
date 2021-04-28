@@ -105,6 +105,8 @@ export class EditProfileFormComponent implements OnInit {
       this.authService.updateProfile(this.userId, this.editUserInfo).subscribe(
         (success) => {
           localStorage.setItem('user_info', this.editUserInfo);
+          this.authService.uFullName.next(this.editUserInfo.full_name);
+          localStorage.setItem('ufullname', this.editUserInfo.full_name);
           this.spinner.hide();
           swal('Updated!', 'Profile Updated!', 'success');
         },
