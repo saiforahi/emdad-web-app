@@ -125,7 +125,7 @@
       </div>
       <div class="row">
         <div [ngClass]="sliderClassName" *ngFor="let product of relatedProducts | slice:sliceMinValue:sliceMaxValue">
-          <div class="prod-card-holder">
+          <div class="prod-card-holder h-100">
             <app-product-card [product]="product"></app-product-card>
           </div>
         </div>
@@ -149,8 +149,8 @@
           <hr />
         </div>
       </div>
-      <h4 *ngIf="commentlist.length === 0" class="text-center">
-        <b>{{'Buyer_Product_Details.No_Comments'|translate}}</b>
+      <h4 *ngIf="commentlist.length === 0" class="text-center no-dcomment">
+        {{'Buyer_Product_Details.No_Comments'|translate}}
       </h4>
       <div class="text-center mt-5">
         <button mat-raised-button *ngIf="nextCommentsLink !== null" type="button" (click)="getNextComments()" class="submit-review-btn mr-3">

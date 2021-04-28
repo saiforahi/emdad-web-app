@@ -74,3 +74,14 @@
     line-height: 20px;
   }
 }
+@media all and (min-width:992px) and (max-width:1199px){
+  .modal-content{
+    min-width: 600px;
+  }
+}
+@media all and (min-width:1200px){
+  .modal-content{
+    min-width: 900px;
+    max-width: 1000px;
+  }
+}
