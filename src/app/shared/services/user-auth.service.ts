@@ -28,6 +28,7 @@ interface JWTPayload {
   email: string;
   exp: number;
   profile_pic: string;
+  full_name:string;
 }
 
 @Injectable({
@@ -38,6 +39,7 @@ export class UserAuthService {
   uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   uImg: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  uFullName:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   // uGroup: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   s_uName: BehaviorSubject<string> = new BehaviorSubject<any>(null);
   s_uId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -50,6 +52,7 @@ export class UserAuthService {
     this.uName.next(localStorage.getItem('username'));
     this.uId.next(localStorage.getItem('uid'));
     this.uImg.next(localStorage.getItem('uimg'));
+    this.uFullName.next(localStorage.getItem('ufullname'));
     this.s_uName.next(localStorage.getItem('s_username'));
     this.s_uId.next(localStorage.getItem('s_uid'));
     this.s_uImg.next(localStorage.getItem('s_uimg'));
@@ -65,7 +68,7 @@ export class UserAuthService {
         const expiresAt = moment.unix(payload.exp);
         localStorage.setItem('token', authResult.token);
         localStorage.setItem('username', payload.username);
-        localStorage.setItem('full_name',authResult.full_name)
+        localStorage.setItem('ufullname',authResult.full_name);
         if (authResult.profile_pic.length > 0)
           localStorage.setItem(
             'uimg',
@@ -78,6 +81,8 @@ export class UserAuthService {
         this.uName.next(localStorage.getItem('username'));
         this.uImg.next(localStorage.getItem('uimg'));
         this.uId.next(localStorage.getItem('uid'));
+        this.uFullName.next(localStorage.getItem('ufullname'));
+        console.log('name',this.uFullName);
         // this.notificationService.getAllNotificationsForBuyer()
         // this.uGroup.next(localStorage.getItem('group'));
       }
@@ -179,11 +184,13 @@ export class UserAuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
     localStorage.removeItem('uimg');
+    localStorage.removeItem('ufullname');
     // localStorage.removeItem('uGroup');
     localStorage.removeItem('expires_at');
     this.uName.next(null);
     this.uImg.next(null);
     this.uId.next(null);
+    this.uFullName.next(null);
   }
   logout() {
     this.notificationService.notifications.next([])
@@ -193,11 +200,13 @@ export class UserAuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
     localStorage.removeItem('uimg');
+    localStorage.removeItem('ufullname');
     // localStorage.removeItem('uGroup');
     localStorage.removeItem('expires_at');
     this.uName.next(null);
     this.uImg.next(null);
     this.uId.next(null);
+    this.uFullName.next(null);
     // this.uGroup.next(null);
 
     // for remeberMe case email and password will be stored

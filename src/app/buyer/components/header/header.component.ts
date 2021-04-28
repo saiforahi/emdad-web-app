@@ -115,9 +115,9 @@ export class HeaderComponent implements OnInit {
         this.uId = data;
         this.UserAuthService.getUser(data).subscribe((data) => {
           this.userInfo = data.data;
-          console.log('info', this.userInfo);
+         /*  console.log('info', this.userInfo);
           this.loggedInUserFullName = this.userInfo.full_name;
-          console.log('loggedInUserFullName', this.loggedInUserFullName);
+          console.log('loggedInUserFullName', this.loggedInUserFullName); */
         });
       }
     });
