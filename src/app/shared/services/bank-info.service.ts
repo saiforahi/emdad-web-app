@@ -8,7 +8,7 @@ import { config } from '../../../config';
 export class BankInfoService {
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token')
+      Authorization: 'Bearer ' + localStorage.getItem('s_token')
     }),
   };
 

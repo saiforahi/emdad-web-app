@@ -83,7 +83,7 @@ export class BankInfoPageComponent implements OnInit {
   ngOnInit(): void {
     this.bankInfoForm = this.fb.group({
       bankAcNumber: ['', [Validators.required]],
-      attachments: ['',[Validators.required]],
+      attachments: [''],
       bankName: ['', [Validators.required]],
       swiftCode: [''],
       accountName: ['', [Validators.required]],
@@ -112,7 +112,11 @@ export class BankInfoPageComponent implements OnInit {
           bankAddress: data.bank_address,
           attachments: '',
         });
-        this.existingFile[0] = { name: data.account_letter.split('/')[5] };
+        if(data.account_letter!=null){
+          this.existingFile[0] = { name: data.account_letter.split('/')[5] };
+        }
+        
+        //this.selectedFile.push(data.account_letter.split('/')[5])
       });
   }
 
@@ -128,7 +132,12 @@ export class BankInfoPageComponent implements OnInit {
     bankInfoFormData.append('bank_address', value.bankAddress);
     bankInfoFormData.append('account_name', value.accountName);
     bankInfoFormData.append('cart_currency', 'SR');
-    bankInfoFormData.append('account_letter', this.selectedFile[0]);
+    if(this.selectedFile.length>0){
+      bankInfoFormData.append('account_letter', this.selectedFile[0]);
+    }
+    // bankInfoFormData.forEach(data=>{
+    //   console.log(data)
+    // })
     this.bankInfo
       .addBankInfo(bankInfoFormData, localStorage.getItem('s_uid'))
       .subscribe(
@@ -137,7 +146,7 @@ export class BankInfoPageComponent implements OnInit {
           this.spinner.hide();
           this.selectedFile = [];
           this.populateFormData();
-          swal('Succeed', 'Bank Information added successfully', 'success');
+          swal('Succeed', 'Bank Information updated!', 'success');
         },
         (error: any) => {
           console.log(error);
