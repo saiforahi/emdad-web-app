@@ -36,7 +36,7 @@ export class BankInfoPageComponent implements OnInit {
   confShowPassState: boolean;
   selectedFile: any = [];
   existingFile: any = [];
-
+  bank_letter:any
   constructor(
     private authService: UserAuthService,
     private router: Router,
@@ -83,7 +83,7 @@ export class BankInfoPageComponent implements OnInit {
   ngOnInit(): void {
     this.bankInfoForm = this.fb.group({
       bankAcNumber: ['', [Validators.required]],
-      attachments: [''],
+      attachments: ['',[Validators.required]],
       bankName: ['', [Validators.required]],
       swiftCode: [''],
       accountName: ['', [Validators.required]],
@@ -95,6 +95,7 @@ export class BankInfoPageComponent implements OnInit {
     this.swiftCode = this.bankInfoForm.controls['swiftCode'];
     this.accountName = this.bankInfoForm.controls['accountName'];
     this.bankAddress = this.bankInfoForm.controls['bankAddress'];
+    this.bank_letter=this.bankInfoForm.controls['attachments'];
   }
 
   populateFormData() {
