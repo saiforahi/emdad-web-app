@@ -92,7 +92,7 @@ export class SignupPageComponent implements OnInit {
       zipCode: [''],
       agrreToPolicy: ['', [Validators.required]],
       commercialRegistrationUpload: [''],
-     vatCertificate:[''],
+      vatCertificate:[''],
     });
     this.comName = this.sellerRegForm.controls['comName'];
     this.comPhone = this.sellerRegForm.controls['comPhone'];
@@ -155,6 +155,8 @@ export class SignupPageComponent implements OnInit {
     this.sellerRegFormData.append("country", value.country);
     this.sellerRegFormData.append("store_address", value.comAddress);
     this.sellerRegFormData.append("zip_code", value.zipCode);
+    this.sellerRegFormData.append('attachment1',this.selectedImage[0])
+    this.sellerRegFormData.append('attachment2',this.selectedCert[0])
     this.authService.sellerSignup(this.sellerRegFormData).subscribe(
       (success) => {
         console.log(success);
@@ -207,12 +209,16 @@ export class SignupPageComponent implements OnInit {
   }
   upVatcert(event){
     var reader = new FileReader();
-    this.selectedCert.push(event.target.files[0]);
+    if(this.selectedCert.length<2){
+      this.selectedCert.push(event.target.files[0]);
+    }
     console.log(this.selectedCert);
   }
   handleFileSelect(event) {
     var reader = new FileReader();
-    this.selectedImage.push(event.target.files[0]);
+    if(this.selectedImage.length<2){
+      this.selectedImage.push(event.target.files[0]);
+    }
     console.log(this.selectedImage);
   }
 

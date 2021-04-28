@@ -541,7 +541,7 @@
                       formControlName="commercialRegistrationUpload" (change)="handleFileSelect($event);" />
                      
                   </label>
-                  <ul class="attached-file pl-0">
+                  <ul class="attached-file pl-0" *ngIf="selectedImage?.length>0">
                     <li *ngFor="let file of selectedImage; let i = index;">
                       {{file.name}}
                       <button mat-raised-button (click)="removeFile(i);"><img src="../../../../assets/close.svg" alt=""></button>
@@ -558,7 +558,7 @@
                     <input id="vatCertificate" class="form-control form-control-md" type="file"
                       formControlName="vatCertificate" (change)="upVatcert($event);" />
                   </label>
-                  <ul class="attached-file pl-0">
+                  <ul class="attached-file pl-0" *ngIf="selectedCert?.length>0">
                     <li *ngFor="let file of selectedCert; let i = index;">
                       {{file.name}}
                       <button mat-raised-button (click)="removeVatCert(i);"><img src="../../../../assets/close.svg" alt=""></button>
