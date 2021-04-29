@@ -14,7 +14,7 @@
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Subject'|translate}} :</span> <span class="deet-light">{{details.title}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Subject'|translate}} : </span> <span class="deet-light">{{details.title}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
@@ -33,6 +33,16 @@
                     <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Initiative'|translate}}</span>
                     <span *ngIf="details.status == 1" class="deets">{{'Seller_Tickets.Running'|translate}}</span>
                     <span *ngIf="details.status == 2" class="deets">{{'Seller_Tickets.Solved'|translate}}</span>
+                </div>
+            </div>
+            <!--admin response-->
+            
+            <div class="col-md-12" *ngIf="adminResponse != null || adminResponse != undefined">
+               <br>
+                <div class="admin-response" *ngFor="let response of adminResponse;">
+                 
+                    <p><span class="admin-header">{{'Seller_Tickets.Admin_Response'|translate}}</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
+                    <p class="message">{{response.message}}</p>
                 </div>
             </div>
         </div>
