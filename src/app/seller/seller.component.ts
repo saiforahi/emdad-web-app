@@ -205,8 +205,11 @@ export class SellerComponent implements OnInit, AfterViewInit {
     else if(this.notifications[index].event == 'RFQ'){
       this.router.navigate(['/dashboard/manage-rfqs'])
     }
-    else if(this.notifications[index].event== 'ticket.notification'){
-      this.router.navigate([''])
+    else if(this.notifications[index].event== "Ticket Status Update"){
+      this.router.navigate(['/support'])
+    }
+    else if(this.notifications[index].event == "Subscription Payment"){
+      this.router.navigate(['/payment-history'])
     }
   }
 }
