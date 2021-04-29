@@ -25,19 +25,18 @@
           <div class="col-md-12 col-lg-6">
             <div class="form-group">
               <label class="d-block">{{'Seller_Bank_Info.Account_Letter'|translate}}</label>
-              <label for="attachments" class="custom-file-upload">
+              <span  class="show-info" *ngIf="isInfo">{{'Seller_Bank_Info.isInfo'| translate}}</span>
+              <label for="attachments" class="custom-file-upload" *ngIf="isShown">
                 <!-- Attachments -->
                 <input id="attachments" class="form-control form-control-md" type="file"
                   formControlName="attachments" (change)="handleFileSelect($event);" />
               </label>
-              <ul class="attached-file pl-0">
+              <ul class="attached-file">
                 <li *ngFor="let file of existingFile; let i = index;">
                   {{file.name}}
                   <button type="button" mat-raised-button (click)="deleteFile(i);"><img src="../../../../assets/close.svg"
                     alt="" type="button"></button>
                 </li>
-              </ul>
-              <ul class="attached-file pl-0">
                 <li *ngFor="let file of selectedFile; let i = index;">
                   {{file.name}}
                   <button type="button" mat-raised-button (click)="removeFile(i);">
@@ -45,6 +44,9 @@
                   </button>
                 </li>
               </ul>
+             <!--  <ul class="attached-file">
+                
+              </ul> -->
             </div>
           </div>
           <div class="col-md-12">

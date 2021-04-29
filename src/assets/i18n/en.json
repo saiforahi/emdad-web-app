@@ -173,7 +173,8 @@
         "Bank_Name":"Name of Bank",
         "Swift_Code":"Swift Code",
         "Account_Name":"Account Name",
-        "Bank_Address":"Bank Address"
+        "Bank_Address":"Bank Address",
+        "isInfo":"Max one file is allowed.You can upload or replace file by removing existing one"
     },
     "Seller_Subscription":{
         "title":"Choose Subscription Plan",

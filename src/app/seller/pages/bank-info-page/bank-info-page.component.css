@@ -158,13 +158,23 @@ input[type="file"] {
 }
 
 .attached-file {
-  display: inline-block;
+  display: inline;
   vertical-align: top;
-}
-
-.attached-file {
   list-style: none !important;
   font-size: 20px;
+  overflow-wrap: break-word !important;
+word-wrap: break-word;
+word-break: break-all;
+
+}
+
+
+.show-info{
+  font-size: 14px;
+  line-height: 20px;
+  font-family: Jost;
+  font-weight: 400;
+  color: #2b2b2b;
 }
 
 .attached-file button {
@@ -231,6 +241,10 @@ input[type="file"] {
     font-size: 32px;
     line-height: 46px;
   }
+  .show-info{
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 @media all and (min-width:575px) and (max-width:768px){
   .container{
@@ -250,6 +264,10 @@ input[type="file"] {
     line-height: 25px;
     width: 230px;
   
+  }
+  .show-info{
+    font-size: 12px;
+    line-height: 18px;
   }
   .submit-btn{
     text-align: center !important;
