@@ -104,6 +104,9 @@ export class SupportPageComponent implements OnInit {
       autoFocus: false,
       data: {},
     });
+    dialogRef.afterClosed().subscribe((result) =>{
+      this.ngOnInit()
+    })
   }
   filter_tickets(status:number){
     this.supportIssues=[];
