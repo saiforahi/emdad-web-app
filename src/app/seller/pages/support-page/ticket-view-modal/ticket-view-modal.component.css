@@ -25,15 +25,14 @@
 }
 
 .admin-response {
-  border-top: 1px solid #eaeaea;
-  padding: 20px 0;
+  padding: 0 0 20px 0px;
   font-family: Jost !important;
 
 }
 
-.admin-response:last-child {
+/* .admin-response:last-child {
   padding: 30px 0 0;
-}
+} */
 button.close-btn{
   background-color: white !important;
     background: white !important;
@@ -61,6 +60,10 @@ line-height: 34px;
 color: #2B2B2B;
 
 }
+.resp-para{
+  border-top: 1px solid #eaeaea;
+  padding-top: 10px;
+}
 .short-head{
   font-family: Jost;
 font-style: normal;
@@ -76,6 +79,9 @@ font-weight: 400;
 font-size: 18px;
 line-height: 34px;
 color: #2B2B2B;
+word-break: break-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .short-head .name,.large-head .name{
   font-weight: 500;

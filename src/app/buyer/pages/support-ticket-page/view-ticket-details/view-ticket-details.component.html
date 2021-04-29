@@ -5,20 +5,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="id-div"><span class="name mr-2"># {{'Buyer_Support_Ticket.Ticket_ID'|translate}} :</span> <span class="deets">
+                <div class="id-div"><span class="name mr-2"># {{'Buyer_Support_Ticket.Ticket_ID'|translate}} :</span><span class="deets">
                         {{details.issue_code}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">{{'Seller_Tickets.Date'|translate}} :</span> <span class="deet-light">{{details.issue_date | date :'mediumDate'}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Seller_Tickets.Date'|translate}} :</span><span class="deet-light">{{details.issue_date | date :'mediumDate'}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Subject'|translate}} : </span> <span class="deet-light">{{details.title}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Subject'|translate}} :</span><span class="deet-light">{{details.title}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12">
-                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Description'|translate}} :</span> <span class="deet-light">{{details.description}}</span></div>
+                <div class="date-div"><span class="name mr-2">{{'Buyer_Support_Ticket.Description'|translate}}:</span><span class="deet-light">{{details.description}}</span></div>
             </div>
             <br><br>
             <div class="col-md-12" *ngIf="details.image != null">
@@ -37,12 +37,12 @@
             </div>
             <!--admin response-->
             
-            <div class="col-md-12" *ngIf="adminResponse != null || adminResponse != undefined">
+            <div class="col-md-12" *ngIf="adminResponse != null || adminResponse != undefined ">
                <br>
                 <div class="admin-response" *ngFor="let response of adminResponse;">
                  
-                    <p><span class="admin-header">{{'Seller_Tickets.Admin_Response'|translate}}</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
-                    <p class="message">{{response.message}}</p>
+                    <p *ngIf="response.message != null" class="resp-para"><span class="admin-header">{{'Seller_Tickets.Admin_Response'|translate}}</span> <span class="ml-3 time">{{response.created_at | date}}</span></p>
+                    <p class="message" *ngIf="response.message != null">{{response.message}}</p>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ export class ViewTicketDetailsComponent implements OnInit {
 details:any;
 adminResponse: any;
 status = ['Initiative', 'Undergoing', 'Resolved'];
+  message1: any;
   constructor(private fileService: FileService,
     private ticketService: TicketService,
     @Inject(MAT_DIALOG_DATA)public data: { supportData: any } ) {
@@ -23,6 +24,8 @@ status = ['Initiative', 'Undergoing', 'Resolved'];
     console.log('ticket details',this.data);
     this.adminResponse=this.details.issues;
     console.log("admin from buyer:",this.adminResponse);
+/*     this.message1=this.adminResponse[0].message;
+    console.log("first mesg:",this.message1) */
   }
   get_image_name(image_url: string) {
     let param_array = image_url.split('/');
