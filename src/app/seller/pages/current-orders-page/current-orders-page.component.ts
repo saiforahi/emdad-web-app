@@ -72,6 +72,10 @@ export class CurrentOrdersPageComponent implements OnInit {
           }
         });
         this.orders = temp;
+        this.orders = this.orders.filter(
+          (value, index, array) =>
+            array.findIndex((t) => t.order.id === value.order.id) === index
+        ); //setting distinct orders
         console.log('orders', this.orders);
       },
       (error) => {
@@ -90,6 +94,7 @@ export class CurrentOrdersPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.selectedOrder = result;
       console.log(`Dialog result: ${this.selectedOrder}`);
+      this.ngOnInit()
     });
   }
   //date format helper
@@ -111,15 +116,14 @@ export class CurrentOrdersPageComponent implements OnInit {
   decide_status(order: any) {
     let temp = [];
     order.order.tracking_order.forEach((element) => {
-      if (element.order == order.order.id) {
+      if (element.order == order.order.id && element.seller == localStorage.getItem('s_uid')) {
         temp.push(element);
       }
     });
     let min_status = temp[0].status;
     temp.forEach((item) => {
       if (
-        item.status < min_status &&
-        item.seller == localStorage.getItem('s_uid')
+        item.status < min_status
       ) {
         min_status = item.status;
       }

@@ -119,7 +119,7 @@ export class CartPageComponent implements OnInit {
     // while ( i-- ) {
     //     values.push( localStorage.getItem(keys[i]) );
     // }
-    // console.log('localstorage values',values)
+    console.log('token',localStorage.getItem('token'))
     window.scrollTo({
       top: 0,
       left: 0,

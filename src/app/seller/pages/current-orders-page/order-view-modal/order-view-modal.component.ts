@@ -40,23 +40,23 @@ export class OrderViewModalComponent implements OnInit {
             //element.status="-1"
           }
         });
-        this.details.forEach((element:any) => {
-          this.addressService.get_pickup_address_details(element.pickup_address).subscribe(
-            (success)=>{
-              console.log(success.data[0])
-              if(success.data.length>0){
-                element.pickup_address=success.data[0]
-              } 
-            }
-          )
-        });
+        // this.details.forEach((element:any) => {
+        //   this.addressService.get_pickup_address_details(element.pickup_address).subscribe(
+        //     (success)=>{
+        //       console.log(success.data[0])
+        //       if(success.data.length>0){
+        //         element.pickup_address=success.data[0]
+        //       } 
+        //     }
+        //   )
+        // });
       },
       (error)=>{
         console.log(error)
       }
     )
   }
-  upload(event){
+  upload(event:any){
     var reader = new FileReader();
     this.proofDoc = event.target.files[0];
 

@@ -70,6 +70,10 @@ export class SellerOrderHistoryPageComponent implements OnInit {
             this.orders.push(element);
           }
         });
+        this.orders = this.orders.filter(
+          (value, index, array) =>
+            array.findIndex((t) => t.order.id === value.order.id) === index
+        ); //setting distinct orders
         this.filtered_orders = this.orders;
       },
       (error) => {
@@ -88,6 +92,7 @@ export class SellerOrderHistoryPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.ngOnInit()
     });
   }
   //filtering for orders according to status

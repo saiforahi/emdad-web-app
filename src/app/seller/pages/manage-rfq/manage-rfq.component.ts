@@ -91,7 +91,10 @@ export class ManageRfqComponent implements OnInit {
         rfqDetails:item,
       }
     });
-    
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      this.ngOnInit()
+    });
   }
   //Sort by date or time
   sortTable() {
