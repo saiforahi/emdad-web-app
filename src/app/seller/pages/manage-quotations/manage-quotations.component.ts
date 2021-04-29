@@ -94,6 +94,7 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.ngOnInit()
     });
   }
 
