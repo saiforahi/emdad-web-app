@@ -158,14 +158,18 @@ input[type="file"] {
 }
 
 .attached-file {
-  display: inline-block;
+  display: inline;
   vertical-align: top;
-}
-
-.attached-file {
   list-style: none !important;
   font-size: 20px;
+  overflow-wrap: break-word !important;
+word-wrap: break-word;
+word-break: break-all;
+
 }
+
+
+
 
 .attached-file button {
   border-radius: 50%;
