@@ -25,6 +25,7 @@
           <div class="col-md-12 col-lg-6">
             <div class="form-group">
               <label class="d-block">{{'Seller_Bank_Info.Account_Letter'|translate}}</label>
+              <span  class="show-info" *ngIf="isInfo">{{'Seller_Bank_Info.isInfo'| translate}}</span>
               <label for="attachments" class="custom-file-upload" *ngIf="isShown">
                 <!-- Attachments -->
                 <input id="attachments" class="form-control form-control-md" type="file"

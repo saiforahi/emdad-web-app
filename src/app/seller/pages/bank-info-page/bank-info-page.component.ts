@@ -38,6 +38,7 @@ export class BankInfoPageComponent implements OnInit {
   existingFile: any = [];
   bank_letter:any;
   isShown:boolean = true;
+  isInfo:boolean=false;
   constructor(
     private authService: UserAuthService,
     private router: Router,
@@ -116,6 +117,7 @@ export class BankInfoPageComponent implements OnInit {
         if(data.account_letter!=null){
           this.existingFile[0] = { name: data.account_letter.split('/')[5] };
           this.isShown=false;
+          this.isInfo=true;
         }
         
         //this.selectedFile.push(data.account_letter.split('/')[5])
@@ -163,6 +165,7 @@ export class BankInfoPageComponent implements OnInit {
     this.selectedFile.push(event.target.files[0]);
     if(this.selectedFile.length == 1){
 this.isShown=false;
+this.isInfo=true;
     }
     console.log(this.selectedFile[0]);
   }
@@ -171,6 +174,7 @@ this.isShown=false;
     this.selectedFile.splice(id, 1);
     if(this.selectedFile.length == 0 ){
       this.isShown = true;
+      
     }
   }
 
@@ -184,6 +188,7 @@ this.isShown=false;
         this.existingFile = [];
         if(this.existingFile.length == 0){
           this.isShown = true;
+          
         }
         swal('Succeed', 'File deleted successfully', 'success');
       });
