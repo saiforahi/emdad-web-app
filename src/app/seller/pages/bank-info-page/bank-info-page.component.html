@@ -28,7 +28,7 @@
               <span  class="show-info" *ngIf="isInfo">{{'Seller_Bank_Info.isInfo'| translate}}</span>
               <label for="attachments" class="custom-file-upload" *ngIf="isShown">
                 <!-- Attachments -->
-                <input id="attachments" class="form-control form-control-md" type="file"
+                <input id="attachments" class="form-control form-control-md" type="file" accept="image/x-png,image/gif,image/jpeg,application/pdf"
                   formControlName="attachments" (change)="handleFileSelect($event);" />
               </label>
               <ul class="attached-file">

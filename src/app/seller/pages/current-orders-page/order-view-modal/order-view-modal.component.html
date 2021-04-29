@@ -62,7 +62,7 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8 col-12 d-flex show-form">
                                     <label for="note" class="custom-file-upload ">
                                         <!-- file-up -->
-                                        <input id="note" class="form-control form-control-md" type="file"
+                                        <input id="note" class="form-control form-control-md" type="file" accept="image/x-png,image/gif,image/jpeg,application/pdf"
                                              (change)="set_challan($event);" />
                                     </label>
                                     <label *ngIf="challan.has('image')" class="attached-file"><label class="mr-1 show-file">{{proofDoc.name}}</label> <button
