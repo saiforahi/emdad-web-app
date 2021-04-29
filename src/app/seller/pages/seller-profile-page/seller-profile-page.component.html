@@ -235,7 +235,7 @@
             </ul>
             <label for="attachments" class="custom-file-upload" *ngIf="selectedImage.length + existingFiles < 2">
               <!-- Attachments -->
-              <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments"
+              <input id="attachments" class="form-control form-control-md" type="file" formControlName="attachments" accept="image/x-png,image/gif,image/jpeg,application/pdf"
                 (change)="handleFileSelect($event);" />
             </label>
             <span *ngIf="selectedImage.length + existingFiles < 2">&nbsp;</span>

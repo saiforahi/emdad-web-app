@@ -228,7 +228,7 @@
                 <div class="form-group">
                     <label class="d-block">{{'Seller_Upload_Product.Product_Attachments'|translate}}</label>
                     <label for="attachments" class="custom-file-upload mr-3" *ngIf="selectedFiles.length < 3">
-                        <input id="attachments" class="form-control form-control-md" type="file"
+                        <input id="attachments" class="form-control form-control-md" type="file" accept="image/x-png,image/gif,image/jpeg"
                             formControlName="attachments" (change)="handleFileSelect($event);" />
                     </label>
                     <ul class="attached-file pl-0">
