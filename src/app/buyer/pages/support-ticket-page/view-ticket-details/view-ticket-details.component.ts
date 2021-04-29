@@ -11,6 +11,7 @@ import { TicketService } from '../../../../shared/services/ticket.service';
 })
 export class ViewTicketDetailsComponent implements OnInit {
 details:any;
+adminResponse: any;
 status = ['Initiative', 'Undergoing', 'Resolved'];
   constructor(private fileService: FileService,
     private ticketService: TicketService,
@@ -19,7 +20,9 @@ status = ['Initiative', 'Undergoing', 'Resolved'];
      }
 
   ngOnInit(): void {
-    console.log('ticket details',this.data)
+    console.log('ticket details',this.data);
+    this.adminResponse=this.details.issues;
+    console.log("admin from buyer:",this.adminResponse);
   }
   get_image_name(image_url: string) {
     let param_array = image_url.split('/');
