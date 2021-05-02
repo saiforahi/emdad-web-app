@@ -139,7 +139,9 @@ footer .footer-link-div .list-group-item {
   text-align: center;
   background: #e9e9e9;
 }
-
+.list-group-item a.no-hyper,.list-group-item a.no-hyper:hover,.list-group-item a.no-hyper:active{
+  text-decoration:none !important;
+}
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
