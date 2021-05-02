@@ -285,7 +285,7 @@ export class EditProductsPageComponent implements OnInit {
 
   setSubCAt(catId) {
     this.subCategories = this.categories.find(
-      (item) => item.id == catId
+      (item:any) => item.id == catId
     ).children;
   }
 
@@ -304,7 +304,7 @@ export class EditProductsPageComponent implements OnInit {
   openAddBrandDialog() {
     const dialogRef = this.dialog.open(AddBrandModalComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
+      if (result != null && result.length>0) {
         this.spinner.show();
         // console.log(`Dialog result: ${result}`);
         this.addProductService.addBrand(result).subscribe(

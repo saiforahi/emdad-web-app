@@ -1,9 +1,6 @@
 import {
   Component,
-  ElementRef,
-  OnInit,
-  QueryList,
-  ViewChildren,
+  OnInit
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,7 +23,6 @@ export class SearchForComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
-    private route: ActivatedRoute,
     public translate: TranslateService
   ) {}
 

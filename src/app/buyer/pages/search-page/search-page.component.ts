@@ -32,7 +32,7 @@ export class SearchPageComponent implements OnInit {
   catMenuToggle: boolean = false;
   nextBatchProdLink: any;
   prodEnd: boolean;
-
+  clear_selections:any
   constructor(
     private searchService: SearchService,
     private router: Router,
@@ -75,14 +75,16 @@ export class SearchPageComponent implements OnInit {
   }
 
   get_menus() {
+    this.brands=[]
+    this.sizes=[]
     this.min_price = this.products[0].unit_price;
     this.max_price = this.products[0].unit_price;
     Array.from(this.products).forEach((product: any) => {
-      if (this.min_price > product.unit_price) {
-        this.min_price = product.unit_price;
+      if (this.min_price > parseFloat(product.unit_price)) {
+        this.min_price = parseFloat(product.unit_price);
       }
-      if (this.max_price < product.unit_price) {
-        this.max_price = product.unit_price;
+      if (this.max_price < parseFloat(product.unit_price)) {
+        this.max_price = parseFloat(product.unit_price);
       }
       if (product.brand !== null) {
         this.brands.push(product.brand);
@@ -289,5 +291,14 @@ export class SearchPageComponent implements OnInit {
 
   closeCatMenu() {
     this.catMenuToggle = false;
+  }
+
+  reset_selections(event:any){
+    console.log('clearing selections ..')
+    this.get_menus()
+    this.selected_brands=[]
+    this.selected_colors=[]
+    this.selected_price_ranges=[]
+    console.log('brands',this.selected_brands)
   }
 }

@@ -434,6 +434,9 @@
         "Logout_text":"Logout of EMDAD? Anyway! You can always login at any time.",
         "Logout":"Logout",
         "Cancel":"Cancel"
+    },
+    "add_manugacturer":{
+        "Enter_Manufacterer_Name":"Enter Manufacterer Name"
     }
     
 }

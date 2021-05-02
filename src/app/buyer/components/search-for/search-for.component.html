@@ -19,7 +19,7 @@
 <div class="d-inline-block ng-autocomplete m-auto">
     <ng-autocomplete [data]="products" [searchKeyword]="keyword" (selected)='onSelectItem($event)'
         (inputChanged)='update_suggestions($event)' (inputFocused)='update_suggestions();' [itemTemplate]="itemTemplate"
-         placeholder="{{'Banner.Search' | translate}}" [isLoading]="isLoading">
+         placeholder="{{'Banner.Search' | translate}}" [isLoading]="isLoading" (keydown.enter)="search()">
     </ng-autocomplete>
 
     <ng-template #itemTemplate let-item>
