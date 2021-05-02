@@ -1,5 +1,5 @@
 <!--20 th march 2021-->
-<section class="rfq">
+<section class="rfq" *ngIf="productData">
   <app-breadcrumbs [directoryString]="'RFQ'" [style]="'NA'"></app-breadcrumbs>
   <div class="container">
     <div class="card">
@@ -38,9 +38,9 @@
                 <div class="input-group">
                   <input type="email" class="form-control" placeholder="email@example.com"
                     formControlName="email" />
-                  <!-- <div *ngIf="rfqForm.get('email').errors && submitted">
+                  <div *ngIf="rfqForm.get('email').errors && submitted">
                     <app-form-input-alert [alertMsg]="'Email is required'"></app-form-input-alert>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -48,12 +48,12 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label for="phone">Mobile Number</label>
-                <div class="input-group">
+                <div class="input-group d-flex flex-row">
                   <input type="text" class="form-control" placeholder="(***) ***-****" minlength="8" maxlength="15"
                     formControlName="phone"/>
-                  <!-- <div *ngIf="rfqForm.get('phone').errors && submitted">
+                  <div *ngIf="rfqForm.get('phone').errors && submitted">
                     <app-form-input-alert [alertMsg]="'Phone number is required'"></app-form-input-alert>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -73,9 +73,14 @@
                 <label for="quantity">Quantity <small>(Must be the upper amount from stock)</small></label>
                 <div class="input-group">
                   <input *ngIf="productData" type="number" class="form-control" required formControlName="quantity" min="{{productData.stock_quantity + 1}}"/>
-                  <!-- <div *ngIf="rfqForm.get('quantity').errors && submitted">
+                  <!-- <div *ngIf="rfqForm.get('quantity').errors">
                     <app-form-input-alert [alertMsg]="'Quantity is required'"></app-form-input-alert>
                   </div> -->
+                </div>
+                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)">
+                  <div *ngIf="quantity.errors?.invalid_qty">
+                    <app-form-input-alert [alertMsg]="'Quantity must be greater than stock'"></app-form-input-alert>
+                  </div>
                 </div>
               </div>
             </div>

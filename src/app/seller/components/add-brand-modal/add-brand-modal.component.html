@@ -1,10 +1,10 @@
 <mat-dialog-content class="mat-typography">
     <div class="form-group">
-        <label for="prodBrand">Enter Manufacterer Name</label>
+        <label for="prodBrand">{{'add_manugacturer.Enter_Manufacterer_Name'|translate}}</label>
         <input id="prodBrand" class="form-control form-control-md" type="text" [(ngModel)]="brandName"/>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button class="submit_btn" mat-button [mat-dialog-close]="brandName" cdkFocusInitial [disabled]="brandName == ''">Add Brand</button>
-    <button class="cancel" mat-button mat-dialog-close>Cancel</button>
+    <button type="button" class="submit_btn" mat-button [mat-dialog-close]="brandName" cdkFocusInitial [disabled]="brandName == ''">Add Manufacterer</button>
+    <button type="button" class="cancel" mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>

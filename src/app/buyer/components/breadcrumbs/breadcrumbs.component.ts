@@ -11,6 +11,7 @@ export class BreadcrumbsComponent implements OnInit {
   @Input() searchLength?;
   @Input() style='';
   @Output() view_style=new EventEmitter<string> ()
+  @Output() clear_selections=new EventEmitter<string> ()
   sellerWiseProduct = false
 
   constructor(
@@ -64,5 +65,9 @@ export class BreadcrumbsComponent implements OnInit {
       document.getElementById('grid_btn').style.backgroundColor="#fff"
       document.getElementById('grid_btn').style.color="#000000"
     }
+  }
+
+  clear_selects(){
+    this.clear_selections.emit("clear_selections")
   }
 }

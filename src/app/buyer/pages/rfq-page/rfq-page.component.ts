@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -51,7 +52,7 @@ export class RfqPageComponent implements OnInit {
   quantity: AbstractControl;
   message: AbstractControl;
   prodId: any;
-
+  submitted:boolean=false
   constructor(
     private getProduct: GetProductService,
     private fb: FormBuilder,
@@ -74,40 +75,26 @@ export class RfqPageComponent implements OnInit {
       } else {
         this.image = config.img_base_url + this.productData.image2;
       }
+      this.rfqForm = this.fb.group({
+        email: ['',[Validators.required]],
+        phone: ['', [Validators.required,Validators.minLength(8)]],
+        address: ['',[Validators.required]],
+        quantity: ['',[this.qty_validator(this.productData.stock_quantity)]],
+        message: ['',[Validators.required]],
+      });
+      this.email = this.rfqForm.controls['email'];
+      this.phone = this.rfqForm.controls['phone'];
+      this.address = this.rfqForm.controls['address'];
+      this.quantity = this.rfqForm.controls['quantity'];
+      this.message = this.rfqForm.controls['message'];
       // this.rfqForm.patchValue({ product: this.productData.id });
       // this.rfqForm.patchValue({ buyer: uid });
       // this.rfqForm.patchValue({ seller: this.productData.seller.id });
       // this.rfqForm.patchValue({ quotation: [{ message: '', user: uid }] });
     });
-    this.rfqForm = this.fb.group({
-      email: ['',[Validators.required]],
-      phone: ['', [Validators.required,Validators.minLength(8)]],
-      address: ['',[Validators.required]],
-      quantity: ['',[Validators.required]],
-      message: ['',[Validators.required]],
-    });
-    this.email = this.rfqForm.controls['email'];
-    this.phone = this.rfqForm.controls['phone'];
-    this.address = this.rfqForm.controls['address'];
-    this.quantity = this.rfqForm.controls['quantity'];
-    this.message = this.rfqForm.controls['message'];
+    
   }
 
-  // "product":1,
-  //   "buyer":2,
-  //   "email":"cse.hasans06@gmail.com",
-  //   "phone":"04843734",
-  //   "address":"dfdf",
-  //   "seller":2,
-  //   "quantity":4,
-  //   "quotation" :
-  //       [{
-  //           "message": "ridoy",
-  //       "user":3
-  //       }],
-  //   "rfq": {
-  //       "status":1
-  //   }
   calc_unit_price(){
     if(parseFloat(this.productData.commission)>0){
       let total=parseFloat(this.productData.unit_price) + (parseFloat(this.productData.unit_price) * (parseFloat(this.productData.commission)/100))
@@ -122,6 +109,7 @@ export class RfqPageComponent implements OnInit {
   }
   onSubmit(value) {
     this.spinner.show();
+    this.submitted=true
     var rfqData = {
       product: this.productData.id,
       buyer: localStorage.getItem('uid'),
@@ -146,17 +134,20 @@ export class RfqPageComponent implements OnInit {
         comments:"initiated"
       },
     };
-    console.log(rfqData);
+    console.log('rfq data',rfqData);
     this.quotationService.createQuotation(rfqData).subscribe(
       (res) => {
         console.log(res);
         this.spinner.hide();
-        swal('Succeed!', 'Request for quotation Successfull', 'success');
-        this.router.navigate(['/']);
+        this.submitted=false
+        swal('Succeed!', 'Request for quotation Successfull', 'success').then(()=>{
+          this.router.navigate(['/profile'],{queryParams:{activeItem:4}});
+        });
       },
       (err) => {
         console.error(err);
         this.spinner.hide();
+        this.submitted=false
         swal('Failed!', err.message, 'error');
       }
     );
@@ -193,5 +184,16 @@ export class RfqPageComponent implements OnInit {
 
   go_to_seller_wise_product_list(){
     this.router.navigate(['/products/seller/', this.productData.seller.id],{ queryParams: { store_name: this.productData.seller.store_name } })
+  }
+
+  qty_validator(val:any){
+    return (control: FormControl): ValidationErrors | null =>  {
+      if (control.value) {
+        if (control.value <= parseInt(val)) {
+          return { 'invalid_qty': true }
+        }
+      }
+      return null;
+    }
   }
 }

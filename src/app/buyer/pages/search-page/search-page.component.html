@@ -1,4 +1,4 @@
-<app-breadcrumbs [directoryString]="'Search Result'" [searchLength]="products.length" (view_style)="set_style($event)">
+<app-breadcrumbs (clear_selections)="reset_selections($event)" [directoryString]="'Search Result'" [searchLength]="products.length" (view_style)="set_style($event)">
 </app-breadcrumbs>
 <section class="container clearfix">
     <button *ngIf="!catMenuToggle" mat-button class="cat-menu-toggle-btn" (click)="showCatMenu()">
@@ -47,7 +47,7 @@
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
-            <mat-accordion>
+            <mat-accordion *ngIf="prices?.length>0">
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>

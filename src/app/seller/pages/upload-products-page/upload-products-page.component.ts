@@ -223,9 +223,9 @@ export class UploadProductsPageComponent implements OnInit {
   openAddBrandDialog() {
     const dialogRef = this.dialog.open(AddBrandModalComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
+      if (result != null && result.length>0) {
         this.spinner.show();
-        // console.log(`Dialog result: ${result}`);
+         console.log(`Dialog result: ${result}`);
         this.addProductService.addBrand(result).subscribe(
           (success: any) => {
             this.currentAddedBrand = success.data[0].id;
@@ -243,6 +243,9 @@ export class UploadProductsPageComponent implements OnInit {
             swal('Failed!', error.error.name[0], 'error');
           }
         );
+      }
+      else{
+        
       }
     });
   }
