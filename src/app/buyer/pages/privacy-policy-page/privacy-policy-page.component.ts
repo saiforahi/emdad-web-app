@@ -20,11 +20,11 @@ policyDesc:any;
     this.policy.getPrivacyPolicyData().subscribe((data) =>{
       this.privacyData = data.data[0];
       this.privacyDesc = this.sanitizer.bypassSecurityTrustHtml(
-        data.data[0].privacy
+        data.data[0].privacy_policy
       );
-      this.policyDesc = this.sanitizer.bypassSecurityTrustHtml(
+     /*  this.policyDesc = this.sanitizer.bypassSecurityTrustHtml(
         data.data[0].policy
-      )
+      ) */
     })
   }
 
