@@ -21,11 +21,11 @@ conditionsDesc:any;
     this.terms.getTermsCondition().subscribe((data) =>{
       this.termsData = data.data[0];
       this.termsDesc = this.sanitizer.bypassSecurityTrustHtml(
-        data.data[0].terms
+        data.data[0].terms_conditions
       );
-      this.conditionsDesc = this.sanitizer.bypassSecurityTrustHtml(
+    /*   this.conditionsDesc = this.sanitizer.bypassSecurityTrustHtml(
         data.data[0].conditions
-      )
+      ) */
     })
   }
 
