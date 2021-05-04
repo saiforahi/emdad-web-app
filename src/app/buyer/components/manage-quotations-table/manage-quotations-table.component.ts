@@ -57,12 +57,15 @@ export class ManageQuotations implements OnInit {
  */
 //open the dialogue for viewing quotation details
   show_quotation_details(item){
-      const dialogRef = this.dialog.open(BuyerQuotationViewComponent,{
+    const dialogRef = this.dialog.open(BuyerQuotationViewComponent,{
       autoFocus:false,
       data:{
         quoteDetails:item,
       }
     })
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ngOnInit()
+    });
   }
   get_quotation_list() {
     this.quotationService.get_user_quotation_list().subscribe(

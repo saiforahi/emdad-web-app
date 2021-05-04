@@ -49,7 +49,7 @@ export class ViewDialogueComponent implements OnInit {
     private commissionService:CommissionService,
     private spinner:NgxSpinnerService,
 
-    @Inject(MAT_DIALOG_DATA) data: { rfqDetails: any }) {
+    @Inject(MAT_DIALOG_DATA) public data: { rfqDetails: any }) {
     this.rfqDetailsData = data.rfqDetails;
     this.rfqId = this.rfqDetailsData.id;
     console.log("id", this.rfqId);
