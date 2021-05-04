@@ -18,7 +18,7 @@
     </mat-accordion>
 
     <!--form for quotation-->
-    <div class="quote-form container">
+    <div class="quote-form container" *ngIf="3>details.status">
         <form [formGroup]="quoteData" (ngSubmit)="onClickSubmit(quoteData.value)" class="mt-4">
             <div class="row h-100">
                 <!--INPUT FOR PRODUCT QUANTITY-->

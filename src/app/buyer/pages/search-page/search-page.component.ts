@@ -263,19 +263,26 @@ export class SearchPageComponent implements OnInit {
           this.searchService
             .filter_products('search=' + params.query + temp_query)
             .subscribe((item) => {
-              this.products = [...this.products, ...item.data.results];
+              let temp=[]
+              Array.from(item.data.results).forEach((item:any)=>{
+                if(parseFloat(this.get_unit_price(item.commission,item.unit_price)) <= parseFloat(range.split(' ')[1])){
+                  console.log(item.name)
+                  temp.push(item)
+                }
+              })
+              this.products = [...this.products, ...temp];
               console.log('products', this.products);
             });
         });
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 50);
       } else {
         console.log('query', 'search=' + params.query + query);
         this.searchService
           .filter_products('search=' + params.query + query)
           .subscribe((item) => {
-            this.products = item.data.results;
+            this.products = [...this.products, ...item.data.results];
             console.log('products', this.products);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 50);
           });
       }
     });
@@ -300,5 +307,27 @@ export class SearchPageComponent implements OnInit {
     this.selected_colors=[]
     this.selected_price_ranges=[]
     console.log('brands',this.selected_brands)
+  }
+
+  get_unit_price(product_commission: any, price: any) {
+    //generating unit price with commission
+    
+    let total = 0;
+    if (parseFloat(product_commission) > 0) {
+      let unit_price =
+        parseFloat(price) * (parseFloat(product_commission) / 100);
+      total = unit_price + parseFloat(price);
+      //console.log('if total',total)
+      //console.log('unit price',(parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price))
+      //return (parseFloat(unit_price) * (product_commission / 100))+parseFloat(unit_price)
+    } else {
+      let unit_price =
+        parseFloat(price) *
+        (parseFloat(localStorage.getItem('commission')) / 100);
+      total = unit_price + parseFloat(price);
+      //console.log('else total',total)
+    }
+    //console.log(total.toFixed(2))
+    return ((total*(parseFloat(localStorage.getItem('vat'))/100))+total).toFixed(2);
   }
 }

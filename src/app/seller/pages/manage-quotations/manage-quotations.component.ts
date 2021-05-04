@@ -68,6 +68,8 @@ displayedColumns: string[] = ['qid', 'date', 'rfq_id', 'status', 'buyer','view']
 
   ngOnInit(): void {
      // RFQ table data
+     this.quotationData=[]
+      this.filtered_data=[]
      this.quote.get_seller_quotation_list().subscribe(item => {
       // console.log(item);
       item.data.forEach(element => {

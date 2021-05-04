@@ -1,7 +1,7 @@
 <section class="dialogue-holder" *ngIf="quotation">
 <mat-dialog-content class="mat-typography" >
     <mat-dialog-actions align="end" class="p-0 m-0">
-        <button mat-dialog-close class="close-btn"><i class="fas fa-times mt-0 p-0"></i></button>
+        <button type="button" mat-dialog-close class="close-btn"><i class="fas fa-times mt-0 p-0"></i></button>
     </mat-dialog-actions>
         <div class="container">
             <div class="row">
@@ -78,8 +78,8 @@
                     </div>
                 </div>   
                 </div>
-                 <div *ngIf="quotation.status!=4 && quotation.status!=3" class="col-md-12 button-div">
-                    <button mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">{{'Buyer_Quotation_History.Accept' | translate}}</button>
+                 <div  class="col-md-12 button-div">
+                    <button [disabled]="quotation.status!=2" mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">{{'Buyer_Quotation_History.Accept' | translate}}</button>
                     <button [disabled]="comments.length==0" type="button" (click)="deny_quotation()" mat-stroked-button class="deny-btn">{{'Buyer_Quotation_History.Deny' | translate}} 
                     <span class="tooltiptext" style="color: #2b2b2b !important;">{{'Buyer_Quotation_History.reason_denial' | translate}}</span>
                     </button>
