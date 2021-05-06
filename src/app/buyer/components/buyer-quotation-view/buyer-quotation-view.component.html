@@ -79,7 +79,8 @@
                 </div>   
                 </div>
                  <div  class="col-md-12 button-div">
-                    <button [disabled]="quotation.status!=2" mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">{{'Buyer_Quotation_History.Accept' | translate}}</button>
+                    <button *ngIf="quotation.status==3" mat-raised-button class="accept-btn" type="button" (click)="check_out()">{{'Buyer_Quotation_History.Checkout' | translate}}</button>
+                    <button *ngIf="quotation.status!=3" [disabled]="quotation.status!=2" mat-raised-button class="accept-btn" type="button" (click)="confirm_quotation()">{{'Buyer_Quotation_History.Accept' | translate}}</button>
                     <button [disabled]="comments.length==0" type="button" (click)="deny_quotation()" mat-stroked-button class="deny-btn">{{'Buyer_Quotation_History.Deny' | translate}} 
                     <span class="tooltiptext" style="color: #2b2b2b !important;">{{'Buyer_Quotation_History.reason_denial' | translate}}</span>
                     </button>
@@ -89,3 +90,4 @@
         </div>
 </mat-dialog-content>
 </section>
+<ngx-spinner></ngx-spinner>

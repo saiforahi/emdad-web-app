@@ -94,7 +94,8 @@
     "Comment": "تعليق",
     "reason_denial": "أضف سببًا للرفض",
     "Accept": "قبول",
-    "Deny": "أنكر"
+    "Deny": "أنكر",
+    "Checkout":"الدفع"
   },
   "Footer": {
     "Slogan": "شعارك هنا",
