@@ -442,7 +442,7 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
-                    <input id="expDate" class="form-control form-control-md" type="date" formControlName="expDate" />
+                    <input id="expDate" placeholder="yyyy-mm-dd" class="form-control form-control-md" type="date" formControlName="expDate" />
                   </div>
                   <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
                     <div *ngIf="expDate.errors?.invalidDate">

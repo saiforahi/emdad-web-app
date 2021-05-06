@@ -8,6 +8,7 @@ import { CountryListService } from '../../../shared/services/country-list.servic
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CartServiceService } from '../../../shared/services/cart-service.service';
 import swal from 'sweetalert';
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -241,7 +242,24 @@ export class CheckoutComponent implements OnInit {
         }
       );
   }
-
+  download_bank_details(){
+    this.spinner.show()
+    var doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.text('Emdad Bank details for wire transfer', 20, 20);
+    doc.setFontSize(12);
+    for (let index = 0; index < this.admin_bank_info.length; index++) {
+      // console.log(this.img_base_url + this.orders[index].product.image1);
+      doc.text('Account Name: ' + this.admin_bank_info[index].account_name, 20, 55 + index * 40);
+      // doc.text('Account Number'+this.admin_bank_info[index].account_number, 20, 65 + index * 40);
+      // doc.text('Bank Name' + this.admin_bank_info[index].bank_name, 20, 55 + index * 40);
+      // doc.text('Bank Address ' + this.admin_bank_info[index].bank_address, 20, 55 + index * 40);
+      // doc.text('Swift Code ' + this.admin_bank_info[index].swift_code, 20, 55 + index * 40);
+      //doc.text()
+    }
+    doc.save('Bank_Details.pdf');
+    this.spinner.hide();
+  }
   onCountryChange(countryId) {
     // reset city if countryId changed
     console.log(countryId);
