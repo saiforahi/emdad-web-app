@@ -96,7 +96,8 @@
         "Comment":"Comment",
         "reason_denial":"Add reason for denial",
         "Accept":"Accept",
-        "Deny":"Deny"
+        "Deny":"Deny",
+        "Checkout":"Checkout"
     },
     "Footer":{
         "Slogan":"Your Slogan Here",
@@ -324,8 +325,10 @@
         "Account_Number":"Account Number",
         "Upload_Invoice":"Upload Invoice",
         "Download_Invoice":"Download Invoice",
-        "Account_Holder":"Account Holder",
-        "Bank_Name":"Name of Bank"
+        "Account_Holder":"Account Name",
+        "Bank_Name":"Bank Name",
+        "Swift_Code":"Swift Code",
+        "Bank_Address":"Bank Address"
     },
     "Buyer_Support_Ticket":{
         "Title":"Raise A Support Ticket",

@@ -86,4 +86,8 @@ export class BuyerQuotationViewComponent implements OnInit {
       }
     )
   }
+
+  check_out(){
+    this.spinner.show()
+  }
 }
