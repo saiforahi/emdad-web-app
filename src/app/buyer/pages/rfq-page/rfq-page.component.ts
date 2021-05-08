@@ -134,7 +134,8 @@ export class RfqPageComponent implements OnInit {
         comments:"initiated"
       },
     };
-    console.log('rfq data',rfqData);
+    console.log('rfq data',JSON.stringify(rfqData));
+    console.log(localStorage.getItem('token'))
     this.quotationService.createQuotation(rfqData).subscribe(
       (res) => {
         console.log(res);

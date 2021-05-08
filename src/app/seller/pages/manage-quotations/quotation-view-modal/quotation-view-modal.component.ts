@@ -178,8 +178,4 @@ export class QuotationViewModalComponent implements OnInit {
     let total=parseFloat(this.quoteData.controls['quantity'].value) * parseFloat(this.quoteData.controls['unit_price'].value)
     this.quoteData.controls['total_price'].setValue(total.toFixed(2))
   }
-  
-  calc_quotation_unit_price(price){
-    return (parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))).toFixed(2)
-  }
 }
