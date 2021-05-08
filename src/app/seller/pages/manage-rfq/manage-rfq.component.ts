@@ -70,6 +70,7 @@ export class ManageRfqComponent implements OnInit {
 
   ngOnInit(): void {
        // RFQ table data
+       this.rfqTableData=[]
        this.rfq.get_seller_quotation_list().subscribe(item => {
         item.data.forEach((element:any) => {
           if(parseFloat(element.status)<2){

@@ -23,7 +23,7 @@ export class GetProductService {
     return this.http.get(link);
   }
 
-  productDetails(id): Observable<any> {
+  productDetails(id:any): Observable<any> {
     this.productDetailsData = this.http.get(
       config.base_url+'api/product/details/'+id+'/'
     );

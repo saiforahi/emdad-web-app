@@ -379,17 +379,6 @@ export class CartPageComponent implements OnInit {
           product:product.id
         })
       }
-      // orders_details.push({
-      //   quantity:product.cart_qty,
-      //   unit_price:product.unit_price,
-      //   seller:product.seller.id,
-      //   pickup_address:product.pickup_address[0]?.id,
-      //   shipping_address:'',
-      //   //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
-      //   vat_amount:product.vat_amount,
-      //   commission:commission.toFixed(2),
-      //   product:product.id
-      // })
     });
     var cart_cash = {
       subtotal: this.subTotal,
