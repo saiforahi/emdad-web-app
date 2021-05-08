@@ -268,9 +268,9 @@
                     <input id="comName" class="form-control form-control-md" type="text" formControlName="comName"
                       required placeholder="Raihan Zilani Ltd." />
                   </div>
-                  <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
+                  <div *ngIf="comName.invalid && (comName.dirty || comName.touched || comName.pristine)">
                     <div *ngIf="comName.errors?.required">
-                      <app-form-input-alert [alertMsg]="'company name is required.'"></app-form-input-alert>
+                      <app-form-input-alert [alertMsg]="'Company name is required.'"></app-form-input-alert>
                     </div>
                   </div>
                 </div>
@@ -286,7 +286,7 @@
                     <input id="email" class="form-control form-control-md" type="email" formControlName="email"
                       required placeholder="raihan009@example.com" />
                   </div>
-                  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div *ngIf="email.invalid && (email.dirty || email.touched || email.pristine)">
                     <div *ngIf="email.errors?.required">
                       <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
                     </div>
@@ -304,18 +304,21 @@
                       <div class="input-group-text"><img src="../../../../assets/Call.svg" alt=""></div>
                     </div>
                     <!-- phone -->
-                    <input id="comPhone" class="form-control form-control-md" type="phone" formControlName="comPhone"
-                      required placeholder="(480) 555-0103"/>
+                    <input id="comPhone" class="form-control form-control-md" type="tel" formControlName="comPhone"
+                      required placeholder="(480) 555-0103" maxlength="15" />
                   </div>
-                  <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
+                  <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched || comPhone.pristine)">
                     <div *ngIf="comPhone.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company Phone is required.'"></app-form-input-alert>
                     </div>
-                    <div *ngIf="comPhone.errors?.minLength">
-                      <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
+                    <div *ngIf="comPhone.errors?.minlength">
+                      <app-form-input-alert [alertMsg]="'Company Phone must be minimum 8 digits.'"></app-form-input-alert>
                     </div>
-                    <div *ngIf="comPhone.errors?.maxLength">
-                      <app-form-input-alert [alertMsg]="'Enter a valid Phone number.'"></app-form-input-alert>
+                    <div *ngIf="comPhone.errors?.maxlength">
+                      <app-form-input-alert [alertMsg]="'Company Phone can\'t be more than 15 digits'"></app-form-input-alert>
+                    </div>
+                    <div *ngIf="comPhone.errors.pattern">
+                      <app-form-input-alert [alertMsg]="'Company Phone must be numbers,maximum 15 digits.'"></app-form-input-alert>
                     </div>
                   </div>
                 </div>
@@ -342,16 +345,14 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div *ngIf="password.invalid && (password.dirty || password.touched || password.pristine)">
                     <div *ngIf="password.errors?.required">
                       <app-form-input-alert [alertMsg]="'Password is required.'"></app-form-input-alert>
                     </div>
-                    <div *ngIf="password.errors?.minLength">
+                    <div *ngIf="password.errors?.minlength">
                       <app-form-input-alert [alertMsg]="'Must be 8 characters at least'"></app-form-input-alert>
                     </div>
-                    <div *ngIf="password.errors?.pattern">
-                      <app-form-input-alert [alertMsg]="'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'"></app-form-input-alert>
-                    </div>
+                   
                     <!-- <div *ngIf="password.errors?.minLength">
                       <app-form-input-alert [alertMsg]="'password length is minimum 8 characters.'">
                       </app-form-input-alert>
@@ -360,11 +361,14 @@
                   <div *ngIf="passMatched && confPassword.value != ''">
                     <app-form-input-alert [alertMsg]="'Both password should match!'"></app-form-input-alert>
                   </div>
+                  <div *ngIf="password.errors?.pattern">
+                    <app-form-input-alert [alertMsg]="'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'"></app-form-input-alert>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="password">{{'Buyer_Change_Password_Form.Confirm_Password'|translate}}</label>
+                  <label for="confPassword">{{'Buyer_Change_Password_Form.Confirm_Password'|translate}}</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><img src="../../../../assets/icons/Lock.svg" alt=""></div>
@@ -407,7 +411,7 @@
                     <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
                       required placeholder="3517 W. Gray St. Utica, Pennsylvania 57867"/>
                   </div>
-                  <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
+                  <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched || comAddress.pristine)">
                     <div *ngIf="comAddress.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
                     </div>
@@ -426,12 +430,12 @@
                     <input id="comRegistration" class="form-control form-control-md" type="text"
                       formControlName="comRegistration" placeholder="Commercial Registration" />
                   </div>
-                  <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
+                  <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched || comRegistration.pristine)">
                     <div *ngIf="comRegistration.errors?.required">
                       <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
                       </app-form-input-alert>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="col-md-6">
@@ -442,7 +446,7 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
-                    <input id="expDate" placeholder="yyyy-mm-dd" class="form-control form-control-md" type="date" formControlName="expDate" />
+                    <input id="expDate" placeholder="dd-mm-yyyy" class="form-control form-control-md" type="date" name="calender" formControlName="expDate" />
                   </div>
                   <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
                     <div *ngIf="expDate.errors?.invalidDate">
@@ -467,9 +471,9 @@
                       <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
                     </select>
                   </div>
-                  <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                  <div *ngIf="country.invalid && (country.dirty || country.touched || country.pristine)">
                     <div *ngIf="country.errors?.required">
-                      <app-form-input-alert [alertMsg]="'country is required.'"></app-form-input-alert>
+                      <app-form-input-alert [alertMsg]="'Country is required.'"></app-form-input-alert>
                     </div>
                   </div>
                 </div>
@@ -488,7 +492,7 @@
                       <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
                     </select>
                   </div>
-                  <div *ngIf="city.invalid && (city.dirty || city.touched)">
+                  <div *ngIf="city.invalid && (city.dirty || city.touched || city.pristine)">
                     <div *ngIf="city.errors?.required">
                       <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
                     </div>
@@ -535,10 +539,10 @@
               <div class="col-md-6 col-sm-12 col-12 col-lg-6 file-up">
                 <div class="form-group">
                   <label class="d-block">{{'Seller_Sign_Up.Commercial_Registration'|translate}}</label>
-                  <label for="commercialRegistrationUpload" class="custom-file-upload">
+                  <label for="commercialRegistrationUpload" class="custom-file-upload" *ngIf="selectedImage?.length == 0">
                     <!-- commercialRegistrationUpload -->
                     <input id="commercialRegistrationUpload" class="form-control form-control-md" type="file"
-                      formControlName="commercialRegistrationUpload" (change)="handleFileSelect($event);" />
+                      formControlName="commercialRegistrationUpload" (change)="handleFileSelect($event);" accept="image/*,.pdf" />
                      
                   </label>
                   <ul class="attached-file pl-0" *ngIf="selectedImage?.length>0">
@@ -553,10 +557,10 @@
               <div class="col-md-6 col-lg-6 col-12 file-up">
                 <div class="form-group">
                   <label class="d-block">{{'Seller_Sign_Up.VAT_Certificate'|translate}} </label>
-                  <label for="vatCertificate" class="custom-file-upload">
+                  <label for="vatCertificate" class="custom-file-upload" *ngIf="selectedCert?.length == 0">
                     <!-- vatCertificate -->
                     <input id="vatCertificate" class="form-control form-control-md" type="file"
-                      formControlName="vatCertificate" (change)="upVatcert($event);" />
+                      formControlName="vatCertificate" (change)="upVatcert($event);" accept="image/*,.pdf" />
                   </label>
                   <ul class="attached-file pl-0" *ngIf="selectedCert?.length>0">
                     <li *ngFor="let file of selectedCert; let i = index;">
@@ -570,7 +574,7 @@
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="agrreToPolicy"
-                      formControlName="agrreToPolicy" />
+                      formControlName="agrreToPolicy" required/>
                     <label class="form-check-label" for="agrreToPolicy">{{'Seller_Sign_Up.Terms'|translate}}</label>
                   </div>
                 </div>

@@ -27,11 +27,11 @@ export class SignupPageComponent implements OnInit {
   sellerRegForm: FormGroup;
   comName: AbstractControl;
   comPhone: AbstractControl;
-  phonePattern = '^((\\+91-?)|0)?[0-9]{10}$';
+  phonePattern = '^[0-9]{8,}$';
   email: AbstractControl;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   password: AbstractControl;
-  passwordPattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
+  passwordPattern='^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$';
   confPassword: AbstractControl;
   comAddress: AbstractControl;
   comRegistration: AbstractControl;
@@ -79,9 +79,9 @@ export class SignupPageComponent implements OnInit {
     })
     this.sellerRegForm = this.fb.group({
       comName: ['', [Validators.required]],
-      comPhone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
+      comPhone: ['', [Validators.required,Validators.pattern('[+0-9]{8,}'),Validators.minLength(8),Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required,Validators.minLength(8),Validators.minLength(8),Validators.maxLength(15)]],
+      password: ['', [Validators.required, Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}'),Validators.minLength(8)]],
       confPassword: ['', [Validators.required]],
       comAddress: ['', [Validators.required]],
       comRegistration: [''],
@@ -155,8 +155,8 @@ export class SignupPageComponent implements OnInit {
     this.sellerRegFormData.append("country", value.country);
     this.sellerRegFormData.append("store_address", value.comAddress);
     this.sellerRegFormData.append("zip_code", value.zipCode);
-    this.sellerRegFormData.append('attachment1',this.selectedImage[0])
-    this.sellerRegFormData.append('attachment2',this.selectedCert[0])
+    this.sellerRegFormData.append('attachment1',this.selectedImage[0]);
+    this.sellerRegFormData.append('attachment2',this.selectedCert[0]);
     this.authService.sellerSignup(this.sellerRegFormData).subscribe(
       (success) => {
         console.log(success);
@@ -194,6 +194,7 @@ export class SignupPageComponent implements OnInit {
 
   showPass() {
     this.showPassState = true;
+    
   }
 
   hidePass() {
@@ -209,14 +210,14 @@ export class SignupPageComponent implements OnInit {
   }
   upVatcert(event){
     var reader = new FileReader();
-    if(this.selectedCert.length<2){
+    if(this.selectedCert.length<1){
       this.selectedCert.push(event.target.files[0]);
     }
     console.log(this.selectedCert);
   }
   handleFileSelect(event) {
     var reader = new FileReader();
-    if(this.selectedImage.length<2){
+    if(this.selectedImage.length<1){
       this.selectedImage.push(event.target.files[0]);
     }
     console.log(this.selectedImage);
