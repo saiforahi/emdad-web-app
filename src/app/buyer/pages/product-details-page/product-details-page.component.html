@@ -1,6 +1,6 @@
 <section *ngIf="prodcutDetails">
   <app-breadcrumbs *ngIf="prodcutDetails" [directoryString]="
-      prodcutDetails.category.name + ' / ' + prodcutDetails.name
+      prodcutDetails.category.name + ' / ' + prodcutDetails.name + '/' + prodcutDetails.category.id
     " [style]="'NA'">
   </app-breadcrumbs>
   <div style="background: #fff">

@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
 })
 export class BreadcrumbsComponent implements OnInit {
   @Input() directoryString = '';
-  @Input() searchLength?;
+  @Input() searchLength?: any;
   @Input() style='';
   @Output() view_style=new EventEmitter<string> ()
   @Output() clear_selections=new EventEmitter<string> ()
+  line_parts:Array<string>=[];
   sellerWiseProduct = false
 
   constructor(
@@ -32,6 +33,7 @@ export class BreadcrumbsComponent implements OnInit {
       document.getElementById('grid_btn').style.display="none"
       document.getElementById('list_btn').style.display="none"
     }
+    this.slicer()
     this.view_style.emit('grid')
   }
   // ngOnChanges(changes: SimpleChanges):void { //catching change of style
@@ -69,5 +71,10 @@ export class BreadcrumbsComponent implements OnInit {
 
   clear_selects(){
     this.clear_selections.emit("clear_selections")
+  }
+
+  slicer(){
+    this.line_parts=this.directoryString.split('/')
+    console.log('line parts',this.line_parts)
   }
 }
