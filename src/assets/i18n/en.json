@@ -440,6 +440,15 @@
     },
     "add_manugacturer":{
         "Enter_Manufacterer_Name":"Enter Manufacterer Name"
+    },
+    "Sell_on_emdad":{
+        "Login_text":"Login",
+        "Seller_Confirm":"Already a Seller",
+        "Ready_text":"READY TO BECOME",
+        "Emdad_Seller":"A EMDAD SELLER",
+        "How_to_Sell":"How to Sell on EMDAD",
+        "Product_Portfolio":"Products Portfolio",
+        "Why_Us":"Why Us"
     }
     
 }

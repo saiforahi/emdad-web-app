@@ -26,7 +26,9 @@
  
 
 }
-
+.titlecase{
+  text-transform: uppercase;
+}
 .login-holder h2 {
   margin: 0;
   font-style: normal;

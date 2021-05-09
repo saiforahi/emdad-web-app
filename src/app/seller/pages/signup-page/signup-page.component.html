@@ -362,7 +362,7 @@
                     <app-form-input-alert [alertMsg]="'Both password should match!'"></app-form-input-alert>
                   </div>
                   <div *ngIf="password.errors?.pattern">
-                    <app-form-input-alert [alertMsg]="'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'"></app-form-input-alert>
+                    <app-form-input-alert [alertMsg]="'Must contain at least one number,one uppercase letter and one lowercase letter.Length must be at least 8 or more characters.No special characters are allowed!'"></app-form-input-alert>
                   </div>
                 </div>
               </div>
@@ -428,14 +428,14 @@
                     </div>
                     <!-- Commercial Registration -->
                     <input id="comRegistration" class="form-control form-control-md" type="text"
-                      formControlName="comRegistration" placeholder="Commercial Registration" />
+                      formControlName="comRegistration" placeholder="Commercial Registration" required/>
                   </div>
-                  <!-- <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched || comRegistration.pristine)">
+                  <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched || comRegistration.pristine)">
                     <div *ngIf="comRegistration.errors?.required">
                       <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
                       </app-form-input-alert>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -446,11 +446,19 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
-                    <input id="expDate" placeholder="dd-mm-yyyy" class="form-control form-control-md" type="date" name="calender" formControlName="expDate" />
+                    <input id="expDate" placeholder="dd-mm-yyyy" class="form-control form-control-md" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" type="date"  name="calender" formControlName="expDate" required />
                   </div>
-                  <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
+                  <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched || expDate.pristine)">
                     <div *ngIf="expDate.errors?.invalidDate">
-                      <app-form-input-alert [alertMsg]="'Registration expiration date is invalid.'">
+                      <app-form-input-alert [alertMsg]="'Registration expiration date is invalid,can\'t be a past date.'">
+                      </app-form-input-alert>
+                    </div>
+                    <div *ngIf="expDate.errors?.required">
+                      <app-form-input-alert [alertMsg]="'Registration expiration date is required.'">
+                      </app-form-input-alert>
+                    </div>
+                    <div *ngIf="expDate.errors?.pattern">
+                      <app-form-input-alert [alertMsg]="'Date pattern must be dd-MM-YYYY.'">
                       </app-form-input-alert>
                     </div>
                   </div>

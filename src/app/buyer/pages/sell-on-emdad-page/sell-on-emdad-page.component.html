@@ -2,9 +2,9 @@
 <section class="login">
     <div class="container">
         <div class="login-holder">
-            <h2 class="d-inline-block">Already a Seller?</h2>
+            <h2 class="d-inline-block">{{'Sell_on_emdad.Seller_Confirm' | translate}}?</h2>
             <a target="_balnk" [routerLink]="['/dashboard/login']">
-                <button mat-flat-button>Login</button>
+                <button mat-flat-button>{{'Sell_on_emdad.Login_text'|translate}}</button>
             </a>
         </div>
     </div>
@@ -13,8 +13,8 @@
     <div class="container">
         <div style="background:#FFFFFF url('../../../../assets/become-a-seller-left.png') left top no-repeat;">
             <div class="register-holder">
-                <h4>READY TO BECOME</h4>
-                <h2>A EMDAD SELLER?</h2>
+                <h4 class="titlecase">{{'Sell_on_emdad.Ready_text'| translate}}</h4>
+                <h2 class="titlecase">{{'Sell_on_emdad.Emdad_Seller'| translate}}?</h2>
                 <br><br>
                 <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias soluta corrupti
@@ -22,14 +22,14 @@
                     pariatur id tempora aut facilis, sint perspiciatis odit eos ratione commodi!
                 </p>
                 <a [routerLink]="['/dashboard/signup']">
-                    <button mat-raised-button>Sign up</button>
+                    <button mat-raised-button>{{'Nav.Sign_Up' | translate}}</button>
                 </a>
             </div>
         </div>
         <div class="register-holder-mobile">
            
-            <h4>READY TO BECOME</h4>
-            <h2>A EMDAD SELLER?</h2>
+            <h4 class="titlecase">{{'Sell_on_emdad.Ready_text'| translate}}</h4>
+            <h2 class="titlecase">{{'Sell_on_emdad.Emdad_Seller'| translate}}?</h2>
             <br><br>
             <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias soluta corrupti
@@ -37,7 +37,7 @@
                 pariatur id tempora aut facilis, sint perspiciatis odit eos ratione commodi!
             </p>
             <a target="_balnk" [routerLink]="['/dashboard/signup']">
-                <button mat-raised-button>Sign up</button>
+                <button mat-raised-button>{{'Nav.Sign_Up' | translate}}</button>
             </a>
         </div>
     </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-12 col-lg-6 col-xs-12 col-sm-12 col-12">
                 <div class="text-div">
-                    <h1 class="heading pb-2">{{sellData.title | titlecase}}</h1>
+                    <h1 class="heading pb-2">{{'Sell_on_emdad.Why_Us'| translate}}</h1>
                     <p class="para" [innerHTML]="whyUs">
                     </p>
                 </div>
@@ -63,7 +63,7 @@
 <section class="portfolio" *ngIf="sellData">
     <div class="container">
         <div class="heading-text">
-            <h1 class="pb-2 heading s-head-p">Products Portfolio</h1>
+            <h1 class="pb-2 heading s-head-p">{{'Sell_on_emdad.Product_Portfolio' | translate}}</h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-2 offset-md-0 col-md-6 col-sm-6 col-xs-6 col-12  custom-row" *ngFor="let item of sellData.sale_on_emdad_portfolio; let i=index">
@@ -129,7 +129,7 @@
 <section class="how-to-sell">
     <div class="container">
         <div class="heading-text">
-            <h1 class="pb-2 heading s-head">How to Sell on EMDAD</h1>
+            <h1 class="pb-2 heading s-head">{{'Sell_on_emdad.How_to_Sell' | translate}}</h1>
         </div> 
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-xs-12 col-12">
@@ -145,7 +145,7 @@
     <div class="container">
 
         <div class="heading-text">
-            <h1 class="pb-2 heading text-center">Our Partners</h1>
+            <h1 class="pb-2 heading text-center">{{'Nav.Our_Partners'|translate}}</h1>
             <p class="subheading">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 Ipsum
                 has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
