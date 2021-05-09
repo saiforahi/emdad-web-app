@@ -7,6 +7,7 @@ import { CountryListService } from 'src/app/shared/services/country-list.service
 import { HighlightSpanKind } from 'typescript';
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-subscription-plan-page',
@@ -43,7 +44,8 @@ export class SubscriptionPlanPageComponent implements OnInit {
     private countryService: CountryListService,
     private router: Router,
     private authService: UserAuthService,
-    private subscription: SubscriptionService
+    private subscription: SubscriptionService,
+    private spinner:NgxSpinnerService
   ) {
     this.authService.s_uId.subscribe((s_uid) => {
       console.log(s_uid);
@@ -149,84 +151,93 @@ export class SubscriptionPlanPageComponent implements OnInit {
   }
   
   proceedToPay() {
-    this.fees = this.planList[this.selectedPlanId].fees;
-    this.total_paid_amount = this.fees;
-    this.subscription_plan = this.planList[this.selectedPlanId].id;
-    if (this.couponDiscount) {
-      this.total_paid_amount -= this.couponDiscount;
-      this.discount_amount = this.couponDiscount;
+    if(this.planList[this.selectedPlanId]!=undefined){
+      this.spinner.show()
+      this.fees = this.planList[this.selectedPlanId].fees;
+      this.total_paid_amount = this.fees;
+      this.subscription_plan = this.planList[this.selectedPlanId].id;
+      if (this.couponDiscount) {
+        this.total_paid_amount -= this.couponDiscount;
+        this.discount_amount = this.couponDiscount;
+      }
+      let response = {
+        fees: this.fees,
+        payment_type: this.payment_type,
+        payment_status: 0,
+        total_paid_amount: this.total_paid_amount,
+        discount_amount: this.discount_amount,
+        seller: this.seller,
+        subscription_plan: this.subscription_plan,
+        discount_coupon: this.discount_coupon,
+        created_by: this.created_by,
+      };
+      this.subscription
+        .subscribeToPlan(
+          response.fees,
+          response.payment_type,
+          response.payment_status,
+          response.total_paid_amount,
+          response.discount_amount,
+          response.seller,
+          response.subscription_plan,
+          response.discount_coupon,
+          response.created_by
+        )
+        .subscribe(
+          (data) => {
+            localStorage.setItem('temp_subscription_id', data.id);
+            this.order
+              .add_payment({
+                tran_type: 'sale',
+                cart_description: 'sale',
+                cart_id: '400000000000001',
+                cart_currency: 'SAR',
+                cart_amount: this.total_paid_amount,
+                customer_details: {
+                  name: this.user.store_name,
+                  email: this.user.email,
+                  phone: this.user.phone,
+                  street1: this.user.store_address,
+                  city: this.user.city.name,
+                  state: 'DU',
+                  country: this.user.country.iso2,
+                  zip_code: this.user.zip_code,
+                  ip: '127.0.0.1',
+                },
+              })
+              .subscribe(
+                (success) => {
+                  console.log(success)
+                  localStorage.setItem(
+                    'payment_add_response',
+                    JSON.stringify(success)
+                  );
+                  // localStorage.setItem(
+                  //   'subscription_data',
+                  //   JSON.stringify(response)
+                  // );
+                  // console.log(
+                  //   'subscription_add_response',
+                  //   JSON.parse(localStorage.getItem('subscription_add_response'))
+                  // );
+                  window.location.href = success.redirect_url;
+                  //console.log(this.user);
+                },
+                (gateWayErr) => {
+                  console.log(gateWayErr);
+                  this.spinner.hide()
+                  swal('Failed','Payment Gateway Error','error')
+                }
+            );
+          },
+          (err) => {
+            console.log(err);
+            this.spinner.hide()
+          }
+      );
     }
-    let response = {
-      fees: this.fees,
-      payment_type: this.payment_type,
-      payment_status: 0,
-      total_paid_amount: this.total_paid_amount,
-      discount_amount: this.discount_amount,
-      seller: this.seller,
-      subscription_plan: this.subscription_plan,
-      discount_coupon: this.discount_coupon,
-      created_by: this.created_by,
-    };
-    this.subscription
-      .subscribeToPlan(
-        response.fees,
-        response.payment_type,
-        response.payment_status,
-        response.total_paid_amount,
-        response.discount_amount,
-        response.seller,
-        response.subscription_plan,
-        response.discount_coupon,
-        response.created_by
-      )
-      .subscribe(
-        (data) => {
-          localStorage.setItem('temp_subscription_id', data.id);
-          this.order
-            .add_payment({
-              tran_type: 'sale',
-              cart_description: 'sale',
-              cart_id: '400000000000001',
-              cart_currency: 'SAR',
-              cart_amount: this.total_paid_amount,
-              customer_details: {
-                name: this.user.store_name,
-                email: this.user.email,
-                phone: this.user.phone,
-                street1: this.user.store_address,
-                city: this.user.city.name,
-                state: 'DU',
-                country: this.user.country.iso2,
-                zip_code: this.user.zip_code,
-                ip: '127.0.0.1',
-              },
-            })
-            .subscribe(
-              (success) => {
-                console.log(success)
-                localStorage.setItem(
-                  'payment_add_response',
-                  JSON.stringify(success)
-                );
-                // localStorage.setItem(
-                //   'subscription_data',
-                //   JSON.stringify(response)
-                // );
-                // console.log(
-                //   'subscription_add_response',
-                //   JSON.parse(localStorage.getItem('subscription_add_response'))
-                // );
-                window.location.href = success.redirect_url;
-                //console.log(this.user);
-              },
-              (gateWayErr) => {
-                console.log(gateWayErr);
-              }
-          );
-        },
-        (err) => {
-          console.log(err);
-        }
-    );
+    else{
+      swal('No Plan is chosen','Please choose a plan','warning')
+    }
   }
 }

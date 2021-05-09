@@ -96,7 +96,9 @@ export class BuyerQuotationViewComponent implements OnInit {
       (success)=>{
         this.spinner.hide()
         console.log(success)
-        swal('Accepted!','Quotation Accepted','success')
+        swal('Accepted!','Quotation Accepted','success').then(()=>{
+          this.check_out()
+        })
       },
       (error)=>{
         this.spinner.hide()
@@ -104,6 +106,21 @@ export class BuyerQuotationViewComponent implements OnInit {
     )
   }
 
+  close_quotation(){
+    this.spinner.show()
+    this.quotationService.updateQuotationStatus(this.data.quoteDetails.id, {
+      status:4
+    }).subscribe(
+      (success)=>{
+        this.spinner.hide()
+        console.log(success)
+        //swal('Accepted!','Quotation Accepted','success')
+      },
+      (error)=>{
+        this.spinner.hide()
+      }
+    )
+  }
   check_out(){
     let cart:Cart=new Cart()
     localStorage.removeItem('cart')
@@ -194,7 +211,7 @@ export class BuyerQuotationViewComponent implements OnInit {
             }],
             total_items: 1
           };
-
+          this.close_quotation()
           localStorage.setItem('cart_items', JSON.stringify(cart_items));
           localStorage.setItem('cart_cash', JSON.stringify(cart_cash));
           console.log('cart cash',localStorage.getItem('cart_cash'));
