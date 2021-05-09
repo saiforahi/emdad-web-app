@@ -432,6 +432,15 @@
 },
 "add_manugacturer":{
   "Enter_Manufacterer_Name":"أدخل اسم المُصنع"
+},
+"Sell_on_emdad":{
+  "Login_text": "تسجيل الدخول",
+  "Seller_Confirm": "بائع بالفعل",
+  "Ready_text": "جاهز لتكون بائعًا",
+  "Emdad_Seller": "بائع EMDAD",
+  "How_to_Sell": "كيفية البيع على EMDAD",
+  "Product_Portfolio": "مجموعة المنتجات",
+  "Why_Us":"لماذا نحن"
 }
 
 }

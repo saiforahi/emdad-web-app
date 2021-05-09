@@ -38,7 +38,7 @@ export class SignupPageComponent implements OnInit {
   expDate: AbstractControl;
   country: AbstractControl;
   city: AbstractControl;
-  area: AbstractControl;
+area: AbstractControl;
   zipCode: AbstractControl;
   vatCertificate:AbstractControl;
   commercialRegistrationUpload: AbstractControl;
@@ -50,9 +50,11 @@ export class SignupPageComponent implements OnInit {
   passMatched: boolean = false;
   countryList: any;
   cityList: any;
+  thisDate:any;
   agrreToPolicy: any;
-  sellerRegFormData = new FormData();
-  currentLang:any
+ sellerRegFormData = new FormData();
+  currentLang:any;
+ 
   constructor(
     private authService: UserAuthService,
     private router: Router,
@@ -64,6 +66,7 @@ export class SignupPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   this.thisDate = new Date;
     this.currentLang=this.translate.currentLang
     // document.getElementById('passowrd').addEventListener('paste',function(e){
     //   e.preventDefault()
@@ -84,7 +87,7 @@ export class SignupPageComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}'),Validators.minLength(8)]],
       confPassword: ['', [Validators.required]],
       comAddress: ['', [Validators.required]],
-      comRegistration: [''],
+      comRegistration: ['', [Validators.required]],
       expDate: ['',this.dateValidator],
       country: ['', [Validators.required]],
       city: ['', [Validators.required]],
@@ -255,6 +258,7 @@ export class SignupPageComponent implements OnInit {
       if (!date.isSameOrAfter(today)) {
         return { 'invalidDate': true }
       }
+   
     }
     return null;
   }
