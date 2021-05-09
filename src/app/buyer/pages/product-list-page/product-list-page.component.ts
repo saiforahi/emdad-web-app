@@ -118,6 +118,7 @@ export class ProductListPageComponent implements OnInit {
                     this.selected_child_category_name = element2.name;
                     this.expandedSubCat = element1.id;
                     this.category = element;
+                    console.log('category',this.category)
                   }
                 });
               });
