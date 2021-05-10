@@ -6,6 +6,7 @@ import {QuotationService} from '../../../../shared/services/quotation.service'
 import swal from 'sweetalert'
 import {NgxSpinnerService} from 'ngx-spinner'
 import { CommissionService } from 'src/app/shared/services/commission.services';
+import { FileService } from 'src/app/shared/services/file.service';
 @Component({
   selector: 'app-quotation-view-modal',
   templateUrl: './quotation-view-modal.component.html',
@@ -23,10 +24,11 @@ export class QuotationViewModalComponent implements OnInit {
   attachments: AbstractControl;
   attachment1: AbstractControl;
   attachment2: AbstractControl;
+  attachment_list:Array<any>=[]
   message: AbstractControl;
   img_base_url=config.img_base_url
   commission:any
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder, private commissionService:CommissionService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fileService:FileService,private spinner:NgxSpinnerService, private quoteService:QuotationService, private fb: FormBuilder, private commissionService:CommissionService) {}
 
   ngOnInit(): void {
  
@@ -35,6 +37,8 @@ export class QuotationViewModalComponent implements OnInit {
     this.quoteService.get_seller_quotation_details(this.data.quotation.id).subscribe(
       (success)=>{
         this.details=success.data
+        this.attachment_list.push(this.details.attachment1)
+        this.attachment_list.push(this.details.attachment2)
         console.log('quotation details',this.details)
         if(parseFloat(this.details.product.commission)<=0){
           this.commissionService.getCommission().subscribe(
@@ -82,11 +86,13 @@ export class QuotationViewModalComponent implements OnInit {
 
   removeFile(i:number){
     this.selectedImage.splice(i,1)
+    this.attachment_list.splice(i,1)
   }
 
   handleFileSelect(event) {
     var reader = new FileReader();
     this.selectedImage.push(event.target.files[0]);
+    this.attachment_list.push(event.target.files[0].name)
     console.log(this.selectedImage);
   }
 
@@ -103,7 +109,7 @@ export class QuotationViewModalComponent implements OnInit {
     }
     return '-'
   }
- 
+  
   onClickSubmit(data:any){
     let quoteFormData=new FormData()
     this.spinner.show()
@@ -178,4 +184,22 @@ export class QuotationViewModalComponent implements OnInit {
     let total=parseFloat(this.quoteData.controls['quantity'].value) * parseFloat(this.quoteData.controls['unit_price'].value)
     this.quoteData.controls['total_price'].setValue(total.toFixed(2))
   }
+  get_file_name(path:string){
+    let arr:Array<string>=path.split('/')
+    return arr[arr.length-1]
+  }
+  // download_attachment(index:any) {
+  //   this.fileService.downloadFile().subscribe((response) => {
+  //     // console.log(response);
+  //     let blob: any = new Blob([response], {
+  //       type: 'text/plain;charset=utf-8',
+  //     });
+  //     const url = window.URL.createObjectURL(blob);
+  //     //window.open(url);
+  //     //window.location.href = response.url;
+  //     fileSaver.saveAs(blob, 'ticket.jpg');
+  //   }),
+  //     (error) => console.log('Error downloading the file'),
+  //     () => console.info('File downloaded successfully');
+  // }
 }

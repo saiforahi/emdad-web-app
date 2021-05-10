@@ -82,7 +82,7 @@
           </h5>
           <div class="cart-quote-btn-div">
             <button type="button" [disabled]="
-                addToCart=='false'
+                addToCart=='false' || prodcutDetails.stock_quantity < 1
               " class="add-to-cart-btn" mat-raised-button (click)="add_to_cart()" [ngClass]="addToCart?'add-to-cart-btn':''">
               {{'Buyer_Product_Details.Add_to_Cart'|translate}}
             </button>

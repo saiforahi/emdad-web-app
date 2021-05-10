@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography" *ngIf="rfqDetailsData">
     <app-rfq-modal-product-description [rfqDetailData]="rfqDetailAll"></app-rfq-modal-product-description>
-    <div class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">{{'Seller_RFQ.Make_Quote'|translate}}</button></div>
+    <div *ngIf="data.rfqDetails.status==1" class="quote-btn-div"><button mat-flat-button class="quote-button" (click)="showQuote()" *ngIf="btnShow">{{'Seller_RFQ.Make_Quote'|translate}}</button></div>
 
 
     <div class="quote-form container" *ngIf="isShown">

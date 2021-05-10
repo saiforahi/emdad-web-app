@@ -122,7 +122,7 @@ export class BuyerQuotationViewComponent implements OnInit {
     )
   }
   check_out(){
-    let cart:Cart=new Cart()
+    // let cart:Cart=new Cart()
     localStorage.removeItem('cart')
     swal({
       title: "Do you want to buy this product now?",
@@ -151,9 +151,7 @@ export class BuyerQuotationViewComponent implements OnInit {
         this.spinner.show()
         console.log('checking out...')
         let orders_details=[]
-        console.log('deli meth',this.product.delivery_method)
           let commission:number=this.get_commission_amount()
-          console.log('commission',commission)
           // if(Number(this.product.commission)>0){
           //   commission= parseFloat(this.product.unit_price) * (parseFloat(this.product.commission)/100)
           // }
