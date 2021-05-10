@@ -73,11 +73,11 @@ export class ManageRfqComponent implements OnInit {
        this.rfqTableData=[]
        this.rfq.get_seller_quotation_list().subscribe(item => {
         item.data.forEach((element:any) => {
-          if(parseFloat(element.status)<2){
+          if(parseFloat(element.status)<5){
             this.rfqTableData.push(element);
           }
         });
-       
+        console.log('rfqs',this.rfqTableData)
         //this.rfqTableData = item.data;
        
       })

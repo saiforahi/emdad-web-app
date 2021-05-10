@@ -93,14 +93,14 @@
                             </app-form-input-alert>
                         </div>
                         <!--FILE UPLOAD-->
-                        <label *ngIf="selectedImage.length<2" for="attachments" class="custom-file-upload float-left mr-2">
+                        <label *ngIf="attachment_list.length<2" for="attachments" class="custom-file-upload float-left mr-2">
                             <input  id="attachments" class="form-control" type="file" formControlName="attachments"
                                 (change)="handleFileSelect($event);" />
                         </label>
                         <!--Attached file show-->
                         <ul class="attached-file">
-                            <li *ngFor="let file of selectedImage; let i = index;">
-                                {{file.name}}
+                            <li *ngFor="let file of attachment_list; let i = index;">
+                                <span>{{get_file_name(file)}}</span>
                                 <button mat-mini-fab (click)="removeFile(i);">
                                     <mat-icon>close</mat-icon>
                                 </button>

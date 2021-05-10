@@ -53,7 +53,7 @@ export class ViewDialogueComponent implements OnInit {
     this.rfqDetailsData = data.rfqDetails;
     this.rfqId = this.rfqDetailsData.id;
     console.log("id", this.rfqId);
-
+    console.log('modal data', data.rfqDetails);
   }
 
   ngOnInit(): void {
