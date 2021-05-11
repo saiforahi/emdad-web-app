@@ -100,13 +100,24 @@ a {
   padding: 20px;
   
 }
-input#expDate{
+/* input#expDate{
   min-height: 1px !important;
-}
+} */
 /* .signup-page{
   background: #e5e5e5;
 } */
-
+input[type="date"]
+{
+    
+  
+    /* Solution 1 */
+     -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em; 
+  
+    /* Solution 2 */
+    /* min-width: 96%; */
+}
 *:focus {
   outline: none;
 }
