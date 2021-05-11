@@ -27,28 +27,28 @@ export class BuyerQuotationViewComponent implements OnInit {
   vatPercentage:any;
   constructor(private fileService: FileService,
     @Inject(MAT_DIALOG_DATA) public data: { quoteDetails: any },private dialogRef: MatDialogRef<any>,private vat:VatService,private productService: GetProductService ,private quotationService: QuotationService, private spinner: NgxSpinnerService, private router: Router) { 
-    this.quotation = data.quoteDetails;
-    this.quote=data.quoteDetails.quotation[data.quoteDetails.quotation.length-1]
-    this.update_data()
-    console.log('quotation detail from modal',this.quotation);
   }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'))
     this.vat.getVat().subscribe((item) => {
       this.vatPercentage = parseFloat(item.data[0].percentage);
+      this.update_data()
     });
   }
 
   update_data(){
-    if(this.quotation.status == 3){
-      this.productService.productDetails(this.quotation.product).subscribe(
-        (success)=>{
-          console.log('product',success.data[0])
-          this.product=success.data[0]
-        }
-      )
-    }
+    this.productService.productDetails(this.data.quoteDetails.product).subscribe(
+      (success)=>{
+        console.log('product',success.data[0])
+        this.product=success.data[0]
+      }
+    )
+    this.quotationService.get_quotation_details(this.data.quoteDetails.id).subscribe(
+      (success)=>{
+        this.quotation=success.data
+        this.quote=success.data.quotation[success.data.quotation.length-1]
+      }
+    )
   }
   download(file_url:string){
     this.fileService.downloadFile(file_url).subscribe((response) => {
@@ -102,13 +102,8 @@ export class BuyerQuotationViewComponent implements OnInit {
         console.log(success)
         
         swal('Accepted!','Quotation Accepted','success').then(()=>{
-          this.productService.productDetails(this.quotation.product).subscribe(
-            (success)=>{
-              console.log('product',success.data[0])
-              this.product=success.data[0]
-              this.check_out()
-            }
-          )
+          this.update_data()
+          this.check_out()
         })
       },
       (error)=>{
