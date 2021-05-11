@@ -210,6 +210,10 @@ export class CheckoutComponent implements OnInit {
           );
           this.add_payment();
         }
+      },
+      (error)=>{
+        this.spinner.hide();
+        swal('Warning','We are currently unable to process your order. Please give a try after sometimes.','warning')
       });
     }
   }
