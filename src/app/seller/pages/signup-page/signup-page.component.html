@@ -268,7 +268,7 @@
                     <input id="comName" class="form-control form-control-md" type="text" formControlName="comName"
                       required placeholder="Raihan Zilani Ltd." />
                   </div>
-                  <div *ngIf="comName.invalid && (comName.dirty || comName.touched || comName.pristine)">
+                  <div *ngIf="comName.invalid && (comName.dirty || comName.touched)">
                     <div *ngIf="comName.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company name is required.'"></app-form-input-alert>
                     </div>
@@ -286,7 +286,7 @@
                     <input id="email" class="form-control form-control-md" type="email" formControlName="email"
                       required placeholder="raihan009@example.com" />
                   </div>
-                  <div *ngIf="email.invalid && (email.dirty || email.touched || email.pristine)">
+                  <div *ngIf="email.invalid && (email.dirty || email.touched )">
                     <div *ngIf="email.errors?.required">
                       <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
                     </div>
@@ -307,7 +307,7 @@
                     <input id="comPhone" class="form-control form-control-md" type="tel" formControlName="comPhone"
                       required placeholder="(480) 555-0103" maxlength="15" />
                   </div>
-                  <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched || comPhone.pristine)">
+                  <div *ngIf="comPhone.invalid && (comPhone.dirty || comPhone.touched)">
                     <div *ngIf="comPhone.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company Phone is required.'"></app-form-input-alert>
                     </div>
@@ -345,7 +345,7 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="password.invalid && (password.dirty || password.touched || password.pristine)">
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
                     <div *ngIf="password.errors?.required">
                       <app-form-input-alert [alertMsg]="'Password is required.'"></app-form-input-alert>
                     </div>
@@ -411,7 +411,7 @@
                     <input id="comAddress" class="form-control form-control-md" type="text" formControlName="comAddress"
                       required placeholder="3517 W. Gray St. Utica, Pennsylvania 57867"/>
                   </div>
-                  <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched || comAddress.pristine)">
+                  <div *ngIf="comAddress.invalid && (comAddress.dirty || comAddress.touched)">
                     <div *ngIf="comAddress.errors?.required">
                       <app-form-input-alert [alertMsg]="'Company address is required.'"></app-form-input-alert>
                     </div>
@@ -430,7 +430,7 @@
                     <input id="comRegistration" class="form-control form-control-md" type="text"
                       formControlName="comRegistration" placeholder="Commercial Registration" required/>
                   </div>
-                  <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched || comRegistration.pristine)">
+                  <div *ngIf="comRegistration.invalid && (comRegistration.dirty || comRegistration.touched)">
                     <div *ngIf="comRegistration.errors?.required">
                       <app-form-input-alert [alertMsg]="'Commercial Registration is required.'">
                       </app-form-input-alert>
@@ -446,9 +446,9 @@
                       <div class="input-group-text"><img src="../../../../assets/icons/Calendar.svg" alt=""></div>
                     </div>
                     <!-- Commercial Registration -->
-                    <input id="expDate" placeholder="dd-mm-yyyy" class="form-control form-control-md" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" type="date"  name="calender" formControlName="expDate" required />
+                    <input id="expDate" placeholder="dd-mm-yyyy" value="thisDate" class="form-control form-control-md" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" type="date"  name="calender" formControlName="expDate" required />
                   </div>
-                  <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched || expDate.pristine)">
+                  <div *ngIf="expDate.invalid && (expDate.dirty || expDate.touched)">
                     <div *ngIf="expDate.errors?.invalidDate">
                       <app-form-input-alert [alertMsg]="'Registration expiration date is invalid,can\'t be a past date.'">
                       </app-form-input-alert>
@@ -479,7 +479,7 @@
                       <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
                     </select>
                   </div>
-                  <div *ngIf="country.invalid && (country.dirty || country.touched || country.pristine)">
+                  <div *ngIf="country.invalid && (country.dirty || country.touched )">
                     <div *ngIf="country.errors?.required">
                       <app-form-input-alert [alertMsg]="'Country is required.'"></app-form-input-alert>
                     </div>
@@ -500,7 +500,7 @@
                       <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
                     </select>
                   </div>
-                  <div *ngIf="city.invalid && (city.dirty || city.touched || city.pristine)">
+                  <div *ngIf="city.invalid && (city.dirty || city.touched)">
                     <div *ngIf="city.errors?.required">
                       <app-form-input-alert [alertMsg]="'City is required.'"></app-form-input-alert>
                     </div>

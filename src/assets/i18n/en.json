@@ -46,7 +46,8 @@
         "Price":"Price",
         "Search_Result":"Search Result",
         "Items":"items",
-        "Clear":"Clear All"
+        "Clear":"Clear All",
+        "Verify_pay":"Verifying Payment"
     },
     "Buyer_Profile":{
         "Header":"My Profile"

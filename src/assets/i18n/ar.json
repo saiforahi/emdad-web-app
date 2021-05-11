@@ -45,7 +45,8 @@
     "Price": "السعر",
     "Search_Result": "نتيجة البحث",
     "Items": "الفئات الشائعة",
-    "Clear": "امسح الكل"
+    "Clear": "امسح الكل",
+    "Verify_pay":"التحقق من الدفع"
   },
   "Buyer_Profile": {
     "Header": "ملفي"
