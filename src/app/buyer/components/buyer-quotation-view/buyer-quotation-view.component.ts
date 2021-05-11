@@ -100,7 +100,16 @@ export class BuyerQuotationViewComponent implements OnInit {
       (success)=>{
         this.spinner.hide()
         console.log(success)
-        swal('Accepted!','Quotation Accepted','success')
+        
+        swal('Accepted!','Quotation Accepted','success').then(()=>{
+          this.productService.productDetails(this.quotation.product).subscribe(
+            (success)=>{
+              console.log('product',success.data[0])
+              this.product=success.data[0]
+              this.check_out()
+            }
+          )
+        })
       },
       (error)=>{
         this.spinner.hide()
@@ -128,7 +137,7 @@ export class BuyerQuotationViewComponent implements OnInit {
     localStorage.removeItem('cart')
     swal({
       title: "Do you want to buy this product now?",
-      text: "You Can buy it later also...",
+      text: "Once you proceed to check out this quotation will be closed",
       icon: "warning",
       buttons: {
         cancel: {

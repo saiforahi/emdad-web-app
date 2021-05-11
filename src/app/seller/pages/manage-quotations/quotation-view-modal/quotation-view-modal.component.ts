@@ -139,8 +139,18 @@ export class QuotationViewModalComponent implements OnInit {
       quoteFormData.append('attachment2',this.selectedImage[0]);
     }
     else if (this.details.attachment1 == null && this.details.attachment2 == null && this.selectedImage.length == 0) {
-      quoteFormData.append("attachment1", this.details.attachment1);
-      quoteFormData.append("attachment2", this.details.attachment2)
+      if(this.details.attachment1!=null){
+        quoteFormData.append("attachment1", this.details.attachment1)
+      }
+      else{
+        quoteFormData.append("attachment1", '')
+      }
+      if(this.details.attachment2!=null){
+        quoteFormData.append("attachment2", this.details.attachment2)
+      }
+      else{
+        quoteFormData.append("attachment2", '')
+      }
     }
     for (var pair of Object.entries(quoteFormData)) {
       console.log(pair[0]+ ', ' + pair[1]); 
