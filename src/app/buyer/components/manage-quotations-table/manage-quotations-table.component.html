@@ -99,8 +99,9 @@
       (page)="getPaginatorData($event)"
       showFirstLastButtons
     ></mat-paginator>
-    <div class="no-data"
-      *ngIf="quotationData == undefined || quotationData == null || quotationData?.length == 0">
+    <div
+      class="no-data"
+      *ngIf="quotationData == undefined || quotationData == null">
     {{'Buyer_Order_History.No_Data' | translate}}
     </div>
   </div>
