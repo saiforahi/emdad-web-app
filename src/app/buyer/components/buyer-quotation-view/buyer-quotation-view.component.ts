@@ -208,7 +208,7 @@ export class BuyerQuotationViewComponent implements OnInit {
             orders_details: orders_details,
             tracking_order: [{
               seller: this.product.seller.id,
-              product: this.quotation.product,
+              product: this.quotation.product.id,
               status: 1,
               order_created_by: localStorage.getItem('uid'),
               order_creation_date: new Date().toLocaleDateString(),
