@@ -332,12 +332,24 @@ export class ProductDetailsPageComponent implements OnInit {
   plus()
   {
    this.inputnumber = this.inputnumber+1;
+   if(this.inputnumber <= parseInt(this.prodcutDetails.stock_quantity)){
+    this.addToCart='true'
+  }
+  else{
+    this.addToCart='false'
+  }
   }
   minus()
   {
     if(this.inputnumber != 0)
   {
    this.inputnumber = this.inputnumber-1;
+   if(this.inputnumber <= parseInt(this.prodcutDetails.stock_quantity)){
+     this.addToCart='true'
+   }
+   else{
+     this.addToCart='false'
+   }
   }
   
   }
