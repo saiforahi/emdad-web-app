@@ -157,11 +157,29 @@ export class ViewDialogueComponent implements OnInit {
       );
     }
     else if (this.rfqDetailsData.attachment1 == null && this.rfqDetailsData.attachment2 == null && this.selectedImage.length == 0) {
-      this.prodRfqFormData.append("attachment1", this.rfqDetailsData.attachment1);
-      this.prodRfqFormData.append("attachment2", this.rfqDetailsData.attachment2)
+      if(this.rfqDetailsData.attachment1!=null){
+        this.prodRfqFormData.append("attachment1", this.rfqDetailsData.attachment1);
+      }
+      else{
+        this.prodRfqFormData.append("attachment1",'');
+      }
+      if(this.rfqDetailsData.attachment2!=null){
+        this.prodRfqFormData.append("attachment2", this.rfqDetailsData.attachment2);
+      }
+      else{
+        this.prodRfqFormData.append("attachment2",'');
+      }
     }
 
     console.log('files',this.selectedImage)
+    this.prodRfqFormData.forEach(data=>{
+      if(typeof(data) == 'object'){
+        
+      }
+      else{
+        console.log(data)
+      }
+    })
     this.quoteDetails.updateQuotationSeller(this.rfqId, this.prodRfqFormData).subscribe(
       (res) => {
         console.log(res);
