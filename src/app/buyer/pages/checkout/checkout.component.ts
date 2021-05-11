@@ -57,7 +57,7 @@ export class CheckoutComponent implements OnInit {
       left: 0,
       behavior: 'smooth',
     });
-  
+    console.log(localStorage.getItem('token'))
     this.countryListService.allCountries().subscribe((response) => {
       this.countries = [...response.data];
       console.log(this.countries);

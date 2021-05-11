@@ -174,7 +174,7 @@ export class BuyerQuotationViewComponent implements OnInit {
               //pickup_address:product.delivery_method ===1?'':product.pickup_address[0]?.id,
               vat_amount:(this.quotation.quotation[this.quotation.quotation.length-1].total_price * (this.vatPercentage / 100)).toFixed(2),
               commission:commission.toFixed(2),
-              product:this.quotation.product
+              product:this.product.id
             })
           }
           else{
