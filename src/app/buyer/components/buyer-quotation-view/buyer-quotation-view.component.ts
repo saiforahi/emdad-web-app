@@ -29,14 +29,7 @@ export class BuyerQuotationViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { quoteDetails: any },private dialogRef: MatDialogRef<any>,private vat:VatService,private productService: GetProductService ,private quotationService: QuotationService, private spinner: NgxSpinnerService, private router: Router) { 
     this.quotation = data.quoteDetails;
     this.quote=data.quoteDetails.quotation[data.quoteDetails.quotation.length-1]
-    if(this.quotation.status == 3){
-      this.productService.productDetails(this.quotation.product).subscribe(
-        (success)=>{
-          console.log('product',success.data[0])
-          this.product=success.data[0]
-        }
-      )
-    }
+    this.update_data()
     console.log('quotation detail from modal',this.quotation);
   }
 
@@ -45,6 +38,17 @@ export class BuyerQuotationViewComponent implements OnInit {
     this.vat.getVat().subscribe((item) => {
       this.vatPercentage = parseFloat(item.data[0].percentage);
     });
+  }
+
+  update_data(){
+    if(this.quotation.status == 3){
+      this.productService.productDetails(this.quotation.product).subscribe(
+        (success)=>{
+          console.log('product',success.data[0])
+          this.product=success.data[0]
+        }
+      )
+    }
   }
   download(file_url:string){
     this.fileService.downloadFile(file_url).subscribe((response) => {
@@ -96,9 +100,7 @@ export class BuyerQuotationViewComponent implements OnInit {
       (success)=>{
         this.spinner.hide()
         console.log(success)
-        swal('Accepted!','Quotation Accepted','success').then(()=>{
-          this.check_out()
-        })
+        swal('Accepted!','Quotation Accepted','success')
       },
       (error)=>{
         this.spinner.hide()
@@ -144,7 +146,7 @@ export class BuyerQuotationViewComponent implements OnInit {
           closeModal: true
         }
       },
-      dangerMode: true,
+      dangerMode: false,
     })
     .then((willDelete) => {
       if (!willDelete) {
@@ -158,7 +160,7 @@ export class BuyerQuotationViewComponent implements OnInit {
           // else{
           //   commission= parseFloat(this.product.unit_price) * (parseFloat(localStorage.getItem('commission'))/100)
           // }
-          if(this.product.delivery_method ===1){
+          if(this.product.delivery_method == 1){
             orders_details.push({
               quantity:this.quotation.quotation[this.quotation.quotation.length-1].quantity,
               unit_price:this.quotation.quotation[this.quotation.quotation.length-1].unit_price,
