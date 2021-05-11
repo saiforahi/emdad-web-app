@@ -250,11 +250,13 @@ export class CheckoutComponent implements OnInit {
     doc.setFontSize(12);
     for (let index = 0; index < this.admin_bank_info.length; index++) {
       // console.log(this.img_base_url + this.orders[index].product.image1);
-      doc.text('Account Name: ' + this.admin_bank_info[index].account_name, 20, 55 + index * 40);
-      // doc.text('Account Number'+this.admin_bank_info[index].account_number, 20, 65 + index * 40);
-      // doc.text('Bank Name' + this.admin_bank_info[index].bank_name, 20, 55 + index * 40);
-      // doc.text('Bank Address ' + this.admin_bank_info[index].bank_address, 20, 55 + index * 40);
-      // doc.text('Swift Code ' + this.admin_bank_info[index].swift_code, 20, 55 + index * 40);
+      doc.text('Account Name: ' + this.admin_bank_info[index].account_name, 20, 55 + index * 100);
+      doc.text('Account Number'+this.admin_bank_info[index].account_number, 20, 65 + index * 100);
+      doc.text('Bank Name' + this.admin_bank_info[index].bank_name, 20, 75 + index * 100);
+      doc.text('Bank Address ' + this.admin_bank_info[index].bank_address, 20, 85 + index * 100);
+      doc.text('Swift Code ' + this.admin_bank_info[index].swift_code, 20, 95 + index * 100);
+      doc.text('' + this.admin_bank_info[index].swift_code, 20, 105 + index * 100);
+      doc.text('' + this.admin_bank_info[index].swift_code, 20, 115 + index * 100);
       //doc.text()
     }
     doc.save('Bank_Details.pdf');

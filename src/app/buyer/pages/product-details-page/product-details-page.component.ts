@@ -21,7 +21,7 @@ import { VatService } from 'src/app/shared/services/vat.service';
   styleUrls: ['./product-details-page.component.css'],
 })
 export class ProductDetailsPageComponent implements OnInit {
-  inputnumber:number = 1;
+  inputnumber:number = 0;
   productId;
   prodcutDetails;
   sliderImgArray;
