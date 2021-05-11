@@ -66,6 +66,7 @@ area: AbstractControl;
   ) {}
 
   ngOnInit(): void {
+   /*  if ($('#expDate')[0].type != 'date') $('#expDate').datepicker(); */
    this.thisDate = new Date;
     this.currentLang=this.translate.currentLang
     // document.getElementById('passowrd').addEventListener('paste',function(e){
@@ -184,7 +185,7 @@ area: AbstractControl;
       this.cityList = item.data;
     })
   }
-
+ 
   matchBothPassord(pass1, pass2){
     console.log(pass1, pass2);
     if(pass1 != pass2){
