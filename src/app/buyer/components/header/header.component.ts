@@ -275,6 +275,9 @@ export class HeaderComponent implements OnInit {
     else if(this.notifications[index].event == 'RFQ'){
       this.router.navigate(['/profile'],{queryParams:{activeItem:'4'}})
     }
+    else if(this.notifications[index].event == 'New quotation'){
+      this.router.navigate(['/profile'],{queryParams:{activeItem:'4'}})
+    }
     else if(this.notifications[index].event== 'ticket.notification'){
       this.router.navigate(['/support-ticket'])
     }
