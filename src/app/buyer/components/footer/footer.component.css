@@ -153,7 +153,7 @@ footer .footer-link-div .list-group-item {
 
 
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 992px) {
   footer {
     padding: 30px 0 0;
   }
@@ -226,12 +226,16 @@ footer .footer-link-div .list-group-item {
     padding-left: 0;
   }
   footer .social-links .icon-holder button {
-    font-size: 20px;
-    height: 60px;
-    width: 60px;
-   
+    font-size: 15px;
+    height: 40px;
+    width: 40px;
   }
-  .footer-link-div ul {
+::ng-deep .mat-fab .mat-button-wrapper {
+    padding: 9px 0 !important;
+    display: inline-block;
+    line-height: 24px;
+}
+ .footer-link-div ul {
     margin-bottom: 25px;
   }
   .footer-link-div ul .list-group-item {
@@ -242,8 +246,16 @@ footer .footer-link-div .list-group-item {
   }
   .copyright {
     height: 60px;
-    line-height: 60px;
-    font-size: 12px;
+    font-size: 14px;
+line-height: 60px;
+  }
+  .link-head{
+    font-size: 18px;
+line-height: 26px;
+  }
+  .list-group-item a {
+    font-size: 14px !important;
+line-height: 20px !important;
   }
 }
 @media all and (min-width:290px) and (max-width:599px){

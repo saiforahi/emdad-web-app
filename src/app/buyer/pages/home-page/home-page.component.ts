@@ -47,6 +47,7 @@ export class HomePageComponent implements OnInit {
     this.categoryServices.category().subscribe((item) => {
       this.removeEmptyChildren(item);
       this.categories = item;
+      console.log("cats",this.categories);
     });
     this.categoryServices.PopularCategory().subscribe((item) => {
       this.popularCategories = item.data[0];

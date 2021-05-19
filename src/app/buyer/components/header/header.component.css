@@ -448,7 +448,7 @@ button:focus {
   }
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 992px) {
   .d-sx-none {
     display: none;
   }
@@ -569,6 +569,9 @@ button:focus {
   .navbar-brand img {
     height: 50px;
   }
+  .all-cat{
+
+  }
   .user-name-holder {
     margin: 0 15px;
   }
@@ -607,6 +610,29 @@ button:focus {
   app-search-for ::ng-deep .ng-autocomplete .autocomplete-container .suggestions-container ul li a {
     font-size: 16px;
     padding: 15px;
+}
+.navbar-light #navbarSupportedContent2 .navbar-nav .nav-link{
+  font-weight: 500;
+font-size: 16px;
+line-height: 23px;
+}
+.sell-emdad-link{
+  font-size:16px;
+  line-height: 23px;
+}
+.secondary-menu{
+  height: 60px;
+  margin-top: 80px;
+}
+nav{
+  height:80px;
+}
+.dropdown-menu{
+  top:60px;
+}
+.all-cat{
+  font-size: 16px !important;
+  line-height: 23px !important;
 }
 }
 

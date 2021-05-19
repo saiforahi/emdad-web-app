@@ -71,7 +71,7 @@
     <!-- <app-popular-products></app-popular-products> -->
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
 </section>
-<section class="container">
+<section class="container list-show">
     <div class="product-list-header popular-cat-div-sm">
         {{'Home.Popular_Categories' | translate}}
     </div>
@@ -85,17 +85,17 @@
                             <img src="../../../assets/popular-cat.svg" alt="">
                             <img src="../../../assets/popular-cat-dark.svg" alt="">
                             <span
-                                class="d-sx-none d-sm-none d-md-none d-lg-block">{{category.name}}</span>
+                                class="d-sx-none d-sm-none d-md-none d-lg-block cat-lg">{{category.name | titlecase}}</span>
                         </div>
-                        <p class="popular-cat-sm d-md-block d-lg-none">{{category.name}}</p>
+                        <p class="popular-cat-sm d-md-block d-lg-none">{{category.name | titlecase}}</p>
                     </a>
                 <!-- </span>
             </span> -->
         </div>
     </div>
 </section>
-<section class="container">
-    <div class="product-list-header" style="padding-bottom: 40px;">
+<section class="container recent-prods">
+    <div class="product-list-header">
         {{'Home.Recent_Products' | translate}}
     </div>
     <app-product-list [products]="products" [prodEnd]="prodEnd" [prodInRow6]="prodInRow6"></app-product-list>
