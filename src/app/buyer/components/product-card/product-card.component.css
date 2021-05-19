@@ -161,7 +161,7 @@ mat-card:hover button {
   }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 991px) {
+@media only screen and (min-width: 576px) and (max-width: 992px) {
   img {
     height: 110px;
   }
@@ -195,6 +195,24 @@ mat-card:hover button {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   img {
     height: 150px;
+  }
+  .product-name{
+font-family: Jost;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+  }
+  .product-price{
+    font-family: Jost;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 23px;
+  }
+  .price-ext-text,.store-name{
+    font-size: 14px;
+line-height: 20px;
   }
 }
 

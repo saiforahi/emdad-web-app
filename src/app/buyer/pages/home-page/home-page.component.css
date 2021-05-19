@@ -264,7 +264,7 @@ button:focus {
   }
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 992px) {
   .d-sx-none {
     display: none;
   }
@@ -341,7 +341,7 @@ button:focus {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 992px) {
   .banner {
     height: 220px !important;
   }
@@ -363,16 +363,18 @@ button:focus {
   .search-holder h2 {
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: 32px;
+line-height: 46px;
   }
   .product-list-header {
     padding: 30px 0 0;
     font-size: 24px;
   }
   .cat-round-bg {
-    width: 120px;
-    height: 120px;
-    padding: 15px;
+    width: 124px;
+    height: 124px;
+    padding: 30px;
 }
   .cat-round-bg img {
     height: 40px;
@@ -407,18 +409,20 @@ button:focus {
     width: calc(100% - 55px);
     font-size: 16px;
     margin-top: 0px;
+    overflow-wrap: break-word;
   }
   .product-list-header {
-    padding-bottom: 0 !important;
+    padding-bottom: 35px !important;
+    font-size: 32px;
+line-height: 46px;
+  }
+  .list-show{
+    padding-top: 40px !important;
   }
   .view-more-btn-div {
     padding: 30px 0 30px;
   }
-  .view-more-btn-div button {
-    height: 40px;
-    font-size: 22px;
-    padding: 0 35px;
-  }
+
   app-search-for ::ng-deep .ng-autocomplete .autocomplete-container {
     width: 380px;
   }
@@ -430,6 +434,22 @@ button:focus {
   }
   app-search-for ::ng-deep button {
     height: 90px;
+  }
+  .cat-lg{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .recent-prods{
+    padding-bottom: 45px !important;
+  }
+  .view-more-btn-div button {
+    font-size: 16px;
+line-height: 23px;
+height: 48px;
+padding: 0 35px;
+  }
+  .view-more-btn-div button img{
+    height: 5px;
   }
 }
 
