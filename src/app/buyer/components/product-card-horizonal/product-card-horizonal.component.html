@@ -27,7 +27,7 @@
                         </p>
                         <!--If pick up address not specified-->
                         <p class="store-name color-fix loca" *ngIf="product.pickup_address?.length == 0">
-                            {{'Buyer_Product_Details.Not_Specified'|translate}}
+                           ({{'Buyer_Product_Details.Not_Specified'|translate}})
                         </p>
                         <!--If pick up address specified-->
                         <p class="pickup" *ngIf="product.pickup_address?.length > 0;"><span
@@ -46,7 +46,7 @@
             <!-- <mat-divider vertical class="float-right"></mat-divider> -->
             <div class="col-md-5 justify-content-center mt-3 float-right">
                 <div class="justify-content-center">
-                    <p><strong class="sar-text">SAR
+                    <p class="price-view"><strong class="sar-text">SAR
                             {{get_unit_price(product.commission,product.unit_price)|number:'1.0-0'}}</strong><span class="each-span">/ each</span></p>
                 </div>
                 <div class="row justify-content-between p-3 mt-3">
