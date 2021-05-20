@@ -220,7 +220,7 @@
                     <!-- </ul> -->
                     <label for="prodImage" class="custom-file-upload" *ngIf="imgPreviewList.length < 2">
                         <input id="prodImage" class="form-control form-control-md" type="file"
-                            formControlName="prodImage" (change)="handleImgSelect($event);" />
+                            formControlName="prodImage" (change)="handleImgSelect($event);" accept="image/*" />
                     </label>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                 <div class="form-group">
                     <label class="d-block">{{'Seller_Upload_Product.Product_Attachments'|translate}}</label>
                     <label for="attachments" class="custom-file-upload mr-3" *ngIf="selectedFiles.length < 3">
-                        <input id="attachments" class="form-control form-control-md" type="file" accept="image/x-png,image/gif,image/jpeg"
+                        <input id="attachments" class="form-control form-control-md" type="file" accept="image/*,.pdf,.doc,.docx"
                             formControlName="attachments" (change)="handleFileSelect($event);" />
                     </label>
                     <ul class="attached-file pl-0">

@@ -3,26 +3,51 @@
         <div class="row">
             <div class="col-md-7 border-right">
                 <div class="media">
-                    <a [routerLink]="['/product/details/', product.id]"><img class="mr-3 prod-img" *ngIf="product.image1 != null"
-                        [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage"
-                        alt="product image">
+                    <a [routerLink]="['/product/details/', product.id]"><img class="mr-3 prod-img"
+                            *ngIf="product.image1 != null"
+                            [lazyLoad]="this.img_base_url+slice_image_url(product.image1)" [defaultImage]="defaultImage"
+                            alt="product image">
                     </a>
-                    
+
                     <div class="media-body">
-                        <a style="cursor: pointer; text-decoration: none;" [routerLink]="['/product/details/', product.id]" class="product-name">
+                        <a style="cursor: pointer; text-decoration: none;"
+                            [routerLink]="['/product/details/', product.id]" class="product-name">
                             {{product.name | slice:0:40}}{{product.name.length>40?'...':''}}
                         </a>
                         <p class="store-name">{{product.seller.full_name | titlecase}}</p>
-                        <p class="stock"><span>{{'Buyer_Product_Details.Stock'|translate}} :</span> {{product.stock_quantity>0?product.stock_quantity:0}}</p>
-                        <p class="product-price">SAR {{ get_unit_price(product.commission,product.unit_price) }}</p>
-                        <p class="pickup"><span>{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> {{product.pickup_address[0]?.address}}</p>
+                        <p class="stock"><span>{{'Buyer_Product_Details.Stock'|translate}} :</span>
+                            {{product.stock_quantity>0?product.stock_quantity:0}}</p>
+                        <!--days for ddp or ex works-->
+                            <p class="product-price">{{product.delivery_method===1?' '+product.ddp_lead_time+' days
+                            DDP':''+product.ex_works_lead_time+' days Ex-Works'}}</p>
+                       <!--If pick up address specified-->
+                            <p class="store-name color-fix loca" *ngIf="product.pickup_address?.length > 0">(<span
+                                *ngFor="let address of product.pickup_address;let i=index">{{address.address}}<span
+                                    *ngIf="i!=product.pickup_address.length-1">,</span></span>)
+                        </p>
+                        <!--If pick up address not specified-->
+                        <p class="store-name color-fix loca" *ngIf="product.pickup_address?.length == 0">
+                            {{'Buyer_Product_Details.Not_Specified'|translate}}
+                        </p>
+                        <!--If pick up address specified-->
+                        <p class="pickup" *ngIf="product.pickup_address?.length > 0;"><span
+                                class="bold-watch">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> <span
+                                *ngIf="
+                            product.pickup_address?.length > 0;">{{product.pickup_address[0]?.address}}</span>
+                        </p>
+                        <!--If pick up address not specified-->
+                        <p class="pickup" *ngIf="product.pickup_address?.length == 0;"><span
+                                class="bold-watch">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> <span
+                                *ngIf="product.pickup_address?.length == 0;">{{'Buyer_Product_Details.Not_Specified'|translate}}
+                            </span></p>
                     </div>
                 </div>
             </div>
             <!-- <mat-divider vertical class="float-right"></mat-divider> -->
             <div class="col-md-5 justify-content-center mt-3 float-right">
                 <div class="justify-content-center">
-                    <p><strong class="sar-text">SAR {{get_unit_price(product.commission,product.unit_price)|number:'1.0-0'}}</strong> / each</p>
+                    <p><strong class="sar-text">SAR
+                            {{get_unit_price(product.commission,product.unit_price)|number:'1.0-0'}}</strong><span class="each-span">/ each</span></p>
                 </div>
                 <div class="row justify-content-between p-3 mt-3">
                     <div class="col-sm-12 col-md-12 col-xl-4" style="width: 100%;">
@@ -32,12 +57,15 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12 col-xl-8 button-div">
-                        <button type="button" [disabled]="addToCart=='false'" mat-raised-button class="add-to-cart" (click)="prod_qty>0?add_to_cart(product):''">{{'Buyer_Product_Details.Add_to_Cart'|translate}}</button>
+                        <button type="button" [disabled]="addToCart=='false'" mat-raised-button class="add-to-cart"
+                            (click)="prod_qty>0?add_to_cart(product):''">{{'Buyer_Product_Details.Add_to_Cart'|translate}}</button>
                     </div>
                 </div>
                 <div class="p-3">
-                    <button type="button" [disabled]="addToCart=='true'" class="btn btn-block request-btn align-self-center"
-                        [routerLink]="['/rfq/',product.id]"><img src="assets/file_plus.svg" /> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}</button>
+                    <button type="button" [disabled]="addToCart=='true'"
+                        class="btn btn-block request-btn align-self-center" [routerLink]="['/rfq/',product.id]"><img
+                            src="assets/file_plus.svg" />
+                        {{'Buyer_Product_Details.Request_for_Quotation'|translate}}</button>
                 </div>
             </div>
         </div>

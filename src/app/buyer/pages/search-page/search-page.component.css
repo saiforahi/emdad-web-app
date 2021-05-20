@@ -382,7 +382,30 @@ nav {
     display: none;
   }
 }
-
+@media only screen and (min-width:992px) and (max-width:1200px){
+  .cat-header,.cat-head{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .expanded-div{
+    font-size: 14px;
+    line-height: 20px;
+     
+  }
+  .view-more-btn-div button {
+    font-size: 16px;
+line-height: 23px;
+height: 48px;
+padding: 0 35px;
+  }
+  .view-more-btn-div button img{
+    height: 5px;
+  }
+  .no-prod{
+font-size: 16px;
+line-height: 23px;
+  }
+}
 @media only screen and (max-width: 991px) {
   .large-menu {
     display: none;
