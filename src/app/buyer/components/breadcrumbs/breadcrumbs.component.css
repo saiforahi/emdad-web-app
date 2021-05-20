@@ -28,6 +28,8 @@
   font-weight: normal;
   font-size: 30px;
   line-height: 60px;
+  
+
 }
 
 .serach-result {
@@ -80,7 +82,7 @@ select:focus {
           box-shadow: 0px 2px 1px rgb(0 0 0 / 30%);
 }
 a {
-  color: #454f63;
+  color: #2B2B2B !important;
   text-decoration: none !important;
 }
 @media only screen and (min-width: 1200px) {
@@ -114,7 +116,7 @@ a {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .breadcrumbs {
     height: 70px;
     margin: 0px 0 20px;
@@ -122,7 +124,7 @@ a {
   }
   .url {
     font-size: 18px;
-    line-height: 30px;
+    line-height: 25px;
   }
   button {
     width: 30px;
@@ -130,5 +132,13 @@ a {
     min-width: 30px;
     line-height: 22px;
     padding: 0;
+  }
+  .serach-result,.clear{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  #list_btn,#grid_btn{
+    height: 35px;
+    width:35px;
   }
 }

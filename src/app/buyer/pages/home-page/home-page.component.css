@@ -451,6 +451,10 @@ padding: 0 35px;
   .view-more-btn-div button img{
     height: 5px;
   }
+  .no-prod{
+font-size: 16px;
+line-height: 23px;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
