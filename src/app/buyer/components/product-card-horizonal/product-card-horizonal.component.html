@@ -30,15 +30,15 @@
                            ({{'Buyer_Product_Details.Not_Specified'|translate}})
                         </p>
                         <!--If pick up address specified-->
-                        <p class="pickup" *ngIf="product.pickup_address?.length > 0;"><span
-                                class="bold-watch">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> <span
+                        <p class="pickup" *ngIf="product.pickup_address?.length > 0 && product.delivery_method===2;"><span
+                                class="bold-watch">{{'Buyer_Product_Details.Pickup_Location'|translate}}: </span> <span
                                 *ngIf="
                             product.pickup_address?.length > 0;">{{product.pickup_address[0]?.address}}</span>
                         </p>
                         <!--If pick up address not specified-->
-                        <p class="pickup" *ngIf="product.pickup_address?.length == 0;"><span
-                                class="bold-watch">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span> <span
-                                *ngIf="product.pickup_address?.length == 0;">{{'Buyer_Product_Details.Not_Specified'|translate}}
+                        <p class="pickup" *ngIf="product.pickup_address?.length > 0 && product.delivery_method===1;"><span
+                                class="bold-watch">{{'Buyer_Product_Details.DDP_Dest'|translate}}: </span> <span
+                                *ngIf="product.pickup_address?.length> 0;">{{product.pickup_address[0]?.address}}
                             </span></p>
                     </div>
                 </div>

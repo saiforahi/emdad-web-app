@@ -180,6 +180,8 @@ mat-expansion-panel-header.mat-expanded {
 h4.store-name-header {
   padding: 40px 0;
   text-align: center;
+  font-size: 48px;
+  line-height: 69px;
 }
 
 nav {
@@ -268,7 +270,7 @@ padding-bottom: 60px;
   margin: 8px;
 }
 
-@media only screen and (min-width: 300px) and (max-width: 991px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .seller-menu.navbar-expand-lg .navbar-collapse {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -409,8 +411,49 @@ padding-bottom: 60px;
     width: 50px !important;
   }
 }
+@media only screen and (min-width:992px) and (max-width:1200px){
+  .view-more-btn-div button {
+    font-size: 16px;
+line-height: 23px;
+height: 48px;
+padding: 0 35px;
+  }
+  .view-more-btn-div button img{
+    height: 5px;
+  }
+  .no-prod{
+font-size: 16px;
+line-height: 23px;
+}
+.cat-header,.cat-head{
+  font-size: 16px;
+  line-height: 23px;
+}
+.expanded-div,::ng-deep .mat-checkbox-label{
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-family: Jost !important;
+   
+}
+.banner{
+  height: 250px !important;
+}
+h4.store-name-header{
+  font-size: 30px;
+line-height: 38px;
+}
+.store-name-lg{
+  font-size: 14px;
+line-height: 20px;
+}
+.large-menu{
 
-@media only screen and (max-width: 991px) {
+  font-size: 14px;
+line-height: 20px;
+}
+
+}
+@media only screen and (max-width: 992px) {
   .large-menu {
     display: none;
   }

@@ -192,7 +192,7 @@ mat-card:hover button {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   img {
     height: 150px;
   }
@@ -213,6 +213,17 @@ line-height: 23px;
   .price-ext-text,.store-name{
     font-size: 14px;
 line-height: 20px;
+  }
+  mat-card button {
+
+    height: 35px;
+    width: 35px;
+  }
+  mat-card button img {
+    height: 15px;
+  }
+  ::ng-deep .mat-fab .mat-button-wrapper {
+    padding: 4px 0 !important;
   }
 }
 

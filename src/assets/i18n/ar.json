@@ -408,7 +408,8 @@
   "Submit_Review":"إرسال رأيك",
   "Seller_Description": "إزالة من قائمة الرغبات",
   "Brand_Name": "اسم المصنع",
-  "Your_Review": "مراجعتك"
+  "Your_Review": "مراجعتك",
+  "DDP_Dest": "وجهة DDP"
 },
 "Privacy_Policy":{
   "Privacy": "سياسة الخصوصية",
