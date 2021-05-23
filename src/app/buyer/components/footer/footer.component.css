@@ -141,6 +141,8 @@ footer .footer-link-div .list-group-item {
 }
 .list-group-item a.no-hyper,.list-group-item a.no-hyper:hover,.list-group-item a.no-hyper:active{
   text-decoration:none !important;
+  cursor: default !important;
+  color: #2C2C2C !important;
 }
 @media only screen and (min-width: 1200px) {
   .container {
@@ -201,19 +203,20 @@ footer .footer-link-div .list-group-item {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   footer {
     padding: 30px 0 0;
   }
   .footer-logo {
-    text-align: left !important;
+    /* text-align: left !important; */
   }
   .footer-logo img {
     height: 70px;
+  
   }
   .slogan {
     font-size: 14px;
-    text-align: left !important;
+    /* text-align: left !important; */
     margin: 20px 0 10px;
   }
   .social-links {

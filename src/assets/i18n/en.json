@@ -416,7 +416,8 @@
         "Submit_Review":"Submit your review",
         "Seller_Description":"Seller Description",
         "Brand_Name":"Manufacturer Name",
-        "Your_Review":"Your Review"
+        "Your_Review":"Your Review",
+        "DDP_Dest":"DDP Destination"
     },
     "Privacy_Policy":{
         "Privacy":"Privacy Policy",
