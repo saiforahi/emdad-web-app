@@ -186,8 +186,44 @@
     font-size: 16px;
   }
 }
+@media only screen and (min-width:992px) and (max-width:1200px){
+  h5.modal-title {
+    font-size: 32px !important;
+    line-height: 46px !important;
+  }
+.modal-body{
+  padding-top: 15px !important;
+  padding-bottom: 10px;
+}
+  .modal-header {
+    margin-top: 20px;
+  }
+  .form-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .form-control{
+    height: 48px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .forget-pass{
+    font-size: 14px;
+line-height: 20px;
 
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
+
+  }
+  .login_btn{
+    height: 48px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .footer{
+    font-size: 13px;
+line-height: 19px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .modal-header {
     margin-top: 20px;
   }

@@ -171,8 +171,8 @@
     font-size: 16px;
     text-align: left;
   }
-  .forget-pass label {
-    float: left !important;
+  .forget-pass>label {
+    float: right !important;
   }
   .login_btn {
     height: 50px;
@@ -189,7 +189,7 @@
 @media only screen and (min-width:992px) and (max-width:1200px){
   h5.modal-title {
     font-size: 32px !important;
-    line-height: 46px i !important;
+    line-height: 46px  !important;
   }
   .modal-body {
     padding: 0;
