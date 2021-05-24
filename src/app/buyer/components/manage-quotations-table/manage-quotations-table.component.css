@@ -46,6 +46,7 @@
 .mat-table {
   background-color: transparent !important;
   padding: 0 20px;
+  font-family: Jost !important;
 }
 
 .card-body {
@@ -97,6 +98,7 @@ td {
   color: rgb(0, 0, 0);
   background-color: inherit;
   border-style: none !important;
+  font-family: Jost !important;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -107,7 +109,9 @@ td {
   background-color: #1f4f9e;
   border-color: #1f4f9e;
 }
-
+.edit-product-btn{
+  font-family: Jost;
+}
 .modal {
   background: rgba(0, 0, 0, 0.9);
 }
@@ -236,6 +240,6 @@ td {
     font-size: 16px;
   }
   td {
-    font-size: 16px;
+    font-size: 14px;
   }
 }

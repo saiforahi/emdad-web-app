@@ -219,3 +219,13 @@ opacity: 0.4;
           display:none;
       }
   }
+  @media all and (min-width:992px) and (max-width:1200px){
+    a,a.active,.name,.deet-light,.deets{
+      font-size: 16px !important;
+      line-height: 23px !important;
+    }
+    label,.form-control,textarea,.accept-btn,.deny-btn{
+      font-size: 16px;
+      line-height: 23px;
+    }
+  }

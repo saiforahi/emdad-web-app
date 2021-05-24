@@ -41,6 +41,7 @@
 .mat-table {
   background-color: transparent !important;
   padding: 0 20px;
+  font-family: Jost !important;
 }
 
 .card-body {
@@ -96,6 +97,7 @@ td {
   color: rgb(0, 0, 0);
   background-color: inherit;
   border-style: none !important;
+  font-family: Jost !important;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -107,7 +109,7 @@ td {
   border-color: #1f4f9e;
 }
 
-@media only screen and (min-width: 300px) and (max-width: 991px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .card-body {
     padding: 0;
     overflow-x: auto;
@@ -146,6 +148,6 @@ td {
     font-size: 16px;
   }
   td {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
