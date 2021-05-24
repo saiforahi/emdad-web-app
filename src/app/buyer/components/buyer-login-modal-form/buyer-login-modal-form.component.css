@@ -27,7 +27,7 @@
 .forget-pass {
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 29px;
   /* identical to box height */
   text-align: right;
@@ -39,7 +39,7 @@
 .modal-title {
   font-style: normal;
   font-weight: 500;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 49px;
   text-align: center;
   /* #2B2B2B */
@@ -58,10 +58,10 @@
 .form-control {
   background: #efefef;
   border-radius: 5px;
-  height: 80px;
+  height: 60px;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 29px;
   border: none;
   color: black;
@@ -85,7 +85,7 @@
 .footer {
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 29px;
   text-align: center;
   color: #2b2b2b;
@@ -113,8 +113,8 @@
 .login_btn {
   background: #1f4f9e;
   border-radius: 5px;
-  height: 80px;
-  margin-top: 44px;
+  height: 60px;
+  margin-top: 55px;
   text-transform: capitalize;
 }
 
@@ -134,12 +134,12 @@
 }
 
 .modal-body {
-  padding: 26px 26px 34px;
+  padding: 4px 0px 0px;
 }
 
 .modal-header {
   border: none;
-  margin-top: 54px;
+  margin-top: 14px;
   margin-bottom: 10px;
 }
 
