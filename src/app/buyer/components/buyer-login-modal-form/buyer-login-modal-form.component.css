@@ -147,9 +147,10 @@
   position: absolute;
   top: 27px;
   right: 35px;
+  
 }
 
-@media only screen and (min-width: 300px) and (max-width: 991px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .modal-header {
     margin-top: 20px;
   }
@@ -185,7 +186,43 @@
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
+@media only screen and (min-width:992px) and (max-width:1200px){
+  h5.modal-title {
+    font-size: 32px !important;
+    line-height: 46px i !important;
+  }
+  .modal-body {
+    padding: 0;
+  }
+  .modal-header {
+    margin-top: 20px;
+  }
+  .form-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .form-control{
+    height: 48px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .forget-pass{
+    font-size: 14px;
+line-height: 20px;
+width: 87px;
+
+  }
+  .login_btn{
+    height: 48px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .footer{
+    font-size: 13px;
+line-height: 19px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .modal-header {
     margin-top: 20px;
   }
