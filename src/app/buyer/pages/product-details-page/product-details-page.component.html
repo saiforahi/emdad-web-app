@@ -36,11 +36,12 @@
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails.pickup_address?.length > 0"  class="pick-address">
-              <i data-target="tooltip" title="{{prodcutDetails.delivery_method===1?'Direct Delivery Product':'Ex-Works'}}" class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
+              <span class="pick-address">Product Delivery Method : {{prodcutDetails.delivery_method===1?'DDP':'Ex-Works'}}</span>
+              <i data-target="tooltip" title="{{prodcutDetails.delivery_method===1?'The Seller will need X days to complete the order and deliver the order to end customer within ':'The Seller will need X days to complete the order and the buyer is responsible for picking up the product from '}}" class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
               (<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)
               <span *ngIf="prodcutDetails.pickup_address?.length == 0">({{'Buyer_Product_Details.Not_Specified'|translate}})</span>
             </p>
-            <p *ngIf="prodcutDetails.pickup_address?.length > 0" class="pick-address">
+            <p *ngIf="prodcutDetails.pickup_address?.length > 0 && prodcutDetails.delivery_method!=1" class="pick-address">
               <span class="bold-pick">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span><span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address }}</span>
               <ng-template *ngIf="
                 prodcutDetails.pickup_address?.length > 0;
