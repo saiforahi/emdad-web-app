@@ -82,7 +82,10 @@
   left: 80px;
   color: #1f4f9e;
 }
-
+.plus-icon >i{
+  color: #ffffff !important;
+  background: #eee;
+}
 .pro-img {
   position: absolute;
   left: 50%;
@@ -183,7 +186,36 @@
     font-size: 16px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
+@media only screen and (min-width:992px) and (max-width:1200px){
+  .col-xs-none {
+    display: none;
+  }
+  .form-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .form-control{
+    font-size: 14px;
+    line-height: 20px;
+    height: 48px;
+    }
+  .login_btn {
+    height: 48px;
+  }
+  .btn{
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .user-img-holder,.user-img-holder img{
+    height: 75px;
+    width: 75px;
+  }
+  .plus-icon{
+    top: 50px;
+    left: 60px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .col-xs-none {
     display: none;
   }
