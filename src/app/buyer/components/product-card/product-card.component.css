@@ -17,11 +17,11 @@ img {
 }
 
 .product-name {
-  margin: 15px 0 5px !important;
+  margin: 0 0 5px !important;
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   color: #2b2b2b;
   text-transform: capitalize;
 }
@@ -30,7 +30,7 @@ img {
   font-family: Jost;
   font-style: normal;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 5px;
   line-height: 29px;
 }
@@ -71,7 +71,7 @@ mat-card:hover .prod-img-div img {
 }
 
 mat-card-content {
-  padding: 16px;
+  padding: 15px 10px;
 }
 
 .wish-icon {
@@ -126,7 +126,7 @@ mat-card:hover button {
     padding: 0 16px 16px;
   }
   .product-name {
-    margin: 10px 0 5px !important;
+    margin: 0 0 5px !important;
     font-size: 12px;
   }
   .product-price {
@@ -169,7 +169,7 @@ mat-card:hover button {
     padding: 0 16px 16px;
   }
   .product-name {
-    margin: 10px 0 5px !important;
+    margin: 0 0 5px !important;
     font-size: 12px;
   }
   .product-price {
