@@ -162,7 +162,7 @@ line-height: 52px;
 text-transform: capitalize;
 color: #2B2B2B;
 }
-.para{
+ .paradies{
   font-family: Jost;
 font-style: normal;
 font-weight: normal;
@@ -318,6 +318,23 @@ border-color: transparent !important;
     max-width: 1600px !important;
   }
 }
+@media all and (min-width:290px) and (max-width:430px){
+  .login-holder button{
+    float: none !important;
+  }
+  .login-holder > a{
+    display: inline-block !important;
+    clear: both;
+  }
+}
+@media all and (min-width:290px) and (max-width:371px){
+  .s-head{
+    height: 95px;
+  }
+  .s-head-p{
+    height: 60px;
+  }
+}
 @media all and (min-width:290px) and (max-width:600px){
 img.mat-card-image{
 height: 150px;
@@ -358,7 +375,7 @@ height: 150px;
   font-size: 28px;
   line-height: 40px;
 }
-.para{
+.paradies{
   font-size: 15px;
   line-height: 22px;
 }
@@ -372,6 +389,54 @@ height: 150px;
 .second-row{
   padding-top: 40px;
 }
+}
+@media all and (min-width:290px) and (max-width:768px){
+  .login-holder > a{
+
+    
+  }
+  .login-holder{
+    padding: 25px;
+    background: #F49814 url("../../../../assets/sell-on-emdad-login-bg.svg")
+    no-repeat 60%;
+  }
+  
+}
+@media all and (min-width:290px) and (max-width:992px){
+  .register-holder{
+    display: none;
+  }
+  .register-holder-mobile{
+    display: block !important;
+    background: -webkit-gradient(linear, right top, left top, color-stop(12.5%, rgba(255, 255, 255, 0.12)), color-stop(46.88%, #F7F7F7), color-stop(60.53%, rgba(249, 251, 251, 0.05)));
+    background: -o-linear-gradient(right, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
+
+  }
+  .heading{
+    text-align: center !important;
+  }
+  .heading-text{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .text-div{
+    padding-left: 0;
+  }
+  img.mat-card-image{
+    height: 150px;
+    }
+
+
+}
+
+@media all and (min-width:371px) and (max-width:470px){
+  .s-head{
+    height: 70px;
+  }
+  .s-head-p{
+    height: 60px;
+  }
 }
 @media all and (min-width:600px) and (max-width:992px){
   .login-holder h2{
@@ -410,7 +475,7 @@ height: 150px;
     font-size: 32px;
     line-height: 42px;
   }
-  .para{
+  .paradies{
     font-size: 18px;
     line-height: 25px;
   }
@@ -425,85 +490,93 @@ height: 150px;
     padding-top: 40px;
   }
 }
-@media all and (min-width:992px) and (max-width:1199px){
+@media all and (min-width:768px) and (max-width:992px){
+  .card-text{
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+@media all and (min-width:992px) and (max-width:1200px){
   img.mat-card-image{
     height: 150px;
+  }
+  .login-holder{
+    height: 80px !important;
+  }
+  .login-holder h2{
+    font-size: 32px;
+line-height: 46px;
+
+  }
+  .login-holder button{
+padding: 10px 30px;
+font-size: 18px;
+line-height: 26px;
   }
 .why-us img{
   width: 100%;
 }
 .register-holder{
   padding-left: 30px !important;
-  background: url("../../../../assets/images/seller-image-bg.png") no-repeat 65%;
+ background: url("../../../../assets/images/seller-image-bg.png") no-repeat 65%;
 }
+.register-holder h4{
+  font-size: 32px;
+  line-height: 46px;
 }
-@media all and (min-width:768px) and (max-width:1199px){
-  .card-text{
-    font-size: 22px;
-    line-height: 32px;
-  }
+.register-holder h2{
+font-size: 42px;
+line-height: 60px;
 }
-@media all and (min-width:290px) and (max-width:992px){
-  .register-holder{
-    display: none;
-  }
-  .register-holder-mobile{
-    display: block !important;
-    background: -webkit-gradient(linear, right top, left top, color-stop(12.5%, rgba(255, 255, 255, 0.12)), color-stop(46.88%, #F7F7F7), color-stop(60.53%, rgba(249, 251, 251, 0.05)));
-    background: -o-linear-gradient(right, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
-    background: linear-gradient(270deg, rgba(255, 255, 255, 0.12) 12.5%, #F7F7F7 46.88%, rgba(249, 251, 251, 0.05) 60.53%);
-
-  }
-  .heading{
-    text-align: center !important;
-  }
-  .heading-text{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .text-div{
-    padding-left: 0;
-  }
-  img.mat-card-image{
-    height: 150px;
-    }
-
-
+.register-holder p{
+  font-size: 14px;
+line-height: 20px;
 }
-@media all and (min-width:290px) and (max-width:430px){
-  .login-holder button{
-    float: none !important;
-  }
-  .login-holder > a{
-    display: inline-block !important;
-    clear: both;
-  }
+.us-img{
+  height: 274px !important;
 }
-@media all and (min-width:371px) and (max-width:470px){
-  .s-head{
-    height: 70px;
-  }
-  .s-head-p{
-    height: 60px;
-  }
+.text-div{
+  padding-top: 0;
 }
-@media all and (min-width:290px) and (max-width:371px){
-  .s-head{
-    height: 95px;
-  }
-  .s-head-p{
-    height: 60px;
-  }
+.heading{
+  font-size: 24px;
+line-height: 35px;
 }
-@media all and (min-width:290px) and (max-width:768px){
-  .login-holder > a{
-
-    
-  }
-  .login-holder{
-    padding: 25px;
-    background: #F49814 url("../../../../assets/sell-on-emdad-login-bg.svg")
-    no-repeat 60%;
-  }
+.paradies,.paradies > span,.subheading{
+  font-size: 14px !important;
+  line-height: 24px !important;
+}
+.s-head,.s-head-p{
+  height: 60px;
+}
+.sell-img{
+  height: 120px;
+}
+img.mat-card-image{
+height: 90px !important;
+max-height: 90px !important;
+min-height: 90px !important;
+}
+.prod-card-text{
+  font-size: 16px;
+  line-height: 24px;
+}
+.card-text{
+      
+  font-size: 16px;
+  line-height: 24px;
+   text-align: center;
+  color: #2B2B2B;
+  padding-bottom: 15px;
+  /* margin-bottom: 10px; */
+  display: inline-block;
   
 }
+.card-img{
+  height: 80px;
+}
+}
+
+
+
+
