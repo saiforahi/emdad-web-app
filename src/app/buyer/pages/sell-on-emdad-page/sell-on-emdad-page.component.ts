@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import{SecurityContext} from '@angular/core';
 import { OurPartnersService } from 'src/app/shared/services/our-partners.service';
 import { SellOnEmdadService } from 'src/app/shared/services/sell-on-emdad.service';
 import { config } from '../../../../config';
@@ -16,6 +17,8 @@ export class SellOnEmdadPageComponent implements OnInit {
   sellData:any;
   whyUs:any;
   partnerArray;
+  textValue: any;
+  normalVal: any;
   constructor(
     private seller : SellOnEmdadService,
     private partners: OurPartnersService,
@@ -35,9 +38,10 @@ export class SellOnEmdadPageComponent implements OnInit {
     this.seller.getSellingData().subscribe((item) =>{
       this.sellData = item.data[0];
       console.log('emdad', this.sellData);
-      this.whyUs = this.sanitizer.bypassSecurityTrustHtml(
-        this.sellData.description
-      );
+      this.normalVal =  this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizer.bypassSecurityTrustHtml(  this.sellData.description));
+      
+     
+   
     })
   }
 

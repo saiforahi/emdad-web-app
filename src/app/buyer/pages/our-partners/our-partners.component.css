@@ -274,11 +274,31 @@ background-position-x: center;
     max-width: 1600px !important;
   }
 }
-@media all and (min-width:290px) and (max-width:992px){
-  .mobile-row{
-    display:none !important; 
+@media all and (min-width:290px) and (max-width:600px){
+  .first-row{
+    display: block !important;
+    -ms-flex-wrap: initial;
+        flex-wrap: initial;
+    padding-bottom: 30px;
+}
+.text-div,.img-div-top{
+  width: 100%;
+  display: block;
+}
+.second-row{
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+.heading-text{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: -10px !important;
+}
+.success-carousel{
+  padding-top: 20px;
 }
 }
+
 @media all and (min-width:290px) and (max-width:430px){
   ::ng-deep ngb-carousel .carousel-indicators li,::ng-deep ngb-carousel .carousel-indicators .active{
   height: 13px !important;
@@ -318,7 +338,7 @@ height: 88px;
   .text-div h1,.head{
 
     font-size: 24px;
-    line-height: 36px;
+    line-height: 35px;
     text-transform: capitalize;
     color: #2B2B2B;
     }
@@ -373,59 +393,7 @@ height: 88px;
         text-align: center;
       }
 }
-@media all and (min-width:768px) and (max-width:1100px){
-  .text-div h1,.head{
-  
-    font-size: 28px;
-    line-height: 42px;
-    text-transform: capitalize;
-    color: #2B2B2B;
-    }
-   .about-para{
-      vertical-align: middle;
-    
-      font-size: 16px;
-      line-height: 24px;
-      color: #2B2B2B;
-      }
-      .subheading{
-     
-        font-size: 16px;
-        line-height: 25px;
-         text-align: center;
-        color: #2B2B2B;
-        padding-bottom: 15px;
-      }
-      .card-text{
-      
-        font-size: 16px;
-        line-height: 24px;
-         text-align: center;
-        color: #2B2B2B;
-        padding-bottom: 15px;
-        /* margin-bottom: 10px; */
-        display: inline-block;
-        
-      }
-      .success-para{
-    
-      font-size: 16px;
-      line-height: 24px;
-      color: #2B2B2B;
-      }
-      .text-head{
- 
-      font-size: 22px;
-      line-height: 28px;
-      color: #2B2B2B;
-      }
-      .text-div{
-        padding-top: 20px;
-        padding-left: 22px;
-        padding-right: 22px;
-      }
-      
-}
+
 
 @media all and (min-width:600px) and (max-width:992px){
   .first-row{
@@ -460,29 +428,90 @@ height: 88px;
   text-align: center;
 }
 }
-@media all and (min-width:290px) and (max-width:600px){
+@media all and (min-width:992px) and (max-width:1200px){
   .first-row{
-    display: block !important;
-    -ms-flex-wrap: initial;
-        flex-wrap: initial;
-    padding-bottom: 30px;
+    display:flex !important;
+    padding-bottom: 10px;
+  }
+  .text-div,.img-div-top{
+    width: 50%;
+    
 }
-.text-div,.img-div-top{
+.img-div-top img{
+  height: 274px;
   width: 100%;
-  display: block;
 }
-.second-row{
-  padding-top: 30px;
-  padding-bottom: 40px;
+.text-div h1,.about-para{
+text-align: left !important;
 }
-.heading-text{
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: -10px !important;
-}
-.success-carousel{
-  padding-top: 20px;
-}
+  .text-div h1,.head{
+  
+    font-size: 24px !important;
+line-height: 35px !important;
+    text-transform: capitalize;
+    color: #2B2B2B;
+    }
+    .img-div-top{
+      padding-top: 15px !important;
+      padding-left: 15px !important;
+      padding-bottom: 15px !important;
+      padding-right: 15px !important;
+      text-align: center;
+  }
+   .about-para{
+      vertical-align: middle;
+    
+      font-size: 14px;
+      line-height: 20px;
+      color: #2B2B2B;
+      }
+      .subheading{
+     
+        font-size: 14px;
+        line-height: 20px;
+         text-align: center;
+        color: #2B2B2B;
+        padding-bottom: 15px;
+      }
+      .card-text{
+      
+        font-size: 16px;
+        line-height: 24px;
+         text-align: center;
+        color: #2B2B2B;
+        padding-bottom: 15px;
+        /* margin-bottom: 10px; */
+        display: inline-block;
+        
+      }
+      .success-para{
+    
+        font-size: 14px;
+        line-height: 20px;
+      color: #2B2B2B;
+      }
+      .text-head{
+ 
+      font-size: 18px;
+      line-height: 25px;
+      color: #2B2B2B;
+      }
+      .text-div{
+        padding-top: 20px;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+      .s-head{
+        height:60px;
+      }
+      ::ng-deep ngb-carousel .carousel-indicators li,::ng-deep ngb-carousel .carousel-indicators .active{
+        height: 13px !important;
+        width: 13px !important;
+        background-size: 10px !important;
+        
+      }
+     
+      
 }
 @media all and (min-width:1399px){
   .text-div h1,.head{

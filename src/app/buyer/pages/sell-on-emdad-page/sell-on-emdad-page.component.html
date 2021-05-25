@@ -47,13 +47,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-6 col-xs-12 col-sm-12 col-12">
-                <img src="{{base_url + sellData.image}}" alt="group" class="img-fluid w-100 h-100">
+                <img src="{{base_url + sellData.image}}" alt="group" class="img-fluid us-img w-100 h-100">
             </div>
             <div class="col-md-12 col-lg-6 col-xs-12 col-sm-12 col-12">
                 <div class="text-div">
                     <h1 class="heading pb-2">{{'Sell_on_emdad.Why_Us'| translate}}</h1>
-                    <p class="para" [innerHTML]="whyUs">
-                    </p>
+                    <div class="paradies">{{normalVal| htmltoPlain}}
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -134,7 +135,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-xs-12 col-12">
                <div class="img-div mt-3">
-                <img src="../../../../assets/how-to-sell.png" alt="" class="img-fluid">
+                <img src="../../../../assets/how-to-sell.png" alt="" class="img-fluid sell-img">
             </div>
             </div>
         </div>
