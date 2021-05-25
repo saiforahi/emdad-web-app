@@ -270,7 +270,8 @@ export class SearchPageComponent implements OnInit {
                   temp.push(item)
                 }
               })
-              this.products = [...this.products, ...temp];
+              //this.products = [...this.products, ...temp];
+              this.products = [...temp];
               console.log('products', this.products);
             });
         });
@@ -280,7 +281,8 @@ export class SearchPageComponent implements OnInit {
         this.searchService
           .filter_products('search=' + params.query + query)
           .subscribe((item) => {
-            this.products = [...this.products, ...item.data.results];
+            //this.products = [...this.products, ...item.data.results];
+            this.products = [...item.data.results];
             console.log('products', this.products);
             window.scrollTo(0, 50);
           });
