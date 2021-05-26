@@ -44,7 +44,8 @@ export class ProductDetailsPageComponent implements OnInit {
   uid: any;
   vatPercentage:number=0
   location:any
-  addToCart:any='true'
+  addToCart:any='true';
+  imgNavShow:boolean = false;
   constructor(
     private getProduct: GetProductService,
     private route: ActivatedRoute,
@@ -92,6 +93,9 @@ export class ProductDetailsPageComponent implements OnInit {
         config.img_base_url + item.data[0].image1,
         config.img_base_url + item.data[0].image2,
       ];
+      if (this.prodcutDetails.image2 != null && this.prodcutDetails.image1 !=null ){
+        this.imgNavShow = true;
+      }
       console.log(this.prodcutDetails);
       this.getProduct.getProductByCategory(this.prodcutDetails.category.id).subscribe((item) => {
           this.relatedProducts = item.data.results;
@@ -123,8 +127,8 @@ export class ProductDetailsPageComponent implements OnInit {
    
   }
 
-  scroll_to_reviews(element_id: string) {
-    this.viewportScroller.scrollToAnchor(element_id);
+  scroll_to_reviews(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
   nextImg() {
@@ -281,12 +285,18 @@ export class ProductDetailsPageComponent implements OnInit {
       this.sliceMinValue = 0;
       this.sliceMaxValue = 4;
       // console.log(this.sliceMinValue, this.sliceMaxValue);
-    } else if (this.screenWidth >= 992) {
-      this.sliderClassName = 'col-lg-2';
-      this.itemToshow = 6;
+    } else if (this.screenWidth >= 992 && this.screenWidth <= 1199) {
+      this.sliderClassName = 'col-lg-3';
+      this.itemToshow = 4;
       this.sliceMinValue = 0;
-      this.sliceMaxValue = 6;
+      this.sliceMaxValue = 4;
       // console.log(this.sliceMinValue, this.sliceMaxValue);
+    }
+    else if (this.screenWidth >= 1200){
+      this.sliderClassName= 'col-xl-2';
+      this.itemToshow = 6;
+      this.sliceMinValue =0 ;
+      this.sliceMaxValue = 6;
     }
   }
 
