@@ -107,14 +107,6 @@
             <span>{{'Buyer_Product_Details.Brand_Name'|translate}}: </span>
             {{prodcutDetails.brand.name | titlecase}}
           </p>
-          <p class="brand-name" *ngIf="prodcutDetails?.size != null">
-            <span>{{'Seller_Upload_Product.Size'|translate}}: </span>
-            {{prodcutDetails.size | titlecase}}
-          </p>
-          <p class="brand-name" *ngIf="prodcutDetails?.unit != null">
-            <span>{{'Seller_RFQ.Unit_Of_Measurement'|translate}}: </span>
-            {{prodcutDetails.unit.name | titlecase}}
-          </p>
           <p class="prod-details-header" *ngIf="prodcutDetails?.description">
             <span>{{'Buyer_Product_Details.Product_Details'|translate}}: </span>
             <span class="border-bottom-75"></span>
