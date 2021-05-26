@@ -11,7 +11,7 @@
             <pinch-zoom>
               <img class="prod-img img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img" />
             </pinch-zoom>
-            <div class="slider-btn-div">
+            <div class="slider-btn-div" *ngIf="imgNavShow">
               <button type="button" mat-raised-button (click)="prevImg()" [disabled]="prevBtnDisabled">
                 <img src="../../../assets/left-arrow.svg" alt="" />
               </button>
@@ -29,17 +29,18 @@
               (click)="removeFromWishlist(prodcutDetails.id)">
               <img src="../../../assets/wish_filledup.svg" alt="" />{{'Buyer_Product_Details.Remove_Wishlist'|translate}}
             </button>
-            <button type="button" class="mb-3" type="button" mat-button (click)="scroll_to_reviews('reviews')">
-              <img src="../../../assets/review-icon.svg" alt="" />{{'Buyer_Product_Details.Customer_Review'|translate}}
-              <span>({{ totalComments }})</span>
+            <button type="button" class="mb-3 review-btn" type="button" mat-button (click)="scroll_to_reviews(reviews)">
+              <img src="../../../assets/review-icon.svg" alt="" />{{'Buyer_Product_Details.Customer_Review'|translate}} ({{ totalComments }})
+             
             </button>
           </div>
           <div class="prod-delivery-info">
             <p *ngIf="prodcutDetails.pickup_address?.length > 0"  class="pick-address">
-              <span class="pick-address">Product Delivery Method : {{prodcutDetails.delivery_method===1?'DDP':'Ex-Works'}}</span>
-              <i data-target="tooltip" title="{{prodcutDetails.delivery_method===1?'The Seller will need X days to complete the order and deliver the order to end customer within ':'The Seller will need X days to complete the order and the buyer is responsible for picking up the product from '}}" class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
-              (<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)
-              <span *ngIf="prodcutDetails.pickup_address?.length == 0">({{'Buyer_Product_Details.Not_Specified'|translate}})</span>
+              <span class="pick-address prob">Product Delivery Method : {{prodcutDetails.delivery_method===1?'DDP':'Ex-Works'}} </span>
+              <i data-target="tooltip" class="show-method" title="{{prodcutDetails.delivery_method===1?'The Seller will need X days to complete the order and deliver the order to end customer within ':'The Seller will need X days to complete the order and the buyer is responsible for picking up the product from '}}" class="fas fa-info-circle"></i> {{prodcutDetails.delivery_method===1?'('+prodcutDetails.ddp_lead_time+') days DDP':'('+prodcutDetails.ex_works_lead_time+') days Ex-Works'}}
+              <span *ngIf="prodcutDetails.delivery_method===1">({{prodcutDetails.ddp_destination}})</span>
+              <span *ngIf="prodcutDetails.delivery_method ==2">(<span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address}}<span *ngIf="i!=prodcutDetails.pickup_address.length-1">,</span></span>)</span>
+
             </p>
             <p *ngIf="prodcutDetails.pickup_address?.length > 0 && prodcutDetails.delivery_method!=1" class="pick-address">
               <span class="bold-pick">{{'Buyer_Product_Details.Pickup_Location'|translate}} </span><span *ngFor="let address of prodcutDetails.pickup_address;let i=index">{{address.address }}</span>
@@ -106,11 +107,19 @@
             <span>{{'Buyer_Product_Details.Brand_Name'|translate}}: </span>
             {{prodcutDetails.brand.name | titlecase}}
           </p>
+          <p class="brand-name" *ngIf="prodcutDetails?.size != null">
+            <span>{{'Seller_Upload_Product.Size'|translate}}: </span>
+            {{prodcutDetails.size}}
+          </p>
+          <p class="brand-name" *ngIf="prodcutDetails?.unit.name != null">
+            <span>{{'Seller_Product_Categories.Unit_of_measurement'|translate}}: </span>
+            {{prodcutDetails.unit.name}}
+          </p>
           <p class="prod-details-header" *ngIf="prodcutDetails?.description">
             <span>{{'Buyer_Product_Details.Product_Details'|translate}}: </span>
             <span class="border-bottom-75"></span>
           </p>
-          <p *ngIf="prodcutDetails?.description">{{ prodcutDetails.description }}</p>
+          <p *ngIf="prodcutDetails?.description" class="prod-desc">{{ prodcutDetails.description }}</p>
         </div>
       </div>
     </div>
@@ -131,20 +140,21 @@
           </div>
         </div>
       </div>
+      
+    </div>
+  </div>
+  <div class="reviews-holder" #reviews>
+    <div class="container">
       <div class="similar-prod-header">
         <h4>{{'Buyer_Product_Details.Reviews'|translate}}</h4>
       </div>
-    </div>
-  </div>
-  <div class="reviews-holder">
-    <div class="container">
       <div *ngIf="commentlist?.length">
         <div class="comment-div" *ngFor="let comment of commentlist">
           <p class="commenter-name mb-0">
-            <b>{{ comment.buyer.full_name | titlecase}}</b>
+            {{ comment.buyer.full_name | titlecase}}
           </p>
           <span><i class="far fa-clock"></i> {{ comment.created_at | date }}</span>
-          <p>
+          <p class="commenting">
             {{ comment.comment }}
           </p>
           <hr />
@@ -171,7 +181,7 @@
       
       <div class="comment-div">
         <p class="seller-head mb-0" *ngIf="prodcutDetails">
-         {{ prodcutDetails.seller.store_name | titlecase }}
+         {{ prodcutDetails.seller.store_name|titlecase }}
         </p>
       <p class="seller-desc" *ngIf="prodcutDetails.seller.seller_description">{{prodcutDetails.seller.seller_description}}</p>
       </div>

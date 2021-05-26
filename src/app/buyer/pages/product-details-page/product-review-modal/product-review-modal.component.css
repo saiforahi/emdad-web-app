@@ -62,7 +62,7 @@
 .form-label {
   font-size: 12px;
 }
-@media all and (min-width:290px) and (max-width:767px){
+@media all and (min-width:290px) and (max-width:768px){
   .modal-title{
     font-size:28px;
     line-height: 36px;
@@ -74,11 +74,27 @@
     line-height: 20px;
   }
 }
-/* @media all and (min-width:992px) and (max-width:1199px){
-  .modal{
-    min-width: 600px;
-  }
+@media all and (min-width:992px) and (max-width:1200px){
+ .modal-title{
+  font-size: 32px;
+  line-height: 46px;
+ }
+ .form-control{
+  font-size: 14px;
+   line-height: 20px;
+ }
+ .modal-content{
+   padding-left: 20px;
+   padding-right: 20px;
+ }
+.login_btn{
+  font-size: 16px;
+line-height: 23px;
+width: 180px;
+height: 48px;
 }
+}
+/* 
 @media all and (min-width:1200px){
   .modal-content{
     min-width: 900px;
