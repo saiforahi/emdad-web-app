@@ -17,13 +17,13 @@ a {
 }
 
 nav {
-  height: 120px;
+  height: 80px;
   background: #f4f4f4 !important;
   padding: 0;
 }
 
 .navbar-brand img {
-  height: 80px;
+  height: 50px;
 }
 
 .navbar-expand-lg .navbar-collapse {
@@ -47,7 +47,7 @@ nav {
 
 .navbar-light #navbarSupportedContent2 .navbar-nav .nav-link {
   font-family: Jost;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 26px;
@@ -215,11 +215,11 @@ app-search-for ::ng-deep button {
 }
 
 .secondary-menu {
-  height: 80px;
+  height: 60px;
   background: rgba(255, 255, 255, 0.85) !important;
   -webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.05);
-  margin-top: 120px;
+  margin-top: 80px;
   z-index: 1001;
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
@@ -298,8 +298,8 @@ button:focus {
   font-family: Jost, Roboto, "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
-  line-height: 29px;
+  font-size: 18px;
+  line-height: 24px;
   text-align: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

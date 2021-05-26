@@ -43,9 +43,9 @@
               <span><span class="mobile-name">{{'Seller_RFQ.Created'|translate}}:</span> {{ item.created_at | date :'mediumDate' }}</span>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 col-12 value">
-              <span *ngIf="item.rfq[0].status == true">{{'Buyer_Quotation_History.Sent'|translate}}</span>
-              <span *ngIf="item.rfq[0].status == false">{{'Buyer_Quotation_History.Completed'|translate}}</span>
-              <span *ngIf="item.rfq[0].status == null"> - </span>
+              <span *ngIf="item.rfq[0].comments == 'replied'">{{'Buyer_Quotation_History.Sent'|translate}}</span>
+              <span *ngIf="item.rfq[0].comments == 'completed'">{{'Buyer_Quotation_History.Completed'|translate}}</span>
+              <span *ngIf="item.rfq[0].comments == 'initiated'"> - </span>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12 value">
               <span><span class="mobile-name">{{'Seller_RFQ.Buyer'|translate}} :</span> {{item.buyer.full_name}}</span>

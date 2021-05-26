@@ -94,21 +94,26 @@ export class BuyerQuotationViewComponent implements OnInit {
   }
   confirm_quotation(){
     this.spinner.show()
-    this.quotationService.updateQuotationStatus(this.data.quoteDetails.id, {
-      status:3
-    }).subscribe(
+    this.quotationService.updateRfq(this.data.quoteDetails.rfq[0].id,{status:1,comments:"completed"}).subscribe(
       (success)=>{
-        this.spinner.hide()
-        console.log(success)
-        
-        swal('Accepted!','Quotation Accepted','success').then(()=>{
-          this.update_data()
-          this.check_out()
-        })
+        this.quotationService.updateQuotationStatus(this.data.quoteDetails.id, {
+          status:3
+        }).subscribe(
+          (success)=>{
+            this.spinner.hide()
+            console.log(success)
+            
+            swal('Accepted!','Quotation Accepted','success').then(()=>{
+              this.update_data()
+              this.check_out()
+            })
+          },
+          (error)=>{
+            this.spinner.hide()
+          }
+        )
       },
-      (error)=>{
-        this.spinner.hide()
-      }
+      (error)=>{}
     )
   }
 

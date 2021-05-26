@@ -69,7 +69,7 @@
         <th mat-header-cell *matHeaderCellDef>{{'Buyer_Quotation_History.Status' | translate}}</th>
         <td mat-cell *matCellDef="let element">
           <span *ngIf="element.status == 1">{{'Buyer_Quotation_History.Initiated' | translate}}</span>
-          <span *ngIf="element.status == 2">{{'Buyer_Quotation_History.Sent' | translate}}</span>
+          <span *ngIf="element.status == 2">{{'Buyer_Quotation_History.Quotation_Received' | translate}}</span>
           <span *ngIf="element.status == 3">{{'Buyer_Quotation_History.Completed' | translate}} </span>
           <span *ngIf="element.status == 4"> {{'Buyer_Quotation_History.Closed' | translate}}</span>
           <span *ngIf="element.status == null"> - </span>

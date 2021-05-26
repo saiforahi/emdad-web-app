@@ -93,7 +93,7 @@ export class QuotationService {
     return this.http.post(config.base_url + 'api/rfq/update/status/'+id+'/',data,this.httpOptions)
   }
   updateRfqSeller(id:any,data:any): Observable<any> {
-    return this.http.post(config.base_url + 'api/rfq/update/status/'+id+'/',{status:data},this.sellerHttpOptions)
+    return this.http.post(config.base_url + 'api/rfq/update/status/'+id+'/',data,this.sellerHttpOptions)
   }
 
   updateQuotationStatus(id:any,data:any): Observable<any> {

@@ -183,9 +183,13 @@ export class ViewDialogueComponent implements OnInit {
     this.quoteDetails.updateQuotationSeller(this.rfqId, this.prodRfqFormData).subscribe(
       (res) => {
         console.log(res);
-        this.spinner.hide()
-        swal('Succeed', "Submitted Quotation Successfully", 'success');
-
+        this.quoteDetails.updateRfqSeller(this.data.rfqDetails.rfq[0].id,{comments:"replied",status:1}).subscribe(
+          (success)=>{
+            this.spinner.hide()
+            swal('Succeed', "Submitted Quotation Successfully", 'success');
+          },
+          (error)=>{}
+        )
       },
       (err) => {
         console.error(err);
