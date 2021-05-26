@@ -87,6 +87,7 @@
         "Status":"Status",
         "Initiated":"Initiated",
         "Sent":"Sent",
+        "Quotation_Received":"Quotation Received",
         "Completed":"Completed",
         "Closed":"Closed",
         "Qunatity":"Qunatity",
@@ -333,7 +334,7 @@
     },
     "Buyer_Support_Ticket":{
         "Title":"Raise A Support Ticket",
-        "New_Ticket":"Open a new ticket",
+        "New_Ticket":"Open a New Ticket",
         "Ticket_ID":"Ticket ID",
         "Subject":"Subject",
         "Description":"Description",
