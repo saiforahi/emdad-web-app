@@ -20,7 +20,7 @@
             </p>
             <p class="card-point">
               <span class="mr-1 left-point">Stock:</span>
-              <span class="stock-value">{{ productData.stock_quantity }}</span>
+              <span class="stock-value">{{ productData.stock_quantity>0 ? productData.stock_quantity:'0'}}</span>
             </p>
           </div>
         </div>
