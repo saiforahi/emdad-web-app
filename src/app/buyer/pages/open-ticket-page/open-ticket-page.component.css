@@ -237,11 +237,7 @@ padding: 20px 150px;
 margin-top: 15px;
 }
 /* reponsive -_- :( */
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
-}
+
 @media all and (min-width:299px) and (max-width:600px){
 
   
@@ -289,6 +285,28 @@ margin-top:10px;
    display:none ;
  }
 }
+@media all and (min-width:290px) and (max-width:992px){
+  .step-card{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .open-ticket{
+    background: #E5E5E5;
+    padding-bottom: 30px;
+  }
+
+}
+@media all and (min-width:599px) and (max-width:768px){
+  .add-m{
+    margin-top: 10px;
+  }
+   .removeImageButton{
+     margin-left:-2px;
+   }
+   .no-show{
+     display:none ;
+   }
+ }
 @media all and (min-width:600px) and (max-width:992px){
   .para{
     font-size: 18px;
@@ -306,30 +324,51 @@ margin-top:10px;
     padding: 20px 60px;
   }
 }
-@media all and (min-width:290px) and (max-width:992px){
-  .step-card{
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .open-ticket{
-    background: #E5E5E5;
-    padding-bottom: 30px;
-  }
 
-}
 @media all and (min-width:768px) and (max-width:992px){
 .add-m{
   margin-top:10px;
 }
 }
-@media all and (min-width:599px) and (max-width:768px){
- .add-m{
-   margin-top: 10px;
- }
-  .removeImageButton{
-    margin-left:-2px;
+@media all and (min-width:992px) and (max-width:1200px){
+  .head{
+    font-size: 32px;
+    line-height: 46px;
   }
-  .no-show{
-    display:none ;
+  p.para{
+    font-size: 14px !important;
+    line-height: 20px !important;
   }
+label,.form-control{
+  font-size: 14px;
+  line-height: 20px;
 }
+.form-control{
+  height: 48px;
+}
+.alert-danger{
+  font-size: 14px;
+  line-height: 20px;
+}
+.imageUploadButton,.attached-file img{
+  height: 50px;
+  width: 50px;
+}
+.mat-mini-fab{
+  width: 25px;
+  height: 25px;
+}
+.login_btn{
+  font-size: 16px;
+  line-height: 23px;
+  padding: 15px 40px;
+  margin-top: 10px;
+}
+
+
+}
+/* @media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1600px !important;
+  }
+} */

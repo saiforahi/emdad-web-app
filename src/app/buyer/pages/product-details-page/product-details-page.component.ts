@@ -293,10 +293,10 @@ export class ProductDetailsPageComponent implements OnInit {
       // console.log(this.sliceMinValue, this.sliceMaxValue);
     }
     else if (this.screenWidth >= 1200){
-      this.sliderClassName= 'col-xl-2';
-      this.itemToshow = 6;
+      this.sliderClassName= 'col-xl-3';
+      this.itemToshow = 4;
       this.sliceMinValue =0 ;
-      this.sliceMaxValue = 6;
+      this.sliceMaxValue = 4;
     }
   }
 
