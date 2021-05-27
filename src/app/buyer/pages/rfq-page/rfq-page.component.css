@@ -168,11 +168,7 @@ float: left;
 padding: 20px 150px;
 }
 
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
-}
+/*responsive*/
 @media all and (min-width:290px) and (max-width:600px){
   .login_btn{
     padding: 20px 40px;
@@ -242,3 +238,18 @@ padding: 20px 150px;
 
   color: #FFFFFF;
 } */
+@media all and (min-width:992px) and (max-width:1200px){
+  label,.form-control{
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .form-control{
+    height: 48px;
+  }
+  .login_btn{
+    font-size: 16px;
+    line-height: 23px;
+    padding: 15px 40px;
+    margin-top: 10px;
+  }
+}
