@@ -506,9 +506,9 @@ line-height: 23px;
   app-search-for ::ng-deep .ng-autocomplete {
     width: 380px;
   }
-  app-search-for ::ng-deep button {
+  /* app-search-for ::ng-deep button {
     height: 90px;
-  }
+  } */
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
@@ -521,7 +521,7 @@ line-height: 23px;
   app-search-for ::ng-deep .ng-autocomplete {
     width: 380px;
   }
-  app-search-for ::ng-deep button {
+  /* app-search-for ::ng-deep button {
     height: 90px;
-  }
+  } */
 }
