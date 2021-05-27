@@ -26,8 +26,11 @@
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 30px;
-  line-height: 60px;
+ /*  font-size: 30px;
+  line-height: 60px; */
+  font-size: 24px;
+line-height: 35px;
+color: #2B2B2B;
   
 
 }
@@ -85,13 +88,13 @@ a {
   color: #2B2B2B !important;
   text-decoration: none !important;
 }
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
-}
+} */
 
-@media only screen and (min-width: 300px) and (max-width: 991px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .col-sx-none {
     display: none;
   }

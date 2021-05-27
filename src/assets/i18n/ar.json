@@ -411,7 +411,8 @@
   "Seller_Description": "إزالة من قائمة الرغبات",
   "Brand_Name": "اسم المصنع",
   "Your_Review": "مراجعتك",
-  "DDP_Dest": "وجهة DDP"
+  "DDP_Dest": "وجهة DDP",
+  "Stock-Text": "يجب أن تكون الكمية> مخزون"
 },
 "Privacy_Policy":{
   "Privacy": "سياسة الخصوصية",
