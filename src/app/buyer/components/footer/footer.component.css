@@ -153,9 +153,9 @@ footer .footer-link-div .list-group-item {
   height: 80px;
 }
 @media only screen and (min-width: 1200px) {
-  .container {
+  /* .container {
     max-width: 1600px !important;
-  }
+  } */
   .list-group-horizontal{
     margin-left: 1px;
   }
