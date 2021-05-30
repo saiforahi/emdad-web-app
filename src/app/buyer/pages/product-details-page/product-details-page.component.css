@@ -25,8 +25,8 @@ a {
   position: relative;
 }
 .no-dcomment{
-font-size:24px;
-line-height: 35px;
+font-size:16px;
+line-height: 23px;
 font-family: Jost;
 font-weight: 500;
 }
@@ -51,19 +51,19 @@ pinch-zoom /deep/ .pinch-zoom-content {
 }
 
 .prod-img {
-  height: 450px;
+  height: 324px;
 }
 
 .prodcutDetails /deep/ .mat-raised-button {
-  min-width: 60px !important;
-  min-height: 60px !important;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .prodcutDetails /deep/ .pz-zoom-button.pz-zoom-control-position-bottom {
   bottom: 20px;
   right: 20px;
-  min-width: 60px;
-  min-height: 60px;
+  min-width: 40px;
+  min-height: 40px;
   left: unset;
   }
 
@@ -73,15 +73,16 @@ pinch-zoom /deep/ .pinch-zoom-content {
 }
 
 .wishlist-review-div img {
-  margin-right: 15px;
+  margin-right: 8px;
+  height: 18px;
 }
 
 .wishlist-review-div button {
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 20px;
+line-height: 34px;
   padding-left: 0;
   margin-top: 50px;
 }
@@ -90,8 +91,8 @@ pinch-zoom /deep/ .pinch-zoom-content {
   font-family: Jost;
 font-style: normal;
 font-weight: 500;
-font-size: 18px;
-line-height: 26px;
+font-size: 16px;
+line-height: 23px;
 color: #2B2B2B;
 font-weight: normal;
 }
@@ -104,38 +105,41 @@ font-weight: normal;
   border: 1px solid #6c757d;
   font-size: 35px;
   border-left: none;
-  width: 80px;
+  width: 60px;
+height: 60px;
 }
 
 .quantity-input button {
-  min-width: 80px;
-  min-height: 80px;
+  width: 60px;
+  height: 60px;
   background: none;
 }
 .cart-quote-btn-div{
   padding-top: 30px;
 }
 .cart-quote-btn-div button.add-to-cart-btn {
-  width: 250px;
-  height: 80px;
+  padding: 16px 25px;
   background: #1f4f9e;
   border-radius: 5px;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 29px;
   color: #fff;
   text-align: center !important;
 }
 
 .cart-quote-btn-div button.req-for-quote-btn {
-  height: 80px;
+ padding: 16px 25px;
   border: 1px solid #1f4f9e;
   color: #1f4f9e;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 29px;
+
 }
 .mat-raised-button.mat-button-disabled:not([class*=mat-elevation-z]) {
 opacity: .65;
@@ -144,23 +148,26 @@ opacity: .65;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
+  font-size: 30px;
+line-height: 43px;
   color: #2b2b2b;
 }
 .prod-price {
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 20px;
+line-height: 29px;
 }
 
 .seller-name,
-.brand-name,
-.prod-details-header {
+.brand-name
+ {
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+line-height: 23px;
 }
 
 .seller-name span,
@@ -173,7 +180,8 @@ opacity: .65;
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 29px;
   position: relative;
   display: inline-block;
 }
@@ -186,34 +194,46 @@ opacity: .65;
   left: 0;
 }
 
-.prod-details {
+.prod-desc {
   font-family: Jost;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+line-height: 23px;
 }
 
-.similar-prod-holder {
-  background: #6c757d;
+.similar-product-holder,.similar-prod-holder {
+  /* background: #6c757d; */
+  margin-bottom:60px !important;
 }
 
 .similar-prod-header h4 {
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 56px;
+  font-size: 38px;
+line-height: 55px;
   margin: 40px 0 60px;
+}
+.review-header h4{
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+line-height: 55px;
+margin-top:40px;
+margin-bottom: 20px;
 }
 .input-number,.form-control{
   width:80px !important;
   min-width:80px;
   /* max-width: 150px; */
-  height:80px;
+  height:60px;
   font-family: Jost;
 font-style: normal;
 font-weight: 500;
-font-size: 24px;
-line-height: 35px;
+font-size: 20px;
+line-height: 29px;
 border: 1px solid #CFCFCF;
 box-sizing: border-box;
 /* identical to box height */
@@ -223,14 +243,14 @@ color: #2B2B2B;
 border-radius: 0 !important;
 }
 .plus-button{
-  width:80px !important;
-  height:80px !important;
+  width:60px !important;
+  height:60px !important;
   border: 1px solid #CFCFCF;
 box-sizing: border-box;
 /* border-radius: 5px 0px 0px 5px; */
 font-weight:400 !important;
-font-size:24px !important;
-line-height: 35px;
+font-size:20px !important;
+line-height: 29px;
 font-family: Jost;
 border-radius: 0 !important;
 }
@@ -244,18 +264,20 @@ btn{
   margin-left: 0 !important;
 }
 .plus-button img{
-  height:30px;
-  width:30px;
+  height:20px;
+  width:20px;
 }
 .similar-prod-header button {
   background: #eaeaea;
   border-radius: 10px;
-  margin-top: 30px;
+  margin-top: 40px;
   background: #ccc;
-  width: 80px;
-  height: 80px;
+  width: 48px !important;
+  height: 48px !important;
 }
-
+.similar-prod-header button img{
+  height: 12px;
+}
 .similar-prod-header button:last-child {
   margin-right: 15px;
 }
@@ -263,13 +285,8 @@ btn{
   font-family: Jost;
 font-style: normal;
 font-weight: 400;
-font-size: 18px;
-line-height: 26px;
-/* identical to box height */
-
-
-/* #2B2B2B */
-
+font-size: 16px;
+line-height: 23px;
 color: #2B2B2B;
 }
 .stock>span{
@@ -359,22 +376,24 @@ ngb-carousel /deep/ .carousel-control-next-icon {
 
 .reviews-holder {
   background: #fff;
-  padding: 60px 0;
+  padding-bottom: 60px;
+  padding-top: 40px;
 }
 
 .reviews-holder button {
   background: #1f4f9e;
-  color: #ddd;
-  padding: 23px;
+  color: #FFFFFF;
+  padding: 16px 25px;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
+line-height: 29px;
 }
 
 .seller-description {
   background: #FAFAFA !important;
-  padding: 100px 0 225px;
+  padding: 40px 0 60px;
 }
 .review-btn{
   text-decoration: 2px solid #2B2B2B underline !important;
@@ -387,16 +406,16 @@ ngb-carousel /deep/ .carousel-control-next-icon {
   font-family: Jost;
 font-style: normal;
 font-weight: 500;
-font-size: 56px;
-line-height: 81px;
+font-size: 38px;
+line-height: 55px;
 color: #2B2B2B;
 }
 .seller-head{
   font-family: Jost;
 font-style: normal;
 font-weight: bold;
-font-size: 20px;
-line-height: 29px;
+font-size: 18px;
+line-height: 26px;
 text-transform: capitalize !important;
 color: #2B2B2B;
 }
@@ -404,16 +423,16 @@ color: #2B2B2B;
   font-family: Jost;
 font-style: normal;
 font-weight: normal;
-font-size: 18px;
-line-height: 26px;
+font-size: 16px;
+line-height: 23px;
 color: #2B2B2B;
 }
 .commenter-name{
   font-family: Jost;
 font-style: normal;
 font-weight: bold;
-font-size: 20px;
-line-height: 29px;
+font-size: 18px;
+line-height: 26px;
 text-transform: capitalize;
 color: #2B2B2B;
 }
@@ -435,6 +454,29 @@ line-height: 26px;
 text-transform: capitalize;
 color: #2B2B2B;
 }
+.tooltiptext {
+ 
+  width: 190px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: Jost;
+  color: #2B2B2B;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 80%;
+  left: 46%;
+  margin-left: -60px;
+}
+.cart-quote-btn-div{
+  position: relative;
+}
+
 /*responsive*/
 @media only screen and (min-width: 300px) and (max-width: 992px) {
   .prodcutDetails {
@@ -485,10 +527,12 @@ color: #2B2B2B;
     height: 50px;
     font-size: 16px;
     margin-bottom: 10px;
+    padding:5px;
   }
   .cart-quote-btn-div button.req-for-quote-btn {
     height: 50px;
     font-size: 16px;
+    padding: 5px 10px;
   }
   .prod-name {
     font-size: 18px;
@@ -501,7 +545,7 @@ color: #2B2B2B;
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .similar-prod-header h4,.seller-desc-head {
+  .similar-prod-header h4,.seller-desc-head,.review-header h4 {
     font-size: 20px;
     
     margin: 15px 0 15px;
@@ -552,13 +596,18 @@ color: #2B2B2B;
   clear: both;
   float: none !important;
 }
+
+.tooltiptext{
+display: none;
+
+}
 }
 /*992 to 1200px*/
 @media all and (min-width:992px) and (max-width:1200px){
-  .similar-prod-header h4,.seller-desc-head{
+ /*  .similar-prod-header h4,.seller-desc-head,.review-header h4{
     font-size: 24px;
   }
-
+ */
    .reviews-holder button {
     padding: 6px 15px;
     color: #fff;
@@ -619,7 +668,7 @@ line-height: 23px;
     line-height: 20px;
   }
   .cart-quote-btn-div button.add-to-cart-btn {
-    padding: 10px !important;
+    padding: 10px 15px !important;
     width: fit-content;
     height: 60px ;
     font-size: 16px !important;
@@ -654,7 +703,7 @@ line-height: 20px !important;
     font-size: 16px;
     line-height: 23px;
   }
- .similar-prod-header h4,.seller-desc-head{
+ .similar-prod-header h4,.seller-desc-head,.review-header h4{
   font-size: 36px;
   line-height: 52px;
  }
@@ -688,7 +737,7 @@ line-height: 20px;
   background-color: #1f4f9e !important;
 }
 .seller-description {
-  padding: 20px 0 20px;
+  padding: 30px 0 30px;
 }
 .seller-head{
   font-size: 16px;
@@ -697,6 +746,10 @@ line-height: 23px;
 .seller-desc{
   font-size: 14px;
 line-height: 20px;
+}
+.tooltiptext{
+  font-size: 14px;
+  line-height: 18px;
 }
 }
 @media only screen and (min-width: 1200px) {

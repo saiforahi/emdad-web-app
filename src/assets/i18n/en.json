@@ -420,7 +420,8 @@
         "Seller_Description":"Seller Description",
         "Brand_Name":"Manufacturer Name",
         "Your_Review":"Your Review",
-        "DDP_Dest":"DDP Destination"
+        "DDP_Dest":"DDP Destination",
+        "Stock-Text":"The quantity must be>Stock"
     },
     "Privacy_Policy":{
         "Privacy":"Privacy Policy",

@@ -6,7 +6,7 @@
   <div style="background: #fff">
     <div class="container">
       <div class="row prodcutDetails" *ngIf="prodcutDetails">
-        <div class="col-md-6">
+        <div class="col-md-6  col-lg-6 col-xl-7">
           <div class="img-slider-div">
             <pinch-zoom>
               <img class="prod-img img-fluid" [src]="sliderImgArray[currentImg]" alt="prod img" />
@@ -92,9 +92,10 @@
             <button [disabled]="addToCart=='true'" class="req-for-quote-btn" type="button" mat-raised-button [routerLink]="['/rfq/', prodcutDetails.id]">
               <i class="far fa-file-excel"></i> {{'Buyer_Product_Details.Request_for_Quotation'|translate}}
             </button>
+            <span class="tooltiptext" *ngIf="addToCart=='true'">{{'Buyer_Product_Details.Stock-Text'|translate}}</span>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-6 col-xl-5">
           <p class="prod-name">
             {{ prodcutDetails.name | titlecase }}
           </p>
@@ -140,14 +141,17 @@
           </div>
         </div>
       </div>
-      
+     
     </div>
   </div>
-  <div class="reviews-holder" #reviews>
+  <div class="review-header">
     <div class="container">
-      <div class="similar-prod-header">
-        <h4>{{'Buyer_Product_Details.Reviews'|translate}}</h4>
-      </div>
+    <h4>{{'Buyer_Product_Details.Reviews'|translate}}</h4>
+  </div>
+  </div>
+  <div class="reviews-holder"#reviews>
+    <div class="container">
+    
       <div *ngIf="commentlist?.length">
         <div class="comment-div" *ngFor="let comment of commentlist">
           <p class="commenter-name mb-0">
