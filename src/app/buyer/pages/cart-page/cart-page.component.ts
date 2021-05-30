@@ -130,6 +130,7 @@ export class CartPageComponent implements OnInit {
     });
     if(JSON.parse(localStorage.getItem('cart'))){
       this.cart = JSON.parse(localStorage.getItem('cart'));
+      console.log('cart:',this.cart);
       if (this.cart !== null && this.cart.products?.length > 0){
         this.emptyCart = false;
       }

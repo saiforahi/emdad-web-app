@@ -4,7 +4,7 @@ import { CartPageComponent } from './cart-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { MaterialModule } from '../../../material.module';
-import { TranslateModule } from '@ngx-translate/core';
+import { CommonuiModule } from '../../../ui/commonui/commonui.module';
 const routes: Routes = [
   {path:'', component: CartPageComponent, pathMatch:'full'}
 ]
@@ -16,7 +16,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    TranslateModule
+    CommonuiModule
+    
   ]
 })
 export class CartPageModule { }
