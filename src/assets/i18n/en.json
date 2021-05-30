@@ -455,6 +455,10 @@
         "How_to_Sell":"How to Sell on EMDAD",
         "Product_Portfolio":"Products Portfolio",
         "Why_Us":"Why Us"
+    },
+    "No_data-msg":{
+        "Not_Available":"Not Available",
+        "Upper_amount":"Must be the upper amount from stock"
     }
     
 }

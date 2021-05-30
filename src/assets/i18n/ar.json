@@ -230,7 +230,7 @@
     "Select_Sub_Category": "حدد الفئة الفرعية",
     "Select_Child_Category": "حدد الفئة الفرعية",
     "Product_Details": "طريقة تسليم المنتج",
-    "Manufacturer_Name": "طريقة تسليم المنتج1",
+    "Manufacturer_Name": "طريقة تسليم المنتج",
     "prod_size": "حجم المنتج",
     "Product_Stock": "طريقة تسليم المنتج",
     "Size": "طريقة تسليم المنتج",
@@ -446,6 +446,9 @@
   "How_to_Sell": "كيفية البيع على EMDAD",
   "Product_Portfolio": "مجموعة المنتجات",
   "Why_Us":"لماذا نحن"
-}
+},
+"No_data-msg":
+{"Not_Available": "غير متاح",
+  "Upper_amount": "يجب أن يكون المبلغ الأعلى من المخزون"}
 
 }

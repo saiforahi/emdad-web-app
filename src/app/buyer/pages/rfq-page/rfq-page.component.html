@@ -4,22 +4,27 @@
   <div class="container">
     <div class="card">
       <div class="row">
-        <div class="col-md-5 col-lg-3 col-sm-6 col-xs-12 col-12">
+        <div class="col-md-5 col-lg-4 col-sm-6 col-xs-12 col-12">
           <img src="{{ image }}" alt="..." class="img-fluid p-3 w-100 m-0" />
         </div>
-        <div class="col-lg-9 col-md-7 col-sm-6 col-xs-12 col-12">
+        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 col-12">
           <div class="card-body" *ngIf="productData">
             <h4 class="card-title">{{ productData.name }}</h4>
-            <h5 class="sub-title">SAR {{ calc_unit_price() }} Unit Price</h5>
+            <h5 class="sub-title">SAR {{ calc_unit_price() }} {{'Buyer_Quotation_History.Unit_Price'|translate}}</h5>
             <p class="card-text">
               {{ productData.description }}
             </p>
             <p class="card-point">
-              <span class="mr-1 left-point">Seller Name:</span>
+              <span class="mr-1 left-point">{{'Buyer_Product_Details.Seller_Name'|translate}}</span>
               <span style="cursor: pointer;" (click)="go_to_seller_wise_product_list()" class="store-value">{{ productData.seller.store_name }}</span>
             </p>
+            <p class="card-point" >
+              <span class="mr-1 left-point">{{'Seller_Upload_Product.Manufacturer_Name'|translate}}:</span>
+              <span class="stock-value" *ngIf="productData.brand != null">{{ productData.brand.name | titlecase}}</span>
+              <span class="stock-value" *ngIf="productData.brand == null">{{'No_data-msg.Not_Available'|translate}}</span>
+            </p>
             <p class="card-point">
-              <span class="mr-1 left-point">Stock:</span>
+              <span class="mr-1 left-point">{{'Buyer_Product_Details.Stock'|translate}}:</span>
               <span class="stock-value">{{ productData.stock_quantity>0 ? productData.stock_quantity:'0'}}</span>
             </p>
           </div>
@@ -34,7 +39,7 @@
             <!--Email-->
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{'Buyer_Profile_Form.Email'|translate}}</label>
                 <div class="input-group">
                   <input type="email" class="form-control" placeholder="email@example.com"
                     formControlName="email" />
@@ -47,7 +52,7 @@
             <!--Mobile Number-->
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label for="phone">Mobile Number</label>
+                <label for="phone">{{'Buyer_Profile_Form.Mobile_Number'|translate}}</label>
                 <div class="input-group d-flex flex-row">
                   <input type="text" class="form-control" placeholder="(***) ***-****" minlength="8" maxlength="15"
                     formControlName="phone"/>
@@ -60,7 +65,7 @@
             <!--address-->
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label for="address">Address</label>
+                <label for="address">{{'Buyer_Profile_Form.Address'|translate}}</label>
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="street, city"
                     formControlName="address" />
@@ -70,7 +75,7 @@
             <!--quantity-->
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label for="quantity">Quantity <small>(Must be the upper amount from stock)</small></label>
+                <label for="quantity">{{'Seller_RFQ.Quantity'|translate}} <small>({{'No_data-msg.Upper_amount'|translate}})</small></label>
                 <div class="input-group">
                   <input *ngIf="productData" type="number" class="form-control" required formControlName="quantity" min="{{productData.stock_quantity + 1}}"/>
                   <!-- <div *ngIf="rfqForm.get('quantity').errors">
@@ -87,7 +92,7 @@
             <!-- message -->
             <div class="col-md-12">
               <div class="form-group">
-                <label for="message">Message</label>
+                <label for="message">{{'Buyer_Quotation_History.Message'|translate}}</label>
                 <div class="input-group">
                   <textarea type="text" class="form-control"
                     placeholder="Enter your message here..."
@@ -100,7 +105,7 @@
               <div class="form-group">
                 <button type="submit" value="Submit" mat-raised-button class="btn btn-primary btn-md login_btn"
                   [disabled]="rfqForm.invalid">
-                  Submit
+                  {{'Seller_Tickets.Submit'|translate}}
                 </button>
               </div>
             </div>
