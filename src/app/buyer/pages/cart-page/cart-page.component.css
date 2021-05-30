@@ -15,13 +15,23 @@
   margin: 60px 0 40px;
   color: #2b2b2b;
 }
-
+.no-items{
+  color:#2B2B2B;
+  font-family: Jost;
+  font-size:14px;
+  line-height: 20px;
+  font-weight: normal;
+  text-align: center;
+}
 .card-body {
   background: #fff;
   padding: 60px 40px;
   margin-bottom: 120px;
 }
-
+.prod-name{
+  word-wrap: break-word;
+  word-break: break-all;
+}
 .cart-summery p {
   font-style: normal;
   font-weight: normal;
@@ -33,9 +43,10 @@
   font-weight: 500;
 }
 
-.media {
+.media:not(:last-child) {
   border-bottom: 1px solid #cfcfcf;
   margin-bottom: 30px;
+padding-bottom: 30px;
 }
 
 .prod-img {
@@ -50,7 +61,9 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 26px;
+  overflow-wrap: break-word;
   color: rgba(43, 43, 43, 0.5);
+  word-break: break-all;
 }
 
 .sub-text2 {
@@ -59,12 +72,15 @@
   font-weight: 500;
   font-size: 22px;
   line-height: 26px;
+  overflow-wrap: break-word;
+  word-break: break-all;
   color: rgba(43, 43, 43, 0.5);
   padding-top: 25px;
 }
 
 .sub-text3 {
   font-family: Jost;
+  overflow-wrap: break-word;
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -72,6 +88,7 @@
   color: #2b2b2b;
   text-align: right;
   padding-top: 20px;
+  word-break: break-all;
 }
 
 .media:last-child {
@@ -79,7 +96,8 @@
 }
 
 .media-body {
-  padding: 25px 0 40px 40px;
+  /* padding: 25px 0 40px 40px; */
+
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -148,8 +166,9 @@
 }
 
 .custom-btn {
-  cursor: pointer;
+  cursor: pointer !important;
   padding: auto;
+  display: inline-block;
 }
 
 button.cancel-btn {
@@ -172,12 +191,56 @@ button.cancel-btn img {
   color: rgba(43, 43, 43, 0.5);
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1600px !important;
   }
+} */
+@media only screen and (min-width: 300px) and (max-width: 575px) {
+  .prod-img {
+    width: 70px;
+    height: 70px;
+  }
 }
 
+@media only screen and (min-width: 300px) and (max-width: 768px) {
+  button.cancel-btn {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .custom-btn img {
+    width: 20px;
+  }
+  button.cancel-btn img {
+    height: 20px;
+  }
+  button.cancel-btn {
+    height: 20px;
+    width: 20px;
+    line-height: 1;
+    margin-top: 15px;
+  }
+  .quan-box {
+    width: 20px;
+    height: 30px;
+  }
+}
+@media only screen and (min-width:401px) and (max-width:499px){
+  .custom-btn img {
+    width: 20px;
+  }
+  button.cancel-btn img {
+    height: 20px;
+  }
+  button.cancel-btn {
+    height: 20px;
+    width: 20px;
+    line-height: 1;
+    margin-top: 15px;
+  }
+}
 @media only screen and (min-width: 300px) and (max-width: 991px) {
   .header-text {
     margin: 20px 0 20px;
@@ -271,48 +334,57 @@ button.cancel-btn img {
   }
 }
 
-@media only screen and (min-width: 300px) and (max-width: 575px) {
-  .prod-img {
-    width: 70px;
-    height: 70px;
+@media only screen and (min-width:992px) and (max-width:1200px)
+{
+  .header-text{
+    font-size: 32px;
+line-height: 46px;
   }
+  .prod-img{
+    height: 100px;
+  }
+.prod-name{
+  font-size: 16px;
+line-height: 23px;
 }
-
-@media only screen and (min-width: 300px) and (max-width: 768px) {
-  button.cancel-btn {
-    margin-top: 0;
-  }
+.sub-text1{
+  font-size: 14px;
+line-height: 20px;
 }
-
-@media only screen and (min-width: 300px) and (max-width: 400px) {
-  .custom-btn img {
-    width: 20px;
-  }
-  button.cancel-btn img {
-    height: 20px;
-  }
-  button.cancel-btn {
-    height: 20px;
-    width: 20px;
-    line-height: 1;
-    margin-top: 15px;
-  }
-  .quan-box {
-    width: 20px;
-    height: 30px;
-  }
+.sub-text3{
+  font-size: 16px;
+line-height: 23px;
 }
-@media only screen and (min-width:401px) and (max-width:499px){
-  .custom-btn img {
-    width: 20px;
-  }
-  button.cancel-btn img {
-    height: 20px;
-  }
-  button.cancel-btn {
-    height: 20px;
-    width: 20px;
-    line-height: 1;
-    margin-top: 15px;
-  }
+button.cancel-btn>img,button.cancel-btn{
+  height: 20px;
+  width: 20px; 
+}
+.custom-btn img{
+  height: 20px;
+  width: 20px;
+}
+button.cancel-btn{
+margin-top: 10px !important;
+background-color: transparent !important;
+}
+.cart-summery p{
+  font-size: 14px;
+line-height: 20px;
+}
+.card-body{
+ margin-bottom: 60px; 
+}
+.coupon-input,.apply-btn{
+  height: 48px;
+  font-size: 16px;
+  line-height: 23px;
+}
+.proceed-btn{
+  height: 48px;
+  font-size: 16px;
+  line-height: 23px;
+}
+.quan-class{
+  margin-right: 12px;
+}
 }
