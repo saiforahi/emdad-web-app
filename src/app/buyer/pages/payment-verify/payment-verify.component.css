@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;900&display=swap");
+h3 {
+    font-size: 30px;
+    line-height: 43px;
+  font-weight: 500;
+  font-family: Jost;
+}
+/*REPONSIVE*/
+@media all and (min-width:290px) and (max-width:991px){
+    h3{
+        font-size: 24px;
+        line-height: 35px;
+      }
+}
+@media all and (min-width:992px) and (max-width:1200px){
+    h3{
+        font-size: 28px;
+      line-height: 40px;
+      }
+}
