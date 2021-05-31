@@ -459,7 +459,8 @@
     "No_data-msg":{
         "Not_Available":"Not Available",
         "Upper_amount":"Must be the upper amount from stock",
-        "No_items_cart":"No items in your cart yet !"
+        "No_items_cart":"No items in your cart yet !",
+        "Verify_Account":"Verifying Email account"
     }
     
 }
