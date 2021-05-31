@@ -7,11 +7,13 @@
 @media only screen and (min-width: 1200px) {
   .router-outlet-holder {
     margin-top: 140px;
+    min-height: calc(100% - 140px);
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width:1200px) {
   .router-outlet-holder {
     margin-top: 140px;
+    min-height: calc(100% - 140px);
   }
 }
