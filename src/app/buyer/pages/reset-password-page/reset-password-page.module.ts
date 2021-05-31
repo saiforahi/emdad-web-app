@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordFormComponent } from '../../components//reset-password-form/reset-password-form.component';
 import { MaterialModule } from '../../../material.module';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { CommonuiModule } from 'src/app/ui/commonui/commonui.module';
+
 const routes: Routes = [
   { path: '', component: ResetPasswordPageComponent, pathMatch: 'full' },
 ];
@@ -17,7 +19,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,NgxSpinnerModule
+    MaterialModule,NgxSpinnerModule,
+    CommonuiModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
