@@ -460,7 +460,10 @@
         "Not_Available":"Not Available",
         "Upper_amount":"Must be the upper amount from stock",
         "No_items_cart":"No items in your cart yet !",
-        "Verify_Account":"Verifying Email account"
+        "Verify_Account":"Verifying Email account",
+        "Token_msg":"A token has been sent to your mail. Please enter the token below.",
+        "Enter_token":"Enter token",
+        "Enter_new_pass":"Enter new password"
     }
     
 }

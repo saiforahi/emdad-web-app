@@ -7,23 +7,19 @@
         {{'Forgot_Password.Sub_Text2'|translate}}
       </p>
       <div class="email-box text-center row">
-        <div class=" col-md-8"><input
-          #email
-          type="email"
-          class="form-control"
-          placeholder="{{'Forgot_Password.Placeholder'|translate}}"
-        /></div>
-        <div class=" col-md-4"> <button 
-          (click)="sendMail(email.value)"
-          (keydown.enter)="sendMail(email.value)"
-          class="btn btn-outline-secondary frgt-btn"
-          type="button"
-        >
-          {{'Forgot_Password.Button_Text'|translate}}
-        </button></div>
-       
+        <div class=" col-md-8"><input #email type="email" class="form-control"
+            placeholder="{{'Forgot_Password.Placeholder'|translate}}" /></div>
+        <div class=" col-md-4">
+          <button (click)="sendMail(email.value)" (keydown.enter)="sendMail(email.value)"
+            class="btn btn-outline-secondary frgt-btn" type="button">
+            {{'Forgot_Password.Button_Text'|translate}}
+          </button>
+        </div>
+        <div class="col-md-12 error-div">
+          <p *ngIf="error" class="error-msg pt-2">{{ error }}</p>
+        </div>
       </div>
-      <p *ngIf="error">{{ error }}</p>
+
     </div>
   </div>
 </div>
