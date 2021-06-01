@@ -31,7 +31,7 @@
                 </mat-radio-button>
                 <span *ngIf="user" class="full-name">{{user.full_name}}</span>
                 <br>
-                <span class="full-name add-space">{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</span>
+                <div class="full-name add-space">{{ address.address }}, {{address.city.name}}, {{address.city.country.name}} {{address.zip_code}}</div>
               </mat-radio-group>
             </div>
           </div>
@@ -288,7 +288,7 @@
           <mat-card-actions class="mb-1">
             <a
               href="javascript:void(0);"
-              (click)="download_bank_details()"
+              (click)="download_bank_details()" class="down-details"
               >
                 Download Bank details
           </a>

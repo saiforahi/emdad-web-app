@@ -13,32 +13,30 @@
   font-family: Jost;
 font-style: normal;
 font-weight: normal;
-font-size: 20px;
-line-height: 29px;
-/* identical to box height */
-
-
-/* #2B2B2B */
-
+font-size: 18px;
+line-height: 26px;
 color: #2B2B2B;
 }
 .add-space{
-  margin-left: 40px;
+  padding-left: 40px;
 }
 .content{
   font-family: Jost;
 font-style: normal;
 font-weight: normal;
-font-size: 20px;
-line-height: 29px;
+font-size: 16px;
+line-height: 30px;
 
 color: #2B2B2B;
 }
 .bold-content{
   font-weight: 500;
+  font-size: 16px;
+line-height: 23px;
 }
 .header-text {
-  font-size: 48px;
+  font-size: 36px;
+line-height: 52px;
   margin: 60px 0 40px;
   color: #2b2b2b;
 }
@@ -47,7 +45,10 @@ color: #2B2B2B;
   background: #fff;
   padding: 60px 40px;
 }
-
+.card-body h4{
+  font-size: 24px;
+line-height: 35px;
+}
 .address-row {
   background: #ffffff;
   border: 2px solid #ffffff;
@@ -57,6 +58,7 @@ color: #2B2B2B;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  padding-left: 10px;
 }
 
 .address-row-selected {
@@ -78,17 +80,18 @@ color: #2B2B2B;
   border: 2px solid #2b2b2b;
   border-radius: 5px;
   height: 80px;
-  font-size: 20px;
+  font-size: 18px;
+line-height: 26px;
 }
 
 .form-control {
   background: #efefef;
   border-radius: 5px;
-  height: 80px;
+  height: 60px;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
-  line-height: 29px;
+  font-size: 18px;
+  line-height: 26px;
   border: none;
   color: black;
 }
@@ -96,8 +99,8 @@ color: #2B2B2B;
 .form-label {
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
-  line-height: 29px;
+  font-size: 18px;
+  line-height: 26px;
   /* identical to box height */
   color: #2b2b2b;
 }
@@ -109,12 +112,12 @@ color: #2B2B2B;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 29px;
   /* identical to box height */
   text-align: center;
   color: #ffffff;
-  height: 80px;
+  height: 60px;
   margin-top: 25px;
 }
 
@@ -125,8 +128,8 @@ color: #2B2B2B;
   border-radius: 5px;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 20px;
+line-height: 29px;
   text-align: center;
   color: #2b2b2b;
   height: 80px;
@@ -165,19 +168,28 @@ color: #2B2B2B;
 .example-radio-button {
   margin: 5px;
 }
-
+.down-details{
+  font-size: 16px;
+  line-height: 23px;
+  font-family: Jost !important;
+  padding-left: 10px;
+}
 .errors {
   color: red;
+  font-size: 16px;
+  line-height: 23px;
+  font-family: Jost;
+  font-weight: normal;
 }
 .proceed-btn {
   background-color: #1f4f9e;
   color: white;
   width: 300px;
-  height: 80px;
+font-size: 20px;
+line-height: 29px;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 35px;
+  height: 60px;
 text-align: center;
 font-family: Jost;
 }
@@ -203,18 +215,12 @@ font-family: Jost;
 .cart-summery p {
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 26px;
 }
 
 .cart-summery p span {
   font-weight: 500;
-}
-
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
 }
 
 @media only screen and (min-width: 300px) and (max-width: 991px) {
@@ -225,7 +231,10 @@ font-family: Jost;
   .sub-text1 {
     font-size: 16px;
   }
-
+.errors{
+  font-size: 12px;
+  line-height: 18px;
+}
   .sub-text2 {
     font-size: 16px;
     padding-top: 0;
@@ -303,8 +312,13 @@ font-family: Jost;
     height: 50px;
     font-size: 18px;
   }
-  .add-space{
-    margin-left: 10px;
+ /*  .add-space{
+    padding-left: 10px;
+  } */
+}
+@media only screen and (min-width: 576px) and (max-width: 991px) {
+  .pay-option {
+    margin-bottom: 0;
   }
 }
 
@@ -325,9 +339,66 @@ font-family: Jost;
     height: 60px;
   }
 }
-
-@media only screen and (min-width: 576px) and (max-width: 991px) {
-  .pay-option {
-    margin-bottom: 0;
+/*992px to 1200px*/
+@media only screen and (min-width:992px) and (max-width:1200px){
+  .header-text{
+    font-size: 32px;
+line-height: 46px;
   }
+  .full-name{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .add-address{
+    font-size: 14px;
+line-height: 20px;
+height: 60px;
+  }
+  .card-body h4{
+    font-size: 20px;
+line-height: 29px;
+  }
+  .cart-summery p{
+    font-size: 14px;
+line-height: 20px;
+
+  }
+  .form-control,.form-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .form-control{
+    height: 48px;
+  }
+.save-btn{
+  height: 48px;
+  font-size: 16px;
+  line-height: 23px;
+}
+.pay-option{
+  font-size: 16px !important;
+line-height: 23px !important;
+height: 60px !important;
+}
+.errors{
+  font-size: 14px;
+  line-height: 20px;
+}
+.content{
+  font-size: 14px;
+line-height: 24px;
+}
+.bold-content{
+  font-size: 14px;
+line-height: 20px;
+}
+.down-details{
+  font-size: 14px;
+  line-height: 20px;
+}
+.proceed-btn{
+  font-size: 16px;
+line-height: 23px;
+height: 48px;
+}
 }
