@@ -42,9 +42,15 @@
                 <label for="email">{{'Buyer_Profile_Form.Email'|translate}}</label>
                 <div class="input-group">
                   <input type="email" class="form-control" placeholder="email@example.com"
-                    formControlName="email" />
-                  <div *ngIf="rfqForm.get('email').errors && submitted">
-                    <app-form-input-alert [alertMsg]="'Email is required'"></app-form-input-alert>
+                    formControlName="email" required />
+                  
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched )">
+                  <div *ngIf="email.errors?.required"  class="error-div">
+                    <app-form-input-alert [alertMsg]="'Email is required.'"></app-form-input-alert>
+                  </div>
+                  <div *ngIf="email.errors?.pattern"  class="error-div">
+                    <app-form-input-alert [alertMsg]="'Enter a valid email address.'"></app-form-input-alert>
                   </div>
                 </div>
               </div>
@@ -53,11 +59,23 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label for="phone">{{'Buyer_Profile_Form.Mobile_Number'|translate}}</label>
-                <div class="input-group d-flex flex-row">
+                <div class="input-group">
                   <input type="text" class="form-control" placeholder="(***) ***-****" minlength="8" maxlength="15"
-                    formControlName="phone"/>
-                  <div *ngIf="rfqForm.get('phone').errors && submitted">
-                    <app-form-input-alert [alertMsg]="'Phone number is required'"></app-form-input-alert>
+                    formControlName="phone" required/>
+              
+                </div>
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                  <div *ngIf="phone.errors?.required" class="error-div">
+                    <app-form-input-alert [alertMsg]="'Phone is required.'"></app-form-input-alert>
+                  </div>
+                  <div *ngIf="phone.errors?.minlength" class="error-div">
+                    <app-form-input-alert [alertMsg]="'Phone must be minimum 8 digits.'"></app-form-input-alert>
+                  </div>
+                  <div *ngIf="phone.errors?.maxlength" class="error-div">
+                    <app-form-input-alert [alertMsg]="'Phone can\'t be more than 15 digits'"></app-form-input-alert>
+                  </div>
+                  <div *ngIf="phone.errors.pattern" class="error-div">
+                    <app-form-input-alert [alertMsg]="'Phone must be numbers,maximum 15 digits.'"></app-form-input-alert>
                   </div>
                 </div>
               </div>
@@ -70,6 +88,11 @@
                   <input type="text" class="form-control" placeholder="street, city"
                     formControlName="address" />
                 </div>
+                <div *ngIf="address.invalid && (address.dirty || address.touched )">
+                  <div *ngIf="address.errors?.required"  class="error-div">
+                    <app-form-input-alert [alertMsg]="'Address is required.'"></app-form-input-alert>
+                  </div>
+                  </div>
               </div>
             </div>
             <!--quantity-->
@@ -86,6 +109,9 @@
                   <div *ngIf="quantity.errors?.invalid_qty">
                     <app-form-input-alert [alertMsg]="'Quantity must be greater than stock'"></app-form-input-alert>
                   </div>
+                  <div *ngIf="quantity.errors?.required"  class="error-div">
+                    <app-form-input-alert [alertMsg]="'Quantity is required.'"></app-form-input-alert>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,6 +124,11 @@
                     placeholder="Enter your message here..."
                     rows="10" cols="auto" formControlName="message"></textarea>
                 </div>
+                <div *ngIf="message.invalid && (message.dirty || message.touched )">
+                  <div *ngIf="message.errors?.required"  class="error-div">
+                    <app-form-input-alert [alertMsg]="'Message is required.'"></app-form-input-alert>
+                  </div>
+                  </div>
               </div>
             </div>
             <!--submit button-->

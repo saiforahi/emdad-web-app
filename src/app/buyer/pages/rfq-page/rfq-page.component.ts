@@ -76,8 +76,8 @@ export class RfqPageComponent implements OnInit {
         this.image = config.img_base_url + this.productData.image2;
       }
       this.rfqForm = this.fb.group({
-        email: ['',[Validators.required]],
-        phone: ['', [Validators.required,Validators.minLength(8)]],
+        email: ['',[Validators.required, Validators.pattern(this.emailPattern)]],
+        phone: ['', [Validators.required,Validators.pattern('[+0-9]{8,}'),Validators.minLength(8)]],
         address: ['',[Validators.required]],
         quantity: ['',[this.qty_validator(this.productData.stock_quantity)]],
         message: ['',[Validators.required]],
@@ -193,6 +193,7 @@ export class RfqPageComponent implements OnInit {
         if (control.value <= parseInt(val)) {
           return { 'invalid_qty': true }
         }
+      
       }
       return null;
     }
