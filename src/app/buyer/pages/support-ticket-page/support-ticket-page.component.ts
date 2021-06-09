@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FileService } from '../../../shared/services/file.service';
 import * as fileSaver from 'file-saver';
 import { TicketService } from '../../../shared/services/ticket.service';
 import{PageEvent} from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import{ViewTicketDetailsComponent} from './view-ticket-details/view-ticket-details.component';
 @Component({
   selector: 'app-support-ticket-page',
@@ -55,9 +55,9 @@ export class SupportTicketPageComponent implements OnInit {
   }
   //OPEN THE DIALOG FOR VIEWING ticket DETAILS
   openDialog(item) {
-    const dialogRef = this.dialog.open(ViewTicketDetailsComponent,{
-      autoFocus: false,
-      data:{
+   this.dialog.open(ViewTicketDetailsComponent,{
+    
+        data:{
         supportData:item,
       }
     });

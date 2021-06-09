@@ -14,6 +14,7 @@ details:any;
 adminResponse: any;
 status = ['Initiative', 'Undergoing', 'Resolved'];
   message1: any;
+  hostElement: any;
   constructor(private fileService: FileService,
     private ticketService: TicketService,
     @Inject(MAT_DIALOG_DATA)public data: { supportData: any } ) {

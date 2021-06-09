@@ -18,13 +18,18 @@
    border: 0px transparent !important;
   
 }
-
+::ng-deep .cdk-overlay-container{
+  z-index: 1300;
+}
+.mat-dialog-container{
+  z-index: 999999999;
+}
 .name,.deets{
 font-family: Jost;
 font-style: normal;
 font-weight: 500;
-font-size: 18px;
-line-height: 26px;
+font-size: 16px;
+line-height: 23px;
 color: #2B2B2B;
 }
 .name{
@@ -34,8 +39,8 @@ color: #2B2B2B;
     font-family: Jost;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 16px;
+    line-height: 23px;
     color: #2B2B2B; 
     word-break: break-all;
     overflow-wrap: break-word;
@@ -48,8 +53,8 @@ a,a.active{
     font-family: Jost;
     font-style: normal !important;
     font-weight: 500 !important;
-    font-size: 18px !important;
-    line-height: 26px !important;
+    font-size: 16px !important;
+    line-height: 23px !important;
   color: #F49814 !important;
 }
 .admin-response {
@@ -71,12 +76,12 @@ a,a.active{
   }
   .admin-header{
     font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
+    font-size: 16px;
+    line-height: 23px;
   }
   .message{
-    font-size: 18px;
-  line-height: 34px;
+    font-size: 16px;
+  line-height: 28px;
   color: #2B2B2B;
   word-break: break-all;
   overflow-wrap: break-word;
@@ -90,9 +95,10 @@ a,a.active{
    ::ng-deep .mat-dialog-container{
         margin-top: 180px !important;
     }
+  
 }
 @media all and (min-width:290px) and (max-width:575px){
-    .name,.deet-light,.deets,a,a.active{
+    .name,.deet-light,.deets,a,a.active,.admin-header{
         font-size:14px !important;
         line-height: 20px !important;
     }
@@ -106,11 +112,29 @@ a,a.active{
         line-height: 20px;
       }
       .large-head,.message{
-        font-size: 15px;
+        font-size: 14px;
         line-height: 22px;
       }
       .time{
         font-size: 13px;
         line-height: 18px;
       }
+}
+@media all and (min-width:992px) and (max-width:1200px){
+  .name,.deet-light,.deets,a,a.active,.admin-header{
+    font-size: 14px !important;
+line-height: 20px !important;
+  }
+  .message{
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .time{
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .a-download img{
+height: 20px;
+  }
+  
 }
