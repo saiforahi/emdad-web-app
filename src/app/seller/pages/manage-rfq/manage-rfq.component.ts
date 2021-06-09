@@ -85,7 +85,7 @@ export class ManageRfqComponent implements OnInit {
   }
 
   //OPEN THE DIALOG FOR VIEWING RFQ DETAILS
-  openDialog(item) {
+  openDialog(item: any) {
     const dialogRef = this.dialog.open(ViewDialogueComponent,{
       autoFocus: false,
       data:{

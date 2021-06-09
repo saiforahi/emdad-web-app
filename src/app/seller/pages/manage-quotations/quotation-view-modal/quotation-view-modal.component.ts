@@ -164,7 +164,7 @@ export class QuotationViewModalComponent implements OnInit {
       }
     })
     this.quoteService.updateQuotationSeller(this.details.id,quoteFormData).subscribe(
-      (success)=>{
+      ()=>{
         this.details.quotation.push({
           message:data.message,
           message_date:new Date(),
@@ -185,7 +185,8 @@ export class QuotationViewModalComponent implements OnInit {
   }
 
   calc_unit_price(price:string){
-    let new_price= parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))
+    // let new_price= parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))
+    let new_price= parseFloat(price)
     this.quoteData.controls['unit_price'].setValue(new_price.toFixed(2))
     this.quoteData.controls['total_price'].setValue((new_price * parseFloat(this.quoteData.get('quantity').value)).toFixed(2)) 
   }

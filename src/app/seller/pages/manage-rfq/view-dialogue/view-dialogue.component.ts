@@ -1,11 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { QuotationService } from '../../../../shared/services/quotation.service';
-
-
 import swal from 'sweetalert';
 import { CommissionService } from 'src/app/shared/services/commission.services';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,7 +15,7 @@ export class ViewDialogueComponent implements OnInit {
   btnShow: boolean = true;
   isShown: boolean = false;
   error: any;
-  msg;
+  msg: any;
   prodRfqForm: FormGroup;
   quoteFormShow: boolean = false;
   quantity: AbstractControl;
@@ -37,14 +33,12 @@ export class ViewDialogueComponent implements OnInit {
   attachment2: AbstractControl;
   rfq: AbstractControl;
   isEnabled: boolean = true;
-  uid;
+  uid: string;
   submitted = false;
   commission:any
   existingFiles: number;
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private authService: UserAuthService,
     private quoteDetails: QuotationService,
     private commissionService:CommissionService,
     private spinner:NgxSpinnerService,
@@ -107,7 +101,7 @@ export class ViewDialogueComponent implements OnInit {
 
   }
   //form submit
-  onSubmit(value) {
+  onSubmit(value: { quantity: string | Blob; unit_price: string | Blob; total_price: string | Blob; status: string | Blob; message: string | Blob; }) {
     this.spinner.show()
 
     this.prodRfqFormData.append('quantity', value.quantity);
@@ -170,25 +164,15 @@ export class ViewDialogueComponent implements OnInit {
         this.prodRfqFormData.append("attachment2",'');
       }
     }
-
-    console.log('files',this.selectedImage)
-    this.prodRfqFormData.forEach(data=>{
-      if(typeof(data) == 'object'){
-        
-      }
-      else{
-        console.log(data)
-      }
-    })
     this.quoteDetails.updateQuotationSeller(this.rfqId, this.prodRfqFormData).subscribe(
       (res) => {
         console.log(res);
         this.quoteDetails.updateRfqSeller(this.data.rfqDetails.rfq[0].id,{comments:"replied",status:1}).subscribe(
-          (success)=>{
+          ()=>{
             this.spinner.hide()
             swal('Succeed', "Submitted Quotation Successfully", 'success');
           },
-          (error)=>{}
+          ()=>{}
         )
       },
       (err) => {
@@ -200,8 +184,7 @@ export class ViewDialogueComponent implements OnInit {
 
   }
   //file upload
-  handleFileSelect(event) {
-    var reader = new FileReader();
+  handleFileSelect(event: { target: { files: any[]; }; }) {
     this.selectedImage.push(event.target.files[0]);
     console.log(this.selectedImage);
     /*    if(this.selectedImage.length == 1){
@@ -220,7 +203,7 @@ export class ViewDialogueComponent implements OnInit {
 
   }
   //file remove
-  removeFile(id) {
+  removeFile(id: any) {
     this.selectedImage.splice(id, 1);
     if (this.selectedImage.length < 2) {
       this.isEnabled = true;
@@ -233,7 +216,7 @@ export class ViewDialogueComponent implements OnInit {
   }
 
   calc_unit_price(price:string){
-    let new_price= parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))
+    let new_price= parseFloat(price)
     this.prodRfqForm.controls['unit_price'].setValue(new_price.toFixed(2))
     this.prodRfqForm.controls['total_price'].setValue((new_price * parseFloat(this.prodRfqForm.get('quantity').value)).toFixed(2)) 
   }
@@ -243,8 +226,8 @@ export class ViewDialogueComponent implements OnInit {
     this.prodRfqForm.controls['total_price'].setValue(total.toFixed(2))
   }
   
-  calc_quotation_unit_price(price){
-    return (parseFloat(price) + (parseFloat(price) * (parseFloat(this.commission)/100))).toFixed(2)
+  calc_quotation_unit_price(price: string){
+    return parseFloat(price).toFixed(2)
   }
 }
 
