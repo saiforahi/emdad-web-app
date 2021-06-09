@@ -5,7 +5,9 @@ import { CountryListService } from '../../../shared/services/country-list.servic
 import { Order } from 'src/app/shared/models/Order.model';
 import { Quotation } from '../../../shared/models/quotation.model';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog} from '@angular/material/dialog';
 import swal from 'sweetalert'
+import { ProfileLogoutModal } from '../../components/profile-logout-modal/profile-logout-modal.component';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -32,7 +34,8 @@ export class ProfilePageComponent implements OnInit {
     private authService: UserAuthService,
     private route: ActivatedRoute,
     private countryList: CountryListService,
-    public translate:TranslateService
+    public translate:TranslateService,
+    public dialog: MatDialog
   ) {
     this.show_change_pass_form = false;
     this.show_profile_form = true;
@@ -141,7 +144,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   show_logout_modal() {
-    document.getElementById('profileLogout').style.display = 'block';
+    this.dialog.open(ProfileLogoutModal);
   }
 
   onCountryChange(countryId) {

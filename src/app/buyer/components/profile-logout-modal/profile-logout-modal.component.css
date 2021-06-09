@@ -10,31 +10,12 @@
   border-radius: 5px;
 }
 
-.modal {
-  background-color: #000000c7;
-  font-family: Jost;
-}
-
-.modal-dialog {
-  max-width: 1200px;
-  max-height: 413px;
-}
-
-.modal-content {
-  max-width: 1200px;
-  max-height: 765px;
-  background: #ffffff;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
-  -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
-}
-
 .header {
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 48px;
-  line-height: 69px;
+  font-size: 40px;
+line-height: 58px;
   text-align: center;
   color: #2b2b2b;
   margin-top: 40px;
@@ -44,8 +25,8 @@
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 20px;
+  line-height: 24px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -60,10 +41,9 @@
   color: #ffffff;
   font-family: Jost;
 text-align: center;
-
+height: 60px;
 color: #FFFFFF;
-min-width: 300px;
-min-height: 80px;
+
 }
 
 .btn-cancel {
@@ -78,11 +58,11 @@ border: 1px solid #2B2B2B;
   font-family: Jost;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 29px;
   /* identical to box height */
-  min-width: 300px;
-min-height: 80px;
+  height: 60px;
+  width:225px;
   text-align: center;
   
  
@@ -91,21 +71,10 @@ min-height: 80px;
   margin-top: 40px;
   margin-bottom: 40px;
 }
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
-  .modal-content {
-    width: 80%;
-    margin: auto;
-  }
-  .header {
-    font-size: 30px;
-  }
-  .logout-text {
-    font-size: 18px;
-  }
-  .btn {
-    font-size: 18px;
-  }
+::ng-deep .cdk-overlay-container{
+  z-index: 1300;
 }
+/**REsponsive**/
 @media all and (min-width:290px) and (max-width:767px){
   .btn{
     display: block !important;
@@ -137,4 +106,30 @@ min-height: 80px;
     margin-right: unset;
   }
   
+}
+@media all and (min-width:992px){
+  mat-dialog-content{
+      max-width: 800px;
+    
+  }
+/*  ::ng-deep .mat-dialog-container{
+      margin-top: 180px !important;
+  } */
+
+}
+@media all and (min-width:992px) and (max-width:1200px){
+  .header{
+    font-size: 24px;
+line-height: 35px;
+  }
+  .logout-text{
+    font-size: 14px;
+line-height: 17px;
+  }
+  .btn-cancel,.btn{
+    height: 48px;
+    min-width: 180px;
+    font-size: 20px;
+line-height: 29px;
+  }
 }
