@@ -22,6 +22,7 @@
             </div>
             <br><br>
             <div class="col-md-12" *ngIf="details.image != null">
+                <br>
                 <div> <a class="a-download" href="javascript:void(0);" (click)="download(details.image)"><img
                     src="../../../../../assets/file-up-yellow.png" class="mr-2"><span class="file-name">{{get_image_name(details.image)}}</span></a></div>
             
@@ -30,7 +31,7 @@
             <br>
             <div class="col-md-12">
                 <div class="id-div"><span class="name mr-2">{{'Seller_Dashboard.status'|translate}} :</span> 
-                    <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Initiative'|translate}}</span>
+                    <span *ngIf="details.status == 0" class="deets">{{'Seller_Tickets.Initiated'|translate}}</span>
                     <span *ngIf="details.status == 1" class="deets">{{'Seller_Tickets.Running'|translate}}</span>
                     <span *ngIf="details.status == 2" class="deets">{{'Seller_Tickets.Solved'|translate}}</span>
                 </div>
