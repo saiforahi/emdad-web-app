@@ -92,9 +92,9 @@ a,a.active{
         max-width: 800px;
       
     }
-   ::ng-deep .mat-dialog-container{
+/*    ::ng-deep .mat-dialog-container{
         margin-top: 180px !important;
-    }
+    } */
   
 }
 @media all and (min-width:290px) and (max-width:575px){

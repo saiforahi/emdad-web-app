@@ -39,6 +39,6 @@ const routes: Routes = [
     TranslateModule
   ],
   exports:[TranslateModule],
-  entryComponents: [BuyerQuotationViewComponent],
+  entryComponents: [BuyerQuotationViewComponent,ProfileLogoutModal],
 })
 export class ProfilePageModule {}
