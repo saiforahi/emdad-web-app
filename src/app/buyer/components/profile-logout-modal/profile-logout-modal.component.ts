@@ -1,4 +1,5 @@
 import {Component, Type} from '@angular/core';
+import{MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { UserAuthService } from '../../../shared/services/user-auth.service';
 @Component({
     selector: 'profile-logout-modal',
@@ -6,9 +7,10 @@ import { UserAuthService } from '../../../shared/services/user-auth.service';
     templateUrl: './profile-logout-modal.component.html'
 })
 export class ProfileLogoutModal {
-    constructor(private authService:UserAuthService) {}
+    constructor(private authService:UserAuthService,
+        public dialogRef: MatDialogRef<ProfileLogoutModal>) {}
     hide_logout(){
-        document.getElementById('profileLogout').style.display="none"
+        this.dialogRef.close();
     }
     logout(){
         this.authService.logout();
