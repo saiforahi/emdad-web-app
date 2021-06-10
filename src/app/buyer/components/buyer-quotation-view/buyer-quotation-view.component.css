@@ -221,11 +221,14 @@ opacity: 0.4;
   }
   @media all and (min-width:992px) and (max-width:1200px){
     a,a.active,.name,.deet-light,.deets{
-      font-size: 16px !important;
-      line-height: 23px !important;
+      font-size: 14px !important;
+      line-height: 20px !important;
     }
     label,.form-control,textarea,.accept-btn,.deny-btn{
-      font-size: 16px;
-      line-height: 23px;
+      font-size: 14px !important;
+      line-height: 20px !important;
+    }
+    textarea{
+      height: 150px;
     }
   }

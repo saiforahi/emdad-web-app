@@ -235,11 +235,13 @@ td {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
-  th {
-    font-size: 16px;
-  }
-  td {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  th,td,.edit-product-btn,.btn-primary{
     font-size: 14px;
+    line-height: 20px;
+  }
+  .no-data{
+    font-size: 16px;
+    line-height: 23px;
   }
 }
