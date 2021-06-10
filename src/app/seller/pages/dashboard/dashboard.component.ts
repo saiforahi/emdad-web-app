@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
     //quotation data
     this.rfq.get_seller_quotation_list().subscribe(item => {
       console.log("data from item", item);
-      item.data.forEach(list => {
+      item.data.forEach((list: { status: string; }) => {
         if (parseFloat(list.status) > 1) {
           this.quotationTableData.push(list);
         }
