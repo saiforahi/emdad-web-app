@@ -139,16 +139,16 @@ input[type="radio"] {
 
 .slogan {
   color: #ffffff;
-  margin: 30px 0 35px;
+  margin: 30px 0 20px;
   font-weight: unset;
   font-size: 30px;
+  text-transform: uppercase;
   
 }
 
 .slogan-description {
-  font-family: Jost;
-font-style: normal;
-font-weight: normal;
+font-family: Jost !important;
+font-weight: 300 !important;
 font-size: 22px;
 line-height: 35px;
 
@@ -187,11 +187,12 @@ text-transform: uppercase;
 }
 
 .card-img-overlay {
-  padding: 105px 65px;
+  padding-left: 65px;
+  padding-right: 65px;
 }
 
 .social-media{
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .social-media button {
@@ -226,11 +227,7 @@ line-height: 29px;
 text-decoration-color: #1f4f9e; 
 font-weight: 500;
 }
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
-}
+/*RESPONSIVE -_-*/
 /* @media only screen and (max-width:992px){
   #second{
     order: 2 !important;
@@ -239,154 +236,7 @@ font-weight: 500;
     order: 1 !important;
   }
 } */
-@media all and (min-width:992px) and (max-width:1199px){
-  .login-page-social{
-    min-height: 800px;
-  }
-}
-@media all and (min-width:768px) and (max-width:992px){
- .login-page-social{
-   padding-top: 20px;
-   padding-bottom: 20px;
-   height: auto;
-   background: url("../../../../assets/images/login-page-bg.png") center 100%
-    no-repeat;
-    min-height: 500px;
- }
- .lang-float{
-   display: none !important;
- }
- .container{
-   padding: 10px;
- }
- .login-form-holder{
-   padding: 5px;
- }
- .logo-img{
-   height: 100px;
- }
- .card-img-overlay {
-  padding: 30px 20px;
-}
-.card-img-overlay >.mb-4{
- margin-bottom: 0;
-}
-.login-header{
-  font-size: 40px;
-  line-height: 62px;
-}
-.login-sub-header{
-  font-size: 20px;
-  line-height: 30px;
-}
-.form-label,.form-check-label,.join-text{
-  font-size: 18px;
-  line-height: 25px;
-}
-.login_btn{
-  height: 60px;
-  font-size: 22px;
-  line-height: 30px;
-}
-.lang-btn{
-  height: 40px;
-  padding: 0 20px;
-  font-size: 16px;
-}
-.socially{
-  display: none !important;
-}
-
-.slogan{
-  font-size: 25px;
- 
-}
-.slogan-description{
-  font-size:20px;
-  line-height: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.footer-text{
-  font-size: 16px;
-  line-height: 24px;
-}
-}
-@media only screen and (min-width:576px) and (max-width:768px){
-  .login-page-social{
-    padding-top: 20px;
-    padding-bottom: 80px;
-    height: auto;
-    background: url("../../../../assets/images/login-page-bg.png");
-     background-size: cover;
-     background-repeat: no-repeat;
-     min-height: 650px;
-  }
-  .lang-float{
-    display: none !important;
-  }
-  .login-form-holder{
-    padding: 5px;
-  }
-  .socially{
-    display:none !important;
-  }
-  .logo-img{
-    height: 100px;
-  }
-  .card-img-overlay {
-  padding-top: 50px;
-  padding-bottom: 60px;
-  padding-right: 15px;
-  padding-left: 15px;
- }
- .card-img-overlay .mb-4{
-  margin-bottom: 0;
- }
-.card-footer{
-  margin-bottom: 50px;
-}
-.login-header{
-  font-size: 32px;
-  line-height: 46px;
-}
-.login-sub-header{
-  font-size: 20px;
-  line-height: 30px;
-}
-.form-label,.form-check-label,.join-text{
-  font-size: 18px;
-  line-height: 25px;
-}
-.login_btn{
-  height: 60px;
-  font-size: 22px;
-  line-height: 30px;
-}
-.lang-btn{
-  height: 50px;
-  padding: 0 20px;
-  font-size: 18px;
-}
-.container{
-padding-bottom: 10px;
-
-}
-
-.slogan{
-  font-size: 22px;
- 
-}
-.slogan-description{
-  font-size:16px;
-  line-height: 25px;
-}
-.footer-text{
-  font-size: 14px;
-  line-height: 20px;
-}
- }
- @media only screen and (min-width:290px) and (max-width:575px){
+@media only screen and (min-width:290px) and (max-width:575px){
   .login-page-social{
     padding-top: 20px;
     padding-bottom: 80px;
@@ -471,3 +321,224 @@ padding-bottom: 10px;
 }
  }
  
+@media only screen and (min-width:576px) and (max-width:768px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 80px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png");
+     background-size: cover;
+     background-repeat: no-repeat;
+     min-height: 650px;
+  }
+  .lang-float{
+    display: none !important;
+  }
+  .login-form-holder{
+    padding: 5px;
+  }
+  .socially{
+    display:none !important;
+  }
+  .logo-img{
+    height: 100px;
+  }
+  .card-img-overlay {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+ }
+ .card-img-overlay .mb-4{
+  margin-bottom: 0;
+ }
+.card-footer{
+  margin-bottom: 50px;
+}
+.login-header{
+  font-size: 32px;
+  line-height: 46px;
+}
+.login-sub-header{
+  font-size: 20px;
+  line-height: 30px;
+}
+.form-label,.form-check-label,.join-text{
+  font-size: 18px;
+  line-height: 25px;
+}
+.login_btn{
+  height: 60px;
+  font-size: 22px;
+  line-height: 30px;
+}
+.lang-btn{
+  height: 50px;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.container{
+padding-bottom: 10px;
+
+}
+
+.slogan{
+  font-size: 22px;
+ 
+}
+.slogan-description{
+  font-size:16px;
+  line-height: 25px;
+}
+.footer-text{
+  font-size: 14px;
+  line-height: 20px;
+}
+ }
+ @media all and (min-width:768px) and (max-width:992px){
+  .login-page-social{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: auto;
+    background: url("../../../../assets/images/login-page-bg.png") center 100%
+     no-repeat;
+     min-height: 500px;
+  }
+  .lang-float{
+    display: none !important;
+  }
+  .container{
+    padding: 10px;
+  }
+  .login-form-holder{
+    padding: 5px;
+  }
+  .logo-img{
+    height: 100px;
+  }
+  .card-img-overlay {
+   padding: 30px 20px;
+ }
+ .card-img-overlay >.mb-4{
+  margin-bottom: 0;
+ }
+ .login-header{
+   font-size: 40px;
+   line-height: 62px;
+ }
+ .login-sub-header{
+   font-size: 20px;
+   line-height: 30px;
+ }
+ .form-label,.form-check-label,.join-text{
+   font-size: 18px;
+   line-height: 25px;
+ }
+ .login_btn{
+   height: 60px;
+   font-size: 22px;
+   line-height: 30px;
+ }
+ .lang-btn{
+   height: 40px;
+   padding: 0 20px;
+   font-size: 16px;
+ }
+ .socially{
+   display: none !important;
+ }
+ 
+ .slogan{
+   font-size: 25px;
+  
+ }
+ .slogan-description{
+   font-size:20px;
+   line-height: 30px;
+   padding-left: 10px;
+   padding-right: 10px;
+ }
+ .footer-text{
+   font-size: 16px;
+   line-height: 24px;
+ }
+ }
+
+
+
+@media all and (min-width:992px) and (max-width:1200px){
+  .login-header{
+    font-size: 32px;
+line-height: 46px;
+  }
+  .login-sub-header{
+    font-size: 16px;
+line-height: 23px;
+  }
+  .lang-btn{
+    height: 32px;
+    font-size: 14px;
+line-height: 20px;
+padding: 4px 20px;
+  }
+  .form-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .form-control{
+    height: 48px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .input-group-text img{
+    height: 12px;
+  }
+  .form-check-label{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .login_btn{
+    height: 48px;
+    font-size: 16px;
+line-height: 23px;
+  }
+  .join-text,.join{
+    font-size: 13px;
+line-height: 19px;
+  }
+  /*social*/
+  .logo-img{
+ height: 100px;
+  }
+  .slogan{
+    font-size: 20px;
+line-height: 29px;
+  }
+  .card-img-overlay{
+    padding-top: 30px;
+    padding-bottom: 20px;
+    max-height: 450px !important;
+  }
+  .slogan-description{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .social-media{
+    margin-bottom: 15px !important;
+  }
+  .social-media button{
+    width: 40px;
+height: 40px;
+font-size: 15px;
+  }
+  .footer-text{
+    font-size: 14px;
+line-height: 20px;
+  }
+  .login-page-social{
+    min-height: 412px;
+    max-height: 450px !important;
+    margin-top: 75px;
+  }
+ 
+}
