@@ -629,8 +629,8 @@ display: none;
   .prodcutDetails .mat-raised-button img {
     height: 8px;
   }
-  .input-text{
-    padding-top: 10px;
+  .input-number{
+    padding-top: 5px;
   }
   .input-number,.plus-button{
     width: 60px !important;

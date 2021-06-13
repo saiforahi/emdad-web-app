@@ -5,39 +5,7 @@
 * Browsers: last 4 version
 */
 
-/* .table {
-  border-collapse: separate;
-  border-spacing: 0 15px;
-}
-.table thead th {
-  font-family: Jost;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  border-top: none;
-  color: #2b2b2b;
-}
-.table tbody tr {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
-}
-.table tbody tr:hover {
-  outline-style: solid;
-  outline-color: #1f4f9e;
-  border: 2px solid #1f4f9e;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
-  border-radius: 5px;
-}
-.table td {
-  border-top: none;
-}
-.table td,
-.table th {
-  vertical-align: middle !important;
-} */
+
 .mat-table {
   background-color: transparent !important;
   padding: 0 20px;
@@ -47,7 +15,9 @@
 .card-body {
   padding: 40px;
 }
-
+.edit-product-btn{
+  font-family: Jost;
+}
 tr.mat-row,
 tr.mat-footer-row {
   height: 60px;
@@ -143,11 +113,13 @@ td {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1399px) {
-  th {
-    font-size: 16px;
-  }
-  td {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  th,td,.edit-product-btn,.btn-primary{
     font-size: 14px;
+    line-height: 20px;
+  }
+  .no-data{
+    font-size: 16px;
+    line-height: 23px;
   }
 }

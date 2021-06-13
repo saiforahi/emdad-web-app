@@ -302,7 +302,8 @@
         "Sub_Total":"Sub Total",
         "Discount":"Discount",
         "VAT":"VAT",
-        "Proceed":"Proceed"
+        "Proceed":"Proceed",
+        "Add_discount":"Coupon Added"
     },
     "Buyer_Checkout":{
         "title":"Checkout",

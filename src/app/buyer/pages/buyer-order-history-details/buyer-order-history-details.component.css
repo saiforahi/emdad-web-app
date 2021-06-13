@@ -11,7 +11,9 @@
   margin: 60px 0 40px;
   color: #2b2b2b;
 }
-
+.prod-name{
+  overflow-wrap: break-word;
+}
 .sub-text1 {
   font-family: Jost;
   font-style: normal;
@@ -19,6 +21,7 @@
   font-size: 18px;
   line-height: 26px;
   color: rgba(43, 43, 43, 0.5);
+  overflow-wrap: break-word;
 }
 .custom-file-upload {
   width:100%;
@@ -72,6 +75,7 @@ input[type="file"] {
   line-height: 26px;
   color: rgba(43, 43, 43, 0.5);
   padding-top: 25px;
+  overflow-wrap: break-word;
 }
 
 .sub-text3 {
@@ -83,6 +87,7 @@ input[type="file"] {
   color: #2b2b2b;
   text-align: right;
   padding-top: 25px;
+  overflow-wrap: break-word;
 }
 
 .order-num {
@@ -202,7 +207,7 @@ img {
   margin-bottom: 120px;
 }
 
-.payment-summery h4 {
+.payment-summery > h4 {
   font-size: 30px;
   line-height: 43px;
   font-family: Jost;
@@ -225,7 +230,7 @@ font-weight: 500;
   font-weight: 500;
 }
  */
-.media {
+.media:not(:last-child) {
   border-bottom: 1px solid #cfcfcf;
   margin-bottom: 30px;
 }
@@ -243,12 +248,7 @@ font-weight: 500;
   padding: 25px 20px;
 }
 
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1600px !important;
-  }
-}
-
+/*responsive*/
 @media only screen and (min-width: 300px) and (max-width: 991px) {
   
   .sub-text1 {
@@ -302,22 +302,6 @@ font-weight: 500;
   } */
   
 }
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .prod-name {
-    padding-top: 25px;
-  }
-  .sub-text2 {
-    padding-top: 45px;
-  }
-
-  .sub-text3 {
-    text-align: right;
-    padding-top: 45px;
-  }
-  
-}
-
 @media only screen and (min-width: 300px) and (max-width: 575px) {
   img {
     width: 70px;
@@ -373,7 +357,7 @@ font-weight: 500;
     line-height: 20px;
   }
 }
- @media only screen and (min-width:576px) and (max-width:991px){
+@media only screen and (min-width:576px) and (max-width:991px){
   .header-text {
     margin: 20px 0 20px;
     font-size: 40px;
@@ -388,7 +372,7 @@ font-weight: 500;
     height: 40px;
     width:40px
   }
-  .payment-summery h4 {
+  .payment-summery>h4 {
     font-size: 28px;
     line-height: 38px;
     margin-bottom: 15px;
@@ -412,8 +396,91 @@ font-weight: 500;
   line-height: 26px;
   color: #F49814;
  }
- @media all and (min-width:992px) and (max-width:1199px){
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .prod-name {
+    padding-top: 25px;
+  }
+  .sub-text2 {
+    padding-top: 45px;
+  }
+
+  .sub-text3 {
+    text-align: right;
+    padding-top: 45px;
+  }
+  
+}
+
+
+
+
+ @media all and (min-width:992px) and (max-width:1200px){
+.header-text{
+  font-size: 32px !important;
+line-height: 46px !important;
+}
+.status-btn{
+  height: 36px;
+  font-size: 16px;
+line-height: 23px;
+}
+.order-num{
+  font-size: 18px;
+line-height: 26px;
+}
+img{
+  height: 100px;
+}
+.prod-name{
+  font-size: 16px;
+line-height: 23px;
+}
+.order_no,.sub-text1{
+  font-size: 14px;
+line-height: 20px;
+}
 .media-body{
-  padding-right: 15px;
+  padding-left: 15px;
+}
+.sub-text2,.sub-text3{
+  font-size: 16px;
+line-height: 23px;
+text-align: left;
+}
+.cart-summery p{
+  font-size: 14px;
+line-height: 20px;
+}
+.card-body{
+  padding: 20px !important;
+}
+.payment-summary{
+  margin-top: 20px;
+}
+.payment-summery > h4{
+  font-size: 16px !important;
+line-height: 23px !important;
+margin-bottom: 15px;
+}
+.payment-summery .name,.payment-summery .deets{
+  font-size: 14px;
+line-height: 20px;
+margin-bottom: 15px;
+}
+.custom-file-upload{
+  height: 80px;
+}
+.custom-file-upload img{
+  height: 23px;
+  width: 23px;
+}
+.file-name{
+  font-size: 14px;
+line-height: 20px;
+}
+.download-btn{
+  height: 48px;
+  font-size: 16px !important;
+line-height: 23px !important;
 }
  }
