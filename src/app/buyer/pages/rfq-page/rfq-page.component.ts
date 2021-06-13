@@ -107,7 +107,7 @@ export class RfqPageComponent implements OnInit {
       return total.toFixed(2)
     }
   }
-  onSubmit(value) {
+  onSubmit(value: { email: any; phone: any; address: any; quantity: string; message: any; }) {
     this.spinner.show();
     this.submitted=true
     var rfqData = {
@@ -133,9 +133,7 @@ export class RfqPageComponent implements OnInit {
         status: 1,
         comments:"initiated"
       },
-    };
-    console.log('rfq data',JSON.stringify(rfqData));
-    console.log(localStorage.getItem('token'))
+    }
     this.quotationService.createQuotation(rfqData).subscribe(
       (res) => {
         console.log(res);
