@@ -296,7 +296,8 @@
     "Sub_Total": "المجموع الفرعي",
     "Discount": "الخصم",
     "VAT": "ضريبة القيمة المضافة",
-    "Proceed": "المتابعة"
+    "Proceed": "المتابعة",
+    "Add_discount": "الكوبون مضاف"
   },
   "Buyer_Checkout":{
     "title": "الخروج",
