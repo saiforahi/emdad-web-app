@@ -76,7 +76,7 @@ export class EditProductsPageComponent implements OnInit {
   unitId: any;
   existingImgList = [];
   existingFiles: any;
-  selectedOption;
+  selectedOption: any;
 
   constructor(
     private router: Router,
@@ -242,13 +242,13 @@ export class EditProductsPageComponent implements OnInit {
     });
   }
 
-  fileNameExtarc(path) {
+  fileNameExtarc(path: string) {
     var initialPathArray = path.split('/');
     return initialPathArray[initialPathArray.length - 1];
   }
 
   // remove empty children form the array
-  removeEmptyChildren(data) {
+  removeEmptyChildren(data: any[]) {
     data.forEach((key) => {
       // console.log(key)
       key.children.forEach((key2) => {
@@ -283,19 +283,19 @@ export class EditProductsPageComponent implements OnInit {
     console.log(this.childCategories);
   }
 
-  setSubCAt(catId) {
+  setSubCAt(catId: any) {
     this.subCategories = this.categories.find(
       (item:any) => item.id == catId
     ).children;
   }
 
-  setChildCAt(subCatId) {
+  setChildCAt(subCatId: any) {
     this.childCategories = this.subCategories.find(
       (item) => item.id == subCatId
     ).children;
   }
 
-  addNewBrand(value){
+  addNewBrand(value: string){
     if(value == 'new'){
       this.openAddBrandDialog();
     }
@@ -361,7 +361,7 @@ export class EditProductsPageComponent implements OnInit {
   //   });
   // }
 
-  addNewUnit(value) {
+  addNewUnit(value: string) {
     if (value == 'new') {
       this.openAddUnitDialog();
     }

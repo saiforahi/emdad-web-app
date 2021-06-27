@@ -28,7 +28,7 @@ export class AddProductService {
     return this.http.get(config.base_url + 'api/unit/list');
   }
 
-  addUnit(value){
+  addUnit(value: any){
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -75,7 +75,7 @@ export class AddProductService {
     );
   }
 
-  updateProduct(productData: any, id): Observable<any> {
+  updateProduct(productData: any, id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -88,7 +88,7 @@ export class AddProductService {
     );
   }
 
-  deleteProduct(id) {
+  deleteProduct(id: string) {
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('token'),
