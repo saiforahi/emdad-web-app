@@ -59,7 +59,6 @@ export class ProductCardHorizonalComponent implements OnInit {
       prod.cart_qty = this.prod_qty;
       existingCart.products.push(prod);
       this.cartService.existingCartLength.next(existingCartLength + 1);
-      console.log('cart',existingCart)
       localStorage.setItem('cart', JSON.stringify(existingCart));
       this.openSnackBar('Product added to cart!', 'OK');
     } else {
